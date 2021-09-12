@@ -1878,17 +1878,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8aefa3cb80e5ca498cf5c395b7b71c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  drawGizmos: 0
   target: {fileID: 1545860719}
   pivotOffset: {x: 0.62, y: 1, z: 0}
-  pitchAngle: 0
-  yawAngle: 0
+  cameraDistance: 4.82
   invertX: 0
   invertY: 0
-  cameraDistance: 4.82
   pitchSensitivity: 90
   yawSensitivity: 90
-  pitchBounds: {x: -60, y: 60}
-  zoomBounds: {x: 1, y: 5}
+  pitchMinMax: {x: -60, y: 60}
+  zoomMinMax: {x: 1, y: 5}
   zoomIncrement: 5
 --- !u!1 &979329568
 GameObject:

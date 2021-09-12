@@ -7,41 +7,35 @@ using UnityEngine;
 
 public class ThirdPersonCamera : MonoBehaviour
 {
+    [SerializeField]  bool drawGizmos;
     [SerializeField] private Transform target;
     [SerializeField] private Vector3 pivotOffset;
+    [SerializeField] private float cameraDistance;
     private Vector3 pivotPosition;
-    [SerializeField] private float pitchAngle;
-    [SerializeField] private float yawAngle;
+    private float pitchAngle;
+    private float yawAngle;
     [SerializeField] private bool invertX;
     [SerializeField] private bool invertY;
-    [SerializeField] private float cameraDistance;
     [SerializeField] private float pitchSensitivity;
     [SerializeField] private float yawSensitivity;
-    [SerializeField] private Vector2 pitchBounds;
+    [SerializeField] private Vector2 pitchMinMax;
     private Vector3 cross;
     private Vector3 pivotRight;
-    private GameObject pivotGO;
-    private Transform pivotTrans;
     private Vector2 input;
-    [SerializeField] private Vector2 zoomBounds;
+    [SerializeField] private Vector2 zoomMinMax;
     [SerializeField] private float zoomIncrement;
     
-
-   
-    
-
     private void Reset()
     {
         pitchSensitivity = 1f;
         yawSensitivity = 1f;
         
-        pitchBounds = new Vector2(-60, 60);
-        zoomBounds = new Vector2(1, 5);
+        pitchMinMax = new Vector2(-60, 60);
+        zoomMinMax = new Vector2(1, 5);
 
         zoomIncrement = 0.5f;
 
         cameraDistance = 5f;
-        
     }
 
     // Start is called before the first frame update
@@ -49,21 +43,18 @@ public class ThirdPersonCamera : MonoBehaviour
     {
         pitchAngle = 0;
         yawAngle = 0;
-
-        pivotGO = new GameObject("CameraPivot");
-        pivotTrans = pivotGO.transform;
-        pivotTrans.position = target.position + pivotOffset;
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
-        TestRotation7();
+        UpdateCameraPosition();
     }
     
-    void TestRotation7()
+    void UpdateCameraPosition()
     {
         var input = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+        
         if (Application.isFocused)
         {
             if (invertX)
@@ -78,7 +69,7 @@ public class ThirdPersonCamera : MonoBehaviour
             yawAngle += input.x * yawSensitivity * Time.deltaTime;
             pitchAngle += -input.y * pitchSensitivity * Time.deltaTime;
 
-            pitchAngle = Mathf.Clamp(pitchAngle, pitchBounds.x, pitchBounds.y);
+            pitchAngle = Mathf.Clamp(pitchAngle, pitchMinMax.x, pitchMinMax.y);
         }
         
         //zoom
@@ -108,15 +99,14 @@ public class ThirdPersonCamera : MonoBehaviour
     private void Zoom()
     {
         var scroll = -Input.GetAxis("Mouse ScrollWheel");
-
         cameraDistance += scroll *  zoomIncrement;
-
-        cameraDistance = Mathf.Clamp(cameraDistance, zoomBounds.x, zoomBounds.y);
-
+        cameraDistance = Mathf.Clamp(cameraDistance, zoomMinMax.x, zoomMinMax.y);
     }
     
     private void OnDrawGizmos()
     {
+        if (!drawGizmos) return;
+        
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(pivotPosition, 0.2f);
         Gizmos.color = Color.blue;
