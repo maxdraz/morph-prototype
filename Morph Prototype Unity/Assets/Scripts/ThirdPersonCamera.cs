@@ -43,6 +43,8 @@ public class ThirdPersonCamera : MonoBehaviour
     {
         pitchAngle = 0;
         yawAngle = 0;
+        
+        
     }
 
     // Update is called once per frame
@@ -76,24 +78,37 @@ public class ThirdPersonCamera : MonoBehaviour
         Zoom();
 
         //yaw around world centre
-        pivotPosition = pivotOffset;
-        Quaternion q = Quaternion.AngleAxis(yawAngle,Vector2.up);
-        pivotPosition = q * pivotOffset;
-        //transform to target pos
-        pivotPosition += target.position;
-        
-        //get forward vec of pivot
-        pivotRight = target.position - pivotPosition;
-        pivotRight.y = 0;
-        cross = Vector3.Cross(pivotRight, target.transform.up).normalized;
-        
-        //pitch
-        //transofrm cam to pivot 
-        transform.position = pivotPosition;
-        transform.LookAt(transform.position - cross);
-        transform.RotateAround(pivotPosition, transform.right, pitchAngle);
-        transform.position += -transform.forward * cameraDistance;
-        
+        if (pivotOffset.x != 0)
+        {
+            pivotPosition = pivotOffset;
+            Quaternion q = Quaternion.AngleAxis(yawAngle, Vector2.up);
+            pivotPosition = q * pivotOffset;
+            //transform to target pos
+            pivotPosition += target.position;
+
+            //get forward vec of pivot
+            pivotRight = target.position - pivotPosition;
+            pivotRight.y = 0;
+            cross = Vector3.Cross(pivotRight, target.transform.up).normalized;
+            cross = pivotOffset.x > 0 ? cross : -cross; 
+
+            //pitch
+            //transofrm cam to pivot 
+            transform.position = pivotPosition;
+            transform.LookAt(transform.position - cross);
+            transform.RotateAround(pivotPosition, transform.right, pitchAngle);
+            transform.position += -transform.forward * cameraDistance;
+
+        }
+        else
+        {
+            //transform.rotation = Quaternion.identity;
+            transform.position = target.position;
+            var rot = Quaternion.Euler(pitchAngle, yawAngle, 0);
+            transform.rotation = rot;
+            transform.position += -transform.forward * cameraDistance;
+        }
+
     }
 
     private void Zoom()

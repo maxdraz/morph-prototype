@@ -1880,7 +1880,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drawGizmos: 0
   target: {fileID: 1545860719}
-  pivotOffset: {x: 0.62, y: 1, z: 0}
+  pivotOffset: {x: 0, y: 0, z: 0}
   cameraDistance: 4.82
   invertX: 0
   invertY: 0
