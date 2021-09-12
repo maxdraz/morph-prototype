@@ -24,6 +24,7 @@ public class ThirdPersonCamera : MonoBehaviour
     private Transform pivotTrans;
     private Vector2 input;
     [SerializeField] private Vector2 zoomBounds;
+    [SerializeField] private float zoomIncrement;
     
 
    
@@ -36,6 +37,8 @@ public class ThirdPersonCamera : MonoBehaviour
         
         pitchBounds = new Vector2(-60, 60);
         zoomBounds = new Vector2(1, 5);
+
+        zoomIncrement = 0.5f;
 
         cameraDistance = 5f;
         
@@ -95,27 +98,20 @@ public class ThirdPersonCamera : MonoBehaviour
         
         //pitch
         //transofrm cam to pivot 
-        //transform.position = pivotPosition + (-cross * cameraDistance);
         transform.position = pivotPosition;
         transform.LookAt(transform.position - cross);
         transform.RotateAround(pivotPosition, transform.right, pitchAngle);
         transform.position += -transform.forward * cameraDistance;
-        //rotate around pivot right (projectedPivot)
-        //Quaternion pitch = Quaternion.AngleAxis(pitchAngle, transform.right);
-        //transform.position = pitch * transform.position;
-        //transform.position += -cross * cameraDistance;
-
-        //var toPivot = (pivotPosition - transform.position).normalized;
-        // transform.LookAt(transform.position + toPivot);
+        
     }
 
     private void Zoom()
     {
-        var scroll = Input.GetAxis("Mouse ScrollWheel");
+        var scroll = -Input.GetAxis("Mouse ScrollWheel");
 
-        cameraDistance += scroll;
-        
-        cameraDistance = Mathf.Clamp()
+        cameraDistance += scroll *  zoomIncrement;
+
+        cameraDistance = Mathf.Clamp(cameraDistance, zoomBounds.x, zoomBounds.y);
 
     }
     
