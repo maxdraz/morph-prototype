@@ -3,9 +3,13 @@ using System.IO;
 
 public static class CsvManager
 {
-    public static MorphCsvMetadata MorphCsvMetadata = new MorphCsvMetadata();
-    
-    
+    public static MorphCsvMetadata morphCsvMetadata = new MorphCsvMetadata();
+
+    public static CsvMetadata[] CsvMetadataArray = new CsvMetadata[]
+    {
+        morphCsvMetadata
+    };
+
 
     //private static string separator = ",";
 

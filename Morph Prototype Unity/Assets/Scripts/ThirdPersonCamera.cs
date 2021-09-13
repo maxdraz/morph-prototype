@@ -43,7 +43,11 @@ public class ThirdPersonCamera : MonoBehaviour
     {
         pitchAngle = 0;
         yawAngle = 0;
-        
+
+        if (!target)
+        {
+            target = GameObject.FindWithTag("Player").transform;
+        }
         
     }
 

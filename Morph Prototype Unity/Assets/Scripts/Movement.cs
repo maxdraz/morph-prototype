@@ -6,11 +6,11 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     [SerializeField] private float speed;
+    [Range(0,1)]
+    [SerializeField] private float rotationStrength;
     private Vector3 velocity;
-   
-
+    private Vector3 input;
     private Rigidbody rb;
-    
 
     private void Reset()
     {
@@ -26,37 +26,61 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var input = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
-
-
-        input = Camera.main.transform.TransformDirection(input);
-        input = Vector3.ProjectOnPlane(input, Vector3.up).normalized;
+        input = GetInputRelativeToCamera();
         
-        if (input.magnitude  > 0.7f)
+        UpdateVelocity();
+        UpdateRotation();
+    }
+
+    void UpdateRotation()
+    {
+        if (InputGreaterThan(0.7f) && !IsStrafing())
         {
-            if (Input.GetMouseButton(1))
-            {
-                //strafe
-                // camera forward
-                var camForward = Vector3.ProjectOnPlane(Camera.main.transform.forward, Vector3.up).normalized;
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(camForward), 0.2f);
-            }
-            else
-            {
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(input), 0.2f);
-            }
-            
+            LookInDirection(in input, in rotationStrength);
         }
+        else if(IsStrafing())
+        {
+            LookInDirection(UtilityFunctions.CameraForwardOnPlane(Vector3.up), in rotationStrength);
+        }
+    }
 
+    private bool IsStrafing()
+    {
+        return Input.GetMouseButton(1);
+    }
+
+    private bool InputGreaterThan(float magnitude)
+    {
+        return input.magnitude > magnitude;
+    }
+
+    private void UpdateVelocity()
+    {
         velocity = input * speed;
-        
         velocity.y = rb.velocity.y;
-            
         rb.velocity = velocity;
-        
-        
-        
-        //transform.position += input * speed* Time.deltaTime;    
+    }
 
+    private Vector3 GetInput()
+    {
+        return new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
+    }
+
+    private Vector3 GetInputRelativeToCamera()
+    {
+        var inpt = GetInput();
+        inpt  = Camera.main.transform.TransformDirection(inpt);
+        inpt = Vector3.ProjectOnPlane(inpt, Vector3.up).normalized;
+        return inpt;
+    }
+
+    private void LookInDirection(Vector3 direction, in float slerpStep)
+    {
+        LookInDirection(in direction, in slerpStep);
+    }
+    
+    private void LookInDirection(in Vector3 direction, in float slerpStep)
+    {
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), slerpStep);
     }
 }
