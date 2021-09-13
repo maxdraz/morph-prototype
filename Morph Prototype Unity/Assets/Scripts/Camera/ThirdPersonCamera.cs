@@ -75,6 +75,8 @@ public class ThirdPersonCamera : MonoBehaviour
             yawAngle += input.x * yawSensitivity * Time.deltaTime;
             pitchAngle += -input.y * pitchSensitivity * Time.deltaTime;
 
+            yawAngle %= 360f;
+
             pitchAngle = Mathf.Clamp(pitchAngle, pitchMinMax.x, pitchMinMax.y);
         }
         

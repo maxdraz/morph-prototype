@@ -574,7 +574,7 @@ MonoBehaviour:
   _supportedState: 0
   _activateOnStartup: 0
   _initialiseOnStartup: 1
-  _closeOnSubmit: 0
+  _closeOnSubmit: 1
   _singletonMode: 1
   _autoScroll: 1
   _showPopupDisplay: 1
