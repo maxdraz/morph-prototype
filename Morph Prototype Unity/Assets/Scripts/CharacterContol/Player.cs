@@ -16,8 +16,10 @@ public class Player : MonoBehaviour
 
     private void OnDisable()
     {
-        QuantumConsole.Instance.OnActivate -= OnConsoleActivate;
-        QuantumConsole.Instance.OnDeactivate -= OnConsoleDeactivate;
+        //QuantumConsole.Instance.OnActivate -= OnConsoleActivate;
+       // QuantumConsole.Instance.OnDeactivate -= OnConsoleDeactivate;
+       CursorManager.OnCursorLocked -= OnCursorLocked;
+       CursorManager.OnCursorUnlocked -= OnCursorUnlocked;
     }
 
     // Start is called before the first frame update
@@ -35,8 +37,10 @@ public class Player : MonoBehaviour
     IEnumerator SubscribeToEventsCoroutine()
     {
         yield return new WaitForEndOfFrame();
-         QuantumConsole.Instance.OnActivate += OnConsoleActivate;
-         QuantumConsole.Instance.OnDeactivate += OnConsoleDeactivate;
+         //QuantumConsole.Instance.OnActivate += OnConsoleActivate;
+         //QuantumConsole.Instance.OnDeactivate += OnConsoleDeactivate;
+         CursorManager.OnCursorLocked += OnCursorLocked;
+         CursorManager.OnCursorUnlocked += OnCursorUnlocked;
     }
 
     public void ReceiveInput(bool enable)
@@ -47,18 +51,15 @@ public class Player : MonoBehaviour
         movement.enabled = enable;
     }
 
-    private void OnConsoleActivate()
+    private void OnCursorLocked()
     {
-        print("executed");
         ReceiveInput(false);
-        CursorManager.SetCursorLockMode(CursorLockMode.None);
         Camera.main.GetComponent<ThirdPersonCamera>().enabled = false;
     }
     
-    private void OnConsoleDeactivate()
+    private void OnCursorUnlocked()
     {
         ReceiveInput(true);
-        CursorManager.SetCursorLockMode(CursorLockMode.Locked);
         Camera.main.GetComponent<ThirdPersonCamera>().enabled = true;
     }
 }
