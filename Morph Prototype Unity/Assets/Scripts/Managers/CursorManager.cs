@@ -27,6 +27,11 @@ public class CursorManager : MonoBehaviour
         QuantumConsole.Instance.OnDeactivate -= OnConsoleDeactivate;
     }
 
+    private void Update()
+    {
+        
+    }
+
     private IEnumerator SubscribeToEventsCoroutine()
     {
         yield return new WaitForEndOfFrame();
@@ -42,6 +47,7 @@ public class CursorManager : MonoBehaviour
         SetCursorLockMode(CursorLockMode.None);
         OnCursorLocked?.Invoke();
     }
+    
     private void OnConsoleDeactivate()
     {
         SetCursorLockMode(CursorLockMode.Locked);
@@ -51,5 +57,10 @@ public class CursorManager : MonoBehaviour
     public static void SetCursorLockMode(CursorLockMode mode)
     {
         Cursor.lockState = mode;
+    }
+
+    private void OnApplicationQuit()
+    {
+        SetCursorLockMode(CursorLockMode.None);
     }
 }
