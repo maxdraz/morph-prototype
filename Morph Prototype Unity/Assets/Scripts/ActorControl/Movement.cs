@@ -66,6 +66,17 @@ public class Movement : MonoBehaviour
         return new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
     }
 
+    private void ClampMagnitude(ref Vector3 vec, float min, float max)
+    {
+        if (vec.magnitude >= max)
+        {
+            vec = vec.normalized * max;
+        } else if (vec.magnitude <= 0)
+        {
+            vec = Vector3.zero;
+        }
+    }
+
     private Vector3 GetInputRelativeToCamera()
     {
         var inpt = GetInput();

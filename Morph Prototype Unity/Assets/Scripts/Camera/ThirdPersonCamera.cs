@@ -91,6 +91,7 @@ public class ThirdPersonCamera : MonoBehaviour
         
         //zoom
         Zoom2();
+        //ZoomRaycast();
 
         //yaw around world centre
         if (pivotOffset.x != 0)
@@ -245,6 +246,46 @@ public class ThirdPersonCamera : MonoBehaviour
         cameraDistance = Mathf.Clamp(cameraDistance, zoomMinMax.x, cameraMaxDistance);
     }
     
+    private void ZoomRaycast()
+    {
+        var scroll = -Input.GetAxis("Mouse ScrollWheel");
+       
+
+        if (Physics.Raycast(pivotPosition, -transform.forward, out hit, zoomMinMax.y + spherecastDistance))
+        {
+            if (cameraFirstCollision)
+            {
+               // cameraDistanceBeforeCollision = cameraDistance;
+                cameraFirstCollision = false;
+            }
+            //cameraDistance = Mathf.Min(hit.distance - spherecastDistance , cameraDistanceBeforeCollision);
+
+            //cameraDistance = hit.distance - spherecastDistance;
+
+            cameraMaxDistance = Mathf.Min(hit.distance, cameraDistanceBeforeCollision);
+
+            if (scroll < 1) // can only zoom in while colliding with environment
+            {
+                cameraDistance += scroll *  zoomIncrement;
+                if (cameraDistance < hit.distance)
+                {
+                    return;
+                }
+            }
+        }
+        else
+        {
+            if (!cameraFirstCollision)
+            {
+                cameraDistance = cameraDistanceBeforeCollision;
+               
+            }
+            cameraFirstCollision = true;
+            
+            cameraDistance += scroll *  zoomIncrement;
+        }
+        cameraDistance = Mathf.Clamp(cameraDistance, zoomMinMax.x, cameraMaxDistance);
+    }
     private void OnDrawGizmos()
     {
         if (!drawGizmos) return;
