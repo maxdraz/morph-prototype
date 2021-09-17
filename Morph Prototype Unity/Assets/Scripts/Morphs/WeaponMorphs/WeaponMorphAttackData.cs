@@ -2,9 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Morph/WeaponMorph/WeaponMorphAttackData")]
-public class WeaponMorphAttackData : ScriptableObject
+[System.Serializable]
+public class WeaponMorphAttackData
 {
+    public WeaponMorphAttackData()
+    {
+        
+    }
+    
     public float baseDamage;
     public float fortitudeDamage;
     public float staminaCost;

@@ -81,7 +81,15 @@ public class WeaponMorphCSVParser : CSVParser
                 }
             }
 
-            var basicAttack = ScriptableObject.CreateInstance<WeaponMorphAttackData>();
+            //var basicAttack = ScriptableObject.CreateInstance<WeaponMorphAttackData>();
+            //data.basicAttackData = new WeaponMorphAttackData[int.Parse(word[currentWordIndex++])];
+            //basicAttack.staminaCost = float.Parse(word[currentWordIndex++]);
+            //basicAttack.energyCost = float.Parse(word[currentWordIndex++]);
+            //basicAttack.attackSpeed = float.Parse(word[currentWordIndex++]);
+            //basicAttack.critChance = float.Parse(word[currentWordIndex++]);
+            //basicAttack.fortitudeDamage = float.Parse(word[currentWordIndex++]);
+
+            var basicAttack = new WeaponMorphAttackData();
             data.basicAttackData = new WeaponMorphAttackData[int.Parse(word[currentWordIndex++])];
             basicAttack.staminaCost = float.Parse(word[currentWordIndex++]);
             basicAttack.energyCost = float.Parse(word[currentWordIndex++]);
@@ -94,7 +102,7 @@ public class WeaponMorphCSVParser : CSVParser
                 data.basicAttackData[j] = basicAttack;
             }
             
-            var heavyAttack = ScriptableObject.CreateInstance<WeaponMorphAttackData>();
+            var heavyAttack = new WeaponMorphAttackData();
             data.heavyAttackData = new WeaponMorphAttackData[int.Parse(word[currentWordIndex++])];
             heavyAttack.staminaCost = float.Parse(word[currentWordIndex++]);
             heavyAttack.energyCost = float.Parse(word[currentWordIndex++]);
@@ -108,11 +116,14 @@ public class WeaponMorphCSVParser : CSVParser
             }
 
             var SOName = data.morphName.Replace(" ", string.Empty);
+            var finalOutputPath = outputDirectoryPath + "/" + SOName + "WeaponMorphData.asset";
 
-
-            AssetDatabase.CreateAsset(basicAttack, outputDirectoryPath + "/AttackData/"+ SOName+ "BasicAttackData.asset");
-            AssetDatabase.CreateAsset(heavyAttack, outputDirectoryPath + "/AttackData/"+ SOName+ "HeavyAttackData.asset");
-            AssetDatabase.CreateAsset(data, outputDirectoryPath + "/"+SOName+"WeaponMorphData.asset");
+            if (File.Exists(finalOutputPath))
+            {
+                AssetDatabase.DeleteAsset(finalOutputPath);
+            }
+            
+            AssetDatabase.CreateAsset(data, finalOutputPath);
         }
     }
 }
