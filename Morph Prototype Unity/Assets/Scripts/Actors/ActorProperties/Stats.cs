@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using QFSW.QC;
 using UnityEngine;
 
 public class Stats : MonoBehaviour
 {
+    [SerializeField] private bool drawGizmos;
     //core
     private int healthPoints;
         //health regen?
@@ -31,4 +34,16 @@ public class Stats : MonoBehaviour
     private int poisonResistance;
     private int acidResistance;
 
+    private void OnDrawGizmos()
+    {
+        if(!drawGizmos) return;
+        
+        
+    }
+
+    [Command("player show-stats")]
+    private void DisplayStats()
+    {
+        drawGizmos = true;
+    }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WeaponMorph : Morph
 {
+    // initialized from scriptable obj
     int basicAttackComboLength;
     int heavyAttackComboLength;
     float[] baseDamage;
