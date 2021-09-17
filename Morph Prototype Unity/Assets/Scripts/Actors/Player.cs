@@ -4,10 +4,8 @@ using System.Collections.Generic;
 using QFSW.QC;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : Actor
 {
-    
-
     private void OnEnable()
     {
        

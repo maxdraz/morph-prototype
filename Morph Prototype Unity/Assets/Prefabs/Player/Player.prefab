@@ -156,6 +156,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e39170150ccf22c44b1ab453669814f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayDebug: 0
+  debugWindowRect:
+    serializedVersion: 2
+    x: 34
+    y: 18.5
+    width: 165
+    height: 374.62
+  rowOffset: 15
+  colOffset: 100
+  origin: {x: 10, y: 20}
+  labelDimensions: {x: 100, y: 100}
 --- !u!1001 &8683765336185971018
 PrefabInstance:
   m_ObjectHideFlags: 0

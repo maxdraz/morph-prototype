@@ -3,10 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using QFSW.QC;
 using UnityEngine;
+using Random = System.Random;
 
 public class Stats : MonoBehaviour
 {
-    [SerializeField] private bool drawGizmos;
+    [SerializeField] private bool displayDebug;
+    [SerializeField] private Rect debugWindowRect;
+    [SerializeField] private float rowOffset;
+    [SerializeField] private float colOffset;
+    [SerializeField] private Vector2 origin;
+    [SerializeField] private Vector2 labelDimensions;
+    private int row;
+    private int col;
+
+    private GUIStyle headerStyle;
+    
     //core
     private int healthPoints;
         //health regen?
@@ -34,16 +45,73 @@ public class Stats : MonoBehaviour
     private int poisonResistance;
     private int acidResistance;
 
-    private void OnDrawGizmos()
+    private void Reset()
     {
-        if(!drawGizmos) return;
-        
-        
+        debugWindowRect = new Rect(20, 20, 100, 100);
     }
 
-    [Command("player show-stats")]
-    private void DisplayStats()
+    private void Awake()
     {
-        drawGizmos = true;
+        headerStyle = new GUIStyle();
+        headerStyle.fontStyle = FontStyle.Bold;
+    }
+
+    private void OnGUI()
+    {
+        if(!displayDebug) return;
+        
+        debugWindowRect = GUI.Window(0, debugWindowRect, DrawStatsWindow, gameObject.name + " stats");
+        
+   }
+
+    private void DrawStatsWindow(int windowID)
+    {
+        
+        AddLabel("stat", "value",true);
+        
+        AddLabel("hp", healthPoints.ToString());
+        AddLabel("ep", energyPoints.ToString());
+        AddLabel("stamina", staminaPoints.ToString());
+        AddLabel();
+        AddLabel("melee dmg", meleeDamage.ToString());
+        AddLabel("ranged dmg", rangedDamage.ToString());
+        AddLabel("accuracy", accuracy.ToString());
+        AddLabel();
+        AddLabel("fortitude", fortitude.ToString());
+        AddLabel("toughness", toughness.ToString());
+        AddLabel();
+        AddLabel("fire resist", fireResistance.ToString());
+        AddLabel("ice resist", iceResistance.ToString());
+        AddLabel("lightning resist", lightningResistance.ToString());
+        AddLabel("poison resist", poisonResistance.ToString());
+        AddLabel("acid resist", acidResistance.ToString());
+        AddLabel();
+        AddLabel("intimidation", intimidation.ToString());
+        AddLabel("agility", agility.ToString());
+        AddLabel("stealth", stealth.ToString());
+        AddLabel("perception", perception.ToString());
+        AddLabel("intelligence", intelligence.ToString());
+        
+
+        GUI.DragWindow();
+
+        row = 0;
+    }
+
+    void AddLabel(string varName = "", string varValue = "", bool header = false)
+    {
+        var style = header ? headerStyle : GUI.skin.GetStyle("Label");
+        
+        GUI.Label(new Rect(origin.x + (colOffset * col), origin.y + (rowOffset * row), labelDimensions.x, labelDimensions.y), varName, style);
+        col++;
+        GUI.Label(new Rect(origin.x + (colOffset * col), origin.y + (rowOffset * row), labelDimensions.x, labelDimensions.y), varValue, style);
+        row++;
+        col = 0;
+    }
+
+    [Command("player-display-stats")]
+    private void DisplayStatsWindow(bool bool_ShouldDisplay)
+    {
+        displayDebug = bool_ShouldDisplay;
     }
 }
