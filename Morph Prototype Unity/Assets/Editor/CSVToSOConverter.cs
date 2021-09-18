@@ -4,7 +4,7 @@ using System.IO;
 
 public static class CSVToSOConverter
 {
-    [MenuItem("Utilities/CSV/Rebuild Scriptable Objects/Weapon Morphs")]
+    [MenuItem("Utilities/CSV/Rebuild Morph Database/Weapon Morphs")]
     public static void RebuildWeaponMorphs()
     {
         var parser = new WeaponMorphCSVParser();
@@ -15,7 +15,7 @@ public static class CSVToSOConverter
         parser.Parse();
     }
     
-    [MenuItem("Utilities/CSV/Rebuild Scriptable Objects/All")]
+    [MenuItem("Utilities/CSV/Rebuild Morph Database/All")]
     public static void RebuildAll()
     {
         RebuildWeaponMorphs();

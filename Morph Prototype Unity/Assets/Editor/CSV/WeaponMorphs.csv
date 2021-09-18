@@ -1,2 +1,3 @@
-Name,Creatures,b Combo Length,b stamina cost,b EN cost,b Attack Speed,b Crit chance, b Fort Dmg,h Combo Length,h stamina cost,h EN cost,h Attack Speed,h Crit chance,h Fort Dmg
+Name,Creatures,Basic Combo Length,Basic Stamina Cost,Basic EP Cost,Basic Attack Speed,Basic Crit Chance, Basic Fort Dmg,Heavy Combo Length,Heavy Stamina Cost,Heavy EP Cost,Heavy Attack Speed,Heavy Crit Chance,Heavy Fort Dmg
 Brutal Spurs,"Mantis, Deer",4,5,0,1,0.15,0,1,20,10,0.7,0.5,0.05
+Claws,"Deer, Mantis",2,4,5,2,6,7,8,3,2,1,4,5
