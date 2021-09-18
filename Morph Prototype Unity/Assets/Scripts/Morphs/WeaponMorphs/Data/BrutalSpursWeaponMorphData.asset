@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: BrutalSpursWeaponMorphData
   m_EditorClassIdentifier: 
   morphName: Brutal Spurs
-  creatures: 0000000001000000
+  baseDamage: 5
+  creatures: 00000000
   basicAttackData:
   - baseDamage: 0
     fortitudeDamage: 0

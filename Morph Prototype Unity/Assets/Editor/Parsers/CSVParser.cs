@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using UnityEditor;
 
 public abstract class CSVParser
 {
@@ -37,7 +38,6 @@ public abstract class CSVParser
       }
       else
       {
-         Debug.Log("file found!");
          allLines = File.ReadAllLines(path);
       }
    }
@@ -45,6 +45,24 @@ public abstract class CSVParser
    protected bool FileReadSuccessfully()
    {
       return allLines.Length > 0;
+   }
+
+   protected void UpdateAssetDatabase(UnityEngine.Object obj, in string outputPath)
+   {
+      if (File.Exists(outputPath))
+      {
+         AssetDatabase.DeleteAsset(outputPath);
+      }
+      AssetDatabase.CreateAsset(obj, outputPath);
+   }
+   
+   protected void ClearDirectoryContents(in string directoryPath)
+   {
+      var existingFiles = Directory.GetFiles(directoryPath);
+      foreach (var file in existingFiles)
+      {
+         File.Delete(file);
+      }
    }
    
   

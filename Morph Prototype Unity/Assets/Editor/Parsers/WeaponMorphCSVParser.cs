@@ -8,57 +8,56 @@ using UnityEditor.VersionControl;
 
 public class WeaponMorphCSVParser : CSVParser
 {
-    private string attackDataDirectoryPath; 
-    
+
     public WeaponMorphCSVParser()
     {
         CSVPath = Application.dataPath + "/Editor/CSV/WeaponMorphs.csv";
         outputDirectoryPath = "Assets/Scripts/Morphs/WeaponMorphs/Data";
-        attackDataDirectoryPath = outputDirectoryPath + "/AttackData";
-
+        
         TryReadFile(CSVPath);
     }
 
     public override void Parse()
     {
         if (!FileReadSuccessfully()) return;
-
+        
+        //ClearDirectoryContents(outputDirectoryPath);
 
         //skip first line as its just headers
         for (int i = 1; i < allLines.Length; i++)
         {
             // get words in line
-            var word = allLines[i].Split(',');
+            var words = allLines[i].Split(',');
             int currentWordIndex = 0;
             //create SO
             var data = ScriptableObject.CreateInstance<WeaponMorphData>();
-            //assign morph and SO name
-            data.morphName = word[currentWordIndex++];
-            //process creature list
+            //morph name
+            data.morphName = words[currentWordIndex++];
             
+            //creature types
             List<string> creatureTypes = new List<string>();
 
-            if (word[currentWordIndex].StartsWith(("\"")))
+            if (words[currentWordIndex].StartsWith(("\"")))
             {
                 var shouldLoop = true;
                 while (shouldLoop)
                 {
-                    var currentCreature = word[currentWordIndex].Trim('"', ' ');
+                    var currentCreature = words[currentWordIndex].Trim('"', ' ');
 
                     creatureTypes.Add(currentCreature);
-                    shouldLoop = !word[currentWordIndex].EndsWith("\"");
+                    shouldLoop = !words[currentWordIndex].EndsWith("\"");
                     currentWordIndex++;
                 }
             }
             else
             {
-                creatureTypes.Add(word[currentWordIndex]);
+                creatureTypes.Add(words[currentWordIndex++]);
                 
             }
 
             data.creatures = new CreatureType[creatureTypes.Count];
             var creatureNames = Enum.GetNames(typeof(CreatureType));
-            //compare if creatures are valid
+                //compare if creatures are valid
             for (int x = 0; x< creatureTypes.Count; x++)
             {
                 for (int j = 0; j < creatureNames.Length; j++)
@@ -70,32 +69,29 @@ public class WeaponMorphCSVParser : CSVParser
                         if (Enum.TryParse(creatureTypes[x], true, out creatureType))
                         {
                             data.creatures[x]= creatureType;
-                        }
-                        else
+                            break;
+                        } else
                         {
                             // creature type doesn't exist, error
-                            Debug.LogError("Creature type doesn't exist \nexcel location:\nrow = " + i +1 + "\nword = " + creatureTypes[x]);
+                            Debug.LogError("Build Aborted : Creature type doesn't exist \nexcel location: row = " + (i +1) + " word = " + creatureTypes[x]);
+                            return;
                         }
-
                     }
+                   
                 }
             }
 
-            //var basicAttack = ScriptableObject.CreateInstance<WeaponMorphAttackData>();
-            //data.basicAttackData = new WeaponMorphAttackData[int.Parse(word[currentWordIndex++])];
-            //basicAttack.staminaCost = float.Parse(word[currentWordIndex++]);
-            //basicAttack.energyCost = float.Parse(word[currentWordIndex++]);
-            //basicAttack.attackSpeed = float.Parse(word[currentWordIndex++]);
-            //basicAttack.critChance = float.Parse(word[currentWordIndex++]);
-            //basicAttack.fortitudeDamage = float.Parse(word[currentWordIndex++]);
-
+            // base damage
+            data.baseDamage = float.Parse(words[currentWordIndex++]);
+            
+            // attack data
             var basicAttack = new WeaponMorphAttackData();
-            data.basicAttackData = new WeaponMorphAttackData[int.Parse(word[currentWordIndex++])];
-            basicAttack.staminaCost = float.Parse(word[currentWordIndex++]);
-            basicAttack.energyCost = float.Parse(word[currentWordIndex++]);
-            basicAttack.attackSpeed = float.Parse(word[currentWordIndex++]);
-            basicAttack.critChance = float.Parse(word[currentWordIndex++]);
-            basicAttack.fortitudeDamage = float.Parse(word[currentWordIndex++]);
+            data.basicAttackData = new WeaponMorphAttackData[int.Parse(words[currentWordIndex++])];
+            basicAttack.staminaCost = float.Parse(words[currentWordIndex++]);
+            basicAttack.energyCost = float.Parse(words[currentWordIndex++]);
+            basicAttack.attackSpeed = float.Parse(words[currentWordIndex++]);
+            basicAttack.critChance = float.Parse(words[currentWordIndex++]);
+            basicAttack.fortitudeDamage = float.Parse(words[currentWordIndex++]);
 
             for (int j = 0; j < data.basicAttackData.Length; j++)
             {
@@ -103,27 +99,26 @@ public class WeaponMorphCSVParser : CSVParser
             }
             
             var heavyAttack = new WeaponMorphAttackData();
-            data.heavyAttackData = new WeaponMorphAttackData[int.Parse(word[currentWordIndex++])];
-            heavyAttack.staminaCost = float.Parse(word[currentWordIndex++]);
-            heavyAttack.energyCost = float.Parse(word[currentWordIndex++]);
-            heavyAttack.attackSpeed = float.Parse(word[currentWordIndex++]);
-            heavyAttack.critChance = float.Parse(word[currentWordIndex++]);
-            heavyAttack.fortitudeDamage = float.Parse(word[currentWordIndex++]);
+            data.heavyAttackData = new WeaponMorphAttackData[int.Parse(words[currentWordIndex++])];
+            heavyAttack.staminaCost = float.Parse(words[currentWordIndex++]);
+            heavyAttack.energyCost = float.Parse(words[currentWordIndex++]);
+            heavyAttack.attackSpeed = float.Parse(words[currentWordIndex++]);
+            heavyAttack.critChance = float.Parse(words[currentWordIndex++]);
+            heavyAttack.fortitudeDamage = float.Parse(words[currentWordIndex++]);
 
             for (int j = 0; j < data.heavyAttackData.Length; j++)
             {
                 data.heavyAttackData[j] = heavyAttack;
             }
-
+            
+            //final 
             var SOName = data.morphName.Replace(" ", string.Empty);
             var finalOutputPath = outputDirectoryPath + "/" + SOName + "WeaponMorphData.asset";
-
-            if (File.Exists(finalOutputPath))
-            {
-                AssetDatabase.DeleteAsset(finalOutputPath);
-            }
             
-            AssetDatabase.CreateAsset(data, finalOutputPath);
+            UpdateAssetDatabase(data, in finalOutputPath);
         }
+        
+        //success
+        Debug.Log("**Success** rebuilding weapon morph databse");
     }
 }
