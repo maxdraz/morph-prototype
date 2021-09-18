@@ -20,11 +20,11 @@ public class Stats : MonoBehaviour
     
     //core
     private int healthPoints;
-        //health regen?
+    private int healthRegen;
     private int energyPoints;
-        //energy regen?
+    private int energyRegen;
     private int staminaPoints;
-        //stamina regen?
+    private int staminaRegen;
     //offensive
     private int meleeDamage;
     private int rangedDamage;
