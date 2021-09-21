@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    private float maxSpeed = 10f;
+    private float minSpeed = 2f;
     [SerializeField] private float speed;
     [Range(0,1)]
     [SerializeField] private float rotationStrength;
@@ -30,6 +32,17 @@ public class Movement : MonoBehaviour
         
         UpdateVelocity();
         UpdateRotation();
+
+        if (Input.GetKeyDown("up") && speed<maxSpeed) 
+        {
+            speed += 1f;
+            Debug.Log("Speed set to " + speed);
+        }
+        if (Input.GetKeyDown("down") && speed > minSpeed)
+        {
+            speed -= 1f;
+            Debug.Log("Speed set to " + speed);
+        }
     }
 
     void UpdateRotation()

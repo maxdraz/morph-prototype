@@ -28,12 +28,14 @@ public class Perception : MonoBehaviour
 
     IEnumerator PerceptionLoop()
     {
+        timeBetweenPerceptions = Random.Range(3f,8f);
+
         yield return new WaitForSeconds(timeBetweenPerceptions);
         currentPerception = perception;
         center = transform.position;
 
-        //Debug.Log("Percieving");
-        Collider[] hitColliders = Physics.OverlapSphere(center, currentPerception);
+        Debug.Log("Percieving");
+        Collider[] hitColliders = Physics.OverlapSphere(center, currentPerception/myPerceptionModifier);
 
         foreach (var hitCollider in hitColliders)
         {
@@ -46,6 +48,7 @@ public class Perception : MonoBehaviour
                 float enemyStealthValue = hitCollider.gameObject.GetComponent<Stealth>().finalStealthValue;
                 float dist = Vector3.Distance(transform.position, hitCollider.transform.position);
                 perceptionToApply = currentPerception / (1 + dist / 100);
+                Debug.Log(transform.name + " is trying to detect you with " + perceptionToApply + " perception against your " + enemyStealthValue + " stealth");
 
                 //Enemy is identified immediately
                 if (perceptionToApply > enemyStealthValue * 3)
@@ -80,11 +83,21 @@ public class Perception : MonoBehaviour
                 }
             }
         }
+
         StartCoroutine("PerceptionLoop");
         yield return null;
     }
 
-    
+    private void OnDrawGizmos()
+    {
+        if (showGizmo)
+        {
+            float radius = currentPerception/myPerceptionModifier;
+            center = this.gameObject.transform.position;
+            Gizmos.color = new Color(1, 1, 1, 0.5f);
+            Gizmos.DrawSphere(center, radius);
+        }
+    }
 
     IEnumerator DetectionsDecay()
     {

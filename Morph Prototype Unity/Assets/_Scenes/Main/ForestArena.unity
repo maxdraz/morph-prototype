@@ -392,7 +392,7 @@ GameObject:
   - component: {fileID: 167261003}
   - component: {fileID: 167261002}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Perception Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -410,9 +410,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dae963239e764904da5980e4ddb2840b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  perception: 400
+  perception: 200
   currentPerception: 0
-  myPerceptionModifier: 0
+  myPerceptionModifier: 5
   perceptionToApply: 0
   showGizmo: 1
 --- !u!65 &167261003
@@ -486,7 +486,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 167261001}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.63138175, y: -0.79993844, z: 14.07}
+  m_LocalPosition: {x: -8.2, y: -0.79993844, z: 50.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

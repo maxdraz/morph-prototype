@@ -22,7 +22,7 @@ public class Stealth : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown("q"))
+        if (Input.GetKeyDown("left ctrl"))
         {
             if (!stealthMode)
             {
@@ -41,7 +41,7 @@ public class Stealth : MonoBehaviour
 
 
 
-        currentStealth = maxStealth / (currentSpeed / 2);
+        currentStealth = maxStealth / (currentSpeed / 5);
 
 
         if (currentStealth > maxStealth * 2)
