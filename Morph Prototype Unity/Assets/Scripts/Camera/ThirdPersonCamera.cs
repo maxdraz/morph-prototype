@@ -11,6 +11,8 @@ public class ThirdPersonCamera : MonoBehaviour
     [SerializeField] private Transform target;
     [SerializeField] private Vector3 pivotOffset;
     [SerializeField] private float cameraDistance;
+    [SerializeField] private float cameraMaxDistance;
+    [SerializeField] private float cameraDistanceBeforeCollision;
     private Vector3 pivotPosition;
     private float pitchAngle;
     private float yawAngle;
@@ -24,6 +26,11 @@ public class ThirdPersonCamera : MonoBehaviour
     private Vector2 input;
     [SerializeField] private Vector2 zoomMinMax;
     [SerializeField] private float zoomIncrement;
+    private bool cameraFirstCollision = true;
+    [SerializeField]private float spherecastRadius;
+    [SerializeField]private float spherecastDistance;
+    
+    RaycastHit hit;
     
     private void Reset()
     {
@@ -48,7 +55,9 @@ public class ThirdPersonCamera : MonoBehaviour
         {
             target = GameObject.FindWithTag("Player").transform;
         }
-        
+
+        cameraMaxDistance = cameraDistance;
+
     }
 
     // Update is called once per frame
@@ -81,7 +90,8 @@ public class ThirdPersonCamera : MonoBehaviour
         }
         
         //zoom
-        Zoom();
+        Zoom2();
+        //ZoomRaycast();
 
         //yaw around world centre
         if (pivotOffset.x != 0)
@@ -103,7 +113,6 @@ public class ThirdPersonCamera : MonoBehaviour
             transform.position = pivotPosition;
             transform.LookAt(transform.position - cross);
             transform.RotateAround(pivotPosition, transform.right, pitchAngle);
-            transform.position += -transform.forward * cameraDistance;
 
         }
         else
@@ -112,18 +121,171 @@ public class ThirdPersonCamera : MonoBehaviour
             transform.position = target.position;
             var rot = Quaternion.Euler(pitchAngle, yawAngle, 0);
             transform.rotation = rot;
-            transform.position += -transform.forward * cameraDistance;
+            
         }
+        
+        TranslateCamera2();
 
     }
 
+    private void TranslateCamera()
+    {
+        //sphere cast backwards
+       // RaycastHit hit;
+        if (Physics.SphereCast(pivotPosition, spherecastRadius, -transform.forward, out hit, cameraDistance + 0.2f))
+        {
+            if (cameraFirstCollision)
+            {
+                print("initial dist");
+                cameraDistanceBeforeCollision = cameraDistance;
+                cameraFirstCollision = false;
+            }
+            cameraDistance = hit.distance;
+        }
+        else
+        {
+            cameraFirstCollision = true;
+        }
+
+        cameraDistance = Mathf.Min(cameraDistance, cameraDistanceBeforeCollision);
+
+        transform.position += -transform.forward * cameraDistance;
+    }
+
+    private void TranslateCamera2()
+    {
+        transform.position += -transform.forward * cameraDistance;
+    }
+    
     private void Zoom()
     {
         var scroll = -Input.GetAxis("Mouse ScrollWheel");
         cameraDistance += scroll *  zoomIncrement;
         cameraDistance = Mathf.Clamp(cameraDistance, zoomMinMax.x, zoomMinMax.y);
+        
+        if (Physics.SphereCast(pivotPosition, spherecastRadius, -transform.forward, out hit, cameraDistance + 0.2f))
+        {
+           
+            cameraDistance = hit.distance;
+        }
+        
+        cameraDistance = Mathf.Clamp(cameraDistance, zoomMinMax.x, zoomMinMax.y);
     }
     
+    private void Zoom2()
+    {
+        var scroll = -Input.GetAxis("Mouse ScrollWheel");
+       
+
+        if (Physics.SphereCast(pivotPosition, spherecastRadius, -transform.forward, out hit, cameraDistance + 0.2f))
+        {
+            if (cameraFirstCollision)
+            {
+                cameraDistanceBeforeCollision = cameraDistance;
+                cameraFirstCollision = false;
+            }
+            cameraDistance = Mathf.Min(hit.distance, cameraDistanceBeforeCollision);
+
+            if (scroll < 1) // can only zoom in while colliding with environment
+            {
+                cameraDistance += scroll *  zoomIncrement;
+                if (cameraDistance < hit.distance)
+                {
+                    return;
+                }
+            }
+        }
+        else
+        {
+            if (!cameraFirstCollision)
+            {
+                cameraDistance = cameraDistanceBeforeCollision;
+               
+            }
+            cameraFirstCollision = true;
+            
+            cameraDistance += scroll *  zoomIncrement;
+        }
+        cameraDistance = Mathf.Clamp(cameraDistance, zoomMinMax.x, zoomMinMax.y);
+    }
+    
+    private void Zoom3()
+    {
+        var scroll = -Input.GetAxis("Mouse ScrollWheel");
+       
+
+        if (Physics.SphereCast(pivotPosition, spherecastRadius, -transform.forward, out hit, cameraDistance + 0.2f))
+        {
+            if (cameraFirstCollision)
+            {
+                cameraDistanceBeforeCollision = cameraDistance;
+                cameraFirstCollision = false;
+            }
+            
+            cameraMaxDistance = hit.distance;
+
+            if (scroll < 1) // can only zoom in while colliding with environment
+            {
+                cameraDistance += scroll * zoomIncrement;
+            }
+        }
+        else
+        {
+            if (!cameraFirstCollision)
+            {
+                cameraDistance = cameraDistanceBeforeCollision;
+               
+            }
+            cameraFirstCollision = true;
+            
+            cameraMaxDistance = zoomMinMax.y;
+        }
+        
+        cameraDistance += scroll * zoomIncrement;
+        
+        cameraDistance = Mathf.Clamp(cameraDistance, zoomMinMax.x, cameraMaxDistance);
+    }
+    
+    private void ZoomRaycast()
+    {
+        var scroll = -Input.GetAxis("Mouse ScrollWheel");
+       
+
+        if (Physics.Raycast(pivotPosition, -transform.forward, out hit, zoomMinMax.y + spherecastDistance))
+        {
+            if (cameraFirstCollision)
+            {
+               // cameraDistanceBeforeCollision = cameraDistance;
+                cameraFirstCollision = false;
+            }
+            //cameraDistance = Mathf.Min(hit.distance - spherecastDistance , cameraDistanceBeforeCollision);
+
+            //cameraDistance = hit.distance - spherecastDistance;
+
+            cameraMaxDistance = Mathf.Min(hit.distance, cameraDistanceBeforeCollision);
+
+            if (scroll < 1) // can only zoom in while colliding with environment
+            {
+                cameraDistance += scroll *  zoomIncrement;
+                if (cameraDistance < hit.distance)
+                {
+                    return;
+                }
+            }
+        }
+        else
+        {
+            if (!cameraFirstCollision)
+            {
+                cameraDistance = cameraDistanceBeforeCollision;
+               
+            }
+            cameraFirstCollision = true;
+            
+            cameraDistance += scroll *  zoomIncrement;
+        }
+        cameraDistance = Mathf.Clamp(cameraDistance, zoomMinMax.x, cameraMaxDistance);
+    }
     private void OnDrawGizmos()
     {
         if (!drawGizmos) return;
@@ -134,5 +296,12 @@ public class ThirdPersonCamera : MonoBehaviour
         Gizmos.DrawLine(pivotPosition, pivotPosition + cross.normalized);
         Gizmos.color = Color.white;
         Gizmos.DrawLine(pivotPosition, target.position);
+        
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position , spherecastRadius);
+        Gizmos.DrawLine(transform.position, transform.position - (transform.forward * spherecastDistance));
+        Gizmos.DrawSphere(hit.point , 0.2f);
+        
+        
     }
 }

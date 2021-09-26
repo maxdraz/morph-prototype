@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 8683765337263264560}
   - component: {fileID: 8683765337263264561}
   - component: {fileID: 8683765337263264556}
-  - component: {fileID: 8683765337263264557}
   - component: {fileID: 1545860716}
+  - component: {fileID: 8683765337263264557}
+  - component: {fileID: 5712557162148318103}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -117,20 +118,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 1
---- !u!114 &8683765337263264557
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8683765337263264566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebc0db9ed973ceb41a54b062ef3067db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  rotationStrength: 0.2
 --- !u!114 &1545860716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,6 +130,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 792b6aed8817f6b4ea91c510ee5eacac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8683765337263264557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8683765337263264566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebc0db9ed973ceb41a54b062ef3067db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  rotationStrength: 0.2
+--- !u!114 &5712557162148318103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8683765337263264566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39170150ccf22c44b1ab453669814f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayDebug: 0
+  debugWindowRect:
+    serializedVersion: 2
+    x: 34
+    y: 18.5
+    width: 165
+    height: 374.62
+  rowOffset: 15
+  colOffset: 100
+  origin: {x: 10, y: 20}
+  labelDimensions: {x: 100, y: 100}
 --- !u!1001 &8683765336185971018
 PrefabInstance:
   m_ObjectHideFlags: 0
