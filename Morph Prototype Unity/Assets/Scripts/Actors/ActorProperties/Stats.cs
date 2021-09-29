@@ -60,14 +60,7 @@ public class Stats : MonoBehaviour
 
         if (randomStats) 
         {
-            meleeDamage = Random.Range(10,90);
-            rangedDamage = Random.Range(10, 90);
-            chemicalDamage = Random.Range(10, 90);
-            elementalDamage = Random.Range(10, 90);
-            intelligence = Random.Range(10, 90);
-            agility = Random.Range(10, 90);
-            toughness = Random.Range(10, 90);
-
+            RandomiseStats();
         }
     }
 
@@ -111,6 +104,31 @@ public class Stats : MonoBehaviour
         GUI.DragWindow();
 
         row = 0;
+    }
+
+    [Command("player-randomise-stats")]
+    void RandomiseStats() 
+    {
+        meleeDamage = Random.Range(10, 90);
+        rangedDamage = Random.Range(10, 90);
+        chemicalDamage = Random.Range(10, 90);
+        elementalDamage = Random.Range(10, 90);
+        intelligence = Random.Range(10, 90);
+        agility = Random.Range(10, 90);
+        toughness = Random.Range(10, 90);
+    }
+
+    
+    [Command("player-set-stats")]
+    void SetStats(int mdmg, int rdmg, int cdmg, int edmg, int intell, int agil, int toughn)
+    {
+        meleeDamage = mdmg;
+        rangedDamage = rdmg;
+        chemicalDamage = cdmg;
+        elementalDamage = edmg;
+        intelligence = intell;
+        agility = agil;
+        toughness = toughn;
     }
 
     void AddLabel(string varName = "", string varValue = "", bool header = false)

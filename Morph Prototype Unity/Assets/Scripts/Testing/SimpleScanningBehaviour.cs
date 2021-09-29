@@ -8,7 +8,8 @@ public class SimpleScanningBehaviour : MonoBehaviour
     public List<Vector3> locationsNearby = new List<Vector3>();
     NavMeshAgent agent;
     float wanderingPeriod;
-    float maxWanderingPeriod = 10f;
+    public float minWanderingPeriod;
+    public float maxWanderingPeriod;
 
     Vector3 center;
 

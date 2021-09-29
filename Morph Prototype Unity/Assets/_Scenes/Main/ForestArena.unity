@@ -711,6 +711,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   locationsNearby: []
+  minWanderingPeriod: 10
+  maxWanderingPeriod: 20
 --- !u!1001 &179268032
 PrefabInstance:
   m_ObjectHideFlags: 0
