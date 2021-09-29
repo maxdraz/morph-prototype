@@ -18,14 +18,6 @@ public abstract class Morph
     public string rarityLevel;
 
 
-    void Awake() 
-    {
-       
-        //We need to reference the morph type and add stats based on the morph type. It will have stats associated with it which can be boosted 
-
-
-    }
-
     protected virtual void AddStats() 
     {
         //This will be used to add stats when the morph is attached. Weapon, special, or passive morphs can all modify stats
@@ -50,7 +42,7 @@ public abstract class Morph
     {
         //This will be used to add stats when the morph is attached. Weapon, special, or passive morphs can all modify stats
 
-        //morph.commonStat += morph.amountToBoostCommon; This is a flat value unlike the other stat boosts which are variable
+        //morph.commonStat -= morph.amountToBoostCommon; This is a flat value unlike the other stat boosts which are variable
 
         if (rarityLevel == "Uncommon")
         {
