@@ -4,6 +4,8 @@ using UnityEngine;
 
 public abstract class Morph
 {
+    public MorphData Data { get; set; }
+
     float rarity;
     float uncommonRarity = 50f;
     float rareRarity = 70f;
@@ -16,6 +18,7 @@ public abstract class Morph
     int amountToBoostLegendary;
 
     public string rarityLevel;
+    
 
 
     protected virtual void AddStats() 
