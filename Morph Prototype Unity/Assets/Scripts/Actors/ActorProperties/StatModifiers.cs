@@ -4,26 +4,16 @@ using UnityEngine;
 
 public class StatModifiers : MonoBehaviour
 {
-    public List<float> mDMGModifiers = new List<float>();
-    public List<float> rDMGModifiers = new List<float>();
-    public List<float> cDMGModifiers = new List<float>();
-    public List<float> eDMGModifiers = new List<float>();
-    public List<float> intelligenceEnergyRegenModifiers = new List<float>();
-    public List<float> intelligenceCooldownReductionModifiers = new List<float>();
-    public List<float> agilityAttackSpeedModifiers = new List<float>();
-    public List<float> agilityMoveSpeedModifiers = new List<float>();
-    public List<float> toughnessModifiers = new List<float>();
+    public List<Vector2> mDMGModifiers = new List<Vector2>();
+    public List<Vector2> rDMGModifiers = new List<Vector2>();
+    public List<Vector2> cDMGModifiers = new List<Vector2>();
+    public List<Vector2> eDMGModifiers = new List<Vector2>();
+    public List<Vector2> intelligenceEnergyRegenModifiers = new List<Vector2>();
+    public List<Vector2> intelligenceCooldownReductionModifiers = new List<Vector2>();
+    public List<Vector2> agilityAttackSpeedModifiers = new List<Vector2>();
+    public List<Vector2> agilityMoveSpeedModifiers = new List<Vector2>();
+    public List<Vector2> toughnessModifiers = new List<Vector2>();
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
