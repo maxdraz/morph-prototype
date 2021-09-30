@@ -79,13 +79,10 @@ public class Stats : MonoBehaviour
             RandomiseStats();
         }
 
-        FindModifier("meleeDamage", meleeDamage);
-        FindModifier("rangedDamage", rangedDamage);
-        FindModifier("chemicalDamage", chemicalDamage);
-        FindModifier("elementalDamage", elementalDamage);
-        FindModifier("intelligence", intelligence);
-        FindModifier("agility", agility);
-        FindModifier("toughness", toughness);
+        FindAllModifiers();
+
+        StartCoroutine(StatChange("meleeDamage", meleeDamage, 10, 1f));
+
 
     }
 
@@ -141,6 +138,8 @@ public class Stats : MonoBehaviour
         intelligence = Random.Range(10, 90);
         agility = Random.Range(10, 90);
         toughness = Random.Range(10, 90);
+
+        FindAllModifiers();
     }
 
     
@@ -154,6 +153,8 @@ public class Stats : MonoBehaviour
         intelligence = intell;
         agility = agil;
         toughness = toughn;
+
+        FindAllModifiers();
     }
 
     void AddLabel(string varName = "", string varValue = "", bool header = false)
@@ -173,16 +174,29 @@ public class Stats : MonoBehaviour
         displayDebug = bool_ShouldDisplay;
     }
 
-    IEnumerator StatBuff(string statToBuff, int buffAmount, float duration) 
+    IEnumerator StatChange(string statName, int statToBuff, int buffAmount, float duration) 
     {
-        int newVar = (int)this.GetType().GetField(statToBuff).GetValue(this);
-        newVar += buffAmount;
+        Debug.Log("Buffing " + statName + " from " + statToBuff + " by " + buffAmount + " for " + duration + " seconds");
+        statToBuff += buffAmount;
+        FindModifier(statName, statToBuff);
 
         yield return new WaitForSeconds(duration);
 
-        newVar -= buffAmount;
+        statToBuff -= buffAmount;
+        FindModifier(statName, statToBuff);
 
         yield return null;
+    }
+
+    void FindAllModifiers() 
+    {
+        FindModifier("meleeDamage", meleeDamage);
+        FindModifier("rangedDamage", rangedDamage);
+        FindModifier("chemicalDamage", chemicalDamage);
+        FindModifier("elementalDamage", elementalDamage);
+        FindModifier("intelligence", intelligence);
+        FindModifier("agility", agility);
+        FindModifier("toughness", toughness);
     }
 
     void FindModifier(string myStat, int myStatValue) 
