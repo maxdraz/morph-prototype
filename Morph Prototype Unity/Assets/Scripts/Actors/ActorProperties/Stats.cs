@@ -48,6 +48,20 @@ public class Stats : MonoBehaviour
     private int poisonResistance;
     private int acidResistance;
 
+    public float meleeDamageModifier;
+    public float rangedDamageModifier;
+    public float chemicalDamageModifier;
+    public float elementalDamageModifier;
+
+    public float toughnessModifier;
+
+    public float energyRegenModifier;
+    public float cooldownModifier;
+
+    public float attackSpeedModifier;
+    public float moveSpeedModifier;
+
+    StatModifiers statModifiers;
     private void Reset()
     {
         debugWindowRect = new Rect(20, 20, 100, 100);
@@ -55,6 +69,8 @@ public class Stats : MonoBehaviour
 
     private void Awake()
     {
+        statModifiers = GameObject.Find("StatsModifierManager").GetComponent<StatModifiers>();
+
         headerStyle = new GUIStyle();
         headerStyle.fontStyle = FontStyle.Bold;
 
@@ -62,6 +78,12 @@ public class Stats : MonoBehaviour
         {
             RandomiseStats();
         }
+
+        FindAllModifiers();
+
+        StartCoroutine(StatChange("meleeDamage", meleeDamage, 10, 1f));
+
+
     }
 
     private void OnGUI()
@@ -116,6 +138,8 @@ public class Stats : MonoBehaviour
         intelligence = Random.Range(10, 90);
         agility = Random.Range(10, 90);
         toughness = Random.Range(10, 90);
+
+        FindAllModifiers();
     }
 
     
@@ -129,6 +153,8 @@ public class Stats : MonoBehaviour
         intelligence = intell;
         agility = agil;
         toughness = toughn;
+
+        FindAllModifiers();
     }
 
     void AddLabel(string varName = "", string varValue = "", bool header = false)
@@ -146,5 +172,147 @@ public class Stats : MonoBehaviour
     private void DisplayStatsWindow(bool bool_ShouldDisplay)
     {
         displayDebug = bool_ShouldDisplay;
+    }
+
+    IEnumerator StatChange(string statName, int statToBuff, int buffAmount, float duration) 
+    {
+        Debug.Log("Buffing " + statName + " from " + statToBuff + " by " + buffAmount + " for " + duration + " seconds");
+        statToBuff += buffAmount;
+        FindModifier(statName, statToBuff);
+
+        yield return new WaitForSeconds(duration);
+
+        statToBuff -= buffAmount;
+        FindModifier(statName, statToBuff);
+
+        yield return null;
+    }
+
+    void FindAllModifiers() 
+    {
+        FindModifier("meleeDamage", meleeDamage);
+        FindModifier("rangedDamage", rangedDamage);
+        FindModifier("chemicalDamage", chemicalDamage);
+        FindModifier("elementalDamage", elementalDamage);
+        FindModifier("intelligence", intelligence);
+        FindModifier("agility", agility);
+        FindModifier("toughness", toughness);
+    }
+
+    void FindModifier(string myStat, int myStatValue) 
+    {
+        //Debug.Log("Called Find " + myStat + " Modifier");
+
+        if (myStat == "meleeDamage") 
+        {
+
+            for (int i = 0; i < statModifiers.mDMGModifiers.Count; ++i)
+            {
+                if (statModifiers.mDMGModifiers[i].x <= myStatValue)
+                {
+
+                    meleeDamageModifier = statModifiers.mDMGModifiers[i].y;
+                    
+                }
+            }
+        }
+        if (myStat == "rangedDamage")
+        {
+
+            for (int i = 0; i < statModifiers.rDMGModifiers.Count; ++i)
+            {
+                if (statModifiers.rDMGModifiers[i].x <= myStatValue)
+                {
+
+                    rangedDamageModifier = statModifiers.rDMGModifiers[i].y;
+                    
+                }
+            }
+        }
+        if (myStat == "chemicalDamage")
+        {
+
+            for (int i = 0; i < statModifiers.cDMGModifiers.Count; ++i)
+            {
+                if (statModifiers.cDMGModifiers[i].x <= myStatValue)
+                {
+
+                    chemicalDamageModifier = statModifiers.cDMGModifiers[i].y;
+                    
+                }
+            }
+        }
+        if (myStat == "elementalDamage")
+        {
+
+            for (int i = 0; i < statModifiers.eDMGModifiers.Count; ++i)
+            {
+                if (statModifiers.eDMGModifiers[i].x <= myStatValue)
+                {
+
+                    elementalDamageModifier = statModifiers.eDMGModifiers[i].y;
+                    
+                }
+            }
+        }
+        if (myStat == "toughness")
+        {
+
+            for (int i = 0; i < statModifiers.toughnessModifiers.Count; ++i)
+            {
+                if (statModifiers.toughnessModifiers[i].x <= myStatValue)
+                {
+
+                    toughnessModifier = statModifiers.toughnessModifiers[i].y;
+                    
+                }
+            }
+        }
+
+        if (myStat == "intelligence")
+        {
+
+            for (int i = 0; i < statModifiers.intelligenceCooldownReductionModifiers.Count; ++i)
+            {
+                if (statModifiers.intelligenceCooldownReductionModifiers[i].x <= myStatValue)
+                {
+
+                    cooldownModifier = statModifiers.intelligenceCooldownReductionModifiers[i].y;
+                    
+                }
+            }
+            for (int i = 0; i < statModifiers.intelligenceEnergyRegenModifiers.Count; ++i)
+            {
+                if (statModifiers.intelligenceEnergyRegenModifiers[i].x <= myStatValue)
+                {
+
+                    energyRegenModifier = statModifiers.intelligenceEnergyRegenModifiers[i].y;
+
+                }
+            }
+        }
+
+        if (myStat == "agility")
+        {
+
+            for (int i = 0; i < statModifiers.agilityAttackSpeedModifiers.Count; ++i)
+            {
+                if (statModifiers.agilityAttackSpeedModifiers[i].x <= myStatValue)
+                {
+
+                    attackSpeedModifier = statModifiers.agilityAttackSpeedModifiers[i].y;
+                    
+                }
+            }
+            for (int i = 0; i < statModifiers.agilityMoveSpeedModifiers.Count; ++i)
+            {
+                if (statModifiers.agilityMoveSpeedModifiers[i].x <= myStatValue)
+                {
+
+                    moveSpeedModifier = statModifiers.agilityMoveSpeedModifiers[i].y;
+
+                }
+            }
+        }
     }
 }
