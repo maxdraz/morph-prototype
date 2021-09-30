@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using QFSW.QC;
 using UnityEngine;
-using Random = System.Random;
+using Random = UnityEngine.Random;
 
 public class Stats : MonoBehaviour
 {
     [SerializeField] private bool displayDebug;
+    [SerializeField] private bool randomStats;
     [SerializeField] private Rect debugWindowRect;
     [SerializeField] private float rowOffset;
     [SerializeField] private float colOffset;
@@ -28,6 +29,8 @@ public class Stats : MonoBehaviour
     //offensive
     private int meleeDamage;
     private int rangedDamage;
+    private int chemicalDamage;
+    private int elementalDamage;
     private int accuracy;
     //defensive
     private int fortitude;
@@ -54,6 +57,11 @@ public class Stats : MonoBehaviour
     {
         headerStyle = new GUIStyle();
         headerStyle.fontStyle = FontStyle.Bold;
+
+        if (randomStats) 
+        {
+            RandomiseStats();
+        }
     }
 
     private void OnGUI()
@@ -96,6 +104,31 @@ public class Stats : MonoBehaviour
         GUI.DragWindow();
 
         row = 0;
+    }
+
+    [Command("player-randomise-stats")]
+    void RandomiseStats() 
+    {
+        meleeDamage = Random.Range(10, 90);
+        rangedDamage = Random.Range(10, 90);
+        chemicalDamage = Random.Range(10, 90);
+        elementalDamage = Random.Range(10, 90);
+        intelligence = Random.Range(10, 90);
+        agility = Random.Range(10, 90);
+        toughness = Random.Range(10, 90);
+    }
+
+    
+    [Command("player-set-stats")]
+    void SetStats(int mdmg, int rdmg, int cdmg, int edmg, int intell, int agil, int toughn)
+    {
+        meleeDamage = mdmg;
+        rangedDamage = rdmg;
+        chemicalDamage = cdmg;
+        elementalDamage = edmg;
+        intelligence = intell;
+        agility = agil;
+        toughness = toughn;
     }
 
     void AddLabel(string varName = "", string varValue = "", bool header = false)

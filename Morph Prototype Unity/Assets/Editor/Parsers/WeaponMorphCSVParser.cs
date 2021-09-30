@@ -113,7 +113,7 @@ public class WeaponMorphCSVParser : CSVParser
             
             //final 
             var SOName = data.morphName.Replace(" ", string.Empty);
-            var finalOutputPath = outputDirectoryPath + "/" + SOName + "WeaponMorphData.asset";
+            var finalOutputPath = outputDirectoryPath + "/" + SOName + "/WeaponMorphData.asset";
             
             UpdateAssetDatabase(data, in finalOutputPath);
         }

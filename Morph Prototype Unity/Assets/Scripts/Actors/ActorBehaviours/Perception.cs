@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Perception : MonoBehaviour
 {
+
     Vector3 center;
     public float perception;
     float currentPerception;
@@ -31,9 +32,83 @@ public class Perception : MonoBehaviour
 
        
         detecting = true;
-        StartCoroutine("PerceptionLoop");
+        //StartCoroutine("PerceptionLoop");
     }
 
+
+    private void FixedUpdate()
+    {
+        currentPerception = perception;
+        center = transform.position;
+
+
+
+
+        Collider[] hitColliders = Physics.OverlapSphere(center, currentPerception / myPerceptionModifier);
+
+        foreach (var hitCollider in hitColliders)
+        {
+
+
+            if (hitCollider.gameObject.GetComponent<Stealth>() == true && detecting)
+            {
+
+
+                float enemyStealthValue = hitCollider.gameObject.GetComponent<Stealth>().finalStealthValue;
+                float dist = Vector3.Distance(transform.position, hitCollider.transform.position);
+
+                if (visionCone.playerInSight == true)
+                {
+                    perceptionToApply = currentPerception / (Mathf.Sqrt(dist)/2);
+                    //Debug.Log("Percieving with LoS, " + transform.name + " is trying to detect you with " + perceptionToApply + " perception against your " + enemyStealthValue + " stealth");
+                }
+                else
+                {
+                    perceptionToApply = currentPerception / (Mathf.Sqrt(dist));
+                    //Debug.Log("Percieving without LoS, " + transform.name + " is trying to detect you with " + perceptionToApply + " perception against your " + enemyStealthValue + " stealth");
+                }
+
+
+
+                //Enemy is being detected quickly
+                if (perceptionToApply > enemyStealthValue * 3)
+                {
+                    if (detecting) 
+                    {
+                        hitCollider.gameObject.GetComponent<Stealth>().AddDetection(3f);
+                        //Debug.Log("You are being detected quickly");
+
+                    }
+
+
+                }
+                else
+                {
+                    //Enemy is being detected slowly
+                    if (perceptionToApply > enemyStealthValue)
+                    {
+                        if (detecting)
+                        {
+                            hitCollider.gameObject.GetComponent<Stealth>().AddDetection(1f);
+                            //Debug.Log("You are being detected slowly");
+
+
+                            if (currentDetections == 3)
+                            {
+                                //Enemy has been detected, this entity has now entered a combat state
+                                Debug.Log("You have been spotted prepare for battle!");
+                                detecting = false;
+
+                            }
+                            
+                        }
+
+                    }
+
+                }
+            }
+        }
+    }
     IEnumerator PerceptionLoop()
     {
         
@@ -120,32 +195,6 @@ public class Perception : MonoBehaviour
             center = this.gameObject.transform.position;
             Gizmos.color = new Color(1, 1, 1, 0.5f);
             Gizmos.DrawSphere(center, radius);
-        }
-    }
-
-    IEnumerator DetectionsDecay()
-    {
-        if (currentDetections == 0) 
-        {
-            yield return null;
-        }
-
-        yield return new WaitForSeconds(detectionDecayTime);
-
-        if (currentDetections < detectionsBeforeAggro && detecting) 
-        {
-            currentDetections--;
-        }
-
-        
-
-        if (currentDetections > 0)
-        {
-            StartCoroutine("DetectionsDecay");
-        }
-        else
-        {
-            yield return null;
         }
     }
 }
