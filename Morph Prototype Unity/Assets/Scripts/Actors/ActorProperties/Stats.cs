@@ -9,11 +9,11 @@ public class Stats : MonoBehaviour
 {
     [SerializeField] private bool displayDebug;
     [SerializeField] private bool randomStats;
-    [SerializeField] private Rect debugWindowRect;
-    [SerializeField] private float rowOffset;
-    [SerializeField] private float colOffset;
-    [SerializeField] private Vector2 origin;
-    [SerializeField] private Vector2 labelDimensions;
+    private Rect debugWindowRect;
+    private float rowOffset; 
+    private float colOffset;
+    private Vector2 origin;
+    private Vector2 labelDimensions;
     private int row;
     private int col;
 
@@ -48,23 +48,27 @@ public class Stats : MonoBehaviour
     private int poisonResistance;
     private int acidResistance;
 
-    public float meleeDamageModifier;
-    public float rangedDamageModifier;
-    public float chemicalDamageModifier;
-    public float elementalDamageModifier;
+    [SerializeField] private float meleeDamageModifier;
+    [SerializeField] private float rangedDamageModifier;
+    [SerializeField] private float chemicalDamageModifier;
+    [SerializeField] private float elementalDamageModifier;
 
-    public float toughnessModifier;
+    [SerializeField] private float toughnessModifier;
 
-    public float energyRegenModifier;
-    public float cooldownModifier;
+    [SerializeField] private float energyRegenModifier;
+    [SerializeField] private float cooldownModifier;
 
-    public float attackSpeedModifier;
-    public float moveSpeedModifier;
+    [SerializeField] private float attackSpeedModifier;
+    [SerializeField] private float moveSpeedModifier;
 
     StatModifiers statModifiers;
     private void Reset()
     {
-        debugWindowRect = new Rect(20, 20, 100, 100);
+        debugWindowRect = new Rect(34, 18, 165, 374);
+        rowOffset = 15;
+        colOffset = 100;
+        origin = new Vector2(10, 20);
+        labelDimensions = new Vector2(100, 100);
     }
 
     private void Awake()

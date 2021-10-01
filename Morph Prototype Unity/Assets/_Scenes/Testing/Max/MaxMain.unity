@@ -6422,6 +6422,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 315592306473592246, guid: 831ebd26ff801c34ea13a06dab0c2bc2, type: 3}
+      propertyPath: m_Name
+      value: MeleeAttackHitbox
+      objectReference: {fileID: 0}
     - target: {fileID: 8683765337263264562, guid: 831ebd26ff801c34ea13a06dab0c2bc2, type: 3}
       propertyPath: m_RootOrder
       value: 6

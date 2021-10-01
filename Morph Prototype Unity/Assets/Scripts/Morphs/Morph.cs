@@ -17,7 +17,7 @@ public abstract class Morph: MonoBehaviour
 
     int amountToBoostLegendary;
 
-    public string rarityLevel;
+    [SerializeField] private string rarityLevel;
     
 
 
