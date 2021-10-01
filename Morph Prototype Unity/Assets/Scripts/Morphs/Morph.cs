@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Morph
+public abstract class Morph: MonoBehaviour
 {
     public MorphData Data { get; set; }
 
