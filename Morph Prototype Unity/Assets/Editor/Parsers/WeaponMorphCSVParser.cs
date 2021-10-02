@@ -86,16 +86,16 @@ public class WeaponMorphCSVParser : CSVParser
             
             // attack data
             var basicAttack = new WeaponMorphAttackData();
-            data.basicAttackData = new WeaponMorphAttackData[int.Parse(words[currentWordIndex++])];
+            data.lightAttackData = new WeaponMorphAttackData[int.Parse(words[currentWordIndex++])];
             basicAttack.staminaCost = float.Parse(words[currentWordIndex++]);
             basicAttack.energyCost = float.Parse(words[currentWordIndex++]);
             basicAttack.attackSpeed = float.Parse(words[currentWordIndex++]);
             basicAttack.critChance = float.Parse(words[currentWordIndex++]);
             basicAttack.fortitudeDamage = float.Parse(words[currentWordIndex++]);
 
-            for (int j = 0; j < data.basicAttackData.Length; j++)
+            for (int j = 0; j < data.lightAttackData.Length; j++)
             {
-                data.basicAttackData[j] = basicAttack;
+                data.lightAttackData[j] = basicAttack;
             }
             
             var heavyAttack = new WeaponMorphAttackData();
