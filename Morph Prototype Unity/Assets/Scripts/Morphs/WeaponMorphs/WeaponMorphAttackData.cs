@@ -5,11 +5,6 @@ using UnityEngine;
 [System.Serializable]
 public class WeaponMorphAttackData
 {
-    public WeaponMorphAttackData()
-    {
-        
-    }
-    
     public float baseDamage;
     public float fortitudeDamage;
     public float staminaCost;

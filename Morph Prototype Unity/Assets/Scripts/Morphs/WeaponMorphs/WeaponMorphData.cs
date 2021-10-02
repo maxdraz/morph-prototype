@@ -7,7 +7,7 @@ public class WeaponMorphData : MorphData
 {
     public float baseDamage;
     public CreatureType[] creatures;
-    public WeaponMorphAttackData[] basicAttackData;
+    public WeaponMorphAttackData[] lightAttackData;
     public WeaponMorphAttackData[] heavyAttackData;
 
 }
