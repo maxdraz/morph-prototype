@@ -5,5 +5,5 @@ using UnityEngine;
 public class WeaponMorph : Morph
 {
     // initialized from scriptable obj
-    protected WeaponMorphData data;
+    [SerializeField] protected WeaponMorphData data;
 }

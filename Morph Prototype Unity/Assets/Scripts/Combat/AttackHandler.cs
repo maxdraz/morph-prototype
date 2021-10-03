@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class AttackHandler : MonoBehaviour
 {
-    private WeaponMorphAttackData[] lightAttacks;
-    private WeaponMorphAttackData[] heavyAttacks;
+    private WeaponMorphAttackData[] lightAttackData;
+    private WeaponMorphAttackData[] heavyAttackData;
 
-    private Queue<Attack> attackQueue; 
+    private Queue<Attack> attackQueue;
+    private Attack currentAttack;
     
     // Start is called before the first frame update
     void Start()
@@ -18,17 +19,30 @@ public class AttackHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (attackQueue.Count < 1) return; //no queued attacks
+
+        if (!attackQueue.Peek().completed)
+        {
+            currentAttack = attackQueue.Dequeue();
+        }
     }
 
-    void TryQueueAttack()
+    void TryQueueLightAttack()
     {
+        if (lightAttackData.Length < 1) return;
+        
+        // if attack
         
     }
-
-    public void Initialize(WeaponMorphAttackData[] lAttacks, WeaponMorphAttackData[] hAttacks)
+    
+    void TryQueueHeavyAttack()
     {
-        lightAttacks = lAttacks;
-        heavyAttacks = hAttacks;
+       
+    }
+
+    public void InitializeAttackData(WeaponMorphAttackData[] lAttacks, WeaponMorphAttackData[] hAttacks)
+    {
+        lightAttackData = lAttacks;
+        heavyAttackData = hAttacks;
     }
 }

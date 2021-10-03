@@ -14,6 +14,8 @@ public abstract class Attack
     protected float duration;
     protected float nextComboInputWindow;
 
+    public bool completed;
+
     public Attack(float baseDamage, float fortitudeDamage, float staminaCost, float energyCost, float critChance, float attackSpeed, float duration, float nextComboInputWindow)
     { 
         this.baseDamage = baseDamage;
@@ -24,5 +26,6 @@ public abstract class Attack
         this.attackSpeed= attackSpeed;
         this.duration = duration;
         this.nextComboInputWindow = nextComboInputWindow;
+        completed = false;
     }
 }

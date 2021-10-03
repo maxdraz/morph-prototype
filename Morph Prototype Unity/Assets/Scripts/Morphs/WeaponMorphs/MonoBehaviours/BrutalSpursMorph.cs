@@ -11,7 +11,7 @@ public class BrutalSpursMorph : WeaponMorph
     private void Awake()
     {
         attackHandler = GetComponent<AttackHandler>();
-        attackHandler.Initialize(data.lightAttackData, data.heavyAttackData);
+        attackHandler.InitializeAttackData(data.lightAttackData, data.heavyAttackData);
     }
 
     private void Update()
