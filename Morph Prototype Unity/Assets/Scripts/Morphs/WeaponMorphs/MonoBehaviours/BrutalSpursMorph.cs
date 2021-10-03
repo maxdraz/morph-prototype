@@ -1,49 +1,25 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(AttackHandler))]
 public class BrutalSpursMorph : WeaponMorph
 {
-    private AttackHandler attackHandler;
-
-    private void Awake()
+    protected override void Awake()
     {
-        attackHandler = GetComponent<AttackHandler>();
-        attackHandler.InitializeAttackData(data.lightAttackData, data.heavyAttackData);
-    }
-
-    private void Update()
-    {
-        if (LightAttackKeyDown())
+        base.Awake();
+        
+        lightAttacks = new List<LightAttack>()
         {
-            ExecuteLightAttack();
-        }
+            new SpurStab(0.5f, 0.2f),
+            new SpurStab(0.5f, 0.2f),
+            new SpurStab(0.5f,0)
+        };
 
-        if (HeavyAttackKeyDown())
+        heavyAttacks = new List<HeavyAttack>()
         {
-            ExecuteHeavyAttack();
-        }
-    }
-
-    void ExecuteLightAttack()
-    {
-        print("light attack");
-    }
-
-    void ExecuteHeavyAttack()
-    {
-        print("heavy attack");
-    }
-
-    bool LightAttackKeyDown()
-    {
-        return Input.GetMouseButtonDown(0);
-    }
-
-    bool HeavyAttackKeyDown()
-    {
-        return Input.GetMouseButtonDown(1);
+            new SpurHeavySlash(2),
+            new SpurHeavySlash(2),
+            new SpurHeavySlash(3)
+        };
     }
 }
