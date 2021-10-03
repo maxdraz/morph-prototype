@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class HeavyAttack : Attack
 {
-    public bool CanComboIntoLight;
-
-    public HeavyAttack(float baseDamage, float fortitudeDamage, float staminaCost, float energyCost, float critChance, float attackSpeed,float duration, float nextComboInputWindow, bool canComboIntoLight) 
-        : base(baseDamage, fortitudeDamage, staminaCost, energyCost, critChance, attackSpeed, duration, nextComboInputWindow)
+    public HeavyAttack(float duration, float inputNextWindow = 0.5f, bool canComboIntoOtherType = true) 
+        : base(duration, inputNextWindow, canComboIntoOtherType)
     {
-        this.CanComboIntoLight = canComboIntoLight;
+        isLightAttack = false;
     }
 }

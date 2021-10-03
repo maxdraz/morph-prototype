@@ -15,7 +15,7 @@ public class Hitbox : MonoBehaviour
     {
         col = GetComponent<Collider>();
         
-        //Disable();
+        Disable();
     }
 
     // Update is called once per frame

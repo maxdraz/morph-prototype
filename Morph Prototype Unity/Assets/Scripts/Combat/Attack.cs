@@ -1,28 +1,54 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 
+[System.Serializable]
 public abstract class Attack
 {
-    protected float baseDamage;
-    protected float fortitudeDamage;
-    protected float staminaCost;
-    protected float energyCost;
-    protected float critChance;
-    protected float attackSpeed;
-    protected float duration;
-    protected float nextComboInputWindow;
+    public string name;
+    public float duration;
+    public float inputNextWindow;
+    public float timeUntilComplete;
+    public bool completed;
+    public bool isLightAttack;
+    public bool canComboIntoOtherType;
 
-    public Attack(float baseDamage, float fortitudeDamage, float staminaCost, float energyCost, float critChance, float attackSpeed, float duration, float nextComboInputWindow)
-    { 
-        this.baseDamage = baseDamage;
-        this.fortitudeDamage = fortitudeDamage;
-        this.staminaCost = staminaCost;
-        this.energyCost = energyCost;
-        this.critChance = critChance;
-        this.attackSpeed= attackSpeed;
+    protected Attack(float duration, float inputNextWindow = 0.5f, bool canComboIntoOtherType = true)
+    {
         this.duration = duration;
-        this.nextComboInputWindow = nextComboInputWindow;
+        this.inputNextWindow = inputNextWindow;
+        this.canComboIntoOtherType = canComboIntoOtherType;
+
+        name = "unnamed attack";
+        timeUntilComplete = duration;
+    }
+
+    public virtual void Start()
+    {
+        timeUntilComplete = duration;
+        completed = false;
+    }
+
+    public virtual void Update()
+    {
+        if (timeUntilComplete > 0)
+        {
+            timeUntilComplete -= Time.deltaTime;
+            timeUntilComplete = Mathf.Clamp(timeUntilComplete, 0, duration);
+        }
+        else
+        {
+            End();
+        }
+    }
+
+    public virtual void End()
+    {
+        completed = true;
+    }
+
+    public float GetProgress()
+    {
+        return (duration - timeUntilComplete) / duration;
     }
 }

@@ -49,7 +49,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3032053290997073260}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 7188739323567640628}
   - component: {fileID: 9115119165105526401}
   m_Layer: 0
-  m_Name: VerticalAttackHItbox
+  m_Name: MeleeAttackHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -158,7 +158,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6222674219431189036}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -228,7 +228,9 @@ GameObject:
   m_Component:
   - component: {fileID: 344181428797638714}
   - component: {fileID: 6890688784229218089}
-  - component: {fileID: 8900311853879326086}
+  - component: {fileID: 39242823}
+  - component: {fileID: 7867762631649036215}
+  - component: {fileID: 6309618524186770864}
   m_Layer: 0
   m_Name: Deer
   m_TagString: Untagged
@@ -276,7 +278,7 @@ MonoBehaviour:
   cooldownModifier: 0
   attackSpeedModifier: 0
   moveSpeedModifier: 0
---- !u!114 &8900311853879326086
+--- !u!114 &39242823
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -285,10 +287,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 7853902346194350098}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 057843de6e0004442817f0cb67135765, type: 3}
+  m_Script: {fileID: 11500000, guid: 5b5f33f521b9d7d49b369b01d8533e3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rarityLevel: 
+  lightAttacks: []
+  heavyAttacks: []
+  comboIndex: 0
+--- !u!114 &7867762631649036215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7853902346194350098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 942b746d973012c4e818930c67450daf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6309618524186770864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7853902346194350098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30dc549aabebe2a4180e47dfb2de2308, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3078415045784116944
 PrefabInstance:
   m_ObjectHideFlags: 0
