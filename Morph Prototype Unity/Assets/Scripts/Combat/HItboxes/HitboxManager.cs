@@ -12,6 +12,17 @@ public class HitboxManager : MonoBehaviour
     {
         hitboxes = GetComponentsInChildren<Hitbox>().ToList();
     }
-    
-   // public GetHtibox<SphericalHitbox>();
+
+    public T GetHtibox<T>() where T : Hitbox
+    {
+        foreach (var hitbox in hitboxes)
+        {
+            if (hitbox is T)
+            {
+                return (T)hitbox;
+            }
+        }
+
+        return null;
+    }
 }

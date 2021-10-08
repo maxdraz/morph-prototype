@@ -1,21 +1,19 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.UIElements;
 using UnityEngine;
 
-public class Hitbox : MonoBehaviour
+public abstract class Hitbox : MonoBehaviour
 {
-    private TagField tag;
+    protected Collider col;
 
-    private Collider col;
+    public event Action Hit;
+    public event Action HitContinuous;
     
     // Start is called before the first frame update
     void Awake()
     {
         col = GetComponent<Collider>();
         
-        Disable();
+        StopDetecting();
     }
 
     // Update is called once per frame
@@ -24,12 +22,12 @@ public class Hitbox : MonoBehaviour
         
     }
 
-    public void Enable()
+    public void StartDetecting()
     {
         col.enabled = true;
     }
 
-    public void Disable()
+    public void StopDetecting()
     {
         col.enabled = false;
     }
@@ -38,7 +36,10 @@ public class Hitbox : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            print("Enemy hit");
+            Hit?.Invoke();
+                                                                // TODO
+                                                                // transmit enemy gameobject?
+                                                                // use layer masks instead of tags?
         }
     }
 }
