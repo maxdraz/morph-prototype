@@ -5,34 +5,23 @@ using UnityEngine;
 
 public abstract class AttackHandler : MonoBehaviour
 {
-    protected CreatureVirtualController controller;
-
-    private void Awake()
-    {
-        controller = GetComponent<CreatureVirtualController>();
-    }
-
-    private void OnEnable()
+    [SerializeField] protected List<Attack> attackQueue;
+    protected Attack currentAttack;
     
+    protected bool attackInProgress;
+    protected float attackTimer;
+    
+    public event Action ComboEnded;
+
+    public virtual void TryQueueAttack(bool isLight)
     {
-        if (controller)
-        {
-            controller.AppendageLightAttack += TryQueueAttack;
-            controller.AppendageHeavyAttack += TryQueueAttack;
-        }
+        
     }
 
-    private void OnDisable()
+    protected virtual void OnComboEnded()
     {
-        if (controller)
-        {
-            controller.AppendageLightAttack -= TryQueueAttack;
-            controller.AppendageHeavyAttack += TryQueueAttack;
-        }
+        ComboEnded?.Invoke();
     }
-    public virtual void SetAttackData(List<LightAttack> lAttacks, List<HeavyAttack> hAttacks){}
-
-    public abstract void TryQueueAttack(bool isLight);
-    public abstract void TryQueueAttack(in Attack attack);
+    public abstract bool TryQueueAttack(in Attack attack);
 
 }

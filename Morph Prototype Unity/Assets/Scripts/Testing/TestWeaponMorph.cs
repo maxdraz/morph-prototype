@@ -2,32 +2,30 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestWeaponMorph : MonoBehaviour
+public class TestWeaponMorph : WeaponMorph
 {
-    private List<LightAttack> lightAttacks;
-    private List<HeavyAttack> HeavyAttacks;
-
-    public delegate void TestDelegate(bool b); // This defines what type of method you're going to call.
-    public TestDelegate m_methodToCall;
-
-    private void Awake()
+    protected override void InitializeAttacks()
     {
-        var contorller = GetComponent<CreatureVirtualController>();
-        
-    }
+        lightAttacks = new List<LightAttack>()
+        {
+            new SpurStab(1),
+            new SpurStab(2),
+            new SpurStab(3,0,false)
+        };
 
-    private void OnEnable()
-    {
-        
-    }
+        heavyAttacks = new List<HeavyAttack>()
+        {
+            new SpurHeavySlash(2),
+            new SpurHeavySlash(2),
+            new SpurHeavySlash(3,0,false)
+        };
 
-    private void OnDisable()
-    {
+        lightAttacks[0].name += " 1";
+        lightAttacks[1].name += " 2";
+        lightAttacks[2].name += " 3";
         
-    }
-
-    void SetInputs(TestDelegate func)
-    {
-        
+        heavyAttacks[0].name += " 1";
+        heavyAttacks[1].name += " 2";
+        heavyAttacks[2].name += " 3";
     }
 }

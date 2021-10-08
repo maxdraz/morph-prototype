@@ -175,19 +175,16 @@ public class AttackHandlerV0 : AttackHandler
         attackQueue.Enqueue(heavyAttacks[comboIndex]);
     }
     
-    public override void SetAttackData(List<LightAttack> lAttacks, List<HeavyAttack> hAttacks)
-    {
-        lightAttacks = lAttacks;
-        heavyAttacks = hAttacks;
-    }
+   
 
     public override void TryQueueAttack(bool isLight)
     {
         
     }
 
-    public override void TryQueueAttack(in Attack attack)
+    public override bool TryQueueAttack(in Attack attack)
     {
         throw new System.NotImplementedException();
     }
+    
 }

@@ -4,22 +4,9 @@ using UnityEngine;
 
 public class AttackHandlerV1 : AttackHandler
 {
-    
-    private List<LightAttack> lightAttacks;
-    private List<HeavyAttack> heavyAttacks;
-    private  List<Attack> attackQueue;
-    private Attack currentAttack;
-    private int currentAttackIndex;
-    
-    private bool attackInProgress;
-    private float attackTimer;
-
     private void Awake()
     {
-        lightAttacks = new List<LightAttack>();
-        heavyAttacks = new List<HeavyAttack>();
         attackQueue = new List<Attack>();
-
         currentAttack = new LightAttack(1);
     }
 
@@ -45,14 +32,21 @@ public class AttackHandlerV1 : AttackHandler
 
     void OnAttackStart()
     {
+       // print("attack started " + currentAttack.name);
         attackInProgress = true;
         attackTimer = 0;
     }
 
     void OnAttackEnd()
     {
-        print("attack lasted for " + attackTimer);
+      //  print("attack lasted for " + attackTimer);
         attackInProgress = false;
+
+        if (QueueIsEmpty())
+        {
+            //combo over
+            OnComboEnded();
+        }
     }
 
     private bool CanQueue(in Attack incomingAttack)
@@ -78,14 +72,16 @@ public class AttackHandlerV1 : AttackHandler
 
     private bool ComboIsLegal(in Attack incomingAttack)
     {
-        if ((currentAttack is LightAttack && incomingAttack is HeavyAttack)
-            || (currentAttack is HeavyAttack && incomingAttack is LightAttack))
+        var lastQueuedAttack = attackQueue[attackQueue.Count - 1];
+        if (( lastQueuedAttack is LightAttack && incomingAttack is HeavyAttack)
+            || (lastQueuedAttack is HeavyAttack && incomingAttack is LightAttack))
         {
             //check if can transition to other type
-            return currentAttack.canComboIntoOtherType;
+            return lastQueuedAttack.canComboIntoOtherType;
         }
+
         //every other case is illegal
-        return false;
+        return true;
     }
 
     private bool WithinInputWindow()
@@ -93,35 +89,18 @@ public class AttackHandlerV1 : AttackHandler
         return attackTimer >= currentAttack.inputNextWindow;
     }
 
-    public override void TryQueueAttack(bool isLight)
-    {
-        // if (!CanQueue())
-        // {
-        //     print("cant queue");
-        //     return;
-        // }
-    
-        //currentAttack = 
-        //attackQueue.Add(new Attack(1)); add new attack to queue
-        
-        if (attackQueue.Count <= 1) //
-        {
-            StartCoroutine(ProcessAttackQueue());
-        }
-    }
-
-
-    public override void TryQueueAttack(in Attack attack)
+    public override bool TryQueueAttack(in Attack attack)
     {
         if (!CanQueue(in attack))
-            return;
+            return false;
         
         QueueAttack(in attack);
+        return true;
     }
-
+    
     void QueueAttack(in Attack attack)
     { 
-        currentAttack = attack;
+        //currentAttack = attack;
         attackQueue.Add(attack);
        
        if (attackQueue.Count <= 1) // restart coroutine if previous finished

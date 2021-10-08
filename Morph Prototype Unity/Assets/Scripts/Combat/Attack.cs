@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public abstract class Attack
+public class Attack
 {
     public string name;
     public float duration;

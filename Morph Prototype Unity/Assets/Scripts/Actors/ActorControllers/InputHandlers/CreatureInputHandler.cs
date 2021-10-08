@@ -4,6 +4,11 @@ using UnityEngine;
 
 public abstract class CreatureInputHandler : MonoBehaviour
 {
-    public abstract bool GetLightAttackInput();
-    public abstract bool GetHeavyAttackInput();
+    public abstract bool GetAppendageLightAttackInput();
+    public abstract bool GetAppendageHeavyAttackInput();
+    public abstract bool GetMouthLightAttackInput();
+    public abstract bool GetMouthHeavyAttackInput();
+    public abstract bool GetTailLightAttackInput();
+    public abstract bool GetTailHeavyAttackInput();
+    
 }
