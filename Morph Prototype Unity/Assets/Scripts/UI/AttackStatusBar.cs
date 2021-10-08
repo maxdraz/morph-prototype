@@ -11,7 +11,7 @@ public class AttackStatusBar : MonoBehaviour
     private Slider slider;
     [SerializeField] private TextMeshProUGUI attackName;
 
-    private AttackHandler playerAttackHandler;
+    private AttackHandlerV0 playerAttackHandlerV0;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -23,23 +23,23 @@ public class AttackStatusBar : MonoBehaviour
     private void Start()
     {
         print("trying to get creature");
-        playerAttackHandler = Player.Instance.GetActiveCreature().GetComponent<AttackHandler>();
+        playerAttackHandlerV0 = Player.Instance.GetActiveCreature().GetComponent<AttackHandlerV0>();
         
-        if (playerAttackHandler)
+        if (playerAttackHandlerV0)
         {
-            playerAttackHandler.AttackStarted += OnAttackStarted;
-            playerAttackHandler.AttackInProgress += OnAttackInProgress;
-            playerAttackHandler.AttackEnded += OnAttackEnded;
+            playerAttackHandlerV0.AttackStarted += OnAttackStarted;
+            playerAttackHandlerV0.AttackInProgress += OnAttackInProgress;
+            playerAttackHandlerV0.AttackEnded += OnAttackEnded;
         }
     }
 
     private void OnDisable()
     {
-        if (playerAttackHandler)
+        if (playerAttackHandlerV0)
         {
-            playerAttackHandler.AttackStarted -= OnAttackStarted;
-            playerAttackHandler.AttackInProgress -= OnAttackInProgress;
-            playerAttackHandler.AttackEnded -= OnAttackEnded;
+            playerAttackHandlerV0.AttackStarted -= OnAttackStarted;
+            playerAttackHandlerV0.AttackInProgress -= OnAttackInProgress;
+            playerAttackHandlerV0.AttackEnded -= OnAttackEnded;
         }
     }
 
@@ -52,7 +52,7 @@ public class AttackStatusBar : MonoBehaviour
     void DisplayStatusText(in Attack attack)
     {
         if(!attackName) return;
-        attackName.text = attack.name + " " + playerAttackHandler.ComboIndex;
+        attackName.text = attack.name + " " + playerAttackHandlerV0.ComboIndex;
     }
     
     
@@ -68,7 +68,7 @@ public class AttackStatusBar : MonoBehaviour
     
     void OnAttackEnded(in Attack attack)
     {
-        if(playerAttackHandler.QueueIsEmpty())
+        if(playerAttackHandlerV0.QueueIsEmpty())
             EnableSlider(false);
     }
 

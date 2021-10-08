@@ -7,8 +7,8 @@ public class CreatureVirtualController : VirtualController
 {
     private CreatureInputHandler inputHandler;
 
-    public event Action LightAttack;
-    public event Action HeavyAttack;
+    public event Action<bool> AppendageLightAttack;
+    public event Action<bool> AppendageHeavyAttack;
 
     private void Awake()
     {
@@ -18,23 +18,23 @@ public class CreatureVirtualController : VirtualController
     // Update is called once per frame
     void Update()
     {
-        if (LightAttackInput())
+        if (AppendageLightAttackInput())
         {
-            LightAttack?.Invoke();
+            AppendageLightAttack?.Invoke(true);
         }
 
-        if (HeavyAttackInput())
+        if (AppendageHeavyAttackInput())
         {
-            HeavyAttack?.Invoke();
+            AppendageHeavyAttack?.Invoke(false);
         }
     }
 
-    private bool LightAttackInput()
+    private bool AppendageLightAttackInput()
     {
         return inputHandler.GetLightAttackInput();
     }
 
-    bool HeavyAttackInput()
+    bool AppendageHeavyAttackInput()
     {
         return inputHandler.GetHeavyAttackInput();
     }

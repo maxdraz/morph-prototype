@@ -24,6 +24,8 @@ public class WeaponMorph : MonoBehaviour
 
     private void Start()
     {
-        attackHandler.SetAttackData(lightAttacks, heavyAttacks);
+        //attackHandler.SetAttackData(lightAttacks, heavyAttacks);
     }
+    
+   
 }

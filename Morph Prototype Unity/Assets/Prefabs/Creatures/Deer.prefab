@@ -228,9 +228,9 @@ GameObject:
   m_Component:
   - component: {fileID: 344181428797638714}
   - component: {fileID: 6890688784229218089}
-  - component: {fileID: 39242823}
   - component: {fileID: 7867762631649036215}
   - component: {fileID: 6309618524186770864}
+  - component: {fileID: 4489993615578791349}
   m_Layer: 0
   m_Name: Deer
   m_TagString: Untagged
@@ -278,21 +278,6 @@ MonoBehaviour:
   cooldownModifier: 0
   attackSpeedModifier: 0
   moveSpeedModifier: 0
---- !u!114 &39242823
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7853902346194350098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b5f33f521b9d7d49b369b01d8533e3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lightAttacks: []
-  heavyAttacks: []
-  comboIndex: 0
 --- !u!114 &7867762631649036215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,6 +302,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30dc549aabebe2a4180e47dfb2de2308, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4489993615578791349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7853902346194350098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6aac166f8ca0bf47a8e8ad578702394, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackTimer: 0
 --- !u!1001 &3078415045784116944
 PrefabInstance:
   m_ObjectHideFlags: 0

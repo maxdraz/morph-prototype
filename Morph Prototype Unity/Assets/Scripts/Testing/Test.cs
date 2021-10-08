@@ -6,94 +6,30 @@ using UnityEngine.AddressableAssets;
 
 public class Test : MonoBehaviour
 {
-    public AssetReference data;
-    [SerializeField] int currentLightAttackIndex;
-    [SerializeField] List<TestAttack> lightAttacks;
-    private TestAttack currentAttack;
-    public Queue<TestAttack> attackQueue;
-    
-    public Action testAction;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        lightAttacks = new List<TestAttack>();
-        lightAttacks.Add(new TestAttack(lightAttacks.Count, 3));
-        lightAttacks.Add(new TestAttack(lightAttacks.Count,2));
-        lightAttacks.Add(new TestAttack(lightAttacks.Count,1));
-        lightAttacks.Add(new TestAttack(lightAttacks.Count,2));
+   private SpurStab stab;
+   private SpurHeavySlash slash;
+   
+   private void Start()
+   {
+      stab = new SpurStab(1);
+      slash = new SpurHeavySlash(1);
+      
+      
+   }
 
-        currentAttack = lightAttacks[0];
-        attackQueue = new Queue<TestAttack>();
-        
-        
+   void TestAttack(Attack attack)
+   {
+      if (attack != null)
+      {
+         
+      }
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (LightAttackKeyPressed())
-        {
-            if(currentAttack.CanAcceptInput)
-            {
-                print("first attack of combo");
-                currentLightAttackIndex %= lightAttacks.Count;
-                attackQueue.Enqueue(lightAttacks[currentLightAttackIndex++ % lightAttacks.Count]);
-            }
-            else if (currentAttack.currentTime <= 0.5f) // queue next
-            {
-                print("queued next attack");
-                currentLightAttackIndex %= lightAttacks.Count;
-                attackQueue.Enqueue(lightAttacks[currentLightAttackIndex++]);
-            }
-        }
-        
-        if (attackQueue.Count > 0) // if there are queued combos
-        {
-            if (currentAttack.CanAcceptInput)
-            {
-                currentAttack = attackQueue.Dequeue();
-                currentAttack.Start();
-            }
-        }
-
-        if (currentAttack != null && !currentAttack.CanAcceptInput) // update current attack
-        {
-            currentAttack.Update();
-        }
-        else
-        {
-            currentLightAttackIndex = 0;
-        }
-    }
-
-    bool LightAttackKeyPressed()
-    {
-        return Input.GetKeyDown(KeyCode.Alpha0);
-    }
-
-    void Attack()
-    {
-        if (LightAttackKeyPressed())
-        {
-            if (currentAttack.CanAcceptInput)
-            {
-                currentAttack = lightAttacks[currentLightAttackIndex];
-                currentAttack.Start();
-                currentAttack.Ended += () =>
-                {
-                    print("combo reset");
-                    currentLightAttackIndex = 0;
-                };
-            }
-        }
-
-        if (!currentAttack.CanAcceptInput)
-        {
-            currentAttack.Update();
-        }
-    }
-    
-    
+      if (attack is LightAttack)
+      {
+         print(attack.name + " is light");
+      } else if (attack is HeavyAttack)
+      {
+         print(attack.name + " is heavy");
+      }
+   }
 }

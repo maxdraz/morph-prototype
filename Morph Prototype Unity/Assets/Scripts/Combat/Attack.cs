@@ -31,6 +31,18 @@ public abstract class Attack
 
     public virtual void Update()
     {
+        UpdateAttackTimer();
+        //attack
+            // if hibox connects with something damageable
+    }
+
+    public virtual void End()
+    {
+        completed = true;
+    }
+
+    private void UpdateAttackTimer()
+    {
         if (timeUntilComplete > 0)
         {
             timeUntilComplete -= Time.deltaTime;
@@ -42,13 +54,13 @@ public abstract class Attack
         }
     }
 
-    public virtual void End()
-    {
-        completed = true;
-    }
-
     public float GetProgress()
     {
         return (duration - timeUntilComplete) / duration;
+    }
+
+    public bool IsLightAttack()
+    {
+        return this is LightAttack;
     }
 }
