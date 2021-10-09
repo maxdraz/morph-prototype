@@ -17,9 +17,11 @@ public class particleAttractorLinear : MonoBehaviour {
 		m_Particles = new ParticleSystem.Particle[ps.main.maxParticles];
 		numParticlesAlive = ps.GetParticles(m_Particles);
 		float step = speed * Time.deltaTime;
-		for (int i = 0; i < numParticlesAlive; i++) {
-			m_Particles[i].position = Vector3.LerpUnclamped(m_Particles[i].position, target.position, step);
-		}
-		ps.SetParticles(m_Particles, numParticlesAlive);
+
+			for (int i = 0; i < numParticlesAlive; i++) {
+				m_Particles[i].position = Vector3.LerpUnclamped(m_Particles[i].position, target.position, step);
+			}
+			ps.SetParticles(m_Particles, numParticlesAlive);
+		
 	}
 }
