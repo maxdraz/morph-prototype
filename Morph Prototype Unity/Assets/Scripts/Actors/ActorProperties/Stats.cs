@@ -62,6 +62,8 @@ public class Stats : MonoBehaviour
     [SerializeField] private float moveSpeedModifier;
 
     StatModifiers statModifiers;
+    CombatResources combatResources;
+
     private void Reset()
     {
         debugWindowRect = new Rect(34, 18, 165, 374);
@@ -74,7 +76,7 @@ public class Stats : MonoBehaviour
     private void Awake()
     {
         statModifiers = GameObject.Find("StatsModifierManager").GetComponent<StatModifiers>();
-
+        combatResources = GetComponentInParent<CombatResources>();
         headerStyle = new GUIStyle();
         headerStyle.fontStyle = FontStyle.Bold;
 
@@ -87,7 +89,7 @@ public class Stats : MonoBehaviour
 
         StartCoroutine(StatChange("meleeDamage", meleeDamage, 10, 1f));
 
-
+        SendCombatResources();
     }
 
     private void OnGUI()
@@ -97,6 +99,14 @@ public class Stats : MonoBehaviour
         debugWindowRect = GUI.Window(0, debugWindowRect, DrawStatsWindow, gameObject.name + " stats");
         
    }
+    private void SendCombatResources() 
+    {
+        healthPoints = healthPoints + (fortitude + toughness * 10);
+        energyPoints = intelligence * 20;
+        staminaPoints = fortitude * 20;
+        
+        combatResources.UpdateCombatRescources(healthPoints, energyPoints, staminaPoints);
+    }
 
     private void DrawStatsWindow(int windowID)
     {

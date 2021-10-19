@@ -30,6 +30,11 @@ public class Stealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown("space"))
+        {
+            stealthMode = false;
+        }
+
         if (!detected) 
         {
             detectionAmount -= Time.deltaTime*2;
