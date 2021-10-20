@@ -89,7 +89,7 @@ public class Stats : MonoBehaviour
 
         StartCoroutine(StatChange("meleeDamage", meleeDamage, 10, 1f));
 
-        SendCombatResources();
+        PrepareCombatResources();
     }
 
     private void OnGUI()
@@ -99,13 +99,15 @@ public class Stats : MonoBehaviour
         debugWindowRect = GUI.Window(0, debugWindowRect, DrawStatsWindow, gameObject.name + " stats");
         
    }
-    private void SendCombatResources() 
+ 
+
+    private void PrepareCombatResources() 
     {
-        healthPoints = healthPoints + (fortitude + toughness * 10);
-        energyPoints = intelligence * 20;
-        staminaPoints = fortitude * 20;
+        healthPoints = Random.Range(500, 800) + (fortitude + toughness * 10);
+        energyPoints = Random.Range(100, 200) + intelligence * 20;
+        staminaPoints = Random.Range(300, 400) + fortitude * 20;
         
-        combatResources.UpdateCombatRescources(healthPoints, energyPoints, staminaPoints);
+        combatResources.SetCombatRescources(healthPoints, energyPoints, staminaPoints);
     }
 
     private void DrawStatsWindow(int windowID)
@@ -152,6 +154,12 @@ public class Stats : MonoBehaviour
         intelligence = Random.Range(10, 90);
         agility = Random.Range(10, 90);
         toughness = Random.Range(10, 90);
+        fortitude = Random.Range(10, 90);
+        perception = Random.Range(10, 90);
+        intimidation = Random.Range(10, 90);
+        stealth = Random.Range(10, 90);
+
+
 
         FindAllModifiers();
     }

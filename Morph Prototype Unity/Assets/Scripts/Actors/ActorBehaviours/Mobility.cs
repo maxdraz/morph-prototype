@@ -18,10 +18,12 @@ public class Mobility : MonoBehaviour
 
     Rigidbody rb;
     Movement movement;
+    CombatResources combatResources;
 
     // Start is called before the first frame update
     void Start()
     {
+        combatResources = GetComponent<CombatResources>();
         movement = GetComponent<Movement>();
         rb = GetComponent<Rigidbody>();
         waitingForSecondInput = false;
@@ -67,30 +69,41 @@ public class Mobility : MonoBehaviour
 
             //stop sprinting
             movement.StopSprinting();
+            combatResources.DelayStaminaRegen();
 
             if (canDodge)
             {
 
                 if (waitingForSecondInput)
                 {
-                    //double dodge
-                    Vector3 inputVector = GetInputRelativeToCamera();
-                    Vector3 dodgeVector = (forceToApply * 1.5f) * inputVector;
-                    rb.AddForce(dodgeVector, ForceMode.Impulse);
-                    Debug.Log("second dodge");
-                    waitingForSecondInput = false;
-                    canDodge = false;
-                    Invoke("DodgeCooldown", dodgeCooldown);
+                    if (combatResources.staminaPoints >= 100) 
+                    {
+                        //double dodge
+                        Vector3 inputVector = GetInputRelativeToCamera();
+                        Vector3 dodgeVector = (forceToApply * 1.5f) * inputVector;
+                        rb.AddForce(dodgeVector, ForceMode.Impulse);
+                        Debug.Log("second dodge");
+                        waitingForSecondInput = false;
+                        canDodge = false;
+                        combatResources.SpendStamina(100);
+                        combatResources.DelayStaminaRegen();
+                        Invoke("DodgeCooldown", dodgeCooldown);
+                    }
                 }
 
                 else
                 {
-                    //single dodge
-                    Vector3 inputVector = GetInputRelativeToCamera();
-                    Vector3 dodgeVector = forceToApply * inputVector;
-                    rb.AddForce(dodgeVector, ForceMode.Impulse);
-                    Debug.Log("first dodge");
-                    waitingForSecondInput = true;
+                    if (combatResources.staminaPoints >= 75) 
+                    {
+                        //single dodge
+                        Vector3 inputVector = GetInputRelativeToCamera();
+                        Vector3 dodgeVector = forceToApply * inputVector;
+                        rb.AddForce(dodgeVector, ForceMode.Impulse);
+                        combatResources.SpendStamina(75);
+                        combatResources.DelayStaminaRegen();
+                        Debug.Log("first dodge");
+                        waitingForSecondInput = true;
+                    }
                 }
             }
         }
@@ -103,6 +116,8 @@ public class Mobility : MonoBehaviour
             {
                 //start sprinting
                 movement.StartSprinting();
+                combatResources.DisableStaminaRegen();
+                
             }
         }
     }
