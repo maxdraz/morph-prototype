@@ -280,12 +280,12 @@ public class Stats : MonoBehaviour
         if (myStat == "toughness")
         {
 
-            for (int i = 0; i < statModifiers.toughnessModifiers.Count; ++i)
+            for (int i = 0; i < statModifiers.toughnessDamageReductionModifiers.Count; ++i)
             {
-                if (statModifiers.toughnessModifiers[i].x <= myStatValue)
+                if (statModifiers.toughnessDamageReductionModifiers[i].x <= myStatValue)
                 {
 
-                    toughnessModifier = statModifiers.toughnessModifiers[i].y;
+                    toughnessModifier = statModifiers.toughnessDamageReductionModifiers[i].y;
                     
                 }
             }
@@ -303,12 +303,12 @@ public class Stats : MonoBehaviour
                     
                 }
             }
-            for (int i = 0; i < statModifiers.intelligenceEnergyRegenModifiers.Count; ++i)
+            for (int i = 0; i < statModifiers.intelligenceMaxEnergyModifiers.Count; ++i)
             {
-                if (statModifiers.intelligenceEnergyRegenModifiers[i].x <= myStatValue)
+                if (statModifiers.intelligenceMaxEnergyModifiers[i].x <= myStatValue)
                 {
 
-                    energyRegenModifier = statModifiers.intelligenceEnergyRegenModifiers[i].y;
+                    energyRegenModifier = statModifiers.intelligenceMaxEnergyModifiers[i].y;
 
                 }
             }
