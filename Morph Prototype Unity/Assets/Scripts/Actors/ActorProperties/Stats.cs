@@ -20,11 +20,11 @@ public class Stats : MonoBehaviour
     private GUIStyle headerStyle;
     
     //core
-    private int healthPoints;
+    private Vector2 baseHealthPoints = new Vector2(500, 800);
     private int healthRegen;
-    private int energyPoints;
+    private Vector2 baseEnergyPoints = new Vector2(100, 200);
     private int energyRegen;
-    private int staminaPoints;
+    private Vector2 baseStaminaPoints = new Vector2(300, 500);
     private int staminaRegen;
     //offensive
     private int meleeDamage;
@@ -55,11 +55,13 @@ public class Stats : MonoBehaviour
 
     [SerializeField] private float toughnessModifier;
 
-    [SerializeField] private float energyRegenModifier;
+    [SerializeField] private float maxEnergyModifier;
     [SerializeField] private float cooldownModifier;
 
     [SerializeField] private float attackSpeedModifier;
     [SerializeField] private float moveSpeedModifier;
+
+    [SerializeField] private float maxStaminaModifier;
 
     StatModifiers statModifiers;
     CombatResources combatResources;
@@ -103,11 +105,19 @@ public class Stats : MonoBehaviour
 
     private void PrepareCombatResources() 
     {
-        healthPoints = Random.Range(500, 800) + (fortitude + toughness * 10);
-        energyPoints = Random.Range(100, 200) + intelligence * 20;
-        staminaPoints = Random.Range(300, 400) + fortitude * 20;
-        
-        combatResources.SetCombatRescources(healthPoints, energyPoints, staminaPoints);
+        float healthPointsToRandomize;
+        float energyPointsToRandomize;
+        float staminaPointsToRandomize;
+
+        healthPointsToRandomize = Random.Range(baseHealthPoints.x, baseHealthPoints.y);
+        energyPointsToRandomize = Random.Range(baseEnergyPoints.x, baseEnergyPoints.y) * (1 + maxEnergyModifier);
+        staminaPointsToRandomize = Random.Range(baseStaminaPoints.x, baseStaminaPoints.y) * (1 + maxStaminaModifier);
+
+        int healthPointsToSend = Mathf.RoundToInt(healthPointsToRandomize);
+        int emergyPointsToSend = Mathf.RoundToInt(energyPointsToRandomize);
+        int staminaPointsToSend = Mathf.RoundToInt(staminaPointsToRandomize);
+
+        combatResources.SetCombatRescources(healthPointsToSend, emergyPointsToSend, staminaPointsToSend); ;
     }
 
     private void DrawStatsWindow(int windowID)
@@ -115,9 +125,9 @@ public class Stats : MonoBehaviour
         
         AddLabel("stat", "value",true);
         
-        AddLabel("hp", healthPoints.ToString());
-        AddLabel("ep", energyPoints.ToString());
-        AddLabel("stamina", staminaPoints.ToString());
+        AddLabel("hp", baseHealthPoints.ToString());
+        AddLabel("ep", baseEnergyPoints.ToString());
+        AddLabel("stamina", baseStaminaPoints.ToString());
         AddLabel();
         AddLabel("melee dmg", meleeDamage.ToString());
         AddLabel("ranged dmg", rangedDamage.ToString());
@@ -219,6 +229,8 @@ public class Stats : MonoBehaviour
         FindModifier("intelligence", intelligence);
         FindModifier("agility", agility);
         FindModifier("toughness", toughness);
+        FindModifier("fortitude", fortitude);
+
     }
 
     void FindModifier(string myStat, int myStatValue) 
@@ -291,6 +303,20 @@ public class Stats : MonoBehaviour
             }
         }
 
+        if (myStat == "fortitude")
+        {
+
+            for (int i = 0; i < statModifiers.fortitudeMaxStaminaModifiers.Count; ++i)
+            {
+                if (statModifiers.toughnessDamageReductionModifiers[i].x <= myStatValue)
+                {
+
+                    maxStaminaModifier = statModifiers.fortitudeMaxStaminaModifiers[i].y;
+
+                }
+            }
+        }
+
         if (myStat == "intelligence")
         {
 
@@ -308,7 +334,7 @@ public class Stats : MonoBehaviour
                 if (statModifiers.intelligenceMaxEnergyModifiers[i].x <= myStatValue)
                 {
 
-                    energyRegenModifier = statModifiers.intelligenceMaxEnergyModifiers[i].y;
+                    maxEnergyModifier = statModifiers.intelligenceMaxEnergyModifiers[i].y;
 
                 }
             }

@@ -76,7 +76,7 @@ public class Mobility : MonoBehaviour
 
                 if (waitingForSecondInput)
                 {
-                    if (combatResources.staminaPoints >= 100) 
+                    if (combatResources.currentStaminaPoints >= 100) 
                     {
                         //double dodge
                         Vector3 inputVector = GetInputRelativeToCamera();
@@ -93,7 +93,7 @@ public class Mobility : MonoBehaviour
 
                 else
                 {
-                    if (combatResources.staminaPoints >= 75) 
+                    if (combatResources.currentStaminaPoints >= 75) 
                     {
                         //single dodge
                         Vector3 inputVector = GetInputRelativeToCamera();

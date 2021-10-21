@@ -6,12 +6,15 @@ using UnityEngine.UI;
 public class CombatResources : MonoBehaviour
 {
     Stats stats;
+    public int baseStaminaPoints;
+    public int baseHealthPointsMax;
+    public int baseEnergyPointsMax;
     public int staminaPointsMax;
     public int healthPointsMax;
     public int energyPointsMax;
-    public float staminaPoints;
-    public float healthPoints;
-    public float energyPoints;
+    public float currentStaminaPoints;
+    public float currentHealthPoints;
+    public float currentEnergyPoints;
 
     private int energyRegenRate = 1;
     private int staminaRegenRate = 1;
@@ -51,21 +54,21 @@ public class CombatResources : MonoBehaviour
         healthPointsMax = newHp;
         energyPointsMax = newEn;
 
-        staminaPoints = staminaPointsMax;
-        healthPoints = healthPointsMax;
-        energyPoints = energyPointsMax;
+        currentStaminaPoints = staminaPointsMax;
+        currentHealthPoints = healthPointsMax;
+        currentEnergyPoints = energyPointsMax;
     }
 
     public float SpendStamina(float staminaCost) 
     {
-        staminaPoints -= staminaCost;
-        return staminaPoints;
+        currentStaminaPoints -= staminaCost;
+        return currentStaminaPoints;
     }
 
     public float SpendEnergy(float energyCost)
     {
-        energyPoints -= energyCost;
-        return energyPoints;
+        currentEnergyPoints -= energyCost;
+        return currentEnergyPoints;
     }
 
     public void DisableStaminaRegen()
@@ -81,7 +84,7 @@ public class CombatResources : MonoBehaviour
         Invoke("StaminaRegen", 1.5f);
     }
 
-    private void StaminaRegen() 
+    private void RestartStaminaRegen() 
     {
         staminaRegenRate = 1;
     }
@@ -89,33 +92,33 @@ public class CombatResources : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (staminaPoints < staminaPointsMax && staminaRegenRate > 0) 
+        if (currentStaminaPoints < staminaPointsMax && staminaRegenRate > 0) 
         {
-            staminaPoints = (staminaPoints + ((10 + (1 + (energyPoints/energyPointsMax))) * staminaRegenRate) * Time.deltaTime);
+            currentStaminaPoints = (currentStaminaPoints + ((10 + (1 + (currentEnergyPoints/energyPointsMax))) * staminaRegenRate) * Time.deltaTime);
             
-            if (staminaPoints > staminaPointsMax) 
+            if (currentStaminaPoints > staminaPointsMax) 
             {
-                staminaPoints = staminaPointsMax;
+                currentStaminaPoints = staminaPointsMax;
             }    
         }
 
-        if (energyPoints < energyPointsMax && energyRegenRate > 0)
+        if (currentEnergyPoints < energyPointsMax && energyRegenRate > 0)
         {
-            energyPoints = (energyPoints + (10 * energyRegenRate) * Time.deltaTime);
+            currentEnergyPoints = (currentEnergyPoints + (10 * energyRegenRate) * Time.deltaTime);
 
-            if (energyPoints > energyPointsMax)
+            if (currentEnergyPoints > energyPointsMax)
             {
-                energyPoints = energyPointsMax;
+                currentEnergyPoints = energyPointsMax;
             }
         }
 
-        if (healthPoints < healthPointsMax && healthRegenRate > 0)
+        if (currentHealthPoints < healthPointsMax && healthRegenRate > 0)
         {
-            healthPoints = (healthPoints + (10 * healthRegenRate) * Time.deltaTime);
+            currentHealthPoints = (currentHealthPoints + (10 * healthRegenRate) * Time.deltaTime);
 
-            if (healthPoints > healthPointsMax)
+            if (currentHealthPoints > healthPointsMax)
             {
-                healthPoints = healthPointsMax;
+                currentHealthPoints = healthPointsMax;
             }
         }
 
@@ -128,9 +131,9 @@ public class CombatResources : MonoBehaviour
         staminaBar.rectTransform.localScale = new Vector3(staminaBarSize + 2f, .2f, 1f);
 
         //needs to display the current health,stamina, and energy as a function of the max size of the bar. As calculated above using the BarSize variables.
-        currentHealthBar.localScale = new Vector3(((healthPoints - (healthPoints/50)) / healthPointsMax), .8f, 1f);
-        currentEnergyBar.localScale = new Vector3(((energyPoints - (energyPoints/50)) / energyPointsMax), .8f, 1f);
-        currentStaminaBar.localScale = new Vector3(((staminaPoints - (staminaPoints/50)) / staminaPointsMax), .8f, 1f);
+        currentHealthBar.localScale = new Vector3(((currentHealthPoints - (currentHealthPoints/50)) / healthPointsMax), .8f, 1f);
+        currentEnergyBar.localScale = new Vector3(((currentEnergyPoints - (currentEnergyPoints/50)) / energyPointsMax), .8f, 1f);
+        currentStaminaBar.localScale = new Vector3(((currentStaminaPoints - (currentStaminaPoints/50)) / staminaPointsMax), .8f, 1f);
 
     }
 }
