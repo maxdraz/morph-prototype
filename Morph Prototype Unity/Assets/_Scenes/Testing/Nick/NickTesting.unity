@@ -4874,6 +4874,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34762c25c96374249b18b5ed3ddb4400, type: 3}
+--- !u!1001 &4490243667935927818
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1956758184}
+    m_Modifications:
+    - target: {fileID: 2655726533438128193, guid: 10cfea5cac1a2b84ba826a8a4558aadc, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2655726533438128193, guid: 10cfea5cac1a2b84ba826a8a4558aadc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2655726533438128193, guid: 10cfea5cac1a2b84ba826a8a4558aadc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2655726533438128193, guid: 10cfea5cac1a2b84ba826a8a4558aadc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2655726533438128193, guid: 10cfea5cac1a2b84ba826a8a4558aadc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.987557
+      objectReference: {fileID: 0}
+    - target: {fileID: 2655726533438128193, guid: 10cfea5cac1a2b84ba826a8a4558aadc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.1572618
+      objectReference: {fileID: 0}
+    - target: {fileID: 2655726533438128193, guid: 10cfea5cac1a2b84ba826a8a4558aadc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2655726533438128193, guid: 10cfea5cac1a2b84ba826a8a4558aadc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2655726533438128193, guid: 10cfea5cac1a2b84ba826a8a4558aadc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 18.096
+      objectReference: {fileID: 0}
+    - target: {fileID: 2655726533438128193, guid: 10cfea5cac1a2b84ba826a8a4558aadc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2655726533438128193, guid: 10cfea5cac1a2b84ba826a8a4558aadc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8478523813292877897, guid: 10cfea5cac1a2b84ba826a8a4558aadc, type: 3}
+      propertyPath: m_Name
+      value: Brutal Spurs_Basic Attack Combo Particle 3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 10cfea5cac1a2b84ba826a8a4558aadc, type: 3}
 --- !u!1001 &6147975482555784271
 PrefabInstance:
   m_ObjectHideFlags: 0
