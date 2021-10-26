@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class ComboHandler
+public class AttackQueue
 {
     public AttackSet attackSet;
     public bool isExectuing;
 
-    public ComboHandler(AttackSet attackSet)
+    public AttackQueue(AttackSet attackSet)
     {
         this.attackSet = attackSet;
         

@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class WeaponMorphAttackHandler : MonoBehaviour
 {
-   [SerializeField] private ComboHandler appendageComboHandler;
-    private ComboHandler mouthComboHandler;
-    private ComboHandler tailComboHandler;
+   [SerializeField] private AttackQueue appendageAttackQueue;
+    private AttackQueue mouthAttackQueue;
+    private AttackQueue tailAttackQueue;
 
-    private ComboHandler current;
+    private AttackQueue currentAttackQueue;
     
     //input
     private CreatureVirtualController controller;
@@ -24,48 +24,43 @@ public class WeaponMorphAttackHandler : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             //appendage attack
-            TryExecuteCombo(ref appendageComboHandler, true);
+            TryQueueAttack(ref appendageAttackQueue, true);
         }
         
         if (Input.GetMouseButtonDown(1))
         {
             //appendage attack
-            TryExecuteCombo(ref mouthComboHandler, false);
+            TryQueueAttack(ref mouthAttackQueue, false);
         }
 
-        if (current != null)
+        if (currentAttackQueue != null)
         {
             // update current
         }
 
     }
 
-    void TryExecuteCombo(ref ComboHandler combo, bool isLightAttack)
+    void TryQueueAttack(ref AttackQueue queue, bool isLightAttack)
     {
-        if (!current.isExectuing || current == null) 
+        if (currentAttackQueue == null || !currentAttackQueue.isExectuing) 
         {
-            combo.TryQueueAttack(isLightAttack);
+            queue.TryQueueAttack(isLightAttack);
         }
 
-        if (IsSameBodyPart(ref combo))
+        if (IsSameBodyPart(ref queue))
         {
-            combo.TryQueueAttack(isLightAttack);
+            queue.TryQueueAttack(isLightAttack);
         }
         else
         {
             //check if can transition to other body part
         }
-        
-        
-        
-        
-       
     }
 
-    bool IsSameBodyPart(ref ComboHandler combo)
+    bool IsSameBodyPart(ref AttackQueue combo)
     {
         // check if any other combo in progress
-        if (current == combo)
+        if (currentAttackQueue == combo)
         {
             print("same body part");
             return true;
