@@ -74,14 +74,13 @@ public class CombatResources : MonoBehaviour
     public void DisableStaminaRegen()
     {
         staminaRegenRate = 0;
-        InvokeRepeating("StaminaRegen",1.5f, 1.5f);
     }
 
     public void DelayStaminaRegen() 
     {
         staminaRegenRate = 0;
         CancelInvoke();
-        Invoke("StaminaRegen", 1.5f);
+        Invoke("RestartStaminaRegen", 1.5f);
     }
 
     private void RestartStaminaRegen() 
@@ -94,7 +93,7 @@ public class CombatResources : MonoBehaviour
     {
         if (currentStaminaPoints < staminaPointsMax && staminaRegenRate > 0) 
         {
-            currentStaminaPoints = (currentStaminaPoints + ((10 + (1 + (currentEnergyPoints/energyPointsMax))) * staminaRegenRate) * Time.deltaTime);
+            currentStaminaPoints = (currentStaminaPoints + ((10 * (1 + ((currentEnergyPoints/energyPointsMax) * 9))) * staminaRegenRate) * Time.deltaTime);
             
             if (currentStaminaPoints > staminaPointsMax) 
             {
