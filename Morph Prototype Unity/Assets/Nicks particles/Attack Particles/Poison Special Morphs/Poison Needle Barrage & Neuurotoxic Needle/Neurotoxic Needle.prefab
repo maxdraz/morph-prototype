@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1772738401988346903}
   - component: {fileID: 6314778437642776942}
   - component: {fileID: 7092570655559711240}
-  - component: {fileID: 2833698505669681475}
   m_Layer: 0
   m_Name: Mesh
   m_TagString: Untagged
@@ -83,19 +82,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2833698505669681475
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 306010214274652993}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1995169145839438788
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,6 +92,8 @@ GameObject:
   m_Component:
   - component: {fileID: 911686507599529472}
   - component: {fileID: 6686975878327712408}
+  - component: {fileID: 2930353320183580520}
+  - component: {fileID: 3113076615176700639}
   m_Layer: 0
   m_Name: Neurotoxic Needle
   m_TagString: Untagged
@@ -144,6 +132,35 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.2375946, y: 0.6790633, z: 0.2598076}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &2930353320183580520
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995169145839438788}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
+--- !u!114 &3113076615176700639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995169145839438788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 832cc06b009ce4e40ac0a4cbcdb7f6cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forceToApply: 20
 --- !u!1 &2132302873972855639
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,7 +186,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2132302873972855639}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.58, z: 0}
+  m_LocalPosition: {x: 0, y: 3.194, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 911686507599529472}
