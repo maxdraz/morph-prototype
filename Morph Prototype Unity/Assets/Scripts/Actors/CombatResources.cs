@@ -93,7 +93,7 @@ public class CombatResources : MonoBehaviour
     {
         if (currentStaminaPoints < staminaPointsMax && staminaRegenRate > 0) 
         {
-            currentStaminaPoints = (currentStaminaPoints + ((10 * (1 + ((currentEnergyPoints/energyPointsMax) * 9))) * staminaRegenRate) * Time.deltaTime);
+            currentStaminaPoints = (currentStaminaPoints + ((staminaRegenRate * (1 + ((currentEnergyPoints/energyPointsMax) * 9))) * staminaRegenRate) * Time.deltaTime);
             
             if (currentStaminaPoints > staminaPointsMax) 
             {
@@ -113,7 +113,7 @@ public class CombatResources : MonoBehaviour
 
         if (currentHealthPoints < healthPointsMax && healthRegenRate > 0)
         {
-            currentHealthPoints = (currentHealthPoints + (10 * healthRegenRate) * Time.deltaTime);
+            currentHealthPoints = currentHealthPoints + (10 * healthRegenRate) * Time.deltaTime;
 
             if (currentHealthPoints > healthPointsMax)
             {
