@@ -12,26 +12,31 @@ public class Fortitude : MonoBehaviour
 
     float secondaryStat;
 
+    float chanceTobeEffected;
+    bool statusApplied;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        statusApplied = false;
         currentFortitude = maxFortitude;
     }
 
     public float ReduceFortitude(int fortDamage, string effect) 
     {
+        
         float lastFortitudeValue = currentFortitude;
         currentFortitude -= fortDamage;
         DisableFortitudeRegen();
 
         if (currentFortitude <= 0) 
         {
-            bool statusApplied = false;
+            
 
             if (effect == "Stun") 
             {
-                //float secondaryStat = null instead the dc is (fort * 1.5)
+                float secondaryStat = 0f;
+                //instead the dc is (fortDamage - (lastFortitudeValue * 3))
             }
 
             if (effect == "Paralysis")
@@ -41,7 +46,8 @@ public class Fortitude : MonoBehaviour
 
             if (effect == "Root")
             {
-                //float secondaryStat = null instead the dc is (fort * 1.5)
+                float secondaryStat = 0f; 
+                //instead the dc is (fortDamage - (lastFortitudeValue * 3))
             }
 
             if (effect == "Silence")
@@ -56,30 +62,35 @@ public class Fortitude : MonoBehaviour
 
             if (secondaryStat == 0)
             {
-                float ChanceToBeEffected = (fortDamage - (lastFortitudeValue * 3));
+                chanceTobeEffected = (fortDamage - (lastFortitudeValue * 3));
             }
             else 
             {
-                float ChanceToBeEffected = (fortDamage - (lastFortitudeValue + secondaryStat));
+                chanceTobeEffected = (fortDamage - (lastFortitudeValue + secondaryStat));
             }
 
-            
-            //need to roll to see if the status has been applied, if so statusApplied bool needs to be true, else false
 
-
-            if (statusApplied) 
-            {
-                StatusEffect(effect);
-            }
+            StatusCheck(chanceTobeEffected, effect);
+  
         }
 
         Invoke("FortitudeRegen", fortitudeRegenDelay);
         return currentFortitude;
     }
 
-    public void StatusCheck(float chance, string statusToApply) 
+    void StatusCheck(float chance, string statusToApply) 
     {
-    
+        float randomNumber = Random.value;
+
+        if (randomNumber <= chanceTobeEffected)
+        {
+            statusApplied = true;
+        }
+
+        if (statusApplied)
+        {
+            StatusEffect(statusToApply);
+        }
     }
 
     void FortitudeRegen() 
