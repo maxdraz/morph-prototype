@@ -2201,7 +2201,7 @@ MonoBehaviour:
   currentStaminaPoints: 0
   currentHealthPoints: 0
   currentEnergyPoints: 0
-  armourMax: 500
+  armourMax: 525
   currentArmour: 0
   armourSegments: 0
   armourSegment: {fileID: 5025646871804698984, guid: 955657dc22e04a24eb2e9afc8cb2d8f6, type: 3}
@@ -4461,7 +4461,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 0.3, z: 1}
   m_Children: []
   m_Father: {fileID: 1676326550}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -4533,7 +4533,7 @@ RectTransform:
   m_Children:
   - {fileID: 744164501}
   m_Father: {fileID: 1676326550}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -4932,8 +4932,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1293530632}
   - {fileID: 1271273342}
+  - {fileID: 1293530632}
   - {fileID: 1170787177}
   - {fileID: 1184465872}
   m_Father: {fileID: 48708134}
