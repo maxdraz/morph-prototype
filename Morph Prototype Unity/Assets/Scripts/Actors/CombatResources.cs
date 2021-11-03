@@ -6,9 +6,6 @@ using UnityEngine.UI;
 public class CombatResources : MonoBehaviour
 {
     Stats stats;
-    public int baseStaminaPoints;
-    public int baseHealthPointsMax;
-    public int baseEnergyPointsMax;
     public int staminaPointsMax;
     public int healthPointsMax;
     public int energyPointsMax;
@@ -20,8 +17,15 @@ public class CombatResources : MonoBehaviour
     private int staminaRegenRate = 1;
     private int healthRegenRate = 0;
 
+    public int armourMax;
+    public float currentArmour;
+    public int armourSegments;
+
     Image healthBar;
     RectTransform currentHealthBar;
+
+    Image armourBar;
+    RectTransform currentArmourBar;
 
     Image staminaBar;
     RectTransform currentStaminaBar;
@@ -30,22 +34,43 @@ public class CombatResources : MonoBehaviour
     RectTransform currentEnergyBar;
 
     GameObject combatResourcesUI;
+    public GameObject armourSegment;
 
     // Start is called before the first frame update
     void Start()
     {
+        
+
         combatResourcesUI = GameObject.Find("UI").transform.Find("Combat Resources").gameObject;
 
         healthBar = combatResourcesUI.transform.Find("Health").GetComponent<Image>();
+        armourBar = combatResourcesUI.transform.Find("Armour").GetComponent<Image>();
         energyBar = combatResourcesUI.transform.Find("Energy").GetComponent<Image>();
         staminaBar = combatResourcesUI.transform.Find("Stamina").GetComponent<Image>();
 
         currentHealthBar = healthBar.transform.GetChild(0).GetComponent<RectTransform>();
+        currentArmourBar = armourBar.transform.GetChild(0).GetComponent<RectTransform>();
         currentStaminaBar = staminaBar.transform.GetChild(0).GetComponent<RectTransform>();
         currentEnergyBar = energyBar.transform.GetChild(0).GetComponent<RectTransform>();
 
+        int armourRemainder = armourMax % 100;
+
+        armourSegments = armourMax / 100;
+
+        for (int i = 1; i <= armourSegments; i++)
+        {
+            GameObject newArmourSegment = Instantiate(armourSegment, armourBar.transform.position, armourBar.transform.rotation);
+            newArmourSegment.transform.parent = armourBar.transform;
+        }
 
         stats = GetComponentInChildren<Stats>();
+    }
+
+    public int SetArmourValue(int newArmour) 
+    {
+        armourMax += newArmour;
+
+        return armourMax;
     }
 
     public void SetCombatRescources(int newHp, int newEn, int newStam)
@@ -122,10 +147,11 @@ public class CombatResources : MonoBehaviour
         }
 
         float healthBarSize = (healthPointsMax / 500f);
+        float armourBarSize = healthBarSize;
         float energyBarSize = (energyPointsMax / 500f);
         float staminaBarSize = (staminaPointsMax / 500f);
 
-        healthBar.rectTransform.localScale = new Vector3(healthBarSize + 2f, .2f, 1f); 
+        healthBar.rectTransform.localScale = new Vector3(healthBarSize + 2f, .2f, 1f);
         energyBar.rectTransform.localScale = new Vector3(energyBarSize + 2f, .2f, 1f);
         staminaBar.rectTransform.localScale = new Vector3(staminaBarSize + 2f, .2f, 1f);
 
