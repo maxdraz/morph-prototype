@@ -78,17 +78,18 @@ public class CombatResources : MonoBehaviour
 
         //if (armourRemainder > 20) 
         //{
-            //GameObject newArmourSegment = Instantiate(armourSegment, armourBar.transform);
-            //newArmourSegment.transform.localPosition = new Vector3(0, 0, 0);
-            //newArmourSegment.transform.localScale = new Vector3((healthBarSize / armourSegments) * (2 * (armourRemainder / 100)), 1, 1);
+        //GameObject newArmourSegment = Instantiate(armourSegment, armourBar.transform);
+        //newArmourSegment.transform.localPosition = new Vector3(0, 0, 0);
+        //newArmourSegment.transform.localScale = new Vector3((healthBarSize / armourSegments) * (2 * (armourRemainder / 100)), 1, 1);
         //}
 
+        SetCurrentArmourBar();
         stats = GetComponentInChildren<Stats>();
     }
 
     void SetCurrentArmourBar() 
     {
-        for (int i = 1; i <= armourSegments; i++) 
+        for (int i = 0; i <= armourSegments - 1; i++) 
         {
             currentArmourBar = armourBar.GetChild(i).GetComponent<RectTransform>();
         }
@@ -100,24 +101,24 @@ public class CombatResources : MonoBehaviour
         {
             armourToReduce = 100;
 
-            if (armourToReduce > currentArmour % 100)
-            {
-                armourToReduce = currentArmour % 100;
-            }
+            
         }
 
-        
-
-        currentArmour -= armourToReduce;
-
-        if (currentArmour % 100 == 00)
+        if (currentArmour % 100 < armourToReduce && currentArmour % 100 != 0)
         {
+            armourToReduce = currentArmour % 100;
+            currentArmour -= armourToReduce;
             armourSegments--;
+            currentArmourBar.localScale = new Vector3(0f, 1f, 1f);
             currentArmourBar.gameObject.GetComponent<Image>().enabled = false;
-            SetCurrentArmourBar();
+            SetCurrentArmourBar();   
         }
+
+
+
         else 
         {
+            currentArmour -= armourToReduce;
             currentArmourBar.localScale = new Vector3((armourBarSize * (currentArmour % 100 / 100)), .8f, 1f);
         }
 
@@ -168,16 +169,16 @@ public class CombatResources : MonoBehaviour
 
     private void RestartStaminaRegen() 
     {
-        staminaRegenRate = 1;
+        staminaRegenRate = 2;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("left shift")) 
-        {
-            ReduceCurrentArmour(25);
-        }
+        //if (Input.GetKeyDown("left shift")) 
+        //{
+            //ReduceCurrentArmour(38);
+        //}
 
         if (currentStaminaPoints < staminaPointsMax && staminaRegenRate > 0) 
         {
