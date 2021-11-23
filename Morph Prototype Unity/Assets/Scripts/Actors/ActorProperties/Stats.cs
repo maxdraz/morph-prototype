@@ -20,11 +20,11 @@ public class Stats : MonoBehaviour
     private GUIStyle headerStyle;
     
     //core
-    private int healthPoints;
+    private Vector2 baseHealthPoints = new Vector2(500, 800);
     private int healthRegen;
-    private int energyPoints;
+    private Vector2 baseEnergyPoints = new Vector2(100, 200);
     private int energyRegen;
-    private int staminaPoints;
+    private Vector2 baseStaminaPoints = new Vector2(300, 500);
     private int staminaRegen;
     //offensive
     private int meleeDamage;
@@ -55,13 +55,17 @@ public class Stats : MonoBehaviour
 
     [SerializeField] private float toughnessModifier;
 
-    [SerializeField] private float energyRegenModifier;
+    [SerializeField] private float maxEnergyModifier;
     [SerializeField] private float cooldownModifier;
 
     [SerializeField] private float attackSpeedModifier;
     [SerializeField] private float moveSpeedModifier;
 
+    [SerializeField] private float maxStaminaModifier;
+
     StatModifiers statModifiers;
+    CombatResources combatResources;
+
     private void Reset()
     {
         debugWindowRect = new Rect(34, 18, 165, 374);
@@ -74,7 +78,7 @@ public class Stats : MonoBehaviour
     private void Awake()
     {
         statModifiers = GameObject.Find("StatsModifierManager").GetComponent<StatModifiers>();
-
+        combatResources = GetComponentInParent<CombatResources>();
         headerStyle = new GUIStyle();
         headerStyle.fontStyle = FontStyle.Bold;
 
@@ -87,7 +91,7 @@ public class Stats : MonoBehaviour
 
         StartCoroutine(StatChange("meleeDamage", meleeDamage, 10, 1f));
 
-
+        PrepareCombatResources();
     }
 
     private void OnGUI()
@@ -97,15 +101,33 @@ public class Stats : MonoBehaviour
         debugWindowRect = GUI.Window(0, debugWindowRect, DrawStatsWindow, gameObject.name + " stats");
         
    }
+ 
+
+    private void PrepareCombatResources() 
+    {
+        float healthPointsToRandomize;
+        float energyPointsToRandomize;
+        float staminaPointsToRandomize;
+
+        healthPointsToRandomize = Random.Range(baseHealthPoints.x, baseHealthPoints.y);
+        energyPointsToRandomize = Random.Range(baseEnergyPoints.x, baseEnergyPoints.y) * (1 + maxEnergyModifier);
+        staminaPointsToRandomize = Random.Range(baseStaminaPoints.x, baseStaminaPoints.y) * (1 + maxStaminaModifier);
+
+        int healthPointsToSend = Mathf.RoundToInt(healthPointsToRandomize);
+        int emergyPointsToSend = Mathf.RoundToInt(energyPointsToRandomize);
+        int staminaPointsToSend = Mathf.RoundToInt(staminaPointsToRandomize);
+
+        combatResources.SetCombatRescources(healthPointsToSend, emergyPointsToSend, staminaPointsToSend); ;
+    }
 
     private void DrawStatsWindow(int windowID)
     {
         
         AddLabel("stat", "value",true);
         
-        AddLabel("hp", healthPoints.ToString());
-        AddLabel("ep", energyPoints.ToString());
-        AddLabel("stamina", staminaPoints.ToString());
+        AddLabel("hp", baseHealthPoints.ToString());
+        AddLabel("ep", baseEnergyPoints.ToString());
+        AddLabel("stamina", baseStaminaPoints.ToString());
         AddLabel();
         AddLabel("melee dmg", meleeDamage.ToString());
         AddLabel("ranged dmg", rangedDamage.ToString());
@@ -142,6 +164,12 @@ public class Stats : MonoBehaviour
         intelligence = Random.Range(10, 90);
         agility = Random.Range(10, 90);
         toughness = Random.Range(10, 90);
+        fortitude = Random.Range(10, 90);
+        perception = Random.Range(10, 90);
+        intimidation = Random.Range(10, 90);
+        stealth = Random.Range(10, 90);
+
+
 
         FindAllModifiers();
     }
@@ -201,6 +229,8 @@ public class Stats : MonoBehaviour
         FindModifier("intelligence", intelligence);
         FindModifier("agility", agility);
         FindModifier("toughness", toughness);
+        FindModifier("fortitude", fortitude);
+
     }
 
     void FindModifier(string myStat, int myStatValue) 
@@ -262,13 +292,27 @@ public class Stats : MonoBehaviour
         if (myStat == "toughness")
         {
 
-            for (int i = 0; i < statModifiers.toughnessModifiers.Count; ++i)
+            for (int i = 0; i < statModifiers.toughnessDamageReductionModifiers.Count; ++i)
             {
-                if (statModifiers.toughnessModifiers[i].x <= myStatValue)
+                if (statModifiers.toughnessDamageReductionModifiers[i].x <= myStatValue)
                 {
 
-                    toughnessModifier = statModifiers.toughnessModifiers[i].y;
+                    toughnessModifier = statModifiers.toughnessDamageReductionModifiers[i].y;
                     
+                }
+            }
+        }
+
+        if (myStat == "fortitude")
+        {
+
+            for (int i = 0; i < statModifiers.fortitudeMaxStaminaModifiers.Count; ++i)
+            {
+                if (statModifiers.toughnessDamageReductionModifiers[i].x <= myStatValue)
+                {
+
+                    maxStaminaModifier = statModifiers.fortitudeMaxStaminaModifiers[i].y;
+
                 }
             }
         }
@@ -285,12 +329,12 @@ public class Stats : MonoBehaviour
                     
                 }
             }
-            for (int i = 0; i < statModifiers.intelligenceEnergyRegenModifiers.Count; ++i)
+            for (int i = 0; i < statModifiers.intelligenceMaxEnergyModifiers.Count; ++i)
             {
-                if (statModifiers.intelligenceEnergyRegenModifiers[i].x <= myStatValue)
+                if (statModifiers.intelligenceMaxEnergyModifiers[i].x <= myStatValue)
                 {
 
-                    energyRegenModifier = statModifiers.intelligenceEnergyRegenModifiers[i].y;
+                    maxEnergyModifier = statModifiers.intelligenceMaxEnergyModifiers[i].y;
 
                 }
             }

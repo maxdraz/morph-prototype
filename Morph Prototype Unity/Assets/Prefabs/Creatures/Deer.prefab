@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8690058606745669388}
   - component: {fileID: 5919189274535383698}
   - component: {fileID: 5313709455258342680}
-  - component: {fileID: 6169539096870546407}
   m_Layer: 0
   m_Name: HorizontalAttackHitbox
   m_TagString: Untagged
@@ -97,18 +96,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6169539096870546407
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3032053290997073260}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e19439e65ce6bf409577efa3f3b12e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6222674219431189036
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,7 +108,6 @@ GameObject:
   - component: {fileID: 1559347837356168494}
   - component: {fileID: 7513930521223758524}
   - component: {fileID: 7188739323567640628}
-  - component: {fileID: 9115119165105526401}
   m_Layer: 0
   m_Name: MeleeAttackHitbox
   m_TagString: Untagged
@@ -206,18 +192,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &9115119165105526401
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6222674219431189036}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e19439e65ce6bf409577efa3f3b12e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7853902346194350098
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,7 +242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayDebug: 0
-  randomStats: 0
+  randomStats: 1
   meleeDamageModifier: 0
   rangedDamageModifier: 0
   chemicalDamageModifier: 0
@@ -302,6 +276,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30dc549aabebe2a4180e47dfb2de2308, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lightComboIndex: 0
+  heavyComboIndex: 0
 --- !u!114 &4489993615578791349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,7 +290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6aac166f8ca0bf47a8e8ad578702394, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackTimer: 0
+  attackQueue: []
 --- !u!1001 &3078415045784116944
 PrefabInstance:
   m_ObjectHideFlags: 0
