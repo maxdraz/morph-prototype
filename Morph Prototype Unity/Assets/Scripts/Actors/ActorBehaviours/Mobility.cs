@@ -64,7 +64,12 @@ public class Mobility : MonoBehaviour
             Invoke("DodgeCooldown", dodgeCooldown);
         }
 
-        if (Input.GetKeyUp("space"))
+        if (Input.GetKeyDown("space"))
+        {
+            combatResources.DisableStaminaRegen();
+        }
+
+            if (Input.GetKeyUp("space"))
         {
 
             //stop sprinting

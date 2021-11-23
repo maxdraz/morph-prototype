@@ -6,9 +6,6 @@ using UnityEngine.UI;
 public class CombatResources : MonoBehaviour
 {
     Stats stats;
-    public int baseStaminaPoints;
-    public int baseHealthPointsMax;
-    public int baseEnergyPointsMax;
     public int staminaPointsMax;
     public int healthPointsMax;
     public int energyPointsMax;
@@ -20,8 +17,15 @@ public class CombatResources : MonoBehaviour
     private int staminaRegenRate = 1;
     private int healthRegenRate = 0;
 
+    public int armourMax;
+    public float currentArmour;
+    public int armourSegments;
+
     Image healthBar;
     RectTransform currentHealthBar;
+
+    RectTransform armourBar;
+    RectTransform currentArmourBar;
 
     Image staminaBar;
     RectTransform currentStaminaBar;
@@ -30,13 +34,22 @@ public class CombatResources : MonoBehaviour
     RectTransform currentEnergyBar;
 
     GameObject combatResourcesUI;
+    public GameObject armourSegment;
+
+    float healthBarSize;
+    float armourBarSize;
+    float energyBarSize;
+    float staminaBarSize;
 
     // Start is called before the first frame update
     void Start()
     {
+        
+
         combatResourcesUI = GameObject.Find("UI").transform.Find("Combat Resources").gameObject;
 
         healthBar = combatResourcesUI.transform.Find("Health").GetComponent<Image>();
+        armourBar = combatResourcesUI.transform.Find("Armour").GetComponent<RectTransform>();
         energyBar = combatResourcesUI.transform.Find("Energy").GetComponent<Image>();
         staminaBar = combatResourcesUI.transform.Find("Stamina").GetComponent<Image>();
 
@@ -44,8 +57,79 @@ public class CombatResources : MonoBehaviour
         currentStaminaBar = staminaBar.transform.GetChild(0).GetComponent<RectTransform>();
         currentEnergyBar = energyBar.transform.GetChild(0).GetComponent<RectTransform>();
 
+        healthBarSize = (healthPointsMax / 500f);
+        energyBarSize = (energyPointsMax / 500f);
+        staminaBarSize = (staminaPointsMax / 500f);
 
+        int armourRemainder = armourMax % 100;
+        armourMax -= armourRemainder;
+        currentArmour = armourMax;
+       //Debug.Log("armour remainder of " + armourRemainder);
+        armourSegments = armourMax / 100;
+
+        armourBarSize = (healthBarSize / armourSegments) * 2;
+
+        for (int i = 1; i <= armourSegments; i++)
+        {
+            GameObject newArmourSegment = Instantiate(armourSegment, armourBar.transform);
+            newArmourSegment.transform.localPosition = new Vector3(0, 0, 0);
+            newArmourSegment.transform.localScale = new Vector3(armourBarSize, 1, 1);
+        }
+
+        //if (armourRemainder > 20) 
+        //{
+        //GameObject newArmourSegment = Instantiate(armourSegment, armourBar.transform);
+        //newArmourSegment.transform.localPosition = new Vector3(0, 0, 0);
+        //newArmourSegment.transform.localScale = new Vector3((healthBarSize / armourSegments) * (2 * (armourRemainder / 100)), 1, 1);
+        //}
+
+        SetCurrentArmourBar();
         stats = GetComponentInChildren<Stats>();
+    }
+
+    void SetCurrentArmourBar() 
+    {
+        for (int i = 0; i <= armourSegments - 1; i++) 
+        {
+            currentArmourBar = armourBar.GetChild(i).GetComponent<RectTransform>();
+        }
+    }
+
+    public float ReduceCurrentArmour(float armourToReduce) 
+    {
+        if (armourToReduce >= 100) 
+        {
+            armourToReduce = 100;
+
+            
+        }
+
+        if (currentArmour % 100 < armourToReduce && currentArmour % 100 != 0)
+        {
+            armourToReduce = currentArmour % 100;
+            currentArmour -= armourToReduce;
+            armourSegments--;
+            currentArmourBar.localScale = new Vector3(0f, 1f, 1f);
+            currentArmourBar.gameObject.GetComponent<Image>().enabled = false;
+            SetCurrentArmourBar();   
+        }
+
+
+
+        else 
+        {
+            currentArmour -= armourToReduce;
+            currentArmourBar.localScale = new Vector3((armourBarSize * (currentArmour % 100 / 100)), .8f, 1f);
+        }
+
+        return currentArmour;
+    }
+
+    public int SetArmourValue(int newArmour) 
+    {
+        armourMax += newArmour;
+
+        return armourMax;
     }
 
     public void SetCombatRescources(int newHp, int newEn, int newStam)
@@ -74,27 +158,31 @@ public class CombatResources : MonoBehaviour
     public void DisableStaminaRegen()
     {
         staminaRegenRate = 0;
-        InvokeRepeating("StaminaRegen",1.5f, 1.5f);
     }
 
     public void DelayStaminaRegen() 
     {
         staminaRegenRate = 0;
         CancelInvoke();
-        Invoke("StaminaRegen", 1.5f);
+        Invoke("RestartStaminaRegen", 1.5f);
     }
 
     private void RestartStaminaRegen() 
     {
-        staminaRegenRate = 1;
+        staminaRegenRate = 2;
     }
 
     // Update is called once per frame
     void Update()
     {
+        //if (Input.GetKeyDown("left shift")) 
+        //{
+            //ReduceCurrentArmour(38);
+        //}
+
         if (currentStaminaPoints < staminaPointsMax && staminaRegenRate > 0) 
         {
-            currentStaminaPoints = (currentStaminaPoints + ((10 + (1 + (currentEnergyPoints/energyPointsMax))) * staminaRegenRate) * Time.deltaTime);
+            currentStaminaPoints = (currentStaminaPoints + ((staminaRegenRate * (1 + ((currentEnergyPoints/energyPointsMax) * 9))) * staminaRegenRate) * Time.deltaTime);
             
             if (currentStaminaPoints > staminaPointsMax) 
             {
@@ -114,7 +202,7 @@ public class CombatResources : MonoBehaviour
 
         if (currentHealthPoints < healthPointsMax && healthRegenRate > 0)
         {
-            currentHealthPoints = (currentHealthPoints + (10 * healthRegenRate) * Time.deltaTime);
+            currentHealthPoints = currentHealthPoints + (10 * healthRegenRate) * Time.deltaTime;
 
             if (currentHealthPoints > healthPointsMax)
             {
@@ -122,18 +210,16 @@ public class CombatResources : MonoBehaviour
             }
         }
 
-        float healthBarSize = (healthPointsMax / 500f);
-        float energyBarSize = (energyPointsMax / 500f);
-        float staminaBarSize = (staminaPointsMax / 500f);
+        
 
-        healthBar.rectTransform.localScale = new Vector3(healthBarSize + 2f, .2f, 1f); 
+        healthBar.rectTransform.localScale = new Vector3(healthBarSize + 2f, .2f, 1f);
         energyBar.rectTransform.localScale = new Vector3(energyBarSize + 2f, .2f, 1f);
         staminaBar.rectTransform.localScale = new Vector3(staminaBarSize + 2f, .2f, 1f);
 
         //needs to display the current health,stamina, and energy as a function of the max size of the bar. As calculated above using the BarSize variables.
-        currentHealthBar.localScale = new Vector3(((currentHealthPoints - (currentHealthPoints/50)) / healthPointsMax), .8f, 1f);
-        currentEnergyBar.localScale = new Vector3(((currentEnergyPoints - (currentEnergyPoints/50)) / energyPointsMax), .8f, 1f);
-        currentStaminaBar.localScale = new Vector3(((currentStaminaPoints - (currentStaminaPoints/50)) / staminaPointsMax), .8f, 1f);
+        currentHealthBar.localScale = new Vector3((currentHealthPoints - (currentHealthPoints/50)) / healthPointsMax, .8f, 1f);
+        currentEnergyBar.localScale = new Vector3((currentEnergyPoints - (currentEnergyPoints/50)) / energyPointsMax, .8f, 1f);
+        currentStaminaBar.localScale = new Vector3((currentStaminaPoints - (currentStaminaPoints/50)) / staminaPointsMax, .8f, 1f);
 
     }
 }

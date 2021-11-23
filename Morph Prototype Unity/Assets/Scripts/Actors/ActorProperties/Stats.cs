@@ -19,7 +19,7 @@ public class Stats : MonoBehaviour
 
     private GUIStyle headerStyle;
     
-    //core
+    //core - Vector2 to define min and max base values
     private Vector2 baseHealthPoints = new Vector2(500, 800);
     private int healthRegen;
     private Vector2 baseEnergyPoints = new Vector2(100, 200);
