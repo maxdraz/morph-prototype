@@ -8,7 +8,7 @@ using UnityEngine;
 [System.Serializable]
 public abstract class WeaponAttack
 {
-    [SerializeField] private float duration;
+    [SerializeField] protected float duration;
     private float inputWindowDuringAttack;
     private float inputWindowAfterAttack;
     

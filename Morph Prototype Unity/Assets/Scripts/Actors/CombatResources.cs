@@ -222,4 +222,6 @@ public class CombatResources : MonoBehaviour
         currentStaminaBar.localScale = new Vector3((currentStaminaPoints - (currentStaminaPoints/50)) / staminaPointsMax, .8f, 1f);
 
     }
+    
+    
 }

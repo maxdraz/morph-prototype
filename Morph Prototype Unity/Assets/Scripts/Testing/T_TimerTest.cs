@@ -5,15 +5,20 @@ using UnityEngine;
 public class T_TimerTest : MonoBehaviour
 {
     [SerializeField] private Timer abilityCooldown;
+    [SerializeField] private GameObject objToSpawn;
+
+    private Timer cooldown;
+    
     // Start is called before the first frame update
     void Start()
     {
-        string s = "GameO(bject 1(Clone)";
-        print(s);
-        print(s.Remove(s.Length-7));
-         print(s);
-        
         abilityCooldown ??= new Timer(2);
+
+        var spawnedObj = ObjectPooler.Instance.GetOrCreatePooledObject(objToSpawn);
+        
+        ObjectPooler.Instance.Recycle(spawnedObj);
+        
+
     }
 
     // Update is called once per frame
@@ -27,6 +32,7 @@ public class T_TimerTest : MonoBehaviour
         if (abilityCooldown.CountDown(Time.deltaTime))
         {
             print("cooldown running");
+            
         }
 
         if (abilityCooldown.JustFinished)
@@ -57,5 +63,10 @@ public class T_TimerTest : MonoBehaviour
             abilityCooldown.Restart();
             print("restarted");
         }
+    }
+
+    void Test()
+    {
+        
     }
 }
