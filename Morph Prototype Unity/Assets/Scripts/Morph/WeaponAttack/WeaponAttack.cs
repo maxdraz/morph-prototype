@@ -39,6 +39,17 @@ public abstract class WeaponAttack
         inputWindowAfterAttack = weaponAttackData.InputWindowAfterAttack;
         onHitEffects = weaponAttackData.CreateOnHitEffectInstances();
     }
+    
+    public virtual void OnStart()
+    {
+        if (weaponAttackData.OnStartParticles)
+        {
+            var particles = ObjectPooler.Instance.GetOrCreatePooledObject(weaponAttackData.OnStartParticles);
+            particles.transform.parent = owner.transform;
+            particles.transform.position = owner.transform.position;
+            particles.transform.rotation = owner.transform.rotation;
+        }
+    }
 
     public virtual void OnHit(DamageHandler otherDamageHandler, Collider other)
     {
@@ -66,18 +77,6 @@ public abstract class WeaponAttack
 
     public virtual void OnFinish()
     {
-      
+        Reset();
     }
-
-    public virtual void OnStart()
-    {
-        if (weaponAttackData.OnStartParticles)
-        {
-            var particles = ObjectPooler.Instance.GetOrCreatePooledObject(weaponAttackData.OnStartParticles);
-            particles.transform.parent = owner.transform;
-            particles.transform.position = owner.transform.position;
-        }
-    }
-    
-
 }

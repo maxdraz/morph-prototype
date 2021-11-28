@@ -8,7 +8,7 @@ public class RecycleAfterTime : MonoBehaviour
     private ParticleSystem particleSystem;
     [SerializeField] private bool useParticleSystemDuration = true;
     [SerializeField] private float duration = 1;
-    [SerializeField] private float actualDuration;
+    private float actualDuration;
     
     // Start is called before the first frame update
     void Awake()

@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
+// TODO - remove if is player input check
 //TODO - make all member vars private
 //TODO - implement remaining hitbox types
 
@@ -32,6 +34,7 @@ public class WeaponMorphAttackHandler : MonoBehaviour
     private SphericalHitbox sphericalHitbox;
 
     private WeaponAttack currentWeaponAttack;
+    private WeaponMorph currentWeaponMorph;
     private List<WeaponAttack> attackQueue;
     private Timer attackTimer;
     private Timer inputWindowTimer;
@@ -65,6 +68,18 @@ public class WeaponMorphAttackHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gameObject.GetComponentInParent<Player>())
+        {
+            T_ProcessInput();
+        }
+
+        InputWindowAfterAttack();
+        if(attackQueue.Count < 1) return;
+        ExecuteAttacks();
+    }
+
+    private void T_ProcessInput()
+    {
         if (Input.GetMouseButtonDown(0))
         {
             LimbLightAttack();
@@ -73,10 +88,6 @@ public class WeaponMorphAttackHandler : MonoBehaviour
         {
             LimbHeavyAttack();
         }
-
-        InputWindowAfterAttack();
-        if(attackQueue.Count < 1) return;
-        ExecuteAttacks();
     }
 
     private void InputWindowAfterAttack()
@@ -85,15 +96,27 @@ public class WeaponMorphAttackHandler : MonoBehaviour
         if (!inputWindowTimer.IsFinished())
         {
             inputWindowTimer.CountDown(Time.deltaTime);
-            print("input next window");
+            
+
+            if (inputWindowTimer.JustFinished)
+            {
+                ResetCombo();
+            }
         }
+    }
+
+    private void ResetCombo()
+    {
+        limbWeaponMorph?.ResetCombo();
+        tailWeaponMorph?.ResetCombo();
+        headWeaponMorph?.ResetCombo();
     }
 
     private void ExecuteAttacks()
     {
         currentWeaponAttack = attackQueue[0];
 
-        RestartTimerIfNecessary2();
+        RestartTimerIfNecessary();
         
         if (attackTimer.JustStarted)
             StartAttack();
@@ -101,21 +124,11 @@ public class WeaponMorphAttackHandler : MonoBehaviour
         if (attackTimer.CountDown(Time.deltaTime))
             UpdateAttack();
         
-        //if()
-
         if (attackTimer.JustFinished)
             FinishAttack();
     }
 
     private void RestartTimerIfNecessary()
-    {
-        if (attackTimer.Duration != currentWeaponAttack.Duration)
-        {
-            attackTimer.Restart(currentWeaponAttack.Duration);
-        }
-    }
-    
-    private void RestartTimerIfNecessary2()
     {
         if (attackTimer == null || attackTimer.IsFinished())
         {
@@ -144,7 +157,6 @@ public class WeaponMorphAttackHandler : MonoBehaviour
 
     private void StartAttack()
     {
-        print("attack started");
         var hitbox = GetAppropriateHitbox(currentWeaponAttack.Data.HitBoxType);
         if(hitbox) hitbox.Activate();
         
@@ -158,13 +170,11 @@ public class WeaponMorphAttackHandler : MonoBehaviour
 
     private void UpdateAttack()
     {
-        print("attack updating");
         currentWeaponAttack.OnUpdate();
     }
 
     private void FinishAttack()
     {
-        print("attack finished");
         // call finish on attack
         currentWeaponAttack.OnFinish();
         
@@ -175,7 +185,6 @@ public class WeaponMorphAttackHandler : MonoBehaviour
         //start input window and remove this attack from queue
         inputWindowTimer = new Timer(currentWeaponAttack.InputWindowAfterAttack);
         attackQueue.RemoveAt(0);
-        print("queue count: " + attackQueue.Count);
     }
 
     private void TryQueueAttack(WeaponMorphType morphType, WeaponAttackType attackType)
@@ -197,16 +206,11 @@ public class WeaponMorphAttackHandler : MonoBehaviour
     private void TryQueueAttack(WeaponMorph weaponMorph, WeaponAttackType attackType)
     {
         if(weaponMorph == null) return;
-        if (!CanQueueNextAttack(weaponMorph, attackType))
-        {
-            print("can queue: " +CanQueueNextAttack(weaponMorph, attackType));
-            return;
-        }
+        if (!CanQueueNextAttack(weaponMorph, attackType)) return;
 
         var currentAttack = weaponMorph.GetCurrentAttack(attackType);
         if (currentAttack != null)
         {
-            print("queue successful");
             attackQueue.Add(currentAttack);
             weaponMorph.AdvanceCombo(attackType);
             print(attackQueue.Count);

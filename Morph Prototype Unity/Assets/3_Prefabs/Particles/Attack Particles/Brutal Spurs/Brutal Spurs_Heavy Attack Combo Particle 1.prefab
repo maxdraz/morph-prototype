@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 72986950362630313}
   - component: {fileID: 8828790695162250573}
   - component: {fileID: 2781629607087988441}
+  - component: {fileID: 8284135308951470343}
   m_Layer: 0
   m_Name: Brutal Spurs_Heavy Attack Combo Particle 1
   m_TagString: Untagged
@@ -4816,3 +4817,17 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &8284135308951470343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2958382506425729755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fb133de14934524a97117c699468e3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useParticleSystemDuration: 1
+  duration: 1

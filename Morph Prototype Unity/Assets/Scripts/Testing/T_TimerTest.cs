@@ -8,6 +8,11 @@ public class T_TimerTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        string s = "GameO(bject 1(Clone)";
+        print(s);
+        print(s.Remove(s.Length-7));
+         print(s);
+        
         abilityCooldown ??= new Timer(2);
     }
 

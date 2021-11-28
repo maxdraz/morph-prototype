@@ -72,12 +72,12 @@ public class ObjectPooler : MonoBehaviour
             for (int i = 0; i < pooledObjects.Count; i++)
             {
                 var currentObj = pooledObjects[i];
-
-                if (currentObj.name.Contains(obj.name))
+                var currentObjName = currentObj.name.Remove(currentObj.name.Length - 7); // gets obj name without "(Clone)"
+               // if (currentObj.name.Contains(obj.name))
+               if (currentObjName == obj.name)
                 {
                     pooledObjects.RemoveAt(i);
                     return currentObj;
-                   
                 }
             }
         }

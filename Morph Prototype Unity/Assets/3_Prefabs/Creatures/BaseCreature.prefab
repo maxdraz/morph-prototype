@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8690058606745669388}
   - component: {fileID: 5919189274535383698}
   - component: {fileID: 5313709455258342680}
+  - component: {fileID: 3318862805125466085}
   m_Layer: 0
   m_Name: SphericalHitbox
   m_TagString: Untagged
@@ -96,6 +97,18 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3318862805125466085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3032053290997073260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c86800f2b5ab8b45ae345cdbc3b7b10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3432559505150530330
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,6 +151,7 @@ GameObject:
   - component: {fileID: 1559347837356168494}
   - component: {fileID: 7513930521223758524}
   - component: {fileID: 7188739323567640628}
+  - component: {fileID: 3750635466258180062}
   m_Layer: 0
   m_Name: BoxHitbox
   m_TagString: Untagged
@@ -220,8 +234,20 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 2, y: 1, z: 3}
+  m_Center: {x: 0, y: 0, z: 2}
+--- !u!114 &3750635466258180062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6222674219431189036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 500e4e92bc05d78429206dc7b439bcbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7853902346194350098
 GameObject:
   m_ObjectHideFlags: 0

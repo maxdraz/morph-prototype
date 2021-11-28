@@ -15,6 +15,12 @@ public abstract class Hitbox : MonoBehaviour
         if (!damageHandler) return;
         
         Hit?.Invoke(damageHandler, other);
+        //||
+        T_HitboxManager manager = GetComponentInParent<T_HitboxManager>();
+        if (manager)
+        {
+            manager.CollisionDetected();
+        }
     }
 
     public void Activate()

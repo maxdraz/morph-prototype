@@ -49,6 +49,12 @@ public abstract class WeaponMorph
         currentHeavyAttackIndex %= heavyAttacks.Count;
     }
 
+    public void ResetCombo()
+    {
+        currentLightAttackIndex = 0;
+        currentHeavyAttackIndex = 0;
+    }
+
     
     
     
