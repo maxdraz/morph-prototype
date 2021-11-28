@@ -117,7 +117,7 @@ public class Stats : MonoBehaviour
         int emergyPointsToSend = Mathf.RoundToInt(energyPointsToRandomize);
         int staminaPointsToSend = Mathf.RoundToInt(staminaPointsToRandomize);
 
-        combatResources.SetCombatRescources(healthPointsToSend, emergyPointsToSend, staminaPointsToSend); ;
+        if(combatResources) combatResources.SetCombatRescources(healthPointsToSend, emergyPointsToSend, staminaPointsToSend); ;
     }
 
     private void DrawStatsWindow(int windowID)

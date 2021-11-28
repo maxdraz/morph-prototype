@@ -294,7 +294,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7071709874473928963}
   - component: {fileID: 7071709874473928964}
-  - component: {fileID: 7071709874473928965}
   m_Layer: 5
   m_Name: AttackStatusBar
   m_TagString: Untagged
@@ -376,19 +375,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &7071709874473928965
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7071709874473928962}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75ed9b8599672404fa66c4c644056a44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackName: {fileID: 7071709873665936638}
 --- !u!1 &7071709874651882464
 GameObject:
   m_ObjectHideFlags: 0

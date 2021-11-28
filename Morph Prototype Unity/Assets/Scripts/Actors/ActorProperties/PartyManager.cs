@@ -9,16 +9,16 @@ public class PartyManager : MonoBehaviour
     private GameObject activeCreature;
     public GameObject ActiveCreature => activeCreature;
     
-    [SerializeField] private List<GameObject> creatures;
+    [SerializeField] private List<GameObject> party;
 
     private void Awake()
     {
-        creatures = new List<GameObject>()
+        party = new List<GameObject>()
         {
             GameObject.Instantiate(startingCreature, transform)
         };
 
-        activeCreature = creatures[0];
+        activeCreature = party[0];
         print("set active creature");
     }
 

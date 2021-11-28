@@ -181,5 +181,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da387e63ab901f649b289b8e04de16b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingCreature: {fileID: 7853902346194350098, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}
-  creatures: []
+  startingCreature: {fileID: 563091350732430249, guid: 17294641915b125489525c675901fd49, type: 3}
+  party: []
