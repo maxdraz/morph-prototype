@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class WeaponMorphData : ScriptableObject
 {
-    [SerializeField] private float baseDamage;
+    [SerializeField] private float baseDamage = 10;
     // TODO - rarity generation settings
     // TODO - mask field for creature types
 

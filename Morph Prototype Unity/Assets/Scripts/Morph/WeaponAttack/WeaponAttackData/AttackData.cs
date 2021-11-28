@@ -12,14 +12,14 @@ public class AttackData : ScriptableObject
    [Header("Particles")]
    [SerializeField] private GameObject onStartParticles ;
    [SerializeField] private GameObject onHitParticles;
-   [SerializeField] private GameObject onEndParticles;
+   [SerializeField] private GameObject onFinishParticles;
    
    public float Duration => duration;
    public float InputWindowDuringAttack => inputWindowDuringAttack;
    public float InputWindowAfterAttack => inputWindowAfterAttack;
    public GameObject OnStartParticles=> onStartParticles;
    public GameObject OnHitParticles=> onHitParticles;
-   public GameObject OnEndParticles=> onEndParticles;
+   public GameObject OnFinishParticles=> onFinishParticles;
    
    
 }

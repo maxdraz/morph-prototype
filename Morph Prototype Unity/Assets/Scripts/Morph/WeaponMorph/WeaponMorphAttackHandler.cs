@@ -19,6 +19,7 @@ public enum WeaponAttackType
     Heavy
 }
 
+[RequireComponent(typeof(MorphLoadout))]
 public class WeaponMorphAttackHandler : MonoBehaviour
 {
     private MorphLoadout loadout;
@@ -40,6 +41,7 @@ public class WeaponMorphAttackHandler : MonoBehaviour
     {
         loadout = GetComponent<MorphLoadout>();
         attackQueue = new List<WeaponAttack>();
+        inputWindowTimer = new Timer(0);
 
         boxHitbox = GetComponentInChildren<BoxHitbox>();
         sphericalHitbox = GetComponentInChildren<SphericalHitbox>();
@@ -236,6 +238,8 @@ public class WeaponMorphAttackHandler : MonoBehaviour
 
     private void OnMorphLoadoutChanged(WeaponMorph morph)
     {
+        if(morph == null) return;
+        
         if (morph is LimbWeaponMorph limb)
         {
             limbWeaponMorph = limb;

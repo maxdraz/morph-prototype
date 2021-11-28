@@ -232,6 +232,9 @@ GameObject:
   m_Component:
   - component: {fileID: 344181428797638714}
   - component: {fileID: 6890688784229218089}
+  - component: {fileID: 1242210026466312524}
+  - component: {fileID: 320125811011304783}
+  - component: {fileID: 7926291197602700796}
   m_Layer: 0
   m_Name: BaseCreature
   m_TagString: Untagged
@@ -280,3 +283,42 @@ MonoBehaviour:
   attackSpeedModifier: 0
   moveSpeedModifier: 0
   maxStaminaModifier: 0
+--- !u!114 &1242210026466312524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7853902346194350098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c356f9c6394dfa740a175bfac6394c71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &320125811011304783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7853902346194350098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bc88bd60e4b2024ca95f144dd5d4dc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  limbWeaponMorphData: {fileID: 0}
+  headWeaponMorphData: {fileID: 0}
+  tailWeaponMorphData: {fileID: 0}
+--- !u!114 &7926291197602700796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7853902346194350098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5275da47f13d79943aaa487a2d836bf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

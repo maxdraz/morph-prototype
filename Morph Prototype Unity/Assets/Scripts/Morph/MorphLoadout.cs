@@ -17,8 +17,9 @@ public class MorphLoadout : MonoBehaviour
 
     private void Start()
     {
-        limbWeaponMorph = (LimbWeaponMorph)limbWeaponMorphData.CreateWeaponMorphInstance(gameObject);
-        MorphLoadoutChanged?.Invoke(limbWeaponMorph);
+        AddToLoadout(limbWeaponMorphData);
+        AddToLoadout(headWeaponMorphData);
+        AddToLoadout(tailWeaponMorphData);
     }
 
     public T GetWeaponMorph<T>() where T: WeaponMorph
@@ -36,6 +37,24 @@ public class MorphLoadout : MonoBehaviour
         }
 
         return null;
+    }
+
+    public void AddToLoadout(WeaponMorphData morphData)
+    {
+        if (morphData is LimbWeaponMorphData limbData)
+        {
+            limbWeaponMorph =  (LimbWeaponMorph) limbData.CreateWeaponMorphInstance(gameObject);
+            MorphLoadoutChanged?.Invoke(limbWeaponMorph);
+        } else if (morphData is HeadWeaponMorphData headData)
+        {
+            headWeaponMorph = (HeadWeaponMorph) headData.CreateWeaponMorphInstance(gameObject);
+            MorphLoadoutChanged?.Invoke(headWeaponMorph);
+        }
+        else if (morphData is TailWeaponMorphData tailData)
+        {
+            tailWeaponMorph = (TailWeaponMorph) tailData.CreateWeaponMorphInstance(gameObject);
+            MorphLoadoutChanged?.Invoke(tailWeaponMorph);
+        }
     }
     
     
