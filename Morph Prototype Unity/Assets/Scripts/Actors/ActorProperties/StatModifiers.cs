@@ -8,12 +8,11 @@ public class StatModifiers : MonoBehaviour
     public List<Vector2> rDMGModifiers = new List<Vector2>();
     public List<Vector2> cDMGModifiers = new List<Vector2>();
     public List<Vector2> eDMGModifiers = new List<Vector2>();
-    public List<Vector2> intelligenceEnergyRegenModifiers = new List<Vector2>();
+    public List<Vector2> intelligenceMaxEnergyModifiers = new List<Vector2>();
     public List<Vector2> intelligenceCooldownReductionModifiers = new List<Vector2>();
     public List<Vector2> agilityAttackSpeedModifiers = new List<Vector2>();
     public List<Vector2> agilityMoveSpeedModifiers = new List<Vector2>();
-    public List<Vector2> toughnessModifiers = new List<Vector2>();
-
-
+    public List<Vector2> toughnessDamageReductionModifiers = new List<Vector2>();
+    public List<Vector2> fortitudeMaxStaminaModifiers = new List<Vector2>();
 
 }

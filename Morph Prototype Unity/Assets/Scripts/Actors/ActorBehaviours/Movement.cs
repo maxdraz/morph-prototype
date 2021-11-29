@@ -13,10 +13,12 @@ public class Movement : MonoBehaviour
     private Vector3 velocity;
     private Vector3 input;
     private Rigidbody rb;
+    private bool sprinting;
 
     private void Reset()
     {
         speed = 5f;
+        sprinting = false;
     }
 
     // Start is called before the first frame update
@@ -33,7 +35,7 @@ public class Movement : MonoBehaviour
         UpdateVelocity();
         UpdateRotation();
 
-        if (Input.GetKeyDown("up") && speed<maxSpeed) 
+        if (Input.GetKeyDown("up") && speed < maxSpeed) 
         {
             speed += 1f;
             Debug.Log("Speed set to " + speed);
@@ -67,9 +69,30 @@ public class Movement : MonoBehaviour
         return input.magnitude > magnitude;
     }
 
+    public void StartSprinting()
+    {
+        sprinting = true;
+        //Debug.Log("stopped sprinting"); 
+    }
+
+    public void StopSprinting()
+    {
+        sprinting = false;
+        //Debug.Log("stopped sprinting");
+    }
+
     private void UpdateVelocity()
     {
-        velocity = input * speed;
+        if (sprinting)
+        {
+            velocity = input * (speed * 2);
+        }
+        else 
+        {
+            velocity = input * speed;
+        }
+
+        
         velocity.y = rb.velocity.y;
         rb.velocity = velocity;
     }
@@ -93,7 +116,7 @@ public class Movement : MonoBehaviour
     private Vector3 GetInputRelativeToCamera()
     {
         var inpt = GetInput();
-        inpt  = Camera.main.transform.TransformDirection(inpt);
+        inpt = Camera.main.transform.TransformDirection(inpt);
         inpt = Vector3.ProjectOnPlane(inpt, Vector3.up).normalized;
         return inpt;
     }

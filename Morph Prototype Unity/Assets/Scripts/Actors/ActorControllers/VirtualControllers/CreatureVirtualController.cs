@@ -7,8 +7,12 @@ public class CreatureVirtualController : VirtualController
 {
     private CreatureInputHandler inputHandler;
 
-    public event Action LightAttack;
-    public event Action HeavyAttack;
+    public event Action AppendageLightAttack;
+    public event Action AppendageHeavyAttack;
+    public event Action MouthLightAttack;
+    public event Action MouthHeavyAttack;
+    public event Action TailLightAttack;
+    public event Action TailHeavyAttack;
 
     private void Awake()
     {
@@ -18,24 +22,64 @@ public class CreatureVirtualController : VirtualController
     // Update is called once per frame
     void Update()
     {
-        if (LightAttackInput())
+        if (AppendageLightAttackInput())
         {
-            LightAttack?.Invoke();
+            AppendageLightAttack?.Invoke();
         }
 
-        if (HeavyAttackInput())
+        if (AppendageHeavyAttackInput())
         {
-            HeavyAttack?.Invoke();
+            AppendageHeavyAttack?.Invoke();
         }
+        if (MouthLightAttackInput())
+        {
+            MouthLightAttack?.Invoke();
+        }
+
+        if (MouthHeavyAttackInput())
+        {
+            MouthHeavyAttack?.Invoke();
+        }
+        
+        if (TailLightAttackInput())
+        {
+            TailLightAttack?.Invoke();
+        }
+
+        if (TailHeavyAttackInput())
+        {
+            TailHeavyAttack?.Invoke();
+        }
+        
     }
 
-    private bool LightAttackInput()
+    private bool AppendageLightAttackInput()
     {
-        return inputHandler.GetLightAttackInput();
+        return inputHandler.GetAppendageLightAttackInput();
     }
 
-    bool HeavyAttackInput()
+    bool AppendageHeavyAttackInput()
     {
-        return inputHandler.GetHeavyAttackInput();
+        return inputHandler.GetAppendageHeavyAttackInput();
+    }
+    
+    private bool MouthLightAttackInput()
+    {
+        return inputHandler.GetMouthLightAttackInput();
+    }
+
+    bool MouthHeavyAttackInput()
+    {
+        return inputHandler.GetMouthHeavyAttackInput();
+    }
+    
+    private bool TailLightAttackInput()
+    {
+        return inputHandler.GetTailLightAttackInput();
+    }
+
+    bool TailHeavyAttackInput()
+    {
+        return inputHandler.GetTailHeavyAttackInput();
     }
 }

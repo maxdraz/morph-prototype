@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7282250c26bfd5d4aacf909d4d2dd500, type: 3}
+  m_Name: Brutal Spurs Light Attack 1
+  m_EditorClassIdentifier: 
+  duration: 1
+  inputWindowDuringAttack: 0.1
+  inputWindowAfterAttack: 0.5
+  onStartParticles: {fileID: 1478952173392413093, guid: 2ed516fcff4a65a439415a0e61c3e090, type: 3}
+  onHitParticles: {fileID: 0}
+  onFinishParticles: {fileID: 0}
+  hitBoxType: 0
+  onHitEffects:
+  - {fileID: 11400000, guid: b35d477423b065a4d89a2126ea00ceec, type: 2}
+  - {fileID: 11400000, guid: e1b9ad6eff5ad2d4f9912074b5994e21, type: 2}

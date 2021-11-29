@@ -21,10 +21,30 @@ public class SimpleScanningBehaviour : MonoBehaviour
         Invoke("Wander", wanderingPeriod);
     }
 
-    // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown("left shift"))
+        {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            StartCoroutine("Investigate", player.transform.position);
+        }
+    }
+
+    IEnumerator Investigate(Vector3 position) 
+    {
+        Debug.Log("Investigating");
+        CancelInvoke();
+        SetDestination(transform.position);
+        Vector3 direction = position - transform.position;
         
+        //This method of turning is not working
+        Quaternion toRotation = Quaternion.LookRotation(transform.forward, direction);
+        transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, 300f * Time.deltaTime);
+
+        yield return new WaitForSeconds((Random.value * 3) + 2);
+
+        Invoke("Wander", wanderingPeriod);
+        yield return null;
     }
 
     public void Wander()

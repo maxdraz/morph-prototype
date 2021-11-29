@@ -16,11 +16,7 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 2291626f8d2a8de44b194fce1deea98f
-  m_SerializeEntries:
-  - m_GUID: 2abb1199b7569e94f97c778befcb420d
-    m_Address: WeaponMorph/BrutalSpursData
-    m_ReadOnly: 0
-    m_SerializedLabels: []
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 1d6db198bc8eca845b55c6bad0d55ce0, type: 2}
   m_SchemaSet:
