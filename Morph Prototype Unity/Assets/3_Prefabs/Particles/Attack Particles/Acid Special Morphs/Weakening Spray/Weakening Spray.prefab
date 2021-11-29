@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5046817309791436590}
   - component: {fileID: 4156587782217742795}
   - component: {fileID: 3890334915245438752}
+  - component: {fileID: 6367920432020765074}
   m_Layer: 0
   m_Name: Weakening Spray
   m_TagString: Untagged
@@ -49,7 +50,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -4815,3 +4816,17 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &6367920432020765074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8740522506693375761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fb133de14934524a97117c699468e3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useParticleSystemDuration: 1
+  duration: 1

@@ -4862,6 +4862,7 @@ GameObject:
   - component: {fileID: 2220075482697436726}
   - component: {fileID: 7019288732155250899}
   - component: {fileID: 7871044784450029112}
+  - component: {fileID: 875058216619203212}
   m_Layer: 0
   m_Name: Acid Eruption
   m_TagString: Untagged
@@ -9669,6 +9670,20 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &875058216619203212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2416811839361304073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fb133de14934524a97117c699468e3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useParticleSystemDuration: 1
+  duration: 1
 --- !u!1 &7709446984965052822
 GameObject:
   m_ObjectHideFlags: 0

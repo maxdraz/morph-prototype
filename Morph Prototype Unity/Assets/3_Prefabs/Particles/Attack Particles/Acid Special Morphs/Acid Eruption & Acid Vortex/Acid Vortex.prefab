@@ -4913,6 +4913,7 @@ GameObject:
   - component: {fileID: 2303381517779054324}
   - component: {fileID: 8931557931678532075}
   - component: {fileID: 3881390101955179514}
+  - component: {fileID: 907636244964103408}
   m_Layer: 0
   m_Name: Acid Vortex
   m_TagString: Untagged
@@ -9723,6 +9724,20 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &907636244964103408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641033305696970572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fb133de14934524a97117c699468e3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useParticleSystemDuration: 1
+  duration: 1
 --- !u!1 &4579296989362333088
 GameObject:
   m_ObjectHideFlags: 0

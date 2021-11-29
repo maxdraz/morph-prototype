@@ -2,21 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DamageHandler : MonoBehaviour
+public class T_SpawnChildAfterTime : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
     {
-        
+       
     }
 
     // Update is called once per frame
     void Update()
     {
-        // run debuffs if any in list
+        
     }
-    
-    // void ApplyDebuff (  )
-    
-    // void take dmaage (  )
 }

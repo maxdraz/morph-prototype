@@ -112,9 +112,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3964877461283424367, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.08
+      objectReference: {fileID: 0}
     - target: {fileID: 7853902346194350098, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}
       propertyPath: m_Name
       value: Deer
+      objectReference: {fileID: 0}
+    - target: {fileID: 8824068126247670664, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}

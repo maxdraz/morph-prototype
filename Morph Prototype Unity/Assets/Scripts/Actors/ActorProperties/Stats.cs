@@ -77,7 +77,10 @@ public class Stats : MonoBehaviour
 
     private void Awake()
     {
-        statModifiers = GameObject.Find("StatsModifierManager").GetComponent<StatModifiers>();
+        var statsModifierObj = GameObject.Find("StatsModifierManager");
+        if(statsModifierObj)
+            statModifiers = statsModifierObj.GetComponent<StatModifiers>();
+ 
         combatResources = GetComponentInParent<CombatResources>();
         headerStyle = new GUIStyle();
         headerStyle.fontStyle = FontStyle.Bold;
@@ -208,7 +211,7 @@ public class Stats : MonoBehaviour
 
     IEnumerator StatChange(string statName, int statToBuff, int buffAmount, float duration) 
     {
-        Debug.Log("Buffing " + statName + " from " + statToBuff + " by " + buffAmount + " for " + duration + " seconds");
+      //  Debug.Log("Buffing " + statName + " from " + statToBuff + " by " + buffAmount + " for " + duration + " seconds");
         statToBuff += buffAmount;
         FindModifier(statName, statToBuff);
 
@@ -236,7 +239,8 @@ public class Stats : MonoBehaviour
     void FindModifier(string myStat, int myStatValue) 
     {
         //Debug.Log("Called Find " + myStat + " Modifier");
-
+        if (!statModifiers) return;
+        
         if (myStat == "meleeDamage") 
         {
 

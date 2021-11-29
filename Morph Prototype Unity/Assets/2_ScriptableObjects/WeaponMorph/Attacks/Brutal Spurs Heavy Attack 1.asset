@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50b0020f5000ec248b30fcd2875f281e, type: 3}
   m_Name: Brutal Spurs Heavy Attack 1
   m_EditorClassIdentifier: 
-  duration: 1
-  inputWindowDuringAttack: 0.1
-  inputWindowAfterAttack: 0.1
+  duration: 0.2
+  inputWindowDuringAttack: 0.2
+  inputWindowAfterAttack: 0.2
   onStartParticles: {fileID: 2958382506425729755, guid: eb56febfa9e80cd43bfca8e4eed7f1e1, type: 3}
   onHitParticles: {fileID: 0}
   onFinishParticles: {fileID: 0}

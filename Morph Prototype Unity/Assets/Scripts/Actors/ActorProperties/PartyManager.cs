@@ -32,8 +32,6 @@ public class PartyManager : MonoBehaviour
 
         if (party.Count > 0) 
             SetActiveCreature(party[0]);
-
-        print("set active creature");
     }
 
     public void AddCreatureToParty(GameObject creature)

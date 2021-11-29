@@ -32,7 +32,7 @@ public abstract class WeaponAttack
 
     }
 
-    public virtual void Reset()
+    public virtual void ResetAttackData()
     {
         duration = weaponAttackData.Duration;
         inputWindowDuringAttack = weaponAttackData.InputWindowDuringAttack;
@@ -51,25 +51,16 @@ public abstract class WeaponAttack
         }
     }
 
-    public virtual void OnHit(DamageHandler otherDamageHandler, Collider other)
+    public virtual void OnHit(DamageHandler other)
     {
-        
-        
-        // spawn particles
         var hitParticlePrefab = Data.OnHitParticles;
         if (hitParticlePrefab)
         {
-            var hitParticles = ObjectPooler.Instance.GetOrCreatePooledObject(hitParticlePrefab);
-            var ownerPos = owner.transform.position;
-            var impactPoint =  other.ClosestPointOnBounds(ownerPos);
-            hitParticles.transform.position = impactPoint;
-            var toImpactPointNormalised = (impactPoint - ownerPos).normalized;
-            hitParticles.transform.rotation = Quaternion.LookRotation(-toImpactPointNormalised);
+            GameplayStatics.SpawnParticleSystemOnClosestColliderBounds(hitParticlePrefab, owner.transform.position,
+                other.GetComponent<Collider>());
         }
-           
-
     }
-
+    
     public virtual void OnUpdate()
     {
         
@@ -77,6 +68,13 @@ public abstract class WeaponAttack
 
     public virtual void OnFinish()
     {
-        Reset();
+        var finishParticlePrefab = Data.OnFinishParticles;
+        if (finishParticlePrefab)
+        {
+            GameplayStatics.SpawnParticleSystem(finishParticlePrefab, owner.transform, owner.transform.position,
+                owner.transform.rotation);
+        }
+        
+        ResetAttackData();
     }
 }

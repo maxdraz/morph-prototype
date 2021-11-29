@@ -9,7 +9,7 @@ public class CursorManager : MonoBehaviour
     [SerializeField] private bool debug;
 
     public static Action OnCursorLocked;
-    public  static Action OnCursorUnlocked;
+    public static Action OnCursorUnlocked;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,8 +23,11 @@ public class CursorManager : MonoBehaviour
 
     private void OnDisable()
     {
-        QuantumConsole.Instance.OnActivate -= OnConsoleActivate;
-        QuantumConsole.Instance.OnDeactivate -= OnConsoleDeactivate;
+        if (QuantumConsole.Instance)
+        {
+            QuantumConsole.Instance.OnActivate -= OnConsoleActivate;
+            QuantumConsole.Instance.OnDeactivate -= OnConsoleDeactivate;
+        }
     }
 
     private void Update()

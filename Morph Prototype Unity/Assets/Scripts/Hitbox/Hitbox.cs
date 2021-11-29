@@ -7,20 +7,15 @@ public abstract class Hitbox : MonoBehaviour
 {
     protected Collider col;
 
-    public Action<DamageHandler, Collider> Hit;
+    public Action<DamageHandler> Hit;
 
     private void OnTriggerEnter(Collider other)
     {
+        //var damageHandler = other.gameObject.GetComponentInChildren<DamageHandler>();
         var damageHandler = other.gameObject.GetComponent<DamageHandler>();
         if (!damageHandler) return;
         
-        Hit?.Invoke(damageHandler, other);
-        //||
-        T_HitboxManager manager = GetComponentInParent<T_HitboxManager>();
-        if (manager)
-        {
-            manager.CollisionDetected();
-        }
+        Hit?.Invoke(damageHandler);
     }
 
     public void Activate()

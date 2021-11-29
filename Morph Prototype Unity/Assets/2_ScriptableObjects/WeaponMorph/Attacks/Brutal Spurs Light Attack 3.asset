@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Brutal Spurs Light Attack 3
   m_EditorClassIdentifier: 
   duration: 0.2
-  inputWindowDuringAttack: 0.5
+  inputWindowDuringAttack: 0.2
   inputWindowAfterAttack: 0.5
   onStartParticles: {fileID: 8478523813292877897, guid: 10cfea5cac1a2b84ba826a8a4558aadc, type: 3}
-  onHitParticles: {fileID: 0}
-  onFinishParticles: {fileID: 0}
+  onHitParticles: {fileID: 2416811839361304073, guid: 6ae69b63af5b31c4280de7d2d030a098, type: 3}
+  onFinishParticles: {fileID: 3393028801674767775, guid: 8c56d05792b505e4c9ff38efc8958b8d, type: 3}
   hitBoxType: 0
   onHitEffects: []

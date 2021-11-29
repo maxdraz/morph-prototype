@@ -261,6 +261,7 @@ GameObject:
   - component: {fileID: 1242210026466312524}
   - component: {fileID: 320125811011304783}
   - component: {fileID: 7926291197602700796}
+  - component: {fileID: 8824068126247670664}
   m_Layer: 0
   m_Name: BaseCreature
   m_TagString: Untagged
@@ -348,3 +349,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5275da47f13d79943aaa487a2d836bf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &8824068126247670664
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7853902346194350098}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}

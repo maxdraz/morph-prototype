@@ -49,7 +49,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -4826,6 +4826,7 @@ GameObject:
   - component: {fileID: 4849847485471866534}
   - component: {fileID: 4388988312114116675}
   - component: {fileID: 3511336508411279016}
+  - component: {fileID: -7644256869676104246}
   m_Layer: 0
   m_Name: Catalyzing Agent
   m_TagString: Untagged
@@ -4865,7 +4866,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -9681,3 +9682,17 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &-7644256869676104246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8938354313772005017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fb133de14934524a97117c699468e3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useParticleSystemDuration: 1
+  duration: 1

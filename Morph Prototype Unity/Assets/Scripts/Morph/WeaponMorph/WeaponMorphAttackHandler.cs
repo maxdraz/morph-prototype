@@ -70,7 +70,7 @@ public class WeaponMorphAttackHandler : MonoBehaviour
     {
         if (gameObject.GetComponentInParent<Player>())
         {
-            T_ProcessInput();
+            T_HandleInput();
         }
 
         InputWindowAfterAttack();
@@ -78,7 +78,7 @@ public class WeaponMorphAttackHandler : MonoBehaviour
         ExecuteAttacks();
     }
 
-    private void T_ProcessInput()
+    private void T_HandleInput()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -163,9 +163,10 @@ public class WeaponMorphAttackHandler : MonoBehaviour
         currentWeaponAttack.OnStart();
     }
     
-    private void OnAttackHit(DamageHandler damageHandler, Collider other)
+    private void OnAttackHit(DamageHandler damageHandler)
     {
-        currentWeaponAttack.OnHit(damageHandler, other);
+        print("hit detected");
+        currentWeaponAttack.OnHit(damageHandler);
     }
 
     private void UpdateAttack()
@@ -213,7 +214,6 @@ public class WeaponMorphAttackHandler : MonoBehaviour
         {
             attackQueue.Add(currentAttack);
             weaponMorph.AdvanceCombo(attackType);
-            print(attackQueue.Count);
         }
     }
 
