@@ -12,16 +12,16 @@ public abstract class WeaponAttackData : AttackData
 
     public HitboxType HitBoxType => hitBoxType;
 
-    public abstract WeaponAttack CreateWeaponAttackInstance(GameObject owner);
+    public abstract WeaponAttack CreateWeaponAttackInstance(GameObject owner, Morph OwnerMorph, DamageHandler ownerDamageHandler);
 
-    public List<OnHitEffect> CreateOnHitEffectInstances()
+    public virtual List<OnHitEffect> CreateOnHitEffectInstances(Morph ownerMorph, DamageHandler ownerDamageHandler)
     {
         List<OnHitEffect> onHitEffectInstances = new List<OnHitEffect>();
         if (onHitEffects.Count > 0)
         {
             foreach (var onHitEffect in onHitEffects)
             {
-                onHitEffectInstances.Add(onHitEffect.CreateOnHitEffectInstance());
+                onHitEffectInstances.Add(onHitEffect.CreateOnHitEffectInstance(ownerMorph,ownerDamageHandler));
             }
         }
         return onHitEffectInstances;

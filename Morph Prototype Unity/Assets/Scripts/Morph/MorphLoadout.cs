@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(DamageHandler))]
 public class MorphLoadout : MonoBehaviour
 {
     [SerializeField] private LimbWeaponMorphData limbWeaponMorphData;
@@ -12,8 +13,14 @@ public class MorphLoadout : MonoBehaviour
     private LimbWeaponMorph limbWeaponMorph;
     private TailWeaponMorph tailWeaponMorph;
     private HeadWeaponMorph headWeaponMorph;
+    private DamageHandler damageHandler;
 
     public event Action<WeaponMorph> MorphLoadoutChanged;
+
+    private void Awake()
+    {
+        damageHandler = GetComponent<DamageHandler>();
+    }
 
     private void Start()
     {
@@ -43,16 +50,16 @@ public class MorphLoadout : MonoBehaviour
     {
         if (morphData is LimbWeaponMorphData limbData)
         {
-            limbWeaponMorph =  (LimbWeaponMorph) limbData.CreateWeaponMorphInstance(gameObject);
+            limbWeaponMorph =  (LimbWeaponMorph) limbData.CreateWeaponMorphInstance(gameObject, damageHandler, limbData);
             MorphLoadoutChanged?.Invoke(limbWeaponMorph);
         } else if (morphData is HeadWeaponMorphData headData)
         {
-            headWeaponMorph = (HeadWeaponMorph) headData.CreateWeaponMorphInstance(gameObject);
+            headWeaponMorph = (HeadWeaponMorph) headData.CreateWeaponMorphInstance(gameObject, damageHandler, headData);
             MorphLoadoutChanged?.Invoke(headWeaponMorph);
         }
         else if (morphData is TailWeaponMorphData tailData)
         {
-            tailWeaponMorph = (TailWeaponMorph) tailData.CreateWeaponMorphInstance(gameObject);
+            tailWeaponMorph = (TailWeaponMorph) tailData.CreateWeaponMorphInstance(gameObject, damageHandler, tailData);
             MorphLoadoutChanged?.Invoke(tailWeaponMorph);
         }
     }

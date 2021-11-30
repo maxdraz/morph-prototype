@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public abstract class WeaponMorph
+public abstract class WeaponMorph : Morph
 {
    [SerializeField] private WeaponMorphData data;
    [SerializeField] private int currentLightAttackIndex;
@@ -16,12 +16,12 @@ public abstract class WeaponMorph
 
    public WeaponMorphData Data => data;
    
-    public WeaponMorph(GameObject owner, WeaponMorphData data)
+    public WeaponMorph(GameObject owner, DamageHandler ownerDamageHandler, WeaponMorphData data)
     {
         this.owner = owner;
         this.data = data;
-        lightAttacks = data.CreateLightWeaponAttackInstances(owner);
-        heavyAttacks = data.CreateHeavyWeaponAttackInstances(owner);
+        lightAttacks = data.CreateLightWeaponAttackInstances(owner, this, ownerDamageHandler);
+        heavyAttacks = data.CreateHeavyWeaponAttackInstances(owner, this, ownerDamageHandler);
     }
 
     public WeaponAttack GetCurrentAttack(WeaponAttackType attackType)

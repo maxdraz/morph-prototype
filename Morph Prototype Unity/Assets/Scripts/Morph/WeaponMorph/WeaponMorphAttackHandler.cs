@@ -68,7 +68,7 @@ public class WeaponMorphAttackHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameObject.GetComponentInParent<Player>())
+        if (gameObject.GetComponentInParent<PlayerCreatureCharacter>())
         {
             T_HandleInput();
         }

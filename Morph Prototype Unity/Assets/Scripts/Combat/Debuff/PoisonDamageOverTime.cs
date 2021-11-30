@@ -11,13 +11,18 @@ public class PoisonDamageOverTime : Debuff
     private Timer durationTimer;
     private Timer tickTimer;
     private PoisonOnHitEffectData data;
+    private Morph owner;
+    private DamageHandler ownerDamageHandler;
 
-    public PoisonDamageOverTime(float poisonDamage, float duration, float tickInterval, PoisonOnHitEffectData data)
+    public PoisonDamageOverTime(float duration, float tickInterval, PoisonOnHitEffectData data, Morph owner, 
+        DamageHandler ownerDamageHandler)
     {
-        this.poisonDamage = poisonDamage;
         this.duration = duration;
         this.tickInterval = tickInterval;
         this.data = data;
+        poisonDamage = data.damage;
+        this.owner = owner;
+        this.ownerDamageHandler = ownerDamageHandler;
         
         durationTimer = new Timer(duration);
         tickTimer = new Timer(tickInterval, true);
@@ -30,38 +35,37 @@ public class PoisonDamageOverTime : Debuff
             tickTimer.CountDown(dt);
             if (tickTimer.JustFinished)
             {
-                Debug.Log("poison tick");
-                damageTaker.ApplyDamage(poisonDamage);
-                if (data.onHitParticles)
-                {
-                    var damageTakerTransform = damageTaker.transform;
-                    GameplayStatics.SpawnParticleSystem(
-                        data.onHitParticles,
-                        damageTakerTransform,
-                        damageTakerTransform.position,
-                        damageTakerTransform.rotation);
-                }
+                ApplyDebuff(damageTaker);
             }
         }
 
         if (durationTimer.JustFinished)
         {
-            Debug.Log("poison tick");
-            damageTaker.ApplyDamage(poisonDamage);
-            if (data.onHitParticles)
-            {
-                var damageTakerTransform = damageTaker.transform;
-                GameplayStatics.SpawnParticleSystem(
-                    data.onHitParticles,
-                    damageTakerTransform,
-                    damageTakerTransform.position,
-                    damageTakerTransform.rotation);
-            }
+            ApplyDebuff(damageTaker);
         }
     }
 
     public override bool IsFinished()
     {
         return durationTimer.IsFinished();
+    }
+
+    public override void ApplyDebuff(DamageHandler damageTaker)
+    {
+        Debug.Log("basePoison damage = " + poisonDamage);
+        var actualPoisonDamage =
+            DamageCalculator.ElementalDamage(poisonDamage, ownerDamageHandler.Stats.ChemicalDamageModifier, 0, 0);
+        Debug.Log("actualPoison damage = " + actualPoisonDamage);
+        damageTaker.ApplyDamage(actualPoisonDamage, DamageType.Poison);
+        
+        if (data.onHitParticles)
+        {
+            var damageTakerTransform = damageTaker.transform;
+            GameplayStatics.SpawnParticleSystem(
+                data.onHitParticles,
+                damageTakerTransform,
+                damageTakerTransform.position,
+                damageTakerTransform.rotation);
+        }
     }
 }

@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Poison
   m_EditorClassIdentifier: 
   onHitParticles: {fileID: 6545929276689489570, guid: 84f20f68bcf5f264b9befb55a5fd2742, type: 3}
+  damage: 33
   duration: 5
   tickRate: 1

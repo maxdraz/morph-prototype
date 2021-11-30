@@ -11,22 +11,22 @@ public abstract class WeaponMorphData : ScriptableObject
     [SerializeField] private List<LightWeaponAttackData> lightAttacks;
     [SerializeField] private List<HeavyWeaponAttackData> heavyAttacks;
 
-    public abstract WeaponMorph CreateWeaponMorphInstance(GameObject owner);
+    public abstract WeaponMorph CreateWeaponMorphInstance(GameObject owner, DamageHandler ownerDamageHandler, WeaponMorphData data);
 
-    public List<LightWeaponAttack> CreateLightWeaponAttackInstances(GameObject owner)
+    public List<LightWeaponAttack> CreateLightWeaponAttackInstances(GameObject owner, Morph ownerMorph, DamageHandler ownerDamageHandler)
     {
         var lightAttackInstances = new List<LightWeaponAttack>();
         if (lightAttacks.Count < 1) return lightAttackInstances;
 
         foreach (var lightAttackData in lightAttacks)
         {
-            lightAttackInstances.Add((LightWeaponAttack)lightAttackData.CreateWeaponAttackInstance(owner));
+            lightAttackInstances.Add((LightWeaponAttack)lightAttackData.CreateWeaponAttackInstance(owner, ownerMorph, ownerDamageHandler));
         }
 
         return lightAttackInstances;
     }
     
-    public List<HeavyWeaponAttack> CreateHeavyWeaponAttackInstances(GameObject owner)
+    public List<HeavyWeaponAttack> CreateHeavyWeaponAttackInstances(GameObject owner, Morph ownerMorph, DamageHandler ownerDamageHandler)
     {
         var heavyAttackInstances = new List<HeavyWeaponAttack>();
         if (heavyAttacks.Count < 1) return heavyAttackInstances;
@@ -34,7 +34,7 @@ public abstract class WeaponMorphData : ScriptableObject
         foreach (var heavyAttackData in heavyAttacks)
         {
             if(heavyAttackData != null)
-                heavyAttackInstances.Add((HeavyWeaponAttack)heavyAttackData.CreateWeaponAttackInstance(owner));
+                heavyAttackInstances.Add((HeavyWeaponAttack)heavyAttackData.CreateWeaponAttackInstance(owner, ownerMorph, ownerDamageHandler));
         }
 
         return heavyAttackInstances;

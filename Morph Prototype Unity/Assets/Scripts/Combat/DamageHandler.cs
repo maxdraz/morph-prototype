@@ -8,8 +8,13 @@ public class DamageHandler : MonoBehaviour
 {
     private Stats stats;
     private Health health;
+    private Armor armor;
+    [SerializeField] private bool canTakeDamage = true;
 
     public Stats Stats => stats;
+    public Health Health => health;
+    public Armor Armor => armor;
+    public bool CanTakeDamage => canTakeDamage;
 
     [SerializeField] private List<Debuff> activeDebuffs;
     // Start is called before the first frame update
@@ -17,6 +22,7 @@ public class DamageHandler : MonoBehaviour
     {
         stats = GetComponentInParent<Stats>();
         health = GetComponent<Health>();
+        armor = GetComponent<Armor>();
         activeDebuffs = new List<Debuff>();
         
         
@@ -50,13 +56,39 @@ public class DamageHandler : MonoBehaviour
 
     public void ApplyDebuff(Debuff debuff)
     {
-        activeDebuffs.Add(debuff);
+        if(canTakeDamage) 
+            activeDebuffs.Add(debuff);
     }
     
     // void take dmaage (  )
 
-    public void ApplyDamage(float damage)
+    public float ApplyDamage(float damage, DamageType damageType)
     {
-       health.SubtractHP(damage);
+        if (canTakeDamage)
+        {
+            damage = ApplyResistances(damage, damageType);
+            health.SubtractHP(damage);
+            return damage;
+        }
+
+        return 0;
     }
+
+    private float ApplyResistances(float damage, DamageType damageType)
+    {
+        switch (damageType)
+        {
+            case DamageType.Poison:
+                return DamageCalculator.ElementalDamageResist(damage, stats.PoisonResistance, 0, 0);
+                break;
+            case DamageType.PhysicalNormal:
+                return DamageCalculator.PhysicalDamageResist(damage,false,stats.ToughnessModifier,0, armor.HasArmor, 0);
+                break;
+            default:
+                return 0;
+           
+        }
+    }
+
+    
 }

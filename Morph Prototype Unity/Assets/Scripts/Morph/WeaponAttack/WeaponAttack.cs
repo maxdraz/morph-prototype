@@ -15,15 +15,19 @@ public abstract class WeaponAttack
     private WeaponAttackData weaponAttackData;
     [SerializeField] public List<OnHitEffect> onHitEffects;
     private GameObject owner;
+    private Morph ownerMorph;
+    private DamageHandler ownerDamageHandler;
 
     public float Duration => duration;
     public WeaponAttackData Data => weaponAttackData;
     public float InputWindowDuringAttack => inputWindowDuringAttack;
     public float InputWindowAfterAttack => inputWindowAfterAttack;
 
-    public WeaponAttack(GameObject owner,WeaponAttackData weaponAttackData, List<OnHitEffect> baseOnHitEffects)
+    public WeaponAttack(GameObject owner,Morph ownerMorph, DamageHandler ownerDamageHandler,WeaponAttackData weaponAttackData, List<OnHitEffect> baseOnHitEffects)
     {
         this.owner = owner;
+        this.ownerMorph = ownerMorph;
+        this.ownerDamageHandler = ownerDamageHandler;
         this.weaponAttackData = weaponAttackData;
         onHitEffects = baseOnHitEffects;
         duration = weaponAttackData.Duration;
@@ -36,7 +40,7 @@ public abstract class WeaponAttack
         duration = weaponAttackData.Duration;
         inputWindowDuringAttack = weaponAttackData.InputWindowDuringAttack;
         inputWindowAfterAttack = weaponAttackData.InputWindowAfterAttack;
-        onHitEffects = weaponAttackData.CreateOnHitEffectInstances();
+        onHitEffects = weaponAttackData.CreateOnHitEffectInstances(ownerMorph, ownerDamageHandler);
     }
     
     public virtual void OnStart()

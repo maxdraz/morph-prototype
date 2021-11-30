@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8683765337263264560}
   - component: {fileID: 8683765337263264561}
   - component: {fileID: 8683765337263264556}
+  - component: {fileID: 4862523541404294546}
   - component: {fileID: 2117880749}
   - component: {fileID: 8683765337263264557}
   - component: {fileID: 4629799917121605792}
@@ -52,7 +53,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8683765337263264566}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -117,6 +118,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 1
+--- !u!114 &4862523541404294546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8683765337263264566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78feb1bc2d34e354c8e1a2f44d6001dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2117880749
 MonoBehaviour:
   m_ObjectHideFlags: 0

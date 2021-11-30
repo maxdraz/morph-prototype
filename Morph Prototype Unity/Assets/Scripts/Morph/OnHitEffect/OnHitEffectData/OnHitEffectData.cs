@@ -7,6 +7,7 @@ public abstract class OnHitEffectData : ScriptableObject
     [Header("Particles")]
      public GameObject onHitParticles;
 
-    public abstract OnHitEffect CreateOnHitEffectInstance();
+    public abstract OnHitEffect CreateOnHitEffectInstance(Morph owner, DamageHandler ownerDamageHandler);
+    
 
 }

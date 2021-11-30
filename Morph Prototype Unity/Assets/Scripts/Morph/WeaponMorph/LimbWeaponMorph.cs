@@ -5,7 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public class LimbWeaponMorph : WeaponMorph
 {
-   public LimbWeaponMorph(GameObject owner, WeaponMorphData data) : base(owner, data)
+   public LimbWeaponMorph(GameObject owner, DamageHandler ownerDamageHandler, WeaponMorphData data) 
+      : base( owner,  ownerDamageHandler,  data)
    {
       
    }

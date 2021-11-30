@@ -7,5 +7,6 @@ public abstract class Debuff
 {
     public abstract void OnUpdate(DamageHandler damageTaker, float dt);
     public abstract bool IsFinished();
+    public abstract void ApplyDebuff(DamageHandler damageTaker);
 
 }

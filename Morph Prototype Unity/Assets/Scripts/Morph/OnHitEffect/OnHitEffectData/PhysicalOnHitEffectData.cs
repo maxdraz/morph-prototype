@@ -8,8 +8,8 @@ public class PhysicalOnHitEffectData : OnHitEffectData
     [SerializeField] private float damage;
 
     public float Damage => damage;
-    
-    public override OnHitEffect CreateOnHitEffectInstance()
+
+    public override OnHitEffect CreateOnHitEffectInstance(Morph owner, DamageHandler ownerDamageHandler)
     {
         return new PhysicalOnHitEffect(this);
     }

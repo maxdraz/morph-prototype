@@ -69,6 +69,11 @@ public class Stats : MonoBehaviour
     
     //public interface
     public float MaxHealth => maxHealth;
+    public float ElementalDamageModifier => elementalDamageModifier;
+    public float ChemicalDamageModifier => chemicalDamageModifier;
+    public float MeleeDamageModifier => meleeDamageModifier;
+    public float PoisonResistance => poisonResistance;
+    public float ToughnessModifier => toughnessModifier;
 
     private void Reset()
     {
