@@ -9,4 +9,6 @@ public abstract class OnHitEffect
    }
 
    public abstract void Reset();
+
+   public abstract void Apply(DamageHandler damageTaker);
 }

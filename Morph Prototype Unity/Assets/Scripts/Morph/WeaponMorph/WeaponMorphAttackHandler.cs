@@ -165,7 +165,6 @@ public class WeaponMorphAttackHandler : MonoBehaviour
     
     private void OnAttackHit(DamageHandler damageHandler)
     {
-        print("hit detected");
         currentWeaponAttack.OnHit(damageHandler);
     }
 

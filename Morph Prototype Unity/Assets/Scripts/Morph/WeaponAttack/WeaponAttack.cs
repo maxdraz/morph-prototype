@@ -29,7 +29,6 @@ public abstract class WeaponAttack
         duration = weaponAttackData.Duration;
         inputWindowDuringAttack = weaponAttackData.InputWindowDuringAttack;
         inputWindowAfterAttack = weaponAttackData.InputWindowAfterAttack;
-
     }
 
     public virtual void ResetAttackData()
@@ -51,13 +50,20 @@ public abstract class WeaponAttack
         }
     }
 
-    public virtual void OnHit(DamageHandler other)
+    public virtual void OnHit(DamageHandler damageTaker)
     {
+        // apply onhit effects
+        foreach (var onHitEffect in onHitEffects)
+        {
+            onHitEffect.Apply(damageTaker);
+        }
+        
+        // play particles
         var hitParticlePrefab = Data.OnHitParticles;
         if (hitParticlePrefab)
         {
             GameplayStatics.SpawnParticleSystemOnClosestColliderBounds(hitParticlePrefab, owner.transform.position,
-                other.GetComponent<Collider>());
+                damageTaker.GetComponent<Collider>());
         }
     }
     

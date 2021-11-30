@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9093327976ae27d4093d55116c9b89e9, type: 3}
   m_Name: Poison
   m_EditorClassIdentifier: 
-  onHitParticles: {fileID: 0}
-  duration: 0
-  tickRate: 0
+  onHitParticles: {fileID: 6545929276689489570, guid: 84f20f68bcf5f264b9befb55a5fd2742, type: 3}
+  duration: 5
+  tickRate: 1

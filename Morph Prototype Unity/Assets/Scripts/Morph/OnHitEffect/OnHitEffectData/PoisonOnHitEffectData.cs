@@ -6,12 +6,12 @@ using UnityEngine;
 public class PoisonOnHitEffectData : OnHitEffectData
 {
     [Header("Poison")]
-    [SerializeField] private float duration;
-    [SerializeField] private float tickRate;
+    [SerializeField] public float duration;
+    [SerializeField] public float tickRate;
 
     public override OnHitEffect CreateOnHitEffectInstance()
     {
-        var poisonOnHitEffect = new PoisonOnHitEffect(duration, tickRate);
+        var poisonOnHitEffect = new PoisonOnHitEffect(this);
         return poisonOnHitEffect;
     }
 }

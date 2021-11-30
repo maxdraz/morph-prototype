@@ -22,6 +22,7 @@ public class Stats : MonoBehaviour
     //core - Vector2 to define min and max base values
     private Vector2 baseHealthPoints = new Vector2(500, 800);
     private int healthRegen;
+    [SerializeField] private int maxHealth;
     private Vector2 baseEnergyPoints = new Vector2(100, 200);
     private int energyRegen;
     private Vector2 baseStaminaPoints = new Vector2(300, 500);
@@ -65,6 +66,9 @@ public class Stats : MonoBehaviour
 
     StatModifiers statModifiers;
     CombatResources combatResources;
+    
+    //public interface
+    public float MaxHealth => maxHealth;
 
     private void Reset()
     {

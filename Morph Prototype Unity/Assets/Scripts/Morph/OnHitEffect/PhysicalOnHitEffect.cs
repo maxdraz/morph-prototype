@@ -18,4 +18,9 @@ public class PhysicalOnHitEffect : OnHitEffect
     {
         actualDamage = damage;
     }
+
+    public override void Apply(DamageHandler damageTaker)
+    {
+        // implemnt
+    }
 }

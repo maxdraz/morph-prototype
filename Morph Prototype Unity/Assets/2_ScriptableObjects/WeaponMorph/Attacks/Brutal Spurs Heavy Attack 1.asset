@@ -21,4 +21,3 @@ MonoBehaviour:
   hitBoxType: 0
   onHitEffects:
   - {fileID: 11400000, guid: e1b9ad6eff5ad2d4f9912074b5994e21, type: 2}
-  - {fileID: 11400000, guid: e1b9ad6eff5ad2d4f9912074b5994e21, type: 2}
