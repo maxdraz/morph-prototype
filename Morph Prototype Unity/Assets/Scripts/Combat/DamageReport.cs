@@ -12,16 +12,21 @@ public class DamageReport : MonoBehaviour
 
     float randomForce;
     public float damage;
+
+    //DamageType is a string right now but must be reworked to use 'damageType' enum
     public string damageType;
+
     // Start is called before the first frame update
     void Start()
     {
+        //Add some random direction and upward speed to the object
         randomForce = Random.Range(2,-2);
         Vector3 spawnDirection = new Vector3(randomForce , 5, 0);
         GetComponent<Rigidbody>().AddForce(spawnDirection,ForceMode.Impulse);
 
         GetComponent<TMPro.TextMeshPro>().text = damage.ToString();
 
+        //Add to the size of the text based on the amount of damage
         if (damage > 75) 
         {
             float differential = (damage - 75) / 10;
@@ -29,6 +34,7 @@ public class DamageReport : MonoBehaviour
             GetComponent<TMPro.TextMeshPro>().fontSize += extraFontSize;
         }
 
+        //Set the text colour to match the damage type
         if (damageType == "Ice") 
         {
             GetComponent<TMPro.TextMeshPro>().color = Ice;

@@ -69,6 +69,8 @@ public class DamageHandler : MonoBehaviour
             damage = ApplyResistances(damage, damageType);
             health.SubtractHP(damage);
             return damage;
+
+            // we can instantiate a 'DamageReport' gameobject here and pass in damage and damagetype to the 'DamageReport' script component
         }
 
         return 0;

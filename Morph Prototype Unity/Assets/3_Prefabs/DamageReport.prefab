@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4954436472534570959}
   - component: {fileID: 8754470397624352478}
   m_Layer: 0
-  m_Name: Damage Report
+  m_Name: DamageReport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
