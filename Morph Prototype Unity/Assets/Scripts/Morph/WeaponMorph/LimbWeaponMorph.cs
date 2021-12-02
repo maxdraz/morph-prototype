@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BrutalSpurs : LimbWeaponMorph
+public class LimbWeaponMorph : WeaponMorph
 {
+    [SerializeField] private float heyy;
 }

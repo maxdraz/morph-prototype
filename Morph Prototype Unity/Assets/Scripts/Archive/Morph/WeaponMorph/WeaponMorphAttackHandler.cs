@@ -26,24 +26,33 @@ public class WeaponMorphAttackHandler : MonoBehaviour
 {
     private MorphLoadout loadout;
     
-    private LimbWeaponOutdatedMorph _limbWeaponOutdatedMorph;
-    private HeadWeaponOutdatedMorph _headWeaponOutdatedMorph;
-    private TailWeaponOutdatedMorph _tailWeaponOutdatedMorph;
+    private LimbWeaponMorph limbWeaponMorph;
+    private HeadWeaponMorph headWeaponMorph;
+    private TailWeaponMorph tailWeaponMorph;
 
     private BoxHitbox boxHitbox;
     private SphericalHitbox sphericalHitbox;
 
     private OutdatedWeaponAttack _currentOutdatedWeaponAttack;
     private WeaponOutdatedMorph _currentWeaponOutdatedMorph;
-    private List<OutdatedWeaponAttack> attackQueue;
+    private List<OutdatedWeaponAttack> outdatedAttackQueue;
+
+    private WeaponAttack currentWeaponAttack;
+    private WeaponMorph currentWeaponMorph;
+    [SerializeField] private List<WeaponAttack> attackQueue;
+
     private Timer attackTimer;
     private Timer inputWindowTimer;
+    
+    //public events
+    public delegate void AttackQueuedHandler(ref WeaponAttack weaponAttack);
+    public event AttackQueuedHandler AttackQueued;
 
     // Start is called before the first frame update
     void Awake()
     {
         loadout = GetComponent<MorphLoadout>();
-        attackQueue = new List<OutdatedWeaponAttack>();
+        outdatedAttackQueue = new List<OutdatedWeaponAttack>();
         inputWindowTimer = new Timer(0);
 
         boxHitbox = GetComponentInChildren<BoxHitbox>();
@@ -75,7 +84,7 @@ public class WeaponMorphAttackHandler : MonoBehaviour
 
         InputWindowAfterAttack();
         if(attackQueue.Count < 1) return;
-        ExecuteAttacks();
+     //   ExecuteAttacks();
     }
 
     private void T_HandleInput()
@@ -107,14 +116,14 @@ public class WeaponMorphAttackHandler : MonoBehaviour
 
     private void ResetCombo()
     {
-        _limbWeaponOutdatedMorph?.ResetCombo();
-        _tailWeaponOutdatedMorph?.ResetCombo();
-        _headWeaponOutdatedMorph?.ResetCombo();
+        limbWeaponMorph.ResetCombo();
+        tailWeaponMorph.ResetCombo();
+        headWeaponMorph.ResetCombo();
     }
 
     private void ExecuteAttacks()
     {
-        _currentOutdatedWeaponAttack = attackQueue[0];
+        _currentOutdatedWeaponAttack = outdatedAttackQueue[0];
 
         RestartTimerIfNecessary();
         
@@ -187,41 +196,55 @@ public class WeaponMorphAttackHandler : MonoBehaviour
         attackQueue.RemoveAt(0);
     }
 
-    private void TryQueueAttack(WeaponMorphType morphType, WeaponAttackType attackType)
-    {
-        switch (morphType)
-        {
-           case WeaponMorphType.Limb:
-               TryQueueAttack(_limbWeaponOutdatedMorph, attackType);
-               break;
-           case WeaponMorphType.Head:
-               TryQueueAttack(_headWeaponOutdatedMorph, attackType);
-               break;
-           case WeaponMorphType.Tail:
-               TryQueueAttack(_tailWeaponOutdatedMorph, attackType);
-               break;
-        }
-    }
+    // private void TryQueueAttack(WeaponMorphType morphType, WeaponAttackType attackType)
+    // {
+    //     switch (morphType)
+    //     {
+    //        case WeaponMorphType.Limb:
+    //            TryQueueAttack(outdatedLimbWeaponMorph, attackType);
+    //            break;
+    //        case WeaponMorphType.Head:
+    //            TryQueueAttack(headWeaponMorph, attackType);
+    //            break;
+    //        case WeaponMorphType.Tail:
+    //            TryQueueAttack(tailWeaponMorph, attackType);
+    //            break;
+    //     }
+    // }
 
-    private void TryQueueAttack(WeaponOutdatedMorph weaponOutdatedMorph, WeaponAttackType attackType)
-    {
-        if(weaponOutdatedMorph == null) return;
-        if (!CanQueueNextAttack(weaponOutdatedMorph, attackType)) return;
+    // private void TryQueueAttack(WeaponOutdatedMorph weaponOutdatedMorph, WeaponAttackType attackType)
+    // {
+    //     if(weaponOutdatedMorph == null) return;
+    //     if (!CanQueueNextAttack(weaponOutdatedMorph, attackType)) return;
+    //
+    //     var currentAttack = weaponOutdatedMorph.GetCurrentAttack(attackType);
+    //     if (currentAttack != null)
+    //     {
+    //         attackQueue.Add(currentAttack);
+    //         weaponOutdatedMorph.AdvanceCombo(attackType);
+    //     }
+    // }
 
-        var currentAttack = weaponOutdatedMorph.GetCurrentAttack(attackType);
+    private void TryQueueAttack(WeaponMorph weaponMorphToQueue, bool isLightAttack =  true)
+    {
+        if (!weaponMorphToQueue || !CanQueueAttack()) return;
+
+        var currentAttack = weaponMorphToQueue.GetCurrentAttack(isLightAttack);
         if (currentAttack != null)
         {
-            attackQueue.Add(currentAttack);
-            weaponOutdatedMorph.AdvanceCombo(attackType);
+            var currentAttackClone = currentAttack.Clone() as WeaponAttack;
+            attackQueue.Add(currentAttackClone);
+            AttackQueued?.Invoke(ref currentAttackClone);
         }
+
     }
 
-    private bool CanQueueNextAttack(WeaponOutdatedMorph weaponOutdatedMorph, WeaponAttackType attackType)
+    private bool CanQueueAttack()
     {
-        if (_currentOutdatedWeaponAttack == null) return true;
+        if (currentWeaponAttack == null) return true;
         if (attackQueue.Count > 1) return false;
         
-        if (attackTimer.CurrentTime <= _currentOutdatedWeaponAttack.InputWindowDuringAttack
+        if (attackTimer.CurrentTime <= currentWeaponAttack.InputWindowBeforeAttackEnd
             || !inputWindowTimer.IsFinished()) // within input window
             return true;
 
@@ -230,28 +253,29 @@ public class WeaponMorphAttackHandler : MonoBehaviour
 
     public void LimbLightAttack()
     {
-        TryQueueAttack(WeaponMorphType.Limb, WeaponAttackType.Light);
+       // TryQueueAttack(WeaponMorphType.Limb, WeaponAttackType.Light);
+       TryQueueAttack(limbWeaponMorph);
     }
 
     public void LimbHeavyAttack()
     {
-        TryQueueAttack(WeaponMorphType.Limb, WeaponAttackType.Heavy);
+      //  TryQueueAttack(WeaponMorphType.Limb, WeaponAttackType.Heavy);
 
     }
 
-    private void OnMorphLoadoutChanged(WeaponOutdatedMorph outdatedMorph)
+    private void OnMorphLoadoutChanged(Morph weaponMorph)
     {
-        if(outdatedMorph == null) return;
+        if(weaponMorph == null) return;
         
-        if (outdatedMorph is LimbWeaponOutdatedMorph limb)
+        if (weaponMorph is LimbWeaponMorph limb)
         {
-            _limbWeaponOutdatedMorph = limb;
-        } else if (outdatedMorph is HeadWeaponOutdatedMorph head)
+            limbWeaponMorph = limb;
+        } else if (weaponMorph is HeadWeaponMorph head)
         {
-            _headWeaponOutdatedMorph = head;
-        }else if (outdatedMorph is TailWeaponOutdatedMorph tail)
+            headWeaponMorph = head;
+        }else if (weaponMorph is TailWeaponMorph tail)
         {
-            _tailWeaponOutdatedMorph = tail;
+            tailWeaponMorph = tail;
         }
     }
 

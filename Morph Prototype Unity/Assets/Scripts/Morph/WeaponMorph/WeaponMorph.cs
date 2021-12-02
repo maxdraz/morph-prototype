@@ -6,8 +6,8 @@ using UnityEngine;
 public class WeaponMorph : Morph
 {
     [SerializeField] private float baseDamage = 10;
-    [SerializeField] private int currentLightAttack;
-    [SerializeField] private int currentHeavyAttack;
+    private int currentLightAttack;
+    private int currentHeavyAttack;
     
     [SerializeField] private List<LightAttack> lightAttacks;
     [SerializeField] private List<HeavyAttack> heavyAttacks;
@@ -15,7 +15,6 @@ public class WeaponMorph : Morph
     // Start is called before the first frame update
     void Awake()
     {
-        print("executed");
         AddMorphDamageToOnHitEffects();
     }
 
@@ -24,7 +23,25 @@ public class WeaponMorph : Morph
     {
         
     }
-
+    
+    //attack handling
+    public WeaponAttack GetCurrentAttack(bool isLightAttack)
+    {
+        if (isLightAttack)
+        {
+            if (currentLightAttack >= lightAttacks.Count) return null;
+            return lightAttacks[currentLightAttack++];
+        }
+        
+        if (currentHeavyAttack >= heavyAttacks.Count) return null;
+        return heavyAttacks[currentHeavyAttack++];
+    }
+    public void ResetCombo()
+    {
+        currentLightAttack = 0;
+        currentHeavyAttack = 0;
+    }
+    // on hit effects handling
     private void AddMorphDamageToOnHitEffects()
     {
         var physicalDamageOnHitEffects = GetAllOnHitEffectsOfType<IPhysicalDamage>();
@@ -36,7 +53,6 @@ public class WeaponMorph : Morph
             }
         }
     }
-
     private List<OnHitEffectDataContainer> GetAllOnHitEffects()
     {
         List<OnHitEffectDataContainer> onHitEffectDataContainers = new List<OnHitEffectDataContainer>();
@@ -65,7 +81,6 @@ public class WeaponMorph : Morph
 
         return onHitEffectDataContainers;
     }
-
     private List<OnHitEffectDataContainer> GetAllOnHitEffectsOfType<T>() where T : IDamageType
     {
         var allOnHitEffects = GetAllOnHitEffects();

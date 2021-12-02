@@ -6,16 +6,20 @@ using UnityEngine;
 [RequireComponent(typeof(OutdatedDamageHandler))]
 public class MorphLoadout : MonoBehaviour
 {
-    [SerializeField] private LimbOutdatedWeaponMorphData limbOutdatedWeaponMorphData;
-    [SerializeField] private HeadOutdatedWeaponMorphData headOutdatedWeaponMorphData;
-    [SerializeField] private TailOutdatedWeaponMorphData tailOutdatedWeaponMorphData;
+    private LimbOutdatedWeaponMorphData limbOutdatedWeaponMorphData;
+    private HeadOutdatedWeaponMorphData headOutdatedWeaponMorphData;
+    private TailOutdatedWeaponMorphData tailOutdatedWeaponMorphData;
+
+    [SerializeField] private LimbWeaponMorph limbWeaponMorph;
+    [SerializeField] private HeadWeaponMorph headWeaponMorph;
+    [SerializeField] private TailWeaponMorph tailWeaponMorph;
     
     private LimbWeaponOutdatedMorph _limbWeaponOutdatedMorph;
     private TailWeaponOutdatedMorph _tailWeaponOutdatedMorph;
     private HeadWeaponOutdatedMorph _headWeaponOutdatedMorph;
     private OutdatedDamageHandler _outdatedDamageHandler;
 
-    public event Action<WeaponOutdatedMorph> MorphLoadoutChanged;
+    public event Action<Morph> MorphLoadoutChanged;
 
     private void Awake()
     {
@@ -24,45 +28,37 @@ public class MorphLoadout : MonoBehaviour
 
     private void Start()
     {
-        AddToLoadout(limbOutdatedWeaponMorphData);
-        AddToLoadout(headOutdatedWeaponMorphData);
-        AddToLoadout(tailOutdatedWeaponMorphData);
-    }
-
-    public T GetWeaponMorph<T>() where T: WeaponOutdatedMorph
-    {
-        if (typeof(T).IsAssignableFrom(typeof(LimbWeaponOutdatedMorph)))
-        {
-            return _limbWeaponOutdatedMorph as T;
-        } else if(typeof(T).IsAssignableFrom(typeof(TailWeaponOutdatedMorph)))
-        {
-            return _tailWeaponOutdatedMorph as T;
-        }
-        else if(typeof(T).IsAssignableFrom(typeof(HeadWeaponOutdatedMorph)))
-        {
-            return _headWeaponOutdatedMorph as T;
-        }
-
-        return null;
-    }
-
-    public void AddToLoadout(OutdatedWeaponMorphData morphData)
-    {
-        if (morphData is LimbOutdatedWeaponMorphData limbData)
-        {
-            _limbWeaponOutdatedMorph =  (LimbWeaponOutdatedMorph) limbData.CreateWeaponMorphInstance(gameObject, _outdatedDamageHandler, limbData);
-            MorphLoadoutChanged?.Invoke(_limbWeaponOutdatedMorph);
-        } else if (morphData is HeadOutdatedWeaponMorphData headData)
-        {
-            _headWeaponOutdatedMorph = (HeadWeaponOutdatedMorph) headData.CreateWeaponMorphInstance(gameObject, _outdatedDamageHandler, headData);
-            MorphLoadoutChanged?.Invoke(_headWeaponOutdatedMorph);
-        }
-        else if (morphData is TailOutdatedWeaponMorphData tailData)
-        {
-            _tailWeaponOutdatedMorph = (TailWeaponOutdatedMorph) tailData.CreateWeaponMorphInstance(gameObject, _outdatedDamageHandler, tailData);
-            MorphLoadoutChanged?.Invoke(_tailWeaponOutdatedMorph);
-        }
+        AddMorphToLoadout(limbWeaponMorph);
     }
     
+
+    public void AddMorphToLoadout(WeaponMorph morphPrefab)
+    {
+        if(!morphPrefab) return;
+        
+        if (morphPrefab is LimbWeaponMorph limbMorph)
+        {
+            //limbWeaponMorph = UtilityFunctions.CopyComponent(limbMorph, gameObject);
+            var m =  UtilityFunctions.CopyComponent(limbMorph, gameObject);
+            if (limbWeaponMorph)
+            {
+                MorphLoadoutChanged?.Invoke(limbWeaponMorph);
+            }
+        } else if (morphPrefab is HeadWeaponMorph headMorph)
+        {
+            headWeaponMorph = UtilityFunctions.CopyComponent(headMorph, gameObject);
+            if (headWeaponMorph)
+            {
+                MorphLoadoutChanged?.Invoke(headWeaponMorph);
+            }
+        }else if (morphPrefab is TailWeaponMorph tailMorph)
+        {
+            tailWeaponMorph = UtilityFunctions.CopyComponent(tailMorph, gameObject);
+            if (tailWeaponMorph)
+            {
+                MorphLoadoutChanged?.Invoke(tailWeaponMorph);
+            }
+        }
+    }
     
 }

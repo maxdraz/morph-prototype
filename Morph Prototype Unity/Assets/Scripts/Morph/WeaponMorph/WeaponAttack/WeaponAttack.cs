@@ -7,10 +7,15 @@ using UnityEngine;
 public class WeaponAttack : Attack
 {
    [SerializeField] private bool requiresUnlock;
-   [SerializeField] private float duration = 1;
-   [SerializeField] private float inputWindowBeforeAttackEnd = 0.2f;
-   [SerializeField] private float inputWindowAfterAttackEnd = 0.2f;
+   [SerializeField] private float duration;
+   [SerializeField] private float inputWindowBeforeAttackEnd;
+   [SerializeField] private float inputWindowAfterAttackEnd;
 
+   public float Duration => duration;
+   public float InputWindowBeforeAttackEnd => inputWindowBeforeAttackEnd;
+   public float InputWindowAfterAttackEnd => inputWindowAfterAttackEnd;
+   
+   
    public WeaponAttack(bool requiresUnlock = false, float duration = 1, float inputWindowBeforeAttackEnd = 0.2f, float inputWindowAfterAttackEnd = 0.2f)
    {
       this.requiresUnlock = requiresUnlock;
