@@ -38,8 +38,8 @@ public class MorphLoadout : MonoBehaviour
         
         if (morphPrefab is LimbWeaponMorph limbMorph)
         {
-            //limbWeaponMorph = UtilityFunctions.CopyComponent(limbMorph, gameObject);
-            var m =  UtilityFunctions.CopyComponent(limbMorph, gameObject);
+            limbWeaponMorph = UtilityFunctions.CopyComponent(limbMorph, gameObject);
+          
             if (limbWeaponMorph)
             {
                 MorphLoadoutChanged?.Invoke(limbWeaponMorph);

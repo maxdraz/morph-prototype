@@ -6510,17 +6510,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6808bafd40011944b80e5ff00d1fb1f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseDamage: 11
+  baseDamage: 6506
   lightAttacks:
+  - onHitEffects:
+    - onHitEffect: {fileID: 0}
+      data:
+        id: 0
+    - onHitEffect: {fileID: 0}
+      data:
+        id: 0
+    requiresUnlock: 1
+    duration: 1
+    inputWindowBeforeAttackEnd: 1
+    inputWindowAfterAttackEnd: 1
   - onHitEffects: []
-    requiresUnlock: 0
+    requiresUnlock: 1
+    duration: 1
+    inputWindowBeforeAttackEnd: 1
+    inputWindowAfterAttackEnd: 1
+  - onHitEffects: []
+    requiresUnlock: 1
     duration: 1
     inputWindowBeforeAttackEnd: 1
     inputWindowAfterAttackEnd: 1
   heavyAttacks: []
-  heyy: 99999
   references:
     version: 1
+    00000000:
+      type: {class: , ns: , asm: }
 --- !u!4 &2041399807
 Transform:
   m_ObjectHideFlags: 0

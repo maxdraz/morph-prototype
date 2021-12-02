@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6808bafd40011944b80e5ff00d1fb1f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseDamage: 5
+  baseDamage: 1
   lightAttacks:
   - onHitEffects: []
     requiresUnlock: 0
@@ -51,10 +51,11 @@ MonoBehaviour:
     inputWindowBeforeAttackEnd: 1
     inputWindowAfterAttackEnd: 1
   - onHitEffects: []
-    requiresUnlock: 0
+    requiresUnlock: 1
     duration: 1
     inputWindowBeforeAttackEnd: 1
     inputWindowAfterAttackEnd: 1
   heavyAttacks: []
+  heyy: 0
   references:
     version: 1

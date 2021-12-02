@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class LimbWeaponMorph : WeaponMorph
 {
-    [SerializeField] private float heyy;
+ 
 }

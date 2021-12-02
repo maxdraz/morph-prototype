@@ -5,12 +5,19 @@ using UnityEngine;
 
 public class WeaponMorph : Morph
 {
-    [SerializeField] private float baseDamage = 10;
-    private int currentLightAttack;
-    private int currentHeavyAttack;
+    [SerializeField] protected float baseDamage = 10;
+    protected int currentLightAttack;
+    protected int currentHeavyAttack;
     
-    [SerializeField] private List<LightAttack> lightAttacks;
-    [SerializeField] private List<HeavyAttack> heavyAttacks;
+    [SerializeField] protected List<LightAttack> lightAttacks;
+    [SerializeField] protected List<HeavyAttack> heavyAttacks;
+
+
+    public List<LightAttack> LightAttacks
+    {
+        get => lightAttacks;
+        set => lightAttacks = value;
+    }
 
     // Start is called before the first frame update
     void Awake()
