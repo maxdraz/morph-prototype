@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DamageNumbersPro;
 using UnityEngine;
 
 // TODO - run fortitude test in ApplyDebuff ??
@@ -10,6 +11,7 @@ public class DamageHandler : MonoBehaviour
     private Health health;
     private Armor armor;
     [SerializeField] private bool canTakeDamage = true;
+    [SerializeField] private DamageNumber damageNumber;
 
     public Stats Stats => stats;
     public Health Health => health;
