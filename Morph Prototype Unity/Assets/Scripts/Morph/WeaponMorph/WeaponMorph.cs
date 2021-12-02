@@ -1,61 +1,91 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public abstract class WeaponMorph : Morph
+public class WeaponMorph : Morph
 {
-   [SerializeField] private WeaponMorphData data;
-   [SerializeField] private int currentLightAttackIndex;
-   [SerializeField] private int currentHeavyAttackIndex;
-   private GameObject owner;
-   
-   //TODO - make light attacks private! 
-   [SerializeField] public List<LightWeaponAttack> lightAttacks;
-   [SerializeField] private List<HeavyWeaponAttack> heavyAttacks;
+    [SerializeField] private float baseDamage = 10;
+    [SerializeField] private int currentLightAttack;
+    [SerializeField] private int currentHeavyAttack;
+    
+    [SerializeField] private List<LightAttack> lightAttacks;
+    [SerializeField] private List<HeavyAttack> heavyAttacks;
 
-   public WeaponMorphData Data => data;
-   
-    public WeaponMorph(GameObject owner, DamageHandler ownerDamageHandler, WeaponMorphData data)
+    // Start is called before the first frame update
+    void Awake()
     {
-        this.owner = owner;
-        this.data = data;
-        lightAttacks = data.CreateLightWeaponAttackInstances(owner, this, ownerDamageHandler);
-        heavyAttacks = data.CreateHeavyWeaponAttackInstances(owner, this, ownerDamageHandler);
+        print("executed");
+        AddMorphDamageToOnHitEffects();
     }
 
-    public WeaponAttack GetCurrentAttack(WeaponAttackType attackType)
+    // Update is called once per frame
+    void Update()
     {
-        if (attackType == WeaponAttackType.Light)
+        
+    }
+
+    private void AddMorphDamageToOnHitEffects()
+    {
+        var physicalDamageOnHitEffects = GetAllOnHitEffectsOfType<IPhysicalDamage>();
+        foreach (var physicalDamageOnHitEffect in physicalDamageOnHitEffects)
         {
-            if (lightAttacks.Count < 1) return null;
-            return lightAttacks[currentLightAttackIndex];
+            if (physicalDamageOnHitEffect.Data is IPhysicalDamage physicalDamage)
+            {
+                physicalDamage.MorphDamage = baseDamage;
+            }
+        }
+    }
+
+    private List<OnHitEffectDataContainer> GetAllOnHitEffects()
+    {
+        List<OnHitEffectDataContainer> onHitEffectDataContainers = new List<OnHitEffectDataContainer>();
+
+        if (lightAttacks != null)
+        {
+            foreach (var lightAttack in lightAttacks)
+            {
+                foreach (var onHitEffect in lightAttack.OnHitEffects)
+                {
+                    onHitEffectDataContainers.Add(onHitEffect);
+                }
+            }
+        }
+        
+        if (heavyAttacks != null)
+        {
+            foreach (var heavyAttack in heavyAttacks)
+            {
+                foreach (var onHitEffect in heavyAttack.OnHitEffects)
+                {
+                    onHitEffectDataContainers.Add(onHitEffect);
+                }
+            }
         }
 
-        if (heavyAttacks.Count < 1) return null;
-        return heavyAttacks[currentHeavyAttackIndex];
+        return onHitEffectDataContainers;
     }
 
-    public void AdvanceCombo(WeaponAttackType attackType)
+    private List<OnHitEffectDataContainer> GetAllOnHitEffectsOfType<T>() where T : IDamageType
     {
-        if (attackType == WeaponAttackType.Light)
+        var allOnHitEffects = GetAllOnHitEffects();
+        List<OnHitEffectDataContainer> allOnHitEffectsOfType = new List<OnHitEffectDataContainer>();
+        foreach (var onHitEffect in allOnHitEffects)
         {
-            currentLightAttackIndex++;
-            currentLightAttackIndex %= lightAttacks.Count;
-            return;
+            if (onHitEffect.Data is T)
+            {
+                allOnHitEffectsOfType.Add(onHitEffect);
+            }   
         }
-
-        currentHeavyAttackIndex++;
-        currentHeavyAttackIndex %= heavyAttacks.Count;
+        print("morphs found : " + allOnHitEffectsOfType.Count);
+        return allOnHitEffectsOfType;
     }
-
-    public void ResetCombo()
+    private void OnValidate()
     {
-        currentLightAttackIndex = 0;
-        currentHeavyAttackIndex = 0;
+        var onHitEffectContainers = GetAllOnHitEffects();
+        foreach (var onHitEffectDataContainer in onHitEffectContainers)
+        {
+            onHitEffectDataContainer.OnValidate();
+        }
     }
-
-    
-    
-    
 }

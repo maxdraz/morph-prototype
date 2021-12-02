@@ -2,13 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public abstract class OnHitEffect
+public abstract class OnHitEffect : ScriptableObject
 {
-   public OnHitEffect() {
-   }
+   public abstract OnHitEffectData GetData();
 
-   public abstract void Reset();
-
-   public abstract void Apply(DamageHandler damageTaker);
+   public abstract void Apply(OnHitEffectData data, DamageHandler damageTaker);
 }

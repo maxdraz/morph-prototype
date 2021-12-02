@@ -2,12 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class OnHitEffectData : ScriptableObject
+[System.Serializable]
+public abstract class OnHitEffectData : IDamageType
 {
-    [Header("Particles")]
-     public GameObject onHitParticles;
-
-    public abstract OnHitEffect CreateOnHitEffectInstance(Morph owner, DamageHandler ownerDamageHandler);
-    
+    public abstract object Clone();
 
 }

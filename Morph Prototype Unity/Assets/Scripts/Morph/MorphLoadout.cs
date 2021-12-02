@@ -3,64 +3,64 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(DamageHandler))]
+[RequireComponent(typeof(OutdatedDamageHandler))]
 public class MorphLoadout : MonoBehaviour
 {
-    [SerializeField] private LimbWeaponMorphData limbWeaponMorphData;
-    [SerializeField] private HeadWeaponMorphData headWeaponMorphData;
-    [SerializeField] private TailWeaponMorphData tailWeaponMorphData;
+    [SerializeField] private LimbOutdatedWeaponMorphData limbOutdatedWeaponMorphData;
+    [SerializeField] private HeadOutdatedWeaponMorphData headOutdatedWeaponMorphData;
+    [SerializeField] private TailOutdatedWeaponMorphData tailOutdatedWeaponMorphData;
     
-    private LimbWeaponMorph limbWeaponMorph;
-    private TailWeaponMorph tailWeaponMorph;
-    private HeadWeaponMorph headWeaponMorph;
-    private DamageHandler damageHandler;
+    private LimbWeaponOutdatedMorph _limbWeaponOutdatedMorph;
+    private TailWeaponOutdatedMorph _tailWeaponOutdatedMorph;
+    private HeadWeaponOutdatedMorph _headWeaponOutdatedMorph;
+    private OutdatedDamageHandler _outdatedDamageHandler;
 
-    public event Action<WeaponMorph> MorphLoadoutChanged;
+    public event Action<WeaponOutdatedMorph> MorphLoadoutChanged;
 
     private void Awake()
     {
-        damageHandler = GetComponent<DamageHandler>();
+        _outdatedDamageHandler = GetComponent<OutdatedDamageHandler>();
     }
 
     private void Start()
     {
-        AddToLoadout(limbWeaponMorphData);
-        AddToLoadout(headWeaponMorphData);
-        AddToLoadout(tailWeaponMorphData);
+        AddToLoadout(limbOutdatedWeaponMorphData);
+        AddToLoadout(headOutdatedWeaponMorphData);
+        AddToLoadout(tailOutdatedWeaponMorphData);
     }
 
-    public T GetWeaponMorph<T>() where T: WeaponMorph
+    public T GetWeaponMorph<T>() where T: WeaponOutdatedMorph
     {
-        if (typeof(T).IsAssignableFrom(typeof(LimbWeaponMorph)))
+        if (typeof(T).IsAssignableFrom(typeof(LimbWeaponOutdatedMorph)))
         {
-            return limbWeaponMorph as T;
-        } else if(typeof(T).IsAssignableFrom(typeof(TailWeaponMorph)))
+            return _limbWeaponOutdatedMorph as T;
+        } else if(typeof(T).IsAssignableFrom(typeof(TailWeaponOutdatedMorph)))
         {
-            return tailWeaponMorph as T;
+            return _tailWeaponOutdatedMorph as T;
         }
-        else if(typeof(T).IsAssignableFrom(typeof(HeadWeaponMorph)))
+        else if(typeof(T).IsAssignableFrom(typeof(HeadWeaponOutdatedMorph)))
         {
-            return headWeaponMorph as T;
+            return _headWeaponOutdatedMorph as T;
         }
 
         return null;
     }
 
-    public void AddToLoadout(WeaponMorphData morphData)
+    public void AddToLoadout(OutdatedWeaponMorphData morphData)
     {
-        if (morphData is LimbWeaponMorphData limbData)
+        if (morphData is LimbOutdatedWeaponMorphData limbData)
         {
-            limbWeaponMorph =  (LimbWeaponMorph) limbData.CreateWeaponMorphInstance(gameObject, damageHandler, limbData);
-            MorphLoadoutChanged?.Invoke(limbWeaponMorph);
-        } else if (morphData is HeadWeaponMorphData headData)
+            _limbWeaponOutdatedMorph =  (LimbWeaponOutdatedMorph) limbData.CreateWeaponMorphInstance(gameObject, _outdatedDamageHandler, limbData);
+            MorphLoadoutChanged?.Invoke(_limbWeaponOutdatedMorph);
+        } else if (morphData is HeadOutdatedWeaponMorphData headData)
         {
-            headWeaponMorph = (HeadWeaponMorph) headData.CreateWeaponMorphInstance(gameObject, damageHandler, headData);
-            MorphLoadoutChanged?.Invoke(headWeaponMorph);
+            _headWeaponOutdatedMorph = (HeadWeaponOutdatedMorph) headData.CreateWeaponMorphInstance(gameObject, _outdatedDamageHandler, headData);
+            MorphLoadoutChanged?.Invoke(_headWeaponOutdatedMorph);
         }
-        else if (morphData is TailWeaponMorphData tailData)
+        else if (morphData is TailOutdatedWeaponMorphData tailData)
         {
-            tailWeaponMorph = (TailWeaponMorph) tailData.CreateWeaponMorphInstance(gameObject, damageHandler, tailData);
-            MorphLoadoutChanged?.Invoke(tailWeaponMorph);
+            _tailWeaponOutdatedMorph = (TailWeaponOutdatedMorph) tailData.CreateWeaponMorphInstance(gameObject, _outdatedDamageHandler, tailData);
+            MorphLoadoutChanged?.Invoke(_tailWeaponOutdatedMorph);
         }
     }
     

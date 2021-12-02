@@ -7,12 +7,12 @@ public abstract class Hitbox : MonoBehaviour
 {
     protected Collider col;
 
-    public Action<DamageHandler> Hit;
+    public Action<OutdatedDamageHandler> Hit;
 
     private void OnTriggerEnter(Collider other)
     {
         //var damageHandler = other.gameObject.GetComponentInChildren<DamageHandler>();
-        var damageHandler = other.gameObject.GetComponent<DamageHandler>();
+        var damageHandler = other.gameObject.GetComponent<OutdatedDamageHandler>();
         if (!damageHandler) return;
         
         Hit?.Invoke(damageHandler);
