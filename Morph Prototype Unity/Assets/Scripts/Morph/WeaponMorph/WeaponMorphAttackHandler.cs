@@ -8,25 +8,12 @@ using UnityEngine;
 //TODO - make all member vars private
 //TODO - implement remaining hitbox types
 
-public enum WeaponMorphType
-{
-    Limb,
-    Head,
-    Tail
-}
-
-public enum WeaponAttackType
-{
-    Light,
-    Heavy
-}
-
 [RequireComponent(typeof(MorphLoadout))]
 public class WeaponMorphAttackHandler : MonoBehaviour
 {
     private MorphLoadout loadout;
     
-    private LimbWeaponMorph limbWeaponMorph;
+    [SerializeField] private LimbWeaponMorph limbWeaponMorph;
     private HeadWeaponMorph headWeaponMorph;
     private TailWeaponMorph tailWeaponMorph;
 
@@ -39,7 +26,7 @@ public class WeaponMorphAttackHandler : MonoBehaviour
 
     private WeaponAttack currentWeaponAttack;
     private WeaponMorph currentWeaponMorph;
-    [SerializeField] private List<WeaponAttack> attackQueue;
+    private List<WeaponAttack> attackQueue;
 
     private Timer attackTimer;
     private Timer inputWindowTimer;
@@ -53,6 +40,7 @@ public class WeaponMorphAttackHandler : MonoBehaviour
     {
         loadout = GetComponent<MorphLoadout>();
         outdatedAttackQueue = new List<OutdatedWeaponAttack>();
+        attackQueue = new List<WeaponAttack>();
         inputWindowTimer = new Timer(0);
 
         boxHitbox = GetComponentInChildren<BoxHitbox>();
@@ -82,9 +70,9 @@ public class WeaponMorphAttackHandler : MonoBehaviour
             T_HandleInput();
         }
 
-        InputWindowAfterAttack();
+       InputWindowAfterAttack();
         if(attackQueue.Count < 1) return;
-     //   ExecuteAttacks();
+       ExecuteAttacks();
     }
 
     private void T_HandleInput()
@@ -116,22 +104,29 @@ public class WeaponMorphAttackHandler : MonoBehaviour
 
     private void ResetCombo()
     {
-        limbWeaponMorph.ResetCombo();
-        tailWeaponMorph.ResetCombo();
-        headWeaponMorph.ResetCombo();
+        if(limbWeaponMorph)
+            limbWeaponMorph.ResetCombo();
+        
+        if(tailWeaponMorph)
+            tailWeaponMorph.ResetCombo();
+        
+        if(tailWeaponMorph)
+            headWeaponMorph.ResetCombo();
     }
 
     private void ExecuteAttacks()
     {
-        _currentOutdatedWeaponAttack = outdatedAttackQueue[0];
+        //_currentOutdatedWeaponAttack = outdatedAttackQueue[0];
+        currentWeaponAttack = attackQueue[0];
+        
 
-        RestartTimerIfNecessary();
+        RestartTimerIfNecessary(); // refactored
         
         if (attackTimer.JustStarted)
-            StartAttack();
+            StartAttack(); // refactored
 
         if (attackTimer.CountDown(Time.deltaTime))
-            UpdateAttack();
+            UpdateAttack(); // refactored
         
         if (attackTimer.JustFinished)
             FinishAttack();
@@ -141,7 +136,7 @@ public class WeaponMorphAttackHandler : MonoBehaviour
     {
         if (attackTimer == null || attackTimer.IsFinished())
         {
-            attackTimer = new Timer(_currentOutdatedWeaponAttack.Duration);
+            attackTimer = new Timer(currentWeaponAttack.Duration);
         } 
     }
 
@@ -166,33 +161,34 @@ public class WeaponMorphAttackHandler : MonoBehaviour
 
     private void StartAttack()
     {
-        var hitbox = GetAppropriateHitbox(_currentOutdatedWeaponAttack.Data.HitBoxType);
+        //var hitbox = GetAppropriateHitbox(_currentOutdatedWeaponAttack.Data.HitBoxType);
+        var hitbox = GetAppropriateHitbox(currentWeaponAttack.HitboxType);
         if(hitbox) hitbox.Activate();
         
-        _currentOutdatedWeaponAttack.OnStart();
+        currentWeaponAttack.OnStart();
     }
     
-    private void OnAttackHit(OutdatedDamageHandler outdatedDamageHandler)
+    private void OnAttackHit(DamageHandler damageTaker)
     {
-        _currentOutdatedWeaponAttack.OnHit(outdatedDamageHandler);
+        currentWeaponAttack.OnHit(damageTaker);
     }
 
     private void UpdateAttack()
     {
-        _currentOutdatedWeaponAttack.OnUpdate();
+        currentWeaponAttack.OnUpdate();
     }
 
     private void FinishAttack()
     {
         // call finish on attack
-        _currentOutdatedWeaponAttack.OnFinish();
+        currentWeaponAttack.OnFinish();
         
         //turn off hitbox
-        var hitbox = GetAppropriateHitbox(_currentOutdatedWeaponAttack.Data.HitBoxType);
+        var hitbox = GetAppropriateHitbox(currentWeaponAttack.HitboxType);
         if(hitbox) hitbox.Deactivate();
         
         //start input window and remove this attack from queue
-        inputWindowTimer = new Timer(_currentOutdatedWeaponAttack.InputWindowAfterAttack);
+        inputWindowTimer = new Timer(currentWeaponAttack.InputWindowAfterAttackEnd);
         attackQueue.RemoveAt(0);
     }
 
@@ -232,9 +228,13 @@ public class WeaponMorphAttackHandler : MonoBehaviour
         var currentAttack = weaponMorphToQueue.GetCurrentAttack(isLightAttack);
         if (currentAttack != null)
         {
-            var currentAttackClone = currentAttack.Clone() as WeaponAttack;
-            attackQueue.Add(currentAttackClone);
-            AttackQueued?.Invoke(ref currentAttackClone);
+            if (currentAttack.Clone() is WeaponAttack currentAttackClone)
+            {
+                currentAttackClone.Owner = weaponMorphToQueue;
+                attackQueue.Add(currentAttackClone);
+                weaponMorphToQueue.AdvanceCombo(isLightAttack);
+                AttackQueued?.Invoke(ref currentAttackClone);
+            }
         }
 
     }
@@ -260,6 +260,7 @@ public class WeaponMorphAttackHandler : MonoBehaviour
     public void LimbHeavyAttack()
     {
       //  TryQueueAttack(WeaponMorphType.Limb, WeaponAttackType.Heavy);
+      TryQueueAttack(limbWeaponMorph, false);
 
     }
 

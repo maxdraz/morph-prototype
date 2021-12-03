@@ -24,30 +24,30 @@ public abstract class WeaponOutdatedMorph : OutdatedMorph
         heavyAttacks = data.CreateHeavyWeaponAttackInstances(owner, this, ownerOutdatedDamageHandler);
     }
 
-    public OutdatedWeaponAttack GetCurrentAttack(WeaponAttackType attackType)
-    {
-        if (attackType == WeaponAttackType.Light)
-        {
-            if (lightAttacks.Count < 1) return null;
-            return lightAttacks[currentLightAttackIndex];
-        }
+    // public OutdatedWeaponAttack GetCurrentAttack(WeaponAttackType attackType)
+    // {
+    //     if (attackType == WeaponAttackType.Light)
+    //     {
+    //         if (lightAttacks.Count < 1) return null;
+    //         return lightAttacks[currentLightAttackIndex];
+    //     }
+    //
+    //     if (heavyAttacks.Count < 1) return null;
+    //     return heavyAttacks[currentHeavyAttackIndex];
+    // }
 
-        if (heavyAttacks.Count < 1) return null;
-        return heavyAttacks[currentHeavyAttackIndex];
-    }
-
-    public void AdvanceCombo(WeaponAttackType attackType)
-    {
-        if (attackType == WeaponAttackType.Light)
-        {
-            currentLightAttackIndex++;
-            currentLightAttackIndex %= lightAttacks.Count;
-            return;
-        }
-
-        currentHeavyAttackIndex++;
-        currentHeavyAttackIndex %= heavyAttacks.Count;
-    }
+    // public void AdvanceCombo(WeaponAttackType attackType)
+    // {
+    //     if (attackType == WeaponAttackType.Light)
+    //     {
+    //         currentLightAttackIndex++;
+    //         currentLightAttackIndex %= lightAttacks.Count;
+    //         return;
+    //     }
+    //
+    //     currentHeavyAttackIndex++;
+    //     currentHeavyAttackIndex %= heavyAttacks.Count;
+    // }
 
     public void ResetCombo()
     {

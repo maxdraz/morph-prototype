@@ -6,7 +6,7 @@ using UnityEngine;
 [System.Serializable]
 public class Attack : ICloneable
 {
-    [SerializeField] private List<OnHitEffectDataContainer> onHitEffects;
+    [SerializeField] protected List<OnHitEffectDataContainer> onHitEffects;
     public List<OnHitEffectDataContainer> OnHitEffects => onHitEffects;
 
     public Attack(List<OnHitEffectDataContainer> onHitEffects = null)

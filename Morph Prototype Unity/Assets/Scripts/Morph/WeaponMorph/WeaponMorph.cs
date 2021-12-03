@@ -20,9 +20,10 @@ public class WeaponMorph : Morph
     }
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
-        AddMorphDamageToOnHitEffects();
+        AddMorphDamageToPhysicalOnHitEffects();
+
     }
 
     // Update is called once per frame
@@ -36,25 +37,38 @@ public class WeaponMorph : Morph
     {
         if (isLightAttack)
         {
-            if (currentLightAttack >= lightAttacks.Count) return null;
-            return lightAttacks[currentLightAttack++];
+          //  if (currentLightAttack >= lightAttacks.Count) return null;
+            return lightAttacks[currentLightAttack];
         }
         
-        if (currentHeavyAttack >= heavyAttacks.Count) return null;
-        return heavyAttacks[currentHeavyAttack++];
+       // if (currentHeavyAttack >= heavyAttacks.Count) return null;
+        return heavyAttacks[currentHeavyAttack];
     }
+
+    public void AdvanceCombo(bool isLight)
+    {
+        if (isLight)
+        {
+            currentLightAttack++;
+            currentLightAttack %= lightAttacks.Count;
+            return;
+        }
+        currentHeavyAttack++;
+        currentHeavyAttack %= heavyAttacks.Count;
+    }
+
     public void ResetCombo()
     {
         currentLightAttack = 0;
         currentHeavyAttack = 0;
     }
     // on hit effects handling
-    private void AddMorphDamageToOnHitEffects()
+    protected void AddMorphDamageToPhysicalOnHitEffects()
     {
-        var physicalDamageOnHitEffects = GetAllOnHitEffectsOfType<IPhysicalDamage>();
-        foreach (var physicalDamageOnHitEffect in physicalDamageOnHitEffects)
+        var onhiteffects = GetAllOnHitEffectsOfType<IPhysicalDamage>();
+        foreach (var onHitEffect in onhiteffects)
         {
-            if (physicalDamageOnHitEffect.Data is IPhysicalDamage physicalDamage)
+            if (onHitEffect.Data is IPhysicalDamage physicalDamage)
             {
                 physicalDamage.MorphDamage = baseDamage;
             }
@@ -71,6 +85,7 @@ public class WeaponMorph : Morph
                 foreach (var onHitEffect in lightAttack.OnHitEffects)
                 {
                     onHitEffectDataContainers.Add(onHitEffect);
+                  
                 }
             }
         }
@@ -99,7 +114,6 @@ public class WeaponMorph : Morph
                 allOnHitEffectsOfType.Add(onHitEffect);
             }   
         }
-        print("morphs found : " + allOnHitEffectsOfType.Count);
         return allOnHitEffectsOfType;
     }
     private void OnValidate()

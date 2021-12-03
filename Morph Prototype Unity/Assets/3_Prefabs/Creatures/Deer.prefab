@@ -67,7 +67,7 @@ PrefabInstance:
     - target: {fileID: 320125811011304783, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}
       propertyPath: limbWeaponMorph
       value: 
-      objectReference: {fileID: 6675012289007957567, guid: dfde551b8c3af0d4ab0d05cfc2c4608e, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 320125811011304783, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}
       propertyPath: limbWeaponMorphData
       value: 

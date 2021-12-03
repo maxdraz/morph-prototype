@@ -34,14 +34,26 @@ public static class GameplayStatics
       particlesObj.transform.parent = parent;
       return particlesObj;
    }
+   
+   public static GameObject SpawnParticleSystem(GameObject particleSystemPrefab, Transform parent)
+   {
+      var particlesObj = SpawnParticleSystem(particleSystemPrefab, parent.position, parent.rotation);
+      particlesObj.transform.parent = parent;
+      return particlesObj;
+   }
 
    public static GameObject SpawnParticleSystemOnClosestColliderBounds(GameObject particleSystemPrefab, Vector3 lookAtTargetPos, 
-      Collider collider)
+      Collider collider, float forwardOffsetScale = 0f)
    {
+      if (collider == null || particleSystemPrefab == null) return null;
       var impactPoint = collider.ClosestPointOnBounds(lookAtTargetPos);
       var toTargetNormalized = (lookAtTargetPos - impactPoint).normalized;
+      if (forwardOffsetScale != 0)
+      {
+         toTargetNormalized *= forwardOffsetScale;
+      }
       var lookRotation = Quaternion.LookRotation(toTargetNormalized);
-      var particlesObj = SpawnParticleSystem(particleSystemPrefab, impactPoint, lookRotation);
+      var particlesObj = SpawnParticleSystem(particleSystemPrefab, impactPoint + toTargetNormalized, lookRotation);
 
       return particlesObj;
    }

@@ -260,6 +260,7 @@ GameObject:
   - component: {fileID: 6890688784229218089}
   - component: {fileID: 5730317762412754143}
   - component: {fileID: 1242210026466312524}
+  - component: {fileID: 2734275844283368814}
   - component: {fileID: 320125811011304783}
   - component: {fileID: 7926291197602700796}
   - component: {fileID: 8824068126247670664}
@@ -338,6 +339,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canTakeDamage: 1
+  damageNumber: {fileID: 0}
+--- !u!114 &2734275844283368814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7853902346194350098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca070c3b6534b8a47b9eeb7cc2a9559f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
 --- !u!114 &320125811011304783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -350,9 +365,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bc88bd60e4b2024ca95f144dd5d4dc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  limbWeaponMorphData: {fileID: 0}
-  headWeaponMorphData: {fileID: 0}
-  tailWeaponMorphData: {fileID: 0}
+  limbWeaponMorph: {fileID: 0}
+  headWeaponMorph: {fileID: 0}
+  tailWeaponMorph: {fileID: 0}
 --- !u!114 &7926291197602700796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -365,6 +380,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5275da47f13d79943aaa487a2d836bf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackQueue: []
+  references:
+    version: 1
 --- !u!136 &8824068126247670664
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -43,19 +43,65 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6808bafd40011944b80e5ff00d1fb1f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseDamage: 1
+  baseDamage: 10
   lightAttacks:
-  - onHitEffects: []
+  - onHitEffects:
+    - onHitEffect: {fileID: 11400000, guid: 8042360282fd711448456307dcca30a9, type: 2}
+      data:
+        id: 0
     requiresUnlock: 0
+    hitboxType: 0
+    duration: 0.5
+    inputWindowBeforeAttackEnd: 0.2
+    inputWindowAfterAttackEnd: 0.2
+    lightAttackFX: {fileID: 11400000, guid: 35f9e4f041d6d1840ac3aa9455beccd9, type: 2}
+  - onHitEffects:
+    - onHitEffect: {fileID: 11400000, guid: 8042360282fd711448456307dcca30a9, type: 2}
+      data:
+        id: 1
+    requiresUnlock: 0
+    hitboxType: 0
+    duration: 0.5
+    inputWindowBeforeAttackEnd: 0.2
+    inputWindowAfterAttackEnd: 0.2
+    lightAttackFX: {fileID: 11400000, guid: fb8b01664b90e2047a5c1db255b735a2, type: 2}
+  - onHitEffects:
+    - onHitEffect: {fileID: 11400000, guid: 8042360282fd711448456307dcca30a9, type: 2}
+      data:
+        id: 2
+    requiresUnlock: 0
+    hitboxType: 0
+    duration: 0.5
+    inputWindowBeforeAttackEnd: 0.2
+    inputWindowAfterAttackEnd: 0.2
+    lightAttackFX: {fileID: 11400000, guid: b6b97076a38c9e94a8636025b8d1b7c9, type: 2}
+  heavyAttacks:
+  - onHitEffects:
+    - onHitEffect: {fileID: 11400000, guid: 8042360282fd711448456307dcca30a9, type: 2}
+      data:
+        id: 3
+    requiresUnlock: 0
+    hitboxType: 0
     duration: 1
-    inputWindowBeforeAttackEnd: 1
-    inputWindowAfterAttackEnd: 1
-  - onHitEffects: []
-    requiresUnlock: 1
-    duration: 1
-    inputWindowBeforeAttackEnd: 1
-    inputWindowAfterAttackEnd: 1
-  heavyAttacks: []
-  heyy: 0
+    inputWindowBeforeAttackEnd: 0
+    inputWindowAfterAttackEnd: 0
+    chargeUpTime: 0
+    heavyAttackFX: {fileID: 11400000, guid: 3f11391f50c062d4aa306f13e7c2d933, type: 2}
   references:
     version: 1
+    00000000:
+      type: {class: PhysicalDamageData, ns: , asm: Assembly-CSharp}
+      data:
+        strikeModifier: 1
+    00000001:
+      type: {class: PhysicalDamageData, ns: , asm: Assembly-CSharp}
+      data:
+        strikeModifier: 3
+    00000002:
+      type: {class: PhysicalDamageData, ns: , asm: Assembly-CSharp}
+      data:
+        strikeModifier: 2
+    00000003:
+      type: {class: PhysicalDamageData, ns: , asm: Assembly-CSharp}
+      data:
+        strikeModifier: 3

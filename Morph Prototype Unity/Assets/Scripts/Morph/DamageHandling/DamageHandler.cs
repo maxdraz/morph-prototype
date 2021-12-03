@@ -7,6 +7,8 @@ public class DamageHandler : MonoBehaviour
 {
 
     public float health = 100;
+
+    public DamageTakenSummary summary;
     //==============================
     [SerializeField] private List<Debuff> activeDebuffs;
     private List<DamageHandler> damageTakers;
@@ -35,6 +37,8 @@ public class DamageHandler : MonoBehaviour
         DamageTakenSummary damageTakenSummary;
         ResistDamage(ref damageClone, out damageTakenSummary);
         // health -= damageTakenSummary. totalDamage
+        summary = damageTakenSummary;
+        print("total damage done:" +  damageTakenSummary.TotalDamage);
         DamageHasBeenTaken?.Invoke(in damageTakenSummary);
             //  DamageHasBeenDealt ( DamageDealtInfo )
     }
@@ -58,7 +62,8 @@ public class DamageHandler : MonoBehaviour
             // damageDeltInfo. physicalDamage += true damage
             if (damage is IPhysicalDamage physicalDamage)
             {
-                var damageDealt = physicalDamage.StrikeModifier;
+                print("morph damage = " + physicalDamage.MorphDamage);
+                var damageDealt = physicalDamage.StrikeModifier + physicalDamage.MorphDamage;
                 health -= damageDealt;
                 damageTakenSummary.PhysicalDamage += damageDealt;
             }

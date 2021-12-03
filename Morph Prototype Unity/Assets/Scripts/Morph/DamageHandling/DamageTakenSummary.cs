@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class DamageTakenSummary
 {
     public IDamageType DamageType;
@@ -9,7 +10,8 @@ public class DamageTakenSummary
     public bool IsFatalBlow;
     public bool IsCriticalHit;
     
-    public float TotalDamage;
+    public float TotalDamage 
+        => PhysicalDamage + ChemicalDamage+ ElementalDamage + PoisonDamage+AcidDamage+FireDamage+IceDamage+LightningDamage;
 
     public float PhysicalDamage;
     public float ChemicalDamage;

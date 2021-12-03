@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 580dd4d44759bb249912a2cb03ebdac8, type: 3}
+  m_Name: Brutal Spurs Light FX 3
+  m_EditorClassIdentifier: 
+  OnStartParticles: {fileID: 8478523813292877897, guid: 10cfea5cac1a2b84ba826a8a4558aadc, type: 3}
+  OnUpdateParticles: {fileID: 0}
+  OnFinishParticles: {fileID: 0}
+  OnHitParticles: {fileID: 3312002042461435831, guid: 0a91143fc7d30054f95a283f3902ab7d, type: 3}
