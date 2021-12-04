@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6808bafd40011944b80e5ff00d1fb1f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseDamage: 10
+  baseDamage: 5
   lightAttacks:
   - onHitEffects:
     - onHitEffect: {fileID: 11400000, guid: 8042360282fd711448456307dcca30a9, type: 2}
@@ -100,7 +100,7 @@ MonoBehaviour:
     00000002:
       type: {class: PhysicalDamageData, ns: , asm: Assembly-CSharp}
       data:
-        strikeModifier: 2
+        strikeModifier: 5
     00000003:
       type: {class: PhysicalDamageData, ns: , asm: Assembly-CSharp}
       data:

@@ -1,42 +1,38 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class RecycleAfterTime : MonoBehaviour
 {
-    private ParticleSystem particleSystem;
-    [SerializeField] private bool useParticleSystemDuration = true;
+    [SerializeField] private bool useParticleSystemLifetime = true;
     [SerializeField] private float duration = 1;
     private float actualDuration;
-    
+
+    private List<ParticleSystem> particleSystems;
+
     // Start is called before the first frame update
     void Awake()
     {
-        if (useParticleSystemDuration)
-        {
-            var particleSystems = GetComponentsInChildren<ParticleSystem>();
-            if (particleSystems.Length > 0)
-            {
-                float longestDuration = 0;
-                foreach (var particle in particleSystems)
-                {
-                    if (particle.main.duration > longestDuration)
-                    {
-                        longestDuration = particle.main.duration;
-                    }
-                }
+       
+    }
 
-                actualDuration = longestDuration;
-                return;
-            }
-        }
+    private void Update()
+    {
         
-        actualDuration = duration;
     }
 
     private void OnEnable()
     {
+        particleSystems = GetComponentsInChildren<ParticleSystem>().ToList();
+        
+        if (useParticleSystemLifetime && particleSystems != null)
+        {
+            StartCoroutine(RecycleIfAllParticlesDeadCoroutine(1));
+            return;
+        }
+        
         StartCoroutine(RecycleAfterTimeCoroutine(actualDuration));
     }
 
@@ -49,5 +45,30 @@ public class RecycleAfterTime : MonoBehaviour
     {
         yield return new WaitForSeconds(t);
         ObjectPooler.Instance.Recycle(gameObject);
+    }
+
+    private IEnumerator RecycleIfAllParticlesDeadCoroutine(float timeInBetweenChecks)
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(timeInBetweenChecks);
+
+            bool shouldRecycle = true;
+            foreach (var particleSystem in particleSystems)
+            {
+                if (particleSystem.IsAlive())
+                {
+                    shouldRecycle = false;
+                }
+            }
+
+            if (shouldRecycle)
+            {
+                ObjectPooler.Instance.Recycle(gameObject);
+            }
+        }
+        
+        
+       
     }
 }

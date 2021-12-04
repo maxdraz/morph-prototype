@@ -28,6 +28,8 @@ public class ThirdPersonCamera : MonoBehaviour
     private bool cameraFirstCollision = true;
     [SerializeField]private float spherecastRadius;
     [SerializeField]private float spherecastDistance;
+
+    private bool canReceiveInput = true;
     
     RaycastHit hit;
     
@@ -62,7 +64,11 @@ public class ThirdPersonCamera : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        UpdateCameraPosition();
+        if (canReceiveInput)
+        {
+            UpdateCameraPosition();
+        }
+        
     }
     
     void UpdateCameraPosition()
@@ -302,5 +308,10 @@ public class ThirdPersonCamera : MonoBehaviour
         Gizmos.DrawSphere(hit.point , 0.2f);
         
         
+    }
+
+    private void OnApplicationFocus(bool hasFocus)
+    {
+        canReceiveInput = hasFocus;
     }
 }

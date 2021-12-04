@@ -11,7 +11,6 @@ public abstract class Hitbox : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //var damageHandler = other.gameObject.GetComponentInChildren<DamageHandler>();
         var damageHandler = other.gameObject.GetComponent<DamageHandler>();
         if (!damageHandler) return;
         

@@ -128,6 +128,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.08
       objectReference: {fileID: 0}
+    - target: {fileID: 5836557162132232287, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6890688784229218089, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}
       propertyPath: maxHealth
       value: 100

@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bccee64ba505b848b506fc1b6b5aa8d, type: 3}
+  m_Name: Damage Number Set
+  m_EditorClassIdentifier: 
+  PhysicalDamageLow: {fileID: 8323065742232597027, guid: ada708f0086a0714cacce6c25aa5c7de, type: 3}
+  PhysicalDamageMedium: {fileID: 8794468304372644832, guid: 107a5735bad8ace489fb1a747dd05b89, type: 3}
+  PhysicalDamageHigh: {fileID: 2247005375454638219, guid: 8885705c353f1dc40a1e9258c39da286, type: 3}

@@ -24,9 +24,9 @@ public class HeavyAttack : WeaponAttack
             transform.rotation);
     }
 
-    public override void OnHit(DamageHandler damageTaker)
+    public override void OnHit(DamageHandler damageTaker, DamageHandler damageDealer)
     {
-        base.OnHit(damageTaker);
+        base.OnHit(damageTaker, damageDealer);
 
         GameplayStatics.SpawnParticleSystemOnClosestColliderBounds(
             heavyAttackFX.OnHitParticles,

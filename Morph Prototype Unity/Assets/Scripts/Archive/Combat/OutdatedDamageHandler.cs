@@ -83,10 +83,10 @@ public class OutdatedDamageHandler : MonoBehaviour
         switch (outdatedDamageType)
         {
             case OutdatedDamageType.Poison:
-                return DamageCalculator.ElementalDamageResist(damage, stats.PoisonResistance, 0, 0);
+                return DamageFormulas.ElementalDamageResist(damage, stats.PoisonResistance, 0, 0);
                 break;
             case OutdatedDamageType.PhysicalNormal:
-                return DamageCalculator.PhysicalDamageResist(damage,false,stats.ToughnessModifier,0, armor.HasArmor, 0);
+                return DamageFormulas.PhysicalDamageResist(damage,false,stats.ToughnessModifier,0, armor.HasArmor, 0);
                 break;
             default:
                 return 0;

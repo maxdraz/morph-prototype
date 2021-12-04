@@ -1132,7 +1132,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-47092
+  m_Name: pb_Mesh-130578
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6079,6 +6079,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Deer
       objectReference: {fileID: 0}
+    - target: {fileID: 3733312385952526978, guid: 17294641915b125489525c675901fd49, type: 3}
+      propertyPath: m_Color.b
+      value: 0.07041383
+      objectReference: {fileID: 0}
+    - target: {fileID: 3733312385952526978, guid: 17294641915b125489525c675901fd49, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3733312385952526978, guid: 17294641915b125489525c675901fd49, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3787121545567345810, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: randomStats
       value: 0
@@ -6091,6 +6103,14 @@ PrefabInstance:
       propertyPath: elementalDamageModifier
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5033149139341831945, guid: 17294641915b125489525c675901fd49, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5682473382029045461, guid: 17294641915b125489525c675901fd49, type: 3}
+      propertyPath: damageNumber
+      value: 
+      objectReference: {fileID: 8323065742232597027, guid: ada708f0086a0714cacce6c25aa5c7de, type: 3}
     - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: limbWeaponMorph
       value: 

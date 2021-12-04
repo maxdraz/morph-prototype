@@ -10,12 +10,18 @@ public class NormalPhysicalDamageOnHitEffect : OnHitEffect
         return new PhysicalDamageData();
     }
 
-    public override void ApplyOnHitEffect(OnHitEffectData data, DamageHandler damageTaker)
+    public override void ApplyOnHitEffect(OnHitEffectData data, DamageHandler damageTaker, DamageHandler damageDealer)
     {
-        if (data is IPhysicalDamage && !data.GetType().IsSubclassOf(typeof(IPhysicalDamage)))
+        if (data is IPhysicalDamage physicalDamage)
         {
-            Debug.Log("physical damage applied effect applied");
-            damageTaker.ApplyDamage(data);
+            physicalDamage.PhysicalDamageDealt = DamageFormulas.PhysicalDamage(
+                physicalDamage.MorphDamage,
+                damageDealer.Stats.MeleeDamageModifier,
+                physicalDamage.StrikeModifier,
+                0,
+                0);
+            
+            damageTaker.ApplyDamage(data, damageDealer);
         }
     }
 }

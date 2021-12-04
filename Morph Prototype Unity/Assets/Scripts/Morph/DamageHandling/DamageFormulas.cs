@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class DamageCalculator
+public static class DamageFormulas
 {
     public static float PhysicalDamage(float weaponMorphDamage, float meleeDamageStatModifier, float strikeModifier, 
         float percentageBonusDamage, float flatBonusDamage)

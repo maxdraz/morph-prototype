@@ -8,10 +8,11 @@ using UnityEngine;
 //TODO - make all member vars private
 //TODO - implement remaining hitbox types
 
-[RequireComponent(typeof(MorphLoadout))]
+[RequireComponent(typeof(MorphLoadout), typeof(DamageHandler))]
 public class WeaponMorphAttackHandler : MonoBehaviour
 {
     private MorphLoadout loadout;
+   [SerializeField] private DamageHandler damageHandler;
     
     [SerializeField] private LimbWeaponMorph limbWeaponMorph;
     private HeadWeaponMorph headWeaponMorph;
@@ -39,6 +40,7 @@ public class WeaponMorphAttackHandler : MonoBehaviour
     void Awake()
     {
         loadout = GetComponent<MorphLoadout>();
+        damageHandler = GetComponent<DamageHandler>();
         outdatedAttackQueue = new List<OutdatedWeaponAttack>();
         attackQueue = new List<WeaponAttack>();
         inputWindowTimer = new Timer(0);
@@ -170,7 +172,7 @@ public class WeaponMorphAttackHandler : MonoBehaviour
     
     private void OnAttackHit(DamageHandler damageTaker)
     {
-        currentWeaponAttack.OnHit(damageTaker);
+        currentWeaponAttack.OnHit(damageTaker, damageHandler);
     }
 
     private void UpdateAttack()

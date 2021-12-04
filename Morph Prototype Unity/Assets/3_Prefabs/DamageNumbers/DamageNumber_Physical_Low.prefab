@@ -57,7 +57,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  - {fileID: 2180264, guid: 5e8c50a49ab62bf4182b79eecab4ab22, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -99,16 +99,16 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: <b>1</b>
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5e8c50a49ab62bf4182b79eecab4ab22, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 5e8c50a49ab62bf4182b79eecab4ab22, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 16777215
+    rgba: 3489660927
   m_fontColor: {r: 1, g: 1, b: 1, a: 0.80999994}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -126,8 +126,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 5
-  m_fontSizeBase: 5
+  m_fontSize: 8
+  m_fontSizeBase: 8
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -228,7 +228,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  - {fileID: 2180264, guid: 5e8c50a49ab62bf4182b79eecab4ab22, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -270,16 +270,16 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: <b>1</b>
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5e8c50a49ab62bf4182b79eecab4ab22, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 5e8c50a49ab62bf4182b79eecab4ab22, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 16777215
+    rgba: 3489660927
   m_fontColor: {r: 1, g: 1, b: 1, a: 0.80999994}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -297,8 +297,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 5
-  m_fontSizeBase: 5
+  m_fontSize: 8
+  m_fontSizeBase: 8
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -340,7 +340,7 @@ MonoBehaviour:
   _SortingLayerID: 0
   _SortingOrder: 0
   m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 8323065741701354541}
+  m_renderer: {fileID: 8323065740886228740}
   m_maskType: 0
 --- !u!1 &8323065742232597025
 GameObject:
@@ -354,7 +354,7 @@ GameObject:
   - component: {fileID: 8323065742232597027}
   - component: {fileID: 8323065742232597026}
   m_Layer: 0
-  m_Name: DamageNumber
+  m_Name: DamageNumber_Physical_Low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -388,11 +388,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38ab3cdc3b49a6e428853efe80194005, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifetime: 2
+  lifetime: 0.5
   enableNumber: 1
   number: 1
   numberSettings:
-    bold: 0
+    bold: 1
     italic: 0
     underline: 0
     strike: 0
@@ -457,7 +457,7 @@ MonoBehaviour:
   enableFading: 1
   fadeIn:
     fadeDuration: 0.2
-    positionOffset: {x: 0.5, y: 0}
+    positionOffset: {x: 1, y: 1}
     scaleOffset: {x: 1, y: 1}
     scale: {x: 2, y: 2}
   fadeOut:
@@ -468,8 +468,8 @@ MonoBehaviour:
   enableMovement: 1
   moveType: 0
   lerpSettings:
-    minX: -0.7
-    maxX: 0.7
+    minX: -1.5
+    maxX: 1.5
     minY: 1
     maxY: 2
     speed: 5

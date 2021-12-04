@@ -50,12 +50,12 @@ public class WeaponAttack : Attack
    {
    }
 
-   public virtual void OnHit(DamageHandler damageTaker)
+   public virtual void OnHit(DamageHandler damageTaker, DamageHandler damageDealer)
    {
       // on hit
       foreach (var onHitEffectDataContainer in onHitEffects)
       {
-         onHitEffectDataContainer.OnHitEffect.ApplyOnHitEffect(onHitEffectDataContainer.Data, damageTaker);
+         onHitEffectDataContainer.OnHitEffect.ApplyOnHitEffect(onHitEffectDataContainer.Data, damageTaker, damageDealer);
       }
    }
 

@@ -54,7 +54,7 @@ public class OutdatedPoisonDamageOverTime : OutdatedDebuff
     {
         Debug.Log("basePoison damage = " + poisonDamage);
         var actualPoisonDamage =
-            DamageCalculator.ElementalDamage(poisonDamage, _ownerOutdatedDamageHandler.Stats.ChemicalDamageModifier, 0, 0);
+            DamageFormulas.ElementalDamage(poisonDamage, _ownerOutdatedDamageHandler.Stats.ChemicalDamageModifier, 0, 0);
         Debug.Log("actualPoison damage = " + actualPoisonDamage);
         outdatedDamageTaker.ApplyDamage(actualPoisonDamage, OutdatedDamageType.Poison);
         

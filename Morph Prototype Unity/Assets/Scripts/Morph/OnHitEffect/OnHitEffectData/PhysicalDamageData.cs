@@ -6,19 +6,9 @@ using UnityEngine;
 public class PhysicalDamageData : OnHitEffectData, IPhysicalDamage
 {
     private float morphDamage;
+    private float physicalDamageDealt;
     [SerializeField] private float strikeModifier;
-
-    public PhysicalDamageData(float strikeModifier = 2f, float morphDamage = 0)
-    {
-        this.morphDamage = morphDamage;
-        this.strikeModifier = strikeModifier;
-    }
     
-    public override object Clone()
-    {
-        return new PhysicalDamageData(strikeModifier, morphDamage);
-    }
-
     public float MorphDamage
     {
         get => morphDamage;
@@ -29,5 +19,22 @@ public class PhysicalDamageData : OnHitEffectData, IPhysicalDamage
     {
         get => strikeModifier;
         set => strikeModifier = value;
+    }
+    public float PhysicalDamageDealt
+    {
+        get => physicalDamageDealt;
+        set => physicalDamageDealt = value;
+    }
+
+    public PhysicalDamageData(float strikeModifier = 2f, float morphDamage = 0, float physicalDamageDealt = 0)
+    {
+        this.morphDamage = morphDamage;
+        this.strikeModifier = strikeModifier;
+        this.physicalDamageDealt = physicalDamageDealt;
+    }
+    
+    public override object Clone()
+    {
+        return new PhysicalDamageData(strikeModifier, morphDamage, physicalDamageDealt);
     }
 }
