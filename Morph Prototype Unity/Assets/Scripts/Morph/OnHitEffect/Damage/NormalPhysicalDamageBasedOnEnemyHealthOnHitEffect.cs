@@ -66,7 +66,6 @@ public class NormalPhysicalDamageBasedOnEnemyHealthOnHitEffect : NormalPhysicalD
         {
             if(damageBasedOnEnemyHealthData.ConditionsAreMet(damageTaker.Health))
             {
-                
                 base.ApplyOnHitEffect(data, damageTaker, damageDealer);
             }
         }

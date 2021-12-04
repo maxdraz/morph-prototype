@@ -6114,7 +6114,7 @@ PrefabInstance:
     - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: limbWeaponMorph
       value: 
-      objectReference: {fileID: 6675012289007957567, guid: 4f79b46f1364abd4080cb0a631d823ed, type: 3}
+      objectReference: {fileID: 6675012289007957567, guid: dfde551b8c3af0d4ab0d05cfc2c4608e, type: 3}
     - target: {fileID: 8063955872969139073, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -6861,6 +6861,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bdfcb113a9d8c214bb90f753c1d5066c, type: 3}
+--- !u!1001 &4657055306582623542
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4524290809765996932, guid: 7f3836b4d17f7634091356078c7c55cb, type: 3}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 4524290809765996932, guid: 7f3836b4d17f7634091356078c7c55cb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.9227724
+      objectReference: {fileID: 0}
+    - target: {fileID: 4524290809765996932, guid: 7f3836b4d17f7634091356078c7c55cb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.7298608
+      objectReference: {fileID: 0}
+    - target: {fileID: 4524290809765996932, guid: 7f3836b4d17f7634091356078c7c55cb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 16.25352
+      objectReference: {fileID: 0}
+    - target: {fileID: 4524290809765996932, guid: 7f3836b4d17f7634091356078c7c55cb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4524290809765996932, guid: 7f3836b4d17f7634091356078c7c55cb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4524290809765996932, guid: 7f3836b4d17f7634091356078c7c55cb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4524290809765996932, guid: 7f3836b4d17f7634091356078c7c55cb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4524290809765996932, guid: 7f3836b4d17f7634091356078c7c55cb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4524290809765996932, guid: 7f3836b4d17f7634091356078c7c55cb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4524290809765996932, guid: 7f3836b4d17f7634091356078c7c55cb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5413244213143575960, guid: 7f3836b4d17f7634091356078c7c55cb, type: 3}
+      propertyPath: m_Name
+      value: BrutalSpurs2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7f3836b4d17f7634091356078c7c55cb, type: 3}
 --- !u!1001 &6002257875793717162
 PrefabInstance:
   m_ObjectHideFlags: 0

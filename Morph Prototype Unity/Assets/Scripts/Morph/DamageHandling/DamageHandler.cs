@@ -20,10 +20,16 @@ public class DamageHandler : MonoBehaviour
     public bool IsInvincible => isInvincible;
     
     [SerializeField] private List<Debuff> activeDebuffs;
+    private float acidifiedDebuff;
     private List<DamageHandler> damageTakers;
 
     
     // public events
+    public delegate void DebuffAboutToBeTakenPreModifierHandler(ref IDamageType damageType, DamageHandler damageDealer);
+    public event DebuffAboutToBeTakenPreModifierHandler DebuffAboutToBeTakenPreModifier;
+    public delegate void DebuffAboutToBeTakenPostModifierHandler(ref IDamageType damageType, DamageHandler damageDealer);
+    public event DebuffAboutToBeTakenPostModifierHandler DebuffAboutToBeTakenPostModifier;
+    
     public delegate void DamageAboutToBeTakenHandler(ref IDamageType damageType);
     public event DamageAboutToBeTakenHandler DamageAboutToBeTaken;
     public delegate void DamageHasBeenTakenHandler(in DamageTakenSummary damageSummary);
@@ -44,6 +50,7 @@ public class DamageHandler : MonoBehaviour
     private void Update()
     {
         // tick debuffs
+        
     }
 
     public void ApplyDamage(IDamageType damageType, DamageHandler damageDealer)
@@ -66,6 +73,8 @@ public class DamageHandler : MonoBehaviour
         // apply fortitude damage
             // apply relevant status effects ...
 
+            // fortitude check for mortal blow 
+            
         VisualizeDamage(in damageTakenSummary);
 
     }
@@ -124,10 +133,11 @@ public class DamageHandler : MonoBehaviour
         
     }
 
-    public void ApplyDebuff(Debuff debuff)
+    public void ApplyDebuff(IDamageType damageType, DamageHandler damageDealer)
     {
-        // make copy of debuff
-        // broadcast DebuffAboutToBeApplied ( debuff copy)
+        var damageTypeClone = damageType.Clone() as IDamageType;
+        DebuffAboutToBeTakenPreModifier?.Invoke(ref damageTypeClone, damageDealer);
+        DebuffAboutToBeTakenPostModifier?.Invoke(ref damageTypeClone, damageDealer);
     }
     private void ResistDamage(ref IDamageType damageType, DamageHandler damageDealer, out DamageTakenSummary damageTakenSummary)
     {
@@ -151,6 +161,7 @@ public class DamageHandler : MonoBehaviour
         };
 
         damageTakenSummary.IsFatalBlow = health.WillDieFromThisDamage(damageTakenSummary.TotalDamage);
+        
     }
 
     private float HandlePhysicalDamage(ref IDamageType damageType)
@@ -168,6 +179,7 @@ public class DamageHandler : MonoBehaviour
                 physicalDamage.PhysicalDamageDealt,
                 isPiercing,
                 stats.ToughnessModifier,
+                0,
                 0,
                 armor.HasArmor,
                 0);

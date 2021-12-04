@@ -86,7 +86,8 @@ public class OutdatedDamageHandler : MonoBehaviour
                 return DamageFormulas.ElementalDamageResist(damage, stats.PoisonResistance, 0, 0);
                 break;
             case OutdatedDamageType.PhysicalNormal:
-                return DamageFormulas.PhysicalDamageResist(damage,false,stats.ToughnessModifier,0, armor.HasArmor, 0);
+             //   return DamageFormulas.PhysicalDamageResist(damage,false,stats.ToughnessModifier,0, armor.HasArmor, 0);
+             return 0;
                 break;
             default:
                 return 0;

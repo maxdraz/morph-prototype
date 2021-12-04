@@ -38,7 +38,7 @@ public class PoisonDamageOnHitEffect : OnHitEffect
         if (data is PoisonDamageData poisonDamageData)
         {
             // calculate poison damage ...
-            damageTaker.ApplyDamage(data,damageDealer);
+            damageTaker.ApplyDebuff(data,damageDealer);
         }
     }
 }

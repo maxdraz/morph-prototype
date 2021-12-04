@@ -11,6 +11,7 @@ public class DamageTakenSummary
 
     public bool IsFatalBlow;
     public bool IsCriticalHit;
+    public bool isMortalBlow;
     
     public float TotalDamage 
         => PhysicalDamage + TotalChemicalDamage + TotalElementalDamage + LifeStealDamage;

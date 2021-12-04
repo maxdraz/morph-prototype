@@ -46,12 +46,9 @@ MonoBehaviour:
   baseDamage: 5
   lightAttacks:
   - onHitEffects:
-    - onHitEffect: {fileID: 11400000, guid: 8042360282fd711448456307dcca30a9, type: 2}
+    - onHitEffect: {fileID: 11400000, guid: 43742988cba5dad4c98d440ec358f8d9, type: 2}
       data:
         id: 0
-    - onHitEffect: {fileID: 11400000, guid: 07c1d2a94d32627438cb64119be2833b, type: 2}
-      data:
-        id: 1
     requiresUnlock: 0
     hitboxType: 0
     duration: 0.5
@@ -61,7 +58,7 @@ MonoBehaviour:
   - onHitEffects:
     - onHitEffect: {fileID: 11400000, guid: 07c1d2a94d32627438cb64119be2833b, type: 2}
       data:
-        id: 2
+        id: 1
     requiresUnlock: 0
     hitboxType: 0
     duration: 0.5
@@ -71,7 +68,7 @@ MonoBehaviour:
   - onHitEffects:
     - onHitEffect: {fileID: 11400000, guid: 8042360282fd711448456307dcca30a9, type: 2}
       data:
-        id: 3
+        id: 2
     requiresUnlock: 0
     hitboxType: 0
     duration: 0.5
@@ -82,7 +79,7 @@ MonoBehaviour:
   - onHitEffects:
     - onHitEffect: {fileID: 11400000, guid: 8042360282fd711448456307dcca30a9, type: 2}
       data:
-        id: 4
+        id: 3
     requiresUnlock: 0
     hitboxType: 0
     duration: 1
@@ -93,22 +90,18 @@ MonoBehaviour:
   references:
     version: 1
     00000000:
-      type: {class: PhysicalDamageData, ns: , asm: Assembly-CSharp}
+      type: {class: PoisonDamageData, ns: , asm: Assembly-CSharp}
       data:
-        strikeModifier: 1
+        poisonDamage: 2000
     00000001:
       type: {class: PiercingDamageData, ns: , asm: Assembly-CSharp}
       data:
-        strikeModifier: 1
-    00000002:
-      type: {class: PiercingDamageData, ns: , asm: Assembly-CSharp}
-      data:
         strikeModifier: 2
-    00000003:
+    00000002:
       type: {class: PhysicalDamageData, ns: , asm: Assembly-CSharp}
       data:
         strikeModifier: 5
-    00000004:
+    00000003:
       type: {class: PhysicalDamageData, ns: , asm: Assembly-CSharp}
       data:
         strikeModifier: 3

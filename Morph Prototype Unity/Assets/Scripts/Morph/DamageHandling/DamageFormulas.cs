@@ -16,9 +16,11 @@ public static class DamageFormulas
         return (baseDamage * (1 + (elementalDamageStatModifier + percentageBonusDamage)) + flatBonusDamage);
     }
     
-    public static float PhysicalDamageResist(float damageIn, bool isPiercing, float toughnessModifier, float percentageDmgReduction, 
+    public static float PhysicalDamageResist(float damageIn, bool isPiercing, float toughnessModifier, float acidifiedDebuff, float percentageDmgReduction, 
         bool hasArmour, float flatDamageReduction)
     {
+        toughnessModifier = Mathf.Max(0, toughnessModifier - acidifiedDebuff);
+        
       float damageOut = damageIn * (1 - (toughnessModifier + percentageDmgReduction));
        
         if (!isPiercing && hasArmour)
@@ -33,5 +35,10 @@ public static class DamageFormulas
         float flatDamageReduction)
     {
         return (damageIn * (1 - (elementalResistModifier + percentageDmgReduction))) - flatDamageReduction;
+    }
+
+    public static float PoisonDamage()
+    {
+        return 0;
     }
 }

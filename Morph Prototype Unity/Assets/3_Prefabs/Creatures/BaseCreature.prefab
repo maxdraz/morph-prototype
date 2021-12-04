@@ -450,6 +450,7 @@ GameObject:
   - component: {fileID: 5730317762412754143}
   - component: {fileID: 1109020764214313045}
   - component: {fileID: 1242210026466312524}
+  - component: {fileID: 2442157382203612058}
   - component: {fileID: 2734275844283368814}
   - component: {fileID: 320125811011304783}
   - component: {fileID: 7926291197602700796}
@@ -492,8 +493,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayDebug: 0
-  randomStats: 1
-  maxHealth: 100
+  randomStats: 0
+  maxHealth: 5000
   meleeDamageModifier: 0
   rangedDamageModifier: 0
   chemicalDamageModifier: 0
@@ -545,6 +546,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canTakeDamage: 1
   damageNumber: {fileID: 0}
+--- !u!114 &2442157382203612058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7853902346194350098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd8a2f872d84e404c90346c4ee69a813, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poisonDebuff:
+    tickTimer:
+      duration: 0
+      currentTime: 0
+      loop: 0
+      justFinished: 0
+      canCountDown: 0
+    damageStack: 0
+    damageDealer: {fileID: 0}
+  activeDebuffs: []
 --- !u!114 &2734275844283368814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -562,7 +585,9 @@ MonoBehaviour:
     DamageDealer: {fileID: 0}
     IsFatalBlow: 0
     IsCriticalHit: 0
+    isMortalBlow: 0
     PhysicalDamage: 0
+    LifeStealDamage: 0
     PoisonDamage: 0
     AcidDamage: 0
     FireDamage: 0
@@ -571,6 +596,7 @@ MonoBehaviour:
     FortitudeDamage: 0
   isInvincible: 1
   damageNumberSet: {fileID: 11400000, guid: b7e89376a8942b04c8d659ed9c4bd2c4, type: 2}
+  activeDebuffs: []
 --- !u!114 &320125811011304783
 MonoBehaviour:
   m_ObjectHideFlags: 0
