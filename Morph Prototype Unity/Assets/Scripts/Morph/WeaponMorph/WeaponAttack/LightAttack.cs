@@ -16,19 +16,20 @@ public class LightAttack : WeaponAttack
     public override void OnStart()
     {
         base.OnStart();
-
-        GameplayStatics.SpawnParticleSystem(lightAttackFX.OnStartParticles, Owner.transform);
+        
+        if(lightAttackFX) GameplayStatics.SpawnParticleSystem(lightAttackFX.OnStartParticles, Owner.transform);
     }
 
     public override void OnHit(DamageHandler damageTaker, DamageHandler damageDealer)
     {
         base.OnHit(damageTaker, damageDealer);
         
-        GameplayStatics.SpawnParticleSystemOnClosestColliderBounds(
-            lightAttackFX.OnHitParticles, 
-            Owner.transform.position, 
-            damageTaker.GetComponent<Collider>(),
-            0.3f);
+        if(lightAttackFX)
+            GameplayStatics.SpawnParticleSystemOnClosestColliderBounds(
+                lightAttackFX.OnHitParticles, 
+                Owner.transform.position, 
+                damageTaker.GetComponent<Collider>(),
+                0.3f);
     }
 
     public override object Clone()

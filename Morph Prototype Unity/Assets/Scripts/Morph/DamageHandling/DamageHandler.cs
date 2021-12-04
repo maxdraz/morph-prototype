@@ -65,7 +65,7 @@ public class DamageHandler : MonoBehaviour
         // apply fortitude damage
             // apply relevant status effects ...
 
-            DisplayDamageNumbers(in damageTakenSummary);
+        DisplayDamageNumbers(in damageTakenSummary);
 
     }
 
@@ -117,6 +117,10 @@ public class DamageHandler : MonoBehaviour
         if (damageType is IPhysicalDamage physicalDamage)
         {
             bool isPiercing = damageType is IPiercingDamage;
+            if (isPiercing)
+            {
+                print("piercing damage dealt");
+            }
             bool isImpact = damageType is IImpactDamage;
 
             return DamageFormulas.PhysicalDamageResist(
@@ -144,6 +148,10 @@ public class DamageHandler : MonoBehaviour
     }
     private float HandlePoisonDamage(ref IDamageType damageType)
     {
+        if (damageType is IPoisonDamage poisonDamage)
+        {
+            return poisonDamage.PoisonDamage;
+        }
         return 0f;
     }
     private float HandleAcidDamage(ref IDamageType damageType)

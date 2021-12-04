@@ -38,11 +38,15 @@ public class WeaponMorph : Morph
         if (isLightAttack)
         {
           //  if (currentLightAttack >= lightAttacks.Count) return null;
+          if (lightAttacks != null && lightAttacks.Count > 0)
             return lightAttacks[currentLightAttack];
         }
         
        // if (currentHeavyAttack >= heavyAttacks.Count) return null;
+       if (heavyAttacks != null && heavyAttacks.Count > 0) 
         return heavyAttacks[currentHeavyAttack];
+
+       return null;
     }
 
     public void AdvanceCombo(bool isLight)

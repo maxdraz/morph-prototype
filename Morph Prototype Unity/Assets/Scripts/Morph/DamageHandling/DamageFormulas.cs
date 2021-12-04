@@ -19,11 +19,11 @@ public static class DamageFormulas
     public static float PhysicalDamageResist(float damageIn, bool isPiercing, float toughnessModifier, float percentageDmgReduction, 
         bool hasArmour, float flatDamageReduction)
     {
-        float damageOut = damageIn * (1 - (toughnessModifier + percentageDmgReduction));
-        
+      float damageOut = damageIn * (1 - (toughnessModifier + percentageDmgReduction));
+       
         if (!isPiercing && hasArmour)
             damageOut *= 0.8f;
-        
+
         damageOut -= flatDamageReduction;
 
         return damageOut;

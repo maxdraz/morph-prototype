@@ -10,6 +10,7 @@ public class Health : MonoBehaviour
     private Stats stats;
 
     public float CurrentHealth=> health;
+    public float CurrentHealthAsPercentage => health / stats.MaxHealth;
     public event Action Died;
     public event Action<float> HealthChanged;
 

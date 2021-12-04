@@ -2,26 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Normal Physical Damage", menuName = "On Hit Effects/Normal Physical Damage")]
-public class NormalPhysicalDamageOnHitEffect : OnHitEffect
+[CreateAssetMenu(fileName = "Piercing Physical Damage", menuName = "On Hit Effects/Piercing Physical Damage")]
+public class PiercingDamageOnHittEffect : OnHitEffect
 {
     public override OnHitEffectData GetData()
     {
-        return new PhysicalDamageData();
+        return new PiercingDamageData();
     }
 
     public override void ApplyOnHitEffect(OnHitEffectData data, DamageHandler damageTaker, DamageHandler damageDealer)
     {
-        if (data is IPhysicalDamage physicalDamage)
+        if (data is IPiercingDamage piercingDamage)
         {
-            physicalDamage.PhysicalDamageDealt = DamageFormulas.PhysicalDamage(
-                physicalDamage.MorphDamage,
+            piercingDamage.PhysicalDamageDealt = DamageFormulas.PhysicalDamage(
+                piercingDamage.MorphDamage,
                 damageDealer.Stats.MeleeDamageModifier,
-                physicalDamage.StrikeModifier,
+                piercingDamage.StrikeModifier,
                 0,
                 0);
             
             damageTaker.ApplyDamage(data, damageDealer);
         }
+        
     }
 }
