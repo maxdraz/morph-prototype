@@ -71,17 +71,38 @@ public class DamageHandler : MonoBehaviour
 
     private void DisplayDamageNumbers(in DamageTakenSummary damageTakenSummary)
     {
-        if (damageTakenSummary.PhysicalDamage <= 10)
+        if (damageTakenSummary.PhysicalDamage > 0)
         {
-            damageNumberSet.PhysicalDamageLow.CreateNew(damageTakenSummary.PhysicalDamage, transform.position);
-        } else if (damageTakenSummary.PhysicalDamage <= 15)
-        {
-            damageNumberSet.PhysicalDamageMedium.CreateNew(damageTakenSummary.PhysicalDamage, transform.position);
+            if (damageTakenSummary.PhysicalDamage <= 10)
+            {
+                damageNumberSet.PhysicalDamageLow.CreateNew(damageTakenSummary.PhysicalDamage, transform.position);
+            }
+            else if (damageTakenSummary.PhysicalDamage <= 15)
+            {
+                damageNumberSet.PhysicalDamageMedium.CreateNew(damageTakenSummary.PhysicalDamage, transform.position);
+            }
+            else if (damageTakenSummary.PhysicalDamage > 15)
+            {
+                damageNumberSet.PhysicalDamageHigh.CreateNew(damageTakenSummary.PhysicalDamage, transform.position);
+            }
         }
-        else if (damageTakenSummary.PhysicalDamage > 15)
-        {
-            damageNumberSet.PhysicalDamageHigh.CreateNew(damageTakenSummary.PhysicalDamage, transform.position);
-        }
+
+        //other damage types
+        if(damageTakenSummary.PoisonDamage > 0)
+            damageNumberSet.PoisonDamage.CreateNew(damageTakenSummary.PoisonDamage, transform.position);
+        
+        if(damageTakenSummary.AcidDamage > 0)
+            damageNumberSet.AcidDamage.CreateNew(damageTakenSummary.AcidDamage, transform.position);
+        
+        if(damageTakenSummary.FireDamage > 0)
+            damageNumberSet.FireDamage.CreateNew(damageTakenSummary.FireDamage, transform.position);
+        
+        if(damageTakenSummary.IceDamage > 0)
+            damageNumberSet.IceDamage.CreateNew(damageTakenSummary.IceDamage, transform.position);
+        
+        if(damageTakenSummary.LightningDamage > 0)
+            damageNumberSet.LightningDamage.CreateNew(damageTakenSummary.LightningDamage, transform.position);
+        
     }
 
     public void ApplyDebuff(Debuff debuff)
@@ -136,14 +157,26 @@ public class DamageHandler : MonoBehaviour
     }
     private float HandleFireDamage(ref IDamageType damageType)
     {
+        if (damageType is IFireDamage fireDamage)
+        {
+            return fireDamage.FireDamage;
+        }
         return 0f;
     }
     private float HandleIceDamage(ref IDamageType damageType)
     {
+        if (damageType is IIceDamage iceDamage)
+        {
+            return iceDamage.IceDamage;
+        }
         return 0f;
     }
     private float HandleLightningDamage(ref IDamageType damageType)
     {
+        if (damageType is ILightningDamage lightningDamage)
+        {
+            return lightningDamage.LightningDamage;
+        }
         return 0f;
     }
     private float HandlePoisonDamage(ref IDamageType damageType)
@@ -156,6 +189,10 @@ public class DamageHandler : MonoBehaviour
     }
     private float HandleAcidDamage(ref IDamageType damageType)
     {
+        if (damageType is IAcidDamage acidDamage)
+        {
+            return acidDamage.AcidDamage;
+        }
         return 0f;
     }
     private float HandleFortitudeDamage(ref IDamageType damageType)
