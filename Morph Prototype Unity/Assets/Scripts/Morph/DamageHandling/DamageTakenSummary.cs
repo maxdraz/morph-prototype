@@ -13,7 +13,7 @@ public class DamageTakenSummary
     public bool IsCriticalHit;
     
     public float TotalDamage 
-        => PhysicalDamage + TotalChemicalDamage + TotalElementalDamage;
+        => PhysicalDamage + TotalChemicalDamage + TotalElementalDamage + LifeStealDamage;
 
     public float TotalChemicalDamage
         => AcidDamage + PoisonDamage;
@@ -22,6 +22,7 @@ public class DamageTakenSummary
         => IceDamage + FireDamage + LightningDamage;
 
     public float PhysicalDamage;
+    public float LifeStealDamage;
 
     public float PoisonDamage;
     public float AcidDamage;

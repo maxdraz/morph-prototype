@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80e986f7e88ec5a4cb4577c6504e9839, type: 3}
+  m_Name: Lifesteal FX
+  m_EditorClassIdentifier: 
+  LifestealParticles: {fileID: 8546985982100331074, guid: 7999952c9805b1b47b1dccb874bff79d, type: 3}

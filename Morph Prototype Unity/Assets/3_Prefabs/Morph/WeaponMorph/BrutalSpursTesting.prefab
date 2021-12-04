@@ -46,21 +46,9 @@ MonoBehaviour:
   baseDamage: 5
   lightAttacks:
   - onHitEffects:
-    - onHitEffect: {fileID: 11400000, guid: 3cba933e0a1ef094c83b1c0baca3f308, type: 2}
+    - onHitEffect: {fileID: 11400000, guid: c4322cc9bad74ee468d2e9f43ebf0f4e, type: 2}
       data:
         id: 0
-    - onHitEffect: {fileID: 11400000, guid: c8ccc27c21413b0438658cbff1a8781a, type: 2}
-      data:
-        id: 1
-    - onHitEffect: {fileID: 11400000, guid: 93383617b448473418416b9c57bddf24, type: 2}
-      data:
-        id: 2
-    - onHitEffect: {fileID: 11400000, guid: b6472a054bbbbe54aa1c805c8ea62e20, type: 2}
-      data:
-        id: 3
-    - onHitEffect: {fileID: 11400000, guid: 43742988cba5dad4c98d440ec358f8d9, type: 2}
-      data:
-        id: 4
     requiresUnlock: 0
     hitboxType: 0
     duration: 1
@@ -71,22 +59,7 @@ MonoBehaviour:
   references:
     version: 1
     00000000:
-      type: {class: FireDamageData, ns: , asm: Assembly-CSharp}
+      type: {class: LifeStealData, ns: , asm: Assembly-CSharp}
       data:
-        fireDamage: 1
-    00000001:
-      type: {class: IceDamageData, ns: , asm: Assembly-CSharp}
-      data:
-        iceDamage: 1
-    00000002:
-      type: {class: LightningDamageData, ns: , asm: Assembly-CSharp}
-      data:
-        lightningDamage: 1
-    00000003:
-      type: {class: AcidDamageData, ns: , asm: Assembly-CSharp}
-      data:
-        acidDamage: 1
-    00000004:
-      type: {class: PoisonDamageData, ns: , asm: Assembly-CSharp}
-      data:
-        poisonDamage: 1
+        lifestealFXData: {fileID: 11400000, guid: 6ea2aa28caf21544fb6811f3821081b9, type: 2}
+        lifestealAmount: 1

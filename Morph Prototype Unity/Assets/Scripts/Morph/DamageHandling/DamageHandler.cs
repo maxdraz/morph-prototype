@@ -46,9 +46,9 @@ public class DamageHandler : MonoBehaviour
         // tick debuffs
     }
 
-    public void ApplyDamage(IDamageType damage, DamageHandler damageDealer)
+    public void ApplyDamage(IDamageType damageType, DamageHandler damageDealer)
     {
-        var damageClone = damage.Clone() as IDamageType;
+        var damageClone = damageType.Clone() as IDamageType;
         
         DamageAboutToBeTaken?.Invoke(ref damageClone);
 
@@ -58,6 +58,7 @@ public class DamageHandler : MonoBehaviour
         
         DamageHasBeenTaken?.Invoke(in damageTakenSummary);
     }
+    
 
     private void HandleDamageTaken(in DamageTakenSummary damageTakenSummary)
     {
@@ -65,11 +66,11 @@ public class DamageHandler : MonoBehaviour
         // apply fortitude damage
             // apply relevant status effects ...
 
-        DisplayDamageNumbers(in damageTakenSummary);
+        VisualizeDamage(in damageTakenSummary);
 
     }
 
-    private void DisplayDamageNumbers(in DamageTakenSummary damageTakenSummary)
+    private void VisualizeDamage(in DamageTakenSummary damageTakenSummary)
     {
         if (damageTakenSummary.PhysicalDamage > 0)
         {
@@ -103,6 +104,24 @@ public class DamageHandler : MonoBehaviour
         if(damageTakenSummary.LightningDamage > 0)
             damageNumberSet.LightningDamage.CreateNew(damageTakenSummary.LightningDamage, transform.position);
         
+        // lifesteal
+        if (damageTakenSummary.DamageType is LifeStealData lifeStealData)
+        {
+            if (lifeStealData.LifestealFXData)
+            {
+                var lifestealParticles = GameplayStatics.SpawnParticleSystem(
+                    lifeStealData.LifestealFXData.LifestealParticles,
+                    transform);
+
+                if (lifestealParticles)
+                {
+                    var attractor = lifestealParticles.GetComponentInChildren<particleAttractorLinear>();
+                    if (attractor) attractor.target = damageTakenSummary.DamageDealer.transform;
+                }
+                
+            }
+        }
+        
     }
 
     public void ApplyDebuff(Debuff debuff)
@@ -119,6 +138,7 @@ public class DamageHandler : MonoBehaviour
             DamageDealer = damageDealer,
             
             PhysicalDamage = HandlePhysicalDamage(ref damageType),
+            LifeStealDamage = HandleLifestealDamage(ref damageType),
             
             PoisonDamage = HandlePoisonDamage(ref damageType),
             AcidDamage = HandleAcidDamage(ref damageType),
@@ -197,6 +217,15 @@ public class DamageHandler : MonoBehaviour
     }
     private float HandleFortitudeDamage(ref IDamageType damageType)
     {
+        return 0f;
+    }
+    
+    private float HandleLifestealDamage(ref IDamageType damageType)
+    {
+        if (damageType is ILifestealDamage lifestealDamage)
+        {
+            return lifestealDamage.LifestealAmount;
+        }
         return 0f;
     }
 }
