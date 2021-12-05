@@ -8,8 +8,8 @@ public class DebuffHandler : MonoBehaviour
 {
     private DamageHandler damageHandler;
    [SerializeField] private PoisonDebuff poisonDebuff;
-   private AcidDebuff acidDebuff;
-    [SerializeField] private List<Debuff> activeDebuffs;
+   [SerializeField] private AcidDebuff acidDebuff;
+    [SerializeReference] private List<Debuff> activeDebuffs;
 
     // Start is called before the first frame update
     void Awake()
@@ -18,7 +18,7 @@ public class DebuffHandler : MonoBehaviour
 
         activeDebuffs = new List<Debuff>();
         poisonDebuff = new PoisonDebuff(new Timer(1,true));
-        acidDebuff = new AcidDebuff(new Timer(1, true));
+        acidDebuff = new AcidDebuff(new Timer(5),new Timer(1, true));
     }
 
     private void OnEnable()
@@ -44,9 +44,9 @@ public class DebuffHandler : MonoBehaviour
         for (int i = 0; i < activeDebuffs.Count; i++)
         {
             var debuff = activeDebuffs[i];
-            debuff.TickTimer.CountDown(Time.deltaTime);
+            debuff.CountdownTimer(Time.deltaTime);
 
-            if (debuff.TickTimer.JustFinished)
+            if (debuff.ShouldTick())
             {
                 var damageType = debuff.GetTickDamage();
                 if (damageType is IPoisonDamage psn)
@@ -84,10 +84,20 @@ public class DebuffHandler : MonoBehaviour
         {
             if (acidDamage.AcidDamage > 0)
             {
+                print(acidDamage.AcidDOTDuration);
                 if (acidDebuff.IsFinished())
                 {
+                    acidDebuff.OnStart(acidDamage.AcidDOTDuration);
                     activeDebuffs.Add(acidDebuff);
                 }
+                
+                // add 20 percent to stack
+                var acidDamageToStack = acidDamage.AcidDamage * 0.2f;
+                acidDebuff.AddDebuffContributor(damageDealer, acidDamageToStack, acidDamage.AcidDOTDuration);
+                //take 80 percent
+                acidDamage.AcidDamage *= 0.8f;
+                damageHandler.ApplyDamage(acidDamage, damageDealer);
+               
                 
                 
             }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class PoisonDebuff : Debuff
 {
     public PoisonDebuff(Timer tickTimer) : base(tickTimer)

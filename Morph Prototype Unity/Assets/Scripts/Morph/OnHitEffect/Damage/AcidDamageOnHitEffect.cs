@@ -6,10 +6,12 @@ using UnityEngine;
 public class AcidDamageData : OnHitEffectData, IAcidDamage
 {
     [SerializeField] private float acidDamage;
+    private float acidDOTDuration;
 
-    public AcidDamageData(float acidDamage = 1)
+    public AcidDamageData(float acidDamage = 1, float acidDOTDuration = 5f)
     {
         this.acidDamage = acidDamage;
+        this.acidDOTDuration = acidDOTDuration;
     }
 
     public float AcidDamage
@@ -17,10 +19,16 @@ public class AcidDamageData : OnHitEffectData, IAcidDamage
         get => acidDamage;
         set => acidDamage = value;
     }
-    
+
+    public float AcidDOTDuration
+    {
+        get => acidDOTDuration;
+        set=> acidDOTDuration = value;
+    }
+
     public override object Clone()
     {
-        return new AcidDamageData(acidDamage);
+        return new AcidDamageData(acidDamage, acidDOTDuration);
     }
 }
 
@@ -36,7 +44,8 @@ public class AcidDamageOnHitEffect : OnHitEffect
     {
         if (data is AcidDamageData acidDamageData)
         {
-            damageTaker.ApplyDamage(acidDamageData, damageDealer);
+            acidDamageData.AcidDOTDuration = 5;
+            damageTaker.ApplyDebuff(acidDamageData, damageDealer);
         }
     }
 }

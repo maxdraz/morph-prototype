@@ -94,6 +94,7 @@ public class Timer
     public void Restart()
     {
         canCountDown = true;
+        justFinished = false;
         currentTime = duration;
     }
 

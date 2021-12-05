@@ -33,12 +33,17 @@ public abstract class Debuff
         this.tickTimer = tickTimer;
     }
 
-    public bool CountdownTimer(float dt)
+    public virtual void OnStart(float debuffDuration)
+    {
+        
+    }
+
+    public virtual bool CountdownTimer(float dt)
     { 
         return tickTimer.CountDown(dt);
     }
 
-    public bool ShouldTick()
+    public virtual bool ShouldTick()
     {
         Debug.Log("tick");
         return tickTimer.JustFinished;
@@ -57,17 +62,23 @@ public abstract class Debuff
     public abstract IDamageType GetTickDamage();
    
 
-    public bool IsFinished()
+    public virtual bool IsFinished()
     {
         return damageStack <= 0;
     }
 
-    public void AddDebuffContributor(DamageHandler dmgDealer, float damageContribution)
+    public void AddDebuffContributor(DamageHandler dmgDealer, float damageContribution, float debuffDuration = 0)
     {
        // debuffContributors.Add(new DebuffContributor(damageDealer, damageContribution));
        this.damageDealer = dmgDealer;
        damageStack += damageContribution;
+       RestartDebuffTimer(debuffDuration);
        Debug.Log("damage stack " + damageStack);
+    }
+
+    public virtual void RestartDebuffTimer(float debuffDuration)
+    {
+       
     }
 
 

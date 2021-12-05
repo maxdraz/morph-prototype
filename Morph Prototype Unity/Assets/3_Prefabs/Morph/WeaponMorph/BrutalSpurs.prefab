@@ -46,7 +46,7 @@ MonoBehaviour:
   baseDamage: 5
   lightAttacks:
   - onHitEffects:
-    - onHitEffect: {fileID: 11400000, guid: 43742988cba5dad4c98d440ec358f8d9, type: 2}
+    - onHitEffect: {fileID: 11400000, guid: b6472a054bbbbe54aa1c805c8ea62e20, type: 2}
       data:
         id: 0
     requiresUnlock: 0
@@ -90,9 +90,9 @@ MonoBehaviour:
   references:
     version: 1
     00000000:
-      type: {class: PoisonDamageData, ns: , asm: Assembly-CSharp}
+      type: {class: AcidDamageData, ns: , asm: Assembly-CSharp}
       data:
-        poisonDamage: 2000
+        acidDamage: 1
     00000001:
       type: {class: PiercingDamageData, ns: , asm: Assembly-CSharp}
       data:
