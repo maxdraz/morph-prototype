@@ -6,7 +6,9 @@ using UnityEngine;
 public class AcidDebuff : Debuff
 {
     [SerializeField] private Timer acidDurationTimer;
-    
+    [SerializeField] private float acidDotModifier;
+
+
     public AcidDebuff(Timer acidDurationTimer, Timer tickTimer) : base(tickTimer)
     {
         this.acidDurationTimer = acidDurationTimer;
@@ -46,6 +48,7 @@ public class AcidDebuff : Debuff
     {
         float acidDamageDealt = 1 + (damageStack / 5);
         damageStack -= acidDamageDealt;
+        acidDamageDealt *= (1 + acidDotModifier);
         return new AcidDamageData(acidDamageDealt);
     }
 }
