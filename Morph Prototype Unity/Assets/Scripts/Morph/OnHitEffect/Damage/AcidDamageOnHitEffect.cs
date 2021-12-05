@@ -8,14 +8,14 @@ public class AcidDamageData : OnHitEffectData, IAcidDamage
     [SerializeField] private float acidDamage;
     private float acidDOTDuration;
     private float acidPercentageBonusDamage = 1;
-    private float acidDotModifier = 1;
+    private float acidDOTModifier = 1;
 
     public AcidDamageData(float acidDamage = 1, float acidDOTDuration = 5f, float acidPercentageBonusDamage = 1f, float acidDotModifier = 1f)
     {
         this.acidDamage = acidDamage;
         this.acidDOTDuration = acidDOTDuration;
         this.acidPercentageBonusDamage = acidPercentageBonusDamage;
-        this.acidDotModifier = acidDotModifier;
+        this.acidDOTModifier = acidDotModifier;
     }
 
     public float AcidDamage
@@ -36,10 +36,10 @@ public class AcidDamageData : OnHitEffectData, IAcidDamage
         set => acidPercentageBonusDamage = value;
     }
 
-    public float AcidDotModifier
+    public float AcidDOTModifier
     {
-        get => AcidDotModifier;
-        set => AcidDotModifier = value;
+        get => acidDOTModifier;
+        set => acidDOTModifier = value;
     }
 
     public override object Clone()

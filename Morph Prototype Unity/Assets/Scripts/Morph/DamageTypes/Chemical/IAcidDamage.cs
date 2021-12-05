@@ -7,5 +7,5 @@ public interface IAcidDamage : IChemicalDamage
     public float AcidDamage { get; set; }
     public float AcidDOTDuration { get; set; }
     public float AcidPercentageBonusDamage { get; set; }
-    public float AcidDotModifier { get; set; }
+    public float AcidDOTModifier { get; set; }
 }
