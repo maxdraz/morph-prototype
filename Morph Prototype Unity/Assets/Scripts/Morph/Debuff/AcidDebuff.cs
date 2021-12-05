@@ -47,7 +47,6 @@ public class AcidDebuff : Debuff
     {
         float acidDamageDealt = 1 + (damageStack / 5);
         damageStack -= acidDamageDealt;
-        acidDamageDealt *= (1 + acidDotModifier);
         return new AcidDamageData(acidDamageDealt);
     }
 }
