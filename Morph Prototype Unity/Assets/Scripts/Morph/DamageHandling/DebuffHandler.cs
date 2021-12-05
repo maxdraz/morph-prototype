@@ -74,8 +74,6 @@ public class DebuffHandler : MonoBehaviour
                 {
                     activeDebuffs.Add(poisonDebuff);
                 }
-                
-                print("poison damage to be dealt: " + poisonDamage.PoisonDamage);
                 poisonDebuff.AddDebuffContributor(damageDealer,poisonDamage.PoisonDamage);
             }
         }

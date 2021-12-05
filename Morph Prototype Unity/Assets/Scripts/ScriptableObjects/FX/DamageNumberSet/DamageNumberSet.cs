@@ -17,5 +17,6 @@ public class DamageNumberSet : ScriptableObject
     public DamageNumber FireDamage;
     public DamageNumber IceDamage;
     public DamageNumber LightningDamage;
-    
+    [Header("Status")] public DamageNumber StaminaDrain;
+
 }

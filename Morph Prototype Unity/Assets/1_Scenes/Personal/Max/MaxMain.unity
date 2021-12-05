@@ -6115,6 +6115,14 @@ PrefabInstance:
       propertyPath: limbWeaponMorph
       value: 
       objectReference: {fileID: 6675012289007957567, guid: dfde551b8c3af0d4ab0d05cfc2c4608e, type: 3}
+    - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
+      propertyPath: passiveMorphs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
+      propertyPath: passiveMorphs.Array.data[0]
+      value: 
+      objectReference: {fileID: 1114787138882407050, guid: e2becf8274e76bd4caafef87b9f0dbf8, type: 3}
     - target: {fileID: 8063955872969139073, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: m_RootOrder
       value: 0

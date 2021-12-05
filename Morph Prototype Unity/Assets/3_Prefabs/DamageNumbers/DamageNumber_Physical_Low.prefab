@@ -340,7 +340,7 @@ MonoBehaviour:
   _SortingLayerID: 0
   _SortingOrder: 0
   m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 8323065740886228740}
+  m_renderer: {fileID: 8323065741701354541}
   m_maskType: 0
 --- !u!1 &8323065742232597025
 GameObject:
@@ -456,10 +456,10 @@ MonoBehaviour:
     newLine: 0
   enableFading: 1
   fadeIn:
-    fadeDuration: 0.2
-    positionOffset: {x: 1, y: 1}
+    fadeDuration: 0.1
+    positionOffset: {x: 0, y: 0}
     scaleOffset: {x: 1, y: 1}
-    scale: {x: 2, y: 2}
+    scale: {x: 1, y: 1}
   fadeOut:
     fadeDuration: 0.2
     positionOffset: {x: 0.5, y: 0}
@@ -468,19 +468,19 @@ MonoBehaviour:
   enableMovement: 1
   moveType: 0
   lerpSettings:
-    minX: -1.5
-    maxX: 1.5
+    minX: -3
+    maxX: 3
     minY: 1
     maxY: 2
     speed: 5
   velocitySettings:
-    minX: -1
-    maxX: 1
+    minX: -10
+    maxX: 10
     minY: 4
     maxY: 5
     dragX: 0.1
     dragY: 1
-    gravity: 3
+    gravity: 9
   enableStartRotation: 1
   minRotation: -2
   maxRotation: 2

@@ -11,6 +11,7 @@ public class DamageHandler : MonoBehaviour
     private Stats stats;
     private Health health;
     private Armor armor;
+    private Stamina stamina;
     [SerializeField] private bool isInvincible = true;
     [SerializeField] private DamageNumberSet damageNumberSet;
 
@@ -27,13 +28,21 @@ public class DamageHandler : MonoBehaviour
     // public events
     public delegate void DebuffAboutToBeTakenPreModifierHandler(ref IDamageType damageType, DamageHandler damageDealer);
     public event DebuffAboutToBeTakenPreModifierHandler DebuffAboutToBeTakenPreModifier;
+    public delegate void DebuffAboutToBeDealtPreModifierHandler(ref IDamageType damageType, DamageHandler damageTaker);
+    public event DebuffAboutToBeDealtPreModifierHandler DebuffAboutToBeDealtPreModifier;
     public delegate void DebuffAboutToBeTakenPostModifierHandler(ref IDamageType damageType, DamageHandler damageDealer);
     public event DebuffAboutToBeTakenPostModifierHandler DebuffAboutToBeTakenPostModifier;
+    public delegate void DebuffAboutToBeDealtPostModifierHandler(ref IDamageType damageType, DamageHandler damageTaker);
+    public event DebuffAboutToBeDealtPostModifierHandler DebuffAboutToBeDealtPostModifier;
     
     public delegate void DamageAboutToBeTakenHandler(ref IDamageType damageType);
     public event DamageAboutToBeTakenHandler DamageAboutToBeTaken;
     public delegate void DamageHasBeenTakenHandler(in DamageTakenSummary damageSummary);
     public event DamageHasBeenTakenHandler DamageHasBeenTaken;
+    public delegate void DamageAboutToBeDealtHandler(ref IDamageType damageType);
+    public event DamageAboutToBeDealtHandler DamageAboutToBeDealt;
+    public delegate void DamageHasBeenDealtHandler(in DamageTakenSummary damageSummary);
+    public event DamageHasBeenDealtHandler DamageHasBeenDealt;
     public event Action<DamageHandler> DamageTakerAdded;
     public event Action<DamageHandler> DamageTakerRemoved;
 
@@ -42,27 +51,24 @@ public class DamageHandler : MonoBehaviour
         stats = GetComponentInParent<Stats>();
         health = GetComponent<Health>();
         armor = GetComponent<Armor>();
+        stamina = GetComponent<Stamina>();
 
         if(!stats) Debug.LogWarning(transform.parent.name +" dmg handler couldnt find stats");
         if(!health) Debug.LogWarning(transform.parent.name +" dmg handler couldnt find health");
-    }
-
-    private void Update()
-    {
-        // tick debuffs
-        
     }
 
     public void ApplyDamage(IDamageType damageType, DamageHandler damageDealer)
     {
         var damageClone = damageType.Clone() as IDamageType;
         
+        damageDealer.DamageAboutToBeDealt?.Invoke(ref damageClone);
         DamageAboutToBeTaken?.Invoke(ref damageClone);
 
         ResistDamage(ref damageClone, damageDealer, out var damageTakenSummary);
         summary = damageTakenSummary;
         HandleDamageTaken(in damageTakenSummary);
         
+        damageDealer.DamageHasBeenDealt?.Invoke(in damageTakenSummary);
         DamageHasBeenTaken?.Invoke(in damageTakenSummary);
     }
     
@@ -72,7 +78,7 @@ public class DamageHandler : MonoBehaviour
         health.SubtractHP(damageTakenSummary.TotalDamage);
         // apply fortitude damage
             // apply relevant status effects ...
-
+        stamina.SubtractStamina(damageTakenSummary.StaminaDrained);
             // fortitude check for mortal blow 
             
         VisualizeDamage(in damageTakenSummary);
@@ -131,12 +137,20 @@ public class DamageHandler : MonoBehaviour
             }
         }
         
+        //stamina drain 
+        if (damageTakenSummary.StaminaDrained > 0)
+        {
+            damageNumberSet.StaminaDrain.CreateNew(damageTakenSummary.StaminaDrained, transform.position);
+        }
+        
     }
 
     public void ApplyDebuff(IDamageType damageType, DamageHandler damageDealer)
     {
         var damageTypeClone = damageType.Clone() as IDamageType;
+        damageDealer.DebuffAboutToBeDealtPreModifier?.Invoke(ref damageTypeClone, this);
         DebuffAboutToBeTakenPreModifier?.Invoke(ref damageTypeClone, damageDealer);
+        damageDealer.DebuffAboutToBeDealtPostModifier?.Invoke(ref damageTypeClone, this);
         DebuffAboutToBeTakenPostModifier?.Invoke(ref damageTypeClone, damageDealer);
     }
     private void ResistDamage(ref IDamageType damageType, DamageHandler damageDealer, out DamageTakenSummary damageTakenSummary)
@@ -156,7 +170,7 @@ public class DamageHandler : MonoBehaviour
             FireDamage = HandleFireDamage(ref damageType),
             IceDamage = HandleIceDamage(ref damageType),
             LightningDamage = HandleLightningDamage(ref damageType),
-            
+            StaminaDrained = HandlerStaminaDrain(ref damageType),
             FortitudeDamage = HandleFortitudeDamage(ref damageType)
         };
 
@@ -239,5 +253,15 @@ public class DamageHandler : MonoBehaviour
             return lifestealDamage.LifestealAmount;
         }
         return 0f;
+    }
+
+    private float HandlerStaminaDrain(ref IDamageType damageType)
+    {
+        if (damageType is IStaminaDrain staminaDrain)
+        {
+            return staminaDrain.StaminaToDrain;
+        }
+
+        return 0;
     }
 }

@@ -449,6 +449,7 @@ GameObject:
   - component: {fileID: 6890688784229218089}
   - component: {fileID: 5730317762412754143}
   - component: {fileID: 1109020764214313045}
+  - component: {fileID: 5782620542622676542}
   - component: {fileID: 1242210026466312524}
   - component: {fileID: 2442157382203612058}
   - component: {fileID: 2734275844283368814}
@@ -532,6 +533,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   armor: 5
+--- !u!114 &5782620542622676542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7853902346194350098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc6faeff814f70a48a2507debb58fbba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stamina: 1000
 --- !u!114 &1242210026466312524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -567,7 +581,24 @@ MonoBehaviour:
       canCountDown: 0
     damageStack: 0
     damageDealer: {fileID: 0}
+  acidDebuff:
+    tickTimer:
+      duration: 0
+      currentTime: 0
+      loop: 0
+      justFinished: 0
+      canCountDown: 0
+    damageStack: 0
+    damageDealer: {fileID: 0}
+    acidDurationTimer:
+      duration: 0
+      currentTime: 0
+      loop: 0
+      justFinished: 0
+      canCountDown: 0
   activeDebuffs: []
+  references:
+    version: 1
 --- !u!114 &2734275844283368814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -593,10 +624,10 @@ MonoBehaviour:
     FireDamage: 0
     IceDamage: 0
     LightningDamage: 0
+    StaminaDrained: 0
     FortitudeDamage: 0
   isInvincible: 1
   damageNumberSet: {fileID: 11400000, guid: b7e89376a8942b04c8d659ed9c4bd2c4, type: 2}
-  activeDebuffs: []
 --- !u!114 &320125811011304783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -612,6 +643,7 @@ MonoBehaviour:
   limbWeaponMorph: {fileID: 0}
   headWeaponMorph: {fileID: 0}
   tailWeaponMorph: {fileID: 0}
+  passiveMorphs: []
 --- !u!114 &7926291197602700796
 MonoBehaviour:
   m_ObjectHideFlags: 0

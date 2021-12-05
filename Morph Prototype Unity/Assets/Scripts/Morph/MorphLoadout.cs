@@ -6,29 +6,29 @@ using UnityEngine;
 [RequireComponent(typeof(OutdatedDamageHandler))]
 public class MorphLoadout : MonoBehaviour
 {
-    private LimbOutdatedWeaponMorphData limbOutdatedWeaponMorphData;
-    private HeadOutdatedWeaponMorphData headOutdatedWeaponMorphData;
-    private TailOutdatedWeaponMorphData tailOutdatedWeaponMorphData;
-
     [SerializeField] private LimbWeaponMorph limbWeaponMorph;
     [SerializeField] private HeadWeaponMorph headWeaponMorph;
     [SerializeField] private TailWeaponMorph tailWeaponMorph;
-    
-    private LimbWeaponOutdatedMorph _limbWeaponOutdatedMorph;
-    private TailWeaponOutdatedMorph _tailWeaponOutdatedMorph;
-    private HeadWeaponOutdatedMorph _headWeaponOutdatedMorph;
-    private OutdatedDamageHandler _outdatedDamageHandler;
+
+    [SerializeField] private List<PassiveMorph> passiveMorphs;
 
     public event Action<Morph> MorphLoadoutChanged;
 
     private void Awake()
     {
-        _outdatedDamageHandler = GetComponent<OutdatedDamageHandler>();
+       
     }
 
     private void Start()
     {
         AddMorphToLoadout(limbWeaponMorph);
+
+        for (int i = 0; i < passiveMorphs.Count; i++)
+        {
+            passiveMorphs[i] = UtilityFunctions.CopyComponent(passiveMorphs[i], gameObject);
+        }
+            
+        
     }
     
 

@@ -32,5 +32,6 @@ public class DamageTakenSummary
     public float IceDamage;
     public float LightningDamage;
 
+    public float StaminaDrained;
     public float FortitudeDamage;
 }

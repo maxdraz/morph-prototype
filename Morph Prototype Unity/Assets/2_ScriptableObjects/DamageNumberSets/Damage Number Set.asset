@@ -20,3 +20,4 @@ MonoBehaviour:
   FireDamage: {fileID: 8794468304372644832, guid: 69a1c2a225e397d4794f939031e02f07, type: 3}
   IceDamage: {fileID: 8794468304372644832, guid: ed488220c006f824b93c16e82dc54532, type: 3}
   LightningDamage: {fileID: 8794468304372644832, guid: b4d7aba417831a54fbcb9c75644ccacb, type: 3}
+  StaminaDrain: {fileID: 8794468304372644832, guid: ec5884d357c43c5428379454fb23df61, type: 3}

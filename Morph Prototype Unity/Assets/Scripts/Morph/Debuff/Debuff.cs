@@ -45,7 +45,7 @@ public abstract class Debuff
 
     public virtual bool ShouldTick()
     {
-        Debug.Log("tick");
+      
         return tickTimer.JustFinished;
     }
 
@@ -73,7 +73,6 @@ public abstract class Debuff
        this.damageDealer = dmgDealer;
        damageStack += damageContribution;
        RestartDebuffTimer(debuffDuration);
-       Debug.Log("damage stack " + damageStack);
     }
 
     public virtual void RestartDebuffTimer(float debuffDuration)
