@@ -183,10 +183,7 @@ public class DamageHandler : MonoBehaviour
         if (damageType is IPhysicalDamage physicalDamage)
         {
             bool isPiercing = damageType is IPiercingDamage;
-            if (isPiercing)
-            {
-                print("piercing damage dealt");
-            }
+            
             bool isImpact = damageType is IImpactDamage;
 
             return DamageFormulas.PhysicalDamageResist(

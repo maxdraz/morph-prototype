@@ -51,7 +51,7 @@ public class DebuffHandler : MonoBehaviour
                 var damageType = debuff.GetTickDamage();
                 if (damageType is IPoisonDamage psn)
                 {
-                    print(psn.PoisonDamage);
+                    
                 }
                 damageHandler.ApplyDamage(damageType, debuff.DamageDealer);
             }
@@ -82,7 +82,6 @@ public class DebuffHandler : MonoBehaviour
         {
             if (acidDamage.AcidDamage > 0)
             {
-                print(acidDamage.AcidDOTDuration);
                 if (acidDebuff.IsFinished())
                 {
                     acidDebuff.OnStart(acidDamage.AcidDOTDuration);
@@ -95,9 +94,6 @@ public class DebuffHandler : MonoBehaviour
                 //take 80 percent
                 acidDamage.AcidDamage *= 0.8f;
                 damageHandler.ApplyDamage(acidDamage, damageDealer);
-               
-                
-                
             }
         }
         

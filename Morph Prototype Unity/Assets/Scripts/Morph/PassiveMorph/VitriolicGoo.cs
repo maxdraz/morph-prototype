@@ -55,7 +55,6 @@ public class VitriolicGoo : PassiveMorph
     private void BuffAcidDamage(ref IAcidDamage acidDamage)
     {
         acidDamage.AcidDamage *= 1.5f;
-        print("buffed acid damage: " + acidDamage.AcidDamage);
     }
 
     private void ShortenAcidDOTDuration(ref IAcidDamage acidDamage)

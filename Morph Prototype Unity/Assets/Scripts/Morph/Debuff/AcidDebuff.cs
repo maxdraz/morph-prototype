@@ -25,7 +25,6 @@ public class AcidDebuff : Debuff
 
     public override bool CountdownTimer(float dt)
     {
-        Debug.Log("should be updating actual duration");
         acidDurationTimer.CountDown(dt);
 
         if (!acidDurationTimer.JustFinished)
