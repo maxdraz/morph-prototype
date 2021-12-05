@@ -36,21 +36,14 @@ public class SizzlingSlime : PassiveMorph
         }
     }
 
-    private void OnAcidDebuffDealt(ref IDamageType damageType, DamageHandler damageTaker)
+    private void OnAcidDamageAboutToBeDealt(ref IDamageType damageType)
     {
-        if (damageType is IAcidDamage acidDamage)
+        if (damageType is IAcidTickDamage acidTickDamage)
         {
-            DoubleAcidDot(ref acidDamage);
+            acidTickDamage.AcidDamage *= 2;
         }
     }
-
-    private void DoubleAcidDot(ref IAcidDamage acidDamage)
-    {
-
-        acidDamage.AcidDOTModifier += acidDOTModifier;
-        print("buffed acid Dot: " + acidDamage.AcidDOTModifier);
-    }
-
+    
     private IEnumerator AssignDamageHandlerCoroutine()
     {
         yield return new WaitForEndOfFrame();
@@ -64,7 +57,7 @@ public class SizzlingSlime : PassiveMorph
         damageHandler = GetComponent<DamageHandler>();
         if (damageHandler)
         {
-            damageHandler.DebuffAboutToBeDealtPreModifier += OnAcidDebuffDealt;
+            damageHandler.DamageAboutToBeDealt += OnAcidDamageAboutToBeDealt;
             if (unlockBlindingVapour)
             {
                 damageHandler.DamageHasBeenDealt += OnDamageHasBeenDealt;
@@ -76,7 +69,7 @@ public class SizzlingSlime : PassiveMorph
     {
         if (damageHandler)
         {
-            damageHandler.DebuffAboutToBeDealtPreModifier -= OnAcidDebuffDealt;
+            damageHandler.DamageAboutToBeDealt -= OnAcidDamageAboutToBeDealt;
             if (unlockBlindingVapour)
             {
                 damageHandler.DamageHasBeenDealt -= OnDamageHasBeenDealt;
