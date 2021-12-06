@@ -171,7 +171,6 @@ public class WeaponMorphAttackHandler : MonoBehaviour
         if(hitbox) hitbox.Activate();
         
         currentWeaponAttack.OnStart();
-        print("attack has started and event sent!!!");
         AttackHasStarted?.Invoke(ref currentWeaponAttack);
     }
     

@@ -20,8 +20,12 @@ public class HeavyAttack : WeaponAttack
         base.OnStart();
 
         var transform = Owner.transform;
-        GameplayStatics.SpawnParticleSystem(heavyAttackFX.OnStartParticles, transform, transform.position,
+        var particleSystemGO = GameplayStatics.SpawnParticleSystem(heavyAttackFX.OnStartParticles, transform, transform.position,
             transform.rotation);
+        
+        var psController = particleSystemGO.GetComponent<ParticleSystemController>();
+        if(psController)
+            psController.ScaleParticlesToDuration(duration);
     }
 
     public override void OnHit(DamageHandler damageTaker, DamageHandler damageDealer)

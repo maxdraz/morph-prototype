@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6452235922807178527}
   - component: {fileID: 633206291561539377}
   - component: {fileID: 35108555}
+  - component: {fileID: 690157482362580702}
   m_Layer: 0
   m_Name: Brutal Spurs_Basic Attack Combo Particle 2
   m_TagString: Untagged
@@ -41,7 +42,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1478952173392413093}
   serializedVersion: 8
-  lengthInSec: 1
+  lengthInSec: 0.2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -4878,5 +4879,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fb133de14934524a97117c699468e3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useParticleSystemDuration: 1
+  useParticleSystemLifetime: 1
   duration: 1
+--- !u!114 &690157482362580702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478952173392413093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf7326e96025a2e4a9a0dc590caeba88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackDuration: 0

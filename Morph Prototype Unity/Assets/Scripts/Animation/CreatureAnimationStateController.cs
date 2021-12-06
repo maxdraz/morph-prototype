@@ -46,13 +46,13 @@ public class CreatureAnimationStateController : MonoBehaviour, IEventSubscriber
 
     private void UpdateAttackSpeed()
     {
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("WeaponAttack") && animator.GetBool(IsWeaponAttack))
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("WeaponAttack"))
         {
             if (currentWeaponAttack != null)
             {
-                var offset = Mathf.Max(0.01f, currentWeaponAttack.Duration - 0.5f);
+                var offset = Mathf.Max(0.01f, currentWeaponAttack.Duration * 0.8f);
                 animator.SetFloat(WeaponAttackSpeed, 1/(offset * 1/animator.GetCurrentAnimatorStateInfo(0).length));
-                animator.SetBool(IsWeaponAttack, false);
+              //  animator.SetBool(IsWeaponAttack, false);
             }
         }
     }
@@ -67,11 +67,9 @@ public class CreatureAnimationStateController : MonoBehaviour, IEventSubscriber
     }
 
     private void OnWeaponAttackStarted(ref WeaponAttack weaponAttack)
-    { 
-        print("weapon attack started!");
+    {
         animator.SetBool(IsWeaponAttack, true);
         currentWeaponAttack = weaponAttack;
-        
     }
 
     private void OnDied()
