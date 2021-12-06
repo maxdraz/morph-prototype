@@ -73,7 +73,10 @@ public class Health : MonoBehaviour
 
     private void Die()
     {
-        Destroy(transform.parent.gameObject);
+        // temp
+        GetComponentInParent<Rigidbody>().isKinematic = true;
+        GetComponent<Collider>().enabled = false;
+        GetComponent<DebuffHandler>().StopAllDebuffs();
         Died?.Invoke();
     }
 

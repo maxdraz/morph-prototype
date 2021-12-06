@@ -3,13 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CreatureAnimationStateController : MonoBehaviour
+public class CreatureAnimationStateController : MonoBehaviour, IEventSubscriber
 {
     private Animator animator;
     private Health health;
-    private WeaponMorphAttackHandler weaponMorphAttackHandler;  // change to attack handler eventually
+   [SerializeField] private WeaponMorphAttackHandler weaponMorphAttackHandler;  // change to attack handler eventually
     private Movement movement;
-    private float attackAnimationLength;
+    
+    private WeaponAttack currentWeaponAttack;
     
     private static readonly int IsDead = Animator.StringToHash("IsDead");
     private static readonly int IsWeaponAttack = Animator.StringToHash("IsWeaponAttack");
@@ -28,37 +29,49 @@ public class CreatureAnimationStateController : MonoBehaviour
 
     private void OnEnable()
     {
-        if (health)
+        StartCoroutine(SubscribeToEventsCoroutine());
+    }
+
+    private void OnDisable()
+    {
+       UnsubscribeFromEvents();
+    }
+
+
+    void Update()
+    {
+        UpdateMovementState();
+        UpdateAttackSpeed();
+    }
+
+    private void UpdateAttackSpeed()
+    {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("WeaponAttack") && animator.GetBool(IsWeaponAttack))
         {
-            health.Died += OnDied;
+            if (currentWeaponAttack != null)
+            {
+                var offset = Mathf.Max(0.01f, currentWeaponAttack.Duration - 0.5f);
+                animator.SetFloat(WeaponAttackSpeed, 1/(offset * 1/animator.GetCurrentAnimatorStateInfo(0).length));
+                animator.SetBool(IsWeaponAttack, false);
+            }
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void UpdateMovementState()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            animator.SetBool(IsWeaponAttack, true);
-          //  var attackStateLength = animator.GetNextAnimatorStateInfo(0).IsName("WeaponAttack");
-          //  print(attackStateLength);
-            //var duration = 5;
-            //  animator.SetFloat(WeaponAttackSpeed,duration * (1/attackStateLength));
-
-        }
-        
         if (movement)
         {
             SetMovementSpeed(movement.GetMoveSpeedNormalized());
         }
-     
+
     }
 
-    private void OnWeaponAttackStarted(ref WeaponAttack currentWeaponAttack)
-    {
+    private void OnWeaponAttackStarted(ref WeaponAttack weaponAttack)
+    { 
+        print("weapon attack started!");
         animator.SetBool(IsWeaponAttack, true);
-        animator.SetFloat(WeaponAttackSpeed, currentWeaponAttack.Duration);
-        print(animator.GetCurrentAnimatorStateInfo(0).length);
+        currentWeaponAttack = weaponAttack;
+        
     }
 
     private void OnDied()
@@ -71,16 +84,30 @@ public class CreatureAnimationStateController : MonoBehaviour
         animator.SetFloat(MovementSpeed, movementSpeedNormalized);
     }
 
-    private float GetClipLengthByName(string clipName)
+    public IEnumerator SubscribeToEventsCoroutine()
     {
-        foreach (var clip in animator.runtimeAnimatorController.animationClips)
+        yield return new WaitForEndOfFrame();
+        if (health)
         {
-            if (clip.name == clipName)
-            {
-                return clip.length;
-            }
+            health.Died += OnDied;
         }
 
-        return 0;
+        if (weaponMorphAttackHandler)
+        {
+            weaponMorphAttackHandler.AttackHasStarted += OnWeaponAttackStarted;
+        }
+    }
+
+    public void UnsubscribeFromEvents()
+    {
+        if (health)
+        {
+            health.Died -= OnDied;
+        }
+        
+        if (weaponMorphAttackHandler)
+        {
+            weaponMorphAttackHandler.AttackHasStarted -= OnWeaponAttackStarted;
+        }
     }
 }

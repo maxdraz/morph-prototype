@@ -1497,6 +1497,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AICreatureBase (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8683765337263264566, guid: e941a7aaa4e97a747a762e11708aa881, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e941a7aaa4e97a747a762e11708aa881, type: 3}
 --- !u!1 &431314900
@@ -2708,6 +2712,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AICreatureBase
       objectReference: {fileID: 0}
+    - target: {fileID: 8683765337263264566, guid: e941a7aaa4e97a747a762e11708aa881, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e941a7aaa4e97a747a762e11708aa881, type: 3}
 --- !u!1001 &782532571
@@ -2871,6 +2879,10 @@ PrefabInstance:
     - target: {fileID: 8683765337263264566, guid: e941a7aaa4e97a747a762e11708aa881, type: 3}
       propertyPath: m_Name
       value: AICreatureBase (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8683765337263264566, guid: e941a7aaa4e97a747a762e11708aa881, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e941a7aaa4e97a747a762e11708aa881, type: 3}
@@ -4645,6 +4657,10 @@ PrefabInstance:
     - target: {fileID: 8683765337263264566, guid: e941a7aaa4e97a747a762e11708aa881, type: 3}
       propertyPath: m_Name
       value: AICreatureBase (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8683765337263264566, guid: e941a7aaa4e97a747a762e11708aa881, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e941a7aaa4e97a747a762e11708aa881, type: 3}

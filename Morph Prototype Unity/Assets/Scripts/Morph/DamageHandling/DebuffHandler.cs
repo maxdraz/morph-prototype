@@ -96,6 +96,10 @@ public class DebuffHandler : MonoBehaviour
                 damageHandler.ApplyDamage(acidDamage, damageDealer);
             }
         }
-        
+    }
+
+    public void StopAllDebuffs()
+    {
+        activeDebuffs.Clear();
     }
 }

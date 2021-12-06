@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SetBool : StateMachineBehaviour
+public class SetFloat : StateMachineBehaviour
 {
     private enum TriggerEvent
     {
@@ -12,27 +12,23 @@ public class SetBool : StateMachineBehaviour
     }
 
     [SerializeField] private TriggerEvent triggerEvent;
-    [SerializeField] private string boolName;
-    [SerializeField] private bool boolValue;
+    [SerializeField] private string floatName;
+    [SerializeField] private float newValue;
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateExit(animator, stateInfo, layerIndex);
         
         if(triggerEvent == TriggerEvent.OnEnter)
-            UpdateBoolValue(animator);
+            UpdateFloatValue(animator);
     }
     
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateExit(animator, stateInfo, layerIndex);
-
-        if (triggerEvent == TriggerEvent.OnExit)
-        {
-            Debug.Log("should have reset");
-            UpdateBoolValue(animator);
-        }
-            
+        
+        if(triggerEvent == TriggerEvent.OnExit)
+            UpdateFloatValue(animator);
     }
     
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -40,12 +36,12 @@ public class SetBool : StateMachineBehaviour
         base.OnStateExit(animator, stateInfo, layerIndex);
         
         if(triggerEvent == TriggerEvent.OnUpdate)
-            UpdateBoolValue(animator);
+            UpdateFloatValue(animator);
     }
 
-    private void UpdateBoolValue(Animator animator)
+    private void UpdateFloatValue(Animator animator)
     {
-        if(boolName != "")
-            animator.SetBool(boolName, boolValue);
+        if(floatName != "")
+            animator.SetFloat(floatName, newValue);
     }
 }

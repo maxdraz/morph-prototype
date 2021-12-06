@@ -51,8 +51,8 @@ MonoBehaviour:
         id: 0
     requiresUnlock: 0
     hitboxType: 0
-    duration: 0.5
-    inputWindowBeforeAttackEnd: 0.2
+    duration: 1
+    inputWindowBeforeAttackEnd: 0
     inputWindowAfterAttackEnd: 0.2
     lightAttackFX: {fileID: 11400000, guid: 35f9e4f041d6d1840ac3aa9455beccd9, type: 2}
   - onHitEffects:
@@ -67,8 +67,8 @@ MonoBehaviour:
         id: 3
     requiresUnlock: 0
     hitboxType: 0
-    duration: 0.5
-    inputWindowBeforeAttackEnd: 0.2
+    duration: 1
+    inputWindowBeforeAttackEnd: 0
     inputWindowAfterAttackEnd: 0.2
     lightAttackFX: {fileID: 11400000, guid: fb8b01664b90e2047a5c1db255b735a2, type: 2}
   - onHitEffects:
@@ -77,8 +77,8 @@ MonoBehaviour:
         id: 4
     requiresUnlock: 0
     hitboxType: 0
-    duration: 0.5
-    inputWindowBeforeAttackEnd: 0.2
+    duration: 1
+    inputWindowBeforeAttackEnd: 0
     inputWindowAfterAttackEnd: 0.2
     lightAttackFX: {fileID: 11400000, guid: b6b97076a38c9e94a8636025b8d1b7c9, type: 2}
   heavyAttacks:
