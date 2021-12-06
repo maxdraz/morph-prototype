@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3341670569344386518}
     m_Modifications:
+    - target: {fileID: 3803173015384148775, guid: aecb84c62f56aee44acfc7312227ff59, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 55470889f7a708644962bcfa74c0fdbb, type: 2}
     - target: {fileID: 3803173015391549669, guid: aecb84c62f56aee44acfc7312227ff59, type: 3}
       propertyPath: m_Name
       value: DeerStag

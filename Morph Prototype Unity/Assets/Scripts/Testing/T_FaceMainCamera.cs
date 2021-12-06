@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class T_FaceMainCamera : MonoBehaviour
@@ -14,7 +15,6 @@ public class T_FaceMainCamera : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-      //  var toCamera = mainCamera.transform.position - transform.position;
         transform.rotation = Quaternion.LookRotation(-mainCamera.transform.forward);
     }
 }

@@ -36,6 +36,9 @@ public class WeaponMorphAttackHandler : MonoBehaviour
     public delegate void AttackQueuedHandler(ref WeaponAttack weaponAttack);
     public event AttackQueuedHandler AttackQueued;
 
+    public delegate void AttackHasStartedHandler(ref WeaponAttack weaponAttack);
+    public event AttackHasStartedHandler AttackHasStarted;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -168,6 +171,7 @@ public class WeaponMorphAttackHandler : MonoBehaviour
         if(hitbox) hitbox.Activate();
         
         currentWeaponAttack.OnStart();
+        AttackHasStarted?.Invoke(ref currentWeaponAttack);
     }
     
     private void OnAttackHit(DamageHandler damageTaker)

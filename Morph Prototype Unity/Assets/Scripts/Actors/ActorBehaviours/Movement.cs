@@ -130,4 +130,11 @@ public class Movement : MonoBehaviour
     {
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), slerpStep);
     }
+
+    public float GetMoveSpeedNormalized()
+    {
+        var currentVel = rb.velocity;
+        var velocityXZ = new Vector3(currentVel.x, 0, currentVel.z);
+        return Mathf.Min(velocityXZ.magnitude / maxSpeed, 1);
+    }
 }
