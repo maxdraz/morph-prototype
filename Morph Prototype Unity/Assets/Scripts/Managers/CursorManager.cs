@@ -6,14 +6,14 @@ using UnityEngine;
 
 public class CursorManager : MonoBehaviour
 {
-    [SerializeField] private bool debug;
+    [SerializeField] private CursorLockMode initialCursorLockMode = CursorLockMode.Locked;
 
     public static Action OnCursorLocked;
     public static Action OnCursorUnlocked;
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = initialCursorLockMode;
     }
 
     private void OnEnable()

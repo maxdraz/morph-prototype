@@ -340,7 +340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fe544c58acbd87488b9a8c6f96c8c5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: 0
+  initialCursorLockMode: 1
 --- !u!1 &7374502897348363611
 GameObject:
   m_ObjectHideFlags: 0
