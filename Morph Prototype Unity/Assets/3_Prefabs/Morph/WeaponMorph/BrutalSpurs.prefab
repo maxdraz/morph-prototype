@@ -46,46 +46,49 @@ MonoBehaviour:
   baseDamage: 5
   lightAttacks:
   - onHitEffects:
-    - onHitEffect: {fileID: 11400000, guid: b6472a054bbbbe54aa1c805c8ea62e20, type: 2}
+    - onHitEffect: {fileID: 11400000, guid: 5646e0d34a12b324696121349b8b67e8, type: 2}
       data:
         id: 0
+    - onHitEffect: {fileID: 11400000, guid: 8042360282fd711448456307dcca30a9, type: 2}
+      data:
+        id: 1
     requiresUnlock: 0
     hitboxType: 0
     duration: 0.2
-    inputWindowBeforeAttackEnd: 0
-    inputWindowAfterAttackEnd: 0.5
+    inputWindowBeforeAttackEnd: 0.1
+    inputWindowAfterAttackEnd: 0.2
     lightAttackFX: {fileID: 11400000, guid: 35f9e4f041d6d1840ac3aa9455beccd9, type: 2}
   - onHitEffects:
-    - onHitEffect: {fileID: 11400000, guid: 07c1d2a94d32627438cb64119be2833b, type: 2}
-      data:
-        id: 1
-    - onHitEffect: {fileID: 11400000, guid: b6472a054bbbbe54aa1c805c8ea62e20, type: 2}
+    - onHitEffect: {fileID: 11400000, guid: 5646e0d34a12b324696121349b8b67e8, type: 2}
       data:
         id: 2
-    - onHitEffect: {fileID: 11400000, guid: 43742988cba5dad4c98d440ec358f8d9, type: 2}
+    - onHitEffect: {fileID: 11400000, guid: 8042360282fd711448456307dcca30a9, type: 2}
       data:
         id: 3
     requiresUnlock: 0
     hitboxType: 0
     duration: 0.2
-    inputWindowBeforeAttackEnd: 0
-    inputWindowAfterAttackEnd: 0.5
+    inputWindowBeforeAttackEnd: 0.1
+    inputWindowAfterAttackEnd: 0.2
     lightAttackFX: {fileID: 11400000, guid: fb8b01664b90e2047a5c1db255b735a2, type: 2}
   - onHitEffects:
     - onHitEffect: {fileID: 11400000, guid: 8042360282fd711448456307dcca30a9, type: 2}
       data:
         id: 4
+    - onHitEffect: {fileID: 11400000, guid: 5646e0d34a12b324696121349b8b67e8, type: 2}
+      data:
+        id: 5
     requiresUnlock: 0
     hitboxType: 0
     duration: 0.2
-    inputWindowBeforeAttackEnd: 0
+    inputWindowBeforeAttackEnd: 0.1
     inputWindowAfterAttackEnd: 0.2
     lightAttackFX: {fileID: 11400000, guid: b6b97076a38c9e94a8636025b8d1b7c9, type: 2}
   heavyAttacks:
   - onHitEffects:
     - onHitEffect: {fileID: 11400000, guid: 8042360282fd711448456307dcca30a9, type: 2}
       data:
-        id: 5
+        id: 6
     requiresUnlock: 0
     hitboxType: 0
     duration: 1
@@ -96,26 +99,30 @@ MonoBehaviour:
   references:
     version: 1
     00000000:
-      type: {class: AcidDamageData, ns: , asm: Assembly-CSharp}
+      type: {class: KnockbackData, ns: , asm: Assembly-CSharp}
       data:
-        acidDamage: 100
+        knockbackForce: 200
     00000001:
-      type: {class: PiercingDamageData, ns: , asm: Assembly-CSharp}
+      type: {class: PhysicalDamageData, ns: , asm: Assembly-CSharp}
+      data:
+        strikeModifier: 1
+    00000002:
+      type: {class: KnockbackData, ns: , asm: Assembly-CSharp}
+      data:
+        knockbackForce: 200
+    00000003:
+      type: {class: PhysicalDamageData, ns: , asm: Assembly-CSharp}
       data:
         strikeModifier: 2
-    00000002:
-      type: {class: AcidDamageData, ns: , asm: Assembly-CSharp}
-      data:
-        acidDamage: 100
-    00000003:
-      type: {class: PoisonDamageData, ns: , asm: Assembly-CSharp}
-      data:
-        poisonDamage: 2000
     00000004:
       type: {class: PhysicalDamageData, ns: , asm: Assembly-CSharp}
       data:
         strikeModifier: 5
     00000005:
+      type: {class: KnockbackData, ns: , asm: Assembly-CSharp}
+      data:
+        knockbackForce: 200
+    00000006:
       type: {class: PhysicalDamageData, ns: , asm: Assembly-CSharp}
       data:
         strikeModifier: 3

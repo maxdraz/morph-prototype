@@ -7,8 +7,9 @@ public class CreatureAnimationStateController : MonoBehaviour, IEventSubscriber
 {
     private Animator animator;
     private Health health;
-   [SerializeField] private WeaponMorphAttackHandler weaponMorphAttackHandler;  // change to attack handler eventually
+    private WeaponMorphAttackHandler weaponMorphAttackHandler;  // change to attack handler eventually
     private Movement movement;
+    private DamageHandler damageHandler;
     
     private WeaponAttack currentWeaponAttack;
     
@@ -16,6 +17,7 @@ public class CreatureAnimationStateController : MonoBehaviour, IEventSubscriber
     private static readonly int IsWeaponAttack = Animator.StringToHash("IsWeaponAttack");
     private static readonly int WeaponAttackSpeed = Animator.StringToHash("WeaponAttackSpeed");
     private static readonly int MovementSpeed = Animator.StringToHash("MovementSpeed");
+    private static readonly int DamageTaken = Animator.StringToHash("DamageTaken");
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +26,7 @@ public class CreatureAnimationStateController : MonoBehaviour, IEventSubscriber
         health = GetComponent<Health>();
         weaponMorphAttackHandler = GetComponent<WeaponMorphAttackHandler>();
         movement = GetComponentInParent<Movement>();
+        damageHandler = GetComponent<DamageHandler>();
 
     }
 
@@ -82,6 +85,11 @@ public class CreatureAnimationStateController : MonoBehaviour, IEventSubscriber
         animator.SetFloat(MovementSpeed, movementSpeedNormalized);
     }
 
+    private void OnDamageTaken(in DamageTakenSummary damageTakenSummary)
+    {
+        animator.SetBool(DamageTaken, true);
+    }
+
     public IEnumerator SubscribeToEventsCoroutine()
     {
         yield return new WaitForEndOfFrame();
@@ -93,6 +101,11 @@ public class CreatureAnimationStateController : MonoBehaviour, IEventSubscriber
         if (weaponMorphAttackHandler)
         {
             weaponMorphAttackHandler.AttackHasStarted += OnWeaponAttackStarted;
+        }
+
+        if (damageHandler)
+        {
+            damageHandler.DamageHasBeenTaken += OnDamageTaken;
         }
     }
 
@@ -106,6 +119,11 @@ public class CreatureAnimationStateController : MonoBehaviour, IEventSubscriber
         if (weaponMorphAttackHandler)
         {
             weaponMorphAttackHandler.AttackHasStarted -= OnWeaponAttackStarted;
+        }
+        
+        if (damageHandler)
+        {
+            damageHandler.DamageHasBeenTaken -= OnDamageTaken;
         }
     }
 }

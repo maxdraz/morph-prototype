@@ -12,6 +12,7 @@ public class DamageHandler : MonoBehaviour
     private Health health;
     private Armor armor;
     private Stamina stamina;
+    private Rigidbody parentRigidbody;
     [SerializeField] private bool isInvincible = true;
     [SerializeField] private DamageNumberSet damageNumberSet;
 
@@ -52,6 +53,7 @@ public class DamageHandler : MonoBehaviour
         health = GetComponent<Health>();
         armor = GetComponent<Armor>();
         stamina = GetComponent<Stamina>();
+        parentRigidbody = GetComponentInParent<Rigidbody>();
 
         if(!stats) Debug.LogWarning(transform.parent.name +" dmg handler couldnt find stats");
         if(!health) Debug.LogWarning(transform.parent.name +" dmg handler couldnt find health");
@@ -80,9 +82,19 @@ public class DamageHandler : MonoBehaviour
             // apply relevant status effects ...
         stamina.SubtractStamina(damageTakenSummary.StaminaDrained);
             // fortitude check for mortal blow 
+        ApplyKnockback(in damageTakenSummary);
             
         VisualizeDamage(in damageTakenSummary);
 
+    }
+
+    private void ApplyKnockback(in DamageTakenSummary damageTakenSummary)
+    {
+        if(!parentRigidbody) return;   
+        if(damageTakenSummary.KnockbackForce <= 0) return;
+
+        var forceDirectionNormalized = (transform.position - damageTakenSummary.DamageDealer.transform.position).normalized;
+        parentRigidbody.AddForce(forceDirectionNormalized * damageTakenSummary.KnockbackForce, ForceMode.Impulse);
     }
 
     private void VisualizeDamage(in DamageTakenSummary damageTakenSummary)
@@ -171,7 +183,8 @@ public class DamageHandler : MonoBehaviour
             IceDamage = HandleIceDamage(ref damageType),
             LightningDamage = HandleLightningDamage(ref damageType),
             StaminaDrained = HandlerStaminaDrain(ref damageType),
-            FortitudeDamage = HandleFortitudeDamage(ref damageType)
+            FortitudeDamage = HandleFortitudeDamage(ref damageType),
+            KnockbackForce = HandleKnockback(ref damageType)
         };
 
         damageTakenSummary.IsFatalBlow = health.WillDieFromThisDamage(damageTakenSummary.TotalDamage);
@@ -257,6 +270,16 @@ public class DamageHandler : MonoBehaviour
         if (damageType is IStaminaDrain staminaDrain)
         {
             return staminaDrain.StaminaToDrain;
+        }
+
+        return 0;
+    }
+
+    private float HandleKnockback(ref IDamageType damageType)
+    {
+        if (damageType is IKnockback knockback)
+        {
+            return knockback.KnockbackForce;
         }
 
         return 0;
