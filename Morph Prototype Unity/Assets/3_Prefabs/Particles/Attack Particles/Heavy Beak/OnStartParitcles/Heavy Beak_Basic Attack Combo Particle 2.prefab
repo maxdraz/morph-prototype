@@ -60,7 +60,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf7326e96025a2e4a9a0dc590caeba88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDuration: 0
 --- !u!198 &8729913962355922078
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -76,7 +75,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0

@@ -90,6 +90,24 @@ public class WeaponMorphAttackHandler : MonoBehaviour
         {
             LimbHeavyAttack();
         }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+           TailLightAttack();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            TailHeavyAttack();
+        }
+        
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            HeadLightAttack();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            HeadHeavyAttack();
+        }
     }
 
     private void InputWindowAfterAttack()
@@ -198,35 +216,6 @@ public class WeaponMorphAttackHandler : MonoBehaviour
         attackQueue.RemoveAt(0);
     }
 
-    // private void TryQueueAttack(WeaponMorphType morphType, WeaponAttackType attackType)
-    // {
-    //     switch (morphType)
-    //     {
-    //        case WeaponMorphType.Limb:
-    //            TryQueueAttack(outdatedLimbWeaponMorph, attackType);
-    //            break;
-    //        case WeaponMorphType.Head:
-    //            TryQueueAttack(headWeaponMorph, attackType);
-    //            break;
-    //        case WeaponMorphType.Tail:
-    //            TryQueueAttack(tailWeaponMorph, attackType);
-    //            break;
-    //     }
-    // }
-
-    // private void TryQueueAttack(WeaponOutdatedMorph weaponOutdatedMorph, WeaponAttackType attackType)
-    // {
-    //     if(weaponOutdatedMorph == null) return;
-    //     if (!CanQueueNextAttack(weaponOutdatedMorph, attackType)) return;
-    //
-    //     var currentAttack = weaponOutdatedMorph.GetCurrentAttack(attackType);
-    //     if (currentAttack != null)
-    //     {
-    //         attackQueue.Add(currentAttack);
-    //         weaponOutdatedMorph.AdvanceCombo(attackType);
-    //     }
-    // }
-
     private void TryQueueAttack(WeaponMorph weaponMorphToQueue, bool isLightAttack =  true)
     {
         if (!weaponMorphToQueue || !CanQueueAttack()) return;
@@ -257,16 +246,39 @@ public class WeaponMorphAttackHandler : MonoBehaviour
         return false;
     }
 
-    public void LimbLightAttack()
+    private void LimbLightAttack()
     {
-       // TryQueueAttack(WeaponMorphType.Limb, WeaponAttackType.Light);
-       TryQueueAttack(limbWeaponMorph);
+        TryQueueAttack(limbWeaponMorph);
     }
 
-    public void LimbHeavyAttack()
+    private void LimbHeavyAttack()
     {
-      //  TryQueueAttack(WeaponMorphType.Limb, WeaponAttackType.Heavy);
+     
       TryQueueAttack(limbWeaponMorph, false);
+
+    }
+    
+    private void HeadLightAttack()
+    {
+        TryQueueAttack(headWeaponMorph);
+    }
+
+    private void HeadHeavyAttack()
+    {
+     
+        TryQueueAttack(headWeaponMorph, false);
+
+    }
+    
+    private void TailLightAttack()
+    {
+        TryQueueAttack(tailWeaponMorph);
+    }
+
+    private void TailHeavyAttack()
+    {
+     
+        TryQueueAttack(tailWeaponMorph, false);
 
     }
 

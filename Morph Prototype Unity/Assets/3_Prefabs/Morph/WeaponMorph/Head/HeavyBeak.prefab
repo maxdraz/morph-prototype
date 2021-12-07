@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5548642287737709194
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5548642287737709188}
+  - component: {fileID: 5548642287737709195}
+  m_Layer: 0
+  m_Name: HeavyBeak
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5548642287737709188
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5548642287737709194}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 463.20493, y: 270.2506, z: -455.18015}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5548642287737709195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5548642287737709194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a3fd0439f8633459c59ada9c266165, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseDamage: 10
+  lightAttacks:
+  - onHitEffects: []
+    requiresUnlock: 0
+    hitboxType: 0
+    duration: 0.5
+    inputWindowBeforeAttackEnd: 0.2
+    inputWindowAfterAttackEnd: 0.2
+    lightAttackFX: {fileID: 11400000, guid: 68154bef81d7c2c44967186d4989ea89, type: 2}
+  - onHitEffects: []
+    requiresUnlock: 0
+    hitboxType: 0
+    duration: 0.5
+    inputWindowBeforeAttackEnd: 0.2
+    inputWindowAfterAttackEnd: 0.2
+    lightAttackFX: {fileID: 11400000, guid: 1a73800b6c3b7e546887a058af752b78, type: 2}
+  heavyAttacks:
+  - onHitEffects: []
+    requiresUnlock: 0
+    hitboxType: 0
+    duration: 0.5
+    inputWindowBeforeAttackEnd: 0.2
+    inputWindowAfterAttackEnd: 0.2
+    chargeUpTime: 0
+    heavyAttackFX: {fileID: 11400000, guid: 5f2b71be21c403d4a99777ba438c34d5, type: 2}
+  references:
+    version: 1

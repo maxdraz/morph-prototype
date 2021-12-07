@@ -14,21 +14,17 @@ public class MorphLoadout : MonoBehaviour
 
     public event Action<Morph> MorphLoadoutChanged;
 
-    private void Awake()
-    {
-       
-    }
-
     private void Start()
     {
         AddMorphToLoadout(limbWeaponMorph);
+        AddMorphToLoadout(headWeaponMorph);
+        AddMorphToLoadout(tailWeaponMorph);
 
         for (int i = 0; i < passiveMorphs.Count; i++)
         {
             passiveMorphs[i] = UtilityFunctions.CopyComponent(passiveMorphs[i], gameObject);
         }
-            
-        
+
     }
     
 

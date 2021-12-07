@@ -6,47 +6,11 @@ using UnityEngine;
 
 public class ParticleSystemController : MonoBehaviour
 {
-    [SerializeField]private float attackDuration;
     private List<ParticleSystem> particleSystems;
-    // Start is called before the first frame update
+ 
     void Awake()
     {
         particleSystems = GetComponentsInChildren<ParticleSystem>().ToList();
-    }
-
-    private void Start()
-    {
-        // if (particleSystems != null && particleSystems.Count > 0)
-        // {
-        //     if (attackDuration > 0)
-        //     {
-        //         print("scaling");
-        //         ScaleParticlesToDuration(attackDuration);
-        //     }
-        // }
-    }
-
-    private void OnEnable()
-    {
-        // if (particleSystems != null && particleSystems.Count > 0){
-        //     
-        //     if (attackDuration > 0)
-        //     {
-        //         print("scaling");
-        //         ScaleParticlesToDuration(attackDuration);
-        //     }
-        // }
-    }
-
-    private void OnDisable()
-    {
-        //attackDuration = 0;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void ScaleParticlesToDuration(float targetDuration)
