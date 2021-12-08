@@ -82,6 +82,9 @@ public class WeaponMorphAttackHandler : MonoBehaviour
 
     private void T_HandleInput()
     {
+        var player = PlayerCreatureCharacter.Instance;
+        if(!player || !player.CanAcceptInput) return;
+        
         if (Input.GetMouseButtonDown(0))
         {
             LimbLightAttack();

@@ -8,6 +8,11 @@ public class PlayerCreatureCharacter : CreatureCharacter
 {
     public static PlayerCreatureCharacter Instance;
 
+    public PartyManager PartyManager;
+    public MorphLoadout CurrentCreatureMorphLoadout => PartyManager.ActiveCreature.GetComponent<MorphLoadout>();
+
+    public bool CanAcceptInput;
+
     protected override void Awake()
     {
         base.Awake();
@@ -20,6 +25,10 @@ public class PlayerCreatureCharacter : CreatureCharacter
         {
             Instance = this;
         }
-        
+
+        CanAcceptInput = false;
+
+        PartyManager = GetComponent<PartyManager>();
+
     }
 }

@@ -59,12 +59,14 @@ public class ThirdPersonCamera : MonoBehaviour
 
         cameraMaxDistance = cameraDistance;
 
+        UpdateCameraPosition();
+
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
-        if (canReceiveInput)
+        if (PlayerCreatureCharacter.Instance.CanAcceptInput)
         {
             UpdateCameraPosition();
         }
