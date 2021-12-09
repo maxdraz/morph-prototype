@@ -7,6 +7,7 @@ using UnityEngine;
 public class VitriolicGoo : PassiveMorph
 {
     private DamageHandler damageHandler;
+    [SerializeField] private float staminaDrainFraction;
     [SerializeField] private float chemicalDamageStatBonus = 5;
     [SerializeField] private bool unlockMolecularAcid = true;
 
@@ -38,7 +39,7 @@ public class VitriolicGoo : PassiveMorph
     {
         if (damageTakenSummary.AcidDamage > 0)
         {
-            damageTakenSummary.DamageTaker.ApplyDamage(new StaminaDrainData(damageTakenSummary.AcidDamage), damageHandler);
+            damageTakenSummary.DamageTaker.ApplyDamage(new StaminaDrainData(damageTakenSummary.AcidDamage * staminaDrainFraction), damageHandler);
         }
     }
 

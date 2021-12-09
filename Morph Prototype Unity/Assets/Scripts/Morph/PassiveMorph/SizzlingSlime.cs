@@ -5,7 +5,8 @@ using UnityEngine;
 public class SizzlingSlime : PassiveMorph
 {
     private DamageHandler damageHandler;
-    
+
+    [SerializeField] private float perceptionDamageFraction;
     [SerializeField] private float chemicalDamageStatBonus = 5;
     [SerializeField] private bool unlockBlindingVapour = true;
 
@@ -31,7 +32,7 @@ public class SizzlingSlime : PassiveMorph
     {
         if (damageTakenSummary.AcidDamage > 0)
         {
-            damageTakenSummary.DamageTaker.ApplyDamage(new PerceptionDamageData(damageTakenSummary.AcidDamage/10), damageHandler);
+            damageTakenSummary.DamageTaker.ApplyDamage(new PerceptionDamageData(damageTakenSummary.AcidDamage * perceptionDamageFraction), damageHandler);
         }
     }
 

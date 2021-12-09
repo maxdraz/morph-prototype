@@ -9,6 +9,7 @@ public class Movement : MonoBehaviour
     private float maxSpeed = 10f;
     private float minSpeed = 2f;
     [SerializeField] private float speed;
+    public float speedModifier = 1;
     [Range(0,1)]
     [SerializeField] private float rotationStrength;
     private Vector3 velocity;
@@ -86,6 +87,12 @@ public class Movement : MonoBehaviour
         // }
     }
 
+    public float AdjustSpeedModifier(float amountToAdjustBy) 
+    {
+        speedModifier += amountToAdjustBy;
+        return speedModifier;
+    }
+
     private bool IsStrafing()
     {
         return Input.GetMouseButton(1);
@@ -112,11 +119,11 @@ public class Movement : MonoBehaviour
     {
         if (sprinting)
         {
-            velocity = input * (speed * 2);
+            velocity = (input * (speed * 2) * (1 + speedModifier));
         }
         else 
         {
-            velocity = input * speed;
+            velocity = (input * speed * (1 + speedModifier));
         }
 
         

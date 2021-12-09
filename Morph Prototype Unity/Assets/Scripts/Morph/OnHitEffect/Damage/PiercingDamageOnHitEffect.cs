@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Piercing Physical Damage", menuName = "On Hit Effects/Piercing Physical Damage")]
-public class PiercingDamageOnHittEffect : OnHitEffect
+public class PiercingDamageOnHitEffect : OnHitEffect
 {
     public override OnHitEffectData GetData()
     {
