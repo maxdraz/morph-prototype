@@ -1483,7 +1483,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &229069847
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5056,9 +5056,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drawGizmos: 1
   target: {fileID: 1545860719}
-  pivotOffset: {x: 1, y: 1, z: 0}
+  pivotOffset: {x: 0.001, y: 2, z: 0}
   cameraDistance: 5
-  cameraMaxDistance: 0
+  cameraMaxDistance: 5
   cameraDistanceBeforeCollision: 5
   invertX: 0
   invertY: 0
@@ -9950,18 +9950,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4629799917121605792, guid: 831ebd26ff801c34ea13a06dab0c2bc2, type: 3}
-      propertyPath: startingCreature
-      value: 
-      objectReference: {fileID: 8919471696488907971, guid: 48f7c1d1e9beddf4d82092c20b3ab169, type: 3}
-    - target: {fileID: 6599371514981197243, guid: 831ebd26ff801c34ea13a06dab0c2bc2, type: 3}
-      propertyPath: m_DefaultActionMap
-      value: 8818c64b-5281-4a27-b209-75a02d6862f6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7048893934571652841, guid: 831ebd26ff801c34ea13a06dab0c2bc2, type: 3}
-      propertyPath: CanAcceptInput
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8683765337263264562, guid: 831ebd26ff801c34ea13a06dab0c2bc2, type: 3}
       propertyPath: m_RootOrder
       value: 11

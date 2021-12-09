@@ -96,7 +96,7 @@ MonoBehaviour:
     hitboxType: 0
     duration: 1
     inputWindowBeforeAttackEnd: 0
-    inputWindowAfterAttackEnd: 0
+    inputWindowAfterAttackEnd: 0.1
     chargeUpTime: 0
     heavyAttackFX: {fileID: 11400000, guid: 3f11391f50c062d4aa306f13e7c2d933, type: 2}
   references:

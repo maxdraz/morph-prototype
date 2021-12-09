@@ -87,47 +87,18 @@ public class WeaponMorphAttackHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        InputWindowAfterAttack();
+        UpdateInputWindowAfterAttack();
         if(attackQueue.Count < 1) return;
         ProcessAttackQueue();
     }
 
-    private void T_HandleInput()
+    private void UpdateInputWindowAfterAttack()
     {
-        var player = PlayerCreatureCharacter.Instance;
-        if(!player || !player.CanAcceptInput) return;
-        
-        if (Input.GetMouseButtonDown(0))
+        if (attackQueue.Count > 0)
         {
-            LimbLightAttack();
-        }
-        if (Input.GetMouseButtonDown(1))
-        {
-            LimbHeavyAttack();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-           TailLightAttack();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            TailHeavyAttack();
+            return;
         }
         
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            MouthLightAttack();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            MouthHeavyAttack();
-        }
-    }
-
-    private void InputWindowAfterAttack()
-    {
-        if(attackQueue.Count > 0) return;
         if (!inputWindowTimer.IsFinished())
         {
             inputWindowTimer.CountDown(Time.deltaTime);
@@ -137,6 +108,11 @@ public class WeaponMorphAttackHandler : MonoBehaviour
             {
                 ResetCombo();
             }
+        }
+        else
+        {
+            // make creature stop looking in attack dir
+            controller.GetComponent<Movement>().ClearLookRotationTransform();
         }
     }
 
@@ -205,6 +181,9 @@ public class WeaponMorphAttackHandler : MonoBehaviour
         
         currentWeaponAttack.OnStart();
         AttackHasStarted?.Invoke(ref currentWeaponAttack);
+        
+        // make crature face attack
+        controller.GetComponent<Movement>().SetLookRotationTransform(Camera.main.transform);
     }
     
     private void OnAttackHit(DamageHandler damageTaker)

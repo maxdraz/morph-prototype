@@ -19,6 +19,8 @@ public class Movement : MonoBehaviour
     private CreatureVirtualController controller;
     private Vector3 moveDir;
 
+    private Transform lookRotationTransform;
+
     private void Reset()
     {
         speed = 5f;
@@ -65,14 +67,23 @@ public class Movement : MonoBehaviour
 
     void UpdateRotation()
     {
+        // if look rotation transform
+        if (lookRotationTransform)
+        {
+            // look in direactio
+            var lookDirection = UtilityFunctions.TransformForwardOnPlane(lookRotationTransform, Vector3.up);
+            LookInDirection(lookDirection, in rotationStrength);
+            return;
+        }
+
         if (InputGreaterThan(0.7f) && !IsStrafing())
         {
             LookInDirection(in input, in rotationStrength);
         }
-        else if(IsStrafing())
-        {
-            LookInDirection(UtilityFunctions.CameraForwardOnPlane(Vector3.up), in rotationStrength);
-        }
+        // else if(IsStrafing())
+        // {
+        //     LookInDirection(UtilityFunctions.CameraForwardOnPlane(Vector3.up), in rotationStrength);
+        // }
     }
 
     private bool IsStrafing()
@@ -157,5 +168,15 @@ public class Movement : MonoBehaviour
     {
         moveDir = new Vector3(dir.x, 0, dir.y);
         moveDir =  Vector3.ClampMagnitude(moveDir, 1);
+    }
+
+    public void SetLookRotationTransform(Transform trans)
+    {
+        lookRotationTransform = trans;
+    }
+
+    public void ClearLookRotationTransform()
+    {
+        lookRotationTransform = null;
     }
 }

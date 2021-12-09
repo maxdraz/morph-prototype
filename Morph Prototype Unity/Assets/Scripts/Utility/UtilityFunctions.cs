@@ -10,6 +10,11 @@ public static class UtilityFunctions
         return Vector3.ProjectOnPlane(Camera.main.transform.forward, planeNormal).normalized;
     }
     
+    public static Vector3 TransformForwardOnPlane(Transform trans,Vector3 planeNormal)
+    {
+        return Vector3.ProjectOnPlane(trans.forward, planeNormal).normalized;
+    }
+    
     public static T CopyComponent<T>(T original, GameObject destination) where T : Component
     {
         System.Type type = original.GetType();
