@@ -7,6 +7,11 @@ public class AcidDebuff : Debuff
 {
     [SerializeField] private Timer acidDurationTimer;
     [SerializeField] private float acidDotModifier;
+    
+    //TODO
+    // float damageEachTick = damageStack / 5
+    
+    // TODO - tick on hit
 
 
     public AcidDebuff(Timer acidDurationTimer, Timer tickTimer) : base(tickTimer)
@@ -47,6 +52,8 @@ public class AcidDebuff : Debuff
     {
         float acidDamageDealt = 1 + (damageStack / 5);
         damageStack -= acidDamageDealt;
+        
+        //TODO - acidDamageDealt = damageEachTick;
         return new AcidTickDamageData(acidDamageDealt);
     }
 }

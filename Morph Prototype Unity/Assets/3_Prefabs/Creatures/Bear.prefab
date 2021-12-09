@@ -7,6 +7,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 320125811011304783, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}
+      propertyPath: headWeaponMorph
+      value: 
+      objectReference: {fileID: 5548642287737709195, guid: 85e4dcfb48cd8af479d7ec947ff10a03, type: 3}
+    - target: {fileID: 320125811011304783, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}
+      propertyPath: tailWeaponMorph
+      value: 
+      objectReference: {fileID: 8602732015374447736, guid: a76627e8627695d418401cd2155a0c3c, type: 3}
     - target: {fileID: 344181428797638714, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}
       propertyPath: m_RootOrder
       value: 0

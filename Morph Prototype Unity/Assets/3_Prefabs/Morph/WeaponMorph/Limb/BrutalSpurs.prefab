@@ -72,12 +72,15 @@ MonoBehaviour:
     inputWindowAfterAttackEnd: 0.2
     lightAttackFX: {fileID: 11400000, guid: fb8b01664b90e2047a5c1db255b735a2, type: 2}
   - onHitEffects:
-    - onHitEffect: {fileID: 11400000, guid: 8042360282fd711448456307dcca30a9, type: 2}
+    - onHitEffect: {fileID: 11400000, guid: 5646e0d34a12b324696121349b8b67e8, type: 2}
       data:
         id: 4
     - onHitEffect: {fileID: 11400000, guid: 5646e0d34a12b324696121349b8b67e8, type: 2}
       data:
         id: 5
+    - onHitEffect: {fileID: 11400000, guid: b6472a054bbbbe54aa1c805c8ea62e20, type: 2}
+      data:
+        id: 6
     requiresUnlock: 0
     hitboxType: 0
     duration: 0.2
@@ -88,7 +91,7 @@ MonoBehaviour:
   - onHitEffects:
     - onHitEffect: {fileID: 11400000, guid: 8042360282fd711448456307dcca30a9, type: 2}
       data:
-        id: 6
+        id: 7
     requiresUnlock: 0
     hitboxType: 0
     duration: 1
@@ -115,14 +118,18 @@ MonoBehaviour:
       data:
         strikeModifier: 2
     00000004:
-      type: {class: PhysicalDamageData, ns: , asm: Assembly-CSharp}
+      type: {class: KnockbackData, ns: , asm: Assembly-CSharp}
       data:
-        strikeModifier: 5
+        knockbackForce: 100
     00000005:
       type: {class: KnockbackData, ns: , asm: Assembly-CSharp}
       data:
         knockbackForce: 200
     00000006:
+      type: {class: AcidDamageData, ns: , asm: Assembly-CSharp}
+      data:
+        acidDamage: 1
+    00000007:
       type: {class: PhysicalDamageData, ns: , asm: Assembly-CSharp}
       data:
         strikeModifier: 3

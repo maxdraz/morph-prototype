@@ -48,14 +48,14 @@ MonoBehaviour:
   - onHitEffects: []
     requiresUnlock: 0
     hitboxType: 0
-    duration: 0.5
+    duration: 1
     inputWindowBeforeAttackEnd: 0.2
     inputWindowAfterAttackEnd: 0.2
     lightAttackFX: {fileID: 11400000, guid: 68154bef81d7c2c44967186d4989ea89, type: 2}
   - onHitEffects: []
     requiresUnlock: 0
     hitboxType: 0
-    duration: 0.5
+    duration: 1
     inputWindowBeforeAttackEnd: 0.2
     inputWindowAfterAttackEnd: 0.2
     lightAttackFX: {fileID: 11400000, guid: 1a73800b6c3b7e546887a058af752b78, type: 2}

@@ -5,8 +5,7 @@ using UnityEngine;
 public class SizzlingSlime : PassiveMorph
 {
     private DamageHandler damageHandler;
-
-    [SerializeField] private float acidDOTModifier;
+    
     [SerializeField] private float chemicalDamageStatBonus = 5;
     [SerializeField] private bool unlockBlindingVapour = true;
 
