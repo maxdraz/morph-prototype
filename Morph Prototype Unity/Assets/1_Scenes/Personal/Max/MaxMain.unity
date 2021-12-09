@@ -9830,7 +9830,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6002257876881877481, guid: 444b5cad6de32d74aa6640238ba5d449, type: 3}
       propertyPath: initialCursorLockMode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7374502897348363611, guid: 444b5cad6de32d74aa6640238ba5d449, type: 3}
       propertyPath: m_Name
@@ -9954,6 +9954,10 @@ PrefabInstance:
       propertyPath: startingCreature
       value: 
       objectReference: {fileID: 8919471696488907971, guid: 48f7c1d1e9beddf4d82092c20b3ab169, type: 3}
+    - target: {fileID: 6599371514981197243, guid: 831ebd26ff801c34ea13a06dab0c2bc2, type: 3}
+      propertyPath: m_DefaultActionMap
+      value: 8818c64b-5281-4a27-b209-75a02d6862f6
+      objectReference: {fileID: 0}
     - target: {fileID: 7048893934571652841, guid: 831ebd26ff801c34ea13a06dab0c2bc2, type: 3}
       propertyPath: CanAcceptInput
       value: 1

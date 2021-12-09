@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class Movement : MonoBehaviour
     private Rigidbody rb;
     private bool sprinting;
 
+    private CreatureVirtualController controller;
+    private Vector3 moveDir;
+
     private void Reset()
     {
         speed = 5f;
@@ -25,6 +29,16 @@ public class Movement : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        controller = GetComponent<CreatureVirtualController>();
+    }
+
+    private void OnEnable()
+    {
+    }
+
+    private void OnDisable()
+    {
+        
     }
 
     // Update is called once per frame
@@ -117,10 +131,9 @@ public class Movement : MonoBehaviour
 
     private Vector3 GetInputRelativeToCamera()
     {
-        var inpt = GetInput();
-        inpt = Camera.main.transform.TransformDirection(inpt);
-        inpt = Vector3.ProjectOnPlane(inpt, Vector3.up).normalized;
-        return inpt;
+        moveDir = Camera.main.transform.TransformDirection(moveDir);
+        moveDir = Vector3.ProjectOnPlane(moveDir, Vector3.up).normalized;
+        return moveDir;
     }
 
     private void LookInDirection(Vector3 direction, in float slerpStep)
@@ -138,5 +151,11 @@ public class Movement : MonoBehaviour
         var currentVel = rb.velocity;
         var velocityXZ = new Vector3(currentVel.x, 0, currentVel.z);
         return Mathf.Min(velocityXZ.magnitude / maxSpeed, 1);
+    }
+
+    public void SetMovementDirection(Vector2 dir)
+    {
+        moveDir = new Vector3(dir.x, 0, dir.y);
+        moveDir =  Vector3.ClampMagnitude(moveDir, 1);
     }
 }

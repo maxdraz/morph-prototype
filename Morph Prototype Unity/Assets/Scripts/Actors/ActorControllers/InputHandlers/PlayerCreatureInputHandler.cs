@@ -1,36 +1,102 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerCreatureInputHandler : CreatureInputHandler
 {
-    public override bool GetAppendageLightAttackInput()
+    private PlayerInput playerInput;
+    private CreatureVirtualController controller;
+    
+    private InputAction movementAction;
+    private InputAction limbLightAttackAction;
+    private InputAction limbHeavyAttackAction;
+    private InputAction tailLightAttackAction;
+    private InputAction tailHeavyAttackAction;
+    private InputAction mouthLightAttackAction;
+    private InputAction mouthHeavyAttackAction;
+
+    private void Awake()
     {
-        return Input.GetMouseButtonDown(0);
+        playerInput = GetComponent<PlayerInput>();
+        controller = GetComponent<CreatureVirtualController>();
+        
+        movementAction = playerInput.actions.FindAction("Movement");
+        limbLightAttackAction = playerInput.actions.FindAction("LimbLightAttack");
+        limbHeavyAttackAction = playerInput.actions.FindAction("LimbHeavyAttack");
+        
+        tailLightAttackAction = playerInput.actions.FindAction("TailLightAttack");
+        tailHeavyAttackAction = playerInput.actions.FindAction("TailHeavyAttack");
+        
+        mouthLightAttackAction = playerInput.actions.FindAction("MouthLightAttack");
+        mouthHeavyAttackAction = playerInput.actions.FindAction("MouthHeavyAttack");
+        
     }
 
-    public override bool GetAppendageHeavyAttackInput()
+    private void OnEnable()
     {
-        return Input.GetMouseButtonDown(1);
+
+        limbLightAttackAction.performed += OnLimbLightAttackPerformed;
+        limbHeavyAttackAction.performed += OnLimbHeavyAttackPerformed;
+        
+        tailLightAttackAction.performed += OnTailLightAttackPerformed;
+        tailHeavyAttackAction.performed += OnTailHeavyAttackPerformed;
+        
+        mouthLightAttackAction.performed += OnMouthLightAttackPerformed;
+        mouthHeavyAttackAction.performed += OnMouthHeavyAttackPerformed;
     }
 
-    public override bool GetMouthLightAttackInput()
+    private void OnDisable()
     {
-        return Input.GetKeyDown(KeyCode.LeftShift) && Input.GetMouseButtonDown(0);
+        limbLightAttackAction.performed -= OnLimbLightAttackPerformed;
+        limbHeavyAttackAction.performed -= OnLimbHeavyAttackPerformed;
+        
+        tailLightAttackAction.performed -= OnTailLightAttackPerformed;
+        tailHeavyAttackAction.performed -= OnTailHeavyAttackPerformed;
+        
+        mouthLightAttackAction.performed -= OnMouthLightAttackPerformed;
+        mouthHeavyAttackAction.performed -= OnMouthHeavyAttackPerformed;
     }
 
-    public override bool GetMouthHeavyAttackInput()
+    private void Update()
     {
-        return Input.GetKeyDown(KeyCode.LeftShift) && Input.GetMouseButtonDown(1);
+        var moveInput = movementAction.ReadValue<Vector2>();
+        controller.Move(moveInput);
     }
 
-    public override bool GetTailLightAttackInput()
+    private void OnMovementPerformed(InputAction.CallbackContext ctx)
     {
-        return Input.GetKeyDown(KeyCode.LeftControl) && Input.GetMouseButtonDown(0);
+        controller.Move(ctx.ReadValue<Vector2>());
     }
 
-    public override bool GetTailHeavyAttackInput()
+    private void OnLimbLightAttackPerformed(InputAction.CallbackContext ctx)
     {
-        return Input.GetKeyDown(KeyCode.LeftControl) && Input.GetMouseButtonDown(1);
+        controller.InvokeLimbLightAttack();
+    }
+    
+    private void OnLimbHeavyAttackPerformed(InputAction.CallbackContext ctx)
+    {
+        controller.InvokeLimbHeavyAttack();
+    }
+    
+    private void OnTailLightAttackPerformed(InputAction.CallbackContext ctx)
+    {
+        controller.InvokeTailLightAttack();
+    }
+    
+    private void OnTailHeavyAttackPerformed(InputAction.CallbackContext ctx)
+    {
+        controller.InvokeTailHeavyAttack();
+    }
+    
+    private void OnMouthLightAttackPerformed(InputAction.CallbackContext ctx)
+    {
+        controller.InvokeMouthLightAttack();
+    }
+    
+    private void OnMouthHeavyAttackPerformed(InputAction.CallbackContext ctx)
+    {
+        controller.InvokeMouthHeavyAttack();
     }
 }

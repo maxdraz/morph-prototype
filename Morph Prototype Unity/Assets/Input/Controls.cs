@@ -19,7 +19,7 @@ public class @Controls : IInputActionCollection, IDisposable
             ""id"": ""8818c64b-5281-4a27-b209-75a02d6862f6"",
             ""actions"": [
                 {
-                    ""name"": ""LimbWeaponLight"",
+                    ""name"": ""LimbLightAttack"",
                     ""type"": ""Button"",
                     ""id"": ""a18d460f-0190-4782-ab8d-e33c15e38a55"",
                     ""expectedControlType"": ""Button"",
@@ -27,7 +27,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": ""Tap""
                 },
                 {
-                    ""name"": ""LimbWeaponHeavy"",
+                    ""name"": ""LimbHeavyAttack"",
                     ""type"": ""Button"",
                     ""id"": ""826ab441-3610-4644-84e8-74605e456f10"",
                     ""expectedControlType"": ""Button"",
@@ -35,7 +35,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": ""Hold""
                 },
                 {
-                    ""name"": ""TailWeaponLight"",
+                    ""name"": ""TailLightAttack"",
                     ""type"": ""Button"",
                     ""id"": ""d8810b6c-b12a-4e2d-8c4e-ad330b666585"",
                     ""expectedControlType"": ""Button"",
@@ -43,7 +43,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": ""Tap""
                 },
                 {
-                    ""name"": ""TailWeaponHeavy"",
+                    ""name"": ""TailHeavyAttack"",
                     ""type"": ""Button"",
                     ""id"": ""803bf0a7-fa27-4d29-a19b-7a6875aaede3"",
                     ""expectedControlType"": ""Button"",
@@ -51,7 +51,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": ""Hold""
                 },
                 {
-                    ""name"": ""MouthWeaponLight"",
+                    ""name"": ""MouthLightAttack"",
                     ""type"": ""Button"",
                     ""id"": ""d680de1d-ba18-4602-8deb-ad476e1f6cf7"",
                     ""expectedControlType"": ""Button"",
@@ -59,7 +59,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": ""Tap""
                 },
                 {
-                    ""name"": ""MouthWeaponHeavy"",
+                    ""name"": ""MouthHeavyAttack"",
                     ""type"": ""Button"",
                     ""id"": ""5d774c7e-f119-42ed-8227-6b1e16b5d79a"",
                     ""expectedControlType"": ""Button"",
@@ -68,9 +68,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Movement"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""c474d31b-e2f3-44bb-9cbe-d82c0f9500de"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
@@ -97,6 +97,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Look"",
+                    ""type"": ""Value"",
+                    ""id"": ""3866b583-b167-45a7-9820-273f73c50bc2"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -107,7 +115,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""LimbWeaponLight"",
+                    ""action"": ""LimbLightAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -118,18 +126,18 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""LimbWeaponLight"",
+                    ""action"": ""LimbLightAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""88251a03-a231-4369-8769-54ab9d455524"",
-                    ""path"": ""<Mouse>/rightButton"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""LimbWeaponHeavy"",
+                    ""action"": ""LimbHeavyAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -137,10 +145,10 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""ab53a7fc-cdee-4fc9-93d3-0e83fa6d6ece"",
                     ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""LimbWeaponHeavy"",
+                    ""action"": ""LimbHeavyAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -151,7 +159,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""TailWeaponLight"",
+                    ""action"": ""TailLightAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -162,7 +170,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""TailWeaponLight"",
+                    ""action"": ""TailLightAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -173,7 +181,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""TailWeaponHeavy"",
+                    ""action"": ""TailHeavyAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -184,7 +192,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""TailWeaponHeavy"",
+                    ""action"": ""TailHeavyAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -195,7 +203,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""MouthWeaponLight"",
+                    ""action"": ""MouthLightAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -206,18 +214,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""MouthWeaponHeavy"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b8ee35fe-18d0-4c1c-8d45-ffa252350553"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Movement"",
+                    ""action"": ""MouthHeavyAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -286,6 +283,94 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""Mobility"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e4d0f91f-6ad1-4b5b-8a2e-70d232f901c3"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": ""ScaleVector2(x=0.1,y=0.1)"",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""74371166-e62c-4db1-9d3b-c21878d2fecd"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": ""ScaleVector2(x=2,y=2)"",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ae961383-80fd-4d24-9c77-8e5989e6cc2a"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""8afecc14-a5f4-4283-8a43-27f1f95e42ce"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""b2736b8c-2352-459a-817a-dc22352058ec"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""ddf5d152-d1fc-4122-9883-9c19f4eaa4b0"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""cd1dc4f0-692c-487f-bf02-799e3fddac13"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""dd2dccbf-b30d-43bc-bda7-4c8077a6d96a"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -294,16 +379,17 @@ public class @Controls : IInputActionCollection, IDisposable
 }");
         // Gameplay
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
-        m_Gameplay_LimbWeaponLight = m_Gameplay.FindAction("LimbWeaponLight", throwIfNotFound: true);
-        m_Gameplay_LimbWeaponHeavy = m_Gameplay.FindAction("LimbWeaponHeavy", throwIfNotFound: true);
-        m_Gameplay_TailWeaponLight = m_Gameplay.FindAction("TailWeaponLight", throwIfNotFound: true);
-        m_Gameplay_TailWeaponHeavy = m_Gameplay.FindAction("TailWeaponHeavy", throwIfNotFound: true);
-        m_Gameplay_MouthWeaponLight = m_Gameplay.FindAction("MouthWeaponLight", throwIfNotFound: true);
-        m_Gameplay_MouthWeaponHeavy = m_Gameplay.FindAction("MouthWeaponHeavy", throwIfNotFound: true);
+        m_Gameplay_LimbLightAttack = m_Gameplay.FindAction("LimbLightAttack", throwIfNotFound: true);
+        m_Gameplay_LimbHeavyAttack = m_Gameplay.FindAction("LimbHeavyAttack", throwIfNotFound: true);
+        m_Gameplay_TailLightAttack = m_Gameplay.FindAction("TailLightAttack", throwIfNotFound: true);
+        m_Gameplay_TailHeavyAttack = m_Gameplay.FindAction("TailHeavyAttack", throwIfNotFound: true);
+        m_Gameplay_MouthLightAttack = m_Gameplay.FindAction("MouthLightAttack", throwIfNotFound: true);
+        m_Gameplay_MouthHeavyAttack = m_Gameplay.FindAction("MouthHeavyAttack", throwIfNotFound: true);
         m_Gameplay_Movement = m_Gameplay.FindAction("Movement", throwIfNotFound: true);
         m_Gameplay_Stealth = m_Gameplay.FindAction("Stealth", throwIfNotFound: true);
         m_Gameplay_Intimidation = m_Gameplay.FindAction("Intimidation", throwIfNotFound: true);
         m_Gameplay_Mobility = m_Gameplay.FindAction("Mobility", throwIfNotFound: true);
+        m_Gameplay_Look = m_Gameplay.FindAction("Look", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -353,30 +439,32 @@ public class @Controls : IInputActionCollection, IDisposable
     // Gameplay
     private readonly InputActionMap m_Gameplay;
     private IGameplayActions m_GameplayActionsCallbackInterface;
-    private readonly InputAction m_Gameplay_LimbWeaponLight;
-    private readonly InputAction m_Gameplay_LimbWeaponHeavy;
-    private readonly InputAction m_Gameplay_TailWeaponLight;
-    private readonly InputAction m_Gameplay_TailWeaponHeavy;
-    private readonly InputAction m_Gameplay_MouthWeaponLight;
-    private readonly InputAction m_Gameplay_MouthWeaponHeavy;
+    private readonly InputAction m_Gameplay_LimbLightAttack;
+    private readonly InputAction m_Gameplay_LimbHeavyAttack;
+    private readonly InputAction m_Gameplay_TailLightAttack;
+    private readonly InputAction m_Gameplay_TailHeavyAttack;
+    private readonly InputAction m_Gameplay_MouthLightAttack;
+    private readonly InputAction m_Gameplay_MouthHeavyAttack;
     private readonly InputAction m_Gameplay_Movement;
     private readonly InputAction m_Gameplay_Stealth;
     private readonly InputAction m_Gameplay_Intimidation;
     private readonly InputAction m_Gameplay_Mobility;
+    private readonly InputAction m_Gameplay_Look;
     public struct GameplayActions
     {
         private @Controls m_Wrapper;
         public GameplayActions(@Controls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @LimbWeaponLight => m_Wrapper.m_Gameplay_LimbWeaponLight;
-        public InputAction @LimbWeaponHeavy => m_Wrapper.m_Gameplay_LimbWeaponHeavy;
-        public InputAction @TailWeaponLight => m_Wrapper.m_Gameplay_TailWeaponLight;
-        public InputAction @TailWeaponHeavy => m_Wrapper.m_Gameplay_TailWeaponHeavy;
-        public InputAction @MouthWeaponLight => m_Wrapper.m_Gameplay_MouthWeaponLight;
-        public InputAction @MouthWeaponHeavy => m_Wrapper.m_Gameplay_MouthWeaponHeavy;
+        public InputAction @LimbLightAttack => m_Wrapper.m_Gameplay_LimbLightAttack;
+        public InputAction @LimbHeavyAttack => m_Wrapper.m_Gameplay_LimbHeavyAttack;
+        public InputAction @TailLightAttack => m_Wrapper.m_Gameplay_TailLightAttack;
+        public InputAction @TailHeavyAttack => m_Wrapper.m_Gameplay_TailHeavyAttack;
+        public InputAction @MouthLightAttack => m_Wrapper.m_Gameplay_MouthLightAttack;
+        public InputAction @MouthHeavyAttack => m_Wrapper.m_Gameplay_MouthHeavyAttack;
         public InputAction @Movement => m_Wrapper.m_Gameplay_Movement;
         public InputAction @Stealth => m_Wrapper.m_Gameplay_Stealth;
         public InputAction @Intimidation => m_Wrapper.m_Gameplay_Intimidation;
         public InputAction @Mobility => m_Wrapper.m_Gameplay_Mobility;
+        public InputAction @Look => m_Wrapper.m_Gameplay_Look;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -386,24 +474,24 @@ public class @Controls : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_GameplayActionsCallbackInterface != null)
             {
-                @LimbWeaponLight.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnLimbWeaponLight;
-                @LimbWeaponLight.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnLimbWeaponLight;
-                @LimbWeaponLight.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnLimbWeaponLight;
-                @LimbWeaponHeavy.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnLimbWeaponHeavy;
-                @LimbWeaponHeavy.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnLimbWeaponHeavy;
-                @LimbWeaponHeavy.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnLimbWeaponHeavy;
-                @TailWeaponLight.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnTailWeaponLight;
-                @TailWeaponLight.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnTailWeaponLight;
-                @TailWeaponLight.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnTailWeaponLight;
-                @TailWeaponHeavy.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnTailWeaponHeavy;
-                @TailWeaponHeavy.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnTailWeaponHeavy;
-                @TailWeaponHeavy.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnTailWeaponHeavy;
-                @MouthWeaponLight.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMouthWeaponLight;
-                @MouthWeaponLight.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMouthWeaponLight;
-                @MouthWeaponLight.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMouthWeaponLight;
-                @MouthWeaponHeavy.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMouthWeaponHeavy;
-                @MouthWeaponHeavy.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMouthWeaponHeavy;
-                @MouthWeaponHeavy.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMouthWeaponHeavy;
+                @LimbLightAttack.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnLimbLightAttack;
+                @LimbLightAttack.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnLimbLightAttack;
+                @LimbLightAttack.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnLimbLightAttack;
+                @LimbHeavyAttack.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnLimbHeavyAttack;
+                @LimbHeavyAttack.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnLimbHeavyAttack;
+                @LimbHeavyAttack.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnLimbHeavyAttack;
+                @TailLightAttack.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnTailLightAttack;
+                @TailLightAttack.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnTailLightAttack;
+                @TailLightAttack.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnTailLightAttack;
+                @TailHeavyAttack.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnTailHeavyAttack;
+                @TailHeavyAttack.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnTailHeavyAttack;
+                @TailHeavyAttack.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnTailHeavyAttack;
+                @MouthLightAttack.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMouthLightAttack;
+                @MouthLightAttack.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMouthLightAttack;
+                @MouthLightAttack.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMouthLightAttack;
+                @MouthHeavyAttack.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMouthHeavyAttack;
+                @MouthHeavyAttack.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMouthHeavyAttack;
+                @MouthHeavyAttack.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMouthHeavyAttack;
                 @Movement.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMovement;
@@ -416,28 +504,31 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Mobility.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMobility;
                 @Mobility.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMobility;
                 @Mobility.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMobility;
+                @Look.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnLook;
+                @Look.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnLook;
+                @Look.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnLook;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @LimbWeaponLight.started += instance.OnLimbWeaponLight;
-                @LimbWeaponLight.performed += instance.OnLimbWeaponLight;
-                @LimbWeaponLight.canceled += instance.OnLimbWeaponLight;
-                @LimbWeaponHeavy.started += instance.OnLimbWeaponHeavy;
-                @LimbWeaponHeavy.performed += instance.OnLimbWeaponHeavy;
-                @LimbWeaponHeavy.canceled += instance.OnLimbWeaponHeavy;
-                @TailWeaponLight.started += instance.OnTailWeaponLight;
-                @TailWeaponLight.performed += instance.OnTailWeaponLight;
-                @TailWeaponLight.canceled += instance.OnTailWeaponLight;
-                @TailWeaponHeavy.started += instance.OnTailWeaponHeavy;
-                @TailWeaponHeavy.performed += instance.OnTailWeaponHeavy;
-                @TailWeaponHeavy.canceled += instance.OnTailWeaponHeavy;
-                @MouthWeaponLight.started += instance.OnMouthWeaponLight;
-                @MouthWeaponLight.performed += instance.OnMouthWeaponLight;
-                @MouthWeaponLight.canceled += instance.OnMouthWeaponLight;
-                @MouthWeaponHeavy.started += instance.OnMouthWeaponHeavy;
-                @MouthWeaponHeavy.performed += instance.OnMouthWeaponHeavy;
-                @MouthWeaponHeavy.canceled += instance.OnMouthWeaponHeavy;
+                @LimbLightAttack.started += instance.OnLimbLightAttack;
+                @LimbLightAttack.performed += instance.OnLimbLightAttack;
+                @LimbLightAttack.canceled += instance.OnLimbLightAttack;
+                @LimbHeavyAttack.started += instance.OnLimbHeavyAttack;
+                @LimbHeavyAttack.performed += instance.OnLimbHeavyAttack;
+                @LimbHeavyAttack.canceled += instance.OnLimbHeavyAttack;
+                @TailLightAttack.started += instance.OnTailLightAttack;
+                @TailLightAttack.performed += instance.OnTailLightAttack;
+                @TailLightAttack.canceled += instance.OnTailLightAttack;
+                @TailHeavyAttack.started += instance.OnTailHeavyAttack;
+                @TailHeavyAttack.performed += instance.OnTailHeavyAttack;
+                @TailHeavyAttack.canceled += instance.OnTailHeavyAttack;
+                @MouthLightAttack.started += instance.OnMouthLightAttack;
+                @MouthLightAttack.performed += instance.OnMouthLightAttack;
+                @MouthLightAttack.canceled += instance.OnMouthLightAttack;
+                @MouthHeavyAttack.started += instance.OnMouthHeavyAttack;
+                @MouthHeavyAttack.performed += instance.OnMouthHeavyAttack;
+                @MouthHeavyAttack.canceled += instance.OnMouthHeavyAttack;
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
@@ -450,21 +541,25 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Mobility.started += instance.OnMobility;
                 @Mobility.performed += instance.OnMobility;
                 @Mobility.canceled += instance.OnMobility;
+                @Look.started += instance.OnLook;
+                @Look.performed += instance.OnLook;
+                @Look.canceled += instance.OnLook;
             }
         }
     }
     public GameplayActions @Gameplay => new GameplayActions(this);
     public interface IGameplayActions
     {
-        void OnLimbWeaponLight(InputAction.CallbackContext context);
-        void OnLimbWeaponHeavy(InputAction.CallbackContext context);
-        void OnTailWeaponLight(InputAction.CallbackContext context);
-        void OnTailWeaponHeavy(InputAction.CallbackContext context);
-        void OnMouthWeaponLight(InputAction.CallbackContext context);
-        void OnMouthWeaponHeavy(InputAction.CallbackContext context);
+        void OnLimbLightAttack(InputAction.CallbackContext context);
+        void OnLimbHeavyAttack(InputAction.CallbackContext context);
+        void OnTailLightAttack(InputAction.CallbackContext context);
+        void OnTailHeavyAttack(InputAction.CallbackContext context);
+        void OnMouthLightAttack(InputAction.CallbackContext context);
+        void OnMouthHeavyAttack(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
         void OnStealth(InputAction.CallbackContext context);
         void OnIntimidation(InputAction.CallbackContext context);
         void OnMobility(InputAction.CallbackContext context);
+        void OnLook(InputAction.CallbackContext context);
     }
 }

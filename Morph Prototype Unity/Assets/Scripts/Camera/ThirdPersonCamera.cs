@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ThirdPersonCamera : MonoBehaviour
 {
@@ -29,6 +30,9 @@ public class ThirdPersonCamera : MonoBehaviour
     [SerializeField]private float spherecastRadius;
     [SerializeField]private float spherecastDistance;
 
+    private InputAction lookAction;
+    private Vector2 lookInput;
+
     private bool canReceiveInput = true;
     
     RaycastHit hit;
@@ -44,6 +48,12 @@ public class ThirdPersonCamera : MonoBehaviour
         zoomIncrement = 0.5f;
 
         cameraDistance = 5f;
+    }
+
+    private void Awake()
+    {
+        lookAction = PlayerCreatureCharacter.Instance.GetComponent<PlayerInput>().actions.FindAction("Look");
+        
     }
 
     // Start is called before the first frame update
@@ -75,21 +85,22 @@ public class ThirdPersonCamera : MonoBehaviour
     
     void UpdateCameraPosition()
     {
-        var input = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+       // var input = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+       lookInput = lookAction.ReadValue<Vector2>();
         
         if (Application.isFocused)
         {
             if (invertX)
             {
-                input.y *= -1;
+                lookInput.y *= -1;
             }
 
             if (invertY)
             {
-                input.x *= -1;
+                lookInput.x *= -1;
             }
-            yawAngle += input.x * yawSensitivity * Time.deltaTime;
-            pitchAngle += -input.y * pitchSensitivity * Time.deltaTime;
+            yawAngle += lookInput.x * yawSensitivity * Time.deltaTime;
+            pitchAngle += -lookInput.y * pitchSensitivity * Time.deltaTime;
 
             yawAngle %= 360f;
 

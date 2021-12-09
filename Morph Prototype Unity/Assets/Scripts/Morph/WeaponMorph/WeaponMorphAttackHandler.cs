@@ -12,18 +12,15 @@ using UnityEngine;
 public class WeaponMorphAttackHandler : MonoBehaviour
 {
     private MorphLoadout loadout;
-   [SerializeField] private DamageHandler damageHandler;
+    private CreatureVirtualController controller;
+    private DamageHandler damageHandler;
     
-    [SerializeField] private LimbWeaponMorph limbWeaponMorph;
+    private LimbWeaponMorph limbWeaponMorph;
     private HeadWeaponMorph headWeaponMorph;
     private TailWeaponMorph tailWeaponMorph;
 
     private BoxHitbox boxHitbox;
     private SphericalHitbox sphericalHitbox;
-
-    private OutdatedWeaponAttack _currentOutdatedWeaponAttack;
-    private WeaponOutdatedMorph _currentWeaponOutdatedMorph;
-    private List<OutdatedWeaponAttack> outdatedAttackQueue;
 
     private WeaponAttack currentWeaponAttack;
     private WeaponMorph currentWeaponMorph;
@@ -43,8 +40,8 @@ public class WeaponMorphAttackHandler : MonoBehaviour
     void Awake()
     {
         loadout = GetComponent<MorphLoadout>();
+        controller = GetComponentInParent<CreatureVirtualController>();
         damageHandler = GetComponent<DamageHandler>();
-        outdatedAttackQueue = new List<OutdatedWeaponAttack>();
         attackQueue = new List<WeaponAttack>();
         inputWindowTimer = new Timer(0);
 
@@ -57,6 +54,16 @@ public class WeaponMorphAttackHandler : MonoBehaviour
         if (loadout) loadout.MorphLoadoutChanged += OnMorphLoadoutChanged;
         if (boxHitbox) boxHitbox.Hit += OnAttackHit;
         if (sphericalHitbox) sphericalHitbox.Hit += OnAttackHit;
+
+        if (controller)
+        {
+            controller.LimbLightAttack += LimbLightAttack;
+            controller.LimbHeavyAttack += LimbHeavyAttack;
+            controller.TailLightAttack += TailLightAttack;
+            controller.TailHeavyAttack += TailHeavyAttack;
+            controller.MouthLightAttack += MouthLightAttack;
+            controller.MouthHeavyAttack += MouthHeavyAttack;
+        }
         
     }
 
@@ -65,19 +72,24 @@ public class WeaponMorphAttackHandler : MonoBehaviour
         if (loadout) loadout.MorphLoadoutChanged -= OnMorphLoadoutChanged;
         if (boxHitbox) boxHitbox.Hit -= OnAttackHit;
         if (sphericalHitbox) sphericalHitbox.Hit -= OnAttackHit;
+        
+        if (controller)
+        {
+            controller.LimbLightAttack -= LimbLightAttack;
+            controller.LimbHeavyAttack -= LimbHeavyAttack;
+            controller.TailLightAttack -= TailLightAttack;
+            controller.TailHeavyAttack -= TailHeavyAttack;
+            controller.MouthLightAttack -= MouthLightAttack;
+            controller.MouthHeavyAttack -= MouthHeavyAttack;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (gameObject.GetComponentInParent<PlayerCreatureCharacter>())
-        {
-            T_HandleInput();
-        }
-
-       InputWindowAfterAttack();
+        InputWindowAfterAttack();
         if(attackQueue.Count < 1) return;
-       ExecuteAttacks();
+        ProcessAttackQueue();
     }
 
     private void T_HandleInput()
@@ -105,11 +117,11 @@ public class WeaponMorphAttackHandler : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            HeadLightAttack();
+            MouthLightAttack();
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            HeadHeavyAttack();
+            MouthHeavyAttack();
         }
     }
 
@@ -140,7 +152,7 @@ public class WeaponMorphAttackHandler : MonoBehaviour
             headWeaponMorph.ResetCombo();
     }
 
-    private void ExecuteAttacks()
+    private void ProcessAttackQueue()
     {
         //_currentOutdatedWeaponAttack = outdatedAttackQueue[0];
         currentWeaponAttack = attackQueue[0];
@@ -261,12 +273,12 @@ public class WeaponMorphAttackHandler : MonoBehaviour
 
     }
     
-    private void HeadLightAttack()
+    private void MouthLightAttack()
     {
         TryQueueAttack(headWeaponMorph);
     }
 
-    private void HeadHeavyAttack()
+    private void MouthHeavyAttack()
     {
      
         TryQueueAttack(headWeaponMorph, false);
@@ -300,6 +312,4 @@ public class WeaponMorphAttackHandler : MonoBehaviour
             tailWeaponMorph = tail;
         }
     }
-
-   
 }

@@ -6,7 +6,7 @@
             "id": "8818c64b-5281-4a27-b209-75a02d6862f6",
             "actions": [
                 {
-                    "name": "LimbWeaponLight",
+                    "name": "LimbLightAttack",
                     "type": "Button",
                     "id": "a18d460f-0190-4782-ab8d-e33c15e38a55",
                     "expectedControlType": "Button",
@@ -14,7 +14,7 @@
                     "interactions": "Tap"
                 },
                 {
-                    "name": "LimbWeaponHeavy",
+                    "name": "LimbHeavyAttack",
                     "type": "Button",
                     "id": "826ab441-3610-4644-84e8-74605e456f10",
                     "expectedControlType": "Button",
@@ -22,7 +22,7 @@
                     "interactions": "Hold"
                 },
                 {
-                    "name": "TailWeaponLight",
+                    "name": "TailLightAttack",
                     "type": "Button",
                     "id": "d8810b6c-b12a-4e2d-8c4e-ad330b666585",
                     "expectedControlType": "Button",
@@ -30,7 +30,7 @@
                     "interactions": "Tap"
                 },
                 {
-                    "name": "TailWeaponHeavy",
+                    "name": "TailHeavyAttack",
                     "type": "Button",
                     "id": "803bf0a7-fa27-4d29-a19b-7a6875aaede3",
                     "expectedControlType": "Button",
@@ -38,7 +38,7 @@
                     "interactions": "Hold"
                 },
                 {
-                    "name": "MouthWeaponLight",
+                    "name": "MouthLightAttack",
                     "type": "Button",
                     "id": "d680de1d-ba18-4602-8deb-ad476e1f6cf7",
                     "expectedControlType": "Button",
@@ -46,7 +46,7 @@
                     "interactions": "Tap"
                 },
                 {
-                    "name": "MouthWeaponHeavy",
+                    "name": "MouthHeavyAttack",
                     "type": "Button",
                     "id": "5d774c7e-f119-42ed-8227-6b1e16b5d79a",
                     "expectedControlType": "Button",
@@ -55,9 +55,9 @@
                 },
                 {
                     "name": "Movement",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "c474d31b-e2f3-44bb-9cbe-d82c0f9500de",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
                 },
@@ -84,6 +84,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Look",
+                    "type": "Value",
+                    "id": "3866b583-b167-45a7-9820-273f73c50bc2",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -94,7 +102,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "LimbWeaponLight",
+                    "action": "LimbLightAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -105,18 +113,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "LimbWeaponLight",
+                    "action": "LimbLightAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "88251a03-a231-4369-8769-54ab9d455524",
-                    "path": "<Mouse>/rightButton",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "LimbWeaponHeavy",
+                    "action": "LimbHeavyAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -124,10 +132,10 @@
                     "name": "",
                     "id": "ab53a7fc-cdee-4fc9-93d3-0e83fa6d6ece",
                     "path": "<Gamepad>/buttonWest",
-                    "interactions": "Hold",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "LimbWeaponHeavy",
+                    "action": "LimbHeavyAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -138,7 +146,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "TailWeaponLight",
+                    "action": "TailLightAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -149,7 +157,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "TailWeaponLight",
+                    "action": "TailLightAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -160,7 +168,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "TailWeaponHeavy",
+                    "action": "TailHeavyAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -171,7 +179,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "TailWeaponHeavy",
+                    "action": "TailHeavyAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -182,7 +190,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MouthWeaponLight",
+                    "action": "MouthLightAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -193,18 +201,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MouthWeaponHeavy",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "b8ee35fe-18d0-4c1c-8d45-ffa252350553",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Movement",
+                    "action": "MouthHeavyAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -273,6 +270,94 @@
                     "action": "Mobility",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e4d0f91f-6ad1-4b5b-8a2e-70d232f901c3",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "ScaleVector2(x=0.1,y=0.1)",
+                    "groups": "",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "74371166-e62c-4db1-9d3b-c21878d2fecd",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "ScaleVector2(x=2,y=2)",
+                    "groups": "",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ae961383-80fd-4d24-9c77-8e5989e6cc2a",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "WASD",
+                    "id": "8afecc14-a5f4-4283-8a43-27f1f95e42ce",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "b2736b8c-2352-459a-817a-dc22352058ec",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "ddf5d152-d1fc-4122-9883-9c19f4eaa4b0",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "cd1dc4f0-692c-487f-bf02-799e3fddac13",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "dd2dccbf-b30d-43bc-bda7-4c8077a6d96a",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }

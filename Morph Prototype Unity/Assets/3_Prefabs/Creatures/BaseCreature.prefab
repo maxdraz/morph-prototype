@@ -655,10 +655,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bc88bd60e4b2024ca95f144dd5d4dc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  limbWeaponMorph: {fileID: 0}
-  headWeaponMorph: {fileID: 0}
-  tailWeaponMorph: {fileID: 0}
-  passiveMorphs: []
+  limbWeaponMorph: {fileID: 6675012289007957567, guid: dfde551b8c3af0d4ab0d05cfc2c4608e, type: 3}
+  headWeaponMorph: {fileID: 5548642287737709195, guid: 85e4dcfb48cd8af479d7ec947ff10a03, type: 3}
+  tailWeaponMorph: {fileID: 8602732015374447736, guid: a76627e8627695d418401cd2155a0c3c, type: 3}
+  passiveMorphs:
+  - {fileID: 7247566602518939235, guid: 768eaeec4bcc31d498669883f0c75b31, type: 3}
+  - {fileID: 1114787138882407050, guid: e2becf8274e76bd4caafef87b9f0dbf8, type: 3}
   LimbWeaponMorph: {fileID: 0}
   HeadWeaponMorph: {fileID: 0}
   TailWeaponMorph: {fileID: 0}
@@ -674,8 +676,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5275da47f13d79943aaa487a2d836bf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageHandler: {fileID: 0}
-  limbWeaponMorph: {fileID: 0}
 --- !u!136 &8824068126247670664
 CapsuleCollider:
   m_ObjectHideFlags: 0

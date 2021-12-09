@@ -6,9 +6,12 @@ using UnityEngine;
 public class CreatureVirtualController : VirtualController
 {
     private CreatureInputHandler inputHandler;
+    private Movement movement;
 
-    public event Action AppendageLightAttack;
-    public event Action AppendageHeavyAttack;
+    public event Action<Vector2> Movement;
+
+    public event Action LimbLightAttack;
+    public event Action LimbHeavyAttack;
     public event Action MouthLightAttack;
     public event Action MouthHeavyAttack;
     public event Action TailLightAttack;
@@ -17,69 +20,36 @@ public class CreatureVirtualController : VirtualController
     private void Awake()
     {
         inputHandler = GetComponentInChildren<CreatureInputHandler>();
+        movement = GetComponent<Movement>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Move(Vector2 moveDir)
     {
-        if (AppendageLightAttackInput())
-        {
-            AppendageLightAttack?.Invoke();
-        }
-
-        if (AppendageHeavyAttackInput())
-        {
-            AppendageHeavyAttack?.Invoke();
-        }
-        if (MouthLightAttackInput())
-        {
-            MouthLightAttack?.Invoke();
-        }
-
-        if (MouthHeavyAttackInput())
-        {
-            MouthHeavyAttack?.Invoke();
-        }
-        
-        if (TailLightAttackInput())
-        {
-            TailLightAttack?.Invoke();
-        }
-
-        if (TailHeavyAttackInput())
-        {
-            TailHeavyAttack?.Invoke();
-        }
-        
+        movement.SetMovementDirection(moveDir);
     }
 
-    private bool AppendageLightAttackInput()
+    public void InvokeLimbLightAttack()
     {
-        return inputHandler.GetAppendageLightAttackInput();
+        LimbLightAttack?.Invoke();
     }
-
-    bool AppendageHeavyAttackInput()
+    public void InvokeLimbHeavyAttack()
     {
-        return inputHandler.GetAppendageHeavyAttackInput();
+        LimbHeavyAttack?.Invoke();
     }
-    
-    private bool MouthLightAttackInput()
+    public void InvokeMouthLightAttack()
     {
-        return inputHandler.GetMouthLightAttackInput();
+        MouthLightAttack?.Invoke();
     }
-
-    bool MouthHeavyAttackInput()
+    public void InvokeMouthHeavyAttack()
     {
-        return inputHandler.GetMouthHeavyAttackInput();
+        MouthHeavyAttack?.Invoke();
     }
-    
-    private bool TailLightAttackInput()
+    public void InvokeTailLightAttack()
     {
-        return inputHandler.GetTailLightAttackInput();
+        TailLightAttack?.Invoke();
     }
-
-    bool TailHeavyAttackInput()
+    public void InvokeTailHeavyAttack()
     {
-        return inputHandler.GetTailHeavyAttackInput();
+        TailHeavyAttack?.Invoke();
     }
 }
