@@ -9,6 +9,8 @@ public class Health : MonoBehaviour
     [SerializeField] private float health;
     private Stats stats;
 
+    public float healingPercentageBonus = 0f;
+
     public float CurrentHealth=> health;
     public float CurrentHealthAsPercentage => health / stats.MaxHealth;
     public event Action Died;
@@ -59,7 +61,10 @@ public class Health : MonoBehaviour
 
     public void AddHP(float amount)
     {
-        
+        health += amount* (1 + healingPercentageBonus);
+        health = Mathf.Max(0, health);
+
+        OnHealthChanged();
     }
 
     private void OnHealthChanged()

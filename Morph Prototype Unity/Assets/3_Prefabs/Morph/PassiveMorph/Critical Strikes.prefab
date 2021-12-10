@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &342820641065156430
+--- !u!1 &1114787138882407049
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,37 +8,36 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7629466852106569853}
-  - component: {fileID: 7073142219110820891}
-  - component: {fileID: 7247566602518939235}
+  - component: {fileID: 1114787138882407052}
+  - component: {fileID: 1114787138882407051}
   m_Layer: 0
-  m_Name: SizzlingSlime
+  m_Name: Critical Strikes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7629466852106569853
+--- !u!4 &1114787138882407052
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 342820641065156430}
+  m_GameObject: {fileID: 1114787138882407049}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.688982, y: 3.2977073, z: 1.1191916}
+  m_LocalPosition: {x: 8.776053, y: -3.2244198, z: 5.6174073}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7073142219110820891
+--- !u!114 &1114787138882407051
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 342820641065156430}
+  m_GameObject: {fileID: 1114787138882407049}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca070c3b6534b8a47b9eeb7cc2a9559f, type: 3}
@@ -62,18 +61,3 @@ MonoBehaviour:
     KnockbackForce: 0
   isInvincible: 1
   damageNumberSet: {fileID: 0}
---- !u!114 &7247566602518939235
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 342820641065156430}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfccba1b5f9c5974483f93e50f065493, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  perceptionDamageFraction: 0.1
-  chemicalDamageStatBonus: 5
-  unlockBlindingVapour: 1
