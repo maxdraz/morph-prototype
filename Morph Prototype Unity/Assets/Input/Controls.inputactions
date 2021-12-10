@@ -19,7 +19,7 @@
                     "id": "826ab441-3610-4644-84e8-74605e456f10",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Hold"
+                    "interactions": "Hold(duration=0.5)"
                 },
                 {
                     "name": "TailLightAttack",
@@ -119,6 +119,17 @@
                 },
                 {
                     "name": "",
+                    "id": "0b2209fa-df7f-47f8-9935-b68f91c1137f",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LimbLightAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "88251a03-a231-4369-8769-54ab9d455524",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
@@ -132,6 +143,17 @@
                     "name": "",
                     "id": "ab53a7fc-cdee-4fc9-93d3-0e83fa6d6ece",
                     "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LimbHeavyAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "86a1b3ab-1e7f-44b1-95d5-1ef8334a1d00",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

@@ -9950,6 +9950,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4629799917121605792, guid: 831ebd26ff801c34ea13a06dab0c2bc2, type: 3}
+      propertyPath: startingCreature
+      value: 
+      objectReference: {fileID: 563091350732430249, guid: 17294641915b125489525c675901fd49, type: 3}
+    - target: {fileID: 8683765337263264557, guid: 831ebd26ff801c34ea13a06dab0c2bc2, type: 3}
+      propertyPath: rotationStrength
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 8683765337263264562, guid: 831ebd26ff801c34ea13a06dab0c2bc2, type: 3}
       propertyPath: m_RootOrder
       value: 11

@@ -86,6 +86,7 @@ public class DebuffHandler : MonoBehaviour
                 {
                     acidDebuff.OnStart(acidDamage.AcidDOTDuration);
                     activeDebuffs.Add(acidDebuff);
+                    
                 }
                 
                 // add 20 percent to stack
@@ -94,6 +95,7 @@ public class DebuffHandler : MonoBehaviour
                 //take 80 percent
                 acidDamage.AcidDamage *= 0.8f;
                 damageHandler.ApplyDamage(acidDamage, damageDealer);
+                damageHandler.ApplyDamage(acidDebuff.GetTickDamage(), damageDealer);
             }
         }
     }
