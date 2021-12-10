@@ -17,7 +17,8 @@ public class GaseousDischarge : PassiveMorph
     // Start is called before the first frame update
     void Start()
     {
-        poisonGasSpawnCountdown.Restart(poisonGasSpawnRate, true);
+        poisonGasSpawnCountdown = new Timer(poisonGasSpawnRate, true);
+        poisonGasSpawnCountdown.CountDown(poisonGasSpawnRate);
     }
 
     // Update is called once per frame
@@ -25,7 +26,9 @@ public class GaseousDischarge : PassiveMorph
     {
         if (poisonGasSpawnCountdown.JustFinished == true) 
         {
+            Debug.Log("Timer completed");
             CreateGasCloud();
+            poisonGasSpawnCountdown.Restart();
         }
     }
 
