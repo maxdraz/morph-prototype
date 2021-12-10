@@ -56,14 +56,16 @@ public class ObjectPooler : MonoBehaviour
         AddToPool(obj);
     }
     
-    public GameObject GetOrCreatePooledObject(GameObject obj)
+    public GameObject GetOrCreatePooledObject(GameObject obj, bool enableTheObj = true)
     {
         var objToReturn = GetObjectFromPool(obj);
         objToReturn ??= Instantiate(obj, null, true);
-        objToReturn.SetActive(true);
+        objToReturn.SetActive(enableTheObj);
         
         return objToReturn;
     }
+    
+    
 
     private GameObject GetObjectFromPool(GameObject obj)
     {

@@ -8,7 +8,6 @@ public class RecycleAfterTime : MonoBehaviour
 {
     [SerializeField] private bool useParticleSystemLifetime = true;
     [SerializeField] private float duration = 1;
-    private float actualDuration;
 
     private List<ParticleSystem> particleSystems;
 
@@ -33,7 +32,7 @@ public class RecycleAfterTime : MonoBehaviour
             return;
         }
         
-        StartCoroutine(RecycleAfterTimeCoroutine(actualDuration));
+        StartCoroutine(RecycleAfterTimeCoroutine(duration));
     }
 
     private void OnDisable()
