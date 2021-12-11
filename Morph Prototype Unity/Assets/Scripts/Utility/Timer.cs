@@ -8,8 +8,8 @@ public class Timer
     [SerializeField] private float duration;
     [SerializeField] private float currentTime;
     [SerializeField] private bool loop;
-    [SerializeField] private bool justFinished;
-    [SerializeField] private bool canCountDown;
+    private bool justFinished;
+    [SerializeField]private bool canCountDown;
     
     // public interface
     public float CurrentTime => currentTime;

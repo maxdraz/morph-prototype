@@ -317,6 +317,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 525c1dfcb66a6ff4cb3c0f0672cbf3b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cooldown:
+    duration: 1
+    currentTime: 0
+    loop: 0
+    canCountDown: 0
   poxShotSpawner:
     projectilePrefab: {fileID: 8109351195646949467, guid: 83126d75d57030540aba373b7bdbba33, type: 3}
     spawnPointOffsetLocal: {x: 0, y: 0, z: 1}
