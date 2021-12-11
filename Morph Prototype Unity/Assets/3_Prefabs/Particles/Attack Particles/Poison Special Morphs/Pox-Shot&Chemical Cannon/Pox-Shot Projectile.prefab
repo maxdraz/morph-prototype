@@ -4999,6 +4999,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startSpeed: 25
+  onHitEffects:
+  - onHitEffect: {fileID: 11400000, guid: 5646e0d34a12b324696121349b8b67e8, type: 2}
+    data:
+      id: 0
+  - onHitEffect: {fileID: 11400000, guid: 43742988cba5dad4c98d440ec358f8d9, type: 2}
+    data:
+      id: 1
+  references:
+    version: 1
+    00000000:
+      type: {class: KnockbackData, ns: , asm: Assembly-CSharp}
+      data:
+        knockbackForce: 100
+    00000001:
+      type: {class: PoisonDamageData, ns: , asm: Assembly-CSharp}
+      data:
+        poisonDamage: 50
 --- !u!114 &3470138704748998041
 MonoBehaviour:
   m_ObjectHideFlags: 0

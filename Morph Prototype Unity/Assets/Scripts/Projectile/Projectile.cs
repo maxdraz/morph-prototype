@@ -7,6 +7,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [SerializeField] private float startSpeed = 100;
+    [SerializeField] private List<OnHitEffectDataContainer> onHitEffects;
 
     private Rigidbody rb;
     
@@ -26,5 +27,10 @@ public class Projectile : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void OnValidate()
+    {
+        OnHitEffectDataContainer.OnValidate(ref onHitEffects);
     }
 }

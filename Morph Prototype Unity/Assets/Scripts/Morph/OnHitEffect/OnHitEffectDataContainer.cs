@@ -7,6 +7,14 @@ using UnityEngine;
 [System.Serializable]
 public class OnHitEffectDataContainer : ICloneable
 {
+    public static void OnValidate(ref List<OnHitEffectDataContainer> onHitEffects)
+    {
+        foreach (var onHitEffect in onHitEffects)
+        {
+            onHitEffect.OnValidate();
+        }
+    }
+    
     [SerializeField] private OnHitEffect onHitEffect;
     [SerializeReference] private OnHitEffectData data;
 

@@ -199,13 +199,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 219043568}
-  m_LocalRotation: {x: -0, y: -0.9618068, z: -0, w: 0.27372938}
-  m_LocalPosition: {x: 18.87, y: -0.12, z: 28.46}
+  m_LocalRotation: {x: 0.0959051, y: -0, z: -0, w: 0.99539053}
+  m_LocalPosition: {x: 1.39, y: 2.46, z: -4.39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -148.227, z: 0}
+  m_LocalEulerAnglesHint: {x: 11.007, y: 0, z: 0}
 --- !u!1 &1039749435
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,7 +220,7 @@ GameObject:
   - component: {fileID: 1039749436}
   - component: {fileID: 1039749440}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -298,7 +298,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1039749435}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.470867, y: -5.447117, z: 47.930687}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1710772276}
@@ -314,30 +314,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1039749435}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1e8188d12a5b3f4d916d5aa289e5684, type: 3}
+  m_Script: {fileID: 11500000, guid: 525c1dfcb66a6ff4cb3c0f0672cbf3b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loop: 1
-  projectilePrefab: {fileID: 8109351195646949467, guid: 83126d75d57030540aba373b7bdbba33, type: 3}
-  projectileRadius: 0.28
-  spawnMode: 0
-  projectileSpawnData:
-  - SpawnPosition: {x: -1.5, y: 0, z: 2.01}
-    Direction: {x: -0.27647617, y: 0, z: 0.96102077}
-  - SpawnPosition: {x: 0, y: 0, z: 2.01}
-    Direction: {x: 0, y: 0, z: 1}
-  - SpawnPosition: {x: 1.5, y: 0, z: 2.01}
-    Direction: {x: 0.27647617, y: 0, z: 0.96102077}
-  drawGizmos: 1
-  edgeSpawnPointOffset: {x: 0, y: 0, z: 2.01}
-  spawnLineWidth: 3
-  projectilesToSpawn: 3
-  angle: 32.1
-  debugLineLength: 1
-  radius: 1
-  radialSpawnPointOffset: {x: 0, y: 0, z: 0}
-  projectilesToSpawnRadially: 3
-  bulletDirectionRotationRadial: 0
+  poxShotSpawner:
+    projectilePrefab: {fileID: 8109351195646949467, guid: 83126d75d57030540aba373b7bdbba33, type: 3}
+    spawnPointOffsetLocal: {x: 0, y: 0, z: 1}
+    drawGizmos: 1
+    debugSphereRadius: 0.1
+    projectilesToSpawn: 5
+    edgeWidth: 1
+    arcAngle: 90
 --- !u!1 &1667819740
 GameObject:
   m_ObjectHideFlags: 0
@@ -527,11 +514,11 @@ MonoBehaviour:
   spawnMode: 0
   projectileSpawnData:
   - SpawnPosition: {x: -1.5, y: 0, z: 0}
-    Direction: {x: 0, y: 0, z: 1}
+    EndPoint: {x: 0, y: 0, z: 1}
   - SpawnPosition: {x: 0, y: 0, z: 0}
-    Direction: {x: 0, y: 0, z: 1}
+    EndPoint: {x: 0, y: 0, z: 1}
   - SpawnPosition: {x: 1.5, y: 0, z: 0}
-    Direction: {x: 0, y: 0, z: 1}
+    EndPoint: {x: 0, y: 0, z: 1}
   drawGizmos: 0
   edgeSpawnPointOffset: {x: 0, y: 0, z: 0}
   spawnLineWidth: 3
