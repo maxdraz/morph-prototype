@@ -11,8 +11,7 @@ GameObject:
   - component: {fileID: 3257851401644782788}
   - component: {fileID: 4529673401720112133}
   - component: {fileID: 3895074194034535110}
-  - component: {fileID: 8516559359376553842}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,19 +82,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8516559359376553842
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3871321973603594961}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6351013298317419895
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,7 +93,7 @@ GameObject:
   - component: {fileID: 1927814963104755600}
   - component: {fileID: 8560491008505969860}
   - component: {fileID: 2160160666976887982}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Gas Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4934,7 +4920,7 @@ GameObject:
   - component: {fileID: 2933316661857067609}
   - component: {fileID: 3470138704748998041}
   - component: {fileID: 7786300496960431181}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pox-Shot Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5029,7 +5015,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useParticleSystemLifetime: 0
-  duration: 5
+  duration: 2
 --- !u!114 &7786300496960431181
 MonoBehaviour:
   m_ObjectHideFlags: 0

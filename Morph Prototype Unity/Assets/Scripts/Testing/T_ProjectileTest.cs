@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class T_ProjectileTest : MonoBehaviour
 {
-    [SerializeField] private RadialProjectileSpawner projectileSpawner;
+    [SerializeField] private ConeProjectileSpawner projectileSpawner;
 
     // Start is called before the first frame update
     void OnEnable()
@@ -19,17 +19,17 @@ public class T_ProjectileTest : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            projectileSpawner.Spawn(transform);
+            projectileSpawner?.Spawn(transform);
         }
     }
 
     private void OnValidate()
     {
-        projectileSpawner.OnValidate();
+        projectileSpawner?.OnValidate();
     }
 
     private void OnDrawGizmos()
     {
-        projectileSpawner.OnDrawGizmos(transform);
+        projectileSpawner?.OnDrawGizmos(transform);
     }
 }

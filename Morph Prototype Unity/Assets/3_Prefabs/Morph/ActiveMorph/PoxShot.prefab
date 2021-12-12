@@ -65,8 +65,8 @@ MonoBehaviour:
     drawGizmos: 1
     debugSphereRadius: 0.1
     projectilesToSpawn: 5
-    edgeWidth: 1
-    arcAngle: 90
+    edgeWidth: 0.97
+    arcAngle: 32.9
 --- !u!114 &6045666899893537428
 MonoBehaviour:
   m_ObjectHideFlags: 0
