@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &9091564463045606401
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1682607696385060288}
+  - component: {fileID: 6096541902552772585}
+  - component: {fileID: 7126794462437963004}
+  m_Layer: 0
+  m_Name: Ferocity
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1682607696385060288
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9091564463045606401}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -20.748783, y: 6.1782613, z: -2.0064454}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6096541902552772585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9091564463045606401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca070c3b6534b8a47b9eeb7cc2a9559f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  summary:
+    DamageTaker: {fileID: 0}
+    DamageDealer: {fileID: 0}
+    IsFatalBlow: 0
+    IsCriticalHit: 0
+    isMortalBlow: 0
+    PhysicalDamage: 0
+    LifeStealDamage: 0
+    PoisonDamage: 0
+    AcidDamage: 0
+    FireDamage: 0
+    IceDamage: 0
+    LightningDamage: 0
+    StaminaDrained: 0
+    FortitudeDamage: 0
+    KnockbackForce: 0
+  isInvincible: 1
+  damageNumberSet: {fileID: 0}
+--- !u!114 &7126794462437963004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9091564463045606401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 671a32987ec41bf438ccd8c513e0001b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meleeDamageStatBonus: 5
+  unlockSpiritSpihon: 1
+  spiritSiphonStaminaStealAmount: 20
+  spiritSiphonEnergyStealAmount: 5
