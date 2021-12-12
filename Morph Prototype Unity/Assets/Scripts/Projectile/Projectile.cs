@@ -8,6 +8,8 @@ public class Projectile : MonoBehaviour
 {
     [SerializeField] private float startSpeed = 100;
     [SerializeField] private List<OnHitEffectDataContainer> onHitEffects;
+    
+    private DamageHandler damageDealer;
 
     private Rigidbody rb;
     
@@ -19,8 +21,22 @@ public class Projectile : MonoBehaviour
 
     private void OnEnable()
     {
+        
         rb.velocity = Vector3.zero;
-        rb.AddForce(transform.forward * startSpeed, ForceMode.VelocityChange);
+
+        float totalSpeed = startSpeed;
+        if (damageDealer)
+        {
+            var damageDearlerRigidbody = damageDealer.GetComponentInParent<Rigidbody>();
+            if (damageDearlerRigidbody)
+            {
+                var velocity = damageDearlerRigidbody.velocity;
+                var speedXZ = new Vector3(velocity.x, 0, velocity.z).magnitude;
+                totalSpeed += speedXZ;
+            }
+        }
+
+        rb.AddForce(transform.forward * totalSpeed, ForceMode.VelocityChange);
     }
 
     // Update is called once per frame
@@ -32,5 +48,10 @@ public class Projectile : MonoBehaviour
     private void OnValidate()
     {
         OnHitEffectDataContainer.OnValidate(ref onHitEffects);
+    }
+
+    public void SetDamageDealer(DamageHandler dmgDealer)
+    {
+        this.damageDealer = dmgDealer;
     }
 }

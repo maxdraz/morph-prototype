@@ -77,14 +77,16 @@ public class Movement : MonoBehaviour
             return;
         }
 
+        if (FaceCameraView)
+        {
+            RotateToCameraView();
+            return;
+        }
+
         if (InputGreaterThan(0.7f) && !IsStrafing())
         {
             LookInDirection(in input, in rotationStrength);
         }
-        // else if(IsStrafing())
-        // {
-        //     LookInDirection(UtilityFunctions.CameraForwardOnPlane(Vector3.up), in rotationStrength);
-        // }
     }
 
     public float AdjustSpeedModifier(float amountToAdjustBy) 
@@ -182,8 +184,20 @@ public class Movement : MonoBehaviour
         lookRotationTransform = trans;
     }
 
+    public void RotateToCameraView()
+    {
+        var lookDirection = UtilityFunctions.TransformForwardOnPlane(Camera.main.transform, Vector3.up);
+        LookInDirection(lookDirection, in rotationStrength);
+    }
+
     public void ClearLookRotationTransform()
     {
         lookRotationTransform = null;
+    }
+    
+    public bool FaceCameraView
+    {
+        get;
+        set;
     }
 }

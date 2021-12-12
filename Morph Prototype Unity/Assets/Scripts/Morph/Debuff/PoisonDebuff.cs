@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class PoisonDebuff : Debuff
 {
-    public PoisonDebuff(Timer tickTimer) : base(tickTimer)
+    public PoisonDebuff(LegacyTimer tickLegacyTimer) : base(tickLegacyTimer)
     {
     }
 

@@ -8,8 +8,8 @@ public class OutdatedPoisonDamageOverTime : OutdatedDebuff
     private float tickInterval;
     // poisonDamageData ?? 
     private float poisonDamage;
-    private Timer durationTimer;
-    private Timer tickTimer;
+    private LegacyTimer durationLegacyTimer;
+    private LegacyTimer tickLegacyTimer;
     private PoisonOutdatedOnHitEffectData data;
     private OutdatedMorph owner;
     private OutdatedDamageHandler _ownerOutdatedDamageHandler;
@@ -24,22 +24,22 @@ public class OutdatedPoisonDamageOverTime : OutdatedDebuff
         this.owner = owner;
         this._ownerOutdatedDamageHandler = ownerOutdatedDamageHandler;
         
-        durationTimer = new Timer(duration);
-        tickTimer = new Timer(tickInterval, true);
+        durationLegacyTimer = new LegacyTimer(duration);
+        tickLegacyTimer = new LegacyTimer(tickInterval, true);
     }
 
     public override void OnUpdate(OutdatedDamageHandler outdatedDamageTaker, float dt)
     {
-        if (durationTimer.CountDown(dt))
+        if (durationLegacyTimer.CountDown(dt))
         {
-            tickTimer.CountDown(dt);
-            if (tickTimer.JustFinished)
+            tickLegacyTimer.CountDown(dt);
+            if (tickLegacyTimer.JustFinished)
             {
                 ApplyDebuff(outdatedDamageTaker);
             }
         }
 
-        if (durationTimer.JustFinished)
+        if (durationLegacyTimer.JustFinished)
         {
             ApplyDebuff(outdatedDamageTaker);
         }
@@ -47,7 +47,7 @@ public class OutdatedPoisonDamageOverTime : OutdatedDebuff
 
     public override bool IsFinished()
     {
-        return durationTimer.IsFinished();
+        return durationLegacyTimer.IsFinished();
     }
 
     public override void ApplyDebuff(OutdatedDamageHandler outdatedDamageTaker)

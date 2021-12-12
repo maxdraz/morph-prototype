@@ -16,6 +16,11 @@ public class PlayerCreatureInputHandler : CreatureInputHandler
     private InputAction tailHeavyAttackAction;
     private InputAction mouthLightAttackAction;
     private InputAction mouthHeavyAttackAction;
+    
+    private InputAction Ability1Action;
+    private InputAction Ability2Action;
+    private InputAction Ability3Action;
+    private InputAction Ability4Action;
 
     private void Awake()
     {
@@ -32,6 +37,11 @@ public class PlayerCreatureInputHandler : CreatureInputHandler
         mouthLightAttackAction = playerInput.actions.FindAction("MouthLightAttack");
         mouthHeavyAttackAction = playerInput.actions.FindAction("MouthHeavyAttack");
         
+        Ability1Action = playerInput.actions.FindAction("Ability1");
+        Ability2Action = playerInput.actions.FindAction("Ability2");
+        Ability3Action = playerInput.actions.FindAction("Ability3");
+        Ability4Action = playerInput.actions.FindAction("Ability4");
+        
     }
 
     private void OnEnable()
@@ -45,6 +55,11 @@ public class PlayerCreatureInputHandler : CreatureInputHandler
         
         mouthLightAttackAction.performed += OnMouthLightAttackPerformed;
         mouthHeavyAttackAction.performed += OnMouthHeavyAttackPerformed;
+
+        Ability1Action.performed += OnAbility1Performed;
+        Ability2Action.performed += OnAbility2Performed;
+        Ability3Action.performed += OnAbility3Performed;
+        Ability4Action.performed += OnAbility4Performed;
     }
 
     private void OnDisable()
@@ -57,6 +72,11 @@ public class PlayerCreatureInputHandler : CreatureInputHandler
         
         mouthLightAttackAction.performed -= OnMouthLightAttackPerformed;
         mouthHeavyAttackAction.performed -= OnMouthHeavyAttackPerformed;
+        
+        Ability1Action.performed -= OnAbility1Performed;
+        Ability2Action.performed -= OnAbility2Performed;
+        Ability3Action.performed -= OnAbility3Performed;
+        Ability4Action.performed -= OnAbility4Performed;
     }
 
     private void Update()
@@ -74,29 +94,41 @@ public class PlayerCreatureInputHandler : CreatureInputHandler
     {
         controller.InvokeLimbLightAttack();
     }
-    
     private void OnLimbHeavyAttackPerformed(InputAction.CallbackContext ctx)
     {
         controller.InvokeLimbHeavyAttack();
     }
-    
     private void OnTailLightAttackPerformed(InputAction.CallbackContext ctx)
     {
         controller.InvokeTailLightAttack();
     }
-    
     private void OnTailHeavyAttackPerformed(InputAction.CallbackContext ctx)
     {
         controller.InvokeTailHeavyAttack();
     }
-    
     private void OnMouthLightAttackPerformed(InputAction.CallbackContext ctx)
     {
         controller.InvokeMouthLightAttack();
     }
-    
     private void OnMouthHeavyAttackPerformed(InputAction.CallbackContext ctx)
     {
         controller.InvokeMouthHeavyAttack();
+    }
+
+    private void OnAbility1Performed(InputAction.CallbackContext ctx)
+    {
+        controller.InvokeUseAbility1();
+    }
+    private void OnAbility2Performed(InputAction.CallbackContext ctx)
+    {
+        controller.InvokeUseAbility2();
+    }
+    private void OnAbility3Performed(InputAction.CallbackContext ctx)
+    {
+        controller.InvokeUseAbility3();
+    }
+    private void OnAbility4Performed(InputAction.CallbackContext ctx)
+    {
+        controller.InvokeUseAbility4();
     }
 }

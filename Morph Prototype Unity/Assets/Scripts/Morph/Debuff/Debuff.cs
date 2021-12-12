@@ -19,18 +19,18 @@ public class DebuffContributor
 public abstract class Debuff
 {
     // timer tick timer
-    [SerializeField] protected Timer tickTimer;
+    [SerializeField] protected LegacyTimer tickLegacyTimer;
     [SerializeField] protected float damageStack;
     // TODO - support multiple contributors
     protected IDamageType damageType;
     [SerializeField] protected DamageHandler damageDealer;
 
-    public Timer TickTimer => tickTimer;
+    public LegacyTimer TickLegacyTimer => tickLegacyTimer;
     public DamageHandler DamageDealer => damageDealer;
 
-    public Debuff(Timer tickTimer)
+    public Debuff(LegacyTimer tickLegacyTimer)
     {
-        this.tickTimer = tickTimer;
+        this.tickLegacyTimer = tickLegacyTimer;
     }
 
     public virtual void OnStart(float debuffDuration)
@@ -40,23 +40,23 @@ public abstract class Debuff
 
     public virtual bool CountdownTimer(float dt)
     { 
-        return tickTimer.CountDown(dt);
+        return tickLegacyTimer.CountDown(dt);
     }
 
     public virtual bool ShouldTick()
     {
       
-        return tickTimer.JustFinished;
+        return tickLegacyTimer.JustFinished;
     }
 
     public void ChangeTickInterval(float newInterval)
     {
-        tickTimer.Duration = newInterval;
+        tickLegacyTimer.Duration = newInterval;
     }
 
     public void UpdateTickInterval(float newInterval)
     {
-        tickTimer.Duration = newInterval;
+        tickLegacyTimer.Duration = newInterval;
     }
 
     public abstract IDamageType GetTickDamage();

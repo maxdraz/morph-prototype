@@ -5,9 +5,9 @@ using UnityEngine;
 
 public abstract class Ability
 {
-    public Timer cooldown { get; }
+    public LegacyTimer cooldown { get; }
 
-    public Ability(Timer cooldown)
+    public Ability(LegacyTimer cooldown)
     {
         this.cooldown = cooldown;
     }

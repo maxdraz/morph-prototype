@@ -5,7 +5,7 @@ using UnityEngine;
 public class TimerManager : MonoBehaviour
 {
     public static TimerManager Instance;
-    [SerializeField] private List<Timer> timers;
+    [SerializeField] private List<LegacyTimer> timers;
     // Start is called before the first frame update
     void Awake()
     {
@@ -18,7 +18,7 @@ public class TimerManager : MonoBehaviour
             Instance = this;
         }
 
-        timers = new List<Timer>();
+        timers = new List<LegacyTimer>();
     }
 
     // Update is called once per frame
@@ -43,7 +43,7 @@ public class TimerManager : MonoBehaviour
        
     }
 
-    private void AddTimer(ref Timer t)
+    private void AddTimer(ref LegacyTimer t)
     {
         while (true)
         {

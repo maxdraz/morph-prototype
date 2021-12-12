@@ -7,21 +7,36 @@ public class PoxShot : ActiveMorph
 {
     [SerializeField] private EdgeProjectileSpawner poxShotSpawner;
 
-    protected override bool Activate()
+    public override bool ActivateIfConditionsMet()
     {
-        if(base.Activate())
-            poxShotSpawner.Spawn(transform);
+        if (base.ActivateIfConditionsMet())
+        {
+           FireProjectiles();
+            return true;
+        }
+        return false;
+    }
 
-        return true;
+    private void FireProjectiles()
+    {
+        var projectiles = poxShotSpawner?.Spawn(transform);
+
+        if (projectiles != null)
+            foreach (var projectile in projectiles)
+            {
+                projectile.GetComponent<Projectile>().SetDamageDealer(GetComponent<DamageHandler>());
+            }
+
+        GetComponentInParent<Movement>().FaceCameraView = true;
     }
 
     private void OnValidate()
     {
-        poxShotSpawner.OnValidate();
+        poxShotSpawner?.OnValidate();
     }
 
     private void OnDrawGizmos()
     {
-        poxShotSpawner.OnDrawGizmos(transform);
+        poxShotSpawner?.OnDrawGizmos(transform);
     }
 }

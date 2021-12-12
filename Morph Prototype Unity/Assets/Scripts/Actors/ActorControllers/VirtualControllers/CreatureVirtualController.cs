@@ -17,6 +17,11 @@ public class CreatureVirtualController : VirtualController
     public event Action TailLightAttack;
     public event Action TailHeavyAttack;
 
+    public event Action UseAbility1;
+    public event Action UseAbility2;
+    public event Action UseAbility3;
+    public event Action UseAbility4;
+    
     private void Awake()
     {
         inputHandler = GetComponentInChildren<CreatureInputHandler>();
@@ -51,5 +56,22 @@ public class CreatureVirtualController : VirtualController
     public void InvokeTailHeavyAttack()
     {
         TailHeavyAttack?.Invoke();
+    }
+    
+    public void InvokeUseAbility1()
+    {
+        UseAbility1?.Invoke();
+    }
+    public void InvokeUseAbility2()
+    {
+        UseAbility2?.Invoke();
+    }
+    public void InvokeUseAbility3()
+    {
+        UseAbility3?.Invoke();
+    }
+    public void InvokeUseAbility4()
+    {
+        UseAbility4?.Invoke();
     }
 }

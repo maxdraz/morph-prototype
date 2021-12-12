@@ -7,13 +7,13 @@ public class VitriolicVitality : MonoBehaviour
     private DamageHandler damageHandler;
     [SerializeField] private float chemicalDamageStatBonus = 5;
     [SerializeField] private float healingPercentageBonus;
-    Timer healingTimer;
+    LegacyTimer healingLegacyTimer;
     [SerializeField] private bool unlockVenomousVigor = true;
     [SerializeField] private bool unlockToxicFocus = true;
 
     private void Start()
     {
-        healingTimer.Duration = 1f;
+        healingLegacyTimer.Duration = 1f;
     }
 
     private void OnEnable()
@@ -39,7 +39,7 @@ public class VitriolicVitality : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (healingTimer.JustFinished) 
+        if (healingLegacyTimer.JustFinished) 
         {
             RemoveHealingBonus();
         }
@@ -62,7 +62,7 @@ public class VitriolicVitality : MonoBehaviour
         if (damageTakenSummary.PoisonDamage > 0)
         {
             //This timer should restart every time a poison damage tick has been dealt to the target
-            healingTimer.Restart(1, false);
+            healingLegacyTimer.Restart(1, false);
             AddHealingBonus();
 
             if (unlockVenomousVigor) 

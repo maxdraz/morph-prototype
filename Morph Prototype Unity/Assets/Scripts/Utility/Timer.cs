@@ -3,125 +3,69 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Timer
+public struct Timer
 {
     [SerializeField] private float duration;
     [SerializeField] private float currentTime;
+    private bool restart;
     [SerializeField] private bool loop;
-    private bool justFinished;
-    [SerializeField]private bool canCountDown;
-    
-    // public interface
+
+    public bool Completed => currentTime <= 0;
     public float CurrentTime => currentTime;
-    public bool JustStarted => duration == currentTime;
-    public float Duration
-    {
-        get => duration;
-        set => duration = value;
-    }
-    public bool Loop {
-        get => loop;
-        set => loop = value;
-    }
-    public bool CanCountDown => canCountDown;
-    public bool JustFinished => justFinished;
+    public float Duration => duration;
+    public bool Loop => loop;
+    public float TimeElapsed => duration - currentTime;
 
-    public float TimeElapsed
+    public bool JustCompleted
     {
-        get
-        {
-            if (duration > 0)
-            {
-                return duration - currentTime;
-            }
-            return 0;
-        }
+        get;
+        private set;
     }
 
-    public Timer(float duration = 1, bool loop = false)
+    public bool JustStarted
+    {
+        get;
+        private set;
+    }
+
+    public Timer(float duration = 1f, bool loop = false, bool startImmediatedly = false)
     {
         this.duration = duration;
         this.loop = loop;
-        currentTime = duration;
-        justFinished = false;
-        canCountDown = true;
+        currentTime = 0;
+        restart = startImmediatedly;
+        JustCompleted = false;
+        JustStarted = startImmediatedly;
     }
-    
-    public bool CountDown(float deltaTime)
+
+    public void Update(float dt)
     {
-        if (!canCountDown)
+        if(Completed)
         {
-            justFinished = false;
+            JustCompleted = false;
+            
             if (loop)
-            {
-                Restart();
-            }
-            return false;
+                restart = true;
+            
+            if(!restart)
+                return;
+            currentTime = duration;
+            restart = false;
+            JustStarted = true;
         }
+        
+        currentTime -= dt;
+        currentTime = Mathf.Max(0, currentTime);
+        if (JustStarted) JustStarted = false;
+        if (Completed) JustCompleted = true;
+    }
 
-        currentTime -= deltaTime;
-
-        if (currentTime <= 0)
-        {
-            currentTime = 0;
-            Finish();
+    public bool RestartIfCompleted()
+    {
+        if(!Completed)
             return false;
-        }
+        
+        restart = true;
         return true;
-    }
-    
-    private void Finish()
-    {
-        justFinished = true;
-        Stop();
-    }
-    
-    public void Stop()
-    {
-        canCountDown = false;
-    }
-
-    public void Pause()
-    {
-        canCountDown = false;
-    }
-
-    public void Resume()
-    {
-        canCountDown = true;
-    }
-    
-    public void Restart()
-    {
-        canCountDown = true;
-        justFinished = false;
-        currentTime = duration;
-    }
-
-    public void Restart(float newDuration)
-    {
-        duration = newDuration;
-        Restart();
-    }
-
-    public void Restart(float newDuration, bool shouldLoop)
-    {
-        loop = shouldLoop;
-        Restart(newDuration);
-    }
-
-    //public bool JustFinished()
-   // {
- //       if (justFinished)
- //       {
-    //         justFinished = false;
-    //         return true;
-    //     }
-    //     return false;
-    // }
-
-    public bool IsFinished()
-    {
-        return currentTime <= 0 || justFinished;
     }
 }

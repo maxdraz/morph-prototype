@@ -68,14 +68,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 320125811011304783, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}
-      propertyPath: limbWeaponMorph
-      value: 
-      objectReference: {fileID: 6675012289007957567, guid: dfde551b8c3af0d4ab0d05cfc2c4608e, type: 3}
-    - target: {fileID: 320125811011304783, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}
-      propertyPath: limbWeaponMorphData
-      value: 
-      objectReference: {fileID: 11400000, guid: 6b1bb7f6f5d0b694382b53a6a0fbf7c9, type: 2}
     - target: {fileID: 344181428797638714, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -128,21 +120,9 @@ PrefabInstance:
       propertyPath: canTakeDamage
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3964877461283424367, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 5836557162132232287, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}
-      propertyPath: m_FillAmount
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7853902346194350098, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}
       propertyPath: m_Name
       value: Deer
-      objectReference: {fileID: 0}
-    - target: {fileID: 8824068126247670664, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}

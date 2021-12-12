@@ -3,41 +3,55 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(ActiveMorphHandler))]
 public class ActiveMorph : MonoBehaviour
 {
+    [SerializeField] protected Timer castTimer;
+    [SerializeField] protected Timer LookInCameraViewTimer;
     [SerializeField] protected Timer cooldown;
+
+    private Movement movement;  // TODO - make movement listen to attack handler to change
 
     private void Awake()
     {
-        cooldown.Stop();
+        movement = GetComponentInParent<Movement>();
     }
 
-    protected virtual void Update()
+    private void Update()
     {
-        if (Input.GetMouseButtonDown(1))
-        {
-            Activate();
-        }
+        castTimer.Update(Time.deltaTime);
+        LookInCameraViewTimer.Update(Time.deltaTime);
+        cooldown.Update(Time.deltaTime);
         
-        if(!cooldown.CanCountDown) return;
-
-        cooldown.CountDown(Time.deltaTime);
-
-        if (cooldown.JustFinished)
+        if (LookInCameraViewTimer.JustStarted)
         {
-            print("Can activate again");
+            print("just started");
+            movement.FaceCameraView = true;
+        }
+
+        if (LookInCameraViewTimer.JustCompleted)
+        {
+            print("just finished");
+            movement.FaceCameraView = false;
         }
     }
 
-    protected virtual bool Activate()
+    public virtual bool ActivateIfConditionsMet()
     {
-        if (cooldown.CanCountDown)
+        return LookInCameraViewTimer.RestartIfCompleted() ||  cooldown.RestartIfCompleted();
+    }
+
+    private bool LookInCameraView()
+    {
+        if (LookInCameraViewTimer.Completed)
+            movement.FaceCameraView = false;
+        else
         {
-           return false;
+            movement.FaceCameraView = true;
+            LookInCameraViewTimer.RestartIfCompleted();
         }
-       
-        cooldown.Restart();
-        return true;
+
+        return LookInCameraViewTimer.Completed;
 
     }
 }

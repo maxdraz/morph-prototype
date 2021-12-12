@@ -1,72 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class T_TimerTest : MonoBehaviour
 {
-    [SerializeField] private Timer abilityCooldown;
-    [SerializeField] private GameObject objToSpawn;
-
-    private Timer cooldown;
-    
+    [SerializeField] private Timer timer;
     // Start is called before the first frame update
     void Start()
     {
-        abilityCooldown ??= new Timer(2);
-
-        var spawnedObj = ObjectPooler.Instance.GetOrCreatePooledObject(objToSpawn);
-        
-        ObjectPooler.Instance.Recycle(spawnedObj);
-        
-
+      print(timer.CurrentTime);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (abilityCooldown.JustStarted)
+        if (timer.JustCompleted)
         {
-            print("cooldown just started");
+            print("just completed");
         }
         
-        if (abilityCooldown.CountDown(Time.deltaTime))
-        {
-            print("cooldown running");
-            
-        }
-
-        if (abilityCooldown.JustFinished)
-        {
-            print("cooldown just finished");
-        }
+        if(Input.GetMouseButtonDown(0))
+            timer.RestartIfCompleted();
         
-        ValidateInput();
-       
-    }
-
-    void ValidateInput()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            abilityCooldown.Resume();
-            print("resumed");
-        }
-        
-        if (Input.GetMouseButtonDown(1))
-        {
-            abilityCooldown.Pause();
-            print("paused");
-        }
-        
-        if (Input.GetMouseButtonDown(2))
-        {
-            abilityCooldown.Restart();
-            print("restarted");
-        }
-    }
-
-    void Test()
-    {
-        
+        timer.Update(Time.deltaTime);
     }
 }

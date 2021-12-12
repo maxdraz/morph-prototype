@@ -3,13 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(OutdatedDamageHandler))]
+[RequireComponent(typeof(DamageHandler))]
 public class MorphLoadout : MonoBehaviour
 {
     [SerializeField] private LimbWeaponMorph limbWeaponMorph;
     [SerializeField] private HeadWeaponMorph headWeaponMorph;
     [SerializeField] private TailWeaponMorph tailWeaponMorph;
-
+    
+    [SerializeField] private ActiveMorph[] activeMorphs;
     [SerializeField] private List<PassiveMorph> passiveMorphs;
     
     [HideInInspector] public LimbWeaponMorph LimbWeaponMorph;
@@ -23,10 +24,21 @@ public class MorphLoadout : MonoBehaviour
         AddMorphToLoadout(limbWeaponMorph);
         AddMorphToLoadout(headWeaponMorph);
         AddMorphToLoadout(tailWeaponMorph);
+        
+        for (int i = 0; i < activeMorphs.Length; i++)
+        {
+            var currentActiveMorph = activeMorphs[i];
+            if (currentActiveMorph)
+            {
+                activeMorphs[i] = UtilityFunctions.CopyComponent(activeMorphs[i], gameObject);
+            }
+        }
 
         for (int i = 0; i < passiveMorphs.Count; i++)
         {
-            passiveMorphs[i] = UtilityFunctions.CopyComponent(passiveMorphs[i], gameObject);
+            var currentPassiveMorph = passiveMorphs[i];
+            if(currentPassiveMorph)
+                passiveMorphs[i] = UtilityFunctions.CopyComponent(passiveMorphs[i], gameObject);
         }
 
     }
@@ -75,6 +87,13 @@ public class MorphLoadout : MonoBehaviour
        // limbWeaponMorph = null;
            
        // MorphLoadoutChanged?.Invoke(limbWeaponMorph);
+    }
+
+    public ActiveMorph GetActiveMorph(int index)
+    {
+        if (index >= activeMorphs.Length) return null;
+
+        return activeMorphs[index];
     }
     
     public void RemoveMorphFromLoadout(Morph morphObj)

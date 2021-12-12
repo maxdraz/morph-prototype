@@ -17,8 +17,8 @@ public class DebuffHandler : MonoBehaviour
         damageHandler = GetComponent<DamageHandler>();
 
         activeDebuffs = new List<Debuff>();
-        poisonDebuff = new PoisonDebuff(new Timer(1,true));
-        acidDebuff = new AcidDebuff(new Timer(5),new Timer(1, true));
+        poisonDebuff = new PoisonDebuff(new LegacyTimer(1,true));
+        acidDebuff = new AcidDebuff(new LegacyTimer(5),new LegacyTimer(1, true));
     }
 
     private void OnEnable()

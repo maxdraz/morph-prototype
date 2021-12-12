@@ -10,14 +10,14 @@ public class GaseousDischarge : PassiveMorph
 
     [SerializeField]private float poisonGasSpawnRate;
     [SerializeField] private float poisonGasLifeTime;
-    Timer poisonGasSpawnCountdown;
+    LegacyTimer poisonGasSpawnCountdown;
     ObjectPooler gasPooler;
     [SerializeField] GameObject gasCloud;
 
     // Start is called before the first frame update
     void Start()
     {
-        poisonGasSpawnCountdown = new Timer(poisonGasSpawnRate, true);
+        poisonGasSpawnCountdown = new LegacyTimer(poisonGasSpawnRate, true);
         poisonGasSpawnCountdown.CountDown(poisonGasSpawnRate);
     }
 

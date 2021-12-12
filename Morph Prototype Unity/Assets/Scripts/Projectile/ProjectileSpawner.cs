@@ -25,10 +25,12 @@ public abstract class ProjectileSpawner
 
     public virtual void OnDrawGizmos(Transform transform) {}
 
-    public virtual void Spawn(Transform transform)
+    public virtual List<GameObject> Spawn(Transform transform)
     {
-        if(!projectilePrefab || projectileSpawnData.Count <= 0) return;
-        
+        if(!projectilePrefab || projectileSpawnData.Count <= 0) return null;
+
+        List<GameObject> projectiles = new List<GameObject>();
+
         foreach (var positionAndDirection in projectileSpawnData)
         {
 
@@ -42,6 +44,9 @@ public abstract class ProjectileSpawner
             projectile.transform.position = pos;
             projectile.transform.rotation = Quaternion.LookRotation(dir);
             projectile.SetActive(true);
+            projectiles.Add(projectile);
         }
+
+        return projectiles;
     }
 }

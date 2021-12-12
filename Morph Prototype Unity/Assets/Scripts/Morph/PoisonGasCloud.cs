@@ -9,19 +9,19 @@ public class PoisonGasCloud : MonoBehaviour
     float percentageMoveSpeedReduction;
     public float lifetime;
     public GameObject sourceCreature;
-    Timer poisonTimer = new Timer();
+    LegacyTimer poisonLegacyTimer = new LegacyTimer();
 
     List<GameObject> enemiesInsideAOE = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
-        poisonTimer.Restart(1, true);
+        poisonLegacyTimer.Restart(1, true);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (poisonTimer.JustFinished) 
+        if (poisonLegacyTimer.JustFinished) 
         {
             for (int i = 0; i < enemiesInsideAOE.Count; i++) 
             {

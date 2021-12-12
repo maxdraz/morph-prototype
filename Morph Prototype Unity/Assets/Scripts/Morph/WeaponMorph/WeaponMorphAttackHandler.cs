@@ -26,8 +26,8 @@ public class WeaponMorphAttackHandler : MonoBehaviour
     private WeaponMorph currentWeaponMorph;
     private List<WeaponAttack> attackQueue;
 
-    private Timer attackTimer;
-    private Timer inputWindowTimer;
+    private LegacyTimer attackLegacyTimer;
+    private LegacyTimer inputWindowLegacyTimer;
     
     //public events
     public delegate void AttackQueuedHandler(ref WeaponAttack weaponAttack);
@@ -43,7 +43,7 @@ public class WeaponMorphAttackHandler : MonoBehaviour
         controller = GetComponentInParent<CreatureVirtualController>();
         damageHandler = GetComponent<DamageHandler>();
         attackQueue = new List<WeaponAttack>();
-        inputWindowTimer = new Timer(0);
+        inputWindowLegacyTimer = new LegacyTimer(0);
 
         boxHitbox = GetComponentInChildren<BoxHitbox>();
         sphericalHitbox = GetComponentInChildren<SphericalHitbox>();
@@ -99,12 +99,12 @@ public class WeaponMorphAttackHandler : MonoBehaviour
             return;
         }
         
-        if (!inputWindowTimer.IsFinished())
+        if (!inputWindowLegacyTimer.IsFinished())
         {
-            inputWindowTimer.CountDown(Time.deltaTime);
+            inputWindowLegacyTimer.CountDown(Time.deltaTime);
             
 
-            if (inputWindowTimer.JustFinished)
+            if (inputWindowLegacyTimer.JustFinished)
             {
                 ResetCombo();
             }
@@ -136,21 +136,21 @@ public class WeaponMorphAttackHandler : MonoBehaviour
 
         RestartTimerIfNecessary(); // refactored
         
-        if (attackTimer.JustStarted)
+        if (attackLegacyTimer.JustStarted)
             StartAttack(); // refactored
 
-        if (attackTimer.CountDown(Time.deltaTime))
+        if (attackLegacyTimer.CountDown(Time.deltaTime))
             UpdateAttack(); // refactored
         
-        if (attackTimer.JustFinished)
+        if (attackLegacyTimer.JustFinished)
             FinishAttack();
     }
 
     private void RestartTimerIfNecessary()
     {
-        if (attackTimer == null || attackTimer.IsFinished())
+        if (attackLegacyTimer == null || attackLegacyTimer.IsFinished())
         {
-            attackTimer = new Timer(currentWeaponAttack.Duration);
+            attackLegacyTimer = new LegacyTimer(currentWeaponAttack.Duration);
         } 
     }
 
@@ -206,7 +206,7 @@ public class WeaponMorphAttackHandler : MonoBehaviour
         if(hitbox) hitbox.Deactivate();
         
         //start input window and remove this attack from queue
-        inputWindowTimer = new Timer(currentWeaponAttack.InputWindowAfterAttackEnd);
+        inputWindowLegacyTimer = new LegacyTimer(currentWeaponAttack.InputWindowAfterAttackEnd);
         attackQueue.RemoveAt(0);
     }
 
@@ -233,8 +233,8 @@ public class WeaponMorphAttackHandler : MonoBehaviour
         if (currentWeaponAttack == null) return true;
         if (attackQueue.Count > 1) return false;
         
-        if (attackTimer.CurrentTime <= currentWeaponAttack.InputWindowBeforeAttackEnd
-            || !inputWindowTimer.IsFinished()) // within input window
+        if (attackLegacyTimer.CurrentTime <= currentWeaponAttack.InputWindowBeforeAttackEnd
+            || !inputWindowLegacyTimer.IsFinished()) // within input window
             return true;
 
         return false;
