@@ -12,6 +12,9 @@ public class Movement : MonoBehaviour
     public float speedModifier = 1;
     [Range(0,1)]
     [SerializeField] private float rotationStrength;
+
+    private float customRotationStrength;
+    
     private Vector3 velocity;
     private Vector3 input;
     private Rigidbody rb;
@@ -21,6 +24,12 @@ public class Movement : MonoBehaviour
     private Vector3 moveDir;
 
     private Transform lookRotationTransform;
+
+    public bool FaceCameraView
+    {
+        get;
+        private set;
+    } = false;
 
     private void Reset()
     {
@@ -184,10 +193,22 @@ public class Movement : MonoBehaviour
         lookRotationTransform = trans;
     }
 
-    public void RotateToCameraView()
+    public void RotateToCameraView(float rotStrength)
     {
+        customRotationStrength = rotStrength;
+        FaceCameraView = true;
+    }
+    
+    private void RotateToCameraView()
+    {
+        print("custom rotation successful");
         var lookDirection = UtilityFunctions.TransformForwardOnPlane(Camera.main.transform, Vector3.up);
-        LookInDirection(lookDirection, in rotationStrength);
+        LookInDirection(lookDirection, in customRotationStrength);
+    }
+
+    public void StopFacingCameraView()
+    {
+        FaceCameraView = false;
     }
 
     public void ClearLookRotationTransform()
@@ -195,9 +216,5 @@ public class Movement : MonoBehaviour
         lookRotationTransform = null;
     }
     
-    public bool FaceCameraView
-    {
-        get;
-        set;
-    }
+    
 }

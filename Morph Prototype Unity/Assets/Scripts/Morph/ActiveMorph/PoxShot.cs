@@ -26,8 +26,6 @@ public class PoxShot : ActiveMorph
             {
                 projectile.GetComponent<Projectile>().SetDamageDealer(GetComponent<DamageHandler>());
             }
-
-        GetComponentInParent<Movement>().FaceCameraView = true;
     }
 
     private void OnValidate()

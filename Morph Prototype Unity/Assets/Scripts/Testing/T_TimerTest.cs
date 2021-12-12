@@ -9,20 +9,26 @@ public class T_TimerTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      print(timer.CurrentTime);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (timer.JustCompleted)
-        {
-            print("just completed");
-        }
         
         if(Input.GetMouseButtonDown(0))
             timer.RestartIfCompleted();
         
         timer.Update(Time.deltaTime);
+
+        if (timer.JustStarted)
+        {
+            print("just started");
+        }
+        
+        if (timer.JustCompleted)
+        {
+            print("just completed");
+        }
     }
 }

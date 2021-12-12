@@ -19,39 +19,26 @@ public class ActiveMorph : MonoBehaviour
 
     private void Update()
     {
+        if (LookInCameraViewTimer.JustStarted)
+        {
+            print("just started");
+            movement.RotateToCameraView(1);
+        }
         castTimer.Update(Time.deltaTime);
         LookInCameraViewTimer.Update(Time.deltaTime);
         cooldown.Update(Time.deltaTime);
         
-        if (LookInCameraViewTimer.JustStarted)
-        {
-            print("just started");
-            movement.FaceCameraView = true;
-        }
+        
 
         if (LookInCameraViewTimer.JustCompleted)
         {
             print("just finished");
-            movement.FaceCameraView = false;
+            movement.StopFacingCameraView();
         }
     }
 
     public virtual bool ActivateIfConditionsMet()
     {
         return LookInCameraViewTimer.RestartIfCompleted() ||  cooldown.RestartIfCompleted();
-    }
-
-    private bool LookInCameraView()
-    {
-        if (LookInCameraViewTimer.Completed)
-            movement.FaceCameraView = false;
-        else
-        {
-            movement.FaceCameraView = true;
-            LookInCameraViewTimer.RestartIfCompleted();
-        }
-
-        return LookInCameraViewTimer.Completed;
-
     }
 }

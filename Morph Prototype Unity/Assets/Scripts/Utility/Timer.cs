@@ -24,6 +24,7 @@ public struct Timer
 
     public bool JustStarted
     {
+        //get => !Completed && restart;
         get;
         private set;
     }
@@ -35,15 +36,16 @@ public struct Timer
         currentTime = 0;
         restart = startImmediatedly;
         JustCompleted = false;
-        JustStarted = startImmediatedly;
+       JustStarted = startImmediatedly;
     }
 
     public void Update(float dt)
     {
+        JustStarted = false;
+        
         if(Completed)
         {
             JustCompleted = false;
-            
             if (loop)
                 restart = true;
             
@@ -56,7 +58,6 @@ public struct Timer
         
         currentTime -= dt;
         currentTime = Mathf.Max(0, currentTime);
-        if (JustStarted) JustStarted = false;
         if (Completed) JustCompleted = true;
     }
 
