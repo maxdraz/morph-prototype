@@ -19,7 +19,11 @@ public class Health : MonoBehaviour
     // TODO - reimplement health bar
     [SerializeField] private Image healthBar;
     private Coroutine hideHealthBarAfterTime;
-    
+
+    private int secondsSpentHealing;
+    private int secondsToHealOver;
+    private float amountToHealPerTick;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -65,6 +69,29 @@ public class Health : MonoBehaviour
         health = Mathf.Max(0, health);
 
         OnHealthChanged();
+    }
+
+    public void AddHPOverTime(float amount, float duration)
+    {
+
+        secondsToHealOver = Convert.ToInt32(duration / 1);
+        amountToHealPerTick = amount / duration;
+        StartCoroutine("Regenerate");
+    }
+
+    IEnumerator Regenerate() 
+    {
+        
+        yield return new WaitForSeconds(1);
+        secondsSpentHealing++;
+
+        AddHP(amountToHealPerTick);
+
+        if (secondsSpentHealing < secondsToHealOver) 
+        {
+            StartCoroutine("Regenerate");
+        }
+        yield return null;
     }
 
     private void OnHealthChanged()
