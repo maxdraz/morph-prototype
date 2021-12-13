@@ -22,7 +22,7 @@ public class EnergyStealData : OnHitEffectData, IEnergySteal
         return new EnergyStealData(energystealAmount, energystealFXData);
     }
 
-    public float EnergystealAmount
+    public float EnergyToSteal
     {
         get => energystealAmount;
         set => energystealAmount = value;
@@ -49,4 +49,6 @@ public class EnergyStealData : OnHitEffectData, IEnergySteal
             }
         }
     }
+
+   
 }

@@ -20,7 +20,7 @@ public class StaminaStealData : OnHitEffectData, IStaminaSteal
         return new StaminaStealData(staminastealAmount, staminastealFXData);
     }
 
-    public float StaminastealAmount
+    public float StaminaToSteal
     {
         get => staminastealAmount;
         set => staminastealAmount = value;
@@ -47,4 +47,6 @@ public class StaminaStealData : OnHitEffectData, IStaminaSteal
             }
         }
     }
+
+    
 }
