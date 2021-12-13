@@ -12,10 +12,10 @@ public class Ferocity : PassiveMorph
 
     int currentFerocityStackAmount;
     int maxFerocityStacks = 5;
-    float stackDuration = 4;
+    [SerializeField] private float stackDuration = 4;
 
-    float ferocityAttackSpeedBuffPerStack;
-    float ferocityMeleeAttackDamageBuffPerStack;
+    [SerializeField] private float ferocityAttackSpeedBuffPerStack;
+    [SerializeField] private float ferocityMeleeAttackDamageBuffPerStack;
     float totalFerocityAttackSpeedBuff;
     float totalFerocityMeleeAttackDamageBuff;
 
@@ -108,12 +108,12 @@ public class Ferocity : PassiveMorph
 
                 if (hitCollider.GetComponent<CombatResources>().currentStaminaPoints > GetComponent<CombatResources>().currentStaminaPoints) 
                 { 
-                    //enemyDamageHandler.ApplyDamage(new StaminaStealData(spiritSiphonStaminaStealAmount),enemyDamageHandler);
+                    enemyDamageHandler.ApplyDamage(new StaminaStealData(spiritSiphonStaminaStealAmount),enemyDamageHandler);
                 }
 
                 if (hitCollider.GetComponent<CombatResources>().currentEnergyPoints > GetComponent<CombatResources>().currentEnergyPoints)
                 {
-                    //enemyDamageHandler.ApplyDamage(new EnergyStealData(spiritSiphonEnergyStealAmount), enemyDamageHandler);
+                    enemyDamageHandler.ApplyDamage(new EnergyStealData(spiritSiphonEnergyStealAmount), enemyDamageHandler);
                 }
             }
         }
