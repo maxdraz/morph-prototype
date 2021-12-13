@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3653122839143016335}
   - component: {fileID: 4276877776114567352}
   - component: {fileID: 5836557162132232287}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 5919189274535383698}
   - component: {fileID: 5313709455258342680}
   - component: {fileID: 3318862805125466085}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SphericalHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,7 +194,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5004015571522776685}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -228,7 +228,7 @@ GameObject:
   - component: {fileID: 7513930521223758524}
   - component: {fileID: 7188739323567640628}
   - component: {fileID: 3750635466258180062}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BoxHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -337,7 +337,7 @@ GameObject:
   - component: {fileID: 1386655511873807801}
   - component: {fileID: 4768054930784332328}
   - component: {fileID: 3427813334959885821}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HealthBarCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -458,7 +458,7 @@ GameObject:
   - component: {fileID: 7926291197602700796}
   - component: {fileID: 2787695763366334849}
   - component: {fileID: 7146106918827470388}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BaseCreature
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -588,7 +588,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poisonDebuff:
-    tickTimer:
+    tickLegacyTimer:
       duration: 0
       currentTime: 0
       loop: 0
@@ -596,14 +596,14 @@ MonoBehaviour:
     damageStack: 0
     damageDealer: {fileID: 0}
   acidDebuff:
-    tickTimer:
+    tickLegacyTimer:
       duration: 0
       currentTime: 0
       loop: 0
       canCountDown: 0
     damageStack: 0
     damageDealer: {fileID: 0}
-    acidDurationTimer:
+    acidDurationLegacyTimer:
       duration: 0
       currentTime: 0
       loop: 0
@@ -624,22 +624,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca070c3b6534b8a47b9eeb7cc2a9559f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  summary:
-    DamageTaker: {fileID: 0}
-    DamageDealer: {fileID: 0}
-    IsFatalBlow: 0
-    IsCriticalHit: 0
-    isMortalBlow: 0
-    PhysicalDamage: 0
-    LifeStealDamage: 0
-    PoisonDamage: 0
-    AcidDamage: 0
-    FireDamage: 0
-    IceDamage: 0
-    LightningDamage: 0
-    StaminaDrained: 0
-    FortitudeDamage: 0
-    KnockbackForce: 0
   isInvincible: 1
   damageNumberSet: {fileID: 11400000, guid: b7e89376a8942b04c8d659ed9c4bd2c4, type: 2}
 --- !u!114 &320125811011304783
@@ -701,6 +685,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce19a24efc71e42408c5685a183642f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackOrAbilityInProgress: 0
 --- !u!1 &8571281641161175070
 GameObject:
   m_ObjectHideFlags: 0
@@ -713,7 +698,7 @@ GameObject:
   - component: {fileID: 2158247824017640598}
   - component: {fileID: 7190944303848996840}
   - component: {fileID: 418097200308429281}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HealthBarBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}

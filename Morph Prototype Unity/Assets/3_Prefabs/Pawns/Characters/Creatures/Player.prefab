@@ -18,7 +18,9 @@ GameObject:
   - component: {fileID: 2117880749}
   - component: {fileID: 8683765337263264557}
   - component: {fileID: 4629799917121605792}
-  m_Layer: 0
+  - component: {fileID: 6035356435218038044}
+  - component: {fileID: 87352591152224365}
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -186,6 +188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  speedModifier: 1
   rotationStrength: 0.5
 --- !u!114 &4629799917121605792
 MonoBehaviour:
@@ -201,3 +204,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingCreature: {fileID: 8919471696488907971, guid: 48f7c1d1e9beddf4d82092c20b3ab169, type: 3}
   party: []
+--- !u!114 &6035356435218038044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8683765337263264566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64ba94fe393a75344bc5875f7a221571, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityScale: 4
+--- !u!114 &87352591152224365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8683765337263264566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee6a9b1f20797f44bba235a094ec891, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpForce: 15
+  maxNumberOfJumps: 3
+  isGround:
+    serializedVersion: 2
+    m_Bits: 119
+  raycastLength: 1
