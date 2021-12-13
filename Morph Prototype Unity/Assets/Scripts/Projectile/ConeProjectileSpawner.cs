@@ -10,7 +10,8 @@ public class ConeProjectileSpawner : ProjectileSpawner
     [SerializeField] private int projectilesToSpawn;
     [Range(0,25)]
     [SerializeField] private float radius;
-    
+    [Range(0, 180)] [SerializeField] private float arcAngle;
+
     public override void CalculateSpawnDataLocal()
     {
         projectileSpawnData ??= new List<ProjectileSpawnData>();
@@ -31,17 +32,34 @@ public class ConeProjectileSpawner : ProjectileSpawner
         List<GameObject> projectiles = new List<GameObject>();
         foreach (var spawnData in projectileSpawnData)
         {
-            var pos = spawnData.SpawnPosition;
-            // rotate forward by pitch and yaw
-                // based on radius
+            spawnData.SpawnPosition += spawnPointOffsetLocal;
+            spawnData.Direction = CalculateOutwardDirection(spawnData);
+            
+            var dir = transform.TransformDirection(spawnData.Direction);
+            var pos = transform.TransformPoint(spawnData.SpawnPosition);
+
 
             var projectile = ObjectPooler.Instance.GetOrCreatePooledObject(projectilePrefab, false);
             projectile.transform.position = pos;
-            projectile.transform.rotation = Quaternion.LookRotation(Vector3.forward);
+            projectile.transform.rotation = Quaternion.LookRotation(dir);
             projectile.SetActive(true);
             projectiles.Add(projectile);
         }
 
         return projectiles;
+    }
+
+    private Vector3 CalculateOutwardDirection(ProjectileSpawnData spawnData)
+    { 
+        var xPosPercentage = spawnData.SpawnPosition.x / (radius * 2);
+       var yPosPercentage = -spawnData.SpawnPosition.y / (radius * 2);
+
+       var yawAngle = arcAngle * xPosPercentage;
+       var pitchAngle = arcAngle * yPosPercentage;
+       
+       var rot = Quaternion.AngleAxis(yawAngle, Vector3.up) * Vector3.forward;
+       rot = Quaternion.AngleAxis(pitchAngle, Vector3.right) * rot;
+
+       return rot;
     }
 }

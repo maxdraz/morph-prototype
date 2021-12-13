@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PoxShot : ActiveMorph
 {
-    [SerializeField] private EdgeProjectileSpawner poxShotSpawner;
+    [SerializeField] private ConeProjectileSpawner poxShotSpawner;
 
     public override bool ActivateIfConditionsMet()
     {

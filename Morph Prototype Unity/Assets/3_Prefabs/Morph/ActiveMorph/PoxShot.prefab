@@ -61,12 +61,13 @@ MonoBehaviour:
     loop: 0
   poxShotSpawner:
     projectilePrefab: {fileID: 8109351195646949467, guid: 83126d75d57030540aba373b7bdbba33, type: 3}
-    spawnPointOffsetLocal: {x: 0, y: 0, z: 1}
+    spawnPointOffsetLocal: {x: 0, y: 0, z: 2}
     drawGizmos: 1
-    debugSphereRadius: 0.1
-    projectilesToSpawn: 5
-    edgeWidth: 0.97
-    arcAngle: 32.9
+    debugSphereRadius: 0.12
+    projectilesToSpawn: 25
+    radius: 0.05
+    arcAngle: 9.1
+    posX: 0
 --- !u!114 &6045666899893537428
 MonoBehaviour:
   m_ObjectHideFlags: 0

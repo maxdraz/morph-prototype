@@ -8,7 +8,7 @@ public class ProjectileSpawnData
 {
     public Vector3 SpawnPosition;
     public Vector3 EndPoint;
-    public Vector3 Direction => (EndPoint - SpawnPosition).normalized;
+    public Vector3 Direction;
 
     public ProjectileSpawnData(Vector3 spawnPosition, Vector3 endPoint)
     {
