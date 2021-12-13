@@ -6,8 +6,6 @@ using DamageNumbersPro;
 
 public class DamageHandler : MonoBehaviour
 {
-    public DamageTakenSummary summary;
-    //==============================
     private Stats stats;
     private Health health;
     private Armor armor;
@@ -20,12 +18,9 @@ public class DamageHandler : MonoBehaviour
     public Health Health => health;
     public Armor Armor => armor;
     public bool IsInvincible => isInvincible;
-    
-    [SerializeField] private List<Debuff> activeDebuffs;
     private float acidifiedDebuff;
-    private List<DamageHandler> damageTakers;
 
-    
+
     // public events
     public delegate void DebuffAboutToBeTakenPreModifierHandler(ref IDamageType damageType, DamageHandler damageDealer);
     public event DebuffAboutToBeTakenPreModifierHandler DebuffAboutToBeTakenPreModifier;
@@ -67,7 +62,6 @@ public class DamageHandler : MonoBehaviour
         DamageAboutToBeTaken?.Invoke(ref damageClone);
 
         ResistDamage(ref damageClone, damageDealer, out var damageTakenSummary);
-        summary = damageTakenSummary;
         HandleDamageTaken(in damageTakenSummary);
         
         damageDealer.DamageHasBeenDealt?.Invoke(in damageTakenSummary);

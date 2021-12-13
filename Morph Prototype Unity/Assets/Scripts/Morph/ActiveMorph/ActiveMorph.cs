@@ -39,6 +39,6 @@ public class ActiveMorph : MonoBehaviour
 
     public virtual bool ActivateIfConditionsMet()
     {
-        return LookInCameraViewTimer.RestartIfCompleted() ||  cooldown.RestartIfCompleted();
+        return cooldown.RestartIfCompleted();
     }
 }

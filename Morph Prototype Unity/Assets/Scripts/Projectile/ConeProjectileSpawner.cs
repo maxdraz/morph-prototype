@@ -35,9 +35,13 @@ public class ConeProjectileSpawner : ProjectileSpawner
             spawnData.SpawnPosition += spawnPointOffsetLocal;
             spawnData.Direction = CalculateOutwardDirection(spawnData);
             
-            var dir = transform.TransformDirection(spawnData.Direction);
-            var pos = transform.TransformPoint(spawnData.SpawnPosition);
-
+            //var dir = transform.TransformDirection(spawnData.Direction);
+            //var pos = transform.TransformPoint(spawnData.SpawnPosition);
+            
+            var dir = Camera.main.transform.TransformDirection(spawnData.Direction);
+         
+            var pos =  Camera.main.transform.TransformPoint(spawnData.SpawnPosition);
+            pos += transform.position - Camera.main.transform.position;
 
             var projectile = ObjectPooler.Instance.GetOrCreatePooledObject(projectilePrefab, false);
             projectile.transform.position = pos;
