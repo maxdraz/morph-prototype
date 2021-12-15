@@ -55,7 +55,10 @@ public class VitriolicVitality : MonoBehaviour
         damageHandler.Health.healingPercentageBonus -= healingPercentageBonus;
     }
 
-
+    private void OnDamageAboutToBeDealt(in DamageTakenSummary damageTakenSummary) 
+    {
+        //if the attack was a heavy attack from a weapon morph, add poison damage = 30% of the physical damage before resistances
+    }
 
     private void OnDamageHasBeenDealt(in DamageTakenSummary damageTakenSummary)
     {
@@ -93,7 +96,7 @@ public class VitriolicVitality : MonoBehaviour
 
             if (unlockToxicFocus)
             {
-
+                //damageHandler.DamageAboutToBeDealt += OnDamageAboutToBeDealt;
             }
         }
     }
@@ -102,14 +105,11 @@ public class VitriolicVitality : MonoBehaviour
     {
         if (damageHandler)
         {
-            if (unlockVenomousVigor)
-            {
-
-            }
+            damageHandler.DamageHasBeenDealt -= OnDamageHasBeenDealt;
 
             if (unlockToxicFocus)
             {
-
+                //damageHandler.DamageAboutToBeDealt -= OnDamageAboutToBeDealt;
             }
         }
 

@@ -140,7 +140,7 @@ ParticleSystem:
           outWeight: 0.33333334
         - serializedVersion: 3
           time: 1
-          value: 1
+          value: 0.2456646
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -308,17 +308,17 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.545411
-          value: 0.54335517
-          inSlope: -0.5816338
-          outSlope: -0.5816338
+          time: 0.61127925
+          value: 0.3381529
+          inSlope: 0.73549324
+          outSlope: 0.73549324
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.33333334
+          inWeight: 0.17292134
           outWeight: 0.33333334
         - serializedVersion: 3
           time: 1
-          value: 0.8526001
+          value: 0.48844147
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -910,15 +910,51 @@ ParticleSystem:
         - serializedVersion: 3
           time: 0.35833025
           value: 0.30600893
-          inSlope: 1.1443086
-          outSlope: 1.1443086
+          inSlope: 4.8413944
+          outSlope: 4.8413944
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.5495277
+          outWeight: 0.3705601
+        - serializedVersion: 3
+          time: 0.46323985
+          value: 0.6044021
+          inSlope: 0.03006999
+          outSlope: 0.03006999
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 1
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 0.7112771
+          value: 0
+          inSlope: -0.2850045
+          outSlope: -0.2850045
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.2889865
+        - serializedVersion: 3
+          time: 0.82454926
+          value: 0.3651133
+          inSlope: 5.3261094
+          outSlope: 5.3261094
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 0.90122956
+          value: 0
+          inSlope: 5.251862
+          outSlope: 5.251862
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
           time: 1
-          value: 1
+          value: 0.44508743
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -4863,6 +4899,8 @@ GameObject:
   - component: {fileID: 7019288732155250899}
   - component: {fileID: 7871044784450029112}
   - component: {fileID: 875058216619203212}
+  - component: {fileID: 5184842289818130732}
+  - component: {fileID: 5225748942855629921}
   m_Layer: 0
   m_Name: Acid Eruption
   m_TagString: Untagged
@@ -9682,8 +9720,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fb133de14934524a97117c699468e3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useParticleSystemDuration: 1
+  useParticleSystemLifetime: 1
   duration: 1
+--- !u!65 &5184842289818130732
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2416811839361304073}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &5225748942855629921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2416811839361304073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb53705a0c86e3e4cb76676cf396648f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7709446984965052822
 GameObject:
   m_ObjectHideFlags: 0

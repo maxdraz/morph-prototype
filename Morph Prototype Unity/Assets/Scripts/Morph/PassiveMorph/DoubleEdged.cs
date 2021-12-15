@@ -85,10 +85,7 @@ public class DoubleEdged : PassiveMorph
         if (damageHandler)
         {
             damageHandler.DamageHasBeenDealt += OnDamageHasBeenDealt;
-            if (unlockBloodGuzzler)
-            {
-                //damageHandler.DebuffAboutToBeDealtPreModifier += OnAcidDebuffDealt;
-            }
+            
         }
     }
 
@@ -97,10 +94,7 @@ public class DoubleEdged : PassiveMorph
         if (damageHandler)
         {
             damageHandler.DamageHasBeenDealt -= OnDamageHasBeenDealt;
-            if (unlockBloodGuzzler)
-            {
-                //damageHandler.DebuffAboutToBeDealtPreModifier -= OnAcidDebuffDealt;
-            }
+            
 
         }
 

@@ -8667,7 +8667,7 @@ ParticleSystem:
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 2
     inside: 1
     outside: 0
@@ -9694,5 +9694,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fb133de14934524a97117c699468e3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useParticleSystemDuration: 1
+  useParticleSystemLifetime: 1
   duration: 1

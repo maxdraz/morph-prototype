@@ -23,7 +23,7 @@ public class PoisonGasCloud : MonoBehaviour
     {
         if (poisonLegacyTimer.JustFinished) 
         {
-            for (int i = 0; i < enemiesInsideAOE.Count; i++) 
+            for (int i = 0; i < enemiesInsideAOE.Count -1; i++) 
             {
                enemiesInsideAOE[i].GetComponent<DamageHandler>().ApplyDamage(new PoisonDamageData(poisonDamageToDeal), damageHandler);
             }
