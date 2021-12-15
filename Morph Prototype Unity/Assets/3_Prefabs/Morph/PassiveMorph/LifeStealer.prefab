@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7805725187979736742}
-  - component: {fileID: 5989643261710435803}
   - component: {fileID: 1278562990063281684}
   m_Layer: 0
   m_Name: LifeStealer
@@ -32,36 +31,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5989643261710435803
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9219988465210132025}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca070c3b6534b8a47b9eeb7cc2a9559f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  summary:
-    DamageTaker: {fileID: 0}
-    DamageDealer: {fileID: 0}
-    IsFatalBlow: 0
-    IsCriticalHit: 0
-    isMortalBlow: 0
-    PhysicalDamage: 0
-    LifeStealDamage: 0
-    PoisonDamage: 0
-    AcidDamage: 0
-    FireDamage: 0
-    IceDamage: 0
-    LightningDamage: 0
-    StaminaDrained: 0
-    FortitudeDamage: 0
-    KnockbackForce: 0
-  isInvincible: 1
-  damageNumberSet: {fileID: 0}
 --- !u!114 &1278562990063281684
 MonoBehaviour:
   m_ObjectHideFlags: 0

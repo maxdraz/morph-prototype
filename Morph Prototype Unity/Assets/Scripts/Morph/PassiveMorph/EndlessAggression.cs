@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EndlessAggression : PassiveMorph
 {
+    [SerializeField] private RadialProjectileSpawner explosionSpawner; 
     private DamageHandler damageHandler;
     [SerializeField] private float meleeDamageStatBonus = 5;
     [SerializeField] private bool unlockExplosiveAnger = true;
@@ -77,7 +79,8 @@ public class EndlessAggression : PassiveMorph
             canGainExplosiveAngerStacks = false;
             StopCoroutine("DecayExplosiveAngerStacks");
             currentExplosiveAngerStacks = 0;
-            ExplosiveAngerExplosion(transform.position, explosiveAngerExplosionRadius);
+            //ExplosiveAngerExplosion(transform.position, explosiveAngerExplosionRadius);
+            explosionSpawner.Spawn(transform);
         }
 
         else
@@ -155,5 +158,15 @@ public class EndlessAggression : PassiveMorph
         }
 
         damageHandler = null;
+    }
+
+    private void OnDrawGizmos()
+    {
+        explosionSpawner.OnDrawGizmos(transform);
+    }
+
+    private void OnValidate()
+    {
+        explosionSpawner.OnValidate();
     }
 }

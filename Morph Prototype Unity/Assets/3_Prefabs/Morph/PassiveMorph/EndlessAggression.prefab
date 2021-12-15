@@ -44,6 +44,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01d4e581ad1fae34a99116e331d497b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosionSpawner:
+    projectilePrefab: {fileID: 0}
+    spawnPointOffsetLocal: {x: 0, y: 0, z: 0}
+    drawGizmos: 1
+    debugSphereRadius: 0.39
+    projectilesToSpawn: 5
+    radius: 0.9
+    radialOffset: 21
+    projectileDirectionRotation: 0
   meleeDamageStatBonus: 5
   unlockExplosiveAnger: 1
   endlessAggressionEnergyGain: 2

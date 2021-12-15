@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7840249469762787755}
   - component: {fileID: 2858835146154502001}
   - component: {fileID: 3263574953973633300}
+  - component: {fileID: 5733477962856394056}
   m_Layer: 0
   m_Name: Poison Gas Cloud
   m_TagString: Untagged
@@ -4852,3 +4853,17 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &5733477962856394056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7840249469762787752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fb133de14934524a97117c699468e3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useParticleSystemLifetime: 1
+  duration: 1

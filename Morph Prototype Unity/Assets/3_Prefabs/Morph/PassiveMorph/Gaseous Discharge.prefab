@@ -44,22 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca070c3b6534b8a47b9eeb7cc2a9559f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  summary:
-    DamageTaker: {fileID: 0}
-    DamageDealer: {fileID: 0}
-    IsFatalBlow: 0
-    IsCriticalHit: 0
-    isMortalBlow: 0
-    PhysicalDamage: 0
-    LifeStealDamage: 0
-    PoisonDamage: 0
-    AcidDamage: 0
-    FireDamage: 0
-    IceDamage: 0
-    LightningDamage: 0
-    StaminaDrained: 0
-    FortitudeDamage: 0
-    KnockbackForce: 0
   isInvincible: 1
   damageNumberSet: {fileID: 0}
 --- !u!114 &7145015599499403721
@@ -76,6 +60,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chemicalDamageStatBonus: 5
   unlockToxicOverflow: 1
-  poisonGasSpawnRate: 1
+  poisonGasSpawnRate: 0.1
   poisonGasLifeTime: 4
+  poisonGasSpawnCountdown:
+    duration: 0
+    currentTime: 0
+    loop: 0
   gasCloud: {fileID: 7840249469762787752, guid: be403cf3e118b834db55e981c6a2684f, type: 3}

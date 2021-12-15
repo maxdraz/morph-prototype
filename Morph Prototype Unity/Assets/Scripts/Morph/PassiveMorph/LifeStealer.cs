@@ -26,7 +26,7 @@ public class LifeStealer : PassiveMorph
     {
         if (damageTakenSummary.PhysicalDamage > 0)
         {
-            if (damageHandler.Health.CurrentHealthAsPercentage <= .3f)
+            if (damageHandler.Health.CurrentHealthAsPercentage <= .3f && fierceHunger)
             {
                 damageTakenSummary.DamageTaker.ApplyDamage(new LifeStealData(damageTakenSummary.PhysicalDamage * lifeStealFraction * 2), damageHandler);
             }
@@ -53,10 +53,6 @@ public class LifeStealer : PassiveMorph
         if (damageHandler)
         {
             damageHandler.DamageHasBeenDealt += OnDamageHasBeenDealt;
-            if (fierceHunger)
-            {
-
-            }
         }
     }
 
@@ -65,11 +61,6 @@ public class LifeStealer : PassiveMorph
         if (damageHandler)
         {
             damageHandler.DamageHasBeenDealt -= OnDamageHasBeenDealt;
-            if (fierceHunger)
-            {
-
-            }
-
         }
 
         damageHandler = null;

@@ -58,6 +58,19 @@ public class DamageHandler : MonoBehaviour
     {
         var damageClone = damageType.Clone() as IDamageType;
         
+        // calculate miss
+            // miss chance = 1 - currentPerception/ maxPerception
+                // if aoe miss chance / 2
+            // roll 
+                // if miss 
+                    // OnAttackerMiss()
+                    // return;
+                    
+        // calculate dodge
+            // roll dodgeChance
+                // if aoe dodgeChance / 2
+                // Dodge()
+        
         damageDealer.DamageAboutToBeDealt?.Invoke(ref damageClone);
         DamageAboutToBeTaken?.Invoke(ref damageClone);
 

@@ -7,6 +7,10 @@ public static class DamageFormulas
     public static float PhysicalDamage(float weaponMorphDamage, float meleeDamageStatModifier, float strikeModifier, 
         float percentageBonusDamage, float flatBonusDamage)
     {
+        // var damage out = ....
+        // roll for crit
+            // if crit
+                // dmgOut * 2.5
         return (weaponMorphDamage * (1 + (meleeDamageStatModifier + strikeModifier + percentageBonusDamage))) + flatBonusDamage;
     }
 
