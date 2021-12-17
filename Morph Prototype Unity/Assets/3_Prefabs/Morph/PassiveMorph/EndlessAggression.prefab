@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionSpawner:
-    projectilePrefab: {fileID: 0}
+    projectilePrefab: {fileID: 3277945937756017534, guid: cf765991e0ce9b54ab6e14f2111f4d6c, type: 3}
     spawnPointOffsetLocal: {x: 0, y: 0, z: 0}
     drawGizmos: 1
     debugSphereRadius: 0.39
@@ -58,9 +58,7 @@ MonoBehaviour:
   endlessAggressionEnergyGain: 2
   endlessAggressionStaminaGain: 10
   explosiveAngerStackLimit: 5
-  explosiveAngerExplosionRadius: 10
-  baseExplosiveAngerExplosionKnockback: 0
-  baseExplosiveAngerExplosionDamage: 0
+  explosiveAngerCooldownPeriod: 10
 --- !u!114 &376064453238329716
 MonoBehaviour:
   m_ObjectHideFlags: 0

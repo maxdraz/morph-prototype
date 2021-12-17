@@ -19,9 +19,8 @@ public class EndlessAggression : PassiveMorph
     int currentExplosiveAngerStacks;
     [SerializeField] private int explosiveAngerStackLimit;
     float explosiveAngerStackDuration = 2;
-    [SerializeField] private float explosiveAngerExplosionRadius = 10;
-    [SerializeField] private float baseExplosiveAngerExplosionKnockback;
-    [SerializeField] private float baseExplosiveAngerExplosionDamage;
+    [SerializeField] private float explosiveAngerCooldownPeriod;
+    
 
     private void OnEnable()
     {
@@ -90,31 +89,14 @@ public class EndlessAggression : PassiveMorph
         }
     }
 
-    void ExplosiveAngerExplosion(Vector3 center, float radius)
+    IEnumerator ExplosiveAngerCooldown() 
     {
-        float energyConsumed = combatResources.currentEnergyPoints / 2;
-        combatResources.currentEnergyPoints -= energyConsumed;
+        yield return new WaitForSeconds(explosiveAngerCooldownPeriod);
 
-        float explosiveAngerBonusDamageForEnergyConsumed = 1 + (energyConsumed / combatResources.energyPointsMax);
+        canGainExplosiveAngerStacks = true;
 
-        float explosiveAngerDamage = baseExplosiveAngerExplosionDamage * explosiveAngerBonusDamageForEnergyConsumed;
-        float explosiveAngerknockback = baseExplosiveAngerExplosionKnockback * explosiveAngerBonusDamageForEnergyConsumed;
 
-        Collider[] hitColliders = Physics.OverlapSphere(center, radius);
-        foreach (var hitCollider in hitColliders)
-        {
-            if (hitCollider.GetComponent<DamageHandler>() == true)
-            {
-                DamageHandler enemyDamageHandler = hitCollider.GetComponent<DamageHandler>();
-
-                float distanceMultiplier = 1 - (Vector3.Distance(transform.position, hitCollider.transform.position) / radius);
-                enemyDamageHandler.ApplyDamage(new KnockbackData(explosiveAngerknockback * distanceMultiplier),damageHandler);
-                enemyDamageHandler.ApplyDamage(new PhysicalDamageData(explosiveAngerDamage * distanceMultiplier), damageHandler);
-                enemyDamageHandler.ApplyDamage(new FireDamageData(explosiveAngerDamage * distanceMultiplier), damageHandler);
-
-                // need to add explosion particles spawned here
-            }
-        }
+        yield return null;
     }
 
     IEnumerator DecayExplosiveAngerStacks() 
