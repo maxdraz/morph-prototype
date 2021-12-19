@@ -7,7 +7,6 @@ using UnityEngine;
 public class ActiveMorph : MonoBehaviour
 {
     [SerializeField] protected Timer castTimer;
-   // [SerializeField] protected Timer LookInCameraViewTimer;
     [SerializeField] protected Timer cooldown;
 
     private Movement movement;  // TODO - make movement listen to attack handler to change
@@ -21,22 +20,9 @@ public class ActiveMorph : MonoBehaviour
 
     private void Update()
     {
-        // if (LookInCameraViewTimer.JustStarted)
-        // {
-        //     print("just started");
-        //     movement.GetComponent<>()RotateToCameraView(1);
-        // }
         castTimer.Update(Time.deltaTime);
-        //LookInCameraViewTimer.Update(Time.deltaTime);
         cooldown.Update(Time.deltaTime);
-        
-        
-        
-        // if (LookInCameraViewTimer.JustCompleted)
-        // {
-        //     print("just finished");
-        //    // movement.StopFacingCameraView();
-        // }
+
     }
 
     public virtual bool ActivateIfConditionsMet()
