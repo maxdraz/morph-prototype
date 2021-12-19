@@ -10,6 +10,8 @@ public class PlayerCreatureInputHandler : CreatureInputHandler
     private CreatureVirtualController controller;
     
     private InputAction movementAction;
+    private InputAction jumpAction;
+    
     private InputAction limbLightAttackAction;
     private InputAction limbHeavyAttackAction;
     private InputAction tailLightAttackAction;
@@ -28,6 +30,8 @@ public class PlayerCreatureInputHandler : CreatureInputHandler
         controller = GetComponent<CreatureVirtualController>();
         
         movementAction = playerInput.actions.FindAction("Movement");
+        jumpAction = playerInput.actions.FindAction("Jump");
+        
         limbLightAttackAction = playerInput.actions.FindAction("LimbLightAttack");
         limbHeavyAttackAction = playerInput.actions.FindAction("LimbHeavyAttack");
         
@@ -46,6 +50,7 @@ public class PlayerCreatureInputHandler : CreatureInputHandler
 
     private void OnEnable()
     {
+        jumpAction.performed += OnJumpInput;
 
         limbLightAttackAction.performed += OnLimbLightAttackPerformed;
         limbHeavyAttackAction.performed += OnLimbHeavyAttackPerformed;
@@ -64,6 +69,8 @@ public class PlayerCreatureInputHandler : CreatureInputHandler
 
     private void OnDisable()
     {
+        jumpAction.performed -= OnJumpInput;
+        
         limbLightAttackAction.performed -= OnLimbLightAttackPerformed;
         limbHeavyAttackAction.performed -= OnLimbHeavyAttackPerformed;
         
@@ -81,8 +88,14 @@ public class PlayerCreatureInputHandler : CreatureInputHandler
 
     private void Update()
     {
-        var moveInput = movementAction.ReadValue<Vector2>();
+        //var moveInput = movementAction.ReadValue<Vector2>();
+        var moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         controller.Move(moveInput);
+    }
+
+    private void OnJumpInput(InputAction.CallbackContext ctx)
+    {
+        controller.Jump();
     }
 
     private void OnMovementPerformed(InputAction.CallbackContext ctx)

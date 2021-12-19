@@ -112,7 +112,7 @@ public class WeaponMorphAttackHandler : MonoBehaviour
         else
         {
             // make creature stop looking in attack dir
-            controller.GetComponent<Movement>().ClearLookRotationTransform();
+           // controller.GetComponent<Movement>().ClearLookRotationTransform();
         }
     }
 
@@ -183,7 +183,8 @@ public class WeaponMorphAttackHandler : MonoBehaviour
         AttackHasStarted?.Invoke(ref currentWeaponAttack);
         
         // make crature face attack
-        controller.GetComponent<Movement>().SetLookRotationTransform(Camera.main.transform);
+        //controller.GetComponent<Movement>().SetLookRotationTransform(Camera.main.transform);
+        
     }
     
     private void OnAttackHit(DamageHandler damageTaker)

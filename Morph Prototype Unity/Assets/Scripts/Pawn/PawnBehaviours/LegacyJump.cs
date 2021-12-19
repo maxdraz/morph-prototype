@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class Jump : MonoBehaviour
+public class LegacyJump : MonoBehaviour
 {
     private Rigidbody rb;
     [SerializeField] private float jumpForce = 100f;

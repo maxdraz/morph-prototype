@@ -7,6 +7,10 @@ public class CreatureVirtualController : VirtualController
 {
     private CreatureInputHandler inputHandler;
     private Movement movement;
+    private Jump jump;
+    private CharacterRotator characterRotator;
+
+    public CharacterRotator CharacterRotator => characterRotator;
 
     public event Action<Vector2> Movement;
 
@@ -26,11 +30,18 @@ public class CreatureVirtualController : VirtualController
     {
         inputHandler = GetComponentInChildren<CreatureInputHandler>();
         movement = GetComponent<Movement>();
+        jump = GetComponent<Jump>();
+        characterRotator = GetComponent<CharacterRotator>();
+    }
+
+    public void Jump()
+    {
+        jump.ExecuteJump();
     }
 
     public void Move(Vector2 moveDir)
     {
-        movement.SetMovementDirection(moveDir);
+        movement.Move(moveDir);
     }
 
     public void InvokeLimbLightAttack()

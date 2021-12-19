@@ -35,7 +35,9 @@ public class PoisonGasCloud : MonoBehaviour
         if (other.gameObject.GetComponent<Stats>() == true && other.gameObject != sourceCreature)
         {
             enemiesInsideAOE.Add(other.gameObject);
-            other.gameObject.GetComponent<Movement>().AdjustSpeedModifier(-percentageMoveSpeedReduction);
+            
+            // TODO - reimplement speed modifier
+           // other.gameObject.GetComponent<Movement>().AdjustSpeedModifier(-percentageMoveSpeedReduction);
         }
     }
 
@@ -44,7 +46,9 @@ public class PoisonGasCloud : MonoBehaviour
         if (other.gameObject.GetComponent<Stats>() == true && other.gameObject != sourceCreature)
         {
             enemiesInsideAOE.Remove(other.gameObject);
-            other.gameObject.GetComponent<Movement>().AdjustSpeedModifier(percentageMoveSpeedReduction);
+            
+            // TODO - reimplement speed modifier
+          //  other.gameObject.GetComponent<Movement>().AdjustSpeedModifier(percentageMoveSpeedReduction);
         }
     }
 }

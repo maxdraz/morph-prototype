@@ -73,7 +73,7 @@ public class Mobility : MonoBehaviour
         {
 
             //stop sprinting
-            movement.StopSprinting();
+            //movement.StopSprinting();
             combatResources.DelayStaminaRegen();
 
             if (canDodge)
@@ -120,7 +120,7 @@ public class Mobility : MonoBehaviour
             if (currentHoldTime > holdToSprintTime)
             {
                 //start sprinting
-                movement.StartSprinting();
+                //movement.StartSprinting();
                 combatResources.DisableStaminaRegen();
                 
             }

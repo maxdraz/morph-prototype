@@ -22,7 +22,7 @@ public class ActiveMorph : MonoBehaviour
         if (LookInCameraViewTimer.JustStarted)
         {
             print("just started");
-            movement.RotateToCameraView(1);
+          //  movement.RotateToCameraView(1);
         }
         castTimer.Update(Time.deltaTime);
         LookInCameraViewTimer.Update(Time.deltaTime);
@@ -33,7 +33,7 @@ public class ActiveMorph : MonoBehaviour
         if (LookInCameraViewTimer.JustCompleted)
         {
             print("just finished");
-            movement.StopFacingCameraView();
+           // movement.StopFacingCameraView();
         }
     }
 

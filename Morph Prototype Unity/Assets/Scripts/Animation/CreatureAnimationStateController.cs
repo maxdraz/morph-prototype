@@ -64,7 +64,7 @@ public class CreatureAnimationStateController : MonoBehaviour, IEventSubscriber
     {
         if (movement)
         {
-            SetMovementSpeed(movement.GetMoveSpeedNormalized());
+            SetMovementSpeed(movement.MovementSpeedNormalized);
         }
 
     }

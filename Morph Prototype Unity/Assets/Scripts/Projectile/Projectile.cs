@@ -21,7 +21,6 @@ public class Projectile : MonoBehaviour
 
     private void OnEnable()
     {
-        
         rb.velocity = Vector3.zero;
 
         float totalSpeed = startSpeed;
@@ -61,7 +60,7 @@ public class Projectile : MonoBehaviour
         if(other.gameObject == damageDealer.gameObject) return;
         // deal damage to enemy
         var otherDamageHandler = other.gameObject.GetComponentInChildren<DamageHandler>();
-        print(otherDamageHandler);
+       
         if (otherDamageHandler)
         {
             foreach (var onHitEffectDataContainer in onHitEffects)

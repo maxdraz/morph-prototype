@@ -137,6 +137,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""1d503965-840d-4914-92f7-53380c9a69d3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -513,6 +521,17 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""Ability4"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2f0758ed-3b4f-4c7e-be05-c59228a2df3d"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -536,6 +555,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Gameplay_Ability2 = m_Gameplay.FindAction("Ability2", throwIfNotFound: true);
         m_Gameplay_Ability3 = m_Gameplay.FindAction("Ability3", throwIfNotFound: true);
         m_Gameplay_Ability4 = m_Gameplay.FindAction("Ability4", throwIfNotFound: true);
+        m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -600,6 +620,7 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_Gameplay_Ability2;
     private readonly InputAction m_Gameplay_Ability3;
     private readonly InputAction m_Gameplay_Ability4;
+    private readonly InputAction m_Gameplay_Jump;
     public struct GameplayActions
     {
         private @Controls m_Wrapper;
@@ -619,6 +640,7 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @Ability2 => m_Wrapper.m_Gameplay_Ability2;
         public InputAction @Ability3 => m_Wrapper.m_Gameplay_Ability3;
         public InputAction @Ability4 => m_Wrapper.m_Gameplay_Ability4;
+        public InputAction @Jump => m_Wrapper.m_Gameplay_Jump;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -673,6 +695,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Ability4.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAbility4;
                 @Ability4.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAbility4;
                 @Ability4.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAbility4;
+                @Jump.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -722,6 +747,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Ability4.started += instance.OnAbility4;
                 @Ability4.performed += instance.OnAbility4;
                 @Ability4.canceled += instance.OnAbility4;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
             }
         }
     }
@@ -743,5 +771,6 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnAbility2(InputAction.CallbackContext context);
         void OnAbility3(InputAction.CallbackContext context);
         void OnAbility4(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
     }
 }

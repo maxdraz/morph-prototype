@@ -5027,6 +5027,7 @@ GameObject:
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
   - component: {fileID: 963194229}
+  - component: {fileID: 963194230}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -5092,8 +5093,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.99, y: 1.83, z: -3.65}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 15.13, y: 43.72, z: 105.270004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -5106,7 +5107,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8aefa3cb80e5ca498cf5c395b7b71c4, type: 3}
   m_Name: 
@@ -5114,9 +5115,9 @@ MonoBehaviour:
   drawGizmos: 1
   target: {fileID: 1545860719}
   pivotOffset: {x: 0.001, y: 2, z: 0}
-  cameraDistance: 5
-  cameraMaxDistance: 5
-  cameraDistanceBeforeCollision: 5
+  cameraDistance: 10
+  cameraMaxDistance: 10
+  cameraDistanceBeforeCollision: 10
   invertX: 0
   invertY: 0
   pitchSensitivity: 90
@@ -5126,6 +5127,26 @@ MonoBehaviour:
   zoomIncrement: 5
   spherecastRadius: 0.2
   spherecastDistance: 1
+--- !u!114 &963194230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19ceba9007728bb499e6d33a36d3b38a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1545860719}
+  pivot: {x: 0, y: 2.13, z: 0}
+  invertPitch: 1
+  invertYaw: 0
+  distance: 6.88
+  anglesPerSec: 90
+  maxPitch: 90
+  cameraFollowSpeed: 5
 --- !u!1 &1000990309
 GameObject:
   m_ObjectHideFlags: 0

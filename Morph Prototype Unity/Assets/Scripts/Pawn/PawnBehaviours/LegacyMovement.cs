@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Movement : MonoBehaviour
+public class LegacyMovement : MonoBehaviour
 {
     private float maxSpeed = 10f;
     private float minSpeed = 2f;
