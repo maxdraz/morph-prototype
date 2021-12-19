@@ -183,7 +183,7 @@ public class WeaponMorphAttackHandler : MonoBehaviour
         AttackHasStarted?.Invoke(ref currentWeaponAttack);
         
         // make crature face attack
-        //controller.GetComponent<Movement>().SetLookRotationTransform(Camera.main.transform);
+        controller.CharacterRotator.StartRotating(CharacterRotationMode.CameraForward, CharacterRotationMode.Velocity, new Timer(1f));
         
     }
     

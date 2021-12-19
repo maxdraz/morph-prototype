@@ -88,19 +88,14 @@ public class PlayerCreatureInputHandler : CreatureInputHandler
 
     private void Update()
     {
-        //var moveInput = movementAction.ReadValue<Vector2>();
-        var moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        var moveInput = movementAction.ReadValue<Vector2>();
+       // var moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         controller.Move(moveInput);
     }
 
     private void OnJumpInput(InputAction.CallbackContext ctx)
     {
         controller.Jump();
-    }
-
-    private void OnMovementPerformed(InputAction.CallbackContext ctx)
-    {
-        controller.Move(ctx.ReadValue<Vector2>());
     }
 
     private void OnLimbLightAttackPerformed(InputAction.CallbackContext ctx)

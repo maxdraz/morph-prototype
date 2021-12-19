@@ -20,8 +20,6 @@ public class Movement : MonoBehaviour
  
     private void Update()
     {
-        if (movementDirection == Vector3.zero) return;
-
         movementDirection *= speed;
         velocity.SetHorizontalVelocity(movementDirection.x, movementDirection.z);
     }
@@ -29,9 +27,15 @@ public class Movement : MonoBehaviour
     public void Move(Vector2 horizontalAndVerticalAxis)
     {
         var input = new Vector3(horizontalAndVerticalAxis.x, 0, horizontalAndVerticalAxis.y);
+        if (input == Vector3.zero)
+        {
+            movementDirection = Vector3.zero;
+        }
+
         input = Vector3.ClampMagnitude(input, 1f);
-    
+        
         movementDirection =  Vector3.ProjectOnPlane(Camera.main.transform.TransformDirection(input), Vector3.up).normalized * input.magnitude;
+        
     }
     
     public void Move(Vector2 horizontalAndVerticalAxis, Transform relativeTo)
