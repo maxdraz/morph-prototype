@@ -20,6 +20,8 @@ public class Movement : MonoBehaviour
  
     private void Update()
     {
+        if(movementDirection == Vector3.zero && velocity.CurrentHorizontalVelocity == Vector3.zero) return;
+        
         movementDirection *= speed;
         velocity.SetHorizontalVelocity(movementDirection.x, movementDirection.z);
     }

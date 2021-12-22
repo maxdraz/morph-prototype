@@ -15,26 +15,42 @@ public class MorphCollectionScreenController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            if (transform.GetChild(0).gameObject.activeInHierarchy)
-            {
-                for (int i = 0; i < transform.childCount; i++)
-                {
-                    transform.GetChild(i).gameObject.SetActive(false);
-                }
-
-                PlayerCreatureCharacter.Instance.CanAcceptInput = true;
-                CursorManager.SetCursorLockMode(CursorLockMode.Locked);
-            }
-            else
-            {
-                for (int i = 0; i < transform.childCount; i++)
-                {
-                    transform.GetChild(i).gameObject.SetActive(true);
-                }
-                
-                PlayerCreatureCharacter.Instance.CanAcceptInput = false;
-                CursorManager.SetCursorLockMode(CursorLockMode.None);
-            }
+           ToggleUI();
         }
+    }
+
+    void ToggleUI()
+    {
+        if (transform.GetChild(0).gameObject.activeInHierarchy)
+        {
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                transform.GetChild(i).gameObject.SetActive(false);
+            }
+
+           PauseGame(false);
+        }
+        else
+        {
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                transform.GetChild(i).gameObject.SetActive(true);
+            }
+                
+            PauseGame(true);
+        }
+    }
+
+    void PauseGame(bool shouldPause)
+    {
+        if (shouldPause)
+        {
+            PlayerCreatureCharacter.Instance.CanAcceptInput = false;
+            CursorManager.SetCursorLockMode(CursorLockMode.None);
+            return;
+        }
+        
+        PlayerCreatureCharacter.Instance.CanAcceptInput = true;
+        CursorManager.SetCursorLockMode(CursorLockMode.Locked);
     }
 }

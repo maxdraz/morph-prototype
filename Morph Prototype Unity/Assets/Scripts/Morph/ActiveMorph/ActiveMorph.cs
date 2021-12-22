@@ -31,7 +31,10 @@ public class ActiveMorph : MonoBehaviour
 
         if (shouldActivate)
         {
-            controller.CharacterRotator.StartRotating(CharacterRotationMode.CameraForward, CharacterRotationMode.Velocity, new Timer(1f));
+            controller.CharacterRotator.StartRotating(
+                CharacterRotationMode.CameraForward, 
+                CharacterRotationMode.Velocity, 
+                new Timer(1f));
         }
 
         return shouldActivate;
