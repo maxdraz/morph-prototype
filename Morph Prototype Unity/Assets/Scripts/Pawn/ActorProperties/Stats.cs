@@ -20,34 +20,73 @@ public class Stats : MonoBehaviour
     private GUIStyle headerStyle;
     
     //core - Vector2 to define min and max base values
-    private Vector2 baseHealthPoints = new Vector2(500, 800);
-    private int healthRegen;
+    private Vector2 baseHealthPointsRange = new Vector2(500, 800);
+    private int healthRegenModifier;
     [SerializeField] private int maxHealth;
-    private Vector2 baseEnergyPoints = new Vector2(100, 200);
-    private int energyRegen;
-    private Vector2 baseStaminaPoints = new Vector2(300, 500);
-    private int staminaRegen;
-    //offensive
-    private int meleeDamage;
-    private int rangedDamage;
-    private int chemicalDamage;
-    private int elementalDamage;
+    private Vector2 baseEnergyPointsRange = new Vector2(100, 200);
+    private int energyRegenModifier;
+    [SerializeField] private int maxEnergy;
+    private Vector2 baseStaminaPointsRange = new Vector2(300, 500);
+    private int staminaRegenModifier;
+    [SerializeField] private int maxStamina;
+    //base stats refer to the creatures base stats which were generated when the creature was spawned
+    //added stats refer to all values being added to the base stats whether those vlaues are permanent or temporary.
+    //Morphs which add to stats when attached can add their bonus values to the added stats 
+    //Total stats refer to the active value which is used when taking actions within the game (total = base+added)
+
+    //offensive stats
+    private int baseMeleeDamage;
+    private int addedMeleeDamage;
+    public int totalMeleeDamage;
+    private int baseRangedDamage;
+    private int addedRangedDamage;
+    public int totalRangedDamage;
+    private int baseChemicalDamage;
+    private int addedChemicalDamage;
+    public int totalChemicalDamage;
+    private int baseElementalDamage;
+    private int addedElementalDamage;
+    public int totalElementalDamage;
     private int accuracy;
-    //defensive
-    private int fortitude;
-    private int toughness;
-    //misc
-    private int intimidation;
-    private int agility;
-    private int stealth;
-    private int perception;
-    private int intelligence;
-    //resistances
-    private int fireResistance;
-    private int iceResistance;
-    private int lightningResistance;
-    private int poisonResistance;
-    private int acidResistance;
+    //defensive stats
+    private int baseFortitude;
+    private int addedFortitude;
+    public int totalFortitude;
+    private int baseToughness;
+    private int addedToughness;
+    public int totalToughness;
+    //misc stats 
+    private int baseIntimidation;
+    private int addedIntimidation;
+    public int totalIntimidation;
+    private int baseAgility;
+    private int addedAgility;
+    public int totalAgility;
+    private int baseStealth;
+    private int addedStealth;
+    public int totalStealth;
+    private int basePerception;
+    private int addedPerception;
+    public int totalPerception;
+    private int baseIntelligence;
+    private int addedIntelligence;
+    public int totalIntelligence;
+    //resistance stats
+    private int baseFireResistance;
+    private int addedfireResistance;
+    public int totalFireResistance;
+    private int baseIceResistance;
+    private int addediceResistance;
+    public int totalIceResistance;
+    private int basLightningResistance;
+    private int addedlightningResistance;
+    public int totalLightningResistance; 
+    private int basePoisonResistance;
+    private int addedpoisonResistance;
+    public int totalPoisonResistance;
+    private int baseAcidResistance;
+    private int addedacidResistance;
+    public int totalAcidResistance;
 
     [SerializeField] private float meleeDamageModifier;
     [SerializeField] private float rangedDamageModifier;
@@ -72,7 +111,7 @@ public class Stats : MonoBehaviour
     public float ElementalDamageModifier => elementalDamageModifier;
     public float ChemicalDamageModifier => chemicalDamageModifier;
     public float MeleeDamageModifier => meleeDamageModifier;
-    public float PoisonResistance => poisonResistance;
+    public float PoisonResistance => basePoisonResistance;
     public float ToughnessModifier => toughnessModifier;
 
     private void Reset()
@@ -101,9 +140,13 @@ public class Stats : MonoBehaviour
 
         FindAllModifiers();
 
-        StartCoroutine(StatChange("meleeDamage", meleeDamage, 10, 1f));
+        SetStatTotals();
 
         PrepareCombatResources();
+    }
+
+    private void Update()
+    {
     }
 
     private void OnGUI()
@@ -121,15 +164,15 @@ public class Stats : MonoBehaviour
         float energyPointsToRandomize;
         float staminaPointsToRandomize;
 
-        healthPointsToRandomize = Random.Range(baseHealthPoints.x, baseHealthPoints.y);
-        energyPointsToRandomize = Random.Range(baseEnergyPoints.x, baseEnergyPoints.y) * (1 + maxEnergyModifier);
-        staminaPointsToRandomize = Random.Range(baseStaminaPoints.x, baseStaminaPoints.y) * (1 + maxStaminaModifier);
+        healthPointsToRandomize = Random.Range(baseHealthPointsRange.x, baseHealthPointsRange.y);
+        energyPointsToRandomize = Random.Range(baseEnergyPointsRange.x, baseEnergyPointsRange.y) * (1 + maxEnergyModifier);
+        staminaPointsToRandomize = Random.Range(baseStaminaPointsRange.x, baseStaminaPointsRange.y) * (1 + maxStaminaModifier);
 
-        int healthPointsToSend = Mathf.RoundToInt(healthPointsToRandomize);
-        int emergyPointsToSend = Mathf.RoundToInt(energyPointsToRandomize);
-        int staminaPointsToSend = Mathf.RoundToInt(staminaPointsToRandomize);
+        maxHealth = Mathf.RoundToInt(healthPointsToRandomize);
+        maxEnergy = Mathf.RoundToInt(energyPointsToRandomize);
+        maxStamina = Mathf.RoundToInt(staminaPointsToRandomize);
 
-        if(combatResources) combatResources.SetCombatRescources(healthPointsToSend, emergyPointsToSend, staminaPointsToSend); ;
+        
     }
 
     private void DrawStatsWindow(int windowID)
@@ -137,28 +180,28 @@ public class Stats : MonoBehaviour
         
         AddLabel("stat", "value",true);
         
-        AddLabel("hp", baseHealthPoints.ToString());
-        AddLabel("ep", baseEnergyPoints.ToString());
-        AddLabel("stamina", baseStaminaPoints.ToString());
+        AddLabel("hp", baseHealthPointsRange.ToString());
+        AddLabel("ep", baseEnergyPointsRange.ToString());
+        AddLabel("stamina", baseStaminaPointsRange.ToString());
         AddLabel();
-        AddLabel("melee dmg", meleeDamage.ToString());
-        AddLabel("ranged dmg", rangedDamage.ToString());
+        AddLabel("melee dmg", baseMeleeDamage.ToString());
+        AddLabel("ranged dmg", baseRangedDamage.ToString());
         AddLabel("accuracy", accuracy.ToString());
         AddLabel();
-        AddLabel("fortitude", fortitude.ToString());
-        AddLabel("toughness", toughness.ToString());
+        AddLabel("fortitude", baseFortitude.ToString());
+        AddLabel("toughness", baseToughness.ToString());
         AddLabel();
-        AddLabel("fire resist", fireResistance.ToString());
-        AddLabel("ice resist", iceResistance.ToString());
-        AddLabel("lightning resist", lightningResistance.ToString());
-        AddLabel("poison resist", poisonResistance.ToString());
-        AddLabel("acid resist", acidResistance.ToString());
+        AddLabel("fire resist", baseFireResistance.ToString());
+        AddLabel("ice resist", baseIceResistance.ToString());
+        AddLabel("lightning resist", basLightningResistance.ToString());
+        AddLabel("poison resist", basePoisonResistance.ToString());
+        AddLabel("acid resist", baseAcidResistance.ToString());
         AddLabel();
-        AddLabel("intimidation", intimidation.ToString());
-        AddLabel("agility", agility.ToString());
-        AddLabel("stealth", stealth.ToString());
-        AddLabel("perception", perception.ToString());
-        AddLabel("intelligence", intelligence.ToString());
+        AddLabel("intimidation", baseIntimidation.ToString());
+        AddLabel("agility", baseAgility.ToString());
+        AddLabel("stealth", baseStealth.ToString());
+        AddLabel("perception", basePerception.ToString());
+        AddLabel("intelligence", baseIntelligence.ToString());
         
 
         GUI.DragWindow();
@@ -169,17 +212,17 @@ public class Stats : MonoBehaviour
     [Command("player-randomise-stats")]
     void RandomiseStats() 
     {
-        meleeDamage = Random.Range(10, 90);
-        rangedDamage = Random.Range(10, 90);
-        chemicalDamage = Random.Range(10, 90);
-        elementalDamage = Random.Range(10, 90);
-        intelligence = Random.Range(10, 90);
-        agility = Random.Range(10, 90);
-        toughness = Random.Range(10, 90);
-        fortitude = Random.Range(10, 90);
-        perception = Random.Range(10, 90);
-        intimidation = Random.Range(10, 90);
-        stealth = Random.Range(10, 90);
+        baseMeleeDamage = Random.Range(10, 90);
+        baseRangedDamage = Random.Range(10, 90);
+        baseChemicalDamage = Random.Range(10, 90);
+        baseElementalDamage = Random.Range(10, 90);
+        baseIntelligence = Random.Range(10, 90);
+        baseAgility = Random.Range(10, 90);
+        baseToughness = Random.Range(10, 90);
+        baseFortitude = Random.Range(10, 90);
+        basePerception = Random.Range(10, 90);
+        baseIntimidation = Random.Range(10, 90);
+        baseStealth = Random.Range(10, 90);
 
 
 
@@ -190,13 +233,13 @@ public class Stats : MonoBehaviour
     [Command("player-set-stats")]
     void SetStats(int mdmg, int rdmg, int cdmg, int edmg, int intell, int agil, int toughn)
     {
-        meleeDamage = mdmg;
-        rangedDamage = rdmg;
-        chemicalDamage = cdmg;
-        elementalDamage = edmg;
-        intelligence = intell;
-        agility = agil;
-        toughness = toughn;
+        baseMeleeDamage = mdmg;
+        baseRangedDamage = rdmg;
+        baseChemicalDamage = cdmg;
+        baseElementalDamage = edmg;
+        baseIntelligence = intell;
+        baseAgility = agil;
+        baseToughness = toughn;
 
         FindAllModifiers();
     }
@@ -218,30 +261,334 @@ public class Stats : MonoBehaviour
         displayDebug = bool_ShouldDisplay;
     }
 
-    IEnumerator StatChange(string statName, int statToBuff, int buffAmount, float duration) 
+    IEnumerator FlatStatChange(string statName, int statToEffect, int buffAmount, float duration) 
     {
-      //  Debug.Log("Buffing " + statName + " from " + statToBuff + " by " + buffAmount + " for " + duration + " seconds");
-        statToBuff += buffAmount;
-        FindModifier(statName, statToBuff);
+        //  Debug.Log("Buffing " + statName + " from " + statToBuff + " by " + buffAmount + " for " + duration + " seconds");
+        if (statName == "meleeDamage")
+        {
+            
+            totalMeleeDamage += buffAmount;
+            addedMeleeDamage += buffAmount;
+
+            FindModifier(statName, totalMeleeDamage);
+        }
+        if (statName == "rangedDamage")
+        {
+            totalRangedDamage += buffAmount;
+            addedRangedDamage += buffAmount;
+
+            FindModifier(statName, totalRangedDamage);
+        }
+        if (statName == "chemicalDamage")
+        {
+
+            totalChemicalDamage += buffAmount;
+            addedChemicalDamage += buffAmount;
+
+            FindModifier(statName, totalChemicalDamage);
+        }
+        if (statName == "elementalDamage")
+        {
+            
+            totalElementalDamage += buffAmount;
+            addedElementalDamage += buffAmount;
+
+            FindModifier(statName, totalElementalDamage);
+        }
+        if (statName == "intelligence")
+        {
+            
+            totalIntelligence += buffAmount;
+            addedIntelligence += buffAmount;
+
+            FindModifier(statName, totalIntelligence);
+        }
+        if (statName == "agility")
+        {
+            
+            totalAgility += buffAmount;
+            addedAgility += buffAmount;
+
+            FindModifier(statName, totalAgility);
+        }
+        if (statName == "toughness")
+        {
+            
+            totalToughness += buffAmount;
+            addedToughness += buffAmount;
+
+            FindModifier(statName, totalToughness);
+        }
+        if (statName == "fortitude")
+        {
+            
+            totalFortitude += buffAmount;
+            addedFortitude += buffAmount;
+
+            FindModifier(statName, totalFortitude);
+        }
+
+
 
         yield return new WaitForSeconds(duration);
 
-        statToBuff -= buffAmount;
-        FindModifier(statName, statToBuff);
+
+
+        if (statName == "meleeDamage")
+        {
+            
+            totalMeleeDamage -= buffAmount;
+            addedMeleeDamage -= buffAmount;
+
+            FindModifier(statName, totalMeleeDamage);
+        }
+        if (statName == "rangedDamage")
+        {
+            
+            totalRangedDamage -= buffAmount;
+            addedRangedDamage -= buffAmount;
+
+            FindModifier(statName, totalRangedDamage);
+        }
+        if (statName == "chemicalDamage")
+        {
+            
+            totalChemicalDamage -= buffAmount;
+            addedChemicalDamage -= buffAmount;
+
+            FindModifier(statName, totalChemicalDamage);
+        }
+        if (statName == "elementalDamage")
+        {
+            
+            totalElementalDamage -= buffAmount;
+            addedElementalDamage -= buffAmount;
+
+            FindModifier(statName, totalElementalDamage);
+        }
+        if (statName == "intelligence")
+        {
+            
+            totalIntelligence -= buffAmount;
+            addedIntelligence -= buffAmount;
+
+            FindModifier(statName, totalIntelligence);
+        }
+        if (statName == "agility")
+        {
+            
+            totalAgility -= buffAmount;
+            addedAgility -= buffAmount;
+
+            FindModifier(statName, totalAgility);
+        }
+        if (statName == "toughness")
+        {
+           
+            totalToughness -= buffAmount;
+            addedToughness -= buffAmount;
+
+            FindModifier(statName, totalToughness);
+        }
+        if (statName == "fortitude")
+        {
+           
+            totalFortitude -= buffAmount;
+            addedFortitude -= buffAmount;
+
+            FindModifier(statName, totalFortitude);
+        }
+
+        yield return null;
+    }
+
+    IEnumerator PercentStatChange(string statName, float buffAmount, float duration)
+    {
+        //  Debug.Log("Buffing " + statName + " from " + statToBuff + " by " + buffAmount + " for " + duration + " seconds");
+
+        float changeInValue;
+
+        if (statName == "meleeDamage") {
+            float valueToChange = (float)baseMeleeDamage;
+            changeInValue = valueToChange * buffAmount;
+            valueToChange += changeInValue;
+            totalMeleeDamage = (int)valueToChange;
+            addedMeleeDamage += (int)changeInValue; ;
+
+            FindModifier(statName, totalMeleeDamage);
+        }
+        if (statName == "rangedDamage")
+        {
+            float valueToChange = (float)baseRangedDamage;
+            changeInValue = valueToChange * buffAmount;
+            valueToChange += changeInValue;
+            totalRangedDamage = (int)valueToChange;
+            addedRangedDamage += (int)changeInValue;
+
+            FindModifier(statName, totalRangedDamage);
+        }
+        if (statName == "chemicalDamage")
+        {
+            float valueToChange = (float)baseChemicalDamage;
+            changeInValue = valueToChange * buffAmount;
+            valueToChange += changeInValue;
+            totalChemicalDamage = (int)valueToChange;
+            addedChemicalDamage += (int)changeInValue;
+
+            FindModifier(statName, totalChemicalDamage);
+        }
+        if (statName == "elementalDamage")
+        {
+            float valueToChange = (float)baseElementalDamage;
+            changeInValue = valueToChange * buffAmount;
+            valueToChange += changeInValue;
+            totalElementalDamage = (int)valueToChange;
+            addedElementalDamage += (int)changeInValue;
+
+            FindModifier(statName, totalElementalDamage);
+        }
+        if (statName == "intelligence")
+        {
+            float valueToChange = (float)baseIntelligence;
+            changeInValue = valueToChange * buffAmount;
+            valueToChange += changeInValue;
+            totalIntelligence = (int)valueToChange;
+            addedIntelligence += (int)changeInValue;
+
+
+            FindModifier(statName, totalIntelligence);
+        }
+        if (statName == "agility")
+        {
+            float valueToChange = (float)baseAgility;
+            changeInValue = valueToChange * buffAmount;
+            valueToChange += changeInValue;
+            totalAgility = (int)valueToChange;
+            addedAgility += (int)changeInValue;
+
+            FindModifier(statName, totalAgility);
+        }
+        if (statName == "toughness")
+        {
+            float valueToChange = (float)baseToughness;
+            changeInValue = valueToChange * buffAmount;
+            valueToChange += changeInValue;
+            totalToughness = (int)valueToChange;
+            addedToughness += (int)changeInValue;
+
+            FindModifier(statName, totalToughness);
+        }
+        if (statName == "fortitude")
+        {
+            float valueToChange = (float)baseFortitude;
+            changeInValue = valueToChange * buffAmount;
+            valueToChange += changeInValue;
+            totalFortitude = (int)valueToChange;
+            addedFortitude += (int)changeInValue;
+
+            FindModifier(statName, totalFortitude);
+        }
+
+        
+
+        yield return new WaitForSeconds(duration);
+
+
+
+        if (statName == "meleeDamage")
+        {
+            float valueToChange = (float)baseMeleeDamage;
+            changeInValue = valueToChange * buffAmount;
+            valueToChange -= changeInValue;
+            totalMeleeDamage = (int)valueToChange;
+            addedMeleeDamage -= (int)changeInValue;
+
+            FindModifier(statName, totalMeleeDamage);
+        }
+        if (statName == "rangedDamage")
+        {
+            float valueToChange = (float)baseRangedDamage;
+            changeInValue = valueToChange * buffAmount;
+            valueToChange -= changeInValue;
+            totalRangedDamage = (int)valueToChange;
+            addedRangedDamage -= (int)changeInValue;
+
+            FindModifier(statName, totalRangedDamage);
+        }
+        if (statName == "chemicalDamage")
+        {
+            float valueToChange = (float)baseChemicalDamage;
+            changeInValue = valueToChange * buffAmount;
+            valueToChange -= changeInValue;
+            totalChemicalDamage = (int)valueToChange;
+            addedChemicalDamage -= (int)changeInValue;
+
+            FindModifier(statName, totalChemicalDamage);
+        }
+        if (statName == "elementalDamage")
+        {
+            float valueToChange = (float)baseElementalDamage;
+            changeInValue = valueToChange * buffAmount;
+            valueToChange -= changeInValue;
+            totalElementalDamage = (int)valueToChange;
+            addedElementalDamage -= (int)changeInValue;
+
+            FindModifier(statName, totalElementalDamage);
+        }
+        if (statName == "intelligence")
+        {
+            float valueToChange = (float)baseIntelligence;
+            changeInValue = valueToChange * buffAmount;
+            valueToChange -= changeInValue;
+            totalIntelligence = (int)valueToChange;
+            addedIntelligence -= (int)changeInValue;
+
+            FindModifier(statName, totalIntelligence);
+        }
+        if (statName == "agility")
+        {
+            float valueToChange = (float)baseAgility;
+            changeInValue = valueToChange * buffAmount;
+            valueToChange -= changeInValue;
+            totalAgility = (int)valueToChange;
+            addedAgility -= (int)changeInValue;
+
+            FindModifier(statName, totalAgility);
+        }
+        if (statName == "toughness")
+        {
+            float valueToChange = (float)baseToughness;
+            changeInValue = valueToChange * buffAmount;
+            valueToChange -= changeInValue;
+            totalToughness = (int)valueToChange;
+            addedToughness -= (int)changeInValue;
+
+            FindModifier(statName, totalToughness);
+        }
+        if (statName == "fortitude")
+        {
+            float valueToChange = (float)baseFortitude;
+            changeInValue = valueToChange * buffAmount;
+            valueToChange -= changeInValue;
+            totalFortitude = (int)valueToChange;
+            addedFortitude -= (int)changeInValue;
+
+            FindModifier(statName, totalFortitude);
+        }
 
         yield return null;
     }
 
     void FindAllModifiers() 
     {
-        FindModifier("meleeDamage", meleeDamage);
-        FindModifier("rangedDamage", rangedDamage);
-        FindModifier("chemicalDamage", chemicalDamage);
-        FindModifier("elementalDamage", elementalDamage);
-        FindModifier("intelligence", intelligence);
-        FindModifier("agility", agility);
-        FindModifier("toughness", toughness);
-        FindModifier("fortitude", fortitude);
+        FindModifier("meleeDamage", totalMeleeDamage);
+        FindModifier("rangedDamage", totalRangedDamage);
+        FindModifier("chemicalDamage", totalChemicalDamage);
+        FindModifier("elementalDamage", totalElementalDamage);
+        FindModifier("intelligence", totalIntelligence);
+        FindModifier("agility", totalAgility);
+        FindModifier("toughness", totalToughness);
+        FindModifier("fortitude", totalFortitude);
 
     }
 
@@ -375,5 +722,22 @@ public class Stats : MonoBehaviour
                 }
             }
         }
+    }
+
+    
+
+    private void SetStatTotals() 
+    {
+        totalMeleeDamage = baseMeleeDamage + addedMeleeDamage;
+        totalRangedDamage = baseRangedDamage + addedRangedDamage;
+        totalChemicalDamage = baseChemicalDamage + addedChemicalDamage;
+        totalElementalDamage = baseElementalDamage + addedElementalDamage;
+        totalAgility = baseAgility + addedAgility;
+        totalFortitude = baseFortitude + addedFortitude;
+        totalIntelligence = baseIntelligence + addedIntelligence;
+        totalIntimidation = baseIntimidation + addedIntimidation;
+        totalPerception = basePerception + addedPerception;
+        totalStealth = baseStealth + addedStealth;
+        totalToughness = baseToughness + addedToughness; 
     }
 }
