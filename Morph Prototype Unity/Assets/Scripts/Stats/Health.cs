@@ -6,13 +6,14 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private float health;
+    [SerializeField] private float baseMaxHealth;
+    [SerializeField] private float maxHealth;
     private Stats stats;
-
+    public float maxHealthBonus;
     public float healingPercentageBonus = 0f;
 
-    public float CurrentHealth=> health;
-    public float CurrentHealthAsPercentage => health / stats.MaxHealth;
+    public float currentHealth;
+    public float CurrentHealthAsPercentage => baseMaxHealth / stats.MaxHealth;
     public event Action Died;
     public event Action<float> HealthChanged;
 
@@ -20,19 +21,21 @@ public class Health : MonoBehaviour
     [SerializeField] private Image healthBar;
     private Coroutine hideHealthBarAfterTime;
 
-    private int secondsSpentHealing;
-    private int secondsToHealOver;
-    private float amountToHealPerTick;
+    Timer healingTimer;
+    private float amountToHealOverTime;
+    private float amountToHealPerSecond;
 
     // Start is called before the first frame update
     void Awake()
     {
         //get stats component
         stats = GetComponent<Stats>();
-        T_SetUpHealthbar();
-        
-        health = stats ? stats.MaxHealth : 100;
+        healingTimer = new Timer(1,true);
 
+
+        baseMaxHealth = stats ? stats.MaxHealth : 100;
+
+        SetMaxHP();
     }
     
     private void OnDisable()
@@ -44,59 +47,69 @@ public class Health : MonoBehaviour
     void Update()
     {
         
+
+        HealOverTime();
     }
 
-    
+    private void SetMaxHP() 
+    {
+        maxHealth = baseMaxHealth * (1 + maxHealthBonus);
+        currentHealth = maxHealth;
+        T_SetUpHealthbar();
+    }
 
     public void SubtractHP(float amount)
     {
-        health -= amount;
-        health = Mathf.Max(0, health);
+        baseMaxHealth -= amount;
+        baseMaxHealth = Mathf.Max(0, baseMaxHealth);
         
         OnHealthChanged();
         
-        if (health <= 0)
+        if (baseMaxHealth <= 0)
         {
             Die();
-        }
-        
-        
+        }     
     }
 
     public void AddHP(float amount)
     {
-        health += amount* (1 + healingPercentageBonus);
-        health = Mathf.Max(0, health);
+        baseMaxHealth += amount* (1 + healingPercentageBonus);
+        baseMaxHealth = Mathf.Min(baseMaxHealth, maxHealth);
 
         OnHealthChanged();
     }
 
-    public void AddHPOverTime(float amount, float duration)
+    public void AddFlatHealthOverTime(float amount)
     {
-
-        secondsToHealOver = Convert.ToInt32(duration / 1);
-        amountToHealPerTick = amount / duration;
-        StartCoroutine("Regenerate");
+        amountToHealOverTime += amount;
+        amountToHealPerSecond = amountToHealOverTime / 5;
     }
 
-    IEnumerator Regenerate() 
+    public void AddPercentHealthOverTime(float amount)
     {
-        
-        yield return new WaitForSeconds(1);
-        secondsSpentHealing++;
+        float percentHealthToHeal = maxHealth * amount;
+        amountToHealOverTime += percentHealthToHeal;
+        amountToHealPerSecond = amountToHealOverTime / 5;
+    }
 
-        AddHP(amountToHealPerTick);
-
-        if (secondsSpentHealing < secondsToHealOver) 
+    private void HealOverTime() 
+    {
+        if (amountToHealPerSecond > 0)
         {
-            StartCoroutine("Regenerate");
+            healingTimer.Update(Time.deltaTime);
+
+            if (healingTimer.JustCompleted)
+            {
+                currentHealth += amountToHealPerSecond;
+                currentHealth = Mathf.Min(currentHealth, maxHealth);
+                amountToHealOverTime -= amountToHealPerSecond;
+            }
         }
-        yield return null;
     }
 
     private void OnHealthChanged()
     {
-        HealthChanged?.Invoke(health);
+        HealthChanged?.Invoke(baseMaxHealth);
         
         T_UpdateHealthBar();
     }
@@ -114,7 +127,7 @@ public class Health : MonoBehaviour
 
     public bool WillDieFromThisDamage(float damage)
     {
-        return health - damage <= 0;
+        return baseMaxHealth - damage <= 0;
     }
 
     private void T_SetUpHealthbar()
@@ -127,7 +140,7 @@ public class Health : MonoBehaviour
     {
         // health bar
         healthBar.gameObject.SetActive(true);
-        healthBar.fillAmount = CurrentHealth / stats.MaxHealth;
+        healthBar.fillAmount = currentHealth / stats.MaxHealth;
         if(hideHealthBarAfterTime != null) StopCoroutine(hideHealthBarAfterTime);
         hideHealthBarAfterTime = StartCoroutine(HideHealthBarAfterTimeCoroutine(2));
     }

@@ -38,7 +38,7 @@ public class GaseousDischarge : PassiveMorph
     {
         if (damageType is IPhysicalDamage physicalDamage) 
         {
-            if (physicalDamage.PhysicalDamageDealt >= damageHandler.Health.CurrentHealth / 25) 
+            if (physicalDamage.PhysicalDamageDealt >= damageHandler.Health.currentHealth / 25) 
             {
             //now we apply poison damage and knockback to the source of the damage
                 

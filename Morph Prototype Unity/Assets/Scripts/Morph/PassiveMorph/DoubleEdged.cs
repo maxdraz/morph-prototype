@@ -49,7 +49,7 @@ public class DoubleEdged : PassiveMorph
             if (damageTakenSummary.isMortalBlow && bloodGuzzlerReady) 
             {
                 GetComponent<CombatResources>().currentStaminaPoints += damageTakenSummary.PhysicalDamage;
-                damageHandler.Health.AddHPOverTime(damageTakenSummary.PhysicalDamage, 10);
+                damageHandler.Health.AddFlatHealthOverTime(damageTakenSummary.PhysicalDamage);
                 bloodGuzzlerReady = false;
                 StartCoroutine("BloodGuzzlerCooldown");
             }
@@ -65,7 +65,7 @@ public class DoubleEdged : PassiveMorph
 
     private void ReduceHPToBoostDamage() 
     {
-        float hpToReduce = damageHandler.Health.CurrentHealth * hpDrainFraction;
+        float hpToReduce = damageHandler.Health.currentHealth * hpDrainFraction;
         damageBoost = GetComponent<Stats>().MaxHealth / hpToReduce;
         damageHandler.Health.SubtractHP(hpToReduce);
         damageBoost *= damageBoostFactor;

@@ -20,17 +20,17 @@ public class Stats : MonoBehaviour
     private GUIStyle headerStyle;
     
     //core - Vector2 to define min and max base values
-    private Vector2 baseHealthPointsRange = new Vector2(500, 800);
-    private int healthRegenModifier;
+    //private Vector2 baseHealthPointsRange = new Vector2(500, 800);
+    private int bonusHealingModifier;
     [SerializeField] private int maxHealth;
-    private Vector2 baseEnergyPointsRange = new Vector2(100, 200);
+    //private Vector2 baseEnergyPointsRange = new Vector2(100, 200);
     private int energyRegenModifier;
     [SerializeField] private int maxEnergy;
-    private Vector2 baseStaminaPointsRange = new Vector2(300, 500);
+    //private Vector2 baseStaminaPointsRange = new Vector2(300, 500);
     private int staminaRegenModifier;
     [SerializeField] private int maxStamina;
     //base stats refer to the creatures base stats which were generated when the creature was spawned
-    //added stats refer to all values being added to the base stats whether those vlaues are permanent or temporary.
+    //added stats refer to all values being added to the base stats whether those values are permanent or temporary.
     //Morphs which add to stats when attached can add their bonus values to the added stats 
     //Total stats refer to the active value which is used when taking actions within the game (total = base+added)
 
@@ -73,19 +73,19 @@ public class Stats : MonoBehaviour
     public int totalIntelligence;
     //resistance stats
     private int baseFireResistance;
-    private int addedfireResistance;
+    private int addedFireResistance;
     public int totalFireResistance;
     private int baseIceResistance;
-    private int addediceResistance;
+    private int addedIceResistance;
     public int totalIceResistance;
-    private int basLightningResistance;
-    private int addedlightningResistance;
-    public int totalLightningResistance; 
+    private int baseElectricResistance;
+    private int addedElectricResistance;
+    public int totalElectricResistance; 
     private int basePoisonResistance;
-    private int addedpoisonResistance;
+    private int addedPoisonResistance;
     public int totalPoisonResistance;
     private int baseAcidResistance;
-    private int addedacidResistance;
+    private int addedAcidResistance;
     public int totalAcidResistance;
 
     [SerializeField] private float meleeDamageModifier;
@@ -105,9 +105,15 @@ public class Stats : MonoBehaviour
 
     StatModifiers statModifiers;
     CombatResources combatResources;
-    
+
+    Health health;
+    Stamina stamina;
+    Energy energy;
+
     //public interface
     public float MaxHealth => maxHealth;
+    public float MaxStamina => maxStamina;
+    public float MaxEnergy => maxEnergy;
     public float ElementalDamageModifier => elementalDamageModifier;
     public float ChemicalDamageModifier => chemicalDamageModifier;
     public float MeleeDamageModifier => meleeDamageModifier;
@@ -128,7 +134,10 @@ public class Stats : MonoBehaviour
         var statsModifierObj = GameObject.Find("StatsModifierManager");
         if(statsModifierObj)
             statModifiers = statsModifierObj.GetComponent<StatModifiers>();
- 
+
+        health = GetComponent<Health>();
+        stamina = GetComponent<Stamina>();
+        energy = GetComponent<Energy>();
         combatResources = GetComponentInParent<CombatResources>();
         headerStyle = new GUIStyle();
         headerStyle.fontStyle = FontStyle.Bold;
@@ -142,7 +151,6 @@ public class Stats : MonoBehaviour
 
         SetStatTotals();
 
-        PrepareCombatResources();
     }
 
     private void Update()
@@ -158,31 +166,16 @@ public class Stats : MonoBehaviour
    }
  
 
-    private void PrepareCombatResources() 
-    {
-        float healthPointsToRandomize;
-        float energyPointsToRandomize;
-        float staminaPointsToRandomize;
-
-        healthPointsToRandomize = Random.Range(baseHealthPointsRange.x, baseHealthPointsRange.y);
-        energyPointsToRandomize = Random.Range(baseEnergyPointsRange.x, baseEnergyPointsRange.y) * (1 + maxEnergyModifier);
-        staminaPointsToRandomize = Random.Range(baseStaminaPointsRange.x, baseStaminaPointsRange.y) * (1 + maxStaminaModifier);
-
-        maxHealth = Mathf.RoundToInt(healthPointsToRandomize);
-        maxEnergy = Mathf.RoundToInt(energyPointsToRandomize);
-        maxStamina = Mathf.RoundToInt(staminaPointsToRandomize);
-
-        
-    }
+    
 
     private void DrawStatsWindow(int windowID)
     {
         
         AddLabel("stat", "value",true);
         
-        AddLabel("hp", baseHealthPointsRange.ToString());
-        AddLabel("ep", baseEnergyPointsRange.ToString());
-        AddLabel("stamina", baseStaminaPointsRange.ToString());
+        AddLabel("hp", maxHealth.ToString());
+        AddLabel("ep", maxEnergy.ToString());
+        AddLabel("stamina", maxStamina.ToString());
         AddLabel();
         AddLabel("melee dmg", baseMeleeDamage.ToString());
         AddLabel("ranged dmg", baseRangedDamage.ToString());
@@ -193,7 +186,7 @@ public class Stats : MonoBehaviour
         AddLabel();
         AddLabel("fire resist", baseFireResistance.ToString());
         AddLabel("ice resist", baseIceResistance.ToString());
-        AddLabel("lightning resist", basLightningResistance.ToString());
+        AddLabel("lightning resist", baseElectricResistance.ToString());
         AddLabel("poison resist", basePoisonResistance.ToString());
         AddLabel("acid resist", baseAcidResistance.ToString());
         AddLabel();

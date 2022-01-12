@@ -7,34 +7,49 @@ public class Mass : PassiveMorph
     private DamageHandler damageHandler;
     [SerializeField] private float percentHealthBonus = .20f;
     [SerializeField] private bool unlockRestoration = true;
-    [SerializeField] private float healthRegen = 5;
-    Stats stats;
+
+    //Restoration gives % MAXHP regen, .1 or 10% value here turns into 2% MAXHP healed/second. Value = percentHealthRegen/5
+    [SerializeField] private float percentHealthRegen = .1f;
+
+    Health health;
 
     private void OnEnable()
     {
+        health = transform.gameObject.GetComponent<Health>();
         StartCoroutine(AssignDamageHandlerCoroutine());
-        ChangeHealthStat(percentHealthBonus);
+        ChangeMaxHealthStat(percentHealthBonus);
         if (unlockRestoration) 
         {
-            //stats.healthRegen += healthRegen; 
+            StartCoroutine("Restoration");
         }
-        stats = GetComponent<Stats>();
     }
 
     private void OnDisable()
     {
         UnsubscribeFromEvents();
-        ChangeHealthStat(-percentHealthBonus);
+        ChangeMaxHealthStat(-percentHealthBonus);
         if (unlockRestoration)
         {
-            //stats.healthRegen -= healthRegen; 
+            StopCoroutine("Restoration");
         }
     }
 
-    // implement
-    private void ChangeHealthStat(float amountToAdd)
+    IEnumerator Restoration() 
     {
-        //stats.maxHealth = stats.maxHealth * (1 + percentHealthBonus);
+        yield return new WaitForSeconds(1);
+
+        BroadcastMessage("AddPercentHealthOverTime", percentHealthRegen);
+
+        StartCoroutine("Restoration");
+
+        yield return null;
+    }
+
+    // implement
+    private void ChangeMaxHealthStat(float amountToAdd)
+    {
+        health.maxHealthBonus += amountToAdd;
+        BroadcastMessage("SetMaxHP");
     }
 
 

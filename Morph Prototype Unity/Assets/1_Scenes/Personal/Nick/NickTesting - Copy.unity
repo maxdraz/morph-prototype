@@ -524,14 +524,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Deer
       objectReference: {fileID: 0}
+    - target: {fileID: 3787121545567345810, guid: 17294641915b125489525c675901fd49, type: 3}
+      propertyPath: maxEnergy
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787121545567345810, guid: 17294641915b125489525c675901fd49, type: 3}
+      propertyPath: maxHealth
+      value: 560
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787121545567345810, guid: 17294641915b125489525c675901fd49, type: 3}
+      propertyPath: maxStamina
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: passiveMorphs.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: passiveMorphs.Array.data[2]
       value: 
-      objectReference: {fileID: 7145015599499403721, guid: fa8c7279cf7acec4b89488b0208fadba, type: 3}
+      objectReference: {fileID: 3852919366163853872, guid: b6761a1a9a7024a40b104e6c669facd5, type: 3}
     - target: {fileID: 8063955872969139073, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: m_RootOrder
       value: 0

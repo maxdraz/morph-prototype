@@ -5,31 +5,38 @@ using UnityEngine;
 public class Endurance : PassiveMorph
 {
     private DamageHandler damageHandler;
-    [SerializeField] private float meleeDamageStatBonus = 5;
-    [SerializeField] private bool unlockSecondary = true;
+    [SerializeField] private float staminaPercentageStatBonus = .20f;
+    [SerializeField] private float staminaPercentageRegenBonus = .40f;
+    [SerializeField] private bool unlockMoxie = true;
 
+    Stamina stamina;
     Stats stats;
 
     private void OnEnable()
     {
-        StartCoroutine(AssignDamageHandlerCoroutine());
-        ChangeMeleeDamageStat(meleeDamageStatBonus);
+        stamina = transform.gameObject.GetComponent<Stamina>();
         stats = GetComponent<Stats>();
+        StartCoroutine(AssignDamageHandlerCoroutine());
+        ChangeMaxStaminaStat(staminaPercentageStatBonus);
+
+        if (unlockMoxie) 
+        {
+        
+        }
+    }
+
+    private void ChangeMaxStaminaStat(float amountToAdd)
+    {
+        stamina.maxStaminaBonus += amountToAdd;
+        BroadcastMessage("SetMaxStamina");
     }
 
     private void OnDisable()
     {
         UnsubscribeFromEvents();
-        ChangeMeleeDamageStat(-meleeDamageStatBonus);
+        ChangeMaxStaminaStat(-staminaPercentageStatBonus);
     }
 
-    // implement
-    private void ChangeMeleeDamageStat(float amountToAdd)
-    {
-
-    }
-
-    
 
     private IEnumerator AssignDamageHandlerCoroutine()
     {

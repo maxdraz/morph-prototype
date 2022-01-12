@@ -5,7 +5,7 @@ using UnityEngine;
 public class Awareness : PassiveMorph
 {
     private DamageHandler damageHandler;
-    [SerializeField] private float meleeDamageStatBonus = 5;
+    [SerializeField] private float perceptionStatBonus = 5;
     [SerializeField] private bool unlockSecondary = true;
 
     Stats stats;
@@ -13,18 +13,18 @@ public class Awareness : PassiveMorph
     private void OnEnable()
     {
         StartCoroutine(AssignDamageHandlerCoroutine());
-        ChangeMeleeDamageStat(meleeDamageStatBonus);
+        ChangePerceptionStat(perceptionStatBonus);
         stats = GetComponent<Stats>();
     }
 
     private void OnDisable()
     {
         UnsubscribeFromEvents();
-        ChangeMeleeDamageStat(-meleeDamageStatBonus);
+        ChangePerceptionStat(-perceptionStatBonus);
     }
 
     // implement
-    private void ChangeMeleeDamageStat(float amountToAdd)
+    private void ChangePerceptionStat(float amountToAdd)
     {
 
     }
