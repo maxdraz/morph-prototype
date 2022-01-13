@@ -5,31 +5,44 @@ using UnityEngine;
 public class SureShot : PassiveMorph
 {
     private DamageHandler damageHandler;
-    [SerializeField] private float meleeDamageStatBonus = 5;
-    [SerializeField] private bool unlockSecondary = true;
+    [SerializeField] private float rangedDamageStatBonus = 5;
+    [SerializeField] private bool unlockExpandedReserves = true;
+    [SerializeField] private float maxEnergyStatBonus = 5;
+
 
     Stats stats;
 
     private void OnEnable()
     {
         StartCoroutine(AssignDamageHandlerCoroutine());
-        ChangeMeleeDamageStat(meleeDamageStatBonus);
+        ChangeRangedDamageStat(rangedDamageStatBonus);
+        if (unlockExpandedReserves) 
+        {
+            ChangeMaxEnergyStat(maxEnergyStatBonus);
+        }
         stats = GetComponent<Stats>();
     }
 
     private void OnDisable()
     {
         UnsubscribeFromEvents();
-        ChangeMeleeDamageStat(-meleeDamageStatBonus);
+        ChangeRangedDamageStat(-rangedDamageStatBonus);
+        if (unlockExpandedReserves)
+        {
+            ChangeMaxEnergyStat(-maxEnergyStatBonus);
+        }
     }
 
     // implement
-    private void ChangeMeleeDamageStat(float amountToAdd)
+    private void ChangeRangedDamageStat(float amountToAdd)
     {
 
     }
 
-    
+    private void ChangeMaxEnergyStat(float amountToAdd)
+    {
+
+    }
 
     private IEnumerator AssignDamageHandlerCoroutine()
     {

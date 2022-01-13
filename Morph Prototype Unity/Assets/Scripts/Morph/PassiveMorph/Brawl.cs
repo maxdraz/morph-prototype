@@ -6,15 +6,20 @@ public class Brawl : PassiveMorph
 {
     private DamageHandler damageHandler;
     [SerializeField] private float meleeDamageStatBonus = 5;
-    [SerializeField] private bool unlockSecondary = true;
+    [SerializeField] private bool unlockRage = true;
+    [SerializeField] private float bonusAttackSpeed = 5;
+
 
     Stats stats;
+    Health health;
 
     private void OnEnable()
     {
+        
         StartCoroutine(AssignDamageHandlerCoroutine());
         ChangeMeleeDamageStat(meleeDamageStatBonus);
         stats = GetComponent<Stats>();
+        health = GetComponent<Health>();
     }
 
     private void OnDisable()
@@ -29,7 +34,16 @@ public class Brawl : PassiveMorph
 
     }
 
-    
+    private void Update()
+    {
+        if (unlockRage) 
+        {
+            if (health.CurrentHealthAsPercentage <= 30) 
+            {
+                //need stats script to have a function for recieving stats
+            }
+        }
+    }
 
     private IEnumerator AssignDamageHandlerCoroutine()
     {

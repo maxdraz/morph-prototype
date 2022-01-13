@@ -6,7 +6,10 @@ public class BattleReady : PassiveMorph
 {
     private DamageHandler damageHandler;
     [SerializeField] private float meleeDamageStatBonus = 5;
-    [SerializeField] private bool unlockSecondary = true;
+    [SerializeField] private float rangedDamageStatBonus = 5;
+    [SerializeField] private bool unlockBattleMaster = true;
+    [SerializeField] private float citChance = 5;
+
 
     Stats stats;
 
@@ -14,13 +17,25 @@ public class BattleReady : PassiveMorph
     {
         StartCoroutine(AssignDamageHandlerCoroutine());
         ChangeMeleeDamageStat(meleeDamageStatBonus);
+        ChangeRangedDamageStat(rangedDamageStatBonus);
         stats = GetComponent<Stats>();
+
+        if (unlockBattleMaster) 
+        {
+            //gain critchance
+        }
     }
 
     private void OnDisable()
     {
         UnsubscribeFromEvents();
         ChangeMeleeDamageStat(-meleeDamageStatBonus);
+        ChangeRangedDamageStat(-rangedDamageStatBonus);
+
+        if (unlockBattleMaster)
+        {
+            //lose critchance
+        }
     }
 
     // implement
@@ -29,7 +44,11 @@ public class BattleReady : PassiveMorph
 
     }
 
-    
+    private void ChangeRangedDamageStat(float amountToAdd)
+    {
+
+    }
+
 
     private IEnumerator AssignDamageHandlerCoroutine()
     {

@@ -71,6 +71,12 @@ public class Stats : MonoBehaviour
     private int baseIntelligence;
     private int addedIntelligence;
     public int totalIntelligence;
+    private float baseMoveSpeed;
+    private float addedMoveSpeed;
+    public float totalMoveSpeed;
+    private float baseAttackSpeed;
+    private float addedAttackSpeed;
+    public float totalAttackSpeed;
     //resistance stats
     private int baseFireResistance;
     private int addedFireResistance;
