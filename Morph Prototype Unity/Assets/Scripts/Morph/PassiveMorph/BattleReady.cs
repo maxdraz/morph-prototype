@@ -5,8 +5,8 @@ using UnityEngine;
 public class BattleReady : PassiveMorph
 {
     private DamageHandler damageHandler;
-    [SerializeField] private float meleeDamageStatBonus = 5;
-    [SerializeField] private float rangedDamageStatBonus = 5;
+    [SerializeField] private int meleeDamageStatBonus = 5;
+    [SerializeField] private int rangedDamageStatBonus = 5;
     [SerializeField] private bool unlockBattleMaster = true;
     [SerializeField] private float citChance = 5;
 
@@ -39,14 +39,14 @@ public class BattleReady : PassiveMorph
     }
 
     // implement
-    private void ChangeMeleeDamageStat(float amountToAdd)
+    private void ChangeMeleeDamageStat(int amountToAdd)
     {
-
+        stats.FlatStatChange("meleeDamage", amountToAdd);
     }
 
-    private void ChangeRangedDamageStat(float amountToAdd)
+    private void ChangeRangedDamageStat(int amountToAdd)
     {
-
+        stats.FlatStatChange("meleeDamage", amountToAdd);
     }
 
 

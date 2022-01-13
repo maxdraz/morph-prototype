@@ -6,10 +6,10 @@ public class DoubleEdged : PassiveMorph
 {
     private DamageHandler damageHandler;
     [SerializeField] private float hpDrainFraction;
-    [SerializeField] private float meleeDamageStatBonus = 5;
+    [SerializeField] private int meleeDamageStatBonus = 5;
     [SerializeField] private bool unlockBloodGuzzler = true;
     bool bloodGuzzlerReady;
-
+    Stats stats;
     float damageBoost;
     float damageBoostFactor = 2;
 
@@ -20,6 +20,7 @@ public class DoubleEdged : PassiveMorph
 
     private void OnEnable()
     {
+        stats = GetComponent<Stats>();
         StartCoroutine(AssignDamageHandlerCoroutine());
         ChangeMeleeDamageStat(meleeDamageStatBonus);
 
@@ -32,9 +33,9 @@ public class DoubleEdged : PassiveMorph
     }
 
     // implement
-    private void ChangeMeleeDamageStat(float amountToAdd)
+    private void ChangeMeleeDamageStat(int amountToAdd)
     {
-
+        stats.FlatStatChange("meleeDamage", amountToAdd);
     }
 
     private void OnDamageHasBeenDealt(in DamageTakenSummary damageTakenSummary)
@@ -49,7 +50,7 @@ public class DoubleEdged : PassiveMorph
             if (damageTakenSummary.isMortalBlow && bloodGuzzlerReady) 
             {
                 GetComponent<CombatResources>().currentStaminaPoints += damageTakenSummary.PhysicalDamage;
-                damageHandler.Health.AddFlatHealthOverTime(damageTakenSummary.PhysicalDamage);
+                damageHandler.Health.HealOverTime((int)damageTakenSummary.PhysicalDamage, 5);
                 bloodGuzzlerReady = false;
                 StartCoroutine("BloodGuzzlerCooldown");
             }

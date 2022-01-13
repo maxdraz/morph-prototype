@@ -9,7 +9,7 @@ public class Perception : MonoBehaviour
     Vector3 center;
     public float perception;
     float currentPerception;
-    public float myPerceptionModifier;
+    public float globalPerceptionModifier;
     public float perceptionToApply;
 
     bool detecting;
@@ -44,7 +44,7 @@ public class Perception : MonoBehaviour
 
 
 
-        Collider[] hitColliders = Physics.OverlapSphere(center, currentPerception / myPerceptionModifier);
+        Collider[] hitColliders = Physics.OverlapSphere(center, currentPerception / globalPerceptionModifier);
 
         foreach (var hitCollider in hitColliders)
         {
@@ -105,7 +105,7 @@ public class Perception : MonoBehaviour
     {
         if (showGizmo)
         {
-            float radius = currentPerception/myPerceptionModifier;
+            float radius = currentPerception/globalPerceptionModifier;
             center = this.gameObject.transform.position;
             Gizmos.color = new Color(1, 1, 1, 0.5f);
             Gizmos.DrawSphere(center, radius);

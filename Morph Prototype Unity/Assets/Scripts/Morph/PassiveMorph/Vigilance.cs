@@ -5,31 +5,42 @@ using UnityEngine;
 public class Vigilance : PassiveMorph
 {
     private DamageHandler damageHandler;
-    [SerializeField] private float meleeDamageStatBonus = 5;
-    [SerializeField] private bool unlockSecondary = true;
+    [SerializeField] private int perceptionStatBonus = 5;
+    [SerializeField] private int stealthStatBonus = 5;
+    [SerializeField] private bool unlockHeatVision = true;
 
     Stats stats;
+    Perception perception;
 
     private void OnEnable()
     {
         StartCoroutine(AssignDamageHandlerCoroutine());
-        ChangeMeleeDamageStat(meleeDamageStatBonus);
+        ChangePerceptionStat(perceptionStatBonus);
+        ChangeStealthStat(stealthStatBonus);
         stats = GetComponent<Stats>();
+        perception = GetComponent<Perception>();
     }
 
     private void OnDisable()
     {
         UnsubscribeFromEvents();
-        ChangeMeleeDamageStat(-meleeDamageStatBonus);
+        ChangePerceptionStat(-perceptionStatBonus);
+        ChangeStealthStat(-stealthStatBonus);
     }
 
     // implement
-    private void ChangeMeleeDamageStat(float amountToAdd)
+    private void ChangePerceptionStat(int amountToAdd)
     {
+        stats.FlatStatChange("perception", amountToAdd);
 
     }
 
-    
+    private void ChangeStealthStat(int amountToAdd)
+    {
+        stats.FlatStatChange("stealth", amountToAdd);
+    }
+
+
 
     private IEnumerator AssignDamageHandlerCoroutine()
     {
@@ -47,6 +58,19 @@ public class Vigilance : PassiveMorph
             
 
         }
+    }
+
+    private void Update()
+    {
+        if (unlockHeatVision) 
+        {
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position, perception.perception / 10);
+
+            foreach (var hitCollider in hitColliders)
+            {
+                //they are auto detected by perception script
+            }
+        } 
     }
 
     private void UnsubscribeFromEvents()

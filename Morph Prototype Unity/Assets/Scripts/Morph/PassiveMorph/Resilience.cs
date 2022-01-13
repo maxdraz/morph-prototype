@@ -5,12 +5,11 @@ using UnityEngine;
 public class Resilience : PassiveMorph
 {
     private DamageHandler damageHandler;
-    [SerializeField] private int resistanceBoost1;
-    [SerializeField] private int resistanceBoost2;
+    [SerializeField] private float resistanceBoost1;
+    [SerializeField] private float resistanceBoost2;
     [SerializeField] private bool unlockHardiness = true;
-
-    [SerializeField] private string boost1;
-    [SerializeField] private string boost2;
+    [SerializeField] private string resistType1;
+    [SerializeField] private string resistType2;
 
     Stats stats;
 
@@ -24,106 +23,88 @@ public class Resilience : PassiveMorph
 
         if (boost1 == 0) 
         {
-            AddToResistanceStat("fire");
+            resistType1 = resistArray[0];
         }
 
         if (boost1 == 1)
         {
-            AddToResistanceStat("ice");
+            resistType1 = resistArray[1];
         }
 
         if (boost1 == 2)
         {
-            AddToResistanceStat("electric");
+            resistType1 = resistArray[2];
         }
 
         if (boost1 == 3)
         {
-            AddToResistanceStat("poison");
+            resistType1 = resistArray[3];
         }
 
         if (boost1 == 4)
         {
-            AddToResistanceStat("acid");
+            resistType1 = resistArray[4];
         }
 
         RemoveAt(ref resistArray, boost1); // removes the element from the array
 
-        if (unlockHardiness) 
+        
+
+        int boost2 = Random.Range(0, 3);
+
+        if (boost2 == 0)
         {
-            int boost2 = Random.Range(0, 3);
+            resistType2 = resistArray[0];
+        }
 
-            if (boost1 == 0)
-            {
-                if (resistArray[0] == "fire")
-                {
-                    AddToResistanceStat("fire");
-                }
-                else
-                {
-                    AddToResistanceStat("ice");
-                }
-            }
+        if (boost1 == 1)
+        {
+            resistType2 = resistArray[1];
+        }
 
-            if (boost1 == 1)
-            {
-                if (resistArray[0] == "ice")
-                {
-                    AddToResistanceStat("ice");
-                }
-                else
-                {
-                    AddToResistanceStat("electric");
-                }
-            }
+        if (boost1 == 2)
+        {
+            resistType2 = resistArray[2];
+        }
 
-            if (boost1 == 2)
-            {
-                if (resistArray[0] == "electric")
-                {
-                    AddToResistanceStat("electric");
-                }
-                else
-                {
-                    AddToResistanceStat("poison");
-                }
-            }
-
-            if (boost1 == 3)
-            {
-                if (resistArray[0] == "poison")
-                {
-                    AddToResistanceStat("poison");
-                }
-                else
-                {
-                    AddToResistanceStat("acid");
-                }
-            }
-        }  
+        if (boost1 == 3)
+        {
+            resistType2 = resistArray[3];
+        }
     }
 
-    private void AddToResistanceStat(string resist) 
+    private void AddToResistanceStat(string resist, float boost) 
     {
         if (resist == "fire") 
         {
             
+            
+                stats.FlatResistStatChange("fire", boost);
+            
         }
         if (resist == "ice")
         {
-
+            
+                stats.FlatResistStatChange("ice", boost);
+            
         }
         if (resist == "electric")
         {
-
+            
+                stats.FlatResistStatChange("electric", boost);
+            
         }
         if (resist == "poison")
         {
-
+            
+                stats.FlatResistStatChange("poison", boost);
+            
         }
         if (resist == "acid")
         {
-
+            
+                stats.FlatResistStatChange("acid", boost);
+            
         }
     }
 
@@ -138,16 +119,29 @@ public class Resilience : PassiveMorph
 
     private void OnEnable()
     {
+        stats = GetComponent<Stats>();
 
-        
+
+        AddToResistanceStat(resistType1.ToString(), resistanceBoost1);
+
+        if (unlockHardiness) 
+        {
+            AddToResistanceStat(resistType2.ToString(), resistanceBoost2);
+        }
 
         StartCoroutine(AssignDamageHandlerCoroutine());
         
-        stats = GetComponent<Stats>();
     }
 
     private void OnDisable()
     {
+        AddToResistanceStat(resistType1.ToString(), -resistanceBoost1);
+
+        if (unlockHardiness)
+        {
+            AddToResistanceStat(resistType2.ToString(), -resistanceBoost2);
+        }
+
         UnsubscribeFromEvents();
     }
 

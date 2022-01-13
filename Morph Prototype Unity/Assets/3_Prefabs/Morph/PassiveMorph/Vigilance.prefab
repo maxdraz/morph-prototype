@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1339844364173548122
+--- !u!1 &8864473230198911866
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 212673497260841667}
-  - component: {fileID: 1423064282517137419}
-  - component: {fileID: 5015957573999694308}
+  - component: {fileID: 7486593157908041413}
+  - component: {fileID: 7411079329848418848}
+  - component: {fileID: 4842231703207490065}
   m_Layer: 0
-  m_Name: Resilience
+  m_Name: Vigilance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &212673497260841667
+--- !u!4 &7486593157908041413
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1339844364173548122}
+  m_GameObject: {fileID: 8864473230198911866}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 14.432542, y: 45.861668, z: 68.67374}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,36 +32,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1423064282517137419
+--- !u!114 &7411079329848418848
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1339844364173548122}
+  m_GameObject: {fileID: 8864473230198911866}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be73dea412204f74e9630e14167e6edb, type: 3}
+  m_Script: {fileID: 11500000, guid: 23f4dd670163a3741809d7c2ab5d12b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resistanceBoost1: 20
-  resistanceBoost2: 20
-  unlockHardiness: 1
-  resistType1: 
-  resistType2: 
-  resistArray:
-  - fire
-  - electric
-  - ice
-  - poison
-  - acid
---- !u!114 &5015957573999694308
+  perceptionStatBonus: 5
+  stealthStatBonus: 5
+  unlockHeatVision: 1
+--- !u!114 &4842231703207490065
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1339844364173548122}
+  m_GameObject: {fileID: 8864473230198911866}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca070c3b6534b8a47b9eeb7cc2a9559f, type: 3}

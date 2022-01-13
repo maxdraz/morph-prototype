@@ -5,7 +5,7 @@ using UnityEngine;
 public class Rugged : PassiveMorph
 {
     private DamageHandler damageHandler;
-    [SerializeField] private float toughnessStatBonus = 5;
+    [SerializeField] private int toughnessStatBonus = 5;
 
     [SerializeField] private bool unlockUnbreakable = true;
     [SerializeField] private float flatPhysicalDamageReduction;
@@ -26,9 +26,9 @@ public class Rugged : PassiveMorph
     }
 
     // implement
-    private void ChangeToughnessStat(float amountToAdd)
+    private void ChangeToughnessStat(int amountToAdd)
     {
-
+        stats.FlatStatChange("toughness", amountToAdd);
     }
 
     private void OnDamageAboutToBeTaken(in DamageTakenSummary damageTakenSummary)

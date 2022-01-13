@@ -5,7 +5,7 @@ using UnityEngine;
 public class Brawl : PassiveMorph
 {
     private DamageHandler damageHandler;
-    [SerializeField] private float meleeDamageStatBonus = 5;
+    [SerializeField] private int meleeDamageStatBonus = 5;
     [SerializeField] private bool unlockRage = true;
     [SerializeField] private float bonusAttackSpeed = 5;
 
@@ -29,9 +29,9 @@ public class Brawl : PassiveMorph
     }
 
     // implement
-    private void ChangeMeleeDamageStat(float amountToAdd)
+    private void ChangeMeleeDamageStat(int amountToAdd)
     {
-
+        stats.FlatStatChange("meleeDamage",amountToAdd);
     }
 
     private void Update()

@@ -38,7 +38,7 @@ public class Mass : PassiveMorph
     {
         yield return new WaitForSeconds(1);
 
-        BroadcastMessage("AddPercentHealthOverTime", percentHealthRegen);
+        BroadcastMessage("AddPercentHP", percentHealthRegen);
 
         StartCoroutine("Restoration");
 

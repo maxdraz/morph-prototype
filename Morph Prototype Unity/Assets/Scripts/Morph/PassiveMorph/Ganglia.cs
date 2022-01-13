@@ -5,28 +5,28 @@ using UnityEngine;
 public class Ganglia : PassiveMorph
 {
     private DamageHandler damageHandler;
-    [SerializeField] private float meleeDamageStatBonus = 5;
-    [SerializeField] private bool unlockSecondary = true;
+    [SerializeField] private int intelligenceStatBonus = 5;
+    [SerializeField] private bool unlockConditioning = true;
 
     Stats stats;
 
     private void OnEnable()
     {
         StartCoroutine(AssignDamageHandlerCoroutine());
-        ChangeMeleeDamageStat(meleeDamageStatBonus);
+        ChangeMeleeDamageStat(intelligenceStatBonus);
         stats = GetComponent<Stats>();
     }
 
     private void OnDisable()
     {
         UnsubscribeFromEvents();
-        ChangeMeleeDamageStat(-meleeDamageStatBonus);
+        ChangeMeleeDamageStat(-intelligenceStatBonus);
     }
 
     // implement
-    private void ChangeMeleeDamageStat(float amountToAdd)
+    private void ChangeMeleeDamageStat(int amountToAdd)
     {
-
+        stats.FlatStatChange("intelligence",amountToAdd);
     }
 
     

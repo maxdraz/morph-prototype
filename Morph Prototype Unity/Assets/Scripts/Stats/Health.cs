@@ -21,16 +21,13 @@ public class Health : MonoBehaviour
     [SerializeField] private Image healthBar;
     private Coroutine hideHealthBarAfterTime;
 
-    Timer healingTimer;
-    private float amountToHealOverTime;
-    private float amountToHealPerSecond;
+
 
     // Start is called before the first frame update
     void Awake()
     {
         //get stats component
         stats = GetComponent<Stats>();
-        healingTimer = new Timer(1,true);
 
 
         baseMaxHealth = stats ? stats.MaxHealth : 100;
@@ -48,7 +45,6 @@ public class Health : MonoBehaviour
     {
         
 
-        HealOverTime();
     }
 
     private void SetMaxHP() 
@@ -79,32 +75,27 @@ public class Health : MonoBehaviour
         OnHealthChanged();
     }
 
-    public void AddFlatHealthOverTime(float amount)
+    
+
+    public void AddPercentHP(float amount)
     {
-        amountToHealOverTime += amount;
-        amountToHealPerSecond = amountToHealOverTime / 5;
+        float healthToHeal = maxHealth * amount;
+        AddHP(healthToHeal);
     }
 
-    public void AddPercentHealthOverTime(float amount)
+    public IEnumerator HealOverTime(int amount, int duration) 
     {
-        float percentHealthToHeal = maxHealth * amount;
-        amountToHealOverTime += percentHealthToHeal;
-        amountToHealPerSecond = amountToHealOverTime / 5;
-    }
+        int amountToHealPerSecond = amount / duration;
+        int secondsRemaining = duration;
+        yield return new WaitForSeconds(1);
+        secondsRemaining--;
+        AddHP(amountToHealPerSecond);
 
-    private void HealOverTime() 
-    {
-        if (amountToHealPerSecond > 0)
+        if (secondsRemaining > 0) 
         {
-            healingTimer.Update(Time.deltaTime);
-
-            if (healingTimer.JustCompleted)
-            {
-                currentHealth += amountToHealPerSecond;
-                currentHealth = Mathf.Min(currentHealth, maxHealth);
-                amountToHealOverTime -= amountToHealPerSecond;
-            }
+            StartCoroutine(HealOverTime (amount-amountToHealPerSecond, secondsRemaining));
         }
+        yield return null;
     }
 
     private void OnHealthChanged()

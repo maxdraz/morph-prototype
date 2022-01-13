@@ -5,31 +5,35 @@ using UnityEngine;
 public class Frills : PassiveMorph
 {
     private DamageHandler damageHandler;
-    [SerializeField] private float meleeDamageStatBonus = 5;
-    [SerializeField] private bool unlockSecondary = true;
+    [SerializeField] private int intimidationStatBonus = 5;
+    [SerializeField] private bool unlockFearless = true;
+    [SerializeField] private float intimidationDefenseBonus = .3f;
 
     Stats stats;
 
     private void OnEnable()
     {
         StartCoroutine(AssignDamageHandlerCoroutine());
-        ChangeMeleeDamageStat(meleeDamageStatBonus);
+        ChangeIntimidationStat(intimidationStatBonus);
         stats = GetComponent<Stats>();
     }
 
     private void OnDisable()
     {
         UnsubscribeFromEvents();
-        ChangeMeleeDamageStat(-meleeDamageStatBonus);
+        ChangeIntimidationStat(-intimidationStatBonus);
     }
 
     // implement
-    private void ChangeMeleeDamageStat(float amountToAdd)
+    private void ChangeIntimidationStat(int amountToAdd)
     {
-
+        stats.FlatStatChange("intimidation",amountToAdd);
     }
 
-    
+    private void Fearless(float amount) 
+    {
+    //GetComponent<Intimidation>().defenseModifier += amount;
+    }
 
     private IEnumerator AssignDamageHandlerCoroutine()
     {
