@@ -452,6 +452,7 @@ GameObject:
   - component: {fileID: 5730317762412754143}
   - component: {fileID: 1109020764214313045}
   - component: {fileID: 5782620542622676542}
+  - component: {fileID: 3364406145155882908}
   - component: {fileID: 2442157382203612058}
   - component: {fileID: 2734275844283368814}
   - component: {fileID: 320125811011304783}
@@ -524,6 +525,27 @@ MonoBehaviour:
   displayDebug: 0
   randomStats: 0
   maxHealth: 500
+  maxEnergy: 0
+  maxStamina: 0
+  totalMeleeDamage: 0
+  totalRangedDamage: 0
+  totalChemicalDamage: 0
+  totalElementalDamage: 0
+  totalFortitude: 0
+  totalToughness: 0
+  totalIntimidation: 0
+  totalAgility: 0
+  totalStealth: 0
+  totalPerception: 0
+  totalIntelligence: 0
+  totalMoveSpeed: 0
+  totalAttackSpeed: 0
+  totalFireResistance: 0
+  totalIceResistance: 0
+  totalElectricResistance: 0
+  totalPoisonResistance: 0
+  totalAcidResistance: 0
+  totalPhysicalResistance: 0
   meleeDamageModifier: 0
   rangedDamageModifier: 0
   chemicalDamageModifier: 0
@@ -546,8 +568,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08443734f5928c448b048b39e8c7aa20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
+  baseMaxHealth: 0
+  maxHealth: 0
+  maxHealthBonus: 0
   healingPercentageBonus: 0
+  currentHealth: 0
   healthBar: {fileID: 0}
 --- !u!114 &1109020764214313045
 MonoBehaviour:
@@ -574,7 +599,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc6faeff814f70a48a2507debb58fbba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stamina: 1000
+  baseMaxStamina: 0
+  maxStaminaBonus: 0
+  bonusStaminaRegen: 0
+  totalMaxStamina: 0
+  currentStamina: 0
+  staminaRegenTimer:
+    duration: 0
+    currentTime: 0
+    loop: 0
+--- !u!114 &3364406145155882908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7853902346194350098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 853c20aec91167f49b180626b3a5c81a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseMaxEnergy: 0
+  maxEnergyBonus: 0
+  bonusEnergyRegen: 0
+  totalMaxEnergy: 0
+  currentEnergy: 0
+  energyRegenTimer:
+    duration: 0
+    currentTime: 0
+    loop: 0
 --- !u!114 &2442157382203612058
 MonoBehaviour:
   m_ObjectHideFlags: 0

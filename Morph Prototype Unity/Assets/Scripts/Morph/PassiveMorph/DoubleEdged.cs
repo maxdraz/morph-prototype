@@ -21,6 +21,7 @@ public class DoubleEdged : PassiveMorph
     private void OnEnable()
     {
         stats = GetComponent<Stats>();
+
         StartCoroutine(AssignDamageHandlerCoroutine());
         ChangeMeleeDamageStat(meleeDamageStatBonus);
 
@@ -28,6 +29,8 @@ public class DoubleEdged : PassiveMorph
 
     private void OnDisable()
     {
+        stats = GetComponent<Stats>();
+
         UnsubscribeFromEvents();
         ChangeMeleeDamageStat(-meleeDamageStatBonus);
     }

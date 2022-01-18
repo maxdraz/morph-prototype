@@ -13,8 +13,9 @@ public class EndlessAggression : PassiveMorph
     [SerializeField] private float endlessAggressionEnergyGain;
     [SerializeField] private float endlessAggressionStaminaGain;
 
-    CombatResources combatResources;
-
+    Stamina stamina;
+    Energy energy;
+        
     bool canGainExplosiveAngerStacks = true;
     int currentExplosiveAngerStacks;
     [SerializeField] private int explosiveAngerStackLimit;
@@ -24,13 +25,18 @@ public class EndlessAggression : PassiveMorph
 
     private void OnEnable()
     {
+        stamina = GetComponent<Stamina>();
+        energy = GetComponent<Energy>();
+
         StartCoroutine(AssignDamageHandlerCoroutine());
         ChangeMeleeDamageStat(meleeDamageStatBonus);
-        combatResources = GetComponent<CombatResources>();
     }
 
     private void OnDisable()
     {
+        stamina = GetComponent<Stamina>();
+        energy = GetComponent<Energy>();
+
         UnsubscribeFromEvents();
         ChangeMeleeDamageStat(-meleeDamageStatBonus);
     }
@@ -57,16 +63,14 @@ public class EndlessAggression : PassiveMorph
 
     void GainStaminaAndEnergy()
     {
-        float currentEnergyPercentage;
-        float currentStaminaPercentage;
-        currentEnergyPercentage = combatResources.currentEnergyPoints / combatResources.energyPointsMax;
-        currentStaminaPercentage = combatResources.currentStaminaPoints / combatResources.staminaPointsMax;
+        float currentEnergyPercentage = energy.EnergyAsPercentage();
+        float currentStaminaPercentage = stamina.StaminaAsPercentage();
 
         float energyGainMultiplier = 1 + (1 - currentEnergyPercentage);
         float staminaGainMultiplier = 1 + (1 - currentStaminaPercentage);
 
-        combatResources.currentEnergyPoints += (endlessAggressionEnergyGain * energyGainMultiplier);
-        combatResources.currentStaminaPoints += (endlessAggressionStaminaGain * staminaGainMultiplier);
+        energy.AddEnergy(endlessAggressionEnergyGain * energyGainMultiplier);
+        stamina.AddStamina(endlessAggressionStaminaGain * staminaGainMultiplier);
     }
 
     void ExplosiveAnger()
@@ -76,7 +80,7 @@ public class EndlessAggression : PassiveMorph
         if (currentExplosiveAngerStacks >= explosiveAngerStackLimit)
         {
             canGainExplosiveAngerStacks = false;
-            StopCoroutine("DecayExplosiveAngerStacks");
+            StopCoroutine("ExplosiveAngerCooldown");
             currentExplosiveAngerStacks = 0;
             //ExplosiveAngerExplosion(transform.position, explosiveAngerExplosionRadius);
             explosionSpawner.Spawn(transform);

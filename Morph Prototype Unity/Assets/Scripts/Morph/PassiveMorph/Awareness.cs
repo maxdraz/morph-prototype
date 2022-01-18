@@ -12,13 +12,16 @@ public class Awareness : PassiveMorph
 
     private void OnEnable()
     {
+        stats = GetComponent<Stats>();
+
         StartCoroutine(AssignDamageHandlerCoroutine());
         ChangePerceptionStat(perceptionStatBonus);
-        stats = GetComponent<Stats>();
     }
 
     private void OnDisable()
     {
+        stats = GetComponent<Stats>();
+
         UnsubscribeFromEvents();
         ChangePerceptionStat(-perceptionStatBonus);
     }

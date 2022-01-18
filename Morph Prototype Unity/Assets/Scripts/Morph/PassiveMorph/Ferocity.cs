@@ -14,8 +14,8 @@ public class Ferocity : PassiveMorph
     int maxFerocityStacks = 5;
     [SerializeField] private float stackDuration = 4;
 
-    [SerializeField] private float ferocityAttackSpeedBuffPerStack;
-    [SerializeField] private float ferocityMeleeAttackDamageBuffPerStack;
+    [SerializeField] private float ferocityAttackSpeedBuffPerStack = .03f;
+    [SerializeField] private float ferocityMeleeAttackDamageBuffPerStack = .05f;
     float totalFerocityAttackSpeedBuff;
     float totalFerocityMeleeAttackDamageBuff;
 
@@ -23,15 +23,12 @@ public class Ferocity : PassiveMorph
     [SerializeField] private float spiritSiphonStaminaStealAmount;
     [SerializeField] private float spiritSiphonEnergyStealAmount;
 
-
-    private void Start()
-    {
-    }
-
-    
+    Stats stats;
 
     private void OnEnable()
     {
+        stats = GetComponent<Stats>();
+
         StartCoroutine(AssignDamageHandlerCoroutine());
         ChangeMeleeDamageStat(meleeDamageStatBonus);
 
@@ -39,6 +36,8 @@ public class Ferocity : PassiveMorph
 
     private void OnDisable()
     {
+        stats = GetComponent<Stats>();
+
         UnsubscribeFromEvents();
         ChangeMeleeDamageStat(-meleeDamageStatBonus);
     }
@@ -46,7 +45,7 @@ public class Ferocity : PassiveMorph
     // implement
     private void ChangeMeleeDamageStat(float amountToAdd)
     {
-
+        stats.FlatResistStatChange("melee", amountToAdd);
     }
 
     private void OnDamageHasBeenDealt(in DamageTakenSummary damageTakenSummary)
@@ -64,6 +63,7 @@ public class Ferocity : PassiveMorph
     {
         if (currentFerocityStackAmount == maxFerocityStacks)
         {
+            SendFerocityBuff();
             return;
         }
         else 
@@ -75,17 +75,11 @@ public class Ferocity : PassiveMorph
 
     private void SendFerocityBuff() 
     {
+        totalFerocityAttackSpeedBuff = ferocityAttackSpeedBuffPerStack * currentFerocityStackAmount;
+        totalFerocityMeleeAttackDamageBuff = ferocityMeleeAttackDamageBuffPerStack * currentFerocityStackAmount;
 
-        for (int i = 0; i <= currentFerocityStackAmount; i++) 
-        {
-            totalFerocityAttackSpeedBuff += ferocityAttackSpeedBuffPerStack;
-            totalFerocityMeleeAttackDamageBuff += ferocityMeleeAttackDamageBuffPerStack;
+        //Send this temp buff out to handler, must replace whatever value was already there
 
-            if (i == currentFerocityStackAmount) 
-            {
-            //send the buff out to buff handler
-            }
-        }
     }
 
     IEnumerator DecayFerocityStacks() 

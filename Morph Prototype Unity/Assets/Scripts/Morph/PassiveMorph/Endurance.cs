@@ -10,18 +10,17 @@ public class Endurance : PassiveMorph
     [SerializeField] private bool unlockMoxie = true;
 
     Stamina stamina;
-    Stats stats;
 
     private void OnEnable()
     {
-        stamina = transform.gameObject.GetComponent<Stamina>();
-        stats = GetComponent<Stats>();
+        stamina = GetComponent<Stamina>();
+
         StartCoroutine(AssignDamageHandlerCoroutine());
         ChangeMaxStaminaStat(staminaPercentageStatBonus);
 
         if (unlockMoxie) 
         {
-        
+            stamina.bonusStaminaRegen += staminaPercentageRegenBonus;
         }
     }
 
@@ -33,8 +32,15 @@ public class Endurance : PassiveMorph
 
     private void OnDisable()
     {
+        stamina = GetComponent<Stamina>();
+
         UnsubscribeFromEvents();
         ChangeMaxStaminaStat(-staminaPercentageStatBonus);
+
+        if (unlockMoxie)
+        {
+            stamina.bonusStaminaRegen -= staminaPercentageRegenBonus;
+        }
     }
 
 

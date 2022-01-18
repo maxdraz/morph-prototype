@@ -12,13 +12,16 @@ public class Ganglia : PassiveMorph
 
     private void OnEnable()
     {
+        stats = GetComponent<Stats>();
+
         StartCoroutine(AssignDamageHandlerCoroutine());
         ChangeMeleeDamageStat(intelligenceStatBonus);
-        stats = GetComponent<Stats>();
     }
 
     private void OnDisable()
     {
+        stats = GetComponent<Stats>();
+
         UnsubscribeFromEvents();
         ChangeMeleeDamageStat(-intelligenceStatBonus);
     }

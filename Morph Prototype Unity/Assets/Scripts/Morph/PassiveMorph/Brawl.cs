@@ -15,15 +15,19 @@ public class Brawl : PassiveMorph
 
     private void OnEnable()
     {
-        
-        StartCoroutine(AssignDamageHandlerCoroutine());
-        ChangeMeleeDamageStat(meleeDamageStatBonus);
         stats = GetComponent<Stats>();
         health = GetComponent<Health>();
+
+        StartCoroutine(AssignDamageHandlerCoroutine());
+        ChangeMeleeDamageStat(meleeDamageStatBonus);
+        
     }
 
     private void OnDisable()
     {
+        stats = GetComponent<Stats>();
+        health = GetComponent<Health>();
+
         UnsubscribeFromEvents();
         ChangeMeleeDamageStat(-meleeDamageStatBonus);
     }

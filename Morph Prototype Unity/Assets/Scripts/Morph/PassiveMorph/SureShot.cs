@@ -14,17 +14,20 @@ public class SureShot : PassiveMorph
 
     private void OnEnable()
     {
+        stats = GetComponent<Stats>();
+
         StartCoroutine(AssignDamageHandlerCoroutine());
         ChangeRangedDamageStat(rangedDamageStatBonus);
         if (unlockExpandedReserves) 
         {
             ChangeMaxEnergyStat(maxEnergyStatBonus);
         }
-        stats = GetComponent<Stats>();
     }
 
     private void OnDisable()
     {
+        stats = GetComponent<Stats>();
+
         UnsubscribeFromEvents();
         ChangeRangedDamageStat(-rangedDamageStatBonus);
         if (unlockExpandedReserves)

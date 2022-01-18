@@ -6,8 +6,9 @@ public class Stamina : MonoBehaviour
 {
     [SerializeField]private float baseMaxStamina;
     public float maxStaminaBonus;
+    public float bonusStaminaRegen;
     [SerializeField] private float totalMaxStamina;
-    [SerializeField] private float currentStamina;
+    public float currentStamina;
 
     //this timer starts every time stamina is spent, during this timer stamina wont regenerate
     [SerializeField] private Timer staminaRegenTimer;
@@ -15,7 +16,6 @@ public class Stamina : MonoBehaviour
     bool canRegenStamina;
     float staminaRegen = 5;
     float globalStaminaRegenFactor = 100;
-    float bonusStaminaRegen;
 
     Stats stats;
     // Start is called before the first frame update
@@ -62,12 +62,31 @@ public class Stamina : MonoBehaviour
 
     }
 
+    public void RefundStamina(float amountSpent, float amountToRefund)
+    {
+        float staminaToRefund = amountSpent * amountToRefund;
+         
+
+        AddStamina(staminaToRefund);
+
+    }
+
+    public float StaminaAsPercentage()
+    {
+        float staminaAsPercetage = currentStamina / totalMaxStamina;
+
+
+        return staminaAsPercetage;
+    }
+
     public void SubtractStamina(float amount)
     {
+        
+
         totalMaxStamina = Mathf.Max(0, totalMaxStamina - amount);
         canRegenStamina = false;
 
-        //if timer is still couting down
+        //if timer is still counting down
         //if ()
         //{
         //restart the timer from the beginning

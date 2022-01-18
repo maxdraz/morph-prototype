@@ -12,13 +12,16 @@ public class Agile : PassiveMorph
 
     private void OnEnable()
     {
+        stats = GetComponent<Stats>();
+
         StartCoroutine(AssignDamageHandlerCoroutine());
         ChangeMeleeDamageStat(meleeDamageStatBonus);
-        stats = GetComponent<Stats>();
     }
 
     private void OnDisable()
     {
+        stats = GetComponent<Stats>();
+
         UnsubscribeFromEvents();
         ChangeMeleeDamageStat(-meleeDamageStatBonus);
     }

@@ -14,15 +14,20 @@ public class Vigilance : PassiveMorph
 
     private void OnEnable()
     {
+        stats = GetComponent<Stats>();
+        perception = GetComponent<Perception>();
+
         StartCoroutine(AssignDamageHandlerCoroutine());
         ChangePerceptionStat(perceptionStatBonus);
         ChangeStealthStat(stealthStatBonus);
-        stats = GetComponent<Stats>();
-        perception = GetComponent<Perception>();
+        
     }
 
     private void OnDisable()
     {
+        stats = GetComponent<Stats>();
+        perception = GetComponent<Perception>();
+
         UnsubscribeFromEvents();
         ChangePerceptionStat(-perceptionStatBonus);
         ChangeStealthStat(-stealthStatBonus);

@@ -5,31 +5,68 @@ using UnityEngine;
 public class Recovery : PassiveMorph
 {
     private DamageHandler damageHandler;
-    [SerializeField] private float meleeDamageStatBonus = 5;
-    [SerializeField] private bool unlockSecondary = true;
+    [SerializeField] private float staminaRegenBonus = .1f;
+    [SerializeField] private float energyRegenBonus = .15f;
+    [SerializeField] private bool unlockRecuperate = true;
+    [SerializeField] private float recuperateTimerDuration = 1;
+    [SerializeField] private Timer recuperateTimer;
+    bool recuperating;
 
-    Stats stats;
+    Stamina stamina;
+    Energy energy;
+    Rigidbody rb;
 
     private void OnEnable()
     {
+        stamina = GetComponent<Stamina>();
+        energy = GetComponent<Energy>();
+        rb = GetComponentInParent<Rigidbody>();
         StartCoroutine(AssignDamageHandlerCoroutine());
-        ChangeMeleeDamageStat(meleeDamageStatBonus);
-        stats = GetComponent<Stats>();
+        ChangeStaminaEnergyRegenStat(staminaRegenBonus, energyRegenBonus);
     }
 
     private void OnDisable()
     {
+        stamina = GetComponent<Stamina>();
+        energy = GetComponent<Energy>();
+
         UnsubscribeFromEvents();
-        ChangeMeleeDamageStat(-meleeDamageStatBonus);
+        ChangeStaminaEnergyRegenStat(-staminaRegenBonus, -energyRegenBonus);
     }
 
     // implement
-    private void ChangeMeleeDamageStat(float amountToAdd)
+    private void ChangeStaminaEnergyRegenStat(float staminaRegen, float energyRegen)
     {
-
+        stamina.bonusStaminaRegen += staminaRegen;
+        energy.bonusEnergyRegen += energyRegen;
     }
 
-    
+    private void Update()
+    {
+        if (unlockRecuperate) 
+        {
+            if (rb.velocity.magnitude == 0) 
+            {
+                recuperateTimer = new Timer(recuperateTimerDuration, false);
+                recuperateTimer.Update(Time.deltaTime);
+
+                if (recuperateTimer.JustCompleted)
+                {
+                    recuperating = true;
+                    ChangeStaminaEnergyRegenStat(staminaRegenBonus, energyRegenBonus);
+                }
+            }
+
+            else
+            {
+                if (recuperating == true) 
+                {
+                    recuperating = false;
+                    ChangeStaminaEnergyRegenStat(-staminaRegenBonus, -energyRegenBonus);
+                }
+            }
+        }
+    }
 
     private IEnumerator AssignDamageHandlerCoroutine()
     {

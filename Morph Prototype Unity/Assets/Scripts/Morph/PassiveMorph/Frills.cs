@@ -13,13 +13,16 @@ public class Frills : PassiveMorph
 
     private void OnEnable()
     {
+        stats = GetComponent<Stats>();
+
         StartCoroutine(AssignDamageHandlerCoroutine());
         ChangeIntimidationStat(intimidationStatBonus);
-        stats = GetComponent<Stats>();
     }
 
     private void OnDisable()
     {
+        stats = GetComponent<Stats>();
+
         UnsubscribeFromEvents();
         ChangeIntimidationStat(-intimidationStatBonus);
     }

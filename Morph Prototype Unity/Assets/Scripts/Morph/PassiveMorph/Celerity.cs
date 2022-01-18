@@ -5,31 +5,49 @@ using UnityEngine;
 public class Celerity : PassiveMorph
 {
     private DamageHandler damageHandler;
-    [SerializeField] private float meleeDamageStatBonus = 5;
-    [SerializeField] private bool unlockSecondary = true;
+    [SerializeField] private float moveSpeedStatBonus = .2f;
+    [SerializeField] private bool unlockGraceful = true;
+    [SerializeField] private float mobilityStaminaCostReduction = 5;
 
-    Stats stats;
+    Movement movement;
+    Stamina stamina;
 
     private void OnEnable()
     {
+        stamina = GetComponent<Stamina>();
+        movement = GetComponentInParent<Movement>();
+
         StartCoroutine(AssignDamageHandlerCoroutine());
-        ChangeMeleeDamageStat(meleeDamageStatBonus);
-        stats = GetComponent<Stats>();
+        ChangeMoveSpeedStat(moveSpeedStatBonus);
+        
     }
 
     private void OnDisable()
     {
+        stamina = GetComponent<Stamina>();
+        movement = GetComponentInParent<Movement>();
+
         UnsubscribeFromEvents();
-        ChangeMeleeDamageStat(-meleeDamageStatBonus);
+        ChangeMoveSpeedStat(-moveSpeedStatBonus);
     }
 
     // implement
-    private void ChangeMeleeDamageStat(float amountToAdd)
+    private void ChangeMoveSpeedStat(float amountToAdd)
     {
-
+        movement.bonusMoveSpeed += amountToAdd;
     }
 
-    
+    private void Update()
+    {
+        if (unlockGraceful) 
+        {
+            //if (player dodge detected) 
+            //{
+            //    refund a portion of the stamina cost
+            //    stamina.RefundStamina(stamina cost of mobility tech used, mobilityStaminaCostReduction);
+            //}
+        }
+    }
 
     private IEnumerator AssignDamageHandlerCoroutine()
     {

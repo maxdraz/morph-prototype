@@ -135,6 +135,9 @@ public class Resilience : PassiveMorph
 
     private void OnDisable()
     {
+        stats = GetComponent<Stats>();
+
+
         AddToResistanceStat(resistType1.ToString(), -resistanceBoost1);
 
         if (unlockHardiness)

@@ -16,6 +16,7 @@ public class Mass : PassiveMorph
     private void OnEnable()
     {
         health = transform.gameObject.GetComponent<Health>();
+
         StartCoroutine(AssignDamageHandlerCoroutine());
         ChangeMaxHealthStat(percentHealthBonus);
         if (unlockRestoration) 
@@ -26,6 +27,8 @@ public class Mass : PassiveMorph
 
     private void OnDisable()
     {
+        health = transform.gameObject.GetComponent<Health>();
+
         UnsubscribeFromEvents();
         ChangeMaxHealthStat(-percentHealthBonus);
         if (unlockRestoration)

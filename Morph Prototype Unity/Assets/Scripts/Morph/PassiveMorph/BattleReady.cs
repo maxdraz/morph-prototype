@@ -15,10 +15,11 @@ public class BattleReady : PassiveMorph
 
     private void OnEnable()
     {
+        stats = GetComponent<Stats>();
+
         StartCoroutine(AssignDamageHandlerCoroutine());
         ChangeMeleeDamageStat(meleeDamageStatBonus);
         ChangeRangedDamageStat(rangedDamageStatBonus);
-        stats = GetComponent<Stats>();
 
         if (unlockBattleMaster) 
         {
@@ -28,6 +29,8 @@ public class BattleReady : PassiveMorph
 
     private void OnDisable()
     {
+        stats = GetComponent<Stats>();
+
         UnsubscribeFromEvents();
         ChangeMeleeDamageStat(-meleeDamageStatBonus);
         ChangeRangedDamageStat(-rangedDamageStatBonus);

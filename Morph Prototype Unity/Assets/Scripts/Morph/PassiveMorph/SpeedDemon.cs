@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpeedDemon : PassiveMorph
 {
     private DamageHandler damageHandler;
-    [SerializeField] private float meleeDamageStatBonus = 5;
+    [SerializeField] private int meleeDamageStatBonus = 5;
     [SerializeField] private bool unlockCruelCapacity = true;
 
     int agilityPerStack;
@@ -16,8 +16,12 @@ public class SpeedDemon : PassiveMorph
 
     int cruelCapacityAgilityThreshold;
 
+    Stats stats;
+
     private void OnEnable()
     {
+        stats = GetComponent<Stats>();
+
         StartCoroutine(AssignDamageHandlerCoroutine());
         ChangeMeleeDamageStat(meleeDamageStatBonus);
 
@@ -25,14 +29,16 @@ public class SpeedDemon : PassiveMorph
 
     private void OnDisable()
     {
+        stats = GetComponent<Stats>();
+
         UnsubscribeFromEvents();
         ChangeMeleeDamageStat(-meleeDamageStatBonus);
     }
 
     // implement
-    private void ChangeMeleeDamageStat(float amountToAdd)
+    private void ChangeMeleeDamageStat(int amountToAdd)
     {
-
+        stats.FlatStatChange("agility",amountToAdd);
     }
 
     private void OnDamageHasBeenDealt(in DamageTakenSummary damageTakenSummary)

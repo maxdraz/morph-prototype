@@ -271,12 +271,14 @@ public class Stats : MonoBehaviour
             totalMeleeDamage += buffAmount;
             addedMeleeDamage += buffAmount;
 
+            FindModifier(statName, totalMeleeDamage);
         }
         if (statName == "rangedDamage")
         {
             totalRangedDamage += buffAmount;
             addedRangedDamage += buffAmount;
 
+            FindModifier(statName, totalRangedDamage);
         }
         if (statName == "chemicalDamage")
         {
@@ -284,6 +286,7 @@ public class Stats : MonoBehaviour
             totalChemicalDamage += buffAmount;
             addedChemicalDamage += buffAmount;
 
+            FindModifier(statName, totalChemicalDamage);
         }
         if (statName == "elementalDamage")
         {
@@ -291,6 +294,7 @@ public class Stats : MonoBehaviour
             totalElementalDamage += buffAmount;
             addedElementalDamage += buffAmount;
 
+            FindModifier(statName, totalElementalDamage);
         }
         if (statName == "intelligence")
         {
@@ -298,6 +302,7 @@ public class Stats : MonoBehaviour
             totalIntelligence += buffAmount;
             addedIntelligence += buffAmount;
 
+            FindModifier(statName, totalIntelligence)
         }
         if (statName == "agility")
         {
@@ -305,6 +310,7 @@ public class Stats : MonoBehaviour
             totalAgility += buffAmount;
             addedAgility += buffAmount;
 
+            FindModifier(statName, totalAgility);
         }
         if (statName == "toughness")
         {
@@ -312,6 +318,7 @@ public class Stats : MonoBehaviour
             totalToughness += buffAmount;
             addedToughness += buffAmount;
 
+            FindModifier(statName, totalToughness)
         }
         if (statName == "fortitude")
         {
@@ -319,6 +326,7 @@ public class Stats : MonoBehaviour
             totalFortitude += buffAmount;
             addedFortitude += buffAmount;
 
+            FindModifier(statName, totalFortitude);
         }
     }
 
@@ -358,15 +366,7 @@ public class Stats : MonoBehaviour
             totalAcidResistance += buffAmount;
             addedAcidResistance += buffAmount;
 
-        }
-        if (damageType == "physical")
-        {
-
-            FindModifier("toughness", totalToughness);
-            addedPhysicalResistance += buffAmount;
-            totalPhysicalResistance = toughnessModifier += addedPhysicalResistance; 
-
-        }
+        }      
     }
 
     public void PercentStatChange(string statName, int buffAmount)
@@ -392,228 +392,6 @@ public class Stats : MonoBehaviour
             totalRangedDamage = (int)valueToChange;
             addedRangedDamage += (int)changeInValue;
 
-        }
-        if (statName == "chemicalDamage")
-        {
-            float valueToChange = (float)baseChemicalDamage;
-            changeInValue = valueToChange * buffAmount;
-            valueToChange += changeInValue;
-            totalChemicalDamage = (int)valueToChange;
-            addedChemicalDamage += (int)changeInValue;
-
-            FindModifier(statName, totalChemicalDamage);
-        }
-        if (statName == "elementalDamage")
-        {
-            float valueToChange = (float)baseElementalDamage;
-            changeInValue = valueToChange * buffAmount;
-            valueToChange += changeInValue;
-            totalElementalDamage = (int)valueToChange;
-            addedElementalDamage += (int)changeInValue;
-
-        }
-        if (statName == "intelligence")
-        {
-            float valueToChange = (float)baseIntelligence;
-            changeInValue = valueToChange * buffAmount;
-            valueToChange += changeInValue;
-            totalIntelligence = (int)valueToChange;
-            addedIntelligence += (int)changeInValue;
-
-
-        }
-        if (statName == "agility")
-        {
-            float valueToChange = (float)baseAgility;
-            changeInValue = valueToChange * buffAmount;
-            valueToChange += changeInValue;
-            totalAgility = (int)valueToChange;
-            addedAgility += (int)changeInValue;
-
-        }
-        if (statName == "toughness")
-        {
-            float valueToChange = (float)baseToughness;
-            changeInValue = valueToChange * buffAmount;
-            valueToChange += changeInValue;
-            totalToughness = (int)valueToChange;
-            addedToughness += (int)changeInValue;
-
-        }
-        if (statName == "fortitude")
-        {
-            float valueToChange = (float)baseFortitude;
-            changeInValue = valueToChange * buffAmount;
-            valueToChange += changeInValue;
-            totalFortitude = (int)valueToChange;
-            addedFortitude += (int)changeInValue;
-
-        }
-    }
-            IEnumerator TempFlatStatChange(string statName, int buffAmount, float duration) 
-    {
-        //  Debug.Log("Buffing " + statName + " from " + statToBuff + " by " + buffAmount + " for " + duration + " seconds");
-        if (statName == "meleeDamage")
-        {
-            
-            totalMeleeDamage += buffAmount;
-            addedMeleeDamage += buffAmount;
-
-            FindModifier(statName, totalMeleeDamage);
-        }
-        if (statName == "rangedDamage")
-        {
-            totalRangedDamage += buffAmount;
-            addedRangedDamage += buffAmount;
-
-            FindModifier(statName, totalRangedDamage);
-        }
-        if (statName == "chemicalDamage")
-        {
-
-            totalChemicalDamage += buffAmount;
-            addedChemicalDamage += buffAmount;
-
-            FindModifier(statName, totalChemicalDamage);
-        }
-        if (statName == "elementalDamage")
-        {
-            
-            totalElementalDamage += buffAmount;
-            addedElementalDamage += buffAmount;
-
-            FindModifier(statName, totalElementalDamage);
-        }
-        if (statName == "intelligence")
-        {
-            
-            totalIntelligence += buffAmount;
-            addedIntelligence += buffAmount;
-
-            FindModifier(statName, totalIntelligence);
-        }
-        if (statName == "agility")
-        {
-            
-            totalAgility += buffAmount;
-            addedAgility += buffAmount;
-
-            FindModifier(statName, totalAgility);
-        }
-        if (statName == "toughness")
-        {
-            
-            totalToughness += buffAmount;
-            addedToughness += buffAmount;
-
-            FindModifier(statName, totalToughness);
-        }
-        if (statName == "fortitude")
-        {
-            
-            totalFortitude += buffAmount;
-            addedFortitude += buffAmount;
-
-            FindModifier(statName, totalFortitude);
-        }
-
-
-
-        yield return new WaitForSeconds(duration);
-
-
-
-        if (statName == "meleeDamage")
-        {
-            
-            totalMeleeDamage -= buffAmount;
-            addedMeleeDamage -= buffAmount;
-
-            FindModifier(statName, totalMeleeDamage);
-        }
-        if (statName == "rangedDamage")
-        {
-            
-            totalRangedDamage -= buffAmount;
-            addedRangedDamage -= buffAmount;
-
-            FindModifier(statName, totalRangedDamage);
-        }
-        if (statName == "chemicalDamage")
-        {
-            
-            totalChemicalDamage -= buffAmount;
-            addedChemicalDamage -= buffAmount;
-
-            FindModifier(statName, totalChemicalDamage);
-        }
-        if (statName == "elementalDamage")
-        {
-            
-            totalElementalDamage -= buffAmount;
-            addedElementalDamage -= buffAmount;
-
-            FindModifier(statName, totalElementalDamage);
-        }
-        if (statName == "intelligence")
-        {
-            
-            totalIntelligence -= buffAmount;
-            addedIntelligence -= buffAmount;
-
-            FindModifier(statName, totalIntelligence);
-        }
-        if (statName == "agility")
-        {
-            
-            totalAgility -= buffAmount;
-            addedAgility -= buffAmount;
-
-            FindModifier(statName, totalAgility);
-        }
-        if (statName == "toughness")
-        {
-           
-            totalToughness -= buffAmount;
-            addedToughness -= buffAmount;
-
-            FindModifier(statName, totalToughness);
-        }
-        if (statName == "fortitude")
-        {
-           
-            totalFortitude -= buffAmount;
-            addedFortitude -= buffAmount;
-
-            FindModifier(statName, totalFortitude);
-        }
-
-        yield return null;
-    }
-
-    IEnumerator TempPercentStatChange(string statName, float buffAmount, float duration)
-    {
-        //  Debug.Log("Buffing " + statName + " from " + statToBuff + " by " + buffAmount + " for " + duration + " seconds");
-
-        float changeInValue;
-
-        if (statName == "meleeDamage") {
-            float valueToChange = (float)baseMeleeDamage;
-            changeInValue = valueToChange * buffAmount;
-            valueToChange += changeInValue;
-            totalMeleeDamage = (int)valueToChange;
-            addedMeleeDamage += (int)changeInValue; ;
-
-            FindModifier(statName, totalMeleeDamage);
-        }
-        if (statName == "rangedDamage")
-        {
-            float valueToChange = (float)baseRangedDamage;
-            changeInValue = valueToChange * buffAmount;
-            valueToChange += changeInValue;
-            totalRangedDamage = (int)valueToChange;
-            addedRangedDamage += (int)changeInValue;
-
             FindModifier(statName, totalRangedDamage);
         }
         if (statName == "chemicalDamage")
@@ -643,7 +421,6 @@ public class Stats : MonoBehaviour
             valueToChange += changeInValue;
             totalIntelligence = (int)valueToChange;
             addedIntelligence += (int)changeInValue;
-
 
             FindModifier(statName, totalIntelligence);
         }
@@ -677,96 +454,8 @@ public class Stats : MonoBehaviour
 
             FindModifier(statName, totalFortitude);
         }
-
-        
-
-        yield return new WaitForSeconds(duration);
-
-
-
-        if (statName == "meleeDamage")
-        {
-            float valueToChange = (float)baseMeleeDamage;
-            changeInValue = valueToChange * buffAmount;
-            valueToChange -= changeInValue;
-            totalMeleeDamage = (int)valueToChange;
-            addedMeleeDamage -= (int)changeInValue;
-
-            FindModifier(statName, totalMeleeDamage);
-        }
-        if (statName == "rangedDamage")
-        {
-            float valueToChange = (float)baseRangedDamage;
-            changeInValue = valueToChange * buffAmount;
-            valueToChange -= changeInValue;
-            totalRangedDamage = (int)valueToChange;
-            addedRangedDamage -= (int)changeInValue;
-
-            FindModifier(statName, totalRangedDamage);
-        }
-        if (statName == "chemicalDamage")
-        {
-            float valueToChange = (float)baseChemicalDamage;
-            changeInValue = valueToChange * buffAmount;
-            valueToChange -= changeInValue;
-            totalChemicalDamage = (int)valueToChange;
-            addedChemicalDamage -= (int)changeInValue;
-
-            FindModifier(statName, totalChemicalDamage);
-        }
-        if (statName == "elementalDamage")
-        {
-            float valueToChange = (float)baseElementalDamage;
-            changeInValue = valueToChange * buffAmount;
-            valueToChange -= changeInValue;
-            totalElementalDamage = (int)valueToChange;
-            addedElementalDamage -= (int)changeInValue;
-
-            FindModifier(statName, totalElementalDamage);
-        }
-        if (statName == "intelligence")
-        {
-            float valueToChange = (float)baseIntelligence;
-            changeInValue = valueToChange * buffAmount;
-            valueToChange -= changeInValue;
-            totalIntelligence = (int)valueToChange;
-            addedIntelligence -= (int)changeInValue;
-
-            FindModifier(statName, totalIntelligence);
-        }
-        if (statName == "agility")
-        {
-            float valueToChange = (float)baseAgility;
-            changeInValue = valueToChange * buffAmount;
-            valueToChange -= changeInValue;
-            totalAgility = (int)valueToChange;
-            addedAgility -= (int)changeInValue;
-
-            FindModifier(statName, totalAgility);
-        }
-        if (statName == "toughness")
-        {
-            float valueToChange = (float)baseToughness;
-            changeInValue = valueToChange * buffAmount;
-            valueToChange -= changeInValue;
-            totalToughness = (int)valueToChange;
-            addedToughness -= (int)changeInValue;
-
-            FindModifier(statName, totalToughness);
-        }
-        if (statName == "fortitude")
-        {
-            float valueToChange = (float)baseFortitude;
-            changeInValue = valueToChange * buffAmount;
-            valueToChange -= changeInValue;
-            totalFortitude = (int)valueToChange;
-            addedFortitude -= (int)changeInValue;
-
-            FindModifier(statName, totalFortitude);
-        }
-
-        yield return null;
     }
+            
 
     void FindAllModifiers() 
     {
