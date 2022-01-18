@@ -302,7 +302,7 @@ public class Stats : MonoBehaviour
             totalIntelligence += buffAmount;
             addedIntelligence += buffAmount;
 
-            FindModifier(statName, totalIntelligence)
+            FindModifier(statName, totalIntelligence);
         }
         if (statName == "agility")
         {
@@ -318,7 +318,7 @@ public class Stats : MonoBehaviour
             totalToughness += buffAmount;
             addedToughness += buffAmount;
 
-            FindModifier(statName, totalToughness)
+            FindModifier(statName, totalToughness);
         }
         if (statName == "fortitude")
         {
