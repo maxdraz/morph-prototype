@@ -328,6 +328,22 @@ public class Stats : MonoBehaviour
 
             FindModifier(statName, totalFortitude);
         }
+
+        if (statName == "stealth")
+        {
+
+            totalStealth += buffAmount;
+            addedStealth += buffAmount;
+
+        }
+
+        if (statName == "intimidation")
+        {
+
+            totalIntimidation += buffAmount;
+            addedIntimidation += buffAmount;
+
+        }
     }
 
     public void FlatResistStatChange(string damageType, float buffAmount)

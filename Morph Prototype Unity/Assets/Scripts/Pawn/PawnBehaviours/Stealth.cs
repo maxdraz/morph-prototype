@@ -7,7 +7,7 @@ public class Stealth : MonoBehaviour
 {
     //This needs a value assigned to it from the stats script
     public float maxStealth;
-
+    public float stealthBonusWhileMoving;
     float currentStealth;
     public float finalStealthValue;
     public bool stealthMode;
@@ -75,7 +75,7 @@ public class Stealth : MonoBehaviour
 
 
 
-        currentStealth = maxStealth / (currentSpeed / 5);
+        currentStealth = maxStealth / (currentSpeed / 5 * Mathf.Min(1 - stealthBonusWhileMoving, 1));
 
 
         if (currentStealth > maxStealth * 2)

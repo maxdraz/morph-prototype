@@ -9041,7 +9041,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseMaxEnergy: 0
-  maxEnergyBonus: 0
+  bonusMaxEnergy: 0
   bonusEnergyRegen: 0
   totalMaxEnergy: 0
   currentEnergy: 0

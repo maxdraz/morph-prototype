@@ -5,8 +5,10 @@ using UnityEngine;
 public class Chemical : PassiveMorph
 {
     private DamageHandler damageHandler;
-    [SerializeField] private float meleeDamageStatBonus = 5;
-    [SerializeField] private bool unlockSecondary = true;
+    [SerializeField] private int chemicalDamageStatBonus = 5;
+    [SerializeField] private bool unlockConcentratedChemicals = true;
+    [SerializeField] private float bonusToughnessReduction = .1f;
+    [SerializeField] private float bonusHealingReduction = .2f;
 
     Stats stats;
 
@@ -15,7 +17,7 @@ public class Chemical : PassiveMorph
         stats = GetComponent<Stats>();
 
         StartCoroutine(AssignDamageHandlerCoroutine());
-        ChangeMeleeDamageStat(meleeDamageStatBonus);
+        ChangeChemicalDamageStat(chemicalDamageStatBonus);
     }
 
     private void OnDisable()
@@ -23,16 +25,16 @@ public class Chemical : PassiveMorph
         stats = GetComponent<Stats>();
 
         UnsubscribeFromEvents();
-        ChangeMeleeDamageStat(-meleeDamageStatBonus);
+        ChangeChemicalDamageStat(-chemicalDamageStatBonus);
     }
 
     // implement
-    private void ChangeMeleeDamageStat(float amountToAdd)
+    private void ChangeChemicalDamageStat(int amountToAdd)
     {
-
+        stats.FlatStatChange("chemicalDamage", amountToAdd);
     }
 
-    
+
 
     private IEnumerator AssignDamageHandlerCoroutine()
     {
@@ -40,15 +42,51 @@ public class Chemical : PassiveMorph
         GetReferencesAndSubscribeToEvenets();
     }
 
-    private void GetReferencesAndSubscribeToEvenets()
+    private void IncreaseAcidDebuff(ref IAcidDamage acidDamage) 
+    {
+        //acidDamage.toughnessReduction += bonusToughnessReduction;
+    }
+
+    private void IncreasePoisonDebuff(ref IPoisonDamage poisonDamage)
+    {
+        //acidDamage.healingReduction += bonusHealingReduction;
+    }
+
+    private void OnAcidDebuffDealt(ref IDamageType damageType, DamageHandler damageTaker)
+    {
+        if (unlockConcentratedChemicals) 
+        {
+            if (damageType is IAcidDamage acidDamage)
+            {
+                IncreaseAcidDebuff(ref acidDamage);
+            }    
+        }
+    }
+
+    private void OnPoisonDebuffDealt(ref IDamageType damageType, DamageHandler damageTaker)
+    {
+        if (unlockConcentratedChemicals)
+        {
+            if (damageType is IPoisonDamage poisonDamage)
+            {
+                IncreasePoisonDebuff(ref poisonDamage);
+            }
+        }
+    }
+        
+
+private void GetReferencesAndSubscribeToEvenets()
     {
         if (damageHandler) return;
 
         damageHandler = GetComponent<DamageHandler>();
         if (damageHandler)
         {
-            
-
+            if (unlockConcentratedChemicals) 
+            {
+                damageHandler.DebuffAboutToBeDealtPreModifier += OnAcidDebuffDealt;
+                damageHandler.DebuffAboutToBeDealtPreModifier += OnPoisonDebuffDealt;
+            }
         }
     }
 
@@ -56,8 +94,11 @@ public class Chemical : PassiveMorph
     {
         if (damageHandler)
         {
-            
-
+            if (unlockConcentratedChemicals)
+            {
+                damageHandler.DebuffAboutToBeDealtPreModifier -= OnAcidDebuffDealt;
+                damageHandler.DebuffAboutToBeDealtPreModifier -= OnPoisonDebuffDealt;
+            }
         }
 
         damageHandler = null;

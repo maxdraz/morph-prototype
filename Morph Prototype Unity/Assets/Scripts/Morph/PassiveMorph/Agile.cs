@@ -5,7 +5,7 @@ using UnityEngine;
 public class Agile : PassiveMorph
 {
     private DamageHandler damageHandler;
-    [SerializeField] private float meleeDamageStatBonus = 5;
+    [SerializeField] private int agilityStatBonus = 5;
     [SerializeField] private bool unlockSecondary = true;
 
     Stats stats;
@@ -15,7 +15,7 @@ public class Agile : PassiveMorph
         stats = GetComponent<Stats>();
 
         StartCoroutine(AssignDamageHandlerCoroutine());
-        ChangeMeleeDamageStat(meleeDamageStatBonus);
+        ChangeAgilityStat(agilityStatBonus);
     }
 
     private void OnDisable()
@@ -23,13 +23,13 @@ public class Agile : PassiveMorph
         stats = GetComponent<Stats>();
 
         UnsubscribeFromEvents();
-        ChangeMeleeDamageStat(-meleeDamageStatBonus);
+        ChangeAgilityStat(-agilityStatBonus);
     }
 
     // implement
-    private void ChangeMeleeDamageStat(float amountToAdd)
+    private void ChangeAgilityStat(int amountToAdd)
     {
-
+        stats.FlatStatChange("agility", amountToAdd);
     }
 
     

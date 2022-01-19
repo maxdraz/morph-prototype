@@ -9,11 +9,12 @@ public class Stamina : MonoBehaviour
     public float bonusStaminaRegen;
     [SerializeField] private float totalMaxStamina;
     public float currentStamina;
+    public float energyAsPercentage;
 
     //this timer starts every time stamina is spent, during this timer stamina wont regenerate
     [SerializeField] private Timer staminaRegenTimer;
     float staminaRegenTimerDuration = 1f;
-    bool canRegenStamina;
+    bool staminaRegenOnCooldown;
     float staminaRegen = 5;
     float globalStaminaRegenFactor = 100;
 
@@ -24,12 +25,14 @@ public class Stamina : MonoBehaviour
         stats = GetComponent<Stats>();
         baseMaxStamina = stats ? stats.MaxStamina : 100;
         SetMaxStamina();
+        staminaRegenTimer = new Timer(staminaRegenTimerDuration, false);
+
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if (canRegenStamina) 
+        if (!staminaRegenOnCooldown) 
         {
             StaminaRegen();
         }
@@ -40,17 +43,17 @@ public class Stamina : MonoBehaviour
 
             if (staminaRegenTimer.JustCompleted) 
             {
-                canRegenStamina = true;
+                staminaRegenOnCooldown = false;
             }
         }
     }
 
     void StaminaRegen() 
     {
-        currentStamina += (staminaRegen * (1 + bonusStaminaRegen)) / globalStaminaRegenFactor;
+        currentStamina += staminaRegen * (1 + bonusStaminaRegen) + (1 + energyAsPercentage) / globalStaminaRegenFactor;
     }
   
-    private void SetMaxStamina()
+    public void SetMaxStamina()
     {
         totalMaxStamina = baseMaxStamina * (1 + maxStaminaBonus);
         currentStamina = totalMaxStamina;
@@ -84,16 +87,12 @@ public class Stamina : MonoBehaviour
         
 
         totalMaxStamina = Mathf.Max(0, totalMaxStamina - amount);
-        canRegenStamina = false;
+        staminaRegenOnCooldown = true;
 
-        //if timer is still counting down
-        //if ()
-        //{
-        //restart the timer from the beginning
-        //}
-        //else
-        //{
-        //   canRegenStamina = false;
-        //}
+        //if timer is still counting down, spend the stamina and restart he timer from the beginning 
+        if (staminaRegenTimer.CurrentTime < staminaRegenTimer.Duration)
+        {
+            staminaRegenTimer = new Timer(staminaRegenTimerDuration, false);
+        }
     }
 }

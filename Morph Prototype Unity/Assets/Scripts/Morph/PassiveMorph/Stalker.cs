@@ -5,8 +5,10 @@ using UnityEngine;
 public class Stalker : PassiveMorph
 {
     private DamageHandler damageHandler;
-    [SerializeField] private float meleeDamageStatBonus = 5;
-    [SerializeField] private bool unlockSecondary = true;
+    [SerializeField] private int rangedDamageStatBonus = 5;
+    [SerializeField] private int stealthStatBonus = 5;
+    [SerializeField] private bool unlockSniper = true;
+    [SerializeField] private int sniperBonusPercentDamage = 5;
 
     Stats stats;
 
@@ -15,7 +17,8 @@ public class Stalker : PassiveMorph
         stats = GetComponent<Stats>();
 
         StartCoroutine(AssignDamageHandlerCoroutine());
-        ChangeMeleeDamageStat(meleeDamageStatBonus);
+        ChangeRangedDamageStat(rangedDamageStatBonus);
+        ChangeStealthStat(stealthStatBonus);
     }
 
     private void OnDisable()
@@ -23,21 +26,35 @@ public class Stalker : PassiveMorph
         stats = GetComponent<Stats>();
 
         UnsubscribeFromEvents();
-        ChangeMeleeDamageStat(-meleeDamageStatBonus);
+        ChangeRangedDamageStat(-rangedDamageStatBonus);
+        ChangeStealthStat(-stealthStatBonus);
     }
 
     // implement
-    private void ChangeMeleeDamageStat(float amountToAdd)
+    private void ChangeRangedDamageStat(int amountToAdd)
     {
-
+        stats.FlatStatChange("rangedDamage", amountToAdd);
     }
 
-    
+    private void ChangeStealthStat(int amountToAdd)
+    {
+        stats.FlatStatChange("stealth", amountToAdd);
+    }
+
+
 
     private IEnumerator AssignDamageHandlerCoroutine()
     {
         yield return new WaitForEndOfFrame();
         GetReferencesAndSubscribeToEvenets();
+    }
+
+    private void OnDamageHasBeenDealt(in DamageTakenSummary damageTakenSummary)
+    {
+        //if (damageTakenSummary.isRangedAttack && damageTakenSummary.isStealthAttack)
+        //{
+        //    damageTakenSummary.DamageTaker.ApplyDamage(new PhysicalDamageData(damageTakenSummary.PhysicalDamage * sniperBonusPercentDamage), damageHandler);
+        //}
     }
 
     private void GetReferencesAndSubscribeToEvenets()
@@ -47,7 +64,7 @@ public class Stalker : PassiveMorph
         damageHandler = GetComponent<DamageHandler>();
         if (damageHandler)
         {
-            
+            damageHandler.DamageHasBeenDealt += OnDamageHasBeenDealt;
 
         }
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Ferocity : PassiveMorph
 {
     private DamageHandler damageHandler;
-    [SerializeField] private float meleeDamageStatBonus = 5;
+    [SerializeField] private int meleeDamageStatBonus = 5;
     [SerializeField] private bool unlockSpiritSpihon = true;
 
     float damageBoostPerStack;
@@ -43,9 +43,9 @@ public class Ferocity : PassiveMorph
     }
 
     // implement
-    private void ChangeMeleeDamageStat(float amountToAdd)
+    private void ChangeMeleeDamageStat(int amountToAdd)
     {
-        stats.FlatResistStatChange("melee", amountToAdd);
+        stats.FlatStatChange("melee", amountToAdd);
     }
 
     private void OnDamageHasBeenDealt(in DamageTakenSummary damageTakenSummary)

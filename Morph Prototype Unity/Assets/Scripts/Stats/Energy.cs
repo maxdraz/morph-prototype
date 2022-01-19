@@ -5,30 +5,36 @@ using UnityEngine;
 public class Energy : MonoBehaviour
 {
     [SerializeField] private float baseMaxEnergy;
-    public float maxEnergyBonus;
+    public float bonusMaxEnergy;
     public float bonusEnergyRegen;
     [SerializeField] private float totalMaxEnergy;
     public float currentEnergy;
+    float energyAsPercentage;
 
     //this timer starts every time energy is spent, during this timer energy wont regenerate
     [SerializeField] private Timer energyRegenTimer;
     float energyRegenTimerDuration = 1f;
-    bool canRegenEnergy;
+    bool energyRegenOnCooldown;
     float energyRegen = 5;
     float globalEnergyRegenFactor = 100;
 
+    Stamina stamina;
     Stats stats;
 
     // Start is called before the first frame update
     void Start()
     {
-        SetMaxEnergy();   
+        stamina = GetComponent<Stamina>();
+        stats = GetComponent<Stats>();
+        SetMaxEnergy();
+        energyRegenTimer = new Timer(energyRegenTimerDuration, false);
+
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if (canRegenEnergy)
+        if (!energyRegenOnCooldown)
         {
             EnergyRegen();
         }
@@ -39,9 +45,12 @@ public class Energy : MonoBehaviour
 
             if (energyRegenTimer.JustCompleted)
             {
-                canRegenEnergy = true;
+                energyRegenOnCooldown = false;
             }
         }
+
+        EnergyAsPercentage();
+        stamina.energyAsPercentage = energyAsPercentage;
     }
 
     void EnergyRegen()
@@ -49,9 +58,9 @@ public class Energy : MonoBehaviour
         currentEnergy += (energyRegen * (1 + bonusEnergyRegen)) / globalEnergyRegenFactor;
     }
 
-    private void SetMaxEnergy()
+    public void SetMaxEnergy()
     {
-        totalMaxEnergy = baseMaxEnergy * (1 + maxEnergyBonus);
+        totalMaxEnergy = baseMaxEnergy * (1 + bonusMaxEnergy);
         currentEnergy = totalMaxEnergy;
     }
 
@@ -72,10 +81,8 @@ public class Energy : MonoBehaviour
 
     public float EnergyAsPercentage() 
     {
-        float energyAsPercetage = currentEnergy / totalMaxEnergy; 
-
-
-        return energyAsPercetage;
+        energyAsPercentage = currentEnergy / totalMaxEnergy;
+        return energyAsPercentage;
     }
 
     public void SubtractEnergy(float amount)
@@ -83,16 +90,12 @@ public class Energy : MonoBehaviour
 
 
         totalMaxEnergy = Mathf.Max(0, totalMaxEnergy - amount);
-        canRegenEnergy = false;
+        energyRegenOnCooldown = true;
 
-        //if timer is still counting down
-        //if ()
-        //{
-        //restart the timer from the beginning
-        //}
-        //else
-        //{
-        //   canRegenEnergy = false;
-        //}
+        //if timer is still counting down, spend the energy and restart he timer from the beginning 
+        if (energyRegenTimer.CurrentTime < energyRegenTimer.Duration)
+        {
+            energyRegenTimer = new Timer(energyRegenTimerDuration, false);
+        }
     }
 }

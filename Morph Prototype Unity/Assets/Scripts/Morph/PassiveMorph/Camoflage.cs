@@ -5,34 +5,49 @@ using UnityEngine;
 public class Camoflage : PassiveMorph
 {
     private DamageHandler damageHandler;
-    [SerializeField] private float meleeDamageStatBonus = 5;
-    [SerializeField] private bool unlockSecondary = true;
-
+    [SerializeField] private int stealthStatBonus = 5;
+    [SerializeField] private bool unlockSneaky = true;
+    float stealthBonusWhileMoving = .2f;
     Stats stats;
+    Stealth stealth;
 
     private void OnEnable()
     {
         stats = GetComponent<Stats>();
-
+        stealth = GetComponent<Stealth>();
         StartCoroutine(AssignDamageHandlerCoroutine());
-        ChangeMeleeDamageStat(meleeDamageStatBonus);
+        ChangeStealthStat(stealthStatBonus);
+
+        if (unlockSneaky) 
+        {
+            Sneaky(stealthBonusWhileMoving);
+        }
     }
 
     private void OnDisable()
     {
         stats = GetComponent<Stats>();
+        stealth = GetComponent<Stealth>();
 
         UnsubscribeFromEvents();
-        ChangeMeleeDamageStat(-meleeDamageStatBonus);
+        ChangeStealthStat(-stealthStatBonus);
+
+        if (unlockSneaky)
+        {
+            Sneaky(-stealthBonusWhileMoving);
+        }
     }
 
     // implement
-    private void ChangeMeleeDamageStat(float amountToAdd)
+    private void ChangeStealthStat(int amountToAdd)
     {
-
+        stats.FlatStatChange("stealth", amountToAdd);
     }
 
-    
+    private void Sneaky(float amountToAdd)
+    {
+        stealth.stealthBonusWhileMoving += amountToAdd;
+    }
 
     private IEnumerator AssignDamageHandlerCoroutine()
     {

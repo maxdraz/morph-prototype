@@ -5,8 +5,8 @@ using UnityEngine;
 public class Elemental : PassiveMorph
 {
     private DamageHandler damageHandler;
-    [SerializeField] private float meleeDamageStatBonus = 5;
-    [SerializeField] private bool unlockSecondary = true;
+    [SerializeField] private int elementalDamageStatBonus = 5;
+    [SerializeField] private bool unlockForceOfNature = true;
 
     Stats stats;
 
@@ -15,7 +15,7 @@ public class Elemental : PassiveMorph
         stats = GetComponent<Stats>();
 
         StartCoroutine(AssignDamageHandlerCoroutine());
-        ChangeMeleeDamageStat(meleeDamageStatBonus);
+        ChangeElementalDamageStat(elementalDamageStatBonus);
     }
 
     private void OnDisable()
@@ -23,18 +23,38 @@ public class Elemental : PassiveMorph
         stats = GetComponent<Stats>();
 
         UnsubscribeFromEvents();
-        ChangeMeleeDamageStat(-meleeDamageStatBonus);
+        ChangeElementalDamageStat(-elementalDamageStatBonus);
     }
 
     // implement
-    private void ChangeMeleeDamageStat(float amountToAdd)
+    private void ChangeElementalDamageStat(int amountToAdd)
     {
-
+        stats.FlatStatChange("elementalDamage", amountToAdd);
     }
 
-    
+    private void OnDamageHasBeenDealt(in DamageTakenSummary damageTakenSummary)
+    {
+        if (unlockForceOfNature) 
+        {
+            if (damageTakenSummary.FireDamage > 0)
+            {
+                //need to add to the targets 'burning' bar based on the the fire damage dealt
+            }
 
-    private IEnumerator AssignDamageHandlerCoroutine()
+            if (damageTakenSummary.IceDamage > 0)
+            {
+                //need to add to the targets 'frozen' bar based on the the fire damage dealt
+            }
+
+
+            //if (damageTakenSummary.ElectricDamage > 0)
+            //{
+                //need to add to the targets 'electrified' bar based on the the fire damage dealt
+            //}
+        }
+    }
+
+        private IEnumerator AssignDamageHandlerCoroutine()
     {
         yield return new WaitForEndOfFrame();
         GetReferencesAndSubscribeToEvenets();
@@ -47,8 +67,10 @@ public class Elemental : PassiveMorph
         damageHandler = GetComponent<DamageHandler>();
         if (damageHandler)
         {
-            
-
+            if (unlockForceOfNature) 
+            {
+                damageHandler.DamageHasBeenDealt += OnDamageHasBeenDealt;
+            }
         }
     }
 
@@ -56,8 +78,11 @@ public class Elemental : PassiveMorph
     {
         if (damageHandler)
         {
-            
 
+            if (unlockForceOfNature)
+            {
+                damageHandler.DamageHasBeenDealt -= OnDamageHasBeenDealt;
+            }
         }
 
         damageHandler = null;

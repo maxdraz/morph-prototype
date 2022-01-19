@@ -5,33 +5,42 @@ using UnityEngine;
 public class Vampirism : PassiveMorph
 {
     private DamageHandler damageHandler;
-    [SerializeField] private float meleeDamageStatBonus = 5;
-    [SerializeField] private bool unlockSecondary = true;
+    [SerializeField] private bool unlockSpiritLeech = true;
 
+    [SerializeField] private float lifeStealFraction = .2f;
+    [SerializeField] private float energyStealFraction = .4f;
     Stats stats;
 
     private void OnEnable()
     {
-        StartCoroutine(AssignDamageHandlerCoroutine());
-        ChangeMeleeDamageStat(meleeDamageStatBonus);
         stats = GetComponent<Stats>();
+
+        StartCoroutine(AssignDamageHandlerCoroutine());
     }
 
     private void OnDisable()
     {
+        stats = GetComponent<Stats>();
+
         UnsubscribeFromEvents();
-        ChangeMeleeDamageStat(-meleeDamageStatBonus);
-    }
-
-    // implement
-    private void ChangeMeleeDamageStat(float amountToAdd)
-    {
-
     }
 
     
 
-    private IEnumerator AssignDamageHandlerCoroutine()
+    private void OnDamageHasBeenDealt(in DamageTakenSummary damageTakenSummary)
+    {
+        if (damageTakenSummary.PhysicalDamage > 0) 
+        {
+            damageTakenSummary.DamageTaker.ApplyDamage(new LifeStealData(damageTakenSummary.PhysicalDamage * lifeStealFraction), damageHandler);
+
+            if (unlockSpiritLeech) 
+            {
+                damageTakenSummary.DamageTaker.ApplyDamage(new EnergyStealData(damageTakenSummary.PhysicalDamage * lifeStealFraction * energyStealFraction), damageHandler);
+            }
+        }
+    }
+
+            private IEnumerator AssignDamageHandlerCoroutine()
     {
         yield return new WaitForEndOfFrame();
         GetReferencesAndSubscribeToEvenets();
@@ -44,8 +53,8 @@ public class Vampirism : PassiveMorph
         damageHandler = GetComponent<DamageHandler>();
         if (damageHandler)
         {
-            
 
+            damageHandler.DamageHasBeenDealt += OnDamageHasBeenDealt;
         }
     }
 
@@ -53,7 +62,8 @@ public class Vampirism : PassiveMorph
     {
         if (damageHandler)
         {
-            
+
+            damageHandler.DamageHasBeenDealt -= OnDamageHasBeenDealt;
 
         }
 
