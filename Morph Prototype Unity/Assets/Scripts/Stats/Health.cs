@@ -124,7 +124,7 @@ public class Health : MonoBehaviour
 
     private void T_SetUpHealthbar()
     {
-        healthBar = GameObject.Find("UI").transform.Find("Gameplay").transform.Find("StatusBar").transform.Find("HealthBar").GetComponent<Image>() ;
+        healthBar = transform.Find("HealthBarCanvas").Find("HealthBar").GetComponent<Image>();
         healthBar.gameObject.SetActive(false);
     }
 

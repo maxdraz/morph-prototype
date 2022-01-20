@@ -21,14 +21,13 @@ public class Stats : MonoBehaviour
     
     //core - Vector2 to define min and max base values
     //private Vector2 baseHealthPointsRange = new Vector2(500, 800);
-    private int bonusHealingModifier;
-    [SerializeField] private int maxHealth;
+    [SerializeField] private int baseMaxHealth;
     //private Vector2 baseEnergyPointsRange = new Vector2(100, 200);
-    private int energyRegenModifier;
-    [SerializeField] private int maxEnergy;
+    [SerializeField] private int baseMaxEnergy;
     //private Vector2 baseStaminaPointsRange = new Vector2(300, 500);
-    private int staminaRegenModifier;
-    [SerializeField] private int maxStamina;
+    [SerializeField] private int baseMaxStamina;
+    //private Vector2 baseArmourPointsRange = new Vector2(100, 250);
+    [SerializeField] private int baseMaxArmour;
     //base stats refer to the creatures base stats which were generated when the creature was spawned
     //added stats refer to all values being added to the base stats whether those values are permanent or temporary.
     //Morphs which add to stats when attached can add their bonus values to the added stats 
@@ -119,9 +118,10 @@ public class Stats : MonoBehaviour
     Energy energy;
 
     //public interface
-    public float MaxHealth => maxHealth;
-    public float MaxStamina => maxStamina;
-    public float MaxEnergy => maxEnergy;
+    public float MaxHealth => baseMaxHealth;
+    public float MaxStamina => baseMaxStamina;
+    public float MaxEnergy => baseMaxEnergy;
+    public float MaxArmour => baseMaxArmour;
     public float ElementalDamageModifier => elementalDamageModifier;
     public float ChemicalDamageModifier => chemicalDamageModifier;
     public float MeleeDamageModifier => meleeDamageModifier;
@@ -181,9 +181,9 @@ public class Stats : MonoBehaviour
         
         AddLabel("stat", "value",true);
         
-        AddLabel("hp", maxHealth.ToString());
-        AddLabel("ep", maxEnergy.ToString());
-        AddLabel("stamina", maxStamina.ToString());
+        AddLabel("hp", baseMaxHealth.ToString());
+        AddLabel("ep", baseMaxEnergy.ToString());
+        AddLabel("stamina", baseMaxStamina.ToString());
         AddLabel();
         AddLabel("melee dmg", baseMeleeDamage.ToString());
         AddLabel("ranged dmg", baseRangedDamage.ToString());
