@@ -6,23 +6,23 @@ using UnityEngine.UI;
 
 public class Armor : MonoBehaviour
 {
-    [SerializeField] private float baseMaxArmour;
-    public float bonusFlatMaxArmour;
-    public float bonusPercentMaxArmour;
-    [SerializeField] private float maxArmour;
+    [SerializeField] private float baseMaxArmor;
+    public float bonusFlatMaxArmor;
+    public float bonusPercentMaxArmor;
+    [SerializeField] private float maxArmor;
 
 
-    public float currentArmour;
-    public bool HasArmor => currentArmour > 0;
+    public float currentArmor;
+    public bool HasArmor => currentArmor > 0;
 
-    public int armourSegments;
-    public GameObject armourSegment;
-    RectTransform currentArmourBar;
-    float armourBarSize;
+    public int armorSegments;
+    public GameObject armorSegment;
+    RectTransform currentArmorBar;
+    float armorBarSize;
 
-    [SerializeField] private Transform armourBar;
-    private Coroutine hideArmourBarAfterTime;
-    Image currentArmourBarImage;
+    [SerializeField] private Transform armorBar;
+    private Coroutine hideArmorBarAfterTime;
+    Image currentArmorBarImage;
 
     Stats stats;
 
@@ -31,8 +31,8 @@ public class Armor : MonoBehaviour
     {
         stats = GetComponent<Stats>();
 
-        T_SetUpArmourbar();
-        SetMaxArmour();
+        T_SetUpArmorbar();
+        SetMaxArmor();
     }
 
     // Update is called once per frame
@@ -41,33 +41,33 @@ public class Armor : MonoBehaviour
         
     }
 
-    private void SetMaxArmour()
+    private void SetMaxArmor()
     {
-        baseMaxArmour = stats ? stats.MaxArmour : 100; 
-        maxArmour = (baseMaxArmour * (1+bonusPercentMaxArmour))+ bonusFlatMaxArmour;
+        baseMaxArmor = stats ? stats.MaxArmour : 100; 
+        maxArmor = (baseMaxArmor * (1+bonusPercentMaxArmor))+ bonusFlatMaxArmor;
 
-        float armourRemainder = maxArmour % 100;
-        maxArmour -= armourRemainder;
-        currentArmour = maxArmour;
+        float armourRemainder = maxArmor % 100;
+        maxArmor -= armourRemainder;
+        currentArmor = maxArmor;
 
-        int armourSegments = (int)maxArmour / 100;
+        int armourSegments = (int)maxArmor / 100;
 
         //float armourBarSize = (healthBarSize / armourSegments) * 2;
 
         for (int i = 1; i <= armourSegments; i++)
         {
-            GameObject newArmourSegment = Instantiate(armourSegment, armourBar.transform);
+            GameObject newArmourSegment = Instantiate(armorSegment, armorBar.transform);
             newArmourSegment.transform.localPosition = new Vector3(0, 0, 0);
             newArmourSegment.transform.localScale = new Vector3(.04f/armourSegments, .018f, 1f);
         }
 
-        T_SetUpArmourbar();
+        T_SetUpArmorbar();
     }
 
-    private void T_SetUpArmourbar()
+    private void T_SetUpArmorbar()
     {
-        armourBar = transform.Find("HealthBarCanvas").Find("ArmourBar");
-        armourBar.gameObject.SetActive(false);
+        armorBar = transform.Find("HealthBarCanvas").Find("ArmourBar");
+        armorBar.gameObject.SetActive(false);
     }
 
     //private void T_UpdateArmourBar()
@@ -79,21 +79,21 @@ public class Armor : MonoBehaviour
        // hideArmourBarAfterTime = StartCoroutine(HideArmourBarAfterTimeCoroutine(2));
     //}
 
-    private IEnumerator HideArmourBarAfterTimeCoroutine(float t)
+    private IEnumerator HideArmorBarAfterTimeCoroutine(float t)
     {
         yield return new WaitForSeconds(t);
-        armourBar.gameObject.SetActive(false);
+        armorBar.gameObject.SetActive(false);
     }
 
-    void SetCurrentArmourBar()
+    void SetCurrentArmorBar()
     {
        
-        currentArmourBar = armourBar.transform.GetChild(armourSegments -1).GetComponent<RectTransform>();
-        currentArmourBarImage = currentArmourBar.GetComponent <Image> ();
+        currentArmorBar = armorBar.transform.GetChild(armorSegments -1).GetComponent<RectTransform>();
+        currentArmorBarImage = currentArmorBar.GetComponent <Image> ();
         
     }
 
-    public float ReduceCurrentArmour(float incomingDamage)
+    public float ReduceCurrentArmor(float incomingDamage)
     {
         
 
@@ -102,24 +102,24 @@ public class Armor : MonoBehaviour
             incomingDamage = 100;
         }
 
-        if (currentArmour % 100 < incomingDamage && currentArmour % 100 != 0)
+        if (currentArmor % 100 < incomingDamage && currentArmor % 100 != 0)
         {
-            incomingDamage = currentArmour % 100;
-            currentArmour -= incomingDamage;
-            armourSegments--;
-            currentArmourBar.localScale = new Vector3(0f, 1f, 1f);
-            currentArmourBar.gameObject.GetComponent<Image>().enabled = false;
-            SetCurrentArmourBar();
+            incomingDamage = currentArmor % 100;
+            currentArmor -= incomingDamage;
+            armorSegments--;
+            currentArmorBar.localScale = new Vector3(0f, 1f, 1f);
+            currentArmorBar.gameObject.GetComponent<Image>().enabled = false;
+            SetCurrentArmorBar();
         }
 
 
 
         else
         {
-            currentArmour -= incomingDamage;
-            currentArmourBar.localScale = new Vector3((armourBarSize * (currentArmour % 100 / 100)), .8f, 1f);
+            currentArmor -= incomingDamage;
+            currentArmorBar.localScale = new Vector3((armorBarSize * (currentArmor % 100 / 100)), .8f, 1f);
         }
 
-        return currentArmour;
+        return currentArmor;
     }
 }

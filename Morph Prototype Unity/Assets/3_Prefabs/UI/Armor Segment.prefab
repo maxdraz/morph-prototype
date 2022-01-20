@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 9188886427100882620}
   - component: {fileID: 2095994110214991806}
   m_Layer: 5
-  m_Name: Armour Segment
+  m_Name: Armor Segment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

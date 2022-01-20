@@ -34,62 +34,58 @@ public class Stats : MonoBehaviour
     //Total stats refer to the active value which is used when taking actions within the game (total = base+added)
 
     //offensive stats
-    private int baseMeleeDamage;
+    [SerializeField] private int baseMeleeDamage;
     private int addedMeleeDamage;
     public int totalMeleeDamage;
-    private int baseRangedDamage;
+    [SerializeField] private int baseRangedDamage;
     private int addedRangedDamage;
     public int totalRangedDamage;
-    private int baseChemicalDamage;
+    [SerializeField] private int baseChemicalDamage;
     private int addedChemicalDamage;
     public int totalChemicalDamage;
-    private int baseElementalDamage;
+    [SerializeField] private int baseElementalDamage;
     private int addedElementalDamage;
     public int totalElementalDamage;
     private int accuracy;
     //defensive stats
-    private int baseFortitude;
+    [SerializeField] private int baseFortitude;
     private int addedFortitude;
     public int totalFortitude;
-    private int baseToughness;
+    [SerializeField] private int baseToughness;
     private int addedToughness;
     public int totalToughness;
     //misc stats 
-    private int baseIntimidation;
+    [SerializeField] private int baseIntimidation;
     private int addedIntimidation;
     public int totalIntimidation;
-    private int baseAgility;
+    [SerializeField] private int baseAgility;
     private int addedAgility;
     public int totalAgility;
-    private int baseStealth;
+    [SerializeField] private int baseStealth;
     private int addedStealth;
     public int totalStealth;
-    private int basePerception;
+    [SerializeField] private int basePerception;
     private int addedPerception;
     public int totalPerception;
-    private int baseIntelligence;
+    [SerializeField] private int baseIntelligence;
     private int addedIntelligence;
     public int totalIntelligence;
-    private float baseMoveSpeed;
-    private float addedMoveSpeed;
-    public float totalMoveSpeed;
-    private float baseAttackSpeed;
-    private float addedAttackSpeed;
-    public float totalAttackSpeed;
+    [SerializeField] private float baseMoveSpeed;
+    [SerializeField] private float baseAttackSpeed;
     //resistance stats
-    private float baseFireResistance;
+    [SerializeField] private float baseFireResistance;
     private float addedFireResistance;
     public float totalFireResistance;
-    private float baseIceResistance;
+    [SerializeField] private float baseIceResistance;
     private float addedIceResistance;
     public float totalIceResistance;
-    private float baseElectricResistance;
+    [SerializeField] private float baseElectricResistance;
     private float addedElectricResistance;
-    public float totalElectricResistance; 
-    private float basePoisonResistance;
+    public float totalElectricResistance;
+    [SerializeField] private float basePoisonResistance;
     private float addedPoisonResistance;
     public float totalPoisonResistance;
-    private float baseAcidResistance;
+    [SerializeField] private float baseAcidResistance;
     private float addedAcidResistance;
     public float totalAcidResistance;
     private float addedPhysicalResistance;
@@ -111,11 +107,12 @@ public class Stats : MonoBehaviour
     [SerializeField] private float maxStaminaModifier;
 
     StatModifiers statModifiers;
-    CombatResources combatResources;
 
-    Health health;
+    //Health health;
     Stamina stamina;
     Energy energy;
+    //Armor armor;
+    Movement movement;
 
     //public interface
     public float MaxHealth => baseMaxHealth;
@@ -125,8 +122,12 @@ public class Stats : MonoBehaviour
     public float ElementalDamageModifier => elementalDamageModifier;
     public float ChemicalDamageModifier => chemicalDamageModifier;
     public float MeleeDamageModifier => meleeDamageModifier;
+    public float RangedDamageModifier => rangedDamageModifier;
     public float PoisonResistance => basePoisonResistance;
     public float ToughnessModifier => toughnessModifier;
+    public float BaseMoveSpeed => baseMoveSpeed;
+    public float BaseAttackSpeed => baseAttackSpeed;
+
 
     private void Reset()
     {
@@ -143,10 +144,11 @@ public class Stats : MonoBehaviour
         if(statsModifierObj)
             statModifiers = statsModifierObj.GetComponent<StatModifiers>();
 
-        health = GetComponent<Health>();
+        //health = GetComponent<Health>();
         stamina = GetComponent<Stamina>();
         energy = GetComponent<Energy>();
-        combatResources = GetComponentInParent<CombatResources>();
+        //armor = GetComponent<Armor>();
+        movement = GetComponentInParent<Movement>();
         headerStyle = new GUIStyle();
         headerStyle.fontStyle = FontStyle.Bold;
 
@@ -155,10 +157,8 @@ public class Stats : MonoBehaviour
             RandomiseStats();
         }
 
-        FindAllModifiers();
 
         SetStatTotals();
-
     }
 
     private void Update()
@@ -562,11 +562,11 @@ public class Stats : MonoBehaviour
 
             for (int i = 0; i < statModifiers.fortitudeMaxStaminaModifiers.Count; ++i)
             {
-                if (statModifiers.toughnessDamageReductionModifiers[i].x <= myStatValue)
+                if (statModifiers.fortitudeMaxStaminaModifiers[i].x <= myStatValue && myStatValue - statModifiers.fortitudeMaxStaminaModifiers[i].x <= 4 && myStatValue - statModifiers.fortitudeMaxStaminaModifiers[i].x >= 0)
                 {
 
                     maxStaminaModifier = statModifiers.fortitudeMaxStaminaModifiers[i].y;
-
+                    stamina.maxStaminaBonus += maxStaminaModifier;
                 }
             }
         }
@@ -585,10 +585,11 @@ public class Stats : MonoBehaviour
             }
             for (int i = 0; i < statModifiers.intelligenceMaxEnergyModifiers.Count; ++i)
             {
-                if (statModifiers.intelligenceMaxEnergyModifiers[i].x <= myStatValue)
+                if (statModifiers.intelligenceMaxEnergyModifiers[i].x <= myStatValue && myStatValue - statModifiers.intelligenceMaxEnergyModifiers[i].x <= 4 && myStatValue - statModifiers.intelligenceMaxEnergyModifiers[i].x >= 0)
                 {
 
                     maxEnergyModifier = statModifiers.intelligenceMaxEnergyModifiers[i].y;
+                    energy.bonusMaxEnergy += maxEnergyModifier;
 
                 }
             }
@@ -608,10 +609,11 @@ public class Stats : MonoBehaviour
             }
             for (int i = 0; i < statModifiers.agilityMoveSpeedModifiers.Count; ++i)
             {
-                if (statModifiers.agilityMoveSpeedModifiers[i].x <= myStatValue)
+                if (statModifiers.agilityMoveSpeedModifiers[i].x <= myStatValue && myStatValue - statModifiers.agilityMoveSpeedModifiers[i].x <= 4 && myStatValue - statModifiers.agilityMoveSpeedModifiers[i].x >= 0)
                 {
-
                     moveSpeedModifier = statModifiers.agilityMoveSpeedModifiers[i].y;
+                    movement.bonusPercentMoveSpeed += moveSpeedModifier;
+                    Debug.Log("adding " + moveSpeedModifier + " speed from findallmodifiers_stats");
 
                 }
             }
@@ -632,6 +634,21 @@ public class Stats : MonoBehaviour
         totalIntimidation = baseIntimidation + addedIntimidation;
         totalPerception = basePerception + addedPerception;
         totalStealth = baseStealth + addedStealth;
-        totalToughness = baseToughness + addedToughness; 
+        totalToughness = baseToughness + addedToughness;
+
+        FindAllModifiers();
+
+        totalFireResistance = baseFireResistance + addedFireResistance;
+
+        totalIceResistance = baseIceResistance + addedIceResistance;
+
+        totalElectricResistance = baseElectricResistance + addedElectricResistance;
+
+        totalPoisonResistance = basePoisonResistance + addedPoisonResistance;
+
+        totalAcidResistance = baseAcidResistance + addedAcidResistance;
+
+        totalPhysicalResistance = toughnessModifier + addedPhysicalResistance;
+
     }
 }

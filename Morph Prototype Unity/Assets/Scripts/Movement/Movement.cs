@@ -5,26 +5,28 @@ using UnityEngine;
 [RequireComponent(typeof(Velocity))]
 public class Movement : MonoBehaviour
 {
-    [SerializeField] private float speed = 10f;
-    public float bonusMoveSpeed;
+    [SerializeField] private float baseSpeed;
+    public float bonusPercentMoveSpeed;
     private Velocity velocity;
     private Vector3 movementDirection;
 
-    public float MovementSpeedNormalized => velocity.CurrentHorizontalVelocity.magnitude / speed;
+
+    public float MovementSpeedNormalized => velocity.CurrentHorizontalVelocity.magnitude / baseSpeed;
     Stats stats;
     
     void Awake()
     {
         stats = GetComponentInChildren<Stats>(); 
         velocity = GetComponent<Velocity>();
-        
+        baseSpeed = stats ? stats.BaseMoveSpeed : 100;
+
     }
- 
+
     private void Update()
     {
         if(movementDirection == Vector3.zero && velocity.CurrentHorizontalVelocity == Vector3.zero) return;
         
-        movementDirection *= speed + (speed * bonusMoveSpeed);
+        movementDirection *= baseSpeed + (baseSpeed * bonusPercentMoveSpeed);
         velocity.SetHorizontalVelocity(movementDirection.x, movementDirection.z);
     }
 

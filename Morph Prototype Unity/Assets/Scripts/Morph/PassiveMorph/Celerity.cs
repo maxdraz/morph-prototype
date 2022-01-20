@@ -34,7 +34,7 @@ public class Celerity : PassiveMorph
     // implement
     private void ChangeMoveSpeedStat(float amountToAdd)
     {
-        movement.bonusMoveSpeed += amountToAdd;
+        movement.bonusPercentMoveSpeed += amountToAdd;
     }
 
     private void Update()

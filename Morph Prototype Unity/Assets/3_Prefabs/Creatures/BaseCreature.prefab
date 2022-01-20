@@ -529,23 +529,41 @@ MonoBehaviour:
   baseMaxEnergy: 0
   baseMaxStamina: 0
   baseMaxArmour: 0
+  baseMeleeDamage: 0
   totalMeleeDamage: 0
+  baseRangedDamage: 0
   totalRangedDamage: 0
+  baseChemicalDamage: 0
   totalChemicalDamage: 0
+  baseElementalDamage: 0
   totalElementalDamage: 0
+  baseFortitude: 0
   totalFortitude: 0
+  baseToughness: 0
   totalToughness: 0
+  baseIntimidation: 0
   totalIntimidation: 0
+  baseAgility: 0
   totalAgility: 0
+  baseStealth: 0
   totalStealth: 0
+  basePerception: 0
   totalPerception: 0
+  baseIntelligence: 0
   totalIntelligence: 0
+  baseMoveSpeed: 0
   totalMoveSpeed: 0
+  baseAttackSpeed: 0
   totalAttackSpeed: 0
+  baseFireResistance: 0
   totalFireResistance: 0
+  baseIceResistance: 0
   totalIceResistance: 0
+  baseElectricResistance: 0
   totalElectricResistance: 0
+  basePoisonResistance: 0
   totalPoisonResistance: 0
+  baseAcidResistance: 0
   totalAcidResistance: 0
   totalPhysicalResistance: 0
   meleeDamageModifier: 0
@@ -588,14 +606,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84bd7551e62dd4d4db458a83607c2b1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseMaxArmour: 0
-  bonusFlatMaxArmour: 0
-  bonusPercentMaxArmour: 0
-  maxArmour: 0
-  currentArmour: 0
-  armourSegments: 0
-  armourSegment: {fileID: 0}
-  armourBar: {fileID: 0}
+  baseMaxArmor: 0
+  bonusFlatMaxArmor: 0
+  bonusPercentMaxArmor: 0
+  maxArmor: 0
+  currentArmor: 0
+  armorSegments: 0
+  armorSegment: {fileID: 5025646871804698984, guid: 955657dc22e04a24eb2e9afc8cb2d8f6, type: 3}
+  armorBar: {fileID: 0}
 --- !u!114 &5782620542622676542
 MonoBehaviour:
   m_ObjectHideFlags: 0
