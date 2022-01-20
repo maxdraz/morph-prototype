@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class Stamina : MonoBehaviour
 {
@@ -16,12 +18,17 @@ public class Stamina : MonoBehaviour
     float staminaRegenTimerDuration = 1f;
     bool staminaRegenOnCooldown;
     float staminaRegen = 5;
-    float globalStaminaRegenFactor = 100;
+    float globalStaminaRegenFactor = 50;
 
     Stats stats;
+
+    [SerializeField] private Image staminaBar;
+    private Coroutine hideStaminaBarAfterTime;
+
     // Start is called before the first frame update
     void Start()
-    {
+    { 
+        staminaRegenOnCooldown = false;
         stats = GetComponent<Stats>();
         baseMaxStamina = stats ? stats.MaxStamina : 100;
         SetMaxStamina();
@@ -34,7 +41,10 @@ public class Stamina : MonoBehaviour
     {
         if (!staminaRegenOnCooldown) 
         {
-            StaminaRegen();
+            if (currentStamina < totalMaxStamina) 
+            {
+                StaminaRegen();
+            }
         }
 
         else  
@@ -50,19 +60,24 @@ public class Stamina : MonoBehaviour
 
     void StaminaRegen() 
     {
-        currentStamina += staminaRegen * (1 + bonusStaminaRegen) + (1 + energyAsPercentage) / globalStaminaRegenFactor;
+        float staminaToAdd = staminaRegen * (1 + bonusStaminaRegen + energyAsPercentage) / globalStaminaRegenFactor;
+
+        AddStamina(staminaToAdd);
     }
   
     public void SetMaxStamina()
     {
         totalMaxStamina = baseMaxStamina * (1 + maxStaminaBonus);
         currentStamina = totalMaxStamina;
+
+        T_SetUpStaminabar();
     }
 
     public void AddStamina(float amount)
     {
         totalMaxStamina = Mathf.Min(currentStamina + amount, totalMaxStamina);
 
+        T_UpdateStaminaBar();
     }
 
     public void RefundStamina(float amountSpent, float amountToRefund)
@@ -88,11 +103,32 @@ public class Stamina : MonoBehaviour
 
         totalMaxStamina = Mathf.Max(0, totalMaxStamina - amount);
         staminaRegenOnCooldown = true;
+        T_UpdateStaminaBar();
 
-        //if timer is still counting down, spend the stamina and restart he timer from the beginning 
+        //if timer is still counting down, spend the stamina and restart the timer from the beginning 
         if (staminaRegenTimer.CurrentTime < staminaRegenTimer.Duration)
         {
             staminaRegenTimer = new Timer(staminaRegenTimerDuration, false);
         }
+    }
+
+    private void T_SetUpStaminabar()
+    {
+        staminaBar = transform.Find("UI").Find("Gameplay").Find("StatusBar").Find("StaminaBar").GetComponent<Image>();
+        staminaBar.gameObject.SetActive(false);
+    }
+
+    private void T_UpdateStaminaBar()
+    {
+        staminaBar.gameObject.SetActive(true);
+        staminaBar.fillAmount = currentStamina / totalMaxStamina;
+        if (hideStaminaBarAfterTime != null) StopCoroutine(hideStaminaBarAfterTime);
+        hideStaminaBarAfterTime = StartCoroutine(HideStaminaBarAfterTimeCoroutine(2));
+    }
+
+    private IEnumerator HideStaminaBarAfterTimeCoroutine(float t)
+    {
+        yield return new WaitForSeconds(t);
+        staminaBar.gameObject.SetActive(false);
     }
 }

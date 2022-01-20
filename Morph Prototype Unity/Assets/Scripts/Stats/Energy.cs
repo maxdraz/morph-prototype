@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class Energy : MonoBehaviour
 {
@@ -21,11 +23,15 @@ public class Energy : MonoBehaviour
     Stamina stamina;
     Stats stats;
 
+    [SerializeField] private Image energyBar;
+    private Coroutine hideEnergyBarAfterTime;
+
     // Start is called before the first frame update
     void Start()
     {
         stamina = GetComponent<Stamina>();
         stats = GetComponent<Stats>();
+        baseMaxEnergy = stats ? stats.MaxEnergy : 100;
         SetMaxEnergy();
         energyRegenTimer = new Timer(energyRegenTimerDuration, false);
 
@@ -36,7 +42,10 @@ public class Energy : MonoBehaviour
     {
         if (!energyRegenOnCooldown)
         {
-            EnergyRegen();
+            if (currentEnergy < totalMaxEnergy) 
+            {
+                EnergyRegen();
+            }
         }
 
         else
@@ -55,19 +64,23 @@ public class Energy : MonoBehaviour
 
     void EnergyRegen()
     {
-        currentEnergy += (energyRegen * (1 + bonusEnergyRegen)) / globalEnergyRegenFactor;
+        float energyToAdd = (energyRegen * (1 + bonusEnergyRegen)) / globalEnergyRegenFactor;
+        AddEnergy(energyToAdd);
     }
 
     public void SetMaxEnergy()
     {
         totalMaxEnergy = baseMaxEnergy * (1 + bonusMaxEnergy);
         currentEnergy = totalMaxEnergy;
+
+        T_SetUpEnergybar();
     }
 
     public void AddEnergy(float amount)
     {
         totalMaxEnergy = Mathf.Min(currentEnergy + amount, totalMaxEnergy);
 
+        T_UpdateEnergyBar();
     }
 
     public void RefundEnergy(float amountSpent, float amountToRefund)
@@ -91,11 +104,33 @@ public class Energy : MonoBehaviour
 
         totalMaxEnergy = Mathf.Max(0, totalMaxEnergy - amount);
         energyRegenOnCooldown = true;
+        T_UpdateEnergyBar();
 
-        //if timer is still counting down, spend the energy and restart he timer from the beginning 
+        //if timer is still counting down, spend the energy and restart the timer from the beginning 
         if (energyRegenTimer.CurrentTime < energyRegenTimer.Duration)
         {
             energyRegenTimer = new Timer(energyRegenTimerDuration, false);
         }
+    }
+
+    private void T_SetUpEnergybar()
+    {
+        energyBar = transform.Find("UI").Find("Gameplay").Find("StatusBar").Find("EnergyBar").GetComponent<Image>();
+        energyBar.gameObject.SetActive(false);
+    }
+
+    private void T_UpdateEnergyBar()
+    {
+        // health bar
+        energyBar.gameObject.SetActive(true);
+        energyBar.fillAmount = currentEnergy / totalMaxEnergy;
+        if (hideEnergyBarAfterTime != null) StopCoroutine(hideEnergyBarAfterTime);
+        hideEnergyBarAfterTime = StartCoroutine(HideEnergyBarAfterTimeCoroutine(2));
+    }
+
+    private IEnumerator HideEnergyBarAfterTimeCoroutine(float t)
+    {
+        yield return new WaitForSeconds(t);
+        energyBar.gameObject.SetActive(false);
     }
 }

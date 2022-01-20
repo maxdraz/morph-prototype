@@ -51,6 +51,7 @@ public class Health : MonoBehaviour
     {
         maxHealth = baseMaxHealth * (1 + maxHealthBonus);
         currentHealth = maxHealth;
+
         T_SetUpHealthbar();
     }
 
@@ -123,7 +124,7 @@ public class Health : MonoBehaviour
 
     private void T_SetUpHealthbar()
     {
-        healthBar = transform.Find("HealthBarCanvas").Find("HealthBar").GetComponent<Image>();
+        healthBar = transform.Find("UI").Find("Gameplay").Find("StatusBar").Find("HealthBar").GetComponent<Image>() ;
         healthBar.gameObject.SetActive(false);
     }
 

@@ -524,6 +524,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Deer
       objectReference: {fileID: 0}
+    - target: {fileID: 2641369630252998500, guid: 17294641915b125489525c675901fd49, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3787121545567345810, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: maxEnergy
       value: 100
@@ -536,10 +540,22 @@ PrefabInstance:
       propertyPath: maxStamina
       value: 300
       objectReference: {fileID: 0}
+    - target: {fileID: 5016710486606836775, guid: 17294641915b125489525c675901fd49, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: passiveMorphs.Array.size
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
+      propertyPath: passiveMorphs.Array.data[0]
+      value: 
+      objectReference: {fileID: 2742803235410979526, guid: 237333ada3517e14b85902e84d1a491c, type: 3}
+    - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
+      propertyPath: passiveMorphs.Array.data[1]
+      value: 
+      objectReference: {fileID: 2742803235410979526, guid: 237333ada3517e14b85902e84d1a491c, type: 3}
     - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: passiveMorphs.Array.data[2]
       value: 
@@ -9023,32 +9039,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1880596685}
   m_CullTransparentMesh: 1
---- !u!1 &1903807285 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 563091350732430249, guid: 17294641915b125489525c675901fd49, type: 3}
-  m_PrefabInstance: {fileID: 109584100}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1903807299
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1903807285}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 853c20aec91167f49b180626b3a5c81a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseMaxEnergy: 0
-  bonusMaxEnergy: 0
-  bonusEnergyRegen: 0
-  totalMaxEnergy: 0
-  currentEnergy: 0
-  energyRegenTimer:
-    duration: 0
-    currentTime: 0
-    loop: 0
 --- !u!1 &1908519140
 GameObject:
   m_ObjectHideFlags: 0
