@@ -115,7 +115,7 @@ public class Energy : MonoBehaviour
 
     private void T_SetUpEnergybar()
     {
-        energyBar = transform.Find("UI").Find("Gameplay").Find("StatusBar").Find("EnergyBar").GetComponent<Image>();
+        energyBar = GameObject.Find("UI").transform.Find("Gameplay").transform.Find("StatusBar").transform.Find("EnergyBar").GetComponent<Image>();
         energyBar.gameObject.SetActive(false);
     }
 

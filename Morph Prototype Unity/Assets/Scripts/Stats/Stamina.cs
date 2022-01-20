@@ -114,7 +114,7 @@ public class Stamina : MonoBehaviour
 
     private void T_SetUpStaminabar()
     {
-        staminaBar = transform.Find("UI").Find("Gameplay").Find("StatusBar").Find("StaminaBar").GetComponent<Image>();
+        staminaBar = GameObject.Find("UI").transform.Find("Gameplay").transform.Find("StatusBar").transform.Find("StaminaBar").GetComponent<Image>();
         staminaBar.gameObject.SetActive(false);
     }
 
