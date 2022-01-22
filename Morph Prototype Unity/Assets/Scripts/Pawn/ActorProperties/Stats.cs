@@ -157,8 +157,7 @@ public class Stats : MonoBehaviour
             RandomiseStats();
         }
 
-
-        SetStatTotals();
+        Invoke("SetStatTotals", .5f);
     }
 
     private void Update()
@@ -346,6 +345,151 @@ public class Stats : MonoBehaviour
         }
     }
 
+    
+
+    public void PercentStatChange(string statName, int buffAmount)
+    {
+        float changeInValue;
+
+        if (statName == "meleeDamage")
+        {
+
+            float valueToChange = baseMeleeDamage;
+            changeInValue = valueToChange * buffAmount;
+            valueToChange += changeInValue;
+            totalMeleeDamage = (int)valueToChange;
+            addedMeleeDamage += (int)changeInValue; ;
+
+            FindModifier(statName, totalMeleeDamage);
+        }
+        if (statName == "rangedDamage")
+        {
+            float valueToChange = baseRangedDamage;
+            changeInValue = valueToChange * buffAmount;
+            valueToChange += changeInValue;
+            totalRangedDamage = (int)valueToChange;
+            addedRangedDamage += (int)changeInValue;
+
+            FindModifier(statName, totalRangedDamage);
+        }
+        if (statName == "chemicalDamage")
+        {
+            float valueToChange = baseChemicalDamage;
+            changeInValue = valueToChange * buffAmount;
+            valueToChange += changeInValue;
+            totalChemicalDamage = (int)valueToChange;
+            addedChemicalDamage += (int)changeInValue;
+
+            FindModifier(statName, totalChemicalDamage);
+        }
+        if (statName == "elementalDamage")
+        {
+            float valueToChange = baseElementalDamage;
+            changeInValue = valueToChange * buffAmount;
+            valueToChange += changeInValue;
+            totalElementalDamage = (int)valueToChange;
+            addedElementalDamage += (int)changeInValue;
+
+            FindModifier(statName, totalElementalDamage);
+        }
+        if (statName == "intelligence")
+        {
+            float valueToChange = baseIntelligence;
+            changeInValue = valueToChange * buffAmount;
+            valueToChange += changeInValue;
+            totalIntelligence = (int)valueToChange;
+            addedIntelligence += (int)changeInValue;
+
+            FindModifier(statName, totalIntelligence);
+        }
+        if (statName == "agility")
+        {
+            float valueToChange = baseAgility;
+            changeInValue = valueToChange * buffAmount;
+            valueToChange += changeInValue;
+            totalAgility = (int)valueToChange;
+            addedAgility += (int)changeInValue;
+
+            FindModifier(statName, totalAgility);
+        }
+        if (statName == "toughness")
+        {
+            float valueToChange = baseToughness;
+            changeInValue = valueToChange * buffAmount;
+            valueToChange += changeInValue;
+            totalToughness = (int)valueToChange;
+            addedToughness += (int)changeInValue;
+
+            FindModifier(statName, totalToughness);
+        }
+        if (statName == "fortitude")
+        {
+            float valueToChange = baseFortitude;
+            changeInValue = valueToChange * buffAmount;
+            valueToChange += changeInValue;
+            totalFortitude = (int)valueToChange;
+            addedFortitude += (int)changeInValue;
+
+            FindModifier(statName, totalFortitude);
+        }
+    }
+
+    public void PercentResistStatChange(string damageType, float buffAmount)
+    {
+        float changeInValue;
+
+        //  Debug.Log("Buffing " + statName + " from " + statToBuff + " by " + buffAmount + " for " + duration + " seconds");
+        if (damageType == "fire")
+        {
+
+            float valueToChange = baseFireResistance;
+            changeInValue = valueToChange * buffAmount;
+            valueToChange += changeInValue;
+            totalFireResistance = (int)valueToChange;
+            addedFireResistance += (int)changeInValue; ;
+
+        }
+        if (damageType == "ice")
+        {
+            float valueToChange = baseIceResistance;
+            changeInValue = valueToChange * buffAmount;
+            valueToChange += changeInValue;
+            totalIceResistance = (int)valueToChange;
+            addedIceResistance += (int)changeInValue; ;
+
+        }
+        if (damageType == "electric")
+        {
+
+            float valueToChange = baseFireResistance;
+            changeInValue = valueToChange * buffAmount;
+            valueToChange += changeInValue;
+            totalElectricResistance = (int)valueToChange;
+            addedElectricResistance += (int)changeInValue; ;
+
+        }
+        if (damageType == "poison")
+        {
+
+            float valueToChange = baseFireResistance;
+            changeInValue = valueToChange * buffAmount;
+            valueToChange += changeInValue;
+            totalPoisonResistance = (int)valueToChange;
+            addedPoisonResistance += (int)changeInValue; ;
+
+        }
+        if (damageType == "acid")
+        {
+
+            float valueToChange = baseFireResistance;
+            changeInValue = valueToChange * buffAmount;
+            valueToChange += changeInValue;
+            totalAcidResistance = (int)valueToChange;
+            addedAcidResistance += (int)changeInValue; ;
+
+        }
+    }
+
     public void FlatResistStatChange(string damageType, float buffAmount)
     {
         //  Debug.Log("Buffing " + statName + " from " + statToBuff + " by " + buffAmount + " for " + duration + " seconds");
@@ -382,96 +526,8 @@ public class Stats : MonoBehaviour
             totalAcidResistance += buffAmount;
             addedAcidResistance += buffAmount;
 
-        }      
-    }
-
-    public void PercentStatChange(string statName, int buffAmount)
-    {
-        float changeInValue;
-
-        if (statName == "meleeDamage")
-        {
-
-            float valueToChange = (float)baseMeleeDamage;
-            changeInValue = valueToChange * buffAmount;
-            valueToChange += changeInValue;
-            totalMeleeDamage = (int)valueToChange;
-            addedMeleeDamage += (int)changeInValue; ;
-
-            FindModifier(statName, totalMeleeDamage);
-        }
-        if (statName == "rangedDamage")
-        {
-            float valueToChange = (float)baseRangedDamage;
-            changeInValue = valueToChange * buffAmount;
-            valueToChange += changeInValue;
-            totalRangedDamage = (int)valueToChange;
-            addedRangedDamage += (int)changeInValue;
-
-            FindModifier(statName, totalRangedDamage);
-        }
-        if (statName == "chemicalDamage")
-        {
-            float valueToChange = (float)baseChemicalDamage;
-            changeInValue = valueToChange * buffAmount;
-            valueToChange += changeInValue;
-            totalChemicalDamage = (int)valueToChange;
-            addedChemicalDamage += (int)changeInValue;
-
-            FindModifier(statName, totalChemicalDamage);
-        }
-        if (statName == "elementalDamage")
-        {
-            float valueToChange = (float)baseElementalDamage;
-            changeInValue = valueToChange * buffAmount;
-            valueToChange += changeInValue;
-            totalElementalDamage = (int)valueToChange;
-            addedElementalDamage += (int)changeInValue;
-
-            FindModifier(statName, totalElementalDamage);
-        }
-        if (statName == "intelligence")
-        {
-            float valueToChange = (float)baseIntelligence;
-            changeInValue = valueToChange * buffAmount;
-            valueToChange += changeInValue;
-            totalIntelligence = (int)valueToChange;
-            addedIntelligence += (int)changeInValue;
-
-            FindModifier(statName, totalIntelligence);
-        }
-        if (statName == "agility")
-        {
-            float valueToChange = (float)baseAgility;
-            changeInValue = valueToChange * buffAmount;
-            valueToChange += changeInValue;
-            totalAgility = (int)valueToChange;
-            addedAgility += (int)changeInValue;
-
-            FindModifier(statName, totalAgility);
-        }
-        if (statName == "toughness")
-        {
-            float valueToChange = (float)baseToughness;
-            changeInValue = valueToChange * buffAmount;
-            valueToChange += changeInValue;
-            totalToughness = (int)valueToChange;
-            addedToughness += (int)changeInValue;
-
-            FindModifier(statName, totalToughness);
-        }
-        if (statName == "fortitude")
-        {
-            float valueToChange = (float)baseFortitude;
-            changeInValue = valueToChange * buffAmount;
-            valueToChange += changeInValue;
-            totalFortitude = (int)valueToChange;
-            addedFortitude += (int)changeInValue;
-
-            FindModifier(statName, totalFortitude);
         }
     }
-            
 
     void FindAllModifiers() 
     {
@@ -613,7 +669,7 @@ public class Stats : MonoBehaviour
                 {
                     moveSpeedModifier = statModifiers.agilityMoveSpeedModifiers[i].y;
                     movement.bonusPercentMoveSpeed += moveSpeedModifier;
-                    Debug.Log("adding " + moveSpeedModifier + " speed from findallmodifiers_stats");
+                    ///Debug.Log("adding " + moveSpeedModifier + " speed from findallmodifiers_stats");
 
                 }
             }

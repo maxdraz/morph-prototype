@@ -31,9 +31,9 @@ public class Stamina : MonoBehaviour
         staminaRegenOnCooldown = false;
         stats = GetComponent<Stats>();
         baseMaxStamina = stats ? stats.MaxStamina : 100;
-        SetMaxStamina();
         staminaRegenTimer = new Timer(staminaRegenTimerDuration, false);
 
+        Invoke("SetMaxStamina", .5f);
     }
 
     // Update is called once per frame

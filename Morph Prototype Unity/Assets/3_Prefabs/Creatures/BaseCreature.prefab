@@ -552,9 +552,7 @@ MonoBehaviour:
   baseIntelligence: 0
   totalIntelligence: 0
   baseMoveSpeed: 0
-  totalMoveSpeed: 0
   baseAttackSpeed: 0
-  totalAttackSpeed: 0
   baseFireResistance: 0
   totalFireResistance: 0
   baseIceResistance: 0
@@ -879,7 +877,7 @@ GameObject:
   - component: {fileID: 8838489932835428131}
   - component: {fileID: 284508152781820898}
   m_Layer: 5
-  m_Name: ArmourBar
+  m_Name: ArmorBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

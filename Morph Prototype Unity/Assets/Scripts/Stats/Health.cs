@@ -32,7 +32,7 @@ public class Health : MonoBehaviour
 
         baseMaxHealth = stats ? stats.MaxHealth : 100;
 
-        SetMaxHP();
+        Invoke("SetMaxHP", .5f);
     }
     
     private void OnDisable()

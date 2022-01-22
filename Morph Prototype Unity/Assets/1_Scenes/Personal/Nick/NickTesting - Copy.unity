@@ -662,12 +662,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: passiveMorphs.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: passiveMorphs.Array.data[0]
       value: 
-      objectReference: {fileID: 2742803235410979526, guid: 237333ada3517e14b85902e84d1a491c, type: 3}
+      objectReference: {fileID: 7620202385042812377, guid: 0e0a0fc06a3d7944ebbd6f2a2b1014ff, type: 3}
     - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: passiveMorphs.Array.data[1]
       value: 

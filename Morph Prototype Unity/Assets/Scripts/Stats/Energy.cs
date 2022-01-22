@@ -32,9 +32,9 @@ public class Energy : MonoBehaviour
         stamina = GetComponent<Stamina>();
         stats = GetComponent<Stats>();
         baseMaxEnergy = stats ? stats.MaxEnergy : 100;
-        SetMaxEnergy();
         energyRegenTimer = new Timer(energyRegenTimerDuration, false);
 
+        Invoke("SetMaxEnergy",.5f);
     }
 
     // Update is called once per frame

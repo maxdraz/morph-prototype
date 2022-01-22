@@ -5,31 +5,44 @@ using UnityEngine;
 public class Plating : PassiveMorph
 {
     private DamageHandler damageHandler;
-    [SerializeField] private float meleeDamageStatBonus = 5;
-    [SerializeField] private bool unlockSecondary = true;
+    [SerializeField] private float bonusMaxArmor = 100;
+    [SerializeField] private bool unlockCriticalCoverage = true;
+
+    [SerializeField] private float critChanceResist = .1f;
+    [SerializeField] private float bleedingResist = .2f;
 
     Stats stats;
+    Armor armor;
 
     private void OnEnable()
     {
-        StartCoroutine(AssignDamageHandlerCoroutine());
-        ChangeMeleeDamageStat(meleeDamageStatBonus);
         stats = GetComponent<Stats>();
+        armor = GetComponent<Armor>();
+
+        StartCoroutine(AssignDamageHandlerCoroutine());
+        ChangArmorStat(bonusMaxArmor);
     }
 
     private void OnDisable()
     {
+        stats = GetComponent<Stats>();
+        armor = GetComponent<Armor>();
+
         UnsubscribeFromEvents();
-        ChangeMeleeDamageStat(-meleeDamageStatBonus);
+        ChangArmorStat(-bonusMaxArmor);
     }
 
-    // implement
-    private void ChangeMeleeDamageStat(float amountToAdd)
+    private void ChangArmorStat(float amountToAdd)
     {
-
+        //Debug.Log("Plating adding: " + amountToAdd + " to armor stat");
+        armor.bonusFlatMaxArmor += amountToAdd;
     }
 
-    
+    private void OnDamageAboutToBeTaken(in DamageTakenSummary damageTakenSummary) 
+    {
+        //damageTakenSummary.critChance -= critChanceResist;
+        //damageTakenSummary.bleedingValue -= bleedingResist;
+    }
 
     private IEnumerator AssignDamageHandlerCoroutine()
     {
@@ -44,8 +57,8 @@ public class Plating : PassiveMorph
         damageHandler = GetComponent<DamageHandler>();
         if (damageHandler)
         {
-            
 
+            //damageHandler.DamageAboutToBeTaken += OnDamageAboutToBeTaken;
         }
     }
 
@@ -53,8 +66,8 @@ public class Plating : PassiveMorph
     {
         if (damageHandler)
         {
-            
 
+            //damageHandler.DamageAboutToBeTaken -= OnDamageAboutToBeTaken;
         }
 
         damageHandler = null;

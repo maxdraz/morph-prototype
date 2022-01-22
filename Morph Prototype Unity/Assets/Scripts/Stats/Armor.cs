@@ -32,7 +32,7 @@ public class Armor : MonoBehaviour
         stats = GetComponent<Stats>();
 
         T_SetUpArmorbar();
-        SetMaxArmor();
+        Invoke ("SetMaxArmor",.5f);
     }
 
     // Update is called once per frame
@@ -50,16 +50,11 @@ public class Armor : MonoBehaviour
         maxArmor -= armourRemainder;
         currentArmor = maxArmor;
 
-        int armourSegments = (int)maxArmor / 100;
+        armorSegments = (int)maxArmor / 100;
 
         //float armourBarSize = (healthBarSize / armourSegments) * 2;
 
-        for (int i = 1; i <= armourSegments; i++)
-        {
-            GameObject newArmourSegment = Instantiate(armorSegment, armorBar.transform);
-            newArmourSegment.transform.localPosition = new Vector3(0, 0, 0);
-            newArmourSegment.transform.localScale = new Vector3(.04f/armourSegments, .018f, 1f);
-        }
+        
 
         T_SetUpArmorbar();
     }
@@ -68,6 +63,13 @@ public class Armor : MonoBehaviour
     {
         armorBar = transform.Find("HealthBarCanvas").Find("ArmourBar");
         armorBar.gameObject.SetActive(false);
+
+        for (int i = 1; i <= armorSegments; i++)
+        {
+            GameObject newArmourSegment = Instantiate(armorSegment, armorBar.transform);
+            newArmourSegment.transform.localPosition = new Vector3(0, 0, 0);
+            newArmourSegment.transform.localScale = new Vector3(.04f / armorSegments, .018f, 1f);
+        }
     }
 
     //private void T_UpdateArmourBar()
