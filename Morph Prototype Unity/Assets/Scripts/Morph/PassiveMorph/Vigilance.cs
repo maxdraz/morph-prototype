@@ -5,8 +5,8 @@ using UnityEngine;
 public class Vigilance : PassiveMorph
 {
     private DamageHandler damageHandler;
-    [SerializeField] private int perceptionStatBonus = 5;
-    [SerializeField] private int stealthStatBonus = 5;
+    [SerializeField] private int perceptionStatBonus = 100;
+    [SerializeField] private int stealthStatBonus = 100;
     [SerializeField] private bool unlockHeatVision = true;
 
     Stats stats;
@@ -19,7 +19,7 @@ public class Vigilance : PassiveMorph
 
         StartCoroutine(AssignDamageHandlerCoroutine());
         ChangePerceptionStat(perceptionStatBonus);
-        ChangeStealthStat(stealthStatBonus);
+        //ChangeStealthStat(stealthStatBonus);
         
     }
 
@@ -30,7 +30,7 @@ public class Vigilance : PassiveMorph
 
         UnsubscribeFromEvents();
         ChangePerceptionStat(-perceptionStatBonus);
-        ChangeStealthStat(-stealthStatBonus);
+        //ChangeStealthStat(-stealthStatBonus);
     }
 
     // implement

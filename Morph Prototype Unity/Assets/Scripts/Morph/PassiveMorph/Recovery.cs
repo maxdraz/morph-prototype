@@ -10,7 +10,7 @@ public class Recovery : PassiveMorph
     [SerializeField] private bool unlockRecuperate = true;
     [SerializeField] private float recuperateTimerDuration = 1;
     [SerializeField] private Timer recuperateTimer;
-    bool recuperating;
+    public bool recuperating;
 
     Stamina stamina;
     Energy energy;
@@ -20,7 +20,7 @@ public class Recovery : PassiveMorph
     {
         stamina = GetComponent<Stamina>();
         energy = GetComponent<Energy>();
-        rb = GetComponentInParent<Rigidbody>();
+        rb = transform.parent.gameObject.GetComponent<Rigidbody>();
         StartCoroutine(AssignDamageHandlerCoroutine());
         ChangeStaminaEnergyRegenStat(staminaRegenBonus, energyRegenBonus);
     }

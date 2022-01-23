@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1880c65fc394f4428ccc72cef3852d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stealthStatBonus: 5
+  stealthStatBonus: 100
   unlockSneaky: 1
 --- !u!114 &9027648779746136505
 MonoBehaviour:

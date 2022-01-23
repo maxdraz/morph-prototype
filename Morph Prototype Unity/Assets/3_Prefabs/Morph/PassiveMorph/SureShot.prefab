@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rangedDamageStatBonus: 5
   unlockExpandedReserves: 1
-  maxEnergyStatBonus: 5
+  maxEnergyStatBonus: 0.2
 --- !u!114 &7192906543638763264
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -46,7 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   percentHealthBonus: 0.2
   unlockRestoration: 1
-  percentHealthRegen: 0.1
+  percentHealthRegen: 0.02
+  health: {fileID: 0}
 --- !u!114 &877869292808302197
 MonoBehaviour:
   m_ObjectHideFlags: 0

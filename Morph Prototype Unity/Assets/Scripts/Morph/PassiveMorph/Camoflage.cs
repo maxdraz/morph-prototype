@@ -5,7 +5,7 @@ using UnityEngine;
 public class Camoflage : PassiveMorph
 {
     private DamageHandler damageHandler;
-    [SerializeField] private int stealthStatBonus = 5;
+    [SerializeField] private int stealthStatBonus = 100;
     [SerializeField] private bool unlockSneaky = true;
     float stealthBonusWhileMoving = .2f;
     Stats stats;

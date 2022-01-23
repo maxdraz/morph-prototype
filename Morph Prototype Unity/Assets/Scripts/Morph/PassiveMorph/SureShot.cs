@@ -7,9 +7,9 @@ public class SureShot : PassiveMorph
     private DamageHandler damageHandler;
     [SerializeField] private int rangedDamageStatBonus = 5;
     [SerializeField] private bool unlockExpandedReserves = true;
-    [SerializeField] private float maxEnergyStatBonus = 5;
+    [SerializeField] private float maxEnergyStatBonus = .2f;
 
-    Energy energy;
+    [SerializeField] private Energy energy;
     Stats stats;
 
     private void OnEnable()

@@ -78,9 +78,9 @@ public class Energy : MonoBehaviour
 
     public void AddEnergy(float amount)
     {
-        totalMaxEnergy = Mathf.Min(currentEnergy + amount, totalMaxEnergy);
+        currentEnergy = Mathf.Min(currentEnergy + amount, totalMaxEnergy);
 
-        T_UpdateEnergyBar();
+        //T_UpdateEnergyBar();
     }
 
     public void RefundEnergy(float amountSpent, float amountToRefund)
@@ -102,7 +102,7 @@ public class Energy : MonoBehaviour
     {
 
 
-        totalMaxEnergy = Mathf.Max(0, totalMaxEnergy - amount);
+        currentEnergy = Mathf.Max(0, currentEnergy - amount);
         energyRegenOnCooldown = true;
         T_UpdateEnergyBar();
 

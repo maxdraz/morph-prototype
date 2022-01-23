@@ -57,12 +57,12 @@ public class Health : MonoBehaviour
 
     public void SubtractHP(float amount)
     {
-        baseMaxHealth -= amount;
-        baseMaxHealth = Mathf.Max(0, baseMaxHealth);
+        
+        currentHealth = Mathf.Max(0, currentHealth - amount);
         
         OnHealthChanged();
         
-        if (baseMaxHealth <= 0)
+        if (currentHealth == 0)
         {
             Die();
         }     
@@ -70,8 +70,8 @@ public class Health : MonoBehaviour
 
     public void AddHP(float amount)
     {
-        baseMaxHealth += amount* (1 + healingPercentageBonus);
-        baseMaxHealth = Mathf.Min(baseMaxHealth, maxHealth);
+        float amountToHeal = amount* (1 + healingPercentageBonus);
+        currentHealth = Mathf.Min(currentHealth + amountToHeal, maxHealth);
 
         OnHealthChanged();
     }
@@ -84,9 +84,9 @@ public class Health : MonoBehaviour
         AddHP(healthToHeal);
     }
 
-    public IEnumerator HealOverTime(int amount, int duration) 
+    public IEnumerator HealOverTime(float amount, int duration) 
     {
-        int amountToHealPerSecond = amount / duration;
+        float amountToHealPerSecond = amount / duration;
         int secondsRemaining = duration;
         yield return new WaitForSeconds(1);
         secondsRemaining--;

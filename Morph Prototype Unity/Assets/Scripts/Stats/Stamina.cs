@@ -70,24 +70,17 @@ public class Stamina : MonoBehaviour
         totalMaxStamina = baseMaxStamina * (1 + maxStaminaBonus);
         currentStamina = totalMaxStamina;
 
-        T_SetUpStaminabar();
+        //T_SetUpStaminabar();
     }
 
     public void AddStamina(float amount)
     {
-        totalMaxStamina = Mathf.Min(currentStamina + amount, totalMaxStamina);
+        currentStamina = Mathf.Min(currentStamina + amount, totalMaxStamina);
 
         T_UpdateStaminaBar();
     }
 
-    public void RefundStamina(float amountSpent, float amountToRefund)
-    {
-        float staminaToRefund = amountSpent * amountToRefund;
-         
-
-        AddStamina(staminaToRefund);
-
-    }
+    
 
     public float StaminaAsPercentage()
     {
@@ -101,7 +94,7 @@ public class Stamina : MonoBehaviour
     {
         
 
-        totalMaxStamina = Mathf.Max(0, totalMaxStamina - amount);
+        currentStamina = Mathf.Max(0, currentStamina - amount);
         staminaRegenOnCooldown = true;
         T_UpdateStaminaBar();
 

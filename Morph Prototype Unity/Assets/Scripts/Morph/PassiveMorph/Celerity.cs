@@ -9,8 +9,8 @@ public class Celerity : PassiveMorph
     [SerializeField] private bool unlockGraceful = true;
     [SerializeField] private float mobilityStaminaCostReduction = 5;
 
-    Movement movement;
-    Stamina stamina;
+    [SerializeField] private Movement movement;
+    [SerializeField] private Stamina stamina;
 
     private void OnEnable()
     {

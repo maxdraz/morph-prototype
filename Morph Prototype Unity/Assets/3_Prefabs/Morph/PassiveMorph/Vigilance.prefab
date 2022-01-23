@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23f4dd670163a3741809d7c2ab5d12b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  perceptionStatBonus: 5
-  stealthStatBonus: 5
+  perceptionStatBonus: 100
+  stealthStatBonus: 100
   unlockHeatVision: 1
 --- !u!114 &4842231703207490065
 MonoBehaviour:

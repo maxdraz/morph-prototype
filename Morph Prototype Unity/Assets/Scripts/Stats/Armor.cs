@@ -46,13 +46,12 @@ public class Armor : MonoBehaviour
         baseMaxArmor = stats ? stats.MaxArmour : 100; 
         maxArmor = (baseMaxArmor * (1+bonusPercentMaxArmor))+ bonusFlatMaxArmor;
 
-        float armourRemainder = maxArmor % 100;
-        maxArmor -= armourRemainder;
+        float armorRemainder = maxArmor % 100;
+        maxArmor -= armorRemainder;
         currentArmor = maxArmor;
 
         armorSegments = (int)maxArmor / 100;
 
-        //float armourBarSize = (healthBarSize / armourSegments) * 2;
 
         
 
@@ -61,25 +60,18 @@ public class Armor : MonoBehaviour
 
     private void T_SetUpArmorbar()
     {
-        armorBar = transform.Find("HealthBarCanvas").Find("ArmourBar");
+        armorBar = transform.Find("HealthBarCanvas").Find("ArmorBar");
         armorBar.gameObject.SetActive(false);
 
         for (int i = 1; i <= armorSegments; i++)
         {
-            GameObject newArmourSegment = Instantiate(armorSegment, armorBar.transform);
-            newArmourSegment.transform.localPosition = new Vector3(0, 0, 0);
-            newArmourSegment.transform.localScale = new Vector3(.04f / armorSegments, .018f, 1f);
+            GameObject newArmorSegment = Instantiate(armorSegment, armorBar.transform);
+            newArmorSegment.transform.localPosition = new Vector3(0, 0, 0);
+            newArmorSegment.transform.localScale = new Vector3(.04f / armorSegments, .018f, 1f);
         }
     }
 
-    //private void T_UpdateArmourBar()
-    //{
-        // health bar
-       // armourBar.gameObject.SetActive(true);
-       // healthBar.fillAmount = currentHealth / stats.MaxHealth;
-       // if (hideArmourBarAfterTime != null) StopCoroutine(hideArmourBarAfterTime);
-       // hideArmourBarAfterTime = StartCoroutine(HideArmourBarAfterTimeCoroutine(2));
-    //}
+    
 
     private IEnumerator HideArmorBarAfterTimeCoroutine(float t)
     {
