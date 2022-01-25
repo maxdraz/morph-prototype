@@ -18,9 +18,9 @@ public class Recovery : PassiveMorph
 
     private void OnEnable()
     {
+        velocity = GetComponentInParent<Velocity>();
         stamina = GetComponent<Stamina>();
         energy = GetComponent<Energy>();
-        velocity = GetComponentInParent<Velocity>();
         StartCoroutine(AssignDamageHandlerCoroutine());
         ChangeStaminaEnergyRegenStat(staminaRegenBonus, energyRegenBonus);
     }

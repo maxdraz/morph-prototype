@@ -14,14 +14,18 @@ public class Stealth : MonoBehaviour
     Rigidbody rb;
     private bool detected;
     float detectionAmount;
+    private GameObject detectionBar;
     public RectTransform detectionBarRT;
+
+    private Coroutine hideDetectionBarAfterTime;
 
     // Start is called before the first frame update
     void Start()
     {
         if (transform.parent.name == "Player") 
         {
-            detectionBarRT = GameObject.Find("Stealth Detection Bar Fill").GetComponent<RectTransform>();
+            detectionBar = GameObject.Find("Stealth Detection Bar");
+            detectionBarRT = detectionBar.GetComponentInChildren<RectTransform>();
             detectionBarRT.sizeDelta = new Vector2(2, 0);
         }
 
@@ -40,6 +44,11 @@ public class Stealth : MonoBehaviour
             stealthMode = false;
         }
 
+        if (detectionAmount == 0 && detectionBar.activeSelf == true) 
+        {
+            StartCoroutine("HideDetectionBarAfterTimeCoroutine");
+        }
+
         if (!detected)
         {
             detectionAmount -= Time.deltaTime * 2;
@@ -55,6 +64,7 @@ public class Stealth : MonoBehaviour
             else
             {
                 detectionBarRT.sizeDelta = new Vector2(2, detectionAmount / 10);
+                detectionBar.SetActive(true);
             }
         }
 
@@ -112,5 +122,11 @@ public class Stealth : MonoBehaviour
     {
         detectionAmount += detectionToAdd;
         return detectionAmount;
+    }
+
+    private IEnumerator HideDetectionBarAfterTimeCoroutine(float t)
+    {
+        yield return new WaitForSeconds(t);
+        detectionBar.gameObject.SetActive(false);
     }
 }

@@ -14,8 +14,8 @@ public class Vigilance : PassiveMorph
 
     private void OnEnable()
     {
-        stats = GetComponent<Stats>();
         perception = GetComponent<Perception>();
+        stats = GetComponent<Stats>();
 
         StartCoroutine(AssignDamageHandlerCoroutine());
         ChangePerceptionStat(perceptionStatBonus);
