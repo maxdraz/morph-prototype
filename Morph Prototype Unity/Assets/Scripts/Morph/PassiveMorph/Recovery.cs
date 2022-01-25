@@ -14,13 +14,13 @@ public class Recovery : PassiveMorph
 
     Stamina stamina;
     Energy energy;
-    Rigidbody rb;
+    public Velocity velocity;
 
     private void OnEnable()
     {
         stamina = GetComponent<Stamina>();
         energy = GetComponent<Energy>();
-        rb = transform.parent.gameObject.GetComponent<Rigidbody>();
+        velocity = GetComponentInParent<Velocity>();
         StartCoroutine(AssignDamageHandlerCoroutine());
         ChangeStaminaEnergyRegenStat(staminaRegenBonus, energyRegenBonus);
     }
@@ -45,7 +45,7 @@ public class Recovery : PassiveMorph
     {
         if (unlockRecuperate) 
         {
-            if (rb.velocity.magnitude == 0) 
+            if (velocity.CurrentVelocity.magnitude == 0) 
             {
                 recuperateTimer = new Timer(recuperateTimerDuration, false);
                 recuperateTimer.Update(Time.deltaTime);

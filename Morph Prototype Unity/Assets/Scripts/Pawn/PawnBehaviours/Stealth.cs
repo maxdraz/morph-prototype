@@ -14,17 +14,22 @@ public class Stealth : MonoBehaviour
     Rigidbody rb;
     private bool detected;
     float detectionAmount;
-    public Image detectionBar;
-    RectTransform rt;
+    public RectTransform detectionBarRT;
 
     // Start is called before the first frame update
     void Start()
     {
-        RectTransform rt = detectionBar.GetComponent<RectTransform>();
-        rt.sizeDelta = new Vector2(2, 0);
+        if (transform.parent.name == "Player") 
+        {
+            detectionBarRT = GameObject.Find("Stealth Detection Bar Fill").GetComponent<RectTransform>();
+            detectionBarRT.sizeDelta = new Vector2(2, 0);
+        }
+
+        
 
         detectionAmount = 0f;
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponentInParent<Rigidbody>();
+        rb = GetComponentInParent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -35,9 +40,9 @@ public class Stealth : MonoBehaviour
             stealthMode = false;
         }
 
-        if (!detected) 
+        if (!detected)
         {
-            detectionAmount -= Time.deltaTime*2;
+            detectionAmount -= Time.deltaTime * 2;
         }
 
         if (!detected) {
@@ -49,12 +54,11 @@ public class Stealth : MonoBehaviour
             }
             else
             {
-                RectTransform rt = detectionBar.GetComponent<RectTransform>();
-                rt.sizeDelta = new Vector2(2, detectionAmount / 10);
+                detectionBarRT.sizeDelta = new Vector2(2, detectionAmount / 10);
             }
         }
 
-        
+
 
         if (Input.GetKeyDown("left ctrl"))
         {
@@ -97,6 +101,11 @@ public class Stealth : MonoBehaviour
 
         finalStealthValue = currentStealth;
 
+    }
+
+    public void SetMaxStealth(float totalStealth)
+    {
+        maxStealth = totalStealth;
     }
 
     public float AddDetection(float detectionToAdd) 

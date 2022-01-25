@@ -10,7 +10,7 @@ public class Vigilance : PassiveMorph
     [SerializeField] private bool unlockHeatVision = true;
 
     Stats stats;
-    Perception perception;
+    public Perception perception;
 
     private void OnEnable()
     {
@@ -19,7 +19,7 @@ public class Vigilance : PassiveMorph
 
         StartCoroutine(AssignDamageHandlerCoroutine());
         ChangePerceptionStat(perceptionStatBonus);
-        //ChangeStealthStat(stealthStatBonus);
+        ChangeStealthStat(stealthStatBonus);
         
     }
 
@@ -30,7 +30,7 @@ public class Vigilance : PassiveMorph
 
         UnsubscribeFromEvents();
         ChangePerceptionStat(-perceptionStatBonus);
-        //ChangeStealthStat(-stealthStatBonus);
+        ChangeStealthStat(-stealthStatBonus);
     }
 
     // implement
@@ -65,11 +65,11 @@ public class Vigilance : PassiveMorph
         }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (unlockHeatVision) 
         {
-            Collider[] hitColliders = Physics.OverlapSphere(transform.position, perception.perception / 10);
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position, perception.maxPerception / 10);
 
             foreach (var hitCollider in hitColliders)
             {

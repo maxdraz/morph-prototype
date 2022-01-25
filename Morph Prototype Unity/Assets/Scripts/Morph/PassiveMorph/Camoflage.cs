@@ -7,7 +7,7 @@ public class Camoflage : PassiveMorph
     private DamageHandler damageHandler;
     [SerializeField] private int stealthStatBonus = 100;
     [SerializeField] private bool unlockSneaky = true;
-    float stealthBonusWhileMoving = .2f;
+    public float stealthBonusWhileMoving = .2f;
     Stats stats;
     Stealth stealth;
 

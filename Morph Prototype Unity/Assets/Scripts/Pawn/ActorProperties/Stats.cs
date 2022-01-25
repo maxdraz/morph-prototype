@@ -343,6 +343,14 @@ public class Stats : MonoBehaviour
             addedIntimidation += buffAmount;
 
         }
+
+        if (statName == "perception")
+        {
+
+            totalPerception += buffAmount;
+            addedPerception += buffAmount;
+
+        }
     }
 
     
@@ -687,9 +695,16 @@ public class Stats : MonoBehaviour
         totalAgility = baseAgility + addedAgility;
         totalFortitude = baseFortitude + addedFortitude;
         totalIntelligence = baseIntelligence + addedIntelligence;
+
         totalIntimidation = baseIntimidation + addedIntimidation;
+        GetComponent<Intimidation>().SetMaxIntimidation(totalIntimidation);
+
         totalPerception = basePerception + addedPerception;
+        GetComponent<Perception>().SetMaxPerception(totalPerception);
+
         totalStealth = baseStealth + addedStealth;
+        GetComponent<Stealth>().SetMaxStealth(totalStealth);
+
         totalToughness = baseToughness + addedToughness;
 
         FindAllModifiers();

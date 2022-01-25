@@ -7,9 +7,10 @@ public class Perception : MonoBehaviour
 {
 
     Vector3 center;
-    public float perception;
-    float currentPerception;
-    public float globalPerceptionModifier;
+    public float maxPerception;
+    public float perceptionModifier;
+    private float currentPerception;
+    float globalPerceptionModifier;    
     public float perceptionToApply;
 
     bool detecting;
@@ -22,7 +23,7 @@ public class Perception : MonoBehaviour
 
     public void Start()
     {
-        if (GetComponent<VisionCone>() == true) 
+        if (GetComponent<VisionCone>() == true)
         {
             visionCone = GetComponent<VisionCone>();
         }
@@ -33,16 +34,20 @@ public class Perception : MonoBehaviour
         }
 
         detecting = true;
+        StartCoroutine("PerceptionCheck");
     }
 
-
-    private void FixedUpdate()
+    public void SetMaxPerception(float totalPerception)
     {
-        currentPerception = perception;
+        maxPerception = totalPerception;
+    }
+
+    IEnumerator PerceptionCheck()
+    {
+        yield return new WaitForSeconds(.5f);
+
+        currentPerception = maxPerception * (1 + perceptionModifier);
         center = transform.position;
-
-
-
 
         Collider[] hitColliders = Physics.OverlapSphere(center, currentPerception / globalPerceptionModifier);
 
@@ -58,7 +63,7 @@ public class Perception : MonoBehaviour
 
                 if (visionCone.playerInSight == true)
                 {
-                    perceptionToApply = currentPerception / (Mathf.Sqrt(dist)/2);
+                    perceptionToApply = currentPerception / (Mathf.Sqrt(dist) / 2);
                     //Debug.Log("Percieving with LoS, " + transform.name + " is trying to detect you with " + perceptionToApply + " perception against your " + enemyStealthValue + " stealth");
                 }
                 else
@@ -72,7 +77,7 @@ public class Perception : MonoBehaviour
                 //Enemy is being detected quickly
                 if (perceptionToApply > enemyStealthValue * 3)
                 {
-                    if (detecting) 
+                    if (detecting)
                     {
                         //hitCollider.gameObject.GetComponent<Stealth>().AddDetection(3f);
                         simpleScanningBehaviour.StartCoroutine("Investigate", hitCollider.gameObject.transform.position);
@@ -91,13 +96,16 @@ public class Perception : MonoBehaviour
                         {
                             //hitCollider.gameObject.GetComponent<Stealth>().AddDetection(1f);
                             //Debug.Log("You are being detected slowly");
- 
+
                         }
                     }
                 }
             }
         }
+        StartCoroutine("PerceptionCheck");
     }
+
+    
     
     
 
