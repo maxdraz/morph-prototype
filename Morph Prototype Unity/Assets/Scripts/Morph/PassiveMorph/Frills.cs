@@ -17,6 +17,11 @@ public class Frills : PassiveMorph
 
         StartCoroutine(AssignDamageHandlerCoroutine());
         ChangeIntimidationStat(intimidationStatBonus);
+
+        if (unlockFearless)
+        {
+            Fearless(intimidationDefenseBonus);
+        }
     }
 
     private void OnDisable()
@@ -25,6 +30,11 @@ public class Frills : PassiveMorph
 
         UnsubscribeFromEvents();
         ChangeIntimidationStat(-intimidationStatBonus);
+
+        if (unlockFearless) 
+        {
+            Fearless(-intimidationDefenseBonus);
+        }
     }
 
     // implement
@@ -35,7 +45,7 @@ public class Frills : PassiveMorph
 
     private void Fearless(float amount) 
     {
-    //GetComponent<Intimidation>().defenseModifier += amount;
+        GetComponent<Intimidation>().defenseModifier += amount;
     }
 
     private IEnumerator AssignDamageHandlerCoroutine()

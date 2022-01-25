@@ -49,10 +49,16 @@ MonoBehaviour:
   unlockHardiness: 1
   resistType1: 
   resistType2: 
-  resistArray:
+  globalResistList:
   - fire
-  - electric
   - ice
+  - electric
+  - poison
+  - acid
+  myResistList:
+  - fire
+  - ice
+  - electric
   - poison
   - acid
 --- !u!114 &5015957573999694308

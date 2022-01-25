@@ -14,7 +14,7 @@ public class Perception : MonoBehaviour
     public float perceptionToApply;
 
     bool detecting;
-
+    bool AI;
 
     public bool showGizmo;
 
@@ -23,9 +23,12 @@ public class Perception : MonoBehaviour
 
     public void Start()
     {
+        AI = false;
+
         if (GetComponent<VisionCone>() == true)
         {
             visionCone = GetComponent<VisionCone>();
+            AI = true;
         }
 
         if (GetComponent<SimpleScanningBehaviour>() == true)
@@ -61,28 +64,39 @@ public class Perception : MonoBehaviour
                 float enemyStealthValue = hitCollider.gameObject.GetComponent<Stealth>().finalStealthValue;
                 float dist = Vector3.Distance(transform.position, hitCollider.transform.position);
 
-                if (visionCone.playerInSight == true)
+                if (AI == true)
                 {
-                    perceptionToApply = currentPerception / (Mathf.Sqrt(dist) / 2);
-                    //Debug.Log("Percieving with LoS, " + transform.name + " is trying to detect you with " + perceptionToApply + " perception against your " + enemyStealthValue + " stealth");
+                    if (visionCone.playerInSight == true)
+                    {
+                        perceptionToApply = currentPerception / (Mathf.Sqrt(dist) / 2);
+                        //Debug.Log("Percieving with LoS, " + transform.name + " is trying to detect you with " + perceptionToApply + " perception against your " + enemyStealthValue + " stealth");
+                    }
+                    else
+                    {
+                        perceptionToApply = currentPerception / (Mathf.Sqrt(dist));
+                        //Debug.Log("Percieving without LoS, " + transform.name + " is trying to detect you with " + perceptionToApply + " perception against your " + enemyStealthValue + " stealth");
+                    }
                 }
-                else
+
+                else 
                 {
+
                     perceptionToApply = currentPerception / (Mathf.Sqrt(dist));
                     //Debug.Log("Percieving without LoS, " + transform.name + " is trying to detect you with " + perceptionToApply + " perception against your " + enemyStealthValue + " stealth");
                 }
-
-
 
                 //Enemy is being detected quickly
                 if (perceptionToApply > enemyStealthValue * 3)
                 {
                     if (detecting)
                     {
-                        //hitCollider.gameObject.GetComponent<Stealth>().AddDetection(3f);
-                        simpleScanningBehaviour.StartCoroutine("Investigate", hitCollider.gameObject.transform.position);
-                        //Debug.Log("You are being detected quickly");
+                        if (AI == true) 
+                        {
+                            simpleScanningBehaviour.StartCoroutine("Investigate", hitCollider.gameObject.transform.position);
+                        }
 
+                        //hitCollider.gameObject.GetComponent<Stealth>().AddDetection(3f);
+                        //Debug.Log("You are being detected quickly");
                     }
 
 

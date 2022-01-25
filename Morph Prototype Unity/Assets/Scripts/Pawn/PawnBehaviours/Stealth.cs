@@ -24,7 +24,7 @@ public class Stealth : MonoBehaviour
     {
         if (transform.parent.name == "Player") 
         {
-            detectionBar = GameObject.Find("Stealth Detection Bar");
+            detectionBar = GameObject.Find("UI").transform.Find("Gameplay").transform.Find("Stealth Detection Bar").gameObject;
             detectionBarRT = detectionBar.GetComponentInChildren<RectTransform>();
             detectionBarRT.sizeDelta = new Vector2(2, 0);
         }

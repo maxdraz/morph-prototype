@@ -6,16 +6,23 @@ public class Agile : PassiveMorph
 {
     private DamageHandler damageHandler;
     [SerializeField] private int agilityStatBonus = 5;
-    [SerializeField] private bool unlockSecondary = true;
+    [SerializeField] private bool unlockCatLike = true;
 
     Stats stats;
+    Jump jump;
 
     private void OnEnable()
     {
         stats = GetComponent<Stats>();
+        jump = GetComponentInParent<Jump>();
 
         StartCoroutine(AssignDamageHandlerCoroutine());
         ChangeAgilityStat(agilityStatBonus);
+
+        if (unlockCatLike)
+        {
+            CatLike(1);
+        }
     }
 
     private void OnDisable()
@@ -24,6 +31,11 @@ public class Agile : PassiveMorph
 
         UnsubscribeFromEvents();
         ChangeAgilityStat(-agilityStatBonus);
+
+        if (unlockCatLike) 
+        {
+            CatLike(-1);
+        }
     }
 
     // implement
@@ -32,7 +44,10 @@ public class Agile : PassiveMorph
         stats.FlatStatChange("agility", amountToAdd);
     }
 
-    
+    private void CatLike(int jumps) 
+    {
+        jump.AddJumps(jumps);
+    }
 
     private IEnumerator AssignDamageHandlerCoroutine()
     {

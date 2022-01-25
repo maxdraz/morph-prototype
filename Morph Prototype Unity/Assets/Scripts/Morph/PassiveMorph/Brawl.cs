@@ -7,7 +7,7 @@ public class Brawl : PassiveMorph
     private DamageHandler damageHandler;
     [SerializeField] private int meleeDamageStatBonus = 5;
     [SerializeField] private bool unlockRage = true;
-    [SerializeField] private float bonusAttackSpeed = 5;
+    [SerializeField] private float bonusAttackSpeed = .06f;
 
 
     Stats stats;
@@ -44,7 +44,17 @@ public class Brawl : PassiveMorph
         {
             if (health.CurrentHealthAsPercentage <= 30) 
             {
-                //need stats script to have a function for recieving stats
+                //add bonusAttackSpeed to attackhandler
+            }
+
+            if (health.CurrentHealthAsPercentage <= 20)
+            {
+                //add bonusAttackSpeed to attackhandler
+            }
+
+            if (health.CurrentHealthAsPercentage <= 10)
+            {
+                //add bonusAttackSpeed to attackhandler
             }
         }
     }

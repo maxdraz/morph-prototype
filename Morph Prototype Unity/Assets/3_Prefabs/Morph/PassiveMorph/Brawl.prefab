@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meleeDamageStatBonus: 5
   unlockRage: 1
-  bonusAttackSpeed: 5
+  bonusAttackSpeed: 0.2
 --- !u!114 &8986805679102061138
 MonoBehaviour:
   m_ObjectHideFlags: 0

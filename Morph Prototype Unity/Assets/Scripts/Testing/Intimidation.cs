@@ -6,7 +6,8 @@ public class Intimidation : MonoBehaviour
 {
     public float maxIntimidation;
     public float currentIntimidation;
-    public float myIntimidationModifier;
+    public float defenseModifier;
+    public float attackModifier;
     public bool showGizmo;
 
     public int maxFear;
@@ -18,7 +19,8 @@ public class Intimidation : MonoBehaviour
     void Start()
     {
 
-        myIntimidationModifier = 1f;
+        defenseModifier += 1f;
+        attackModifier += 1f;
 
         StartCoroutine("IntimidationCheck");
     }
@@ -41,14 +43,7 @@ public class Intimidation : MonoBehaviour
 
     }
 
-    public float SetIntimidationModifier(float intimidationModifier)
-    {
-
-        //Debug.Log("adding " + intimidationModifier + " to myIntimidationModifier of " + myIntimidationModifier);
-        myIntimidationModifier += intimidationModifier;
-
-        return myIntimidationModifier;
-    }
+    
 
     public int AddFear(int fearToAdd)
     {
@@ -82,15 +77,15 @@ public class Intimidation : MonoBehaviour
             {
 
                 float enemyIntimidationValue = hitCollider.gameObject.GetComponent<Intimidation>().currentIntimidation;
-                float intimidationToApply = currentIntimidation / (this.gameObject.transform.position - hitCollider.gameObject.transform.position).magnitude;
+                float intimidationToApply = (currentIntimidation / (this.gameObject.transform.position - hitCollider.gameObject.transform.position).magnitude) * attackModifier;
 
-                if (intimidationToApply > enemyIntimidationValue + (enemyIntimidationValue * .1))
+                if (intimidationToApply > enemyIntimidationValue + (enemyIntimidationValue * .1) + (enemyIntimidationValue * defenseModifier))
                 {
                     //Enemy has been intimidated, they suffer 1 fear
                     hitCollider.gameObject.GetComponent<Intimidation>().AddFear(1);
 
 
-                    if (intimidationToApply > enemyIntimidationValue * 2)
+                    if (intimidationToApply > (enemyIntimidationValue + (enemyIntimidationValue * defenseModifier)) * 2)
                     {
                         //Enemy has been severely intimidated, they suffer 2 fear
                         hitCollider.gameObject.GetComponent<Intimidation>().AddFear(2);

@@ -12,10 +12,17 @@ public class Jump : MonoBehaviour
     
     private Velocity velocity;
     private float jumpsLeft;
+
     // Start is called before the first frame update
     void Awake()
     {
        velocity = GetComponent<Velocity>();
+    }
+
+    public void AddJumps(int extraJumps) 
+    {
+        maxJumps += extraJumps;
+        Debug.Log("jumps = " + maxJumps);
     }
 
     private void Update()
