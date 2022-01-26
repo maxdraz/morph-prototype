@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class EndlessAggression : PassiveMorph
 {
-    [SerializeField] private RadialProjectileSpawner explosionSpawner; 
+    [SerializeField] private RadialProjectileSpawner explosionSpawner;
     private DamageHandler damageHandler;
-    [SerializeField] private float meleeDamageStatBonus = 5;
+    [SerializeField] private float maxStaminaStatBonus = .15f;
     [SerializeField] private bool unlockExplosiveAnger = true;
 
     [SerializeField] private float endlessAggressionEnergyGain;
@@ -15,13 +15,13 @@ public class EndlessAggression : PassiveMorph
 
     Stamina stamina;
     Energy energy;
-        
+
     bool canGainExplosiveAngerStacks = true;
     int currentExplosiveAngerStacks;
     [SerializeField] private int explosiveAngerStackLimit;
     float explosiveAngerStackDuration = 2;
     [SerializeField] private float explosiveAngerCooldownPeriod;
-    
+
 
     private void OnEnable()
     {
@@ -29,7 +29,8 @@ public class EndlessAggression : PassiveMorph
         energy = GetComponent<Energy>();
 
         StartCoroutine(AssignDamageHandlerCoroutine());
-        ChangeMeleeDamageStat(meleeDamageStatBonus);
+        ChangeMaxStaminaStat(maxStaminaStatBonus);
+
     }
 
     private void OnDisable()
@@ -38,14 +39,21 @@ public class EndlessAggression : PassiveMorph
         energy = GetComponent<Energy>();
 
         UnsubscribeFromEvents();
-        ChangeMeleeDamageStat(-meleeDamageStatBonus);
+        ChangeMaxStaminaStat(-maxStaminaStatBonus);
     }
 
-    // implement
-    private void ChangeMeleeDamageStat(float amountToAdd)
+    private void ChangeMaxStaminaStat(float maxStaminaBonus)
     {
-
+        stamina.maxStaminaBonus += maxStaminaBonus;
     }
+
+    //private void Update()
+    //{
+        //if (Input.GetKeyDown("p")) 
+        //{
+         //   explosionSpawner.Spawn(transform);
+        //}
+    //}
 
     private void OnDamageHasBeenDealt(in DamageTakenSummary damageTakenSummary)
     {
@@ -53,11 +61,6 @@ public class EndlessAggression : PassiveMorph
         if (damageTakenSummary.IsCriticalHit)
         {
             GainStaminaAndEnergy();
-
-            if (unlockExplosiveAnger)
-            {
-                ExplosiveAnger();
-            }
         }
     }
 
@@ -71,6 +74,14 @@ public class EndlessAggression : PassiveMorph
 
         energy.AddEnergy(endlessAggressionEnergyGain * energyGainMultiplier);
         stamina.AddStamina(endlessAggressionStaminaGain * staminaGainMultiplier);
+
+        if (unlockExplosiveAnger) 
+        {
+            if (currentEnergyPercentage == 100)
+            {
+                ExplosiveAnger();
+            }
+        }
     }
 
     void ExplosiveAnger()
@@ -82,7 +93,6 @@ public class EndlessAggression : PassiveMorph
             canGainExplosiveAngerStacks = false;
             StopCoroutine("ExplosiveAngerCooldown");
             currentExplosiveAngerStacks = 0;
-            //ExplosiveAngerExplosion(transform.position, explosiveAngerExplosionRadius);
             explosionSpawner.Spawn(transform);
         }
 

@@ -6,9 +6,10 @@ public class ShadowBoxingSchool : PassiveMorph
 {
 
     private DamageHandler damageHandler;
-    [SerializeField] private float meleeDamageStatBonus = 5;
+    [SerializeField] private int stealthStatBonus = 50;
     [SerializeField] private bool unlockNinjaTraining = true;
-    [SerializeField] private float shadowBoxingbonusDamageMultiplier;
+    [SerializeField] private float shadowBoxingbonusDamageMultiplier = 5;
+    
     Stats stats;
 
     [SerializeField] private float ninjaTrainingCritChanceToStealthMultiplicationFactor;
@@ -17,9 +18,17 @@ public class ShadowBoxingSchool : PassiveMorph
     private void OnEnable()
     {
         stats = GetComponent<Stats>();
+        ChangeStealthStat(stealthStatBonus);
 
         StartCoroutine(AssignDamageHandlerCoroutine());
-        ChangeMeleeDamageStat(meleeDamageStatBonus);
+
+        if (unlockNinjaTraining)
+        {
+            NinjaTraining();
+        }
+
+        float shadowBoxingSchoolBonusDamage = Mathf.Sqrt(stats.totalStealth) * shadowBoxingbonusDamageMultiplier;
+        
     }
 
     private void OnDisable()
@@ -27,18 +36,20 @@ public class ShadowBoxingSchool : PassiveMorph
         stats = GetComponent<Stats>();
 
         UnsubscribeFromEvents();
-        ChangeMeleeDamageStat(-meleeDamageStatBonus);
+        ChangeStealthStat(-stealthStatBonus);
+
+        
     }
 
     // implement
-    private void ChangeMeleeDamageStat(float amountToAdd)
+    private void ChangeStealthStat(int amountToAdd)
     {
-
+        stats.FlatStatChange("stealth", amountToAdd);
     }
 
     private void OnDamageAboutToBeDealt(in DamageTakenSummary damageTakenSummary)
     {
-        //float shadowBoxingSchoolBonusDamage = Mathf.Sqrt(stats.stealth) * shadowBoxingbonusDamageMultiplier;
+        
 
         //add shadowBoxingSchoolBonusDamage to the bonus flat damage value in the physical damage formula
 
@@ -64,11 +75,11 @@ public class ShadowBoxingSchool : PassiveMorph
 
     private void NinjaTraining() 
     {
-        //float bonusStealth = stats.stealth * (critChance * ninjaTrainingCritChanceToStealthMultiplicationFactor);
-        //Send this value out to modify current stealth value
-
         //float bonusCritChance = Mathf.Sqrt(stats.agility) * ninjaTrainingAgilityToCritChanceMultiplicationFactor;
         //Send this value out to modify current crit chance
+
+        //float bonusStealth = stats.stealth * (critChance * ninjaTrainingCritChanceToStealthMultiplicationFactor);
+        //Send this value out to modify current stealth value
     }
 
     private void UnsubscribeFromEvents()

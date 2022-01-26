@@ -127,7 +127,8 @@ public class Stats : MonoBehaviour
     public float ToughnessModifier => toughnessModifier;
     public float BaseMoveSpeed => baseMoveSpeed;
     public float BaseAttackSpeed => baseAttackSpeed;
-
+    public int intelligence => baseIntelligence;
+    public int perception => basePerception;
 
     private void Reset()
     {

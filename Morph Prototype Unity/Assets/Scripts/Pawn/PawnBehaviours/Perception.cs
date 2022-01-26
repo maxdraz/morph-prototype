@@ -21,6 +21,8 @@ public class Perception : MonoBehaviour
     VisionCone visionCone;
     SimpleScanningBehaviour simpleScanningBehaviour;
 
+    public float CurrentPerception => currentPerception;
+
     public void Start()
     {
         AI = false;
