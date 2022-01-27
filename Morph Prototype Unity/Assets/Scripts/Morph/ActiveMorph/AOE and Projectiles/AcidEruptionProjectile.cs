@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AcidVortex : MonoBehaviour
+public class AcidEruptionProjectile : MonoBehaviour
 {
     DamageHandler damageHandler;
     SphereCollider collider;
     float delayPeriod;
 
     public float acidDamageToDeal;
-    public float knockBackForce;
+    public float knockUpForce;
 
     void Start()
     {
@@ -18,7 +18,7 @@ public class AcidVortex : MonoBehaviour
         StartCoroutine("TriggerActivation");
     }
 
-    IEnumerator TriggerActivation()
+    IEnumerator TriggerActivation() 
     {
         yield return new WaitForSeconds(delayPeriod);
 
@@ -33,14 +33,15 @@ public class AcidVortex : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<DamageHandler>() == true)
+        if (other.GetComponent<DamageHandler>() == true) 
         {
-            other.GetComponent<DamageHandler>().ApplyDamage(new AcidDamageData(), damageHandler);
+            other.GetComponent<DamageHandler>().ApplyDamage(new AcidDamageData(),damageHandler);
         }
 
         if (other.GetComponent<Rigidbody>() == true)
         {
-            other.GetComponent<DamageHandler>().ApplyDamage(new KnockbackData(), damageHandler);
+            //Needs to be knockup
+            //other.GetComponent<DamageHandler>().ApplyDamage(new KnockbackData(), damageHandler);
         }
     }
 }

@@ -1,0 +1,57 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class AcidVortex : ActiveMorph
+{
+    [SerializeField] private GameObject acidVortexParticle;
+    [SerializeField] private float damage;
+    [SerializeField] private float explosionDelay;
+    DamageHandler damageHandler;
+
+    private void Start()
+    {
+        damageHandler = GetComponent<DamageHandler>();
+    }
+
+    public override bool ActivateIfConditionsMet()
+    {
+        if (base.ActivateIfConditionsMet())
+        {
+            SpawnChemicalCocktail();
+            Invoke("AcidVortexDamage", explosionDelay);
+            return true;
+        }
+        return false;
+    }
+
+    private void SpawnChemicalCocktail()
+    {
+        GameObject chemicalCocktail = Instantiate(acidVortexParticle, transform.position, transform.rotation);
+        chemicalCocktail.transform.parent = this.gameObject.transform;
+
+    }
+
+    private void AcidVortexDamage()
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 5);
+
+        foreach (var hitCollider in hitColliders)
+        {
+
+
+            if (hitCollider.gameObject.GetComponent<Stats>() == true)
+            {
+                if (hitCollider.GetComponentInParent<Velocity>().CurrentVelocity.y > 3)
+                {
+                    hitCollider.GetComponent<DamageHandler>().ApplyDamage(new AcidDamageData(damage * 2), damageHandler);
+                }
+                else 
+                {
+                    hitCollider.GetComponent<DamageHandler>().ApplyDamage(new AcidDamageData(damage), damageHandler);
+
+                }
+            }
+        }
+    }
+}

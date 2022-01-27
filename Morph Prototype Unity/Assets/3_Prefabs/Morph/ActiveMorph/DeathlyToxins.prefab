@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7572867079448245294
+--- !u!1 &1728466787265561278
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,41 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7496117658746622149}
-  - component: {fileID: 5495251259270181381}
-  - component: {fileID: 7563952886141033713}
-  - component: {fileID: 6395679527220462755}
-  - component: {fileID: 4691147730697523015}
-  - component: {fileID: 6139777812845566653}
+  - component: {fileID: 1728466787265561274}
+  - component: {fileID: 3568534367081581870}
+  - component: {fileID: 6746644680116058895}
+  - component: {fileID: 7862304371712769178}
+  - component: {fileID: 4530971573290688562}
+  - component: {fileID: 1728466787265561277}
   m_Layer: 0
-  m_Name: ChemicalCannon
+  m_Name: DeathlyToxins
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7496117658746622149
+--- !u!4 &1728466787265561274
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7572867079448245294}
+  m_GameObject: {fileID: 1728466787265561278}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 8475706846899881216}
+  m_Children:
+  - {fileID: 715904739009251205}
+  m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5495251259270181381
+--- !u!114 &3568534367081581870
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7572867079448245294}
+  m_GameObject: {fileID: 1728466787265561278}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca070c3b6534b8a47b9eeb7cc2a9559f, type: 3}
@@ -49,13 +50,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInvincible: 1
   damageNumberSet: {fileID: 0}
---- !u!114 &7563952886141033713
+--- !u!114 &6746644680116058895
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7572867079448245294}
+  m_GameObject: {fileID: 1728466787265561278}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3bc88bd60e4b2024ca95f144dd5d4dc7, type: 3}
@@ -69,106 +70,41 @@ MonoBehaviour:
   LimbWeaponMorph: {fileID: 0}
   HeadWeaponMorph: {fileID: 0}
   TailWeaponMorph: {fileID: 0}
---- !u!114 &6395679527220462755
+--- !u!114 &7862304371712769178
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7572867079448245294}
+  m_GameObject: {fileID: 1728466787265561278}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce19a24efc71e42408c5685a183642f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attackOrAbilityInProgress: 0
---- !u!114 &4691147730697523015
+--- !u!114 &4530971573290688562
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7572867079448245294}
+  m_GameObject: {fileID: 1728466787265561278}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f0002fccc3ddcb40902b7b0ae44cd8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6139777812845566653
+--- !u!114 &1728466787265561277
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7572867079448245294}
+  m_GameObject: {fileID: 1728466787265561278}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf369aa7bb7b7ea49aeb108a64617a14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  castTimer:
-    duration: 1
-    currentTime: 0
-    loop: 0
-  cooldown:
-    duration: 5
-    currentTime: 0
-    loop: 0
-  chemicalCannonSpawner:
-    projectilePrefab: {fileID: 9039021335273267706, guid: 31285851032f49d41af54b206cad707b, type: 3}
-    spawnPointOffsetLocal: {x: 0, y: 0, z: 0}
-    drawGizmos: 1
-    debugSphereRadius: 0.1
-    projectilesToSpawn: 1
-    radius: 1
-    radialOffset: 0
-    projectileDirectionRotation: 0
---- !u!1 &8475706846899881220
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8475706846899881216}
-  - component: {fileID: 8475706846899881343}
-  - component: {fileID: 6045666899893537428}
-  - component: {fileID: 4594683777964227765}
-  - component: {fileID: 1116885223593130784}
-  - component: {fileID: 6665964863559591816}
-  m_Layer: 0
-  m_Name: PoxShot
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8475706846899881216
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8475706846899881220}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 7496117658746622149}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8475706846899881343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8475706846899881220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 525c1dfcb66a6ff4cb3c0f0672cbf3b9, type: 3}
+  m_Script: {fileID: 11500000, guid: 437f23f1a12625349b532b022e5c2437, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   castTimer:
@@ -176,33 +112,60 @@ MonoBehaviour:
     currentTime: 0
     loop: 0
   cooldown:
-    duration: 1
+    duration: 0.7
     currentTime: 0
     loop: 0
-  poxShotSpawner:
-    projectilePrefab: {fileID: 8109351195646949467, guid: 83126d75d57030540aba373b7bdbba33, type: 3}
-    spawnPointOffsetLocal: {x: 0, y: 0, z: 2}
+  deathlyToxinsSpawner:
+    projectilePrefab: {fileID: 2661738403284565075, guid: b7b19989cf8c78c4ca0192c22a44f935, type: 3}
+    spawnPointOffsetLocal: {x: 0, y: 0, z: 0}
     drawGizmos: 1
     debugSphereRadius: 0.1
-    projectilesToSpawn: 25
-    radius: 0.05
-    arcAngle: 9.1
-  chemicalCannonSpawner:
-    projectilePrefab: {fileID: 9039021335273267706, guid: 31285851032f49d41af54b206cad707b, type: 3}
-    spawnPointOffsetLocal: {x: 0, y: 0, z: 1}
-    drawGizmos: 1
-    debugSphereRadius: 0.1
-    projectilesToSpawn: 2
+    projectilesToSpawn: 1
     radius: 1
     radialOffset: 0
     projectileDirectionRotation: 0
---- !u!114 &6045666899893537428
+--- !u!1 &8319123542210716316
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 715904739009251205}
+  - component: {fileID: 9006609429564577199}
+  - component: {fileID: 6069212295728577504}
+  - component: {fileID: 7205111323638803342}
+  - component: {fileID: 2919707442770911960}
+  - component: {fileID: 8319123542210716291}
+  m_Layer: 0
+  m_Name: ChemicalCocktail
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &715904739009251205
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8319123542210716316}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1728466787265561274}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9006609429564577199
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8475706846899881220}
+  m_GameObject: {fileID: 8319123542210716316}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca070c3b6534b8a47b9eeb7cc2a9559f, type: 3}
@@ -210,13 +173,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInvincible: 1
   damageNumberSet: {fileID: 0}
---- !u!114 &4594683777964227765
+--- !u!114 &6069212295728577504
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8475706846899881220}
+  m_GameObject: {fileID: 8319123542210716316}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3bc88bd60e4b2024ca95f144dd5d4dc7, type: 3}
@@ -230,28 +193,51 @@ MonoBehaviour:
   LimbWeaponMorph: {fileID: 0}
   HeadWeaponMorph: {fileID: 0}
   TailWeaponMorph: {fileID: 0}
---- !u!114 &1116885223593130784
+--- !u!114 &7205111323638803342
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8475706846899881220}
+  m_GameObject: {fileID: 8319123542210716316}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce19a24efc71e42408c5685a183642f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attackOrAbilityInProgress: 0
---- !u!114 &6665964863559591816
+--- !u!114 &2919707442770911960
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8475706846899881220}
+  m_GameObject: {fileID: 8319123542210716316}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f0002fccc3ddcb40902b7b0ae44cd8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8319123542210716291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8319123542210716316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90596e5423abd064aa6e59f32b725332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  castTimer:
+    duration: 3
+    currentTime: 0
+    loop: 0
+  cooldown:
+    duration: 10
+    currentTime: 0
+    loop: 0
+  chemicalCocktailParticle: {fileID: 6545929276689489570, guid: 84f20f68bcf5f264b9befb55a5fd2742, type: 3}
+  explosionDelay: 3
+  poisonStackModifier: 0.7

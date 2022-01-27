@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7572867079448245294
+--- !u!1 &3806134777556787839
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7496117658746622149}
-  - component: {fileID: 5495251259270181381}
-  - component: {fileID: 7563952886141033713}
-  - component: {fileID: 6395679527220462755}
-  - component: {fileID: 4691147730697523015}
-  - component: {fileID: 6139777812845566653}
+  - component: {fileID: 5642458600559150950}
+  - component: {fileID: 4277445669564061004}
+  - component: {fileID: 1412795268223662851}
+  - component: {fileID: 2620214488982743917}
+  - component: {fileID: 8008965643412693563}
+  - component: {fileID: 3806134777556787838}
   m_Layer: 0
-  m_Name: ChemicalCannon
+  m_Name: ViscousBlast
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7496117658746622149
+--- !u!4 &5642458600559150950
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7572867079448245294}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_GameObject: {fileID: 3806134777556787839}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 8475706846899881216}
+  m_Father: {fileID: 5791016419864937049}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5495251259270181381
+--- !u!114 &4277445669564061004
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7572867079448245294}
+  m_GameObject: {fileID: 3806134777556787839}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca070c3b6534b8a47b9eeb7cc2a9559f, type: 3}
@@ -49,13 +49,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInvincible: 1
   damageNumberSet: {fileID: 0}
---- !u!114 &7563952886141033713
+--- !u!114 &1412795268223662851
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7572867079448245294}
+  m_GameObject: {fileID: 3806134777556787839}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3bc88bd60e4b2024ca95f144dd5d4dc7, type: 3}
@@ -69,53 +69,53 @@ MonoBehaviour:
   LimbWeaponMorph: {fileID: 0}
   HeadWeaponMorph: {fileID: 0}
   TailWeaponMorph: {fileID: 0}
---- !u!114 &6395679527220462755
+--- !u!114 &2620214488982743917
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7572867079448245294}
+  m_GameObject: {fileID: 3806134777556787839}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce19a24efc71e42408c5685a183642f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attackOrAbilityInProgress: 0
---- !u!114 &4691147730697523015
+--- !u!114 &8008965643412693563
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7572867079448245294}
+  m_GameObject: {fileID: 3806134777556787839}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f0002fccc3ddcb40902b7b0ae44cd8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6139777812845566653
+--- !u!114 &3806134777556787838
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7572867079448245294}
+  m_GameObject: {fileID: 3806134777556787839}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf369aa7bb7b7ea49aeb108a64617a14, type: 3}
+  m_Script: {fileID: 11500000, guid: f5f73c99607a59d43a1e5b224ae498ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   castTimer:
-    duration: 1
+    duration: 3
     currentTime: 0
     loop: 0
   cooldown:
-    duration: 5
+    duration: 10
     currentTime: 0
     loop: 0
-  chemicalCannonSpawner:
-    projectilePrefab: {fileID: 9039021335273267706, guid: 31285851032f49d41af54b206cad707b, type: 3}
+  viscousBlastSpawner:
+    projectilePrefab: {fileID: 3198817563465483415, guid: fd34386932f864e4da9433307d1539b8, type: 3}
     spawnPointOffsetLocal: {x: 0, y: 0, z: 0}
     drawGizmos: 1
     debugSphereRadius: 0.1
@@ -123,7 +123,7 @@ MonoBehaviour:
     radius: 1
     radialOffset: 0
     projectileDirectionRotation: 0
---- !u!1 &8475706846899881220
+--- !u!1 &5791016419864937053
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,78 +131,41 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8475706846899881216}
-  - component: {fileID: 8475706846899881343}
-  - component: {fileID: 6045666899893537428}
-  - component: {fileID: 4594683777964227765}
-  - component: {fileID: 1116885223593130784}
-  - component: {fileID: 6665964863559591816}
+  - component: {fileID: 5791016419864937049}
+  - component: {fileID: 8513094927573093837}
+  - component: {fileID: 1873928683587107820}
+  - component: {fileID: 3079874497369078905}
+  - component: {fileID: 8737074541511385297}
+  - component: {fileID: 5791016419864937052}
   m_Layer: 0
-  m_Name: PoxShot
+  m_Name: WeakeningSpray
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8475706846899881216
+--- !u!4 &5791016419864937049
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8475706846899881220}
+  m_GameObject: {fileID: 5791016419864937053}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 7496117658746622149}
+  - {fileID: 5642458600559150950}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8475706846899881343
+--- !u!114 &8513094927573093837
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8475706846899881220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 525c1dfcb66a6ff4cb3c0f0672cbf3b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  castTimer:
-    duration: 0
-    currentTime: 0
-    loop: 0
-  cooldown:
-    duration: 1
-    currentTime: 0
-    loop: 0
-  poxShotSpawner:
-    projectilePrefab: {fileID: 8109351195646949467, guid: 83126d75d57030540aba373b7bdbba33, type: 3}
-    spawnPointOffsetLocal: {x: 0, y: 0, z: 2}
-    drawGizmos: 1
-    debugSphereRadius: 0.1
-    projectilesToSpawn: 25
-    radius: 0.05
-    arcAngle: 9.1
-  chemicalCannonSpawner:
-    projectilePrefab: {fileID: 9039021335273267706, guid: 31285851032f49d41af54b206cad707b, type: 3}
-    spawnPointOffsetLocal: {x: 0, y: 0, z: 1}
-    drawGizmos: 1
-    debugSphereRadius: 0.1
-    projectilesToSpawn: 2
-    radius: 1
-    radialOffset: 0
-    projectileDirectionRotation: 0
---- !u!114 &6045666899893537428
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8475706846899881220}
+  m_GameObject: {fileID: 5791016419864937053}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca070c3b6534b8a47b9eeb7cc2a9559f, type: 3}
@@ -210,13 +173,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInvincible: 1
   damageNumberSet: {fileID: 0}
---- !u!114 &4594683777964227765
+--- !u!114 &1873928683587107820
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8475706846899881220}
+  m_GameObject: {fileID: 5791016419864937053}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3bc88bd60e4b2024ca95f144dd5d4dc7, type: 3}
@@ -230,28 +193,57 @@ MonoBehaviour:
   LimbWeaponMorph: {fileID: 0}
   HeadWeaponMorph: {fileID: 0}
   TailWeaponMorph: {fileID: 0}
---- !u!114 &1116885223593130784
+--- !u!114 &3079874497369078905
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8475706846899881220}
+  m_GameObject: {fileID: 5791016419864937053}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce19a24efc71e42408c5685a183642f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attackOrAbilityInProgress: 0
---- !u!114 &6665964863559591816
+--- !u!114 &8737074541511385297
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8475706846899881220}
+  m_GameObject: {fileID: 5791016419864937053}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f0002fccc3ddcb40902b7b0ae44cd8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5791016419864937052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5791016419864937053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90b71d813aed326489ef43a86b8fc2e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  castTimer:
+    duration: 0.5
+    currentTime: 0
+    loop: 0
+  cooldown:
+    duration: 2
+    currentTime: 0
+    loop: 0
+  weakeningSpraySpawner:
+    projectilePrefab: {fileID: 8740522506693375761, guid: 7f5cd3a81e9aeb5418028e15972b4c52, type: 3}
+    spawnPointOffsetLocal: {x: 0, y: 0, z: 1}
+    drawGizmos: 1
+    debugSphereRadius: 0.1
+    projectilesToSpawn: 1
+    radius: 1
+    radialOffset: 0
+    projectileDirectionRotation: 0

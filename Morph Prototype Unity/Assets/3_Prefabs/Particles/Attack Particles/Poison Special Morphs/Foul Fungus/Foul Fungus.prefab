@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1433182865590743161}
   - component: {fileID: 5842852823453432102}
   - component: {fileID: 4599832460118623683}
+  - component: {fileID: 3477879091216087854}
   m_Layer: 0
   m_Name: Foul Fungus
   m_TagString: Untagged
@@ -1365,9 +1366,9 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 0.43137255, g: 0, b: 1, a: 0}
-        key1: {r: 0.43190622, g: 0, b: 1, a: 0.5882353}
-        key2: {r: 0.43137255, g: 0, b: 1, a: 0.5882353}
-        key3: {r: 0, g: 0, b: 0, a: 0}
+        key1: {r: 0.43190622, g: 0, b: 1, a: 0.5614753}
+        key2: {r: 0.43137255, g: 0, b: 1, a: 0.88235295}
+        key3: {r: 0, g: 0, b: 0, a: 0.5882353}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
@@ -1381,22 +1382,22 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 6361
-        atime2: 45875
-        atime3: 65535
-        atime4: 0
+        atime1: 1928
+        atime2: 6361
+        atime3: 45875
+        atime4: 65535
         atime5: 0
         atime6: 0
         atime7: 0
         m_Mode: 0
         m_NumColorKeys: 3
-        m_NumAlphaKeys: 4
+        m_NumAlphaKeys: 5
       minGradient:
         serializedVersion: 2
         key0: {r: 0.47589064, g: 0, b: 1, a: 0}
-        key1: {r: 0.48523378, g: 0, b: 1, a: 0.27450982}
-        key2: {r: 0, g: 0, b: 0, a: 0.27450982}
-        key3: {r: 0, g: 0, b: 0, a: 0}
+        key1: {r: 0.48523378, g: 0, b: 1, a: 0.35}
+        key2: {r: 0, g: 0, b: 0, a: 0.7411765}
+        key3: {r: 0, g: 0, b: 0, a: 0.9843137}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
@@ -1410,16 +1411,16 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 10216
-        atime2: 52428
-        atime3: 65535
-        atime4: 0
+        atime1: 1542
+        atime2: 6939
+        atime3: 52428
+        atime4: 65535
         atime5: 0
         atime6: 0
         atime7: 0
         m_Mode: 0
         m_NumColorKeys: 2
-        m_NumAlphaKeys: 4
+        m_NumAlphaKeys: 5
   UVModule:
     serializedVersion: 2
     enabled: 0
@@ -2026,7 +2027,7 @@ ParticleSystem:
     radial:
       serializedVersion: 2
       minMaxState: 2
-      scalar: 30
+      scalar: 2
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -2467,7 +2468,7 @@ ParticleSystem:
       m_Bits: 4294967295
     influenceList: []
   ClampVelocityModule:
-    enabled: 1
+    enabled: 0
     x:
       serializedVersion: 2
       minMaxState: 0
@@ -2900,7 +2901,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     separateAxes: 0
-    frequency: 0.15
+    frequency: 0.5
     damping: 0
     octaves: 1
     octaveMultiplier: 0.5
@@ -2909,7 +2910,7 @@ ParticleSystem:
     scrollSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -3122,7 +3123,7 @@ ParticleSystem:
     positionAmount:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 2
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -3175,7 +3176,7 @@ ParticleSystem:
     rotationAmount:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 100
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -4891,3 +4892,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d25e05d38f1b92439ffb141fe9c0192, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  poisonDamageDoT: 40
+  accuracyReduction: 30
+  stealthBonus: 100
+--- !u!114 &3477879091216087854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6129141712507335030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca070c3b6534b8a47b9eeb7cc2a9559f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isInvincible: 1
+  damageNumberSet: {fileID: 0}

@@ -9747,6 +9747,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb53705a0c86e3e4cb76676cf396648f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  acidDamageToDeal: 70
+  knockUpForce: 50
 --- !u!1 &7709446984965052822
 GameObject:
   m_ObjectHideFlags: 0

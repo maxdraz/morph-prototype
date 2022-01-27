@@ -11,7 +11,9 @@ GameObject:
   - component: {fileID: 1613906874036268412}
   - component: {fileID: 5048430650325373412}
   - component: {fileID: 1155458574}
-  - component: {fileID: 1155458572}
+  - component: {fileID: 1680424902543237817}
+  - component: {fileID: 4924532722507298185}
+  - component: {fileID: 294851461650630197}
   m_Layer: 0
   m_Name: Poison Needle Barrage
   m_TagString: Untagged
@@ -64,7 +66,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &1155458572
+--- !u!114 &1680424902543237817
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -73,10 +75,48 @@ MonoBehaviour:
   m_GameObject: {fileID: 104438247783325880}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 832cc06b009ce4e40ac0a4cbcdb7f6cd, type: 3}
+  m_Script: {fileID: 11500000, guid: ca070c3b6534b8a47b9eeb7cc2a9559f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceToApply: 20
+  isInvincible: 1
+  damageNumberSet: {fileID: 0}
+--- !u!114 &4924532722507298185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104438247783325880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fb133de14934524a97117c699468e3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useParticleSystemLifetime: 0
+  duration: 1
+--- !u!114 &294851461650630197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104438247783325880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2543dcdb97ef97444abcc7cb0a86d987, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startSpeed: 100
+  onHitEffects:
+  - onHitEffect: {fileID: 11400000, guid: 43742988cba5dad4c98d440ec358f8d9, type: 2}
+    data:
+      id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: PoisonDamageData, ns: , asm: Assembly-CSharp}
+      data:
+        poisonDamage: 20
 --- !u!1 &3015842781916036500
 GameObject:
   m_ObjectHideFlags: 0

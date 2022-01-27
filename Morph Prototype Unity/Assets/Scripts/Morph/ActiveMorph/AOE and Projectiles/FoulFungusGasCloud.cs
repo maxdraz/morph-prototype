@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FoulFungus : MonoBehaviour
+public class FoulFungusGasCloud : MonoBehaviour
 {
     DamageHandler damageHandler;
     [SerializeField] private float poisonDamageDoT;
@@ -11,6 +11,7 @@ public class FoulFungus : MonoBehaviour
 
     SphereCollider collider;
     GameObject sourceCreature;
+
     // Start is called before the first frame update
     void Start()
     {

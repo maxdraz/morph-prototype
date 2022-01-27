@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7572867079448245294
+--- !u!1 &2492314812344477733
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,41 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7496117658746622149}
-  - component: {fileID: 5495251259270181381}
-  - component: {fileID: 7563952886141033713}
-  - component: {fileID: 6395679527220462755}
-  - component: {fileID: 4691147730697523015}
-  - component: {fileID: 6139777812845566653}
+  - component: {fileID: 2492314812344477729}
+  - component: {fileID: 355572607091812277}
+  - component: {fileID: 7550885005810094484}
+  - component: {fileID: 6374353052526859777}
+  - component: {fileID: 832034381770558121}
+  - component: {fileID: 4451617182282590416}
   m_Layer: 0
-  m_Name: ChemicalCannon
+  m_Name: PoisonNeedleBarrage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7496117658746622149
+--- !u!4 &2492314812344477729
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7572867079448245294}
+  m_GameObject: {fileID: 2492314812344477733}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 8475706846899881216}
+  m_Children:
+  - {fileID: 4361072057892515102}
+  m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5495251259270181381
+--- !u!114 &355572607091812277
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7572867079448245294}
+  m_GameObject: {fileID: 2492314812344477733}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca070c3b6534b8a47b9eeb7cc2a9559f, type: 3}
@@ -49,13 +50,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInvincible: 1
   damageNumberSet: {fileID: 0}
---- !u!114 &7563952886141033713
+--- !u!114 &7550885005810094484
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7572867079448245294}
+  m_GameObject: {fileID: 2492314812344477733}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3bc88bd60e4b2024ca95f144dd5d4dc7, type: 3}
@@ -69,61 +70,70 @@ MonoBehaviour:
   LimbWeaponMorph: {fileID: 0}
   HeadWeaponMorph: {fileID: 0}
   TailWeaponMorph: {fileID: 0}
---- !u!114 &6395679527220462755
+--- !u!114 &6374353052526859777
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7572867079448245294}
+  m_GameObject: {fileID: 2492314812344477733}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce19a24efc71e42408c5685a183642f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attackOrAbilityInProgress: 0
---- !u!114 &4691147730697523015
+--- !u!114 &832034381770558121
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7572867079448245294}
+  m_GameObject: {fileID: 2492314812344477733}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f0002fccc3ddcb40902b7b0ae44cd8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6139777812845566653
+--- !u!114 &4451617182282590416
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7572867079448245294}
+  m_GameObject: {fileID: 2492314812344477733}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf369aa7bb7b7ea49aeb108a64617a14, type: 3}
+  m_Script: {fileID: 11500000, guid: a101939ce4feb3d4c9a9f61375b23840, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   castTimer:
-    duration: 1
+    duration: 0.5
     currentTime: 0
     loop: 0
   cooldown:
     duration: 5
     currentTime: 0
     loop: 0
-  chemicalCannonSpawner:
-    projectilePrefab: {fileID: 9039021335273267706, guid: 31285851032f49d41af54b206cad707b, type: 3}
-    spawnPointOffsetLocal: {x: 0, y: 0, z: 0}
+  poisonNeedleBarrageSpawner:
+    projectilePrefab: {fileID: 104438247783325880, guid: 247e6c9dd86e3034b9fa0caad71a617b, type: 3}
+    spawnPointOffsetLocal: {x: 0, y: 0, z: 1}
+    drawGizmos: 0
+    debugSphereRadius: 1.85
+    projectilesToSpawn: 3
+    radius: 1
+    radialOffset: 0
+    projectileDirectionRotation: 0
+  neurotoxicNeedleSpawner:
+    projectilePrefab: {fileID: 1995169145839438788, guid: 9cf52bbca3462dc4abe3f87d0c3bf993, type: 3}
+    spawnPointOffsetLocal: {x: 0, y: 0, z: 1}
     drawGizmos: 1
-    debugSphereRadius: 0.1
+    debugSphereRadius: 1.08
     projectilesToSpawn: 1
     radius: 1
     radialOffset: 0
     projectileDirectionRotation: 0
---- !u!1 &8475706846899881220
+--- !u!1 &5051264958658365447
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,44 +141,102 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8475706846899881216}
-  - component: {fileID: 8475706846899881343}
-  - component: {fileID: 6045666899893537428}
-  - component: {fileID: 4594683777964227765}
-  - component: {fileID: 1116885223593130784}
-  - component: {fileID: 6665964863559591816}
+  - component: {fileID: 4361072057892515102}
+  - component: {fileID: 5302746608287072052}
+  - component: {fileID: 7012359784467747195}
+  - component: {fileID: 6239586566803046677}
+  - component: {fileID: 2156703105634682947}
+  - component: {fileID: 3214293133155244796}
   m_Layer: 0
-  m_Name: PoxShot
+  m_Name: NeurotoxicNeedle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8475706846899881216
+--- !u!4 &4361072057892515102
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8475706846899881220}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_GameObject: {fileID: 5051264958658365447}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 7496117658746622149}
-  m_Father: {fileID: 0}
+  m_Children: []
+  m_Father: {fileID: 2492314812344477729}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8475706846899881343
+--- !u!114 &5302746608287072052
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8475706846899881220}
+  m_GameObject: {fileID: 5051264958658365447}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 525c1dfcb66a6ff4cb3c0f0672cbf3b9, type: 3}
+  m_Script: {fileID: 11500000, guid: ca070c3b6534b8a47b9eeb7cc2a9559f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isInvincible: 1
+  damageNumberSet: {fileID: 0}
+--- !u!114 &7012359784467747195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5051264958658365447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bc88bd60e4b2024ca95f144dd5d4dc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  limbWeaponMorph: {fileID: 0}
+  headWeaponMorph: {fileID: 0}
+  tailWeaponMorph: {fileID: 0}
+  activeMorphs: []
+  passiveMorphs: []
+  LimbWeaponMorph: {fileID: 0}
+  HeadWeaponMorph: {fileID: 0}
+  TailWeaponMorph: {fileID: 0}
+--- !u!114 &6239586566803046677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5051264958658365447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce19a24efc71e42408c5685a183642f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackOrAbilityInProgress: 0
+--- !u!114 &2156703105634682947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5051264958658365447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f0002fccc3ddcb40902b7b0ae44cd8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3214293133155244796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5051264958658365447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a37f50b8e03104e4d9efbda70962924f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   castTimer:
@@ -176,82 +244,15 @@ MonoBehaviour:
     currentTime: 0
     loop: 0
   cooldown:
-    duration: 1
+    duration: 0
     currentTime: 0
     loop: 0
-  poxShotSpawner:
-    projectilePrefab: {fileID: 8109351195646949467, guid: 83126d75d57030540aba373b7bdbba33, type: 3}
-    spawnPointOffsetLocal: {x: 0, y: 0, z: 2}
-    drawGizmos: 1
-    debugSphereRadius: 0.1
-    projectilesToSpawn: 25
-    radius: 0.05
-    arcAngle: 9.1
-  chemicalCannonSpawner:
-    projectilePrefab: {fileID: 9039021335273267706, guid: 31285851032f49d41af54b206cad707b, type: 3}
-    spawnPointOffsetLocal: {x: 0, y: 0, z: 1}
-    drawGizmos: 1
-    debugSphereRadius: 0.1
-    projectilesToSpawn: 2
+  neurotoxicNeedleSpawner:
+    projectilePrefab: {fileID: 1995169145839438788, guid: 9cf52bbca3462dc4abe3f87d0c3bf993, type: 3}
+    spawnPointOffsetLocal: {x: 0, y: 0, z: 0}
+    drawGizmos: 0
+    debugSphereRadius: 0.27
+    projectilesToSpawn: 1
     radius: 1
     radialOffset: 0
     projectileDirectionRotation: 0
---- !u!114 &6045666899893537428
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8475706846899881220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca070c3b6534b8a47b9eeb7cc2a9559f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isInvincible: 1
-  damageNumberSet: {fileID: 0}
---- !u!114 &4594683777964227765
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8475706846899881220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bc88bd60e4b2024ca95f144dd5d4dc7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  limbWeaponMorph: {fileID: 0}
-  headWeaponMorph: {fileID: 0}
-  tailWeaponMorph: {fileID: 0}
-  activeMorphs: []
-  passiveMorphs: []
-  LimbWeaponMorph: {fileID: 0}
-  HeadWeaponMorph: {fileID: 0}
-  TailWeaponMorph: {fileID: 0}
---- !u!114 &1116885223593130784
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8475706846899881220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce19a24efc71e42408c5685a183642f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackOrAbilityInProgress: 0
---- !u!114 &6665964863559591816
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8475706846899881220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f0002fccc3ddcb40902b7b0ae44cd8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

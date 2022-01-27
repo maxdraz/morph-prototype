@@ -1,27 +1,24 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PoxShot : ActiveMorph
+public class PoisonNeedleBarrage : ActiveMorph
 {
-    [SerializeField] private ConeProjectileSpawner poxShotSpawner;
-    [SerializeField] private RadialProjectileSpawner chemicalCannonSpawner;
-
+    [SerializeField] private RadialProjectileSpawner poisonNeedleBarrageSpawner;
 
     public override bool ActivateIfConditionsMet()
     {
         if (base.ActivateIfConditionsMet())
         {
-            SpawnPoxShot();
+            SpawnPoisonNeedleBarrage();
             return true;
         }
         return false;
     }
 
-    private void SpawnPoxShot()
+    private void SpawnPoisonNeedleBarrage()
     {
-        var projectiles = poxShotSpawner?.Spawn(transform);
+        var projectiles = poisonNeedleBarrageSpawner?.Spawn(transform);
 
         if (projectiles != null)
             foreach (var projectile in projectiles)
@@ -34,11 +31,11 @@ public class PoxShot : ActiveMorph
 
     private void OnValidate()
     {
-        poxShotSpawner?.OnValidate();
+        poisonNeedleBarrageSpawner?.OnValidate();
     }
 
     private void OnDrawGizmos()
     {
-        poxShotSpawner?.OnDrawGizmos(transform);
+        poisonNeedleBarrageSpawner?.OnDrawGizmos(transform);
     }
 }
