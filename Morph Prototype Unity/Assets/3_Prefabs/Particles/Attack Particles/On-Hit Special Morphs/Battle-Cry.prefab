@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 721172709192588661}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.9, z: 0}
+  m_LocalPosition: {x: 0, y: -0.03, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7213678104342537748}
@@ -9771,6 +9771,7 @@ GameObject:
   - component: {fileID: 7213678104342537748}
   - component: {fileID: 2614188371263642208}
   - component: {fileID: 1777048020591324101}
+  - component: {fileID: 8979314408862354219}
   m_Layer: 0
   m_Name: Battle-Cry
   m_TagString: Untagged
@@ -11152,7 +11153,7 @@ ParticleSystem:
         ctime7: 0
         atime0: 0
         atime1: 5975
-        atime2: 44911
+        atime2: 30262
         atime3: 65535
         atime4: 0
         atime5: 0
@@ -14636,6 +14637,18 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &8979314408862354219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4325605245274640103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb480e7dfbcf3a141b1c7981c092e139, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8053402636406213573
 GameObject:
   m_ObjectHideFlags: 0
