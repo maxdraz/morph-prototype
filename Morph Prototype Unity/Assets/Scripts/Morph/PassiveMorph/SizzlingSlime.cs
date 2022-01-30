@@ -7,11 +7,14 @@ public class SizzlingSlime : PassiveMorph
     private DamageHandler damageHandler;
 
     [SerializeField] private float perceptionDamageFraction;
-    [SerializeField] private float chemicalDamageStatBonus = 5;
+    [SerializeField] private int chemicalDamageStatBonus = 5;
     [SerializeField] private bool unlockBlindingVapour = true;
+
+    Stats stats;
 
     private void OnEnable()
     {
+        stats = GetComponent<Stats>();
         StartCoroutine(AssignDamageHandlerCoroutine());
         ChangeChemicalDamageStat(chemicalDamageStatBonus);
 
@@ -23,9 +26,9 @@ public class SizzlingSlime : PassiveMorph
         ChangeChemicalDamageStat(-chemicalDamageStatBonus);
     }
 
-    private void ChangeChemicalDamageStat(float amountToAdd)
+    private void ChangeChemicalDamageStat(int amountToAdd)
     {
-
+        stats.FlatStatChange("chemicalDamage", amountToAdd); 
     }
 
     private void OnDamageHasBeenDealt(in DamageTakenSummary damageTakenSummary)

@@ -7,12 +7,20 @@ public class CriticalStrikes : PassiveMorph
     private DamageHandler damageHandler;
 
     [SerializeField] private float criticalStrikeChance;
-    [SerializeField] private bool hiddenAttack = true;
+    [SerializeField] private bool unlockHiddenAttack = true;
+    [SerializeField] private float hiddenAttackCriticalStrikeChance;
+    [SerializeField] private float hiddenAttackExtraDamage;
+
+    [SerializeField] private bool unlockCoupDeGrace = true;
+    [SerializeField] private float coupDeGraceCooldownPeriod;
+    bool coupDeGraceOnCooldown = false;
+    Timer coupDeGraceTimer;
+
 
     private void OnEnable()
     {
         StartCoroutine(AssignDamageHandlerCoroutine());
-
+        //universal criticalStrikeChance += criticalStrikeChance
     }
 
     private void OnDisable()
@@ -21,20 +29,36 @@ public class CriticalStrikes : PassiveMorph
     }
 
 
-
-    private void OnDamageHasBeenDealt(in DamageTakenSummary damageTakenSummary)
+    private void Update()
     {
-        if (damageTakenSummary.AcidDamage > 0)
+        if (coupDeGraceOnCooldown) 
         {
-            //damageTakenSummary.DamageTaker.ApplyDamage(new PerceptionDamageData(damageTakenSummary.AcidDamage * perceptionDamageFraction), damageHandler);
+            coupDeGraceTimer.Update(Time.deltaTime); 
+        }
+
+        if (coupDeGraceTimer.JustCompleted) 
+        {
+            coupDeGraceOnCooldown = false; 
         }
     }
 
+
     private void OnDamageAboutToBeDealt(ref IDamageType damageType)
     {
-        if (damageType is IPhysicalDamage physicalDamage)
+        
+
+        if (unlockHiddenAttack)
         {
-            //physicalDamage. *= 2;
+            //check to see if you are performing a stealth attack, if so add extra damage and crit chance
+
+        }
+
+        if (unlockCoupDeGrace && coupDeGraceOnCooldown == false)
+        {
+            //check to see if the target of the attacks is currently stunned, if so this attack is a guaranteed crit (start cooldown)
+            coupDeGraceTimer = new Timer(coupDeGraceCooldownPeriod, false);
+            coupDeGraceOnCooldown = true;
+
         }
     }
 
@@ -52,10 +76,8 @@ public class CriticalStrikes : PassiveMorph
         if (damageHandler)
         {
             damageHandler.DamageAboutToBeDealt += OnDamageAboutToBeDealt;
-            if (hiddenAttack)
-            {
-
-            }
+            
+            
         }
     }
 
@@ -64,7 +86,7 @@ public class CriticalStrikes : PassiveMorph
         if (damageHandler)
         {
             damageHandler.DamageAboutToBeDealt -= OnDamageAboutToBeDealt;
-            if (hiddenAttack)
+            if (unlockHiddenAttack)
             {
 
             }

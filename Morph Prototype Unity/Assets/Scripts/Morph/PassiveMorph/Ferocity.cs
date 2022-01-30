@@ -19,7 +19,9 @@ public class Ferocity : PassiveMorph
     float totalFerocityAttackSpeedBuff;
     float totalFerocityMeleeAttackDamageBuff;
 
-
+    [SerializeField] private float spiritSiphonPeriod;
+    [SerializeField] private float spiritSiphonRange;
+    Timer spiritSiphonTimer;
     [SerializeField] private float spiritSiphonStaminaStealAmount;
     [SerializeField] private float spiritSiphonEnergyStealAmount;
 
@@ -32,6 +34,10 @@ public class Ferocity : PassiveMorph
         StartCoroutine(AssignDamageHandlerCoroutine());
         ChangeMeleeDamageStat(meleeDamageStatBonus);
 
+        if (unlockSpiritSpihon)
+        {
+            spiritSiphonTimer = new Timer(spiritSiphonPeriod, true);
+        }
     }
 
     private void OnDisable()
@@ -89,7 +95,19 @@ public class Ferocity : PassiveMorph
         yield return null;
     }
 
-    //Needs to be constantly active on a timer
+    private void Update()
+    {
+        if (unlockSpiritSpihon) 
+        {
+            spiritSiphonTimer.Update(Time.deltaTime);
+
+            if (spiritSiphonTimer.JustCompleted) 
+            {
+                SpiritSiphon(transform.position,spiritSiphonRange);
+            }
+        }
+    }
+
     private void SpiritSiphon(Vector3 center, float radius)
     {
         
@@ -127,10 +145,7 @@ public class Ferocity : PassiveMorph
         if (damageHandler)
         {
             damageHandler.DamageHasBeenDealt += OnDamageHasBeenDealt;
-            if (unlockSpiritSpihon)
-            {
-                //damageHandler.DebuffAboutToBeDealtPreModifier += OnAcidDebuffDealt;
-            }
+            
         }
     }
 
@@ -139,10 +154,7 @@ public class Ferocity : PassiveMorph
         if (damageHandler)
         {
             damageHandler.DamageHasBeenDealt -= OnDamageHasBeenDealt;
-            if (unlockSpiritSpihon)
-            {
-                //damageHandler.DebuffAboutToBeDealtPreModifier -= OnAcidDebuffDealt;
-            }
+            
 
         }
 

@@ -5,19 +5,26 @@ using UnityEngine;
 public class VitriolicVitality : MonoBehaviour
 {
     private DamageHandler damageHandler;
-    [SerializeField] private float chemicalDamageStatBonus = 5;
+    [SerializeField] private int chemicalDamageStatBonus = 5;
     [SerializeField] private float healingPercentageBonus;
-    LegacyTimer healingLegacyTimer;
+    Timer bonusHealingTimer;
+    bool bonusHealingTimerCountingDown;
+    [SerializeField] private float bonusHealingTimerDuration;
+
     [SerializeField] private bool unlockVenomousVigor = true;
+    [SerializeField] private int venomousVigorHealingDuration;
+
     [SerializeField] private bool unlockToxicFocus = true;
 
-    private void Start()
-    {
-        healingLegacyTimer.Duration = 1f;
-    }
+
+    Stats stats;
+
+    
 
     private void OnEnable()
     {
+        stats = GetComponent<Stats>();
+
         StartCoroutine(AssignDamageHandlerCoroutine());
         ChangeChemicalDamageStat(chemicalDamageStatBonus);
 
@@ -30,17 +37,23 @@ public class VitriolicVitality : MonoBehaviour
     }
 
     // implement
-    private void ChangeChemicalDamageStat(float amountToAdd)
+    private void ChangeChemicalDamageStat(int amountToAdd)
     {
-
+        stats.FlatStatChange("chemicalDamage", amountToAdd);
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        if (healingLegacyTimer.JustFinished) 
+        if (bonusHealingTimerCountingDown) 
         {
+            bonusHealingTimer.Update(Time.deltaTime) ;
+        }
+
+        if (bonusHealingTimer.JustCompleted) 
+        {
+            bonusHealingTimerCountingDown = false;
             RemoveHealingBonus();
         }
     }
@@ -55,7 +68,7 @@ public class VitriolicVitality : MonoBehaviour
         damageHandler.Health.healingPercentageBonus -= healingPercentageBonus;
     }
 
-    private void OnDamageAboutToBeDealt(in DamageTakenSummary damageTakenSummary) 
+    private void OnDamageAboutToBeDealt(ref IDamageType damageType) 
     {
         //if the attack was a heavy attack from a weapon morph, add poison damage = 30% of the physical damage before resistances
     }
@@ -65,13 +78,14 @@ public class VitriolicVitality : MonoBehaviour
         if (damageTakenSummary.PoisonDamage > 0)
         {
             //This timer should restart every time a poison damage tick has been dealt to the target
-            healingLegacyTimer.Restart(1, false);
+            bonusHealingTimer = new Timer(bonusHealingTimerDuration, false);
+            bonusHealingTimerCountingDown = true;
             AddHealingBonus();
 
             if (unlockVenomousVigor) 
             {
                 //This hp should be added when a target has had poison damage added to their stack
-                damageHandler.Health.AddHP(damageTakenSummary.PoisonDamage / 2f);
+                damageHandler.Health.HealOverTime(damageTakenSummary.PoisonDamage / 2f, venomousVigorHealingDuration);
             }
         }
     }
@@ -92,11 +106,9 @@ public class VitriolicVitality : MonoBehaviour
         {
             damageHandler.DamageHasBeenDealt += OnDamageHasBeenDealt;
 
-            
-
             if (unlockToxicFocus)
             {
-                //damageHandler.DamageAboutToBeDealt += OnDamageAboutToBeDealt;
+                damageHandler.DamageAboutToBeDealt += OnDamageAboutToBeDealt;
             }
         }
     }
@@ -109,7 +121,7 @@ public class VitriolicVitality : MonoBehaviour
 
             if (unlockToxicFocus)
             {
-                //damageHandler.DamageAboutToBeDealt -= OnDamageAboutToBeDealt;
+                damageHandler.DamageAboutToBeDealt -= OnDamageAboutToBeDealt;
             }
         }
 

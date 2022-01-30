@@ -23,7 +23,7 @@ public class SpeedDemon : PassiveMorph
         stats = GetComponent<Stats>();
 
         StartCoroutine(AssignDamageHandlerCoroutine());
-        ChangeMeleeDamageStat(meleeDamageStatBonus);
+        ChangeAgilityStat(meleeDamageStatBonus);
 
     }
 
@@ -32,11 +32,11 @@ public class SpeedDemon : PassiveMorph
         stats = GetComponent<Stats>();
 
         UnsubscribeFromEvents();
-        ChangeMeleeDamageStat(-meleeDamageStatBonus);
+        ChangeAgilityStat(-meleeDamageStatBonus);
     }
 
     // implement
-    private void ChangeMeleeDamageStat(int amountToAdd)
+    private void ChangeAgilityStat(int amountToAdd)
     {
         stats.FlatStatChange("agility",amountToAdd);
     }

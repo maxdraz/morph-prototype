@@ -46,7 +46,7 @@ public class Camoflage : PassiveMorph
 
     private void Sneaky(float amountToAdd)
     {
-        stealth.stealthBonusWhileMoving += amountToAdd;
+        stealth.stealthModifierWhileMoving += amountToAdd;
     }
 
     private IEnumerator AssignDamageHandlerCoroutine()

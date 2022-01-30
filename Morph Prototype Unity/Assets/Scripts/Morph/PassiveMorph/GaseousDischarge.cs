@@ -5,8 +5,7 @@ using UnityEngine;
 public class GaseousDischarge : PassiveMorph
 {
     private DamageHandler damageHandler;
-    [SerializeField] private float chemicalDamageStatBonus = 5;
-    [SerializeField] private bool unlockToxicOverflow = true;
+    [SerializeField] private int chemicalDamageStatBonus = 5;
 
     [SerializeField]private float poisonGasSpawnRate;
     [SerializeField] private float poisonGasLifeTime;
@@ -14,7 +13,24 @@ public class GaseousDischarge : PassiveMorph
     ObjectPooler gasPooler;
     [SerializeField] GameObject gasCloud;
 
-    // Start is called before the first frame update
+    [SerializeField] private bool unlockToxicOverflow = true;
+    [SerializeField] private float toxicOverflowPoisonDamage;
+    [SerializeField] private float toxicOverflowKnockBackForce;
+
+    Stats stats;
+    private void OnEnable()
+    {
+        stats = GetComponent<Stats>();
+        StartCoroutine(AssignDamageHandlerCoroutine());
+        ChangeChemicalDamageStat(chemicalDamageStatBonus);
+
+    }
+
+    private void OnDisable()
+    {
+        UnsubscribeFromEvents();
+        ChangeChemicalDamageStat(-chemicalDamageStatBonus);
+    }
     void Start()
     {
         poisonGasSpawnCountdown = new Timer(poisonGasSpawnRate, true);
@@ -29,20 +45,24 @@ public class GaseousDischarge : PassiveMorph
 
         if (poisonGasSpawnCountdown.JustCompleted) 
         {
-            Debug.Log("Timer completed");
+            //Debug.Log("Timer completed");
             CreateGasCloud();
         }
     }
 
-    private void OnDamageAboutToBeTaken(ref IDamageType damageType) 
+    
+
+    private void OnDamageTaken(in DamageTakenSummary damageTakenSummary)
     {
-        if (damageType is IPhysicalDamage physicalDamage) 
+        if (damageTakenSummary.PhysicalDamage >= damageHandler.Health.currentHealth / 25)
         {
-            if (physicalDamage.PhysicalDamageDealt >= damageHandler.Health.currentHealth / 25) 
-            {
+
             //now we apply poison damage and knockback to the source of the damage
-                
-            }
+            damageTakenSummary.DamageDealer.ApplyDamage(new PoisonDamageData(toxicOverflowPoisonDamage),damageHandler);
+            damageTakenSummary.DamageDealer.ApplyDamage(new KnockbackData(toxicOverflowKnockBackForce), damageHandler);
+
+
+
         }
     }
 
@@ -54,23 +74,12 @@ public class GaseousDischarge : PassiveMorph
         poisonGasCloud.GetComponent<PoisonGasCloud>().sourceCreature = this.gameObject;
     }
 
-    private void OnEnable()
-    {
-        StartCoroutine(AssignDamageHandlerCoroutine());
-        ChangeChemicalDamageStat(chemicalDamageStatBonus);
-
-    }
-
-    private void OnDisable()
-    {
-        UnsubscribeFromEvents();
-        ChangeChemicalDamageStat(-chemicalDamageStatBonus);
-    }
+    
 
     // implement
-    private void ChangeChemicalDamageStat(float amountToAdd)
+    private void ChangeChemicalDamageStat(int amountToAdd)
     {
-
+        stats.FlatStatChange("chemicalDamage", amountToAdd);
     }
 
     private IEnumerator AssignDamageHandlerCoroutine()
@@ -88,7 +97,7 @@ public class GaseousDischarge : PassiveMorph
         {
             if (unlockToxicOverflow)
             {
-                damageHandler.DamageAboutToBeTaken += OnDamageAboutToBeTaken;
+                damageHandler.DamageHasBeenTaken += OnDamageTaken;
             }
         }
     }
@@ -99,7 +108,7 @@ public class GaseousDischarge : PassiveMorph
         {
             if (unlockToxicOverflow)
             {
-                damageHandler.DamageAboutToBeTaken -= OnDamageAboutToBeTaken;
+                damageHandler.DamageHasBeenTaken -= OnDamageTaken;
             }
 
         }

@@ -47,7 +47,7 @@ public class ShadowBoxingSchool : PassiveMorph
         stats.FlatStatChange("stealth", amountToAdd);
     }
 
-    private void OnDamageAboutToBeDealt(in DamageTakenSummary damageTakenSummary)
+    private void OnDamageAboutToBeDealt(ref IDamageType damageType)
     {
         
 
@@ -68,7 +68,7 @@ public class ShadowBoxingSchool : PassiveMorph
         damageHandler = GetComponent<DamageHandler>();
         if (damageHandler)
         {
-            damageHandler.DamageHasBeenDealt += OnDamageAboutToBeDealt;
+            damageHandler.DamageAboutToBeDealt += OnDamageAboutToBeDealt;
 
         }
     }
@@ -86,7 +86,7 @@ public class ShadowBoxingSchool : PassiveMorph
     {
         if (damageHandler)
         {
-            damageHandler.DamageHasBeenDealt -= OnDamageAboutToBeDealt;
+            damageHandler.DamageAboutToBeDealt -= OnDamageAboutToBeDealt;
 
         }
 

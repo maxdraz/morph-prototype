@@ -7,11 +7,13 @@ public class Stealth : MonoBehaviour
 {
     //This needs a value assigned to it from the stats script
     public float maxStealth;
-    public float stealthBonusWhileMoving;
+    public float stealthModifierWhileMoving;
+    public float flatStealthModifier;
+    public float percentageStealthModifier;
     float currentStealth;
     public float finalStealthValue;
     public bool stealthMode;
-    Rigidbody rb;
+    Velocity velo;
     private bool detected;
     float detectionAmount;
     private GameObject detectionBar;
@@ -32,8 +34,7 @@ public class Stealth : MonoBehaviour
         
 
         detectionAmount = 0f;
-        rb = GetComponentInParent<Rigidbody>();
-        rb = GetComponentInParent<Rigidbody>();
+        velo = GetComponentInParent<Velocity>();
     }
 
     // Update is called once per frame
@@ -83,13 +84,19 @@ public class Stealth : MonoBehaviour
         }
 
 
-        float currentSpeed = rb.velocity.magnitude;
+        float currentSpeed = velo.CurrentVelocity.magnitude;
         //Debug.Log(currentSpeed);
 
 
 
-
-        currentStealth = maxStealth / (currentSpeed / 5 * Mathf.Min(1 - stealthBonusWhileMoving, 1));
+        if (velo.CurrentVelocity.magnitude > 0) 
+        {                                                                               
+            currentStealth = (maxStealth + flatStealthModifier) / ((1 + currentSpeed) * (1 + stealthModifierWhileMoving)) * (1 + percentageStealthModifier);
+        }
+        else
+        {
+            currentStealth = (maxStealth + flatStealthModifier) * (1 + percentageStealthModifier);
+        }
 
 
         if (currentStealth > maxStealth * 2)
