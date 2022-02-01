@@ -6,12 +6,12 @@ using UnityEngine.UI;
 public class Stealth : MonoBehaviour
 {
     //This needs a value assigned to it from the stats script
-    public float maxStealth;
+    public int maxStealth;
     public float stealthModifierWhileMoving;
-    public float flatStealthModifier;
+    public int flatStealthModifier;
     public float percentageStealthModifier;
-    float currentStealth;
-    public float finalStealthValue;
+    int currentStealth;
+    public int finalStealthValue;
     public bool stealthMode;
     Velocity velo;
     private bool detected;
@@ -91,11 +91,11 @@ public class Stealth : MonoBehaviour
 
         if (velo.CurrentVelocity.magnitude > 0) 
         {                                                                               
-            currentStealth = (maxStealth + flatStealthModifier) / ((1 + currentSpeed) * (1 + stealthModifierWhileMoving)) * (1 + percentageStealthModifier);
+            currentStealth = Mathf.RoundToInt((maxStealth + flatStealthModifier) / ((1 + currentSpeed) * (1 + stealthModifierWhileMoving)) * (1 + percentageStealthModifier));
         }
         else
         {
-            currentStealth = (maxStealth + flatStealthModifier) * (1 + percentageStealthModifier);
+            currentStealth = Mathf.RoundToInt((maxStealth + flatStealthModifier) * (1 + percentageStealthModifier));
         }
 
 
@@ -120,7 +120,7 @@ public class Stealth : MonoBehaviour
 
     }
 
-    public void SetMaxStealth(float totalStealth)
+    public void SetMaxStealth(int totalStealth)
     {
         maxStealth = totalStealth;
     }

@@ -6,6 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(ActiveMorphHandler))]
 public class ActiveMorph : MonoBehaviour
 {
+    [SerializeField] protected KeyCode testInput;
+
     [SerializeField] protected Timer castTimer;
     [SerializeField] protected Timer cooldown;
 

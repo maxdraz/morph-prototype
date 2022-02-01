@@ -7,7 +7,7 @@ public class StatueStealth : PassiveMorph
     private DamageHandler damageHandler;
     [SerializeField] private int stealthStatBonus = 5;
     [SerializeField] private float stealthPenaltyWhileMoving;
-    [SerializeField] private float stealthBonusWhileStill;
+    [SerializeField] private int stealthBonusWhileStill;
     bool moving;
 
     [SerializeField] private bool unlockHiddenThreat = true;
