@@ -6,6 +6,11 @@ using UnityEngine;
 [RequireComponent(typeof(ActiveMorphHandler))]
 public class ActiveMorph : MonoBehaviour
 {
+    public Prerequisite basePrerequisit;
+
+    [SerializeField] protected float staminaCost;
+    [SerializeField] protected float energyCost;
+
     [SerializeField] protected KeyCode testInput;
 
     [SerializeField] protected Timer castTimer;
@@ -13,6 +18,21 @@ public class ActiveMorph : MonoBehaviour
 
     private Movement movement;  // TODO - make movement listen to attack handler to change
     private CreatureVirtualController controller;
+
+    [SerializeField] public struct Prerequisite
+    {
+        string stat;
+        int value;
+
+        public Prerequisite(string a, int b)
+        {
+            stat = a;
+            value = b;
+        }
+    }
+
+    
+
 
     private void Awake()
     {

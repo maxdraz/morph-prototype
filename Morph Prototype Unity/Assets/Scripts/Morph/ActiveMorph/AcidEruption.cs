@@ -4,7 +4,15 @@ using UnityEngine;
 
 public class AcidEruption : ActiveMorph
 {
+    static int chemicalDamagePrerequisit;
+
     [SerializeField] private ConeProjectileSpawner acidEruptionSpawner;
+
+    public Prerequisite[] BasePrerequisits = new Prerequisite[1]
+    {
+        new Prerequisite("meleeDamage", chemicalDamagePrerequisit),
+
+    };
 
     public override bool ActivateIfConditionsMet()
     {

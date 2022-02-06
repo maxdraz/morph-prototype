@@ -5,8 +5,13 @@ using UnityEngine;
 
 public class PoxShot : ActiveMorph
 {
+    static int chemicalDamagePrerequisit;
     [SerializeField] private ConeProjectileSpawner poxShotSpawner;
 
+    static Prerequisite[] BasePrerequisits = new Prerequisite[1]
+    {
+        new Prerequisite("fortitude", chemicalDamagePrerequisit),
+    };
 
     public override bool ActivateIfConditionsMet()
     {

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ColourChange : ActiveMorph
 {
+    static int stealthPrerequisit = 200;
+    static int intelligencePrerequisit = 50;
+
     private DamageHandler damageHandler;
     Stats stats;
     float range;
@@ -22,6 +25,11 @@ public class ColourChange : ActiveMorph
     [SerializeField] private float blindnessDuration;
 
 
+    static Prerequisite[] BasePrerequisits = new Prerequisite[2]
+    {
+        new Prerequisite("stealth", stealthPrerequisit),
+        new Prerequisite("intelligence", intelligencePrerequisit)
+    };
 
 
     private void OnEnable()
@@ -30,8 +38,9 @@ public class ColourChange : ActiveMorph
         stealth = GetComponent<Stealth>();
         StartCoroutine(AssignDamageHandlerCoroutine());
         ChangeStealthStat(stealthStatBonus);
-    }
 
+        
+    }
 
 
     private void OnDisable()

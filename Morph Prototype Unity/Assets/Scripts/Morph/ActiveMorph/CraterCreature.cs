@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CraterCreature : ActiveMorph
 {
+    static int meleeDamagePrerequisit = 200;
+
 
     DamageHandler damageHandler;
     [SerializeField] private float verticalForce;
@@ -15,6 +17,12 @@ public class CraterCreature : ActiveMorph
     [SerializeField] private float physicalDamage;
     [SerializeField] private float range;
     public GameObject crater;
+
+    public Prerequisite[] BasePrerequisits = new Prerequisite[1]
+    {
+        new Prerequisite("meleeDamage", meleeDamagePrerequisit),
+
+    };
 
     private void OnEnable()
     {

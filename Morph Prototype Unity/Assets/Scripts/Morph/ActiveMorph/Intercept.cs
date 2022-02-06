@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Intercept : ActiveMorph
 {
+    static int agilityPrerequisit = 200;
+
+
     DamageHandler damageHandler;
     [SerializeField] private float verticalForce;
     [SerializeField] private float horizontalForce;
@@ -13,6 +16,11 @@ public class Intercept : ActiveMorph
     [SerializeField] private float staminaGain;
     bool gainedStamina;
     [SerializeField] private float range;
+
+    static Prerequisite[] BasePrerequisits = new Prerequisite[1]
+    {
+        new Prerequisite("agility", agilityPrerequisit),
+    };
 
     private void OnEnable()
     {

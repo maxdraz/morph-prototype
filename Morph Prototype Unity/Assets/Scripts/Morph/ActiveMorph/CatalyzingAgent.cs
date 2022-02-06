@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class CatalyzingAgent : ActiveMorph
 {
+    static int chemicalDamagePrerequisite = 200;
+
+
     [SerializeField] private ConeProjectileSpawner catalyzingAgentSpawner;
     [SerializeField]
     private float chemicalDamageStatMultiplier = .5f;
     float damageToDeal;
+
+    static Prerequisite[] BasePrerequisits = new Prerequisite[1]
+    {
+        new Prerequisite("stealth", chemicalDamagePrerequisite),
+    };
 
     public override bool ActivateIfConditionsMet()
     {

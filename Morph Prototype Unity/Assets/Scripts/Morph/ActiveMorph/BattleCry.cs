@@ -4,6 +4,16 @@ using UnityEngine;
 
 public class BattleCry : ActiveMorph
 {
+    static int meleeDamagePrerequisit = 200;
+    static int intimidationPrerequisit = 200;
+
+
+    static Prerequisite[] BasePrerequisits = new Prerequisite[2]
+    {
+        new Prerequisite("meleeDamage", meleeDamagePrerequisit),
+        new Prerequisite("intimidation", intimidationPrerequisit)
+    };
+
     [SerializeField] private RadialProjectileSpawner battleCrySpawner;
 
     public override bool ActivateIfConditionsMet()

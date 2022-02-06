@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class DeathlyToxins : ActiveMorph
 {
+    static int chemicalDamagePrerequisite;
+
     [SerializeField] private RadialProjectileSpawner deathlyToxinsSpawner;
+
+    static Prerequisite[] BasePrerequisits = new Prerequisite[1]
+    {
+        new Prerequisite("chemicalDamage", chemicalDamagePrerequisite),
+    };
 
     public override bool ActivateIfConditionsMet()
     {

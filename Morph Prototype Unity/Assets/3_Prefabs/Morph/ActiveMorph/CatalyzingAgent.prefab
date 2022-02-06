@@ -106,6 +106,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f5e2cbd5644f934f80124e95e3c3b4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  staminaCost: 10
+  energyCost: 10
+  testInput: 0
   castTimer:
     duration: 0
     currentTime: 0

@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class FoulFungus : ActiveMorph
 {
+    static int chemicalDamagePrerequisit;
+
+    static Prerequisite[] BasePrerequisits = new Prerequisite[1]
+    {
+        new Prerequisite("chemicalDamage", chemicalDamagePrerequisit),
+    };
+
     [SerializeField] private RadialProjectileSpawner foulFungusGasCloudSpawner;
 
     public override bool ActivateIfConditionsMet()

@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class NeurotoxicNeedle : ActiveMorph
 {
+    static int chemicalDamagePrerequisite;
+
     [SerializeField] private RadialProjectileSpawner neurotoxicNeedleSpawner;
+
+    static Prerequisite[] BasePrerequisits = new Prerequisite[1]
+    {
+        new Prerequisite("chemicalDamage", chemicalDamagePrerequisite),
+    };
 
     public override bool ActivateIfConditionsMet()
     {

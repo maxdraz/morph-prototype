@@ -4,7 +4,15 @@ using UnityEngine;
 
 public class ViscousBlast : ActiveMorph
 {
+    static int chemicalDamagePrerequisite;
+
+
     [SerializeField] private RadialProjectileSpawner viscousBlastSpawner;
+
+    static Prerequisite[] BasePrerequisits = new Prerequisite[1]
+{
+        new Prerequisite("chemicalDamage", chemicalDamagePrerequisite),
+};
 
     public override bool ActivateIfConditionsMet()
     {

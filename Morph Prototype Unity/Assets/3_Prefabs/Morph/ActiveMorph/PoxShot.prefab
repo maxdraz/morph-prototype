@@ -106,6 +106,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf369aa7bb7b7ea49aeb108a64617a14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  staminaCost: 40
+  energyCost: 25
+  testInput: 0
   castTimer:
     duration: 1
     currentTime: 0
@@ -171,6 +174,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 525c1dfcb66a6ff4cb3c0f0672cbf3b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  staminaCost: 30
+  energyCost: 20
+  testInput: 0
   castTimer:
     duration: 0
     currentTime: 0
@@ -187,15 +193,6 @@ MonoBehaviour:
     projectilesToSpawn: 25
     radius: 0.05
     arcAngle: 9.1
-  chemicalCannonSpawner:
-    projectilePrefab: {fileID: 9039021335273267706, guid: 31285851032f49d41af54b206cad707b, type: 3}
-    spawnPointOffsetLocal: {x: 0, y: 0, z: 1}
-    drawGizmos: 1
-    debugSphereRadius: 0.1
-    projectilesToSpawn: 2
-    radius: 1
-    radialOffset: 0
-    projectileDirectionRotation: 0
 --- !u!114 &6045666899893537428
 MonoBehaviour:
   m_ObjectHideFlags: 0

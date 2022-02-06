@@ -107,6 +107,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a101939ce4feb3d4c9a9f61375b23840, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  staminaCost: 20
+  energyCost: 25
+  testInput: 0
   castTimer:
     duration: 0.5
     currentTime: 0
@@ -121,15 +124,6 @@ MonoBehaviour:
     drawGizmos: 0
     debugSphereRadius: 1.85
     projectilesToSpawn: 3
-    radius: 1
-    radialOffset: 0
-    projectileDirectionRotation: 0
-  neurotoxicNeedleSpawner:
-    projectilePrefab: {fileID: 1995169145839438788, guid: 9cf52bbca3462dc4abe3f87d0c3bf993, type: 3}
-    spawnPointOffsetLocal: {x: 0, y: 0, z: 1}
-    drawGizmos: 1
-    debugSphereRadius: 1.08
-    projectilesToSpawn: 1
     radius: 1
     radialOffset: 0
     projectileDirectionRotation: 0
@@ -239,6 +233,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a37f50b8e03104e4d9efbda70962924f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  staminaCost: 20
+  energyCost: 30
+  testInput: 0
   castTimer:
     duration: 0
     currentTime: 0

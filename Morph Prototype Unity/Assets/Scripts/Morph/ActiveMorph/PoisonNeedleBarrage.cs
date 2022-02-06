@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class PoisonNeedleBarrage : ActiveMorph
 {
+    static int chemicalDamagePrerequisit;
+
     [SerializeField] private RadialProjectileSpawner poisonNeedleBarrageSpawner;
+
+    static Prerequisite[] BasePrerequisits = new Prerequisite[1]
+    {
+        new Prerequisite("stealth", chemicalDamagePrerequisit),
+    };
 
     public override bool ActivateIfConditionsMet()
     {

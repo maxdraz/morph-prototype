@@ -58,6 +58,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9389792387a721144b055ab9e3083f98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  staminaCost: 30
+  energyCost: 30
   testInput: 0
   castTimer:
     duration: 2

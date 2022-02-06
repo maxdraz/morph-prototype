@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class ImmobalisingCrash : ActiveMorph
 {
+    static int stealthPrerequisit = 200;
+    static int agilityPrerequisit = 40;
+
+
     DamageHandler damageHandler;
     [SerializeField] private float verticalForce;
     [SerializeField] private float horizontalForce;
@@ -15,6 +19,12 @@ public class ImmobalisingCrash : ActiveMorph
     [SerializeField] private float fortitudeDamage;
     [SerializeField] private float rootDuration;
     [SerializeField] private float range;
+
+    static Prerequisite[] BasePrerequisits = new Prerequisite[2]
+    {
+        new Prerequisite("stealth", stealthPrerequisit),
+        new Prerequisite("agility", agilityPrerequisit)
+    };
 
     private void OnEnable()
     {

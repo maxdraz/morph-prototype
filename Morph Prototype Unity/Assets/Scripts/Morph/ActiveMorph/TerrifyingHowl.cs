@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class TerrifyingHowl : ActiveMorph
 {
+    static int intimidationPrerequisite;
+
     [SerializeField] private float fortitudeDamage;
     [SerializeField] private float range;
     DamageHandler damageHandler;
+
+    static Prerequisite[] BasePrerequisits = new Prerequisite[1]
+{
+        new Prerequisite("intimidation", intimidationPrerequisite),
+};
 
 
     private void Start()

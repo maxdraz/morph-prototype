@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class RiftingLeap : ActiveMorph
 {
+    static int agilityDamagePrerequisite;
+    static int toughnessPrerequisite;
+
+
     DamageHandler damageHandler;
     [SerializeField] private float verticalForce;
     [SerializeField] private float horizontalForce;
@@ -14,6 +18,12 @@ public class RiftingLeap : ActiveMorph
     [SerializeField] private float physicalDamage;
     [SerializeField] private float knockUpForce;
     [SerializeField] private float range;
+
+    static Prerequisite[] BasePrerequisits = new Prerequisite[2]
+    {
+        new Prerequisite("agility", agilityDamagePrerequisite),
+        new Prerequisite("toughness", toughnessPrerequisite),
+    };
 
     private void OnEnable()
     {

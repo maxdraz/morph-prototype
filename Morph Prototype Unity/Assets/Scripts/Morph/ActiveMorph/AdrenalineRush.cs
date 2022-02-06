@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class AdrenalineRush : ActiveMorph
 {
+    static int fortitudePrerequisit;
+
     [SerializeField] private float adrenalineBoost;
 
-
+    static Prerequisite[] BasePrerequisits = new Prerequisite[1]
+    {
+        new Prerequisite("fortitude", fortitudePrerequisit),
+    };
 
     public override bool ActivateIfConditionsMet()
     {

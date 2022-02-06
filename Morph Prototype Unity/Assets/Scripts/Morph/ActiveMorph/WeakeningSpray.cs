@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class WeakeningSpray : ActiveMorph
 {
+    static int chemicalDamagePrerequisite;
+
     [SerializeField] private RadialProjectileSpawner weakeningSpraySpawner;
+
+    static Prerequisite[] BasePrerequisits = new Prerequisite[1]
+{
+        new Prerequisite("chemicalDamage", chemicalDamagePrerequisite),
+};
 
     public override bool ActivateIfConditionsMet()
     {
