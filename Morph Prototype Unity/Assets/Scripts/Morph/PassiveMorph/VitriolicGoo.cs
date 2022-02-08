@@ -6,12 +6,20 @@ using UnityEngine;
 
 public class VitriolicGoo : PassiveMorph
 {
+    static int chemicalDamagePrerequisit = 50;
+
     private DamageHandler damageHandler;
     [SerializeField] private float staminaDrainFraction;
     [SerializeField] private int chemicalDamageStatBonus = 5;
     [SerializeField] private bool unlockMolecularAcid = true;
 
     Stats stats;
+
+    static Prerequisite[] BasePrerequisits = new Prerequisite[1]
+    {
+
+        new Prerequisite("chemicalDamage", chemicalDamagePrerequisit),
+    };
 
     private void OnEnable()
     {

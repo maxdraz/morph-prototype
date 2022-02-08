@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class DoubleEdged : PassiveMorph
 {
+    static int meleeDamagePrerequisit = 45;
+    static int agilityPrerequisit = 30;
+
     private DamageHandler damageHandler;
     [SerializeField] private float hpDrainFraction;
     [SerializeField] private int meleeDamageStatBonus = 5;
@@ -12,6 +15,13 @@ public class DoubleEdged : PassiveMorph
     Stats stats;
     float damageBoost;
     float damageBoostFactor = 2;
+
+    static Prerequisite[] BasePrerequisits = new Prerequisite[2]
+    {
+
+        new Prerequisite("meleeDamage", meleeDamagePrerequisit),
+        new Prerequisite("agility", agilityPrerequisit),
+    };
 
     private void Start()
     {

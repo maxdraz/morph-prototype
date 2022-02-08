@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class SinisterWatcher : PassiveMorph
 {
+    static int stealthPrerequisit = 250;
+    static int perceptionPrerequisit = 200;
+
     private DamageHandler damageHandler;
     [SerializeField] private int stealthStatBonus = 5;
     public DamageHandler targetOfInterest;
@@ -15,6 +18,13 @@ public class SinisterWatcher : PassiveMorph
     [SerializeField] private bool unlockUnkownSource = true;
 
     Stats stats;
+
+    static Prerequisite[] BasePrerequisits = new Prerequisite[2]
+    {
+
+        new Prerequisite("stealth", stealthPrerequisit),
+        new Prerequisite("perception", perceptionPrerequisit),
+    };
 
     // Start is called before the first frame update
     private void OnEnable()

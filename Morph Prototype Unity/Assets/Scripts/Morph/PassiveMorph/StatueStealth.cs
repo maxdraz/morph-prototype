@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class StatueStealth : PassiveMorph
 {
+    static int stealthPrerequisit = 200;
+    static int intelligencePrerequisit = 30;
+
     private DamageHandler damageHandler;
     [SerializeField] private int stealthStatBonus = 5;
     [SerializeField] private float stealthPenaltyWhileMoving;
@@ -18,6 +21,13 @@ public class StatueStealth : PassiveMorph
     Stats stats;
     Velocity velo;
     Stealth stealth;
+
+    static Prerequisite[] BasePrerequisits = new Prerequisite[2]
+    {
+
+        new Prerequisite("stealth", stealthPrerequisit),
+        new Prerequisite("intelligence", intelligencePrerequisit),
+    };
 
     private void OnEnable()
     {

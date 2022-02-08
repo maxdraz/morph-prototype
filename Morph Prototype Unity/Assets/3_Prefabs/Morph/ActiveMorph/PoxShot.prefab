@@ -117,6 +117,15 @@ MonoBehaviour:
     duration: 5
     currentTime: 0
     loop: 0
+  viscousBlastSpawner:
+    projectilePrefab: {fileID: 0}
+    spawnPointOffsetLocal: {x: 0, y: 0, z: 1}
+    drawGizmos: 1
+    debugSphereRadius: 0.1
+    projectilesToSpawn: 3
+    radius: 1
+    radialOffset: 0
+    projectileDirectionRotation: 0
   chemicalCannonSpawner:
     projectilePrefab: {fileID: 9039021335273267706, guid: 31285851032f49d41af54b206cad707b, type: 3}
     spawnPointOffsetLocal: {x: 0, y: 0, z: 0}
@@ -176,7 +185,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staminaCost: 30
   energyCost: 20
-  testInput: 0
+  testInput: 273
   castTimer:
     duration: 0
     currentTime: 0

@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class AcidEruption : ActiveMorph
 {
-    static int chemicalDamagePrerequisit;
+    static int chemicalDamagePrerequisit = 25;
 
     [SerializeField] private ConeProjectileSpawner acidEruptionSpawner;
 
     public Prerequisite[] BasePrerequisits = new Prerequisite[1]
     {
-        new Prerequisite("meleeDamage", chemicalDamagePrerequisit),
+        new Prerequisite("chemicalDamage", chemicalDamagePrerequisit),
 
     };
 

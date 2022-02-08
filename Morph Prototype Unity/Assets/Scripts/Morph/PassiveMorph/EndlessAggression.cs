@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class EndlessAggression : PassiveMorph
 {
+    static int meleeDamagePrerequisit = 30;
+    static int intelligencePrerequisit = 30;
+    static int fortitudePrerequisit = 30;
+
     [SerializeField] private RadialProjectileSpawner explosionSpawner;
     private DamageHandler damageHandler;
     [SerializeField] private float maxStaminaStatBonus = .15f;
@@ -22,6 +26,13 @@ public class EndlessAggression : PassiveMorph
     float explosiveAngerStackDuration = 2;
     [SerializeField] private float explosiveAngerCooldownPeriod;
 
+    static Prerequisite[] BasePrerequisits = new Prerequisite[3]
+    {
+
+        new Prerequisite("meleeDamage", meleeDamagePrerequisit),
+        new Prerequisite("intelligence", intelligencePrerequisit),
+        new Prerequisite("fortitude", fortitudePrerequisit),
+    };
 
     private void OnEnable()
     {

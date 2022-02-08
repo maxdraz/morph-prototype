@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MonstrousMania : ActiveMorph
 {
-    static int meleeDamagePrerequisite;
-    static int agilityPrerequisite;
+    static int meleeDamagePrerequisite = 30;
+    static int agilityPrerequisite = 25;
 
     [SerializeField] private float attackSpeedBoost;
     [SerializeField] private float attackSpeedBoostDuration;

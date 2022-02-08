@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ShadowBoxingSchool : PassiveMorph
 {
+    static int stealthPrerequisit = 150;
 
     private DamageHandler damageHandler;
     [SerializeField] private int stealthStatBonus = 50;
@@ -14,6 +15,12 @@ public class ShadowBoxingSchool : PassiveMorph
 
     [SerializeField] private float ninjaTrainingCritChanceToStealthMultiplicationFactor;
     [SerializeField] private float ninjaTrainingAgilityToCritChanceMultiplicationFactor;
+
+    static Prerequisite[] BasePrerequisits = new Prerequisite[1]
+    {
+        new Prerequisite("stealth", stealthPrerequisit),
+
+    };
 
     private void OnEnable()
     {

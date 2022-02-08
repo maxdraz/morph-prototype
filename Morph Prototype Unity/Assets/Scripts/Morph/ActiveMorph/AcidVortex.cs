@@ -4,10 +4,20 @@ using UnityEngine;
 
 public class AcidVortex : ActiveMorph
 {
+    static int chemicalDamagePrerequisit = 25;
     [SerializeField] private GameObject acidVortexParticle;
     [SerializeField] private float damage;
     [SerializeField] private float explosionDelay;
     DamageHandler damageHandler;
+
+    [SerializeField] private ConeProjectileSpawner acidEruptionSpawner;
+
+    public Prerequisite[] BasePrerequisits = new Prerequisite[1]
+    {
+        new Prerequisite("chemicalDamage", chemicalDamagePrerequisit),
+
+    };
+
 
     private void Start()
     {

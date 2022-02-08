@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AdrenalineRush : ActiveMorph
 {
-    static int fortitudePrerequisit;
+    static int fortitudePrerequisit = 35;
 
     [SerializeField] private float adrenalineBoost;
 

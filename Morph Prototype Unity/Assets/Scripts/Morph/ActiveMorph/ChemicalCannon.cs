@@ -4,6 +4,16 @@ using UnityEngine;
 
 public class ChemicalCannon : ActiveMorph
 {
+    static int chemicalDamagePrerequisite = 50;
+
+
+    [SerializeField] private RadialProjectileSpawner viscousBlastSpawner;
+
+    static Prerequisite[] BasePrerequisits = new Prerequisite[1]
+{
+        new Prerequisite("chemicalDamage", chemicalDamagePrerequisite),
+};
+
     [SerializeField] private RadialProjectileSpawner chemicalCannonSpawner;
 
     public override bool ActivateIfConditionsMet()

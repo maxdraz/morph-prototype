@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Ferocity : PassiveMorph
 {
+    static int meleeDamagePrerequisit = 35;
+    static int agilityPrerequisit = 25;
+
     private DamageHandler damageHandler;
     [SerializeField] private int meleeDamageStatBonus = 5;
     [SerializeField] private bool unlockSpiritSpihon = true;
@@ -26,6 +29,13 @@ public class Ferocity : PassiveMorph
     [SerializeField] private float spiritSiphonEnergyStealAmount;
 
     Stats stats;
+
+    static Prerequisite[] BasePrerequisits = new Prerequisite[2]
+    {
+
+        new Prerequisite("meleeDamage", meleeDamagePrerequisit),
+        new Prerequisite("agility", agilityPrerequisit),
+    };
 
     private void OnEnable()
     {

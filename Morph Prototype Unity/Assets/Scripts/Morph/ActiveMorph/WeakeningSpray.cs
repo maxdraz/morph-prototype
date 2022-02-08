@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WeakeningSpray : ActiveMorph
 {
-    static int chemicalDamagePrerequisite;
+    static int chemicalDamagePrerequisite = 35;
 
     [SerializeField] private RadialProjectileSpawner weakeningSpraySpawner;
 

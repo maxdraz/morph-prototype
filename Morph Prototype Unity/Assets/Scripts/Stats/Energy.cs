@@ -16,7 +16,7 @@ public class Energy : MonoBehaviour
     //this timer starts every time energy is spent, during this timer energy wont regenerate
     [SerializeField] private Timer energyRegenTimer;
     float energyRegenTimerDuration = 1f;
-    bool energyRegenOnCooldown;
+    public bool energyRegenOnCooldown;
     float energyRegen = 5;
     float globalEnergyRegenFactor = 100;
 
@@ -38,23 +38,22 @@ public class Energy : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
+        
+        energyRegenTimer.Update(Time.deltaTime);          
+        
+
+        if (energyRegenTimer.JustCompleted)
+        {
+            energyRegenOnCooldown = false;
+        }
+
         if (!energyRegenOnCooldown)
         {
             if (currentEnergy < totalMaxEnergy) 
             {
                 EnergyRegen();
-            }
-        }
-
-        else
-        {
-            energyRegenTimer.Update(Time.deltaTime);
-
-            if (energyRegenTimer.JustCompleted)
-            {
-                energyRegenOnCooldown = false;
             }
         }
 
@@ -98,19 +97,16 @@ public class Energy : MonoBehaviour
         return energyAsPercentage;
     }
 
+    
+
     public void SubtractEnergy(float amount)
     {
-
-
+        energyRegenTimer = new Timer(energyRegenTimerDuration, false);
         currentEnergy = Mathf.Max(0, currentEnergy - amount);
         energyRegenOnCooldown = true;
         T_UpdateEnergyBar();
 
         //if timer is still counting down, spend the energy and restart the timer from the beginning 
-        if (energyRegenTimer.CurrentTime < energyRegenTimer.Duration)
-        {
-            energyRegenTimer = new Timer(energyRegenTimerDuration, false);
-        }
     }
 
     private void T_SetUpEnergybar()

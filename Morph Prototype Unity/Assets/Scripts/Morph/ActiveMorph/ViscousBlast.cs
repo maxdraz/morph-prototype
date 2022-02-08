@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ViscousBlast : ActiveMorph
 {
-    static int chemicalDamagePrerequisite;
+    static int chemicalDamagePrerequisite = 50;
 
 
     [SerializeField] private RadialProjectileSpawner viscousBlastSpawner;

@@ -2,8 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VitriolicVitality : MonoBehaviour
+public class VitriolicVitality : PassiveMorph
 {
+    static int chemicalDamagePrerequisit = 30;
+    static int toughnessPrerequisit = 30;
+    static int fortitudePrerequisit = 30;
+
     private DamageHandler damageHandler;
     [SerializeField] private int chemicalDamageStatBonus = 5;
     [SerializeField] private float healingPercentageBonus;
@@ -19,7 +23,13 @@ public class VitriolicVitality : MonoBehaviour
 
     Stats stats;
 
-    
+    static Prerequisite[] BasePrerequisits = new Prerequisite[3]
+    {
+
+        new Prerequisite("chemicalDamage", chemicalDamagePrerequisit),
+        new Prerequisite("toughness", toughnessPrerequisit),
+        new Prerequisite("fortitude", fortitudePrerequisit),
+    };
 
     private void OnEnable()
     {

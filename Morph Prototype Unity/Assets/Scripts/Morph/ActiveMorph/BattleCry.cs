@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BattleCry : ActiveMorph
 {
-    static int meleeDamagePrerequisit = 200;
+    static int meleeDamagePrerequisit = 25;
     static int intimidationPrerequisit = 200;
 
 

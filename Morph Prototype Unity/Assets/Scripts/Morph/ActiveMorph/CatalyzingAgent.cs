@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CatalyzingAgent : ActiveMorph
 {
-    static int chemicalDamagePrerequisite = 200;
+    static int chemicalDamagePrerequisite = 25;
 
 
     [SerializeField] private ConeProjectileSpawner catalyzingAgentSpawner;
@@ -14,7 +14,7 @@ public class CatalyzingAgent : ActiveMorph
 
     static Prerequisite[] BasePrerequisits = new Prerequisite[1]
     {
-        new Prerequisite("stealth", chemicalDamagePrerequisite),
+        new Prerequisite("chemicalDamage", chemicalDamagePrerequisite),
     };
 
     public override bool ActivateIfConditionsMet()

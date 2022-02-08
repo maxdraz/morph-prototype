@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SizzlingSlime : PassiveMorph
 {
+    static int chemicalDamagePrerequisit = 35;
+
     private DamageHandler damageHandler;
 
     [SerializeField] private float perceptionDamageFraction;
@@ -11,6 +13,12 @@ public class SizzlingSlime : PassiveMorph
     [SerializeField] private bool unlockBlindingVapour = true;
 
     Stats stats;
+
+    static Prerequisite[] BasePrerequisits = new Prerequisite[1]
+    {
+
+        new Prerequisite("chemicalDamage", chemicalDamagePrerequisit),
+    };
 
     private void OnEnable()
     {

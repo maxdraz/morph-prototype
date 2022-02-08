@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Intercept : ActiveMorph
 {
-    static int agilityPrerequisit = 200;
+    static int agilityPrerequisit = 35;
 
 
     DamageHandler damageHandler;

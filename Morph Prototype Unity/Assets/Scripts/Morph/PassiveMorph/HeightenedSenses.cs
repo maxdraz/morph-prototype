@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HeightenedSenses : MonoBehaviour
+public class HeightenedSenses : PassiveMorph
 {
+    static int perceptionPrerequisit = 300;
+
     private DamageHandler damageHandler;
     bool heightenedSensesCountingDown;
     [SerializeField] private float heightenedSensesCountdownDuration = 3;
@@ -19,6 +21,12 @@ public class HeightenedSenses : MonoBehaviour
     Stats stats;
     Velocity velo;
     Perception perception;
+
+    static Prerequisite[] BasePrerequisits = new Prerequisite[1]
+    {
+
+        new Prerequisite("perception", perceptionPrerequisit),
+    };
 
     private void OnEnable()
     {

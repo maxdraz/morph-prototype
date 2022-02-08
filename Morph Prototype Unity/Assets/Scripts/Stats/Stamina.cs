@@ -16,7 +16,7 @@ public class Stamina : MonoBehaviour
     //this timer starts every time stamina is spent, during this timer stamina wont regenerate
     [SerializeField] private Timer staminaRegenTimer;
     float staminaRegenTimerDuration = 1f;
-    bool staminaRegenOnCooldown;
+    public bool staminaRegenOnCooldown;
     float staminaRegen = 5;
     float globalStaminaRegenFactor = 50;
 
@@ -37,24 +37,21 @@ public class Stamina : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        if (!staminaRegenOnCooldown) 
-        {
-            if (currentStamina < totalMaxStamina) 
-            {
-                StaminaRegen();
-            }
-        }
-
-        else  
+        if (staminaRegenOnCooldown) 
         {
             staminaRegenTimer.Update(Time.deltaTime);
+        }  
 
-            if (staminaRegenTimer.JustCompleted) 
-            {
-                staminaRegenOnCooldown = false;
-            }
+        if (staminaRegenTimer.JustCompleted) 
+        {
+            staminaRegenOnCooldown = false;
+        }
+
+        if (!staminaRegenOnCooldown) 
+        {
+            StaminaRegen();
         }
     }
 
@@ -70,7 +67,7 @@ public class Stamina : MonoBehaviour
         totalMaxStamina = baseMaxStamina * (1 + maxStaminaBonus);
         currentStamina = totalMaxStamina;
 
-        //T_SetUpStaminabar();
+        T_SetUpStaminabar();
     }
 
     public void AddStamina(float amount)
@@ -92,22 +89,22 @@ public class Stamina : MonoBehaviour
 
     public void SubtractStamina(float amount)
     {
-        
+        //if timer is still counting down, spend the stamina and restart the timer from the beginning 
+        if (staminaRegenOnCooldown)
+        {
+            staminaRegenTimer = new Timer(staminaRegenTimerDuration, false);
+        }
 
         currentStamina = Mathf.Max(0, currentStamina - amount);
         staminaRegenOnCooldown = true;
         T_UpdateStaminaBar();
 
-        //if timer is still counting down, spend the stamina and restart the timer from the beginning 
-        if (staminaRegenTimer.CurrentTime < staminaRegenTimer.Duration)
-        {
-            staminaRegenTimer = new Timer(staminaRegenTimerDuration, false);
-        }
+        
     }
 
     private void T_SetUpStaminabar()
     {
-        staminaBar = GameObject.Find("UI").transform.Find("Gameplay").transform.Find("StatusBar").transform.Find("StaminaBar").GetComponent<Image>();
+        //staminaBar = GameObject.Find("UI").transform.Find("Gameplay").transform.Find("StatusBar").transform.Find("StaminaBar").GetComponent<Image>();
         staminaBar.gameObject.SetActive(false);
     }
 

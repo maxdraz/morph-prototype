@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FoulFungus : ActiveMorph
 {
-    static int chemicalDamagePrerequisit;
+    static int chemicalDamagePrerequisit = 30;
 
     static Prerequisite[] BasePrerequisits = new Prerequisite[1]
     {

@@ -4,11 +4,20 @@ using UnityEngine;
 
 public class ChemicalCocktail : ActiveMorph
 {
-
+    static int chemicalDamagePrerequisite = 50;
     [SerializeField] private GameObject chemicalCocktailParticle;
     [SerializeField] private float explosionDelay;
     [SerializeField] private float poisonStackModifier;
     DamageHandler damageHandler;
+
+    [SerializeField] private RadialProjectileSpawner viscousBlastSpawner;
+
+    static Prerequisite[] BasePrerequisits = new Prerequisite[1]
+{
+        new Prerequisite("chemicalDamage", chemicalDamagePrerequisite),
+};
+
+
 
     private void Start()
     {

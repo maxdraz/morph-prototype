@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DeathlyToxins : ActiveMorph
 {
-    static int chemicalDamagePrerequisite;
+    static int chemicalDamagePrerequisite = 30;
 
     [SerializeField] private RadialProjectileSpawner deathlyToxinsSpawner;
 

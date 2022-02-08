@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class RiftingLeap : ActiveMorph
 {
-    static int agilityDamagePrerequisite;
-    static int toughnessPrerequisite;
+    static int agilityDamagePrerequisite = 20;
+    static int toughnessPrerequisite = 30;
 
 
     DamageHandler damageHandler;

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SpeedDemon : PassiveMorph
 {
+    static int agilityPrerequisit = 40;
+
     private DamageHandler damageHandler;
     [SerializeField] private int meleeDamageStatBonus = 5;
     [SerializeField] private bool unlockCruelCapacity = true;
@@ -17,6 +19,13 @@ public class SpeedDemon : PassiveMorph
     int cruelCapacityAgilityThreshold;
 
     Stats stats;
+
+    static Prerequisite[] BasePrerequisits = new Prerequisite[1]
+    {
+
+        new Prerequisite("agility", agilityPrerequisit),
+
+    };
 
     private void OnEnable()
     {

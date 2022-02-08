@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VenomGlands : MonoBehaviour
+public class VenomGlands : PassiveMorph
 {
+    static int chemicalDamagePrerequisit = 30;
+
     private DamageHandler damageHandler;
     [SerializeField] private float bonusPoisonDamage = 200;
     [SerializeField] private bool unlockAtrophy;
@@ -21,6 +23,13 @@ public class VenomGlands : MonoBehaviour
     //NOTE only one of these special venoms can be active at a time, the bonusPoisonDamage is always dealt no matter which special venom is active
 
     [SerializeField] private float venomDuration = 4;
+
+    static Prerequisite[] BasePrerequisits = new Prerequisite[1]
+    {
+
+        new Prerequisite("chemicalDamage", chemicalDamagePrerequisit),
+
+    };
 
     private void OnEnable()
     {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TerrifyingHowl : ActiveMorph
 {
-    static int intimidationPrerequisite;
+    static int intimidationPrerequisite = 150;
 
     [SerializeField] private float fortitudeDamage;
     [SerializeField] private float range;

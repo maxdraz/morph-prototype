@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GaseousDischarge : PassiveMorph
 {
+    static int chemicalDamagePrerequisit = 25;
+
     private DamageHandler damageHandler;
     [SerializeField] private int chemicalDamageStatBonus = 5;
 
@@ -18,6 +20,13 @@ public class GaseousDischarge : PassiveMorph
     [SerializeField] private float toxicOverflowKnockBackForce;
 
     Stats stats;
+    static Prerequisite[] BasePrerequisits = new Prerequisite[1]
+    {
+
+        new Prerequisite("chemicalDamage", chemicalDamagePrerequisit),
+
+    };
+
     private void OnEnable()
     {
         stats = GetComponent<Stats>();

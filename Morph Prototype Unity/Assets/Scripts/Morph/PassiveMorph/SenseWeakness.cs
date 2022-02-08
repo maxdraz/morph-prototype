@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class SenseWeakness : PassiveMorph
 {
+    static int meleeDamagePrerequisit = 35;
+    static int agilityPrerequisit = 25;
+
+
     private DamageHandler damageHandler;
 
     [SerializeField] private float bonusCritChance = .2f;
@@ -15,6 +19,13 @@ public class SenseWeakness : PassiveMorph
 
 
     Health health;
+
+    static Prerequisite[] BasePrerequisits = new Prerequisite[2]
+    {
+
+        new Prerequisite("meleeDamage", meleeDamagePrerequisit),
+        new Prerequisite("agility", agilityPrerequisit),
+    };
 
     private void OnEnable()
     {
