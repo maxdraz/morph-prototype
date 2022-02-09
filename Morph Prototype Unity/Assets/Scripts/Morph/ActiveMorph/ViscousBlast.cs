@@ -24,6 +24,14 @@ public class ViscousBlast : ActiveMorph
         return false;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(testInput))
+        {
+            SpawnViscousblast();
+        }
+    }
+
     private void SpawnViscousblast()
     {
         var projectiles = viscousBlastSpawner?.Spawn(transform);

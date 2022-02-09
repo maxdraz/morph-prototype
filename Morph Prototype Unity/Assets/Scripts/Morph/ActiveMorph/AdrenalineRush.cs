@@ -5,7 +5,7 @@ using UnityEngine;
 public class AdrenalineRush : ActiveMorph
 {
     static int fortitudePrerequisit = 35;
-
+    [SerializeField] private GameObject adrenalineRushParticles;
     [SerializeField] private float adrenalineBoost;
 
     static Prerequisite[] BasePrerequisits = new Prerequisite[1]
@@ -23,8 +23,17 @@ public class AdrenalineRush : ActiveMorph
         return false;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(testInput))
+        {
+            AdrenalineBoost();
+        }
+    }
+
     private void AdrenalineBoost()
     {
+        ObjectPooler.Instance.GetOrCreatePooledObject(adrenalineRushParticles);
         GetComponent<Stamina>().AddStamina(adrenalineBoost);
     }
 }

@@ -19,8 +19,11 @@ public class ColourChange : ActiveMorph
 
     [SerializeField] private bool unlockShimmering = true;
     [SerializeField] private float shimmeringPerceptionReduction;
+    [SerializeField] private GameObject shimmeringParticles;
+    ParticleSystem shimmering;
 
     [SerializeField] private bool unlockBioLuminescentFlash = true;
+    [SerializeField] private GameObject bioluminescentFlash;
     [SerializeField] private int perceptionDamage;
     [SerializeField] private float blindnessDuration;
 
@@ -39,9 +42,25 @@ public class ColourChange : ActiveMorph
         StartCoroutine(AssignDamageHandlerCoroutine());
         ChangeStealthStat(stealthStatBonus);
 
-        
+        if (unlockShimmering) 
+        {
+            shimmering = ObjectPooler.Instance.GetOrCreatePooledObject(shimmeringParticles).GetComponent<ParticleSystem>();
+            shimmering.transform.position = transform.position;
+        }
     }
 
+    private void Update()
+    {
+        if (cooldown.JustCompleted) 
+        {
+            shimmering.Play();
+        }
+
+        if (Input.GetKeyDown(testInput)) 
+        {
+            Active();
+        }
+    }
 
     private void OnDisable()
     {
@@ -68,7 +87,12 @@ public class ColourChange : ActiveMorph
 
     public void Active() 
     {
-        //This morphs has 2 actives, 1 in stealthmode and another not in stealthmode. They  share the same cooldown
+        //This morphs has 2 actives, 1 in stealthmode and another not in stealthmode. They share the same cooldown
+        if (unlockShimmering) 
+        {
+            shimmering.Stop();
+        }
+
         if (stealth.stealthMode) 
         {
             StartCoroutine("ColourChangeActive");
@@ -92,6 +116,7 @@ public class ColourChange : ActiveMorph
 
     private void BioluminescentFlash()
     {
+        ObjectPooler.Instance.GetOrCreatePooledObject(bioluminescentFlash);
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, range);
 
         foreach (var hitCollider in hitColliders)

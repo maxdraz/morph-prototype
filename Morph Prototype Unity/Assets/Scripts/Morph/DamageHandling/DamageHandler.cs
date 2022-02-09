@@ -90,7 +90,8 @@ public class DamageHandler : MonoBehaviour
         stamina.SubtractStamina(damageTakenSummary.StaminaDrained);
             // fortitude check for mortal blow 
         ApplyKnockback(in damageTakenSummary);
-            
+        ApplyKnockup(in damageTakenSummary);
+
         VisualizeDamage(in damageTakenSummary);
 
     }
@@ -102,6 +103,14 @@ public class DamageHandler : MonoBehaviour
 
         var forceDirectionNormalized = (transform.position - damageTakenSummary.DamageDealer.transform.position).normalized;
         parentRigidbody.AddForce(forceDirectionNormalized * damageTakenSummary.KnockbackForce, ForceMode.Impulse);
+    }
+
+    private void ApplyKnockup(in DamageTakenSummary damageTakenSummary)
+    {
+        if (!parentRigidbody) return;
+        if (damageTakenSummary.KnockupForce <= 0) return;
+
+        parentRigidbody.AddForce(Vector3.up * damageTakenSummary.KnockupForce, ForceMode.Impulse);
     }
 
     private void VisualizeDamage(in DamageTakenSummary damageTakenSummary)
@@ -191,7 +200,9 @@ public class DamageHandler : MonoBehaviour
             LightningDamage = HandleLightningDamage(ref damageType),
             StaminaDrained = HandlerStaminaDrain(ref damageType),
             FortitudeDamage = HandleFortitudeDamage(ref damageType),
-            KnockbackForce = HandleKnockback(ref damageType)
+            KnockbackForce = HandleKnockback(ref damageType),
+            KnockupForce = HandleKnockup(ref damageType)
+
         };
 
         damageTakenSummary.IsFatalBlow = health.WillDieFromThisDamage(damageTakenSummary.TotalDamage);
@@ -287,6 +298,16 @@ public class DamageHandler : MonoBehaviour
         if (damageType is IKnockback knockback)
         {
             return knockback.KnockbackForce;
+        }
+
+        return 0;
+    }
+
+    private float HandleKnockup(ref IDamageType damageType)
+    {
+        if (damageType is IKnockUp knockup)
+        {
+            return knockup.KnockupForce;
         }
 
         return 0;

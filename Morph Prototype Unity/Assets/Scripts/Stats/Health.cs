@@ -17,6 +17,9 @@ public class Health : MonoBehaviour
     public event Action Died;
     public event Action<float> HealthChanged;
 
+    float particleThreshold;
+    [SerializeField] private GameObject healthGainParticles;
+
     // TODO - reimplement health bar
     [SerializeField] private Image healthBar;
     private Coroutine hideHealthBarAfterTime;
@@ -72,6 +75,11 @@ public class Health : MonoBehaviour
     {
         float amountToHeal = amount* (1 + healingPercentageBonus);
         currentHealth = Mathf.Min(currentHealth + amountToHeal, maxHealth);
+
+        if (amount > particleThreshold)
+        {
+            ObjectPooler.Instance.GetOrCreatePooledObject(healthGainParticles);
+        }
 
         OnHealthChanged();
     }

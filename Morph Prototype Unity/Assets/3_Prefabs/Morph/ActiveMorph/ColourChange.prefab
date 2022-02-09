@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 4324763947085646418}
   - component: {fileID: 5652571686928371528}
   - component: {fileID: 3745143835941541390}
+  - component: {fileID: 1772954696996774671}
+  - component: {fileID: 6483455637294753308}
+  - component: {fileID: 8054172475083354077}
   m_Layer: 0
   m_Name: ColourChange
   m_TagString: Untagged
@@ -74,6 +77,53 @@ MonoBehaviour:
   colourChangeDuration: 3
   unlockShimmering: 1
   shimmeringPerceptionReduction: 50
+  shimmeringParticles: {fileID: 7450608787142296881, guid: 2762f8b9d737e6b4c8a413908643aebf, type: 3}
   unlockBioLuminescentFlash: 1
+  bioluminescentFlash: {fileID: 3520547880351128278, guid: 4e099870b5a70a247a7883db8c659e5f, type: 3}
   perceptionDamage: 200
   blindnessDuration: 3
+--- !u!114 &1772954696996774671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6313277810418499830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bc88bd60e4b2024ca95f144dd5d4dc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  limbWeaponMorph: {fileID: 0}
+  headWeaponMorph: {fileID: 0}
+  tailWeaponMorph: {fileID: 0}
+  activeMorphs: []
+  passiveMorphs: []
+  LimbWeaponMorph: {fileID: 0}
+  HeadWeaponMorph: {fileID: 0}
+  TailWeaponMorph: {fileID: 0}
+--- !u!114 &6483455637294753308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6313277810418499830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce19a24efc71e42408c5685a183642f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackOrAbilityInProgress: 0
+--- !u!114 &8054172475083354077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6313277810418499830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f0002fccc3ddcb40902b7b0ae44cd8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

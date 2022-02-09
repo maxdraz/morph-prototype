@@ -9772,6 +9772,8 @@ GameObject:
   - component: {fileID: 2614188371263642208}
   - component: {fileID: 1777048020591324101}
   - component: {fileID: 8979314408862354219}
+  - component: {fileID: 4787711941546917916}
+  - component: {fileID: 4158476628427609896}
   m_Layer: 0
   m_Name: Battle-Cry
   m_TagString: Untagged
@@ -14649,6 +14651,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb480e7dfbcf3a141b1c7981c092e139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  range: 10
+  volume: 100
+--- !u!114 &4787711941546917916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4325605245274640103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca070c3b6534b8a47b9eeb7cc2a9559f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isInvincible: 1
+  damageNumberSet: {fileID: 0}
+--- !u!114 &4158476628427609896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4325605245274640103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c95fa917adcf674ea656831a31e7df9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onHitEffects: []
+  references:
+    version: 1
 --- !u!1 &8053402636406213573
 GameObject:
   m_ObjectHideFlags: 0

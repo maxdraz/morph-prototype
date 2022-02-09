@@ -12,7 +12,6 @@ public class Intercept : ActiveMorph
     [SerializeField] private float horizontalForce;
     Rigidbody rb;
     bool goingToImpact;
-    Stamina stamina;
     [SerializeField] private float staminaGain;
     bool gainedStamina;
     [SerializeField] private float range;
@@ -25,8 +24,6 @@ public class Intercept : ActiveMorph
     private void OnEnable()
     {
         StartCoroutine(AssignDamageHandlerCoroutine());
-        rb = GetComponentInParent<Rigidbody>();
-        stamina = GetComponent<Stamina>();
         goingToImpact = false;
     }
 
@@ -37,7 +34,7 @@ public class Intercept : ActiveMorph
         UnsubscribeFromEvents();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (cooldown.JustCompleted) 
         {
@@ -52,9 +49,16 @@ public class Intercept : ActiveMorph
 
     private void Leap()
     {
-        rb.AddForce(Vector3.up, ForceMode.Impulse);
+        if (rb == null)
+        {
+            rb = GetComponentInParent<Rigidbody>();
+        }
 
-        rb.AddForce(Vector3.forward, ForceMode.Impulse);
+        rb.AddForce(0, 1 * verticalForce, 0, ForceMode.Impulse);
+
+        rb.AddForce(0, 0, 1 * horizontalForce, ForceMode.Impulse);
+
+        Debug.Log("Leaping");
 
         goingToImpact = true;
     }
@@ -67,7 +71,7 @@ public class Intercept : ActiveMorph
         {
             if (hitCollider.gameObject.GetComponent<Stats>() && hitCollider.gameObject != gameObject)
             {
-                stamina.AddStamina(staminaGain);
+                BroadcastMessage("AddStamina",staminaGain);
                 gainedStamina = true;
             }
         }

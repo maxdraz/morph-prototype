@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 475de2bbcec45ee4ea69cab8398883e0, type: 3}
   m_Name: Energysteal FX
   m_EditorClassIdentifier: 
-  EnergystealParticles: {fileID: 0}
+  EnergystealParticles: {fileID: 3435354600310916263, guid: 6958291022918564b806b3d8b820b9ba, type: 3}

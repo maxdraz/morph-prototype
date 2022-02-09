@@ -23,7 +23,13 @@ public class NeurotoxicNeedle : ActiveMorph
         return false;
     }
 
-    
+    private void Update()
+    {
+        if (Input.GetKeyDown(testInput))
+        {
+            SpawnNeurotoxicNeedle();
+        }
+    }
 
     private void SpawnNeurotoxicNeedle()
     {

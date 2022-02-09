@@ -23,6 +23,14 @@ public class DeathlyToxins : ActiveMorph
         return false;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(testInput))
+        {
+            SpawnDeathlyToxins();
+        }
+    }
+
     private void SpawnDeathlyToxins()
     {
         var projectiles = deathlyToxinsSpawner?.Spawn(transform);

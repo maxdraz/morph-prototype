@@ -13,8 +13,6 @@ public class Energy : MonoBehaviour
     public float currentEnergy;
     float energyAsPercentage;
 
-    //this timer starts every time energy is spent, during this timer energy wont regenerate
-    [SerializeField] private Timer energyRegenTimer;
     float energyRegenTimerDuration = 1f;
     public bool energyRegenOnCooldown;
     float energyRegen = 5;
@@ -22,6 +20,9 @@ public class Energy : MonoBehaviour
 
     Stamina stamina;
     Stats stats;
+
+    float particleThreshold = 10;
+    [SerializeField] private GameObject energyGainParticles;
 
     [SerializeField] private Image energyBar;
     private Coroutine hideEnergyBarAfterTime;
@@ -32,7 +33,6 @@ public class Energy : MonoBehaviour
         stamina = GetComponent<Stamina>();
         stats = GetComponent<Stats>();
         baseMaxEnergy = stats ? stats.MaxEnergy : 100;
-        energyRegenTimer = new Timer(energyRegenTimerDuration, false);
 
         Invoke("SetMaxEnergy",.5f);
     }
@@ -40,23 +40,11 @@ public class Energy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        energyRegenTimer.Update(Time.deltaTime);          
-        
-
-        if (energyRegenTimer.JustCompleted)
+        if (!energyRegenOnCooldown) 
         {
-            energyRegenOnCooldown = false;
+            EnergyRegen();
         }
-
-        if (!energyRegenOnCooldown)
-        {
-            if (currentEnergy < totalMaxEnergy) 
-            {
-                EnergyRegen();
-            }
-        }
-
+        
         EnergyAsPercentage();
         stamina.energyAsPercentage = energyAsPercentage;
     }
@@ -64,6 +52,7 @@ public class Energy : MonoBehaviour
     void EnergyRegen()
     {
         float energyToAdd = (energyRegen * (1 + bonusEnergyRegen)) / globalEnergyRegenFactor;
+        //T_UpdateEnergyBar(); 
         AddEnergy(energyToAdd);
     }
 
@@ -78,6 +67,11 @@ public class Energy : MonoBehaviour
     public void AddEnergy(float amount)
     {
         currentEnergy = Mathf.Min(currentEnergy + amount, totalMaxEnergy);
+
+        if (amount > particleThreshold) 
+        {
+            ObjectPooler.Instance.GetOrCreatePooledObject(energyGainParticles);
+        }
 
         //T_UpdateEnergyBar();
     }
@@ -101,12 +95,28 @@ public class Energy : MonoBehaviour
 
     public void SubtractEnergy(float amount)
     {
-        energyRegenTimer = new Timer(energyRegenTimerDuration, false);
         currentEnergy = Mathf.Max(0, currentEnergy - amount);
-        energyRegenOnCooldown = true;
         T_UpdateEnergyBar();
 
-        //if timer is still counting down, spend the energy and restart the timer from the beginning 
+        if (energyRegenOnCooldown)
+        {
+            StopCoroutine("RegenTimer");
+            StartCoroutine("RegenTimer");
+        }
+        else 
+        {
+            StartCoroutine("RegenTimer");
+        }
+    }
+
+    IEnumerator RegenTimer() 
+    {
+        energyRegenOnCooldown = true;
+
+        yield return new WaitForSeconds(energyRegenTimerDuration);
+
+        energyRegenOnCooldown = false;
+    
     }
 
     private void T_SetUpEnergybar()

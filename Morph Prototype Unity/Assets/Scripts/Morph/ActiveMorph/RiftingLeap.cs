@@ -13,6 +13,8 @@ public class RiftingLeap : ActiveMorph
     [SerializeField] private float horizontalForce;
     Rigidbody rb;
     bool goingToImpact;
+    Vector3 landingParticlesOffset = new Vector3(0, -1, 0);
+    [SerializeField] private GameObject impactParticles;
 
 
     [SerializeField] private float physicalDamage;
@@ -28,7 +30,6 @@ public class RiftingLeap : ActiveMorph
     private void OnEnable()
     {
         StartCoroutine(AssignDamageHandlerCoroutine());
-        rb = GetComponentInParent<Rigidbody>();
         goingToImpact = false;
     }
 
@@ -42,17 +43,35 @@ public class RiftingLeap : ActiveMorph
 
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(testInput))
+        {
+            Leap();
+        }
+    }
+
     private void Leap() 
     {
-        rb.AddForce(Vector3.up, ForceMode.Impulse);
+        if (rb == null) 
+        {
+            rb = GetComponentInParent<Rigidbody>();
+        }
 
-        rb.AddForce(Vector3.forward, ForceMode.Impulse);
+        rb.AddForce(0, 1 * verticalForce, 0, ForceMode.Impulse);
+
+        rb.AddForce(0, 0, 1 * horizontalForce, ForceMode.Impulse);
+
+        Debug.Log("Leaping");
 
         goingToImpact = true;
     }
 
     private void Impact() 
     {
+        GameObject landingParticles = ObjectPooler.Instance.GetOrCreatePooledObject(impactParticles);
+        landingParticles.transform.position = transform.position + landingParticlesOffset;
+
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, range);
 
         foreach (var hitCollider in hitColliders)
@@ -60,7 +79,7 @@ public class RiftingLeap : ActiveMorph
             if (hitCollider.gameObject.GetComponent<Stats>() && hitCollider.gameObject != gameObject)
             {
                 hitCollider.GetComponent<DamageHandler>().ApplyDamage(new PhysicalDamageData (physicalDamage),damageHandler);
-                //hitCollider.GetComponent<DamageHandler>().ApplyDamage(new KnockUp(knockUpForce), damageHandler);
+                hitCollider.GetComponent<DamageHandler>().ApplyDamage(new KnockupData(knockUpForce), damageHandler);
             }
         }
 

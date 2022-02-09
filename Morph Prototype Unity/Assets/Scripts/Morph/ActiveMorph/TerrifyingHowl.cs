@@ -5,7 +5,7 @@ using UnityEngine;
 public class TerrifyingHowl : ActiveMorph
 {
     static int intimidationPrerequisite = 150;
-
+    [SerializeField] private GameObject terrifyingHowlParticles;
     [SerializeField] private float fortitudeDamage;
     [SerializeField] private float range;
     DamageHandler damageHandler;
@@ -34,9 +34,17 @@ public class TerrifyingHowl : ActiveMorph
         return false;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(testInput))
+        {
+            Howl();
+        }
+    }
+
     private void Howl()
     {
-
+        ObjectPooler.Instance.GetOrCreatePooledObject(terrifyingHowlParticles);
 
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, range);
 

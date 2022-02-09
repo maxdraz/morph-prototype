@@ -117,4 +117,5 @@ MonoBehaviour:
     duration: 10
     currentTime: 0
     loop: 0
+  adrenalineRushParticles: {fileID: 347924305674693644, guid: edb7516f571b9a94d86424b0397e4284, type: 3}
   adrenalineBoost: 100

@@ -36,4 +36,6 @@ public class DamageTakenSummary
     public float FortitudeDamage;
 
     public float KnockbackForce;
+    public float KnockupForce;
+
 }

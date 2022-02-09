@@ -41,6 +41,14 @@ public class CraterCreature : ActiveMorph
 
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(testInput))
+        {
+            Leap();
+        }
+    }
+
     private void Leap()
     {
         rb.AddForce(Vector3.up, ForceMode.Impulse);

@@ -23,6 +23,14 @@ public class FoulFungus : ActiveMorph
         return false;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(testInput))
+        {
+            SpawnGasCloud();
+        }
+    }
+
     private void SpawnGasCloud()
     {
         var projectiles = foulFungusGasCloudSpawner?.Spawn(transform);

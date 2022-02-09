@@ -23,6 +23,14 @@ public class WeakeningSpray : ActiveMorph
         return false;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(testInput))
+        {
+            SpawnWeakeningSpray();
+        }
+    }
+
     private void SpawnWeakeningSpray()
     {
         var projectiles = weakeningSpraySpawner?.Spawn(transform);

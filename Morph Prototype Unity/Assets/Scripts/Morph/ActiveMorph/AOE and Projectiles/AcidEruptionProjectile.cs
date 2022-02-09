@@ -41,7 +41,7 @@ public class AcidEruptionProjectile : MonoBehaviour
         if (other.GetComponent<Rigidbody>() == true)
         {
             //Needs to be knockup
-            //other.GetComponent<DamageHandler>().ApplyDamage(new KnockbackData(), damageHandler);
+            other.GetComponent<DamageHandler>().ApplyDamage(new KnockupData(), damageHandler);
         }
     }
 }

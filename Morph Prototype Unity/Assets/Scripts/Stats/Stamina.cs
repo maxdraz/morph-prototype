@@ -13,14 +13,15 @@ public class Stamina : MonoBehaviour
     public float currentStamina;
     public float energyAsPercentage;
 
-    //this timer starts every time stamina is spent, during this timer stamina wont regenerate
-    [SerializeField] private Timer staminaRegenTimer;
     float staminaRegenTimerDuration = 1f;
     public bool staminaRegenOnCooldown;
     float staminaRegen = 5;
     float globalStaminaRegenFactor = 50;
 
     Stats stats;
+
+    float particleThreshold = 10;
+    [SerializeField] private GameObject staminaGainParticles;
 
     [SerializeField] private Image staminaBar;
     private Coroutine hideStaminaBarAfterTime;
@@ -31,7 +32,6 @@ public class Stamina : MonoBehaviour
         staminaRegenOnCooldown = false;
         stats = GetComponent<Stats>();
         baseMaxStamina = stats ? stats.MaxStamina : 100;
-        staminaRegenTimer = new Timer(staminaRegenTimerDuration, false);
 
         Invoke("SetMaxStamina", .5f);
     }
@@ -39,26 +39,19 @@ public class Stamina : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (staminaRegenOnCooldown) 
+        if (currentStamina < totalMaxStamina)
         {
-            staminaRegenTimer.Update(Time.deltaTime);
-        }  
-
-        if (staminaRegenTimer.JustCompleted) 
-        {
-            staminaRegenOnCooldown = false;
-        }
-
-        if (!staminaRegenOnCooldown) 
-        {
-            StaminaRegen();
+            if (!staminaRegenOnCooldown)
+            {
+                StaminaRegen();
+            }
         }
     }
 
     void StaminaRegen() 
     {
         float staminaToAdd = staminaRegen * (1 + bonusStaminaRegen + energyAsPercentage) / globalStaminaRegenFactor;
-
+        //T_UpdateStaminaBar();
         AddStamina(staminaToAdd);
     }
   
@@ -74,6 +67,11 @@ public class Stamina : MonoBehaviour
     {
         currentStamina = Mathf.Min(currentStamina + amount, totalMaxStamina);
 
+        if (amount > particleThreshold)
+        {
+            ObjectPooler.Instance.GetOrCreatePooledObject(staminaGainParticles);
+        }
+
         T_UpdateStaminaBar();
     }
 
@@ -87,20 +85,34 @@ public class Stamina : MonoBehaviour
         return staminaAsPercetage;
     }
 
+    
+
     public void SubtractStamina(float amount)
     {
-        //if timer is still counting down, spend the stamina and restart the timer from the beginning 
-        if (staminaRegenOnCooldown)
-        {
-            staminaRegenTimer = new Timer(staminaRegenTimerDuration, false);
-        }
-
         currentStamina = Mathf.Max(0, currentStamina - amount);
-        staminaRegenOnCooldown = true;
         T_UpdateStaminaBar();
 
-        
+        if (staminaRegenOnCooldown)
+        {
+            StopCoroutine("RegenTimer");
+            StartCoroutine("RegenTimer");
+        }
+        else
+        {
+            StartCoroutine("RegenTimer");
+        }
     }
+
+    IEnumerator RegenTimer()
+    {
+        staminaRegenOnCooldown = true;
+
+        yield return new WaitForSeconds(staminaRegenTimerDuration);
+
+        staminaRegenOnCooldown = false;
+
+    }
+
 
     private void T_SetUpStaminabar()
     {

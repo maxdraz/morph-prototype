@@ -23,6 +23,14 @@ public class PoisonNeedleBarrage : ActiveMorph
         return false;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(testInput))
+        {
+            SpawnPoisonNeedleBarrage();
+        }
+    }
+
     private void SpawnPoisonNeedleBarrage()
     {
         var projectiles = poisonNeedleBarrageSpawner?.Spawn(transform);

@@ -40,7 +40,13 @@ public class CatalyzingAgent : ActiveMorph
             }
     }
 
-
+    private void Update()
+    {
+        if (Input.GetKeyDown(testInput))
+        {
+            SpawnCatalyzingAgent();
+        }
+    }
 
     private void OnValidate()
     {

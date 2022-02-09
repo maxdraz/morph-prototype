@@ -7,6 +7,8 @@ public class BattleCry : ActiveMorph
     static int meleeDamagePrerequisit = 25;
     static int intimidationPrerequisit = 200;
 
+    [SerializeField] private GameObject battleCryAOE;
+    float duration;
 
     static Prerequisite[] BasePrerequisits = new Prerequisite[2]
     {
@@ -14,7 +16,6 @@ public class BattleCry : ActiveMorph
         new Prerequisite("intimidation", intimidationPrerequisit)
     };
 
-    [SerializeField] private RadialProjectileSpawner battleCrySpawner;
 
     public override bool ActivateIfConditionsMet()
     {
@@ -28,25 +29,23 @@ public class BattleCry : ActiveMorph
 
     private void SpawnBattleCry()
     {
-        var projectiles = battleCrySpawner?.Spawn(transform);
-
-        if (projectiles != null)
-            foreach (var projectile in projectiles)
-            {
-                projectile.GetComponent<Projectile>().SetDamageDealer(GetComponent<DamageHandler>());
-                projectile.GetComponent<BattleCryAOE>().sourceCreature = this.gameObject;
-            }
+        ObjectPooler.Instance.GetOrCreatePooledObject(battleCryAOE);    
+        //Next melee attack is a guaranateed critical hit for duration
     }
 
-
+    private void Update()
+    {
+        if (Input.GetKeyDown(testInput))
+        {
+            SpawnBattleCry();
+        }
+    }
 
     private void OnValidate()
     {
-        battleCrySpawner?.OnValidate();
     }
 
     private void OnDrawGizmos()
     {
-        battleCrySpawner?.OnDrawGizmos(transform);
     }
 }

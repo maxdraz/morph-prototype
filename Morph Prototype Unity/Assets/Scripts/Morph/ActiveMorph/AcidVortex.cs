@@ -10,7 +10,6 @@ public class AcidVortex : ActiveMorph
     [SerializeField] private float explosionDelay;
     DamageHandler damageHandler;
 
-    [SerializeField] private ConeProjectileSpawner acidEruptionSpawner;
 
     public Prerequisite[] BasePrerequisits = new Prerequisite[1]
     {
@@ -28,14 +27,24 @@ public class AcidVortex : ActiveMorph
     {
         if (base.ActivateIfConditionsMet())
         {
-            SpawnChemicalCocktail();
+            SpawnAcidVortex();
             Invoke("AcidVortexDamage", explosionDelay);
             return true;
         }
         return false;
     }
 
-    private void SpawnChemicalCocktail()
+    private void Update()
+    {
+        if (Input.GetKeyDown(testInput))
+        {
+            SpawnAcidVortex();
+            Invoke("AcidVortexDamage", explosionDelay);
+        }
+    }
+
+
+    private void SpawnAcidVortex()
     {
         GameObject chemicalCocktail = Instantiate(acidVortexParticle, transform.position, transform.rotation);
         chemicalCocktail.transform.parent = this.gameObject.transform;

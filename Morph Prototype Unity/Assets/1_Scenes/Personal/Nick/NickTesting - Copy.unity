@@ -259,6 +259,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2055639767}
     - target: {fileID: 5016710486606836775, guid: 17294641915b125489525c675901fd49, type: 3}
+      propertyPath: energyBar
+      value: 
+      objectReference: {fileID: 1610440725}
+    - target: {fileID: 5016710486606836775, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
@@ -279,9 +283,21 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
+      propertyPath: activeMorphs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: passiveMorphs.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
+      propertyPath: activeMorphs.Array.data[1]
+      value: 
+      objectReference: {fileID: 3253409568704655237, guid: 9e05fd58d4a4a8d4ea36f15716d90368, type: 3}
+    - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
+      propertyPath: activeMorphs.Array.data[2]
+      value: 
+      objectReference: {fileID: 4418193492535803913, guid: e6e32cb5a5e88ed4695cacbda2e14af8, type: 3}
     - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: passiveMorphs.Array.data[0]
       value: 
@@ -1165,7 +1181,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1764
+  m_Name: pb_Mesh-1766
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1452,6 +1468,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1610440725 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8233844410334014120, guid: 5b5efa556a53440409afa0b2bdcfef62, type: 3}
+  m_PrefabInstance: {fileID: 8233844411094313582}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2055639767 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8233844410965427733, guid: 5b5efa556a53440409afa0b2bdcfef62, type: 3}

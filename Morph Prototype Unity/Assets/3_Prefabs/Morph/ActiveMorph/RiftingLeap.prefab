@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 4418193492535803915}
   - component: {fileID: 4418193492535803914}
   - component: {fileID: 4418193492535803913}
+  - component: {fileID: 8473472634344975016}
+  - component: {fileID: 5474234162112415196}
+  - component: {fileID: 3552113606148472170}
   m_Layer: 0
   m_Name: RiftingLeap
   m_TagString: Untagged
@@ -60,7 +63,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staminaCost: 30
   energyCost: 20
-  testInput: 0
+  testInput: 275
   castTimer:
     duration: 2
     currentTime: 0
@@ -71,6 +74,52 @@ MonoBehaviour:
     loop: 0
   verticalForce: 50
   horizontalForce: 50
+  impactParticles: {fileID: 1624662709900196268, guid: fa2137c8d61a46049ba92dcce66e78a5, type: 3}
   physicalDamage: 100
   knockUpForce: 10
   range: 5
+--- !u!114 &8473472634344975016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4418193492535803912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bc88bd60e4b2024ca95f144dd5d4dc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  limbWeaponMorph: {fileID: 0}
+  headWeaponMorph: {fileID: 0}
+  tailWeaponMorph: {fileID: 0}
+  activeMorphs: []
+  passiveMorphs: []
+  LimbWeaponMorph: {fileID: 0}
+  HeadWeaponMorph: {fileID: 0}
+  TailWeaponMorph: {fileID: 0}
+--- !u!114 &5474234162112415196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4418193492535803912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce19a24efc71e42408c5685a183642f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackOrAbilityInProgress: 0
+--- !u!114 &3552113606148472170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4418193492535803912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f0002fccc3ddcb40902b7b0ae44cd8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

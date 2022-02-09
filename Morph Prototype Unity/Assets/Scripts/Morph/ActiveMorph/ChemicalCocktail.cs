@@ -35,6 +35,14 @@ public class ChemicalCocktail : ActiveMorph
         return false;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(testInput))
+        {
+            SpawnChemicalCocktail();
+        }
+    }
+
     private void SpawnChemicalCocktail()
     {
         GameObject chemicalCocktail = Instantiate(chemicalCocktailParticle,transform.position, transform.rotation);

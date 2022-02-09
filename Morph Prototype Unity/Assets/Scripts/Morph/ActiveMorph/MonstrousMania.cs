@@ -27,6 +27,18 @@ public class MonstrousMania : ActiveMorph
         {
             attackSpeedOnCooldown = false;
         }
+
+        if (Input.GetKeyDown(testInput))
+        {
+            if (!attackSpeedOnCooldown)
+            {
+                AttackSpeedBoost();
+            }
+            else
+            {  
+                LifeStealBoost(); 
+            }
+        }
     }
 
     public override bool ActivateIfConditionsMet()
@@ -50,9 +62,11 @@ public class MonstrousMania : ActiveMorph
         return false;
     }
 
+    
+
     IEnumerator AttackSpeedBoost()
     {
-
+        attackSpeedOnCooldown = true;
         yield return new WaitForSeconds(attackSpeedBoostDuration);
         
         yield return null;
@@ -60,7 +74,7 @@ public class MonstrousMania : ActiveMorph
 
     IEnumerator LifeStealBoost()
     {
-
+        
         yield return new WaitForSeconds(lifeStealBoostDuration);
 
         yield return null;
