@@ -10,6 +10,9 @@ public class ActiveMorphHandler : MonoBehaviour
     private MorphLoadout morphLoadout;
 
     private AttackAndAbilityHandler attackAndAbilityHandler;
+
+    public event Action ActiveMorphActivated;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -35,7 +38,15 @@ public class ActiveMorphHandler : MonoBehaviour
     }
     private void OnUseAbility1()
     {
-        morphLoadout.GetActiveMorph(0)?.ActivateIfConditionsMet();
+        var activeMorph = morphLoadout.GetActiveMorph(0);
+        if (activeMorph)
+        {
+            if (activeMorph.ActivateIfConditionsMet())
+            {
+                ActiveMorphActivated?.Invoke();
+            }
+        }
+        
     }
     private void OnUseAbility2()
     {

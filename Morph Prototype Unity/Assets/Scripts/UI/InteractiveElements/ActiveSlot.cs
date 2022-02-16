@@ -2,17 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActiveSlot : MonoBehaviour
+public class ActiveSlot : Slot
 {
-    // Start is called before the first frame update
-    void Start()
+    private ActiveMorph activeMorph; // reference morph in slot
+  
+    
+    protected override void Awake()
+    {
+        base.Awake();
+        dropConditions.Add(new IsLimbWeaponMorphDropCondition());
+    }
+    
+    // cooldown
+    private void DisplayCooldown()
     {
         
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }
