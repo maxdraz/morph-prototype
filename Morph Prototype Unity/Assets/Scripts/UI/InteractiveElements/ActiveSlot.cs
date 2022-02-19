@@ -37,7 +37,7 @@ public class ActiveSlot : Slot
     // cooldown
     private void DisplayCooldown()
     {
-        StartCoroutine(DisplayCooldownCoroutine(5));
+      //  StartCoroutine(DisplayCooldownCoroutine(5));
     }
 
     IEnumerator DisplayCooldownCoroutine(ActiveMorph morph)
