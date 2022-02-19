@@ -20,6 +20,8 @@ public class ActiveMorph : MonoBehaviour
     private Stamina stamina;
     private Energy energy;
 
+    public float CurrentCooldownTime => cooldown.CurrentTime;
+
 
     [SerializeField] public struct Prerequisite
     {
