@@ -8,7 +8,8 @@ public class BattleCry : ActiveMorph
     static int intimidationPrerequisit = 200;
 
     [SerializeField] private GameObject battleCryAOE;
-    float duration;
+
+    public bool nextHitCrit;
 
     static Prerequisite[] BasePrerequisits = new Prerequisite[2]
     {
@@ -29,8 +30,26 @@ public class BattleCry : ActiveMorph
 
     private void SpawnBattleCry()
     {
-        ObjectPooler.Instance.GetOrCreatePooledObject(battleCryAOE);    
+        SpendEnergy(energyCost);
+        SpendStamina(staminaCost);
+
+        GameObject battleCry = ObjectPooler.Instance.GetOrCreatePooledObject(battleCryAOE);
+        battleCry.transform.position = transform.position;
+        battleCry.transform.parent = transform;
+
         //Next melee attack is a guaranateed critical hit for duration
+        
+        StartCoroutine("BattleCryDuration");
+    }
+
+    IEnumerator BattleCryDuration()
+    {
+        Debug.Log("BattleCry duration started");
+        nextHitCrit = true;
+        yield return new WaitForSeconds(3.6f);
+        nextHitCrit = false;
+        Debug.Log("BattleCry duration is over");
+        yield return null;
     }
 
     private void Update()

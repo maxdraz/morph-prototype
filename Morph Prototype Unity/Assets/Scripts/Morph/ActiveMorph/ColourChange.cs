@@ -8,9 +8,9 @@ public class ColourChange : ActiveMorph
     static int intelligencePrerequisit = 50;
 
     private DamageHandler damageHandler;
-    Stats stats;
+    public Stats stats;
     float range;
-    Stealth stealth;
+    public Stealth stealth;
     [SerializeField] private int stealthStatBonus = 5;
 
 
@@ -34,24 +34,31 @@ public class ColourChange : ActiveMorph
         new Prerequisite("intelligence", intelligencePrerequisit)
     };
 
-
-    private void OnEnable()
+    private void Start()
     {
         stats = GetComponent<Stats>();
         stealth = GetComponent<Stealth>();
-        StartCoroutine(AssignDamageHandlerCoroutine());
-        ChangeStealthStat(stealthStatBonus);
 
-        if (unlockShimmering) 
+        if (unlockShimmering)
         {
             shimmering = ObjectPooler.Instance.GetOrCreatePooledObject(shimmeringParticles).GetComponent<ParticleSystem>();
             shimmering.transform.position = transform.position;
+            shimmering.transform.parent = transform;
         }
+    }
+
+    private void OnEnable()
+    {
+        
+        StartCoroutine(AssignDamageHandlerCoroutine());
+        ChangeStealthStat(stealthStatBonus);
+
+        
     }
 
     private void Update()
     {
-        if (cooldown.JustCompleted) 
+        if (cooldown.JustCompleted && unlockShimmering) 
         {
             shimmering.Play();
         }
@@ -59,6 +66,8 @@ public class ColourChange : ActiveMorph
         if (Input.GetKeyDown(testInput)) 
         {
             Active();
+            SpendEnergy(energyCost);
+            SpendStamina(staminaCost);
         }
     }
 
@@ -88,6 +97,9 @@ public class ColourChange : ActiveMorph
     public void Active() 
     {
         //This morphs has 2 actives, 1 in stealthmode and another not in stealthmode. They share the same cooldown
+        SpendEnergy(energyCost);
+        SpendStamina(staminaCost);
+
         if (unlockShimmering) 
         {
             shimmering.Stop();
@@ -99,11 +111,23 @@ public class ColourChange : ActiveMorph
         } 
         else 
         {
-            BioluminescentFlash();
+            if (unlockBioLuminescentFlash) 
+            {
+                BioluminescentFlash();
+            }
         }
     }
 
-    
+    public override bool ActivateIfConditionsMet()
+    {
+        if (base.ActivateIfConditionsMet())
+        {
+            Active();
+            return true;
+        }
+
+        return false;
+    }
 
     IEnumerator ColourChangeActive()
     {
@@ -116,7 +140,8 @@ public class ColourChange : ActiveMorph
 
     private void BioluminescentFlash()
     {
-        ObjectPooler.Instance.GetOrCreatePooledObject(bioluminescentFlash);
+        GameObject BioluminescentFlash = ObjectPooler.Instance.GetOrCreatePooledObject(bioluminescentFlash);
+        BioluminescentFlash.transform.position = transform.position;
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, range);
 
         foreach (var hitCollider in hitColliders)

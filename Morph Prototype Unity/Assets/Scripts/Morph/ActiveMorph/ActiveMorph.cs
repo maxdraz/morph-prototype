@@ -66,7 +66,7 @@ public class ActiveMorph : MonoBehaviour
 
     public bool CheckEnergy(float amount)
     {
-        if (amount > energy.currentEnergy)
+        if (amount >= energy.currentEnergy)
         {
             return true;
         }
@@ -78,7 +78,7 @@ public class ActiveMorph : MonoBehaviour
 
     public bool CheckStamina(float amount)
     {
-        if (amount > stamina.currentStamina)
+        if (amount >= stamina.currentStamina)
         {
             return true;
         }
@@ -100,7 +100,6 @@ public class ActiveMorph : MonoBehaviour
                 CharacterRotationMode.Velocity, 
                 new Timer(1f));
             
-
             //Spend the energy and stamina
             SpendEnergy(energyCost);
             SpendStamina(staminaCost);
@@ -108,6 +107,4 @@ public class ActiveMorph : MonoBehaviour
 
         return shouldActivate;
     }
-
-
 }

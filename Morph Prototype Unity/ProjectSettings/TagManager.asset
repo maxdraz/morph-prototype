@@ -15,8 +15,8 @@ TagManager:
   - UI
   - Projectile
   - Creature
-  - 
-  - 
+  - Player
+  - PlayerProjectile
   - 
   - 
   - 

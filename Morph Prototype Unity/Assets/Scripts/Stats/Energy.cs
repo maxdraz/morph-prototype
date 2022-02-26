@@ -52,7 +52,6 @@ public class Energy : MonoBehaviour
     void EnergyRegen()
     {
         float energyToAdd = (energyRegen * (1 + bonusEnergyRegen)) / globalEnergyRegenFactor;
-        //T_UpdateEnergyBar(); 
         AddEnergy(energyToAdd);
     }
 
@@ -73,7 +72,7 @@ public class Energy : MonoBehaviour
             ObjectPooler.Instance.GetOrCreatePooledObject(energyGainParticles);
         }
 
-        //T_UpdateEnergyBar();
+        T_UpdateEnergyBar();
     }
 
     public void RefundEnergy(float amountSpent, float amountToRefund)

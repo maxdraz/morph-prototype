@@ -27,6 +27,8 @@ public class PoxShot : ActiveMorph
 
     private void SpawnPoxShot()
     {
+        SpendEnergy(energyCost);
+        SpendStamina(staminaCost);
         var projectiles = poxShotSpawner?.Spawn(transform);
 
         if (projectiles != null)
@@ -41,8 +43,6 @@ public class PoxShot : ActiveMorph
         if (Input.GetKeyDown(testInput))
         {
             SpawnPoxShot();
-            SpendEnergy(energyCost);
-            SpendStamina(staminaCost);
         }
     }
 

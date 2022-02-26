@@ -108,21 +108,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staminaCost: 20
   energyCost: 10
-  testInput: 275
+  testInput: 276
   castTimer:
     duration: 0
     currentTime: 0
     loop: 0
   cooldown:
-    duration: 0
+    duration: 10
     currentTime: 0
     loop: 0
-  battleCrySpawner:
-    projectilePrefab: {fileID: 4325605245274640103, guid: 9d66a03fa82f8e7478f072dcffbae437, type: 3}
-    spawnPointOffsetLocal: {x: 0, y: 0, z: 0}
-    drawGizmos: 1
-    debugSphereRadius: 0.1
-    projectilesToSpawn: 1
-    radius: 1
-    radialOffset: 0
-    projectileDirectionRotation: 0
+  battleCryAOE: {fileID: 4325605245274640103, guid: 9d66a03fa82f8e7478f072dcffbae437, type: 3}

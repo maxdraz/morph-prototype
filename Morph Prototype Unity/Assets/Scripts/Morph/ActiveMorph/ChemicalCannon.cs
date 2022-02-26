@@ -6,15 +6,14 @@ public class ChemicalCannon : ActiveMorph
 {
     static int chemicalDamagePrerequisite = 50;
 
+    [SerializeField] private RadialProjectileSpawner chemicalCannonSpawner;
 
-    [SerializeField] private RadialProjectileSpawner viscousBlastSpawner;
 
     static Prerequisite[] BasePrerequisits = new Prerequisite[1]
 {
         new Prerequisite("chemicalDamage", chemicalDamagePrerequisite),
 };
 
-    [SerializeField] private RadialProjectileSpawner chemicalCannonSpawner;
 
     public override bool ActivateIfConditionsMet()
     {
@@ -26,6 +25,8 @@ public class ChemicalCannon : ActiveMorph
         return false;
     }
 
+
+
     private void Update()
     {
         if (Input.GetKeyDown(testInput))
@@ -36,6 +37,9 @@ public class ChemicalCannon : ActiveMorph
 
     private void SpawnChemicalCannon()
     {
+        SpendEnergy(energyCost);
+        SpendStamina(staminaCost);
+
         var projectiles = chemicalCannonSpawner?.Spawn(transform);
 
         if (projectiles != null)

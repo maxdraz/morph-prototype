@@ -49,7 +49,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -5003,7 +5003,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -9772,8 +9772,8 @@ GameObject:
   - component: {fileID: 2614188371263642208}
   - component: {fileID: 1777048020591324101}
   - component: {fileID: 8979314408862354219}
-  - component: {fileID: 4787711941546917916}
   - component: {fileID: 4158476628427609896}
+  - component: {fileID: -3205158653034068963}
   m_Layer: 0
   m_Name: Battle-Cry
   m_TagString: Untagged
@@ -9815,7 +9815,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -14653,20 +14653,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 10
   volume: 100
---- !u!114 &4787711941546917916
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4325605245274640103}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca070c3b6534b8a47b9eeb7cc2a9559f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isInvincible: 1
-  damageNumberSet: {fileID: 0}
 --- !u!114 &4158476628427609896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14682,6 +14668,20 @@ MonoBehaviour:
   onHitEffects: []
   references:
     version: 1
+--- !u!114 &-3205158653034068963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4325605245274640103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fb133de14934524a97117c699468e3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useParticleSystemLifetime: 0
+  duration: 4
 --- !u!1 &8053402636406213573
 GameObject:
   m_ObjectHideFlags: 0
@@ -14731,7 +14731,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:

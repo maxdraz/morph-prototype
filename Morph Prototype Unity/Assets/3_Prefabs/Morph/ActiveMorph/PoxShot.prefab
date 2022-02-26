@@ -108,7 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staminaCost: 40
   energyCost: 25
-  testInput: 0
+  testInput: 275
   castTimer:
     duration: 1
     currentTime: 0

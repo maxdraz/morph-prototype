@@ -21,6 +21,7 @@ public class Stealth : MonoBehaviour
 
     private Coroutine hideDetectionBarAfterTime;
 
+
     // Start is called before the first frame update
     void Start()
     {
