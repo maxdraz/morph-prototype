@@ -109,7 +109,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staminaCost: 20
   energyCost: 25
-  testInput: 0
+  testInput: 273
   castTimer:
     duration: 0.5
     currentTime: 0
@@ -235,7 +235,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staminaCost: 20
   energyCost: 30
-  testInput: 0
+  testInput: 274
   castTimer:
     duration: 0
     currentTime: 0

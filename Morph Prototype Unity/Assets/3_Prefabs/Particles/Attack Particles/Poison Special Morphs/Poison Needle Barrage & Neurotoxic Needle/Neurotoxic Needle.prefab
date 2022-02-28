@@ -175,8 +175,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fb133de14934524a97117c699468e3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useParticleSystemLifetime: 1
-  duration: 1
+  useParticleSystemLifetime: 0
+  duration: 2
 --- !u!114 &-5608036038397342526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,7 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2543dcdb97ef97444abcc7cb0a86d987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startSpeed: 100
+  startSpeed: 50
   onHitEffects:
   - onHitEffect: {fileID: 11400000, guid: 6fdaf46b45643024b84029b94e4bc690, type: 2}
     data:

@@ -69,7 +69,10 @@ public class Energy : MonoBehaviour
 
         if (amount > particleThreshold) 
         {
-            ObjectPooler.Instance.GetOrCreatePooledObject(energyGainParticles);
+            GameObject particles = ObjectPooler.Instance.GetOrCreatePooledObject(energyGainParticles);
+            particles.transform.position = transform.position;
+            particles.transform.parent = transform;
+
         }
 
         T_UpdateEnergyBar();

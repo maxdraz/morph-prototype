@@ -109,7 +109,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staminaCost: 10
   energyCost: 5
-  testInput: 273
+  testInput: 275
   castTimer:
     duration: 0
     currentTime: 0
@@ -235,7 +235,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staminaCost: 20
   energyCost: 40
-  testInput: 0
+  testInput: 274
   castTimer:
     duration: 3
     currentTime: 0
@@ -245,7 +245,7 @@ MonoBehaviour:
     currentTime: 0
     loop: 0
   chemicalCocktailParticle: {fileID: 6545929276689489570, guid: 84f20f68bcf5f264b9befb55a5fd2742, type: 3}
-  explosionDelay: 3
+  explosionDelay: 1.5
   poisonStackModifier: 0.7
   viscousBlastSpawner:
     projectilePrefab: {fileID: 0}

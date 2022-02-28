@@ -78,7 +78,9 @@ public class Health : MonoBehaviour
 
         if (amount > particleThreshold)
         {
-            ObjectPooler.Instance.GetOrCreatePooledObject(healthGainParticles);
+            GameObject particles = ObjectPooler.Instance.GetOrCreatePooledObject(healthGainParticles);
+            particles.transform.position = transform.position;
+            particles.transform.parent = transform;
         }
 
         OnHealthChanged();

@@ -9872,9 +9872,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startSpeed: 50
-  onHitEffects: []
+  onHitEffects:
+  - onHitEffect: {fileID: 11400000, guid: 43742988cba5dad4c98d440ec358f8d9, type: 2}
+    data:
+      id: 0
   references:
     version: 1
+    00000000:
+      type: {class: PoisonDamageData, ns: , asm: Assembly-CSharp}
+      data:
+        poisonDamage: 50
 --- !u!114 &7831613184878092129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9902,3 +9909,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chemicalCannonExplosion: {fileID: 3623205080624188302, guid: 3cd145f3b3c446f49ab92a27ffbd1ffd, type: 3}
+  source: {fileID: 0}

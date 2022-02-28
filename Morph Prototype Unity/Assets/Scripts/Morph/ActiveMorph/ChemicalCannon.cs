@@ -46,6 +46,7 @@ public class ChemicalCannon : ActiveMorph
             foreach (var projectile in projectiles)
             {
                 projectile.GetComponent<Projectile>().SetDamageDealer(GetComponent<DamageHandler>());
+                projectile.GetComponent<ChemicalCannonProjectile>().source = gameObject.GetComponent<DamageHandler>();
             }
     }
 

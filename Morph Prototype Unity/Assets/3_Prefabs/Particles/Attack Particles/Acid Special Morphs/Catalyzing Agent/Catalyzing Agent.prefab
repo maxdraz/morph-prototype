@@ -9729,16 +9729,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startSpeed: 20
-  onHitEffects:
-  - onHitEffect: {fileID: 11400000, guid: 3cba933e0a1ef094c83b1c0baca3f308, type: 2}
-    data:
-      id: 0
+  onHitEffects: []
   references:
     version: 1
-    00000000:
-      type: {class: FireDamageData, ns: , asm: Assembly-CSharp}
-      data:
-        fireDamage: 1
 --- !u!114 &3454402844233316270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9751,7 +9744,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d16c69c6794b99c4999388f3c53c9cb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
+  damage: 20
 --- !u!65 &2580642985120138021
 BoxCollider:
   m_ObjectHideFlags: 0

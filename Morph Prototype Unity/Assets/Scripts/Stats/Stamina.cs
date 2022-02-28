@@ -69,7 +69,9 @@ public class Stamina : MonoBehaviour
 
         if (amount > particleThreshold)
         {
-            ObjectPooler.Instance.GetOrCreatePooledObject(staminaGainParticles);
+            GameObject particles = ObjectPooler.Instance.GetOrCreatePooledObject(staminaGainParticles);
+            particles.transform.position = transform.position;
+            particles.transform.parent = transform;
         }
 
         T_UpdateStaminaBar();

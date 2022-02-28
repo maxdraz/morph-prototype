@@ -108,7 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staminaCost: 10
   energyCost: 10
-  testInput: 0
+  testInput: 276
   castTimer:
     duration: 0
     currentTime: 0
@@ -123,6 +123,6 @@ MonoBehaviour:
     drawGizmos: 1
     debugSphereRadius: 0.1
     projectilesToSpawn: 20
-    radius: 0
-    arcAngle: 25
+    radius: 0.8
+    arcAngle: 88.4
   chemicalDamageStatMultiplier: 0.5

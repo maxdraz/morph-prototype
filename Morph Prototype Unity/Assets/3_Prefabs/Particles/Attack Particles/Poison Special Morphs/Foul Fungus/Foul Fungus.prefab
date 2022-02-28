@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 5842852823453432102}
   - component: {fileID: 4599832460118623683}
   - component: {fileID: 3477879091216087854}
+  - component: {fileID: 6518013686366294520}
+  - component: {fileID: 2492719619793948603}
   m_Layer: 0
   m_Name: Foul Fungus
   m_TagString: Untagged
@@ -4892,7 +4894,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d25e05d38f1b92439ffb141fe9c0192, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poisonDamageDoT: 40
   accuracyReduction: 30
   stealthBonus: 100
 --- !u!114 &3477879091216087854
@@ -4909,3 +4910,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInvincible: 1
   damageNumberSet: {fileID: 0}
+--- !u!114 &6518013686366294520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6129141712507335030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1b8b66878aaeac4283ecd77eea9dffe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onHitEffects:
+  - onHitEffect: {fileID: 11400000, guid: 43742988cba5dad4c98d440ec358f8d9, type: 2}
+    data:
+      id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: PoisonDamageData, ns: , asm: Assembly-CSharp}
+      data:
+        poisonDamage: 40
+--- !u!114 &2492719619793948603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6129141712507335030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fb133de14934524a97117c699468e3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useParticleSystemLifetime: 1
+  duration: 0

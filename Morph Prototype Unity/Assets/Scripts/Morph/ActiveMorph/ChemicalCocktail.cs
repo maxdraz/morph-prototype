@@ -29,7 +29,6 @@ public class ChemicalCocktail : ActiveMorph
         if (base.ActivateIfConditionsMet())
         {
             SpawnChemicalCocktail();
-            Invoke("ChemicalCocktailDamage", explosionDelay);
             return true;
         }
         return false;
@@ -46,8 +45,11 @@ public class ChemicalCocktail : ActiveMorph
     private void SpawnChemicalCocktail()
     {
         GameObject chemicalCocktail = Instantiate(chemicalCocktailParticle,transform.position, transform.rotation);
+        chemicalCocktail.transform.position = transform.position;
         chemicalCocktail.transform.parent = this.gameObject.transform;
-        
+
+        Invoke("ChemicalCocktailDamage", explosionDelay);
+
     }
 
     private void ChemicalCocktailDamage()

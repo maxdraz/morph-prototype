@@ -5,38 +5,44 @@ using UnityEngine;
 public class FoulFungusGasCloud : MonoBehaviour
 {
     DamageHandler damageHandler;
-    [SerializeField] private float poisonDamageDoT;
     [SerializeField] private float accuracyReduction;
     [SerializeField] private float stealthBonus;
 
-    SphereCollider collider;
     GameObject sourceCreature;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponent<Stats>() == true && other.gameObject != sourceCreature)
+        if (other.gameObject.GetComponent<Stats>() == true)
         {
-            //lower the subjects accuracy by accuracyReduction
+            if (other.gameObject != sourceCreature)
+            {
+                {
+                    //lower the subjects accuracy by accuracyReduction
+                }
+            }
+            else 
+            {
+                //add to the players stealth stat...make sure the player enters the trigger when is it spawned. If this does not happen add stealthBonus with a Start function
+            }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.GetComponent<Stats>() == true && other.gameObject != sourceCreature)
+        if (other.gameObject.GetComponent<Stats>() == true)
         {
-            //return the accuracyReduction back to the subject
+            if (other.gameObject != sourceCreature)
+            {
+                {
+                    //return the subjects accuracy to normal
+                }
+            }
+            else
+            {
+                //return the players stealth stat to normal
+            }
         }
     }
 }

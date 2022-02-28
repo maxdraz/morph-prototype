@@ -38,7 +38,7 @@ public class FoulFungus : ActiveMorph
         if (projectiles != null)
             foreach (var projectile in projectiles)
             {
-                projectile.GetComponent<Projectile>().SetDamageDealer(GetComponent<DamageHandler>());
+                projectile.GetComponent<AOE_DOT>().SetDamageDealer(GetComponent<DamageHandler>());
             }
     }
 

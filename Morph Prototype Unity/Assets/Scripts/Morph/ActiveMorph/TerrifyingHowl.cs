@@ -44,7 +44,9 @@ public class TerrifyingHowl : ActiveMorph
 
     private void Howl()
     {
-        ObjectPooler.Instance.GetOrCreatePooledObject(terrifyingHowlParticles);
+        GameObject howl = ObjectPooler.Instance.GetOrCreatePooledObject(terrifyingHowlParticles);
+        howl.transform.position = transform.position;
+        howl.transform.parent = transform;
 
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, range);
 

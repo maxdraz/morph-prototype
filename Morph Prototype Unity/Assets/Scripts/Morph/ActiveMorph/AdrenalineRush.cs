@@ -33,7 +33,9 @@ public class AdrenalineRush : ActiveMorph
 
     private void AdrenalineBoost()
     {
-        ObjectPooler.Instance.GetOrCreatePooledObject(adrenalineRushParticles);
+        GameObject boost = ObjectPooler.Instance.GetOrCreatePooledObject(adrenalineRushParticles);
+        boost.transform.position = transform.position;
+        boost.transform.parent = transform;
         GetComponent<Stamina>().AddStamina(adrenalineBoost);
     }
 }
