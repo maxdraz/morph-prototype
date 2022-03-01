@@ -117,4 +117,5 @@ MonoBehaviour:
     duration: 10
     currentTime: 0
     loop: 0
-  battleCryAOE: {fileID: 4325605245274640103, guid: 9d66a03fa82f8e7478f072dcffbae437, type: 3}
+  battleCryAOE: {fileID: 4325605245274640103, guid: 78272f22a236d3e4ebf588b8a82372f0, type: 3}
+  nextHitCrit: 0

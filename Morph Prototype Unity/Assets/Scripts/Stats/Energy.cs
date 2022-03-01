@@ -130,7 +130,7 @@ public class Energy : MonoBehaviour
     private void T_UpdateEnergyBar()
     {
         // health bar
-        energyBar.gameObject.SetActive(true);
+        energyBar.GetComponent<Image>().color = new Color(0, 60, 255, 255);
         energyBar.fillAmount = currentEnergy / totalMaxEnergy;
         if (hideEnergyBarAfterTime != null) StopCoroutine(hideEnergyBarAfterTime);
         hideEnergyBarAfterTime = StartCoroutine(HideEnergyBarAfterTimeCoroutine(2));
@@ -139,6 +139,6 @@ public class Energy : MonoBehaviour
     private IEnumerator HideEnergyBarAfterTimeCoroutine(float t)
     {
         yield return new WaitForSeconds(t);
-        energyBar.gameObject.SetActive(false);
+        energyBar.GetComponent<Image>().color = new Color(0, 60, 255, 0);
     }
 }

@@ -119,7 +119,7 @@ MonoBehaviour:
     currentTime: 0
     loop: 0
   deathlyToxinsSpawner:
-    projectilePrefab: {fileID: 2661738403284565075, guid: b7b19989cf8c78c4ca0192c22a44f935, type: 3}
+    projectilePrefab: {fileID: 2661738403284565075, guid: 3206027e0f5643d4b9c8105b5b96bbb9, type: 3}
     spawnPointOffsetLocal: {x: 0, y: 0, z: 0}
     drawGizmos: 1
     debugSphereRadius: 0.1
@@ -244,7 +244,7 @@ MonoBehaviour:
     duration: 10
     currentTime: 0
     loop: 0
-  chemicalCocktailParticle: {fileID: 6545929276689489570, guid: 84f20f68bcf5f264b9befb55a5fd2742, type: 3}
+  chemicalCocktailParticle: {fileID: 6545929276689489570, guid: fa374d74d0a79d849a4b6bca40522f46, type: 3}
   explosionDelay: 1.5
   poisonStackModifier: 0.7
   viscousBlastSpawner:

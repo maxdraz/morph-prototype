@@ -118,7 +118,7 @@ MonoBehaviour:
     currentTime: 0
     loop: 0
   catalyzingAgentSpawner:
-    projectilePrefab: {fileID: 8938354313772005017, guid: 6b39dba3aee5655479ac7b39955340d7, type: 3}
+    projectilePrefab: {fileID: 8938354313772005017, guid: 94d0273399f3d05479ad5b66199555ce, type: 3}
     spawnPointOffsetLocal: {x: 0, y: 0, z: 1}
     drawGizmos: 1
     debugSphereRadius: 0.1

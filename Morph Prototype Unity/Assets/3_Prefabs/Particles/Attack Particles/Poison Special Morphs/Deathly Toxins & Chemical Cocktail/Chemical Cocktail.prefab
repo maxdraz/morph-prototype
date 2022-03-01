@@ -9650,7 +9650,6 @@ GameObject:
   - component: {fileID: 7276001606141195389}
   - component: {fileID: 5438983144158735513}
   - component: {fileID: 7988680305556564883}
-  - component: {fileID: -4927472836303699309}
   m_Layer: 0
   m_Name: Chemical Cocktail
   m_TagString: Untagged
@@ -14515,17 +14514,3 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &-4927472836303699309
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6545929276689489570}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fb133de14934524a97117c699468e3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  useParticleSystemLifetime: 1
-  duration: 1

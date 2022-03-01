@@ -119,7 +119,7 @@ MonoBehaviour:
     currentTime: 0
     loop: 0
   acidEruptionSpawner:
-    projectilePrefab: {fileID: 2416811839361304073, guid: 6ae69b63af5b31c4280de7d2d030a098, type: 3}
+    projectilePrefab: {fileID: 2416811839361304073, guid: c66793508e63e404d9932e83a57710e8, type: 3}
     spawnPointOffsetLocal: {x: 0, y: 0, z: 1}
     drawGizmos: 1
     debugSphereRadius: 0.1
@@ -243,6 +243,6 @@ MonoBehaviour:
     duration: 15
     currentTime: 0
     loop: 0
-  acidVortexParticle: {fileID: 1641033305696970572, guid: d5ab0ec58976c5e4da49f87aa29780b1, type: 3}
+  acidVortexParticle: {fileID: 1641033305696970572, guid: 96d53b4a2d1dba343a2f19b8b1523cee, type: 3}
   damage: 300
   explosionDelay: 3.6

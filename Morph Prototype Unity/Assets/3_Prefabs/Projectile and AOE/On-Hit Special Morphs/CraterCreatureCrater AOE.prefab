@@ -6709,7 +6709,7 @@ GameObject:
   - component: {fileID: 3461272753427973413}
   - component: {fileID: 1260242014699698292}
   m_Layer: 0
-  m_Name: CraterCreatureCrater
+  m_Name: CraterCreatureCrater AOE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

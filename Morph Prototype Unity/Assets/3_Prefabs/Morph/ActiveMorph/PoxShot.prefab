@@ -117,17 +117,8 @@ MonoBehaviour:
     duration: 5
     currentTime: 0
     loop: 0
-  viscousBlastSpawner:
-    projectilePrefab: {fileID: 0}
-    spawnPointOffsetLocal: {x: 0, y: 0, z: 1}
-    drawGizmos: 1
-    debugSphereRadius: 0.1
-    projectilesToSpawn: 3
-    radius: 1
-    radialOffset: 0
-    projectileDirectionRotation: 0
   chemicalCannonSpawner:
-    projectilePrefab: {fileID: 9039021335273267706, guid: 31285851032f49d41af54b206cad707b, type: 3}
+    projectilePrefab: {fileID: 9039021335273267706, guid: 9d7e4aaccbccdb947890deb81bdfad71, type: 3}
     spawnPointOffsetLocal: {x: 0, y: 0, z: 0}
     drawGizmos: 1
     debugSphereRadius: 0.1
@@ -195,7 +186,7 @@ MonoBehaviour:
     currentTime: 0
     loop: 0
   poxShotSpawner:
-    projectilePrefab: {fileID: 8109351195646949467, guid: 83126d75d57030540aba373b7bdbba33, type: 3}
+    projectilePrefab: {fileID: 8109351195646949467, guid: 59e21ff915d046a4dbda14bb2bd3b486, type: 3}
     spawnPointOffsetLocal: {x: 0, y: 0, z: 2}
     drawGizmos: 1
     debugSphereRadius: 0.1

@@ -4898,9 +4898,6 @@ GameObject:
   - component: {fileID: 2220075482697436726}
   - component: {fileID: 7019288732155250899}
   - component: {fileID: 7871044784450029112}
-  - component: {fileID: 875058216619203212}
-  - component: {fileID: 5184842289818130732}
-  - component: {fileID: 5225748942855629921}
   m_Layer: 0
   m_Name: Acid Eruption
   m_TagString: Untagged
@@ -9708,47 +9705,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &875058216619203212
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2416811839361304073}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fb133de14934524a97117c699468e3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  useParticleSystemLifetime: 1
-  duration: 1
---- !u!65 &5184842289818130732
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2416811839361304073}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0.5, z: 0}
---- !u!114 &5225748942855629921
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2416811839361304073}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb53705a0c86e3e4cb76676cf396648f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  acidDamageToDeal: 70
-  knockUpForce: 50
 --- !u!1 &7709446984965052822
 GameObject:
   m_ObjectHideFlags: 0

@@ -120,9 +120,17 @@ PrefabInstance:
       propertyPath: canTakeDamage
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3364406145155882908, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3653122839143016335, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5782620542622676542, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7853902346194350098, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}
       propertyPath: m_Name

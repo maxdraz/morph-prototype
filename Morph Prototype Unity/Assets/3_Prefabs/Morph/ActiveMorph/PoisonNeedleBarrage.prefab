@@ -119,7 +119,7 @@ MonoBehaviour:
     currentTime: 0
     loop: 0
   poisonNeedleBarrageSpawner:
-    projectilePrefab: {fileID: 104438247783325880, guid: 247e6c9dd86e3034b9fa0caad71a617b, type: 3}
+    projectilePrefab: {fileID: 104438247783325880, guid: 814f9f9592b2b5740a207f3c491e3288, type: 3}
     spawnPointOffsetLocal: {x: 0, y: 0, z: 1}
     drawGizmos: 0
     debugSphereRadius: 1.85
@@ -245,7 +245,7 @@ MonoBehaviour:
     currentTime: 0
     loop: 0
   neurotoxicNeedleSpawner:
-    projectilePrefab: {fileID: 1995169145839438788, guid: 9cf52bbca3462dc4abe3f87d0c3bf993, type: 3}
+    projectilePrefab: {fileID: 1995169145839438788, guid: f302a2412d6212146bee6c53882d8733, type: 3}
     spawnPointOffsetLocal: {x: 0, y: 0, z: 0}
     drawGizmos: 0
     debugSphereRadius: 0.27

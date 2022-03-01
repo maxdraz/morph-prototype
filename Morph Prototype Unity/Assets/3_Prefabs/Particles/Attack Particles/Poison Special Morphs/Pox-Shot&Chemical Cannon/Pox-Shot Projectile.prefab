@@ -4916,9 +4916,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7465989867215009183}
   - component: {fileID: 4032578843820460295}
-  - component: {fileID: 523488302}
-  - component: {fileID: 2933316661857067609}
-  - component: {fileID: 3470138704748998041}
   - component: {fileID: 7786300496960431181}
   m_Layer: 6
   m_Name: Pox-Shot Projectile
@@ -4956,66 +4953,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.2375946, y: 0.23473686, z: 1.153122}
   m_Center: {x: 0, y: 0.000000029802322, z: 0.0008010864}
---- !u!54 &523488302
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8109351195646949467}
-  serializedVersion: 2
-  m_Mass: 0.001
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
---- !u!114 &2933316661857067609
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8109351195646949467}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2543dcdb97ef97444abcc7cb0a86d987, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startSpeed: 25
-  onHitEffects:
-  - onHitEffect: {fileID: 11400000, guid: 5646e0d34a12b324696121349b8b67e8, type: 2}
-    data:
-      id: 0
-  - onHitEffect: {fileID: 11400000, guid: 43742988cba5dad4c98d440ec358f8d9, type: 2}
-    data:
-      id: 1
-  references:
-    version: 1
-    00000000:
-      type: {class: KnockbackData, ns: , asm: Assembly-CSharp}
-      data:
-        knockbackForce: 100
-    00000001:
-      type: {class: PoisonDamageData, ns: , asm: Assembly-CSharp}
-      data:
-        poisonDamage: 10
---- !u!114 &3470138704748998041
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8109351195646949467}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fb133de14934524a97117c699468e3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  useParticleSystemLifetime: 0
-  duration: 10
 --- !u!114 &7786300496960431181
 MonoBehaviour:
   m_ObjectHideFlags: 0

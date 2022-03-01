@@ -38,7 +38,10 @@ public class WeakeningSpray : ActiveMorph
         if (projectiles != null)
             foreach (var projectile in projectiles)
             {
-                projectile.GetComponent<Projectile>().SetDamageDealer(GetComponent<DamageHandler>());
+                projectile.GetComponent<AOE>().SetDamageDealer(GetComponent<DamageHandler>());
+                //projectile.transform.rotation = transform.rotation;
+                projectile.transform.parent = transform;
+                
             }
     }
 

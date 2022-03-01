@@ -11,10 +11,6 @@ GameObject:
   - component: {fileID: 1378397063562054824}
   - component: {fileID: 7820434617373477453}
   - component: {fileID: 6977720380704621734}
-  - component: {fileID: 4875378378840957801}
-  - component: {fileID: 1672494715}
-  - component: {fileID: 1504826403862094689}
-  - component: {fileID: 6288056529988393891}
   m_Layer: 0
   m_Name: Viscous Blast
   m_TagString: Untagged
@@ -4811,72 +4807,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!65 &4875378378840957801
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3198817563465483415}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &1672494715
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3198817563465483415}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &1504826403862094689
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3198817563465483415}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2543dcdb97ef97444abcc7cb0a86d987, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startSpeed: 100
-  onHitEffects:
-  - onHitEffect: {fileID: 11400000, guid: b6472a054bbbbe54aa1c805c8ea62e20, type: 2}
-    data:
-      id: 0
-  references:
-    version: 1
-    00000000:
-      type: {class: AcidDamageData, ns: , asm: Assembly-CSharp}
-      data:
-        acidDamage: 500
---- !u!114 &6288056529988393891
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3198817563465483415}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fb133de14934524a97117c699468e3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  useParticleSystemLifetime: 1
-  duration: 1
 --- !u!1 &6378851275418765315
 GameObject:
   m_ObjectHideFlags: 0

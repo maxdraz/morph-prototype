@@ -124,7 +124,7 @@ public class Stamina : MonoBehaviour
 
     private void T_UpdateStaminaBar()
     {
-        staminaBar.gameObject.SetActive(true);
+        staminaBar.GetComponent<Image>().color = new Color(255, 255, 0, 255);
         staminaBar.fillAmount = currentStamina / totalMaxStamina;
         if (hideStaminaBarAfterTime != null) StopCoroutine(hideStaminaBarAfterTime);
         hideStaminaBarAfterTime = StartCoroutine(HideStaminaBarAfterTimeCoroutine(2));
@@ -133,6 +133,6 @@ public class Stamina : MonoBehaviour
     private IEnumerator HideStaminaBarAfterTimeCoroutine(float t)
     {
         yield return new WaitForSeconds(t);
-        staminaBar.gameObject.SetActive(false);
+        staminaBar.GetComponent<Image>().color = new Color(255, 255, 0, 0);
     }
 }

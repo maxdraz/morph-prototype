@@ -24,14 +24,14 @@ public class Health : MonoBehaviour
     [SerializeField] private Image healthBar;
     private Coroutine hideHealthBarAfterTime;
 
-
+    DamageHandler damageHandler;
 
     // Start is called before the first frame update
     void Awake()
     {
         //get stats component
         stats = GetComponent<Stats>();
-
+        damageHandler = GetComponent<DamageHandler>();
 
         baseMaxHealth = stats ? stats.MaxHealth : 100;
 
@@ -62,13 +62,21 @@ public class Health : MonoBehaviour
     {
         
         currentHealth = Mathf.Max(0, currentHealth - amount);
-        
-        OnHealthChanged();
-        
-        if (currentHealth == 0)
+
+        if (damageHandler.IsInvincible == true) 
         {
-            Die();
-        }     
+            OnHealthChanged();
+            return;
+        }
+        else
+        {
+            OnHealthChanged();
+
+            if (currentHealth == 0)
+            {
+                Die();
+            }
+        }   
     }
 
     public void AddHP(float amount)

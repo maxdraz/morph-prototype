@@ -118,7 +118,7 @@ MonoBehaviour:
     currentTime: 0
     loop: 0
   viscousBlastSpawner:
-    projectilePrefab: {fileID: 3198817563465483415, guid: fd34386932f864e4da9433307d1539b8, type: 3}
+    projectilePrefab: {fileID: 3198817563465483415, guid: 489a4e0b86f226147a8ca9c3d3e2db00, type: 3}
     spawnPointOffsetLocal: {x: 0, y: 0, z: 0}
     drawGizmos: 1
     debugSphereRadius: 0.1
@@ -245,7 +245,7 @@ MonoBehaviour:
     currentTime: 0
     loop: 0
   weakeningSpraySpawner:
-    projectilePrefab: {fileID: 8740522506693375761, guid: 7f5cd3a81e9aeb5418028e15972b4c52, type: 3}
+    projectilePrefab: {fileID: 8740522506693375761, guid: b14dc04d6a83bbb4fa991bfcbbcc1ae1, type: 3}
     spawnPointOffsetLocal: {x: 0, y: 0, z: 1}
     drawGizmos: 1
     debugSphereRadius: 0.1

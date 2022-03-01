@@ -698,13 +698,22 @@ public class Stats : MonoBehaviour
         totalIntelligence = baseIntelligence + addedIntelligence;
 
         totalIntimidation = baseIntimidation + addedIntimidation;
-        GetComponent<Intimidation>().SetMaxIntimidation(totalIntimidation);
+        if (GetComponent<Intimidation>() != null) 
+        {
+            GetComponent<Intimidation>().SetMaxIntimidation(totalIntimidation);
+        }
 
         totalPerception = basePerception + addedPerception;
-        GetComponent<Perception>().SetMaxPerception(totalPerception);
+        if (GetComponent<Perception>() != null)
+        {
+            GetComponent<Perception>().SetMaxPerception(totalPerception);
+        }
 
         totalStealth = baseStealth + addedStealth;
-        GetComponent<Stealth>().SetMaxStealth(totalStealth);
+        if (GetComponent<Stealth>() != null)
+        {
+            GetComponent<Stealth>().SetMaxStealth(totalStealth);
+        }
 
         totalToughness = baseToughness + addedToughness;
 
