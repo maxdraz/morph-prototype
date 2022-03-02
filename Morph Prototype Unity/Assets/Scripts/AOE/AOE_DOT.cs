@@ -20,7 +20,7 @@ public class AOE_DOT : MonoBehaviour
 
     public void SetDamageDealer(DamageHandler dmgDealer)
     {
-        this.damageDealer = dmgDealer;
+        damageDealer = dmgDealer;
     }
 
     IEnumerator DOT() 

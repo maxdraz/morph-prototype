@@ -109,7 +109,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staminaCost: 10
   energyCost: 15
-  testInput: 0
+  testInput: 273
   castTimer:
     duration: 1
     currentTime: 0
@@ -118,14 +118,8 @@ MonoBehaviour:
     duration: 4
     currentTime: 0
     loop: 0
-  acidEruptionSpawner:
-    projectilePrefab: {fileID: 2416811839361304073, guid: c66793508e63e404d9932e83a57710e8, type: 3}
-    spawnPointOffsetLocal: {x: 0, y: 0, z: 1}
-    drawGizmos: 1
-    debugSphereRadius: 0.1
-    projectilesToSpawn: 0
-    radius: 0
-    arcAngle: 0
+  range: 200
+  acidEruption: {fileID: 2416811839361304073, guid: c66793508e63e404d9932e83a57710e8, type: 3}
 --- !u!1 &8878017237320108669
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,7 +228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staminaCost: 40
   energyCost: 40
-  testInput: 0
+  testInput: 274
   castTimer:
     duration: 3.6
     currentTime: 0

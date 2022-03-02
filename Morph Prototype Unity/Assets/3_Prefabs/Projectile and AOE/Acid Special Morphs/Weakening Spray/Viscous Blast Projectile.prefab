@@ -4852,6 +4852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2543dcdb97ef97444abcc7cb0a86d987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroyOnImpact: 1
   startSpeed: 20
   onHitEffects:
   - onHitEffect: {fileID: 11400000, guid: b6472a054bbbbe54aa1c805c8ea62e20, type: 2}

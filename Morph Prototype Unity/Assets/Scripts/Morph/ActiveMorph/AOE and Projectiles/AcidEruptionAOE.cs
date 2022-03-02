@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AcidEruptionAOE : MonoBehaviour
+public class AcidEruptionProjectile : MonoBehaviour
 {
-    DamageHandler damageDealer;
+    DamageHandler damageHandler;
     CapsuleCollider collider;
     float delayPeriod;
 
@@ -31,22 +31,17 @@ public class AcidEruptionAOE : MonoBehaviour
         yield return null;
     }
 
-    public void SetDamageDealer(DamageHandler dmgDealer)
-    {
-        this.damageDealer = dmgDealer;
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<DamageHandler>() == true) 
         {
-            other.GetComponent<DamageHandler>().ApplyDamage(new AcidDamageData(), damageDealer);
+            other.GetComponent<DamageHandler>().ApplyDamage(new AcidDamageData(),damageHandler);
         }
 
         if (other.GetComponent<Rigidbody>() == true)
         {
             //Needs to be knockup
-            other.GetComponent<DamageHandler>().ApplyDamage(new KnockupData(), damageDealer);
+            other.GetComponent<DamageHandler>().ApplyDamage(new KnockupData(), damageHandler);
         }
     }
 }

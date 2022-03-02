@@ -6,6 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Projectile : MonoBehaviour
 {
+    [SerializeField] private bool destroyOnImpact;
     [SerializeField] private float startSpeed = 100;
     [SerializeField] private List<OnHitEffectDataContainer> onHitEffects;
 
@@ -71,6 +72,8 @@ public class Projectile : MonoBehaviour
                
             }
             
+            if (destroyOnImpact)
+            ObjectPooler.Instance.Recycle(gameObject);
             return;
         }
         

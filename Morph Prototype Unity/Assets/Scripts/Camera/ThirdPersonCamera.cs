@@ -30,8 +30,8 @@ public class ThirdPersonCamera : MonoBehaviour
 
     void Update()
     {
-       // UpdateAnglesBasedOnInput();
-       // UpdateCameraAndPivotRotation();
+        // UpdateAnglesBasedOnInput();
+        // UpdateCameraAndPivotRotation();        
     }
 
     private void LateUpdate()
@@ -64,10 +64,15 @@ public class ThirdPersonCamera : MonoBehaviour
     }
 
     private void UpdateCameraAndPivotRotation()
-    {
+    {  
         transform.position = cameraPosition;
-       // follower.Follow(cameraPosition, transform, cameraFollowSpeed);
-       transform.rotation = Quaternion.LookRotation(rotatedPivot + (pivotYaw * Vector3.forward) - transform.position, Vector3.up);
-       transform.RotateAround(rotatedPivot, transform.right, pitchAngle);
+        // follower.Follow(cameraPosition, transform, cameraFollowSpeed);
+        transform.rotation = Quaternion.LookRotation(rotatedPivot + (pivotYaw * Vector3.forward) - transform.position, Vector3.up);
+        transform.RotateAround(rotatedPivot, transform.right, pitchAngle);
+
+        //Trying to add a drawray directly out of the camera to allow the player to target a locationo on the ground
+        //Quaternion quatDir = Quaternion.LookRotation(cameraPosition);
+        //Vector3 rayDir = quatDir.eulerAngles;
+        //Debug.DrawRay(cameraPosition, rayDir, Color.blue);
     }
 }

@@ -5,9 +5,9 @@ using UnityEngine;
 public class AcidEruption : ActiveMorph
 {
     static int chemicalDamagePrerequisit = 25;
-
-    [SerializeField] private ConeProjectileSpawner acidEruptionSpawner;
-
+    [SerializeField] private int range;
+    [SerializeField] private GameObject acidEruption;
+    Vector3 point = new Vector3(.5f,.5f,0);
     public Prerequisite[] BasePrerequisits = new Prerequisite[1]
     {
         new Prerequisite("chemicalDamage", chemicalDamagePrerequisit),
@@ -26,8 +26,9 @@ public class AcidEruption : ActiveMorph
 
     private void Update()
     {
-
-
+        //Debug.DrawRay(Camera.main.transform.position, transform.TransformDirection(Vector3.back), Color.yellow, range * 10));
+        //Camera.main.ScreenToWorldPoint(point)
+        //Debug.DrawRay(Camera.main.transform.position, transform.forward, Color.blue);
         if (Input.GetKeyDown(testInput))
         {
             SpawnAcidEruption();
@@ -37,24 +38,20 @@ public class AcidEruption : ActiveMorph
 
     private void SpawnAcidEruption()
     {
-        var projectiles = acidEruptionSpawner?.Spawn(transform);
-
-        if (projectiles != null)
-            foreach (var projectile in projectiles)
-            {
-                projectile.GetComponent<Projectile>().SetDamageDealer(GetComponent<DamageHandler>());
-            }
-    }
-
-
-
-    private void OnValidate()
-    {
-        acidEruptionSpawner?.OnValidate();
-    }
-
-    private void OnDrawGizmos()
-    {
-        acidEruptionSpawner?.OnDrawGizmos(transform);
+        int layerMask = 1 << 10;
+        RaycastHit hit;
+        //need to cast the ray outwards from worldspace position of the camera, so the player can aim at the ground to target where the aoe will be created
+        // currently this ray casts directly out from the player character with no pitch or yaw based on the camera orientation
+        if (Physics.Raycast(Camera.main.transform.position, transform.forward, out hit, range, layerMask))
+        {
+            GameObject eruption = ObjectPooler.Instance.GetOrCreatePooledObject(acidEruption);
+            eruption.GetComponent<AcidEruptionAOE>().SetDamageDealer(GetComponent<DamageHandler>());
+            eruption.transform.position = hit.point;
+            Debug.Log(name + " found a target");
+        }
+        else 
+        {
+            Debug.Log(name + " did not find a target");
+        }
     }
 }
