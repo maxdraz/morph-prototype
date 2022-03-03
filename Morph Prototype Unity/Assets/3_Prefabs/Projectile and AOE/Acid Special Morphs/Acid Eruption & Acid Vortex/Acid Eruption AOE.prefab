@@ -4899,8 +4899,8 @@ GameObject:
   - component: {fileID: 7019288732155250899}
   - component: {fileID: 7871044784450029112}
   - component: {fileID: 875058216619203212}
-  - component: {fileID: 5225748942855629921}
   - component: {fileID: 4810521636087294115}
+  - component: {fileID: 1460068243826024848}
   m_Layer: 0
   m_Name: Acid Eruption AOE
   m_TagString: Untagged
@@ -4916,7 +4916,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2416811839361304073}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.6725373, y: -1.1, z: 7.32674}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4056647159333251466}
@@ -9722,20 +9722,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useParticleSystemLifetime: 1
   duration: 1
---- !u!114 &5225748942855629921
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2416811839361304073}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb53705a0c86e3e4cb76676cf396648f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  acidDamageToDeal: 70
-  knockUpForce: 50
 --- !u!136 &4810521636087294115
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -9745,11 +9731,33 @@ CapsuleCollider:
   m_GameObject: {fileID: 2416811839361304073}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.3
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &1460068243826024848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2416811839361304073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c91765d03db130943b09733b77054bce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onHitEffects:
+  - onHitEffect: {fileID: 11400000, guid: b6472a054bbbbe54aa1c805c8ea62e20, type: 2}
+    data:
+      id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: AcidDamageData, ns: , asm: Assembly-CSharp}
+      data:
+        acidDamage: 50
 --- !u!1 &7709446984965052822
 GameObject:
   m_ObjectHideFlags: 0

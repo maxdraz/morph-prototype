@@ -8,7 +8,6 @@ public class AcidVortex : ActiveMorph
     [SerializeField] private GameObject acidVortexParticle;
     [SerializeField] private float damage;
     [SerializeField] private float explosionDelay;
-    DamageHandler damageHandler;
 
 
     public Prerequisite[] BasePrerequisits = new Prerequisite[1]
@@ -18,17 +17,11 @@ public class AcidVortex : ActiveMorph
     };
 
 
-    private void Start()
-    {
-        damageHandler = GetComponent<DamageHandler>();
-    }
-
     public override bool ActivateIfConditionsMet()
     {
         if (base.ActivateIfConditionsMet())
         {
             SpawnAcidVortex();
-            Invoke("AcidVortexDamage", explosionDelay);
             return true;
         }
         return false;
@@ -39,38 +32,16 @@ public class AcidVortex : ActiveMorph
         if (Input.GetKeyDown(testInput))
         {
             SpawnAcidVortex();
-            Invoke("AcidVortexDamage", explosionDelay);
         }
     }
 
 
     private void SpawnAcidVortex()
     {
-        GameObject chemicalCocktail = Instantiate(acidVortexParticle, transform.position, transform.rotation);
-        chemicalCocktail.transform.parent = this.gameObject.transform;
+        GameObject acidVortex = ObjectPooler.Instance.GetOrCreatePooledObject(acidVortexParticle);
+        acidVortex.GetComponent<AOE_DELAY>().SetDamageDealer(GetComponent<DamageHandler>());
+        acidVortex.transform.parent = transform;
+        acidVortex.transform.position = transform.position;
 
-    }
-
-    private void AcidVortexDamage()
-    {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 5);
-
-        foreach (var hitCollider in hitColliders)
-        {
-
-
-            if (hitCollider.gameObject.GetComponent<Stats>() == true)
-            {
-                if (hitCollider.GetComponentInParent<Velocity>().CurrentVelocity.y > 3)
-                {
-                    hitCollider.GetComponent<DamageHandler>().ApplyDamage(new AcidDamageData(damage * 2), damageHandler);
-                }
-                else 
-                {
-                    hitCollider.GetComponent<DamageHandler>().ApplyDamage(new AcidDamageData(damage), damageHandler);
-
-                }
-            }
-        }
     }
 }

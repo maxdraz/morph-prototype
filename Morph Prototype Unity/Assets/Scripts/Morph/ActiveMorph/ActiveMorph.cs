@@ -20,6 +20,9 @@ public class ActiveMorph : MonoBehaviour
     private Stamina stamina;
     private Energy energy;
 
+    public RaycastHit hit;
+    private Vector3 raycastToGroundTarget;
+
     public float CurrentCooldownTime => cooldown.CurrentTime;
 
 
@@ -34,6 +37,25 @@ public class ActiveMorph : MonoBehaviour
             value = b;
 
             
+        }
+    }
+
+    public void RaycastToGround() 
+    {
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(.5f, .5f, 0));
+        
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            
+            raycastToGroundTarget = hit.point;
+            return;
+        }
+
+        else
+        {
+            raycastToGroundTarget = new Vector3(0, 0, 0);
+            return;
         }
     }
 

@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 1625116304}
   - component: {fileID: 1625116306}
   - component: {fileID: 1625116305}
-  - component: {fileID: 7377615755650646673}
-  - component: {fileID: 7821838182664771487}
   m_Layer: 0
   m_Name: Acid Explosion Spawner (Handler)
   m_TagString: Untagged
@@ -3899,7 +3897,7 @@ ParticleSystem:
       properties: 0
       emitProbability: 1
     - serializedVersion: 3
-      emitter: {fileID: 3356413714506110635}
+      emitter: {fileID: 0}
       type: 0
       properties: 0
       emitProbability: 1
@@ -4904,33 +4902,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!135 &7377615755650646673
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1625116303}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 3
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7821838182664771487
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1625116303}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 572f40f6e7485bf4abcfa54dd3c2f36d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  acidDamageToDeal: 100
-  knockBackForce: 10
 --- !u!1 &1641033305696970572
 GameObject:
   m_ObjectHideFlags: 0
@@ -29320,11 +29291,6 @@ Transform:
 --- !u!198 &3955577284954804374 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 7362818915409253046, guid: be7077aa558ba1345a19b126a2f160e4, type: 3}
-  m_PrefabInstance: {fileID: 5821171204704895520}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &3356413714506110635 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 9105315428662105227, guid: be7077aa558ba1345a19b126a2f160e4, type: 3}
   m_PrefabInstance: {fileID: 5821171204704895520}
   m_PrefabAsset: {fileID: 0}
 --- !u!198 &4134781132445574674 stripped

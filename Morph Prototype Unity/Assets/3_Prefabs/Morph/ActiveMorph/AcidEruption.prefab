@@ -109,7 +109,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staminaCost: 10
   energyCost: 15
-  testInput: 273
+  testInput: 276
   castTimer:
     duration: 1
     currentTime: 0
@@ -118,7 +118,7 @@ MonoBehaviour:
     duration: 4
     currentTime: 0
     loop: 0
-  range: 200
+  range: 50
   acidEruption: {fileID: 2416811839361304073, guid: c66793508e63e404d9932e83a57710e8, type: 3}
 --- !u!1 &8878017237320108669
 GameObject:
@@ -228,7 +228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staminaCost: 40
   energyCost: 40
-  testInput: 274
+  testInput: 275
   castTimer:
     duration: 3.6
     currentTime: 0
