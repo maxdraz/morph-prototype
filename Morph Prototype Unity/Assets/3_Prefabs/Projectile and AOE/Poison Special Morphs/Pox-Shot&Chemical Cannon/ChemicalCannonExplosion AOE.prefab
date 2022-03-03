@@ -79,12 +79,20 @@ MonoBehaviour:
   - onHitEffect: {fileID: 11400000, guid: 43742988cba5dad4c98d440ec358f8d9, type: 2}
     data:
       id: 0
+  - onHitEffect: {fileID: 11400000, guid: b63270b1420e4da45ad73e386f4b9511, type: 2}
+    data:
+      id: 1
+  duration: 0.2
   references:
     version: 1
     00000000:
       type: {class: PoisonDamageData, ns: , asm: Assembly-CSharp}
       data:
         poisonDamage: 100
+    00000001:
+      type: {class: KnockupData, ns: , asm: Assembly-CSharp}
+      data:
+        knockupForce: 100
 --- !u!198 &6674459902252383277
 ParticleSystem:
   m_ObjectHideFlags: 0

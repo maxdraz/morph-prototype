@@ -7,6 +7,25 @@ public class AOE : MonoBehaviour
     [SerializeField] private List<OnHitEffectDataContainer> onHitEffects;
 
     private DamageHandler damageDealer;
+    [SerializeField] private float duration;
+
+
+    private void Start()
+    {
+        if (duration > 0) 
+        {
+            StartCoroutine("Duration");
+        }
+    }
+
+    IEnumerator Duration() 
+    {
+        yield return new WaitForSeconds(duration);
+
+        GetComponent<Collider>().enabled = false;
+
+        yield return null;
+    }
 
     private void OnValidate()
     {

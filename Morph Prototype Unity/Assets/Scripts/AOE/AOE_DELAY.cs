@@ -10,6 +10,8 @@ public class AOE_DELAY : MonoBehaviour
 
     Collider collider;
     float delayPeriod;
+    [SerializeField] private float duration;
+
 
     private void OnValidate()
     {
@@ -25,6 +27,7 @@ public class AOE_DELAY : MonoBehaviour
         collider = GetComponent<Collider>();
         delayPeriod = GetComponent<ParticleSystem>().main.startDelay.constant;
         StartCoroutine("TriggerActivation");
+
     }
 
     IEnumerator TriggerActivation()
@@ -33,7 +36,7 @@ public class AOE_DELAY : MonoBehaviour
 
         collider.enabled = true;
 
-        yield return new WaitForSeconds(.3f);
+        yield return new WaitForSeconds(duration);
 
         collider.enabled = false;
 

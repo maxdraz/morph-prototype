@@ -9871,6 +9871,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2543dcdb97ef97444abcc7cb0a86d987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroyOnImpact: 0
   startSpeed: 50
   onHitEffects:
   - onHitEffect: {fileID: 11400000, guid: 43742988cba5dad4c98d440ec358f8d9, type: 2}
@@ -9908,5 +9909,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646cd3249ec59f844b81d1464cb413eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chemicalCannonExplosion: {fileID: 3623205080624188302, guid: 3cd145f3b3c446f49ab92a27ffbd1ffd, type: 3}
+  chemicalCannonExplosion: {fileID: 3623205080624188302, guid: 7431fedd2ebe724478b2a8aae318a37b, type: 3}
   source: {fileID: 0}

@@ -9752,12 +9752,19 @@ MonoBehaviour:
   - onHitEffect: {fileID: 11400000, guid: b6472a054bbbbe54aa1c805c8ea62e20, type: 2}
     data:
       id: 0
+  - onHitEffect: {fileID: 11400000, guid: b63270b1420e4da45ad73e386f4b9511, type: 2}
+    data:
+      id: 1
   references:
     version: 1
     00000000:
       type: {class: AcidDamageData, ns: , asm: Assembly-CSharp}
       data:
         acidDamage: 50
+    00000001:
+      type: {class: KnockupData, ns: , asm: Assembly-CSharp}
+      data:
+        knockupForce: 300
 --- !u!1 &7709446984965052822
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,10 +7,16 @@ public class AOE_DOT : MonoBehaviour
     [SerializeField] private List<OnHitEffectDataContainer> onHitEffects;
 
     private DamageHandler damageDealer;
+    [SerializeField] private float duration;
 
     private void Start()
     {
         StartCoroutine("DOT");
+
+        if (duration > 0)
+        {
+            StartCoroutine("Duration");
+        }
     }
 
     private void OnValidate()
@@ -21,6 +27,15 @@ public class AOE_DOT : MonoBehaviour
     public void SetDamageDealer(DamageHandler dmgDealer)
     {
         damageDealer = dmgDealer;
+    }
+
+    IEnumerator Duration()
+    {
+        yield return new WaitForSeconds(duration);
+
+        GetComponent<Collider>().enabled = false;
+
+        yield return null;
     }
 
     IEnumerator DOT() 
