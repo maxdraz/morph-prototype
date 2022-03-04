@@ -7,7 +7,9 @@ public class AOE_DOT : MonoBehaviour
     [SerializeField] private List<OnHitEffectDataContainer> onHitEffects;
 
     private DamageHandler damageDealer;
+    [SerializeField] private float timeBetweenEffects;
     [SerializeField] private float duration;
+    [SerializeField] private float radius;
 
     private void Start()
     {
@@ -33,14 +35,14 @@ public class AOE_DOT : MonoBehaviour
     {
         yield return new WaitForSeconds(duration);
 
-        GetComponent<Collider>().enabled = false;
+        StopCoroutine("DOT");
 
         yield return null;
     }
 
     IEnumerator DOT() 
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(timeBetweenEffects);
 
         AOEEffect();
 
@@ -51,7 +53,7 @@ public class AOE_DOT : MonoBehaviour
 
     void AOEEffect()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, GetComponent<SphereCollider>().radius);
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, radius);
 
         foreach (var hitCollider in hitColliders)
         {

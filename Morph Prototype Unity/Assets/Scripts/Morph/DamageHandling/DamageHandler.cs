@@ -91,6 +91,7 @@ public class DamageHandler : MonoBehaviour
             // fortitude check for mortal blow 
         ApplyKnockback(in damageTakenSummary);
         ApplyKnockup(in damageTakenSummary);
+        ApplyPullTowards(in damageTakenSummary);
 
         VisualizeDamage(in damageTakenSummary);
 
@@ -103,6 +104,16 @@ public class DamageHandler : MonoBehaviour
 
         var forceDirectionNormalized = (transform.position - damageTakenSummary.DamageDealer.transform.position).normalized;
         parentRigidbody.AddForce(forceDirectionNormalized * damageTakenSummary.KnockbackForce, ForceMode.Impulse);
+    }
+
+    private void ApplyPullTowards(in DamageTakenSummary damageTakenSummary)
+    {
+        if (!parentRigidbody) return;
+        if (damageTakenSummary.PullForce <= 0) return;
+
+        var forceDirectionNormalized = ((transform.position - damageTakenSummary.DamageDealer.transform.position) * -1).normalized;
+        parentRigidbody.AddForce(forceDirectionNormalized * damageTakenSummary.PullForce, ForceMode.Impulse);
+        //Debug.Log("applying " + damageTakenSummary.PullForce);
     }
 
     private void ApplyKnockup(in DamageTakenSummary damageTakenSummary)
@@ -188,20 +199,21 @@ public class DamageHandler : MonoBehaviour
             DamageType = damageType,
             DamageTaker = this,
             DamageDealer = damageDealer,
-            
+
             PhysicalDamage = HandlePhysicalDamage(ref damageType),
             LifeStealDamage = HandleLifestealDamage(ref damageType),
-            
+
             PoisonDamage = HandlePoisonDamage(ref damageType),
             AcidDamage = HandleAcidDamage(ref damageType),
-            
+
             FireDamage = HandleFireDamage(ref damageType),
             IceDamage = HandleIceDamage(ref damageType),
             LightningDamage = HandleLightningDamage(ref damageType),
             StaminaDrained = HandlerStaminaDrain(ref damageType),
             FortitudeDamage = HandleFortitudeDamage(ref damageType),
             KnockbackForce = HandleKnockback(ref damageType),
-            KnockupForce = HandleKnockup(ref damageType)
+            KnockupForce = HandleKnockup(ref damageType),
+            PullForce = HandlePullTowards(ref damageType)
 
         };
 
@@ -271,6 +283,10 @@ public class DamageHandler : MonoBehaviour
     }
     private float HandleFortitudeDamage(ref IDamageType damageType)
     {
+        if (damageType is IFortitudeDamage fortitudeDamage) 
+        {
+            return fortitudeDamage.FortitudeDamage;
+        }
         return 0f;
     }
     
@@ -308,6 +324,16 @@ public class DamageHandler : MonoBehaviour
         if (damageType is IKnockUp knockup)
         {
             return knockup.KnockupForce;
+        }
+
+        return 0;
+    }
+
+    private float HandlePullTowards(ref IDamageType damageType)
+    {
+        if (damageType is IPullTowards pullTowards)
+        {
+            return pullTowards.PullForce;
         }
 
         return 0;

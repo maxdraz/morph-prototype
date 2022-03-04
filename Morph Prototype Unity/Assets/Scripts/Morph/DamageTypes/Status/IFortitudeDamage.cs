@@ -5,4 +5,6 @@ using UnityEngine;
 public interface IFortitudeDamage : IDamageType
 {
     public float FortitudeDamage { get; }
+
+    public string StatusEffect { get; }
 }

@@ -6,10 +6,12 @@ using UnityEngine;
 public class FortitudeDamageData : OnHitEffectData, IFortitudeDamage
 {
     [SerializeField] private float fortitudeDamage;
+    [SerializeField] private string statusEffect;
 
-    public FortitudeDamageData(float fortitudeDamage = 1)
+    public FortitudeDamageData(float fortitudeDamage = 1, string statusEffect = "")
     {
         this.fortitudeDamage = fortitudeDamage;
+        this.statusEffect = statusEffect;
     }
 
     public float FortitudeDamage
@@ -17,10 +19,16 @@ public class FortitudeDamageData : OnHitEffectData, IFortitudeDamage
         get => fortitudeDamage;
         set => fortitudeDamage = value;
     }
+
+    public string StatusEffect 
+    {
+        get => statusEffect;
+        set => statusEffect = value;
+    }
     
     public override object Clone()
     {
-        return new FortitudeDamageData(fortitudeDamage);
+        return new FortitudeDamageData(fortitudeDamage, statusEffect);
     }
 }
 
