@@ -6,7 +6,7 @@ public class AOE_DELAY : MonoBehaviour
 {
     [SerializeField] private List<OnHitEffectDataContainer> onHitEffects;
 
-    private DamageHandler damageDealer;
+    public DamageHandler damageDealer;
 
     Collider collider;
     float delayPeriod;
@@ -20,7 +20,7 @@ public class AOE_DELAY : MonoBehaviour
 
     public void SetDamageDealer(DamageHandler dmgDealer)
     {
-        this.damageDealer = dmgDealer;
+        damageDealer = dmgDealer;
     }
     void Start()
     {

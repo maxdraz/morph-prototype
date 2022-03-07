@@ -93,7 +93,6 @@ GameObject:
   - component: {fileID: 911686507599529472}
   - component: {fileID: 6686975878327712408}
   - component: {fileID: 2930353320183580520}
-  - component: {fileID: 1080031707219626662}
   - component: {fileID: -6628681571252267910}
   - component: {fileID: -5608036038397342526}
   m_Layer: 0
@@ -128,7 +127,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1995169145839438788}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.2375946, y: 0.23, z: 0.74}
@@ -149,20 +148,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &1080031707219626662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1995169145839438788}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca070c3b6534b8a47b9eeb7cc2a9559f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isInvincible: 1
-  damageNumberSet: {fileID: 0}
 --- !u!114 &-6628681571252267910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,17 +174,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2543dcdb97ef97444abcc7cb0a86d987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroyOnImpact: 0
   startSpeed: 50
   onHitEffects:
-  - onHitEffect: {fileID: 11400000, guid: 6fdaf46b45643024b84029b94e4bc690, type: 2}
+  - onHitEffect: {fileID: 11400000, guid: 30381fda49bdbb648b991837c2501507, type: 2}
     data:
       id: 0
+  - onHitEffect: {fileID: 11400000, guid: 43742988cba5dad4c98d440ec358f8d9, type: 2}
+    data:
+      id: 1
   references:
     version: 1
     00000000:
       type: {class: FortitudeDamageData, ns: , asm: Assembly-CSharp}
       data:
-        fortitudeDamage: 1
+        fortitudeDamage: 100
+        statusEffect: Stun
+        duration: 2
+    00000001:
+      type: {class: PoisonDamageData, ns: , asm: Assembly-CSharp}
+      data:
+        poisonDamage: 100
 --- !u!1 &3595483883874878774
 GameObject:
   m_ObjectHideFlags: 0

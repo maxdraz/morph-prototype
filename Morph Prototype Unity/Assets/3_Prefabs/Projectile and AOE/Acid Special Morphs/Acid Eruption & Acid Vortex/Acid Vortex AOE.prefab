@@ -31,7 +31,7 @@ Transform:
   m_Children:
   - {fileID: 7005498076923775267}
   m_Father: {fileID: 2303381517779054324}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &1625116306
 ParticleSystem:
@@ -4915,6 +4915,7 @@ GameObject:
   - component: {fileID: 2657889873619494600}
   - component: {fileID: 4525996710735787803}
   - component: {fileID: 4065154484487272654}
+  - component: {fileID: -57251023229303088}
   - component: {fileID: 523282976745897248}
   m_Layer: 0
   m_Name: Acid Vortex AOE
@@ -4934,7 +4935,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 6461104579287396308}
   - {fileID: 1625116304}
   - {fileID: 2878100513690932471}
   - {fileID: 6603837122200982946}
@@ -9750,6 +9750,7 @@ MonoBehaviour:
   - onHitEffect: {fileID: 11400000, guid: 5646e0d34a12b324696121349b8b67e8, type: 2}
     data:
       id: 1
+  damageDealer: {fileID: 0}
   duration: 0.2
   references:
     version: 1
@@ -9760,7 +9761,32 @@ MonoBehaviour:
     00000001:
       type: {class: KnockbackData, ns: , asm: Assembly-CSharp}
       data:
-        knockbackForce: 10000
+        knockbackForce: 500
+--- !u!114 &-57251023229303088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641033305696970572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88143e55ec389e24aa4464fa0f22138f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onHitEffects:
+  - onHitEffect: {fileID: 11400000, guid: bc9de6788c7ba604b926ea54a61f3a3a, type: 2}
+    data:
+      id: 0
+  duration: 2
+  radius: 6
+  delayPeriod: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: PullTowardsData, ns: , asm: Assembly-CSharp}
+      data:
+        pullForce: 300
 --- !u!114 &523282976745897248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9805,7 +9831,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2303381517779054324}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &200812197098412702
 ParticleSystem:
@@ -14621,7 +14647,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2303381517779054324}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &7454893583008000860
 ParticleSystem:
@@ -19503,7 +19529,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2303381517779054324}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &3108240783160555819
 ParticleSystem:
@@ -24336,7 +24362,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2303381517779054324}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &4463857650754769612
 ParticleSystem:
@@ -29178,7 +29204,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2303381517779054324}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &1221564017445415049
 ParticleSystem:
@@ -34030,62 +34056,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!1 &7242373222160210999
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6461104579287396308}
-  - component: {fileID: 8204643913255000193}
-  m_Layer: 0
-  m_Name: PullTowards AOE holder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6461104579287396308
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7242373222160210999}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2303381517779054324}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8204643913255000193
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7242373222160210999}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1b8b66878aaeac4283ecd77eea9dffe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onHitEffects:
-  - onHitEffect: {fileID: 11400000, guid: bc9de6788c7ba604b926ea54a61f3a3a, type: 2}
-    data:
-      id: 0
-  timeBetweenEffects: 0.1
-  duration: 3.3
-  radius: 6
-  references:
-    version: 1
-    00000000:
-      type: {class: PullTowardsData, ns: , asm: Assembly-CSharp}
-      data:
-        pullForce: 10000
 --- !u!1001 &5821171204704895520
 PrefabInstance:
   m_ObjectHideFlags: 0

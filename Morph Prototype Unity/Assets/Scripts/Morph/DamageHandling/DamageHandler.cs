@@ -11,6 +11,7 @@ public class DamageHandler : MonoBehaviour
     private Armor armor;
     private Stamina stamina;
     private Rigidbody parentRigidbody;
+    private Fortitude fortitude;
     [SerializeField] private bool isInvincible = true;
     [SerializeField] private DamageNumberSet damageNumberSet;
 
@@ -49,8 +50,9 @@ public class DamageHandler : MonoBehaviour
         armor = GetComponent<Armor>();
         stamina = GetComponent<Stamina>();
         parentRigidbody = GetComponentInParent<Rigidbody>();
+        fortitude = GetComponent<Fortitude>();
 
-        if(!stats) Debug.LogWarning(transform.parent.name +" dmg handler couldnt find stats");
+        if (!stats) Debug.LogWarning(transform.parent.name +" dmg handler couldnt find stats");
         if(!health) Debug.LogWarning(transform.parent.name +" dmg handler couldnt find health");
     }
 
@@ -86,6 +88,7 @@ public class DamageHandler : MonoBehaviour
     {
         health.SubtractHP(damageTakenSummary.TotalDamage);
         // apply fortitude damage
+        ApplyFortitudeDamage(damageTakenSummary.FortitudeDamage);
             // apply relevant status effects ...
         stamina.SubtractStamina(damageTakenSummary.StaminaDrained);
             // fortitude check for mortal blow 
@@ -104,6 +107,8 @@ public class DamageHandler : MonoBehaviour
 
         var forceDirectionNormalized = (transform.position - damageTakenSummary.DamageDealer.transform.position).normalized;
         parentRigidbody.AddForce(forceDirectionNormalized * damageTakenSummary.KnockbackForce, ForceMode.Impulse);
+        Debug.Log("applying " + damageTakenSummary.KnockbackForce + " knockback" + " to " + transform.name);
+
     }
 
     private void ApplyPullTowards(in DamageTakenSummary damageTakenSummary)
@@ -113,7 +118,7 @@ public class DamageHandler : MonoBehaviour
 
         var forceDirectionNormalized = ((transform.position - damageTakenSummary.DamageDealer.transform.position) * -1).normalized;
         parentRigidbody.AddForce(forceDirectionNormalized * damageTakenSummary.PullForce, ForceMode.Impulse);
-        //Debug.Log("applying " + damageTakenSummary.PullForce);
+        Debug.Log("applying " + damageTakenSummary.PullForce + " pullforce" + " to " + transform.name);
     }
 
     private void ApplyKnockup(in DamageTakenSummary damageTakenSummary)
@@ -122,6 +127,19 @@ public class DamageHandler : MonoBehaviour
         if (damageTakenSummary.KnockupForce <= 0) return;
 
         parentRigidbody.AddForce(Vector3.up * damageTakenSummary.KnockupForce, ForceMode.Impulse);
+        Debug.Log("applying " + damageTakenSummary.KnockupForce + " knockup" + " to " + transform.name);
+
+    }
+
+    private void ApplyFortitudeDamage(FortitudeDamageData damageTakenSummary)
+    {
+        if (!fortitude) return;
+        if (damageTakenSummary.FortitudeDamage <= 0) return;
+
+        fortitude.ApplyFortitudeDamage(damageTakenSummary);
+        
+        Debug.Log("applying " + damageTakenSummary.FortitudeDamage + " FortitudeDamage" + " to " + transform.name);
+
     }
 
     private void VisualizeDamage(in DamageTakenSummary damageTakenSummary)
@@ -210,7 +228,7 @@ public class DamageHandler : MonoBehaviour
             IceDamage = HandleIceDamage(ref damageType),
             LightningDamage = HandleLightningDamage(ref damageType),
             StaminaDrained = HandlerStaminaDrain(ref damageType),
-            FortitudeDamage = HandleFortitudeDamage(ref damageType),
+            //FortitudeDamage = HandleFortitudeDamage(ref damageType),
             KnockbackForce = HandleKnockback(ref damageType),
             KnockupForce = HandleKnockup(ref damageType),
             PullForce = HandlePullTowards(ref damageType)

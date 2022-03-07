@@ -33,7 +33,7 @@ public class DamageTakenSummary
     public float LightningDamage;
 
     public float StaminaDrained;
-    public float FortitudeDamage;
+    public FortitudeDamageData FortitudeDamage;
 
     public float KnockbackForce;
     public float KnockupForce;

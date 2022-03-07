@@ -270,6 +270,10 @@ PrefabInstance:
       value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 8824068126247670664, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8824068126247670664, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}
       propertyPath: m_Center.z
       value: -0.060070872
       objectReference: {fileID: 0}

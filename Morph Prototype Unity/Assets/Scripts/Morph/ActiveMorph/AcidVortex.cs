@@ -5,9 +5,8 @@ using UnityEngine;
 public class AcidVortex : ActiveMorph
 {
     static int chemicalDamagePrerequisit = 25;
-    [SerializeField] private GameObject acidVortexParticle;
-    [SerializeField] private float damage;
-    [SerializeField] private float explosionDelay;
+    [SerializeField] private GameObject acidVortexAOE;
+
 
 
     public Prerequisite[] BasePrerequisits = new Prerequisite[1]
@@ -38,9 +37,9 @@ public class AcidVortex : ActiveMorph
 
     private void SpawnAcidVortex()
     {
-        GameObject acidVortex = ObjectPooler.Instance.GetOrCreatePooledObject(acidVortexParticle);
+        GameObject acidVortex = ObjectPooler.Instance.GetOrCreatePooledObject(acidVortexAOE);
         acidVortex.GetComponent<AOE_DELAY>().SetDamageDealer(GetComponent<DamageHandler>());
-        acidVortex.GetComponentInChildren<AOE_DOT>().SetDamageDealer(GetComponent<DamageHandler>());
+        acidVortex.GetComponent<AOE_UPDATE>().SetDamageDealer(GetComponent<DamageHandler>());
         acidVortex.transform.parent = transform;
         acidVortex.transform.position = transform.position;
 

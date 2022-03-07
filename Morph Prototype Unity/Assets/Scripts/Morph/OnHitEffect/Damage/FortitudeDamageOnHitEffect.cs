@@ -7,11 +7,13 @@ public class FortitudeDamageData : OnHitEffectData, IFortitudeDamage
 {
     [SerializeField] private float fortitudeDamage;
     [SerializeField] private string statusEffect;
+    [SerializeField] private float duration;
 
-    public FortitudeDamageData(float fortitudeDamage = 1, string statusEffect = "")
+    public FortitudeDamageData(float fortitudeDamage = 1, string statusEffect = "", float duration = 0)
     {
         this.fortitudeDamage = fortitudeDamage;
         this.statusEffect = statusEffect;
+        this.duration = duration;
     }
 
     public float FortitudeDamage
@@ -25,10 +27,16 @@ public class FortitudeDamageData : OnHitEffectData, IFortitudeDamage
         get => statusEffect;
         set => statusEffect = value;
     }
-    
+
+    public float Duration
+    {
+        get => duration;
+        set => duration = value;
+    }
+
     public override object Clone()
     {
-        return new FortitudeDamageData(fortitudeDamage, statusEffect);
+        return new FortitudeDamageData(fortitudeDamage, statusEffect, duration);
     }
 }
 

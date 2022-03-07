@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,9 +25,7 @@ public class ColourChange : ActiveMorph
 
     [SerializeField] private bool unlockBioLuminescentFlash = true;
     [SerializeField] private GameObject bioluminescentFlash;
-    [SerializeField] private int perceptionDamage;
-    [SerializeField] private float blindnessDuration;
-
+    [SerializeField] private List<OnHitEffectDataContainer> onHitEffects;
 
     static Prerequisite[] BasePrerequisits = new Prerequisite[2]
     {
@@ -146,11 +145,14 @@ public class ColourChange : ActiveMorph
 
         foreach (var hitCollider in hitColliders)
         {
+            var otherDamageHandler = hitCollider.gameObject.GetComponentInChildren<DamageHandler>();
 
-
-            if (hitCollider.gameObject.GetComponent<Perception>() && hitCollider.gameObject != gameObject)
+            foreach (var onHitEffectDataContainer in onHitEffects)
             {
-                hitCollider.GetComponent<Fortitude>().ReduceFortitude(perceptionDamage, "blindness", blindnessDuration);
+                onHitEffectDataContainer.OnHitEffect.ApplyOnHitEffect(onHitEffectDataContainer.Data, otherDamageHandler, GetComponent<DamageHandler>());
+                //print("should be applying damage");
+                // otherDamageHandler.ApplyDamage(onHitEffectDataContainer.Data, damageDealer);
+
             }
         }
     }

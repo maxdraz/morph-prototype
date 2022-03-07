@@ -6,6 +6,7 @@ public class Fortitude : MonoBehaviour
 {
     float maxFortitude;
     float currentFortitude;
+    float lastFortitudeValue;
 
     float fortitudeRegenDelay = 2f;
     float fortitudeRegenRate = 1f;
@@ -15,58 +16,67 @@ public class Fortitude : MonoBehaviour
     float chanceTobeEffected;
     bool statusApplied;
 
+    Stats stats;
+
     // Start is called before the first frame update
     void Start()
     {
+        stats = GetComponent<Stats>();
         statusApplied = false;
         currentFortitude = maxFortitude;
     }
 
-    public float ReduceFortitude(int fortDamage, string effect, float duration)
+    
+
+    public float ApplyFortitudeDamage(FortitudeDamageData data)
     {
+        float fortDamage = data.FortitudeDamage;
+        string effect = data.StatusEffect;
+        float duration = data.Duration;
         
-        float lastFortitudeValue = currentFortitude;
-        currentFortitude -= fortDamage;
+        lastFortitudeValue = currentFortitude;
+        currentFortitude -= data.FortitudeDamage;
         
 
         if (currentFortitude <= 0)
         {
 
 
-            if (effect == "Stun")
+            if (data.StatusEffect == "Stun")
             {
-                float secondaryStat = 0f;
+                secondaryStat = 0f;
                 //instead the dc is (fortDamage - (lastFortitudeValue * 3))
             }
 
-            if (effect == "Paralysis")
+            if (data.StatusEffect == "Paralysis")
             {
-                //float secondaryStat = agility
+                secondaryStat = stats.totalAgility;
             }
 
-            if (effect == "Root")
+            if (data.StatusEffect == "Root")
             {
-                float secondaryStat = 0f;
+                secondaryStat = 0f;
                 //instead the dc is (fortDamage - (lastFortitudeValue * 3))
             }
 
-            if (effect == "Silence")
+            if (data.StatusEffect == "Silence")
             {
-                //float secondaryStat = intelligence
+                secondaryStat = stats.totalIntelligence;
             }
 
-            if (effect == "Crippled")
+            if (data.StatusEffect == "Crippled")
             {
-                //float secondaryStat = toughness
+                secondaryStat = stats.totalToughness;
             }
 
             if (secondaryStat == 0)
             {
-                chanceTobeEffected = (fortDamage - (lastFortitudeValue * 3));
+                //might need to be changed to lastFortitudeValue + toughness
+                chanceTobeEffected = Mathf.Max(fortDamage - (lastFortitudeValue * 3), 0);
             }
             else
             {
-                chanceTobeEffected = (fortDamage - (lastFortitudeValue + secondaryStat));
+                chanceTobeEffected = Mathf.Max(fortDamage - (lastFortitudeValue + secondaryStat), 0);
             }
 
             if (chanceTobeEffected > 0)
@@ -75,6 +85,7 @@ public class Fortitude : MonoBehaviour
             }
         }
 
+        currentFortitude = 0f;
         StartCoroutine("FortitudeRegen");
         return currentFortitude;
     }
@@ -93,7 +104,7 @@ public class Fortitude : MonoBehaviour
     {
         if (effect == "stun")
         {
-            float secondaryStat = 0f;
+            secondaryStat = 0f;
             //instead the chanceToSuccumb is (DC - (maxFortitude * 1.5))
         }
 
@@ -104,18 +115,18 @@ public class Fortitude : MonoBehaviour
 
         if (effect == "root")
         {
-            float secondaryStat = 0f;
+            secondaryStat = 0f;
             //instead the chanceToSuccumb is (DC - (maxFortitude * 1.5))
         }
 
         if (effect == "silence")
         {
-            //float secondaryStat = intelligence
+            secondaryStat = stats.totalIntelligence;
         }
 
         if (effect == "crippled")
         {
-            //float secondaryStat = toughness
+            secondaryStat = stats.totalToughness;
         }
 
         if (secondaryStat == 0)

@@ -72,6 +72,8 @@ MonoBehaviour:
     duration: 10
     currentTime: 0
     loop: 0
+  stats: {fileID: 0}
+  stealth: {fileID: 0}
   stealthStatBonus: 5
   colourChangeStealthBonus: 200
   colourChangeDuration: 3
@@ -80,8 +82,9 @@ MonoBehaviour:
   shimmeringParticles: {fileID: 7450608787142296881, guid: 2762f8b9d737e6b4c8a413908643aebf, type: 3}
   unlockBioLuminescentFlash: 1
   bioluminescentFlash: {fileID: 3520547880351128278, guid: 4e099870b5a70a247a7883db8c659e5f, type: 3}
-  perceptionDamage: 200
-  blindnessDuration: 3
+  onHitEffects: []
+  references:
+    version: 1
 --- !u!114 &1772954696996774671
 MonoBehaviour:
   m_ObjectHideFlags: 0

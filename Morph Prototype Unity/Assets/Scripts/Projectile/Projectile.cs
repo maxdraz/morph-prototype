@@ -52,7 +52,7 @@ public class Projectile : MonoBehaviour
 
     public void SetDamageDealer(DamageHandler dmgDealer)
     {
-        this.damageDealer = dmgDealer;
+        damageDealer = dmgDealer;
     }
 
     private void OnCollisionEnter(Collision other)
@@ -76,8 +76,5 @@ public class Projectile : MonoBehaviour
             ObjectPooler.Instance.Recycle(gameObject);
             return;
         }
-        
-        //destroy if hit environment
-        ObjectPooler.Instance.Recycle(gameObject);
     }
 }

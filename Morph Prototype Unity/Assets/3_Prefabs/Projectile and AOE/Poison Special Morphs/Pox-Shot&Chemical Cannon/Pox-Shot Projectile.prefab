@@ -4984,6 +4984,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2543dcdb97ef97444abcc7cb0a86d987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroyOnImpact: 0
   startSpeed: 25
   onHitEffects:
   - onHitEffect: {fileID: 11400000, guid: 5646e0d34a12b324696121349b8b67e8, type: 2}
@@ -4992,6 +4993,9 @@ MonoBehaviour:
   - onHitEffect: {fileID: 11400000, guid: 43742988cba5dad4c98d440ec358f8d9, type: 2}
     data:
       id: 1
+  - onHitEffect: {fileID: 11400000, guid: 30381fda49bdbb648b991837c2501507, type: 2}
+    data:
+      id: 2
   references:
     version: 1
     00000000:
@@ -5002,6 +5006,12 @@ MonoBehaviour:
       type: {class: PoisonDamageData, ns: , asm: Assembly-CSharp}
       data:
         poisonDamage: 10
+    00000002:
+      type: {class: FortitudeDamageData, ns: , asm: Assembly-CSharp}
+      data:
+        fortitudeDamage: 1
+        statusEffect: 
+        duration: 0
 --- !u!114 &3470138704748998041
 MonoBehaviour:
   m_ObjectHideFlags: 0
