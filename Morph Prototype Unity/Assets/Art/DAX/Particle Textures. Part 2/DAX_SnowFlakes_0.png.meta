@@ -1,17 +1,60 @@
 fileFormatVersion: 2
 guid: b9d493fd31a886c4b920ecc15e795e73
-timeCreated: 1509357105
-licenseType: Store
 TextureImporter:
-  fileIDToRecycleName: {}
-  serializedVersion: 2
+  internalIDToNameTable:
+  - first:
+      213: 991321494423937734
+    second: DAX_SnowFlakes_0_0
+  - first:
+      213: 3361630154166353617
+    second: DAX_SnowFlakes_0_1
+  - first:
+      213: -3870803649391365152
+    second: DAX_SnowFlakes_0_2
+  - first:
+      213: -3206931934827587841
+    second: DAX_SnowFlakes_0_3
+  - first:
+      213: 6649909761389414366
+    second: DAX_SnowFlakes_0_4
+  - first:
+      213: 180958048928413654
+    second: DAX_SnowFlakes_0_5
+  - first:
+      213: 2931331249694890521
+    second: DAX_SnowFlakes_0_6
+  - first:
+      213: -6542686577930581766
+    second: DAX_SnowFlakes_0_7
+  - first:
+      213: -1760876059603400280
+    second: DAX_SnowFlakes_0_8
+  - first:
+      213: -1087491668381244900
+    second: DAX_SnowFlakes_0_9
+  - first:
+      213: 6617252091384216337
+    second: DAX_SnowFlakes_0_10
+  - first:
+      213: 7972425241060247680
+    second: DAX_SnowFlakes_0_11
+  - first:
+      213: -6996820234998159784
+    second: DAX_SnowFlakes_0_12
+  - first:
+      213: -8151570951967181078
+    second: DAX_SnowFlakes_0_13
+  externalObjects: {}
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
+    sRGBTexture: 1
     linearTexture: 0
-    correctGamma: 0
     fadeOut: 0
     borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
     mipMapFadeDistanceStart: 1
     mipMapFadeDistanceEnd: 3
   bumpmap:
@@ -20,40 +63,382 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
-  generateCubemap: 0
+  generateCubemap: 6
   cubemapConvolution: 0
-  cubemapConvolutionSteps: 7
-  cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -1
   maxTextureSize: 2048
   textureSettings:
-    filterMode: -1
+    serializedVersion: 2
+    filterMode: 1
     aniso: 2
-    mipBias: -1
-    wrapMode: 1
-  nPOTScale: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
   lightmap: 0
-  rGBM: 0
   compressionQuality: 50
-  allowsAlphaSplitting: 0
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: -1
-  buildTargetSettings: []
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: DAX_SnowFlakes_0_0
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 3055
+        width: 13
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c2295d95a1e1cd00800000000000000
+      internalID: 991321494423937734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DAX_SnowFlakes_0_1
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 3055
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1deb35580d8e6ae20800000000000000
+      internalID: 3361630154166353617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DAX_SnowFlakes_0_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2788
+        width: 341
+        height: 266
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e3fdbad694284ac0800000000000000
+      internalID: -3870803649391365152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DAX_SnowFlakes_0_3
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 2518
+        width: 257
+        height: 198
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff6deb57560be73d0800000000000000
+      internalID: -3206931934827587841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DAX_SnowFlakes_0_4
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 2158
+        width: 308
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed7c40cf1b9394c50800000000000000
+      internalID: 6649909761389414366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DAX_SnowFlakes_0_5
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 1795
+        width: 283
+        height: 218
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d730a10364e28200800000000000000
+      internalID: 180958048928413654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DAX_SnowFlakes_0_6
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 1419
+        width: 214
+        height: 263
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91ad011ad3e2ea820800000000000000
+      internalID: 2931331249694890521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DAX_SnowFlakes_0_7
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 1107
+        width: 293
+        height: 232
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af84bb5d835b335a0800000000000000
+      internalID: -6542686577930581766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DAX_SnowFlakes_0_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 662
+        width: 4
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a989d5ad8c1097e0800000000000000
+      internalID: -1760876059603400280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DAX_SnowFlakes_0_9
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 665
+        width: 316
+        height: 322
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1260f1e61478e0f0800000000000000
+      internalID: -1087491668381244900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DAX_SnowFlakes_0_10
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 424
+        width: 184
+        height: 190
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11bba28a7b335db50800000000000000
+      internalID: 6617252091384216337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DAX_SnowFlakes_0_11
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 48
+        width: 243
+        height: 297
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08801cb548eb3ae60800000000000000
+      internalID: 7972425241060247680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DAX_SnowFlakes_0_12
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 137
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8566ba7211d46ee90800000000000000
+      internalID: -6996820234998159784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DAX_SnowFlakes_0_13
+      rect:
+        serializedVersion: 2
+        x: 305
+        y: 117
+        width: 5
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae67a96786dcfde80800000000000000
+      internalID: -8151570951967181078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 3a5cad697c773fb428190600ebe32b85
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
   spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
