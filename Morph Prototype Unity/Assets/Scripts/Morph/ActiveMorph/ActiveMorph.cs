@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(ActiveMorphHandler))]
-public class ActiveMorph : MonoBehaviour
+public class ActiveMorph : Morph
 {
 
     [SerializeField] protected float staminaCost;
@@ -24,21 +24,6 @@ public class ActiveMorph : MonoBehaviour
     private Vector3 raycastToGroundTarget;
 
     public float CurrentCooldownTime => cooldown.CurrentTime;
-
-
-    [SerializeField] public struct Prerequisite
-    {
-        string stat;
-        int value;
-
-        public Prerequisite(string a, int b)
-        {
-            stat = a;
-            value = b;
-
-            
-        }
-    }
 
     public void RaycastToGround() 
     {

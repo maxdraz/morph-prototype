@@ -4,14 +4,31 @@ using UnityEngine;
 
 public class WeakeningSpray : ActiveMorph
 {
-    static int chemicalDamagePrerequisite = 35;
+    private static int chemicalDamagePrerequisite = 35;
 
     [SerializeField] private RadialProjectileSpawner weakeningSpraySpawner;
 
-    static Prerequisite[] BasePrerequisits = new Prerequisite[1]
+    [SerializeField] private Prerequisite[] StatPrerequisits = new Prerequisite[1]
 {
         new Prerequisite("chemicalDamage", chemicalDamagePrerequisite),
+        
 };
+
+    private void Start()
+    {
+        WriteToPrerequisiteArray();
+    }
+
+    void WriteToPrerequisiteArray() 
+    {
+        statPrerequisits = new Prerequisite[StatPrerequisits.Length];
+
+        for (int i = 0; i <= StatPrerequisits.Length - 1; i++) 
+        {
+            statPrerequisits[i] = StatPrerequisits[i];
+            Debug.Log(GetType().Name + " has a prerequisite " + statPrerequisits[i].stat + " of " + statPrerequisits[i].value);
+        }
+    }
 
     public override bool ActivateIfConditionsMet()
     {

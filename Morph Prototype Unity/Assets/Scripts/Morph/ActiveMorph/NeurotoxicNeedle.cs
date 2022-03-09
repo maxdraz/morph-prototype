@@ -8,11 +8,26 @@ public class NeurotoxicNeedle : ActiveMorph
 
     [SerializeField] private RadialProjectileSpawner neurotoxicNeedleSpawner;
 
-    static Prerequisite[] BasePrerequisits = new Prerequisite[1]
+    static Prerequisite[] StatPrerequisits = new Prerequisite[1]
     {
         new Prerequisite("chemicalDamage", chemicalDamagePrerequisite),
     };
 
+    private void Start()
+    {
+        WriteToPrerequisiteArray();
+    }
+
+    void WriteToPrerequisiteArray()
+    {
+        statPrerequisits = new Prerequisite[StatPrerequisits.Length];
+
+        for (int i = 0; i <= StatPrerequisits.Length - 1; i++)
+        {
+            statPrerequisits[i] = StatPrerequisits[i];
+            Debug.Log(GetType().Name + " has a prerequisite " + statPrerequisits[i].stat + " of " + statPrerequisits[i].value);
+        }
+    }
     public override bool ActivateIfConditionsMet()
     {
         if (base.ActivateIfConditionsMet())

@@ -480,7 +480,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: passiveMorphs.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: activeMorphs.Array.data[0]
@@ -501,11 +501,11 @@ PrefabInstance:
     - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: passiveMorphs.Array.data[0]
       value: 
-      objectReference: {fileID: 1423064282517137419, guid: 6bc71d92becf56f49a91234d58afff7d, type: 3}
+      objectReference: {fileID: 1278562990063281684, guid: 74ec3db7a7faeff48832a7cdd7b0727f, type: 3}
     - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: passiveMorphs.Array.data[1]
       value: 
-      objectReference: {fileID: 1278562990063281684, guid: 74ec3db7a7faeff48832a7cdd7b0727f, type: 3}
+      objectReference: {fileID: 1423064282517137419, guid: 6bc71d92becf56f49a91234d58afff7d, type: 3}
     - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: passiveMorphs.Array.data[2]
       value: 
@@ -1767,6 +1767,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Life Steal Particle
       objectReference: {fileID: 0}
+    - target: {fileID: 8546985982100331074, guid: 7999952c9805b1b47b1dccb874bff79d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8575647630100226360, guid: 7999952c9805b1b47b1dccb874bff79d, type: 3}
       propertyPath: target
       value: 
@@ -2110,6 +2114,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8475706846899881343, guid: 3df9b4b7fc73a4d4b8c1797d6188abdf, type: 3}
+      propertyPath: morphPrerequisites.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3df9b4b7fc73a4d4b8c1797d6188abdf, type: 3}
 --- !u!1 &963194225
@@ -2384,7 +2392,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1768
+  m_Name: pb_Mesh-1766
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

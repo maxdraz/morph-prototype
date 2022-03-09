@@ -271,14 +271,14 @@ public class Stats : MonoBehaviour
             totalMeleeDamage += buffAmount;
             addedMeleeDamage += buffAmount;
 
-            FindModifier(statName, totalMeleeDamage);
+            FindStatModifier(statName, totalMeleeDamage);
         }
         if (statName == "rangedDamage")
         {
             totalRangedDamage += buffAmount;
             addedRangedDamage += buffAmount;
 
-            FindModifier(statName, totalRangedDamage);
+            FindStatModifier(statName, totalRangedDamage);
         }
         if (statName == "chemicalDamage")
         {
@@ -286,7 +286,7 @@ public class Stats : MonoBehaviour
             totalChemicalDamage += buffAmount;
             addedChemicalDamage += buffAmount;
 
-            FindModifier(statName, totalChemicalDamage);
+            FindStatModifier(statName, totalChemicalDamage);
         }
         if (statName == "elementalDamage")
         {
@@ -294,7 +294,7 @@ public class Stats : MonoBehaviour
             totalElementalDamage += buffAmount;
             addedElementalDamage += buffAmount;
 
-            FindModifier(statName, totalElementalDamage);
+            FindStatModifier(statName, totalElementalDamage);
         }
         if (statName == "intelligence")
         {
@@ -302,7 +302,7 @@ public class Stats : MonoBehaviour
             totalIntelligence += buffAmount;
             addedIntelligence += buffAmount;
 
-            FindModifier(statName, totalIntelligence);
+            FindStatModifier(statName, totalIntelligence);
         }
         if (statName == "agility")
         {
@@ -310,7 +310,7 @@ public class Stats : MonoBehaviour
             totalAgility += buffAmount;
             addedAgility += buffAmount;
 
-            FindModifier(statName, totalAgility);
+            FindStatModifier(statName, totalAgility);
         }
         if (statName == "toughness")
         {
@@ -318,7 +318,7 @@ public class Stats : MonoBehaviour
             totalToughness += buffAmount;
             addedToughness += buffAmount;
 
-            FindModifier(statName, totalToughness);
+            FindStatModifier(statName, totalToughness);
         }
         if (statName == "fortitude")
         {
@@ -326,7 +326,7 @@ public class Stats : MonoBehaviour
             totalFortitude += buffAmount;
             addedFortitude += buffAmount;
 
-            FindModifier(statName, totalFortitude);
+            FindStatModifier(statName, totalFortitude);
         }
 
         if (statName == "stealth")
@@ -369,7 +369,7 @@ public class Stats : MonoBehaviour
             totalMeleeDamage = (int)valueToChange;
             addedMeleeDamage += (int)changeInValue; ;
 
-            FindModifier(statName, totalMeleeDamage);
+            FindStatModifier(statName, totalMeleeDamage);
         }
         if (statName == "rangedDamage")
         {
@@ -379,7 +379,7 @@ public class Stats : MonoBehaviour
             totalRangedDamage = (int)valueToChange;
             addedRangedDamage += (int)changeInValue;
 
-            FindModifier(statName, totalRangedDamage);
+            FindStatModifier(statName, totalRangedDamage);
         }
         if (statName == "chemicalDamage")
         {
@@ -389,7 +389,7 @@ public class Stats : MonoBehaviour
             totalChemicalDamage = (int)valueToChange;
             addedChemicalDamage += (int)changeInValue;
 
-            FindModifier(statName, totalChemicalDamage);
+            FindStatModifier(statName, totalChemicalDamage);
         }
         if (statName == "elementalDamage")
         {
@@ -399,7 +399,7 @@ public class Stats : MonoBehaviour
             totalElementalDamage = (int)valueToChange;
             addedElementalDamage += (int)changeInValue;
 
-            FindModifier(statName, totalElementalDamage);
+            FindStatModifier(statName, totalElementalDamage);
         }
         if (statName == "intelligence")
         {
@@ -409,7 +409,7 @@ public class Stats : MonoBehaviour
             totalIntelligence = (int)valueToChange;
             addedIntelligence += (int)changeInValue;
 
-            FindModifier(statName, totalIntelligence);
+            FindStatModifier(statName, totalIntelligence);
         }
         if (statName == "agility")
         {
@@ -419,7 +419,7 @@ public class Stats : MonoBehaviour
             totalAgility = (int)valueToChange;
             addedAgility += (int)changeInValue;
 
-            FindModifier(statName, totalAgility);
+            FindStatModifier(statName, totalAgility);
         }
         if (statName == "toughness")
         {
@@ -429,7 +429,7 @@ public class Stats : MonoBehaviour
             totalToughness = (int)valueToChange;
             addedToughness += (int)changeInValue;
 
-            FindModifier(statName, totalToughness);
+            FindStatModifier(statName, totalToughness);
         }
         if (statName == "fortitude")
         {
@@ -439,7 +439,7 @@ public class Stats : MonoBehaviour
             totalFortitude = (int)valueToChange;
             addedFortitude += (int)changeInValue;
 
-            FindModifier(statName, totalFortitude);
+            FindStatModifier(statName, totalFortitude);
         }
     }
 
@@ -540,18 +540,79 @@ public class Stats : MonoBehaviour
 
     void FindAllModifiers() 
     {
-        FindModifier("meleeDamage", totalMeleeDamage);
-        FindModifier("rangedDamage", totalRangedDamage);
-        FindModifier("chemicalDamage", totalChemicalDamage);
-        FindModifier("elementalDamage", totalElementalDamage);
-        FindModifier("intelligence", totalIntelligence);
-        FindModifier("agility", totalAgility);
-        FindModifier("toughness", totalToughness);
-        FindModifier("fortitude", totalFortitude);
+        FindStatModifier("meleeDamage", totalMeleeDamage);
+        FindStatModifier("rangedDamage", totalRangedDamage);
+        FindStatModifier("chemicalDamage", totalChemicalDamage);
+        FindStatModifier("elementalDamage", totalElementalDamage);
+        FindStatModifier("intelligence", totalIntelligence);
+        FindStatModifier("agility", totalAgility);
+        FindStatModifier("toughness", totalToughness);
+        FindStatModifier("fortitude", totalFortitude);
 
     }
 
-    void FindModifier(string myStat, int myStatValue) 
+    public int FindStatValue(string myStat)
+    {
+        //Debug.Log("Called Find " + myStat + " Modifier");
+        int value;
+
+        if (myStat == "meleeDamage")
+        {
+            value = totalMeleeDamage;
+            return value;
+        }
+
+        if (myStat == "rangedDamage")
+        {
+            value = totalRangedDamage;
+            return value;
+        }
+
+        if (myStat == "chemicalDamage")
+        {
+            value = totalChemicalDamage;
+            return value;
+        }
+
+        if (myStat == "elementalDamage")
+        {
+            value = totalElementalDamage;
+            return value;
+        }
+
+        if (myStat == "toughness")
+        {
+            value = totalToughness;
+            return value;
+        }
+
+        if (myStat == "fortitude")
+        {
+            value = totalFortitude;
+            return value;
+        }
+
+        if (myStat == "intelligence")
+        {
+            value = totalIntelligence;
+            return value;
+        }
+
+        if (myStat == "intimidation")
+        {
+            value = totalIntimidation;
+            return value;
+        }
+
+        if (myStat == "agility")
+        {
+            value = totalAgility;
+            return value;
+        }
+        return 0;
+    }
+
+    void FindStatModifier(string myStat, int myStatValue) 
     {
         //Debug.Log("Called Find " + myStat + " Modifier");
         if (!statModifiers) return;

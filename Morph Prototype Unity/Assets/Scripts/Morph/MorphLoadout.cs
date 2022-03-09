@@ -42,35 +42,56 @@ public class MorphLoadout : MonoBehaviour
         }
 
     }
-    
+
+    bool CheckPrerequisites(Morph morphPrefab)
+    {
+        if (morphPrefab.CheckPrerequisites(gameObject, morphPrefab.morphPrerequisites, morphPrefab.statPrerequisits) == true)
+        {
+            return true;
+        }
+        else 
+        {
+            return false;
+        }
+    }
 
     public void AddMorphToLoadout(Morph morphPrefab)
     {
         if(!morphPrefab) return;
-        
+
+        //if (CheckPrerequisites(morphPrefab) == true)
+        //{
+            //We want to perform everything below this in here. Currently checkPrerequisites function is not recieving Prerequsiites structs from the morph being added
+
+            
+        //}
+
         if (morphPrefab is LimbWeaponMorph limbMorph)
         {
             limbWeaponMorph = UtilityFunctions.CopyComponent(limbMorph, gameObject);
-          
+
             if (limbWeaponMorph)
             {
                 MorphLoadoutChanged?.Invoke(limbWeaponMorph);
             }
-        } else if (morphPrefab is HeadWeaponMorph headMorph)
+        }
+        else if (morphPrefab is HeadWeaponMorph headMorph)
         {
             headWeaponMorph = UtilityFunctions.CopyComponent(headMorph, gameObject);
             if (headWeaponMorph)
             {
                 MorphLoadoutChanged?.Invoke(headWeaponMorph);
             }
-        }else if (morphPrefab is TailWeaponMorph tailMorph)
+        }
+        else if (morphPrefab is TailWeaponMorph tailMorph)
         {
             tailWeaponMorph = UtilityFunctions.CopyComponent(tailMorph, gameObject);
             if (tailWeaponMorph)
             {
                 MorphLoadoutChanged?.Invoke(tailWeaponMorph);
             }
-        }else if (morphPrefab is PassiveMorph passiveMorph)
+        }
+        else if (morphPrefab is PassiveMorph passiveMorph)
         {
             var morph = UtilityFunctions.CopyComponent(passiveMorph, gameObject);
             if (morph)
@@ -95,7 +116,44 @@ public class MorphLoadout : MonoBehaviour
 
         return activeMorphs[index];
     }
-    
+
+    public bool GetMorphByName(string morphName)
+    {
+        foreach (ActiveMorph activeMorph in activeMorphs)
+        {
+            if (activeMorph.name.Equals(morphName))
+            {
+                return true;
+            }
+        }
+        foreach (PassiveMorph passiveMorph in passiveMorphs)
+        {
+            if (passiveMorph.name.Equals(morphName))
+            {
+                return true;
+            }
+        }
+        
+        if (LimbWeaponMorph.name.Equals(morphName))
+        {
+            return true;
+        }
+        
+        
+        if (tailWeaponMorph.name.Equals(morphName))
+        {
+            return true;
+        }
+        
+        
+        if (headWeaponMorph.name.Equals(morphName))
+        {
+            return true;
+        }
+        
+        return false;
+    }
+
     public void RemoveMorphFromLoadout(Morph morphObj)
     {
         if(!morphObj) return;

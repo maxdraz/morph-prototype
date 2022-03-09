@@ -20,11 +20,27 @@ public class ImmobalisingCrash : ActiveMorph
     [SerializeField] private float rootDuration;
     [SerializeField] private float range;
 
-    static Prerequisite[] BasePrerequisits = new Prerequisite[2]
+    static Prerequisite[] StatPrerequisits = new Prerequisite[2]
     {
         new Prerequisite("stealth", stealthPrerequisit),
         new Prerequisite("agility", agilityPrerequisit)
     };
+
+    private void Start()
+    {
+        WriteToPrerequisiteArray();
+    }
+
+    void WriteToPrerequisiteArray()
+    {
+        statPrerequisits = new Prerequisite[StatPrerequisits.Length];
+
+        for (int i = 0; i <= StatPrerequisits.Length - 1; i++)
+        {
+            statPrerequisits[i] = StatPrerequisits[i];
+            Debug.Log(GetType().Name + " has a prerequisite " + statPrerequisits[i].stat + " of " + statPrerequisits[i].value);
+        }
+    }
 
     private void OnEnable()
     {
