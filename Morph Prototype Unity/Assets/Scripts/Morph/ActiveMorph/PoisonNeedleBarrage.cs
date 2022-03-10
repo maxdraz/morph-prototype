@@ -5,12 +5,15 @@ using UnityEngine;
 public class PoisonNeedleBarrage : ActiveMorph
 {
     static int chemicalDamagePrerequisit = 30;
+    static int rangedDamagePrerequisit = 25;
 
     [SerializeField] private RadialProjectileSpawner poisonNeedleBarrageSpawner;
 
-    static Prerequisite[] StatPrerequisits = new Prerequisite[1]
+    public static Prerequisite[] StatPrerequisits = new Prerequisite[2]
     {
         new Prerequisite("chemicalDamage", chemicalDamagePrerequisit),
+        new Prerequisite("rangedDamage", rangedDamagePrerequisit),
+
     };
 
     private void Start()

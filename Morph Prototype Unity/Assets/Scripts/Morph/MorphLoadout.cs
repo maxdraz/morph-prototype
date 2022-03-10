@@ -21,50 +21,92 @@ public class MorphLoadout : MonoBehaviour
 
     private void Start()
     {
-        AddMorphToLoadout(limbWeaponMorph);
-        AddMorphToLoadout(headWeaponMorph);
-        AddMorphToLoadout(tailWeaponMorph);
-        
-        for (int i = 0; i < activeMorphs.Length; i++)
-        {
-            var currentActiveMorph = activeMorphs[i];
-            if (currentActiveMorph)
+        AddMorphsAtStart();
+
+    }
+    void AddMorphsAtStart() 
+    {
+            AddMorphToLoadout(limbWeaponMorph);
+            AddMorphToLoadout(headWeaponMorph);
+            AddMorphToLoadout(tailWeaponMorph);
+
+            for (int i = 0; i < activeMorphs.Length; i++)
             {
-                activeMorphs[i] = UtilityFunctions.CopyComponent(activeMorphs[i], gameObject);
+                var currentActiveMorph = activeMorphs[i];
+                if (currentActiveMorph)
+                {
+                    activeMorphs[i] = UtilityFunctions.CopyComponent(activeMorphs[i], gameObject);
+                }
+            }
+
+            for (int i = 0; i < passiveMorphs.Count; i++)
+            {
+                var currentPassiveMorph = passiveMorphs[i];
+                if (currentPassiveMorph)
+                    passiveMorphs[i] = UtilityFunctions.CopyComponent(passiveMorphs[i], gameObject);
             }
         }
 
-        for (int i = 0; i < passiveMorphs.Count; i++)
-        {
-            var currentPassiveMorph = passiveMorphs[i];
-            if(currentPassiveMorph)
-                passiveMorphs[i] = UtilityFunctions.CopyComponent(passiveMorphs[i], gameObject);
-        }
+    
 
-    }
-
-    bool CheckPrerequisites(Morph morphPrefab)
+    public void AddMorphToLoadoutAtRuntime(Morph morphPrefab) 
     {
-        if (morphPrefab.CheckPrerequisites(gameObject, morphPrefab.morphPrerequisites, morphPrefab.statPrerequisits) == true)
+        if (!morphPrefab) return;
+
+        if (morphPrefab.CheckMorphPrerequisites(GetComponent<MorphLoadout>()) == true)
         {
-            return true;
+            if (morphPrefab.CheckStatPrerequisites(GetComponent<Stats>()) == true)
+            {
+
+                if (morphPrefab is LimbWeaponMorph limbMorph)
+                {
+                    limbWeaponMorph = UtilityFunctions.CopyComponent(limbMorph, gameObject);
+
+                    if (limbWeaponMorph)
+                    {
+                        MorphLoadoutChanged?.Invoke(limbWeaponMorph);
+                    }
+                }
+                else if (morphPrefab is HeadWeaponMorph headMorph)
+                {
+                    headWeaponMorph = UtilityFunctions.CopyComponent(headMorph, gameObject);
+                    if (headWeaponMorph)
+                    {
+                        MorphLoadoutChanged?.Invoke(headWeaponMorph);
+                    }
+                }
+                else if (morphPrefab is TailWeaponMorph tailMorph)
+                {
+                    tailWeaponMorph = UtilityFunctions.CopyComponent(tailMorph, gameObject);
+                    if (tailWeaponMorph)
+                    {
+                        MorphLoadoutChanged?.Invoke(tailWeaponMorph);
+                    }
+                }
+                else if (morphPrefab is PassiveMorph passiveMorph)
+                {
+                    var morph = UtilityFunctions.CopyComponent(passiveMorph, gameObject);
+                    if (morph)
+                    {
+                        passiveMorphs.Add(morph);
+                        MorphLoadoutChanged?.Invoke(morph);
+                    }
+                }
+            }
+            else
+            {
+                Debug.Log(transform.name + " does not have the required stats to attach " + morphPrefab.name);
+            }
         }
-        else 
+        else
         {
-            return false;
+            Debug.Log(transform.name + " does not have the required morphs to attach " + morphPrefab.name);
         }
     }
 
     public void AddMorphToLoadout(Morph morphPrefab)
     {
-        if(!morphPrefab) return;
-
-        //if (CheckPrerequisites(morphPrefab) == true)
-        //{
-            //We want to perform everything below this in here. Currently checkPrerequisites function is not recieving Prerequsiites structs from the morph being added
-
-            
-        //}
+        
 
         if (morphPrefab is LimbWeaponMorph limbMorph)
         {
@@ -117,7 +159,7 @@ public class MorphLoadout : MonoBehaviour
         return activeMorphs[index];
     }
 
-    public bool GetMorphByName(string morphName)
+    public bool GetPrerequisiteMorphByName(string morphName)
     {
         foreach (ActiveMorph activeMorph in activeMorphs)
         {

@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Morph : MonoBehaviour
 {
-    public GameObject[] morphPrerequisites;
+    public Morph[] morphPrerequisites;
 
-    //This array needs to be populated with the prerequisite stats. Go to MorphLoadout.cs line 48 to see where this is needed
     public Prerequisite[] statPrerequisits;
+
 
     [SerializeField] public struct Prerequisite
     {
@@ -18,38 +18,61 @@ public class Morph : MonoBehaviour
         {
             stat = a;
             value = b;
-            
         } 
-
     }
-    
-    public bool CheckPrerequisites(GameObject user, GameObject[] morphs, Prerequisite[] prerequisites) 
+
+    public bool CheckMorphPrerequisites(MorphLoadout loadout)
     {
-        if (morphs.Length != 0) 
+        int morphPrerequisitesCount = 0;
+
+        if (morphPrerequisites.Length == 0)
+            return true;
+
+        if (morphPrerequisites.Length > 0)
         {
-            foreach (GameObject morph in morphs)
+            foreach (Morph morph in morphPrerequisites)
             {
-                if (user.GetComponent<MorphLoadout>().GetMorphByName(morph.name.ToString()) == true)
+                if (loadout.GetPrerequisiteMorphByName(morph.name.ToString()) == true)
                 {
-                    return true;
+                    morphPrerequisitesCount++;
                 }
-                else return false;
+                
             }
         }
+        if (morphPrerequisitesCount == morphPrerequisites.Length)
+        {
+            return true;
+        }
+        else 
+        {
+            return false;
+        }
+    }
 
-        
-            if (prerequisites.Length != 0) 
+    public bool CheckStatPrerequisites(Stats stats) {
+
+        int statPrerequisitesCount = 0;
+
+        if (statPrerequisits.Length == 0)
+            return true;
+
+        if (statPrerequisits.Length > 0) 
             {
-            foreach (Prerequisite prerequisite in prerequisites)
+            foreach (Prerequisite prerequisite in statPrerequisits)
             {
-                if (user.GetComponent<Stats>().FindStatValue(prerequisite.stat) >= prerequisite.value)
+                if (stats.FindStatValue(prerequisite.stat) >= prerequisite.value)
                 {
-                    return true;
+                    statPrerequisitesCount++;
                 }
-                else return false;
             }
         }
-
-        return true;
+        if (statPrerequisitesCount == statPrerequisits.Length)
+        {
+            return true;
+        }
+        else 
+        {
+            return false;
+        } 
     }
 }

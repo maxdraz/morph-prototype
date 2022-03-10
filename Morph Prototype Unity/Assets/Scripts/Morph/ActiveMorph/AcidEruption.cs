@@ -44,9 +44,6 @@ public class AcidEruption : ActiveMorph
 
     private void Update()
     {
-        //Debug.DrawRay(Camera.main.transform.position, transform.TransformDirection(Vector3.back), Color.yellow, range * 10));
-        //Camera.main.ScreenToWorldPoint(point)
-        //Debug.DrawRay(Camera.main.transform.position, transform.forward, Color.blue);
 
         if (Input.GetKeyDown(testInput))
         {
