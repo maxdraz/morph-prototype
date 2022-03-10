@@ -57,6 +57,7 @@ public class ChemicalCocktail : ActiveMorph
     private void SpawnChemicalCocktail()
     {
         GameObject chemicalCocktail = Instantiate(chemicalCocktailParticle,transform.position, transform.rotation);
+        chemicalCocktail.GetComponent<AOE_DELAY>().StartCoroutine("TriggerActivation");
         chemicalCocktail.transform.position = transform.position;
         chemicalCocktail.transform.parent = this.gameObject.transform;
 
@@ -70,12 +71,14 @@ public class ChemicalCocktail : ActiveMorph
 
         foreach (var hitCollider in hitColliders)
         {
-
-
             if (hitCollider.gameObject.GetComponent<Stats>() == true)
+            if (hitCollider.GetComponent<DebuffHandler>().PoisonStack == 0)
+            {
+                return;
+            }
+            else
             {
                 hitCollider.GetComponent<DamageHandler>().ApplyDamage(new PoisonDamageData(hitCollider.GetComponent<DebuffHandler>().PoisonStack * poisonStackModifier), damageHandler);
-
             }
         }
     }

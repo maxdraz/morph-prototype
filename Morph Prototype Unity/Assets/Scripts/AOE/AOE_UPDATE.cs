@@ -11,7 +11,7 @@ public class AOE_UPDATE : MonoBehaviour
     [SerializeField] private float duration;
     [SerializeField] private float radius;
     [SerializeField] private float delayPeriod;
-    bool active;
+    public bool active;
 
     private void OnValidate()
     {
@@ -22,44 +22,22 @@ public class AOE_UPDATE : MonoBehaviour
     {
         damageDealer = dmgDealer;
     }
-    void Start()
+
+    public IEnumerator TriggerActivation()
     {
-        active = true;
 
-        if (delayPeriod > 0) 
-        {
-            active = false;
-            StartCoroutine("EffectActivation");
-        }
-
-        if (duration > 0) 
-        {
-            StartCoroutine("EffectDeactivation");
-        }
-    }
-
-    IEnumerator EffectActivation()
-    {
         yield return new WaitForSeconds(delayPeriod);
 
         active = true;
-
-        yield return null;
-    }
-
-    IEnumerator EffectDeactivation()
-    {
-        if (delayPeriod > 0) 
-        {
-            yield return new WaitForSeconds(delayPeriod);
-        }
-
+        Debug.Log(GetType().Name + "TriggerActivation");
         yield return new WaitForSeconds(duration);
 
         active = false;
-
+        Debug.Log(GetType().Name + "TriggerDeactivation");
         yield return null;
     }
+
+    
 
     private void FixedUpdate()
     {

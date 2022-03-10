@@ -10,7 +10,7 @@ public class AOE : MonoBehaviour
     [SerializeField] private float duration;
 
 
-    private void Start()
+    private void Awake()
     {
         if (duration > 0) 
         {

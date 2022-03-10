@@ -54,7 +54,9 @@ public class AcidVortex : ActiveMorph
     {
         GameObject acidVortex = ObjectPooler.Instance.GetOrCreatePooledObject(acidVortexAOE);
         acidVortex.GetComponent<AOE_DELAY>().SetDamageDealer(GetComponent<DamageHandler>());
+        acidVortex.GetComponent<AOE_DELAY>().StartCoroutine("TriggerActivation");
         acidVortex.GetComponent<AOE_UPDATE>().SetDamageDealer(GetComponent<DamageHandler>());
+        acidVortex.GetComponent<AOE_UPDATE>().StartCoroutine("TriggerActivation");
         acidVortex.transform.parent = transform;
         acidVortex.transform.position = transform.position;
 

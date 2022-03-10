@@ -8,8 +8,8 @@ public class AOE_DELAY : MonoBehaviour
 
     public DamageHandler damageDealer;
 
-    Collider collider;
-    float delayPeriod;
+    public Collider collider;
+    public float delayPeriod;
     [SerializeField] private float duration;
 
 
@@ -22,24 +22,22 @@ public class AOE_DELAY : MonoBehaviour
     {
         damageDealer = dmgDealer;
     }
-    void Start()
+    void Awake()
     {
         collider = GetComponent<Collider>();
         delayPeriod = GetComponent<ParticleSystem>().main.startDelay.constant;
-        StartCoroutine("TriggerActivation");
-
+        
     }
 
-    IEnumerator TriggerActivation()
+    public IEnumerator TriggerActivation()
     {
         yield return new WaitForSeconds(delayPeriod);
-
-        collider.enabled = true;
-
+        collider.enabled = !collider.enabled;
+        Debug.Log(GetType().Name + "TriggerActivation");
         yield return new WaitForSeconds(duration);
 
-        collider.enabled = false;
-
+        collider.enabled = !collider.enabled;
+        Debug.Log(GetType().Name + "TriggerDeactivation");
         yield return null;
     }
 

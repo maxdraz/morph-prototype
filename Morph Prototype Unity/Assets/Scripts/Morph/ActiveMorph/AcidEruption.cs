@@ -66,8 +66,9 @@ public class AcidEruption : ActiveMorph
             if (hit.point != Vector3.zero)
             {
                 GameObject eruption = ObjectPooler.Instance.GetOrCreatePooledObject(acidEruption);
-                eruption.GetComponent<AOE_DELAY>().SetDamageDealer(GetComponent<DamageHandler>());
                 eruption.transform.position = hit.point + offSet;
+                eruption.GetComponent<AOE_DELAY>().StartCoroutine("TriggerActivation");
+                eruption.GetComponent<AOE_DELAY>().SetDamageDealer(GetComponent<DamageHandler>());
                 Debug.Log("acideruption found a target");
             }
             else 

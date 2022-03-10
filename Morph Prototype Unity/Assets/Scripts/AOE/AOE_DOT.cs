@@ -11,7 +11,7 @@ public class AOE_DOT : MonoBehaviour
     [SerializeField] private float duration;
     [SerializeField] private float radius;
 
-    private void Start()
+    private void Awake()
     {
         StartCoroutine("DOT");
 
