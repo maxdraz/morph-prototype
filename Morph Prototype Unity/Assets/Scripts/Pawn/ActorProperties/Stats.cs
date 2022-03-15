@@ -737,8 +737,8 @@ public class Stats : MonoBehaviour
             {
                 if (statModifiers.agilityMoveSpeedModifiers[i].x <= myStatValue && myStatValue - statModifiers.agilityMoveSpeedModifiers[i].x <= 4 && myStatValue - statModifiers.agilityMoveSpeedModifiers[i].x >= 0)
                 {
-                    moveSpeedModifier = statModifiers.agilityMoveSpeedModifiers[i].y;
-                    movement.bonusPercentMoveSpeed += moveSpeedModifier;
+                    //moveSpeedModifier = statModifiers.agilityMoveSpeedModifiers[i].y;
+                    //movement.bonusPercentMoveSpeed += moveSpeedModifier;
                     ///Debug.Log("adding " + moveSpeedModifier + " speed from findallmodifiers_stats");
 
                 }
