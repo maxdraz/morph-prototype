@@ -30,12 +30,8 @@ public class Ferocity : PassiveMorph
 
     Stats stats;
 
-    static Prerequisite[] BasePrerequisits = new Prerequisite[2]
-    {
+    static Prerequisite[] StatPrerequisits;
 
-        new Prerequisite("meleeDamage", meleeDamagePrerequisit),
-        new Prerequisite("agility", agilityPrerequisit),
-    };
 
     private void OnEnable()
     {

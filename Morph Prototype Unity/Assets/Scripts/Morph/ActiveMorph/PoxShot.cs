@@ -8,11 +8,7 @@ public class PoxShot : ActiveMorph
     static int chemicalDamagePrerequisit = 30;
     [SerializeField] private ConeProjectileSpawner poxShotSpawner;
 
-    static Prerequisite[] StatPrerequisits = new Prerequisite[1]
-    {
-
-        new Prerequisite("chemicalDamage", chemicalDamagePrerequisit),
-    };
+    public Prerequisite[] StatPrerequisits;
 
     private void Start()
     {

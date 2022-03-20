@@ -8,10 +8,7 @@ public class DeathlyToxins : ActiveMorph
 
     [SerializeField] private RadialProjectileSpawner deathlyToxinsSpawner;
 
-    static Prerequisite[] StatPrerequisits = new Prerequisite[1]
-    {
-        new Prerequisite("chemicalDamage", chemicalDamagePrerequisite),
-    };
+    public Prerequisite[] StatPrerequisits;
 
     private void Start()
     {

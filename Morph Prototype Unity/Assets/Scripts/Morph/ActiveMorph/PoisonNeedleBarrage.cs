@@ -9,12 +9,7 @@ public class PoisonNeedleBarrage : ActiveMorph
 
     [SerializeField] private RadialProjectileSpawner poisonNeedleBarrageSpawner;
 
-    public static Prerequisite[] StatPrerequisits = new Prerequisite[2]
-    {
-        new Prerequisite("chemicalDamage", chemicalDamagePrerequisit),
-        new Prerequisite("rangedDamage", rangedDamagePrerequisit),
-
-    };
+    public Prerequisite[] StatPrerequisits;
 
     private void Start()
     {

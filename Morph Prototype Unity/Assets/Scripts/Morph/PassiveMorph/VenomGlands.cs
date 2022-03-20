@@ -24,12 +24,7 @@ public class VenomGlands : PassiveMorph
 
     [SerializeField] private float venomDuration = 4;
 
-    static Prerequisite[] BasePrerequisits = new Prerequisite[1]
-    {
-
-        new Prerequisite("chemicalDamage", chemicalDamagePrerequisit),
-
-    };
+    public Prerequisite[] StatPrerequisits;
 
     private void OnEnable()
     {

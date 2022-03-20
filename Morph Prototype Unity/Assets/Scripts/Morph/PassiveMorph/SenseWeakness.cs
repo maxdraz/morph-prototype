@@ -20,12 +20,7 @@ public class SenseWeakness : PassiveMorph
 
     Health health;
 
-    static Prerequisite[] BasePrerequisits = new Prerequisite[2]
-    {
-
-        new Prerequisite("meleeDamage", meleeDamagePrerequisit),
-        new Prerequisite("agility", agilityPrerequisit),
-    };
+    public Prerequisite[] StatPrerequisits;
 
     private void OnEnable()
     {

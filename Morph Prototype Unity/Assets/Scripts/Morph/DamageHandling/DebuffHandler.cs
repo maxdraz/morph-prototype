@@ -11,8 +11,11 @@ public class DebuffHandler : MonoBehaviour
    [SerializeField] private AcidDebuff acidDebuff;
     [SerializeReference] private List<Debuff> activeDebuffs;
 
-    public float PoisonStack => PoisonStack;
-    public float AcidStack => AcidStack;
+    private float poisonStack;
+    private float acidStack;
+
+    public float PoisonStack => poisonStack;
+    public float AcidStack => acidStack;
 
 
     // Start is called before the first frame update

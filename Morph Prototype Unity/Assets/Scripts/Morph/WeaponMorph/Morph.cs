@@ -9,17 +9,7 @@ public class Morph : MonoBehaviour
     public Prerequisite[] statPrerequisits;
 
 
-    [SerializeField] public struct Prerequisite
-    {
-        public string stat;
-        public int value;
-
-        public Prerequisite(string a, int b)
-        {
-            stat = a;
-            value = b;
-        } 
-    }
+    
 
     public bool CheckMorphPrerequisites(MorphLoadout loadout)
     {

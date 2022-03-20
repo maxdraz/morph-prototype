@@ -16,10 +16,7 @@ public class Intercept : ActiveMorph
     bool gainedStamina;
     [SerializeField] private float range;
 
-    static Prerequisite[] StatPrerequisits = new Prerequisite[1]
-    {
-        new Prerequisite("agility", agilityPrerequisit),
-    };
+    public Prerequisite[] StatPrerequisits;
 
     private void Start()
     {

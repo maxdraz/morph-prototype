@@ -7,12 +7,8 @@ public class HeavyBeak : HeadWeaponMorph
     private static int meleeDamagePrerequisite = 10;
 
 
-    [SerializeField]
-    private Prerequisite[] StatPrerequisits = new Prerequisite[1]
-{
-        new Prerequisite("meleeDamage", meleeDamagePrerequisite),
 
-};
+    public Prerequisite[] StatPrerequisits;
 
     private void Start()
     {

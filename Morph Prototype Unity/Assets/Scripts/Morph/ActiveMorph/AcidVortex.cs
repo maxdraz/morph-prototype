@@ -9,11 +9,7 @@ public class AcidVortex : ActiveMorph
 
 
 
-    public Prerequisite[] StatPrerequisits = new Prerequisite[1]
-    {
-        new Prerequisite("chemicalDamage", chemicalDamagePrerequisit),
-
-    };
+    public Prerequisite[] StatPrerequisits;
 
     private void Start()
     {

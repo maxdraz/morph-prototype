@@ -8,10 +8,7 @@ public class NeurotoxicNeedle : ActiveMorph
 
     [SerializeField] private RadialProjectileSpawner neurotoxicNeedleSpawner;
 
-    static Prerequisite[] StatPrerequisits = new Prerequisite[1]
-    {
-        new Prerequisite("chemicalDamage", chemicalDamagePrerequisite),
-    };
+    public Prerequisite[] StatPrerequisits;
 
     private void Start()
     {

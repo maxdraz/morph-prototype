@@ -20,11 +20,7 @@ public class ImmobalisingCrash : ActiveMorph
     [SerializeField] private float rootDuration;
     [SerializeField] private float range;
 
-    static Prerequisite[] StatPrerequisits = new Prerequisite[2]
-    {
-        new Prerequisite("stealth", stealthPrerequisit),
-        new Prerequisite("agility", agilityPrerequisit)
-    };
+    static Prerequisite[] StatPrerequisits;
 
     private void Start()
     {

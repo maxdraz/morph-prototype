@@ -13,11 +13,7 @@ public class MonstrousMania : ActiveMorph
     [SerializeField] private float lifeStealBoost;
     [SerializeField] private float lifeStealBoostDuration;
 
-    static Prerequisite[] StatPrerequisits = new Prerequisite[2]
-    {
-        new Prerequisite("meleeDamage", meleeDamagePrerequisite),
-        new Prerequisite("agility", agilityPrerequisite)
-    };
+    public Prerequisite[] StatPrerequisits;
 
     bool attackSpeedOnCooldown;
 

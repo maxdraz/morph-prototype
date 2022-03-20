@@ -23,13 +23,7 @@ public class VitriolicVitality : PassiveMorph
 
     Stats stats;
 
-    static Prerequisite[] BasePrerequisits = new Prerequisite[3]
-    {
-
-        new Prerequisite("chemicalDamage", chemicalDamagePrerequisit),
-        new Prerequisite("toughness", toughnessPrerequisit),
-        new Prerequisite("fortitude", fortitudePrerequisit),
-    };
+    public Prerequisite[] StatPrerequisits;
 
     private void OnEnable()
     {

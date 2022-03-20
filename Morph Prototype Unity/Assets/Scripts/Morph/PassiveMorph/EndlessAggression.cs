@@ -26,13 +26,7 @@ public class EndlessAggression : PassiveMorph
     float explosiveAngerStackDuration = 2;
     [SerializeField] private float explosiveAngerCooldownPeriod;
 
-    static Prerequisite[] BasePrerequisits = new Prerequisite[3]
-    {
-
-        new Prerequisite("meleeDamage", meleeDamagePrerequisit),
-        new Prerequisite("intelligence", intelligencePrerequisit),
-        new Prerequisite("fortitude", fortitudePrerequisit),
-    };
+    public Prerequisite[] StatPrerequisits;
 
     private void OnEnable()
     {

@@ -481,7 +481,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: activeMorphs.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: passiveMorphs.Array.size
@@ -498,11 +498,11 @@ PrefabInstance:
     - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: activeMorphs.Array.data[2]
       value: 
-      objectReference: {fileID: 1728466787265561277, guid: 3f8c4fc4d1f8298439826229f57fb2fb, type: 3}
+      objectReference: {fileID: 3745143835941541390, guid: 57a65f4fdbca30c40964155c0985ade9, type: 3}
     - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: activeMorphs.Array.data[3]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 3745143835941541390, guid: 57a65f4fdbca30c40964155c0985ade9, type: 3}
     - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: passiveMorphs.Array.data[0]
       value: 
@@ -1766,7 +1766,7 @@ LightingSettings:
   m_PVREnvironmentReferencePointCount: 2048
   m_LightProbeSampleCountMultiplier: 4
   m_PVRBounces: 2
-  m_PVRMinBounces: 1
+  m_PVRMinBounces: 2
   m_PVREnvironmentMIS: 1
   m_PVRFilteringMode: 1
   m_PVRDenoiserTypeDirect: 1
@@ -3426,6 +3426,10 @@ PrefabInstance:
       propertyPath: startingCreature
       value: 
       objectReference: {fileID: 563091350732430249, guid: 17294641915b125489525c675901fd49, type: 3}
+    - target: {fileID: 4996710156586810010, guid: 831ebd26ff801c34ea13a06dab0c2bc2, type: 3}
+      propertyPath: bonusPercentMoveSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8511087986044809817, guid: 831ebd26ff801c34ea13a06dab0c2bc2, type: 3}
       propertyPath: maxJumps
       value: 2

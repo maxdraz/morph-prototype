@@ -8,10 +8,7 @@ public class AdrenalineRush : ActiveMorph
     [SerializeField] private GameObject adrenalineRushParticles;
     [SerializeField] private float adrenalineBoost;
 
-    static Prerequisite[] StatPrerequisits = new Prerequisite[1]
-    {
-        new Prerequisite("fortitude", fortitudePrerequisit),
-    };
+    public Prerequisite[] StatPrerequisits;
 
     private void Start()
     {

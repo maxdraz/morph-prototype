@@ -9756,6 +9756,12 @@ MonoBehaviour:
   - onHitEffect: {fileID: 11400000, guid: b63270b1420e4da45ad73e386f4b9511, type: 2}
     data:
       id: 1
+  - onHitEffect: {fileID: 11400000, guid: bc9de6788c7ba604b926ea54a61f3a3a, type: 2}
+    data:
+      id: 2
+  - onHitEffect: {fileID: 11400000, guid: 30381fda49bdbb648b991837c2501507, type: 2}
+    data:
+      id: 3
   damageDealer: {fileID: 0}
   collider: {fileID: 0}
   delayPeriod: 0
@@ -9770,6 +9776,16 @@ MonoBehaviour:
       type: {class: KnockupData, ns: , asm: Assembly-CSharp}
       data:
         knockupForce: 300
+    00000002:
+      type: {class: PullTowardsData, ns: , asm: Assembly-CSharp}
+      data:
+        pullForce: 100
+    00000003:
+      type: {class: FortitudeDamageData, ns: , asm: Assembly-CSharp}
+      data:
+        fortitudeDamage: 20
+        statusEffect: Stun
+        duration: 2
 --- !u!54 &4780100855104148691
 Rigidbody:
   m_ObjectHideFlags: 0

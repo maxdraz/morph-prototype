@@ -18,11 +18,8 @@ public class CraterCreature : ActiveMorph
     [SerializeField] private float range;
     public GameObject crater;
 
-    public Prerequisite[] StatPrerequisits = new Prerequisite[1]
-    {
-        new Prerequisite("meleeDamage", meleeDamagePrerequisit),
+    public Prerequisite[] StatPrerequisits;
 
-    };
 
     private void Start()
     {

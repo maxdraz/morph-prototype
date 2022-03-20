@@ -21,11 +21,7 @@ public class RiftingLeap : ActiveMorph
     [SerializeField] private float knockUpForce;
     [SerializeField] private float range;
 
-    static Prerequisite[] StatPrerequisits = new Prerequisite[2]
-    {
-        new Prerequisite("agility", agilityDamagePrerequisite),
-        new Prerequisite("toughness", toughnessPrerequisite),
-    };
+    public Prerequisite[] StatPrerequisits;
 
     private void Start()
     {

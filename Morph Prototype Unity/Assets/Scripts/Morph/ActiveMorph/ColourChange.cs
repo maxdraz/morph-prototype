@@ -27,11 +27,7 @@ public class ColourChange : ActiveMorph
     [SerializeField] private GameObject bioluminescentFlash;
     [SerializeField] private List<OnHitEffectDataContainer> onHitEffects;
 
-    static Prerequisite[] StatPrerequisits = new Prerequisite[2]
-    {
-        new Prerequisite("stealth", stealthPrerequisit),
-        new Prerequisite("intelligence", intelligencePrerequisit)
-    };
+    static Prerequisite[] StatPrerequisits;
 
     private void Start()
     {

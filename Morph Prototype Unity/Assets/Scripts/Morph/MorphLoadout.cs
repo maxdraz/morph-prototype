@@ -92,6 +92,15 @@ public class MorphLoadout : MonoBehaviour
                         MorphLoadoutChanged?.Invoke(morph);
                     }
                 }
+                else if (morphPrefab is ActiveMorph activeMorph)
+                {
+                    var morph = UtilityFunctions.CopyComponent(activeMorph, gameObject);
+                    if (morph)
+                    {
+                        //activeMorphs.Add(morph);
+                        MorphLoadoutChanged?.Invoke(morph);
+                    }
+                }
             }
             else
             {

@@ -6,10 +6,7 @@ public class FoulFungus : ActiveMorph
 {
     static int chemicalDamagePrerequisit = 30;
 
-    static Prerequisite[] StatPrerequisits = new Prerequisite[1]
-    {
-        new Prerequisite("chemicalDamage", chemicalDamagePrerequisit),
-    };
+    public Prerequisite[] StatPrerequisits;
 
     [SerializeField] private RadialProjectileSpawner foulFungusGasCloudSpawner;
 

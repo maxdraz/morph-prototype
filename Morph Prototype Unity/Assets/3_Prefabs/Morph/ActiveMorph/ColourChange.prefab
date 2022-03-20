@@ -61,6 +61,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97bdd373f0ec151469355ac53ae7abad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  morphPrerequisites: []
   staminaCost: 0
   energyCost: 20
   testInput: 274
@@ -82,9 +83,14 @@ MonoBehaviour:
   shimmeringParticles: {fileID: 7450608787142296881, guid: 2762f8b9d737e6b4c8a413908643aebf, type: 3}
   unlockBioLuminescentFlash: 1
   bioluminescentFlash: {fileID: 3520547880351128278, guid: 4e099870b5a70a247a7883db8c659e5f, type: 3}
-  onHitEffects: []
+  onHitEffects:
+  - onHitEffect: {fileID: 11400000, guid: 30381fda49bdbb648b991837c2501507, type: 2}
+    data:
+      id: 0
   references:
     version: 1
+    00000000:
+      type: {class: , ns: , asm: }
 --- !u!114 &1772954696996774671
 MonoBehaviour:
   m_ObjectHideFlags: 0

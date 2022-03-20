@@ -20,12 +20,7 @@ public class SpeedDemon : PassiveMorph
 
     Stats stats;
 
-    static Prerequisite[] BasePrerequisits = new Prerequisite[1]
-    {
-
-        new Prerequisite("agility", agilityPrerequisit),
-
-    };
+    public Prerequisite[] StatPrerequisits;
 
     private void OnEnable()
     {

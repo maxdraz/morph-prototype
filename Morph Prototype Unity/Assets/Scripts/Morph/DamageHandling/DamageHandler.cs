@@ -228,7 +228,7 @@ public class DamageHandler : MonoBehaviour
             IceDamage = HandleIceDamage(ref damageType),
             LightningDamage = HandleLightningDamage(ref damageType),
             StaminaDrained = HandlerStaminaDrain(ref damageType),
-            //FortitudeDamage = HandleFortitudeDamage(ref damageType),
+            FortitudeDamage = HandleFortitudeDamage(ref damageType),
             KnockbackForce = HandleKnockback(ref damageType),
             KnockupForce = HandleKnockup(ref damageType),
             PullForce = HandlePullTowards(ref damageType)

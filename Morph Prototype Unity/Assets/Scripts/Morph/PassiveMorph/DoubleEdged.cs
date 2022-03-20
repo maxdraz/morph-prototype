@@ -16,12 +16,7 @@ public class DoubleEdged : PassiveMorph
     float damageBoost;
     float damageBoostFactor = 2;
 
-    static Prerequisite[] BasePrerequisits = new Prerequisite[2]
-    {
-
-        new Prerequisite("meleeDamage", meleeDamagePrerequisit),
-        new Prerequisite("agility", agilityPrerequisit),
-    };
+    public Prerequisite[] StatPrerequisits;
 
     private void Start()
     {

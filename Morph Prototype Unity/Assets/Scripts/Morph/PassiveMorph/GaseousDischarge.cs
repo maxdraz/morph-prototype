@@ -20,12 +20,7 @@ public class GaseousDischarge : PassiveMorph
     [SerializeField] private float toxicOverflowKnockBackForce;
 
     Stats stats;
-    static Prerequisite[] BasePrerequisits = new Prerequisite[1]
-    {
-
-        new Prerequisite("chemicalDamage", chemicalDamagePrerequisit),
-
-    };
+    static Prerequisite[] BasePrerequisits;
 
     private void OnEnable()
     {

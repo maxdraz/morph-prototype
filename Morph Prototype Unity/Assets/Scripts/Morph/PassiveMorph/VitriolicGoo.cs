@@ -15,11 +15,7 @@ public class VitriolicGoo : PassiveMorph
 
     Stats stats;
 
-    static Prerequisite[] BasePrerequisits = new Prerequisite[1]
-    {
-
-        new Prerequisite("chemicalDamage", chemicalDamagePrerequisit),
-    };
+    public Prerequisite[] StatPrerequisits;
 
     private void OnEnable()
     {

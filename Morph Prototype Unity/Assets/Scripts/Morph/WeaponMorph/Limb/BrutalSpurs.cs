@@ -8,11 +8,7 @@ public class BrutalSpurs : LimbWeaponMorph
 
 
     [SerializeField]
-    private Prerequisite[] StatPrerequisits = new Prerequisite[1]
-{
-        new Prerequisite("meleeDamage", meleeDamagePrerequisite),
-
-};
+    private Prerequisite[] StatPrerequisits;
 
     private void Start()
     {

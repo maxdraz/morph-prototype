@@ -10,10 +10,7 @@ public class TerrifyingHowl : ActiveMorph
     [SerializeField] private float range;
     DamageHandler damageHandler;
 
-    static Prerequisite[] StatPrerequisits = new Prerequisite[1]
-{
-        new Prerequisite("intimidation", intimidationPrerequisite),
-};
+    static Prerequisite[] StatPrerequisits;
 
 
     private void Start()

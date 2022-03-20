@@ -10,15 +10,14 @@ public class AcidEruption : ActiveMorph
 
     private Vector3 offSet = new Vector3(0, -0.25f, 0);
 
-    public Prerequisite[] StatPrerequisits = new Prerequisite[1]
-    {
-        new Prerequisite("chemicalDamage", chemicalDamagePrerequisit),
-
-    };
+    public Prerequisite[] StatPrerequisits;
 
     private void Start()
     {
         WriteToPrerequisiteArray();
+
+
+        StatPrerequisits[0] = new Prerequisite("chemicalDamage", chemicalDamagePrerequisit);
     }
 
     void WriteToPrerequisiteArray()

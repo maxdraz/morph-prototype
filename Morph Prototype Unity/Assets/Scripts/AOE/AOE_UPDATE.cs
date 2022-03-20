@@ -6,7 +6,7 @@ public class AOE_UPDATE : MonoBehaviour
 {
     [SerializeField] private List<OnHitEffectDataContainer> onHitEffects;
 
-    private DamageHandler damageDealer;
+    public DamageHandler damageDealer;
 
     [SerializeField] private float duration;
     [SerializeField] private float radius;
