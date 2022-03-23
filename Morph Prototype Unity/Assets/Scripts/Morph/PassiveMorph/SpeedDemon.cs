@@ -20,7 +20,7 @@ public class SpeedDemon : PassiveMorph
 
     Stats stats;
 
-    public Prerequisite[] StatPrerequisits;
+    //public Prerequisite[] StatPrerequisits;
 
     private void OnEnable()
     {

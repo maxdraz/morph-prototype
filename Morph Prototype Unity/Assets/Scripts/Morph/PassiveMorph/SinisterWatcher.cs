@@ -19,12 +19,7 @@ public class SinisterWatcher : PassiveMorph
 
     Stats stats;
 
-    static Prerequisite[] BasePrerequisits = new Prerequisite[2]
-    {
-
-        new Prerequisite("stealth", stealthPrerequisit),
-        new Prerequisite("perception", perceptionPrerequisit),
-    };
+    //static Prerequisite[] StatPrerequisits;
 
     // Start is called before the first frame update
     private void OnEnable()

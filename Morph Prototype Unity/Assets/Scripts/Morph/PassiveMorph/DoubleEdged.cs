@@ -16,7 +16,7 @@ public class DoubleEdged : PassiveMorph
     float damageBoost;
     float damageBoostFactor = 2;
 
-    public Prerequisite[] StatPrerequisits;
+    //public Prerequisite[] StatPrerequisits;
 
     private void Start()
     {

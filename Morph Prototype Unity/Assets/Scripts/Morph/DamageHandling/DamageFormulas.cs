@@ -4,29 +4,35 @@ using UnityEngine;
 
 public static class DamageFormulas
 {
-    public static float PhysicalDamage(float weaponMorphDamage, float meleeDamageStatModifier, float strikeModifier, 
-        float percentageBonusDamage, float flatBonusDamage)
+    public static float PhysicalDamage(float weaponMorphDamage, float meleeDamageStatModifier, float strikeModifier,
+        float percentageBonusDamage, float flatBonusDamage, float globalCritChance, float weaponCritChance, float attackCritChance)
     {
-        // var damage out = ....
-        // roll for crit
-            // if crit
-                // dmgOut * 2.5
-        return (weaponMorphDamage * (1 + (meleeDamageStatModifier + strikeModifier + percentageBonusDamage))) + flatBonusDamage;
+
+        weaponMorphDamage = weaponMorphDamage * (1 + (meleeDamageStatModifier + strikeModifier + percentageBonusDamage) + flatBonusDamage);
+
+        float totalCritChance = globalCritChance + weaponCritChance + attackCritChance;
+
+
+        if (totalCritChance > 0)
+        {
+            if (RollCrit(totalCritChance) == true)
+            {
+                weaponMorphDamage = weaponMorphDamage * 2.5f;
+                Debug.Log("Critical Hit!!!");
+            }
+        }
+
+        float damageOut = weaponMorphDamage;
+        return damageOut;
     }
 
-    public static float ElementalDamage(float baseDamage, float elementalDamageStatModifier, float percentageBonusDamage, 
-        float flatBonusDamage)
-    {
-        return (baseDamage * (1 + (elementalDamageStatModifier + percentageBonusDamage)) + flatBonusDamage);
-    }
-    
-    public static float PhysicalDamageResist(float damageIn, bool isPiercing, float toughnessModifier, float acidifiedDebuff, float percentageDmgReduction, 
+    public static float PhysicalDamageResist(float damageIn, bool isPiercing, float toughnessModifier, float acidifiedDebuff, float percentageDmgReduction,
         bool hasArmour, float flatDamageReduction)
     {
         toughnessModifier = Mathf.Max(0, toughnessModifier - acidifiedDebuff);
-        
-      float damageOut = damageIn * (1 - (toughnessModifier + percentageDmgReduction));
-       
+
+        float damageOut = damageIn * (1 - (toughnessModifier + percentageDmgReduction));
+
         if (!isPiercing && hasArmour)
             damageOut *= 0.8f;
 
@@ -34,15 +40,43 @@ public static class DamageFormulas
 
         return damageOut;
     }
-    
-    public static float ElementalDamageResist(float damageIn, float elementalResistModifier, float percentageDmgReduction, 
+
+    public static float ElementalDamage(float baseDamage, float elementalDamageStatModifier, float percentageBonusDamage,
+        float flatBonusDamage)
+    {
+        return (baseDamage * (1 + (elementalDamageStatModifier + percentageBonusDamage)) + flatBonusDamage);
+    }
+
+    public static float ElementalDamageResist(float damageIn, float elementalResistModifier, float percentageDmgReduction,
         float flatDamageReduction)
     {
         return (damageIn * (1 - (elementalResistModifier + percentageDmgReduction))) - flatDamageReduction;
     }
 
+    public static float FortitudeDamage(float baseDamage, float percentageFortitudeBonusDamage, float flatBonusFortitudeDamage)
+    {
+        return (baseDamage * (1 + percentageFortitudeBonusDamage)) + flatBonusFortitudeDamage;
+    }
+
+    public static float FortitudeDamageResist(float damageIn, float percentageFortitudeDmgReduction, float flatFortitudeDamageReduction)
+    {
+        return (damageIn * (1 - percentageFortitudeDmgReduction)) - flatFortitudeDamageReduction;
+    }
+
     public static float PoisonDamage()
     {
         return 0;
+    }
+
+    static bool RollCrit(float critChance)
+    {
+        if (Random.Range(0, 100) <= critChance)
+        {
+            return true;
+        }
+        else 
+        {
+            return false;
+        }
     }
 }

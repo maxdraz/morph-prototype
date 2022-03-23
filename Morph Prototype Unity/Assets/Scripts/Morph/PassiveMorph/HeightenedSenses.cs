@@ -22,11 +22,7 @@ public class HeightenedSenses : PassiveMorph
     Velocity velo;
     Perception perception;
 
-    static Prerequisite[] BasePrerequisits = new Prerequisite[1]
-    {
-
-        new Prerequisite("perception", perceptionPrerequisit),
-    };
+    //static Prerequisite[] StatPrerequisits;
 
     private void OnEnable()
     {

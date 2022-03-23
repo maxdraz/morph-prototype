@@ -24,7 +24,7 @@ public class VenomGlands : PassiveMorph
 
     [SerializeField] private float venomDuration = 4;
 
-    public Prerequisite[] StatPrerequisits;
+    //public Prerequisite[] StatPrerequisits;
 
     private void OnEnable()
     {

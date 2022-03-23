@@ -21,7 +21,7 @@ public class MorphHolder : MonoBehaviour
     {
         foreach (Morph morph in morphsInChildren)
         {
-            player.AddMorphToLoadoutAtRuntime(morph);
+            //player.AddMorphToLoadoutAtRuntime(morph);
         }
     }
 }

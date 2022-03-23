@@ -49,69 +49,69 @@ public class MorphLoadout : MonoBehaviour
 
     
 
-    public void AddMorphToLoadoutAtRuntime(Morph morphPrefab) 
-    {
-        if (!morphPrefab) return;
-
-        if (morphPrefab.CheckMorphPrerequisites(GetComponent<MorphLoadout>()) == true)
-        {
-            if (morphPrefab.CheckStatPrerequisites(GetComponent<Stats>()) == true)
-            {
-
-                if (morphPrefab is LimbWeaponMorph limbMorph)
-                {
-                    limbWeaponMorph = UtilityFunctions.CopyComponent(limbMorph, gameObject);
-
-                    if (limbWeaponMorph)
-                    {
-                        MorphLoadoutChanged?.Invoke(limbWeaponMorph);
-                    }
-                }
-                else if (morphPrefab is HeadWeaponMorph headMorph)
-                {
-                    headWeaponMorph = UtilityFunctions.CopyComponent(headMorph, gameObject);
-                    if (headWeaponMorph)
-                    {
-                        MorphLoadoutChanged?.Invoke(headWeaponMorph);
-                    }
-                }
-                else if (morphPrefab is TailWeaponMorph tailMorph)
-                {
-                    tailWeaponMorph = UtilityFunctions.CopyComponent(tailMorph, gameObject);
-                    if (tailWeaponMorph)
-                    {
-                        MorphLoadoutChanged?.Invoke(tailWeaponMorph);
-                    }
-                }
-                else if (morphPrefab is PassiveMorph passiveMorph)
-                {
-                    var morph = UtilityFunctions.CopyComponent(passiveMorph, gameObject);
-                    if (morph)
-                    {
-                        passiveMorphs.Add(morph);
-                        MorphLoadoutChanged?.Invoke(morph);
-                    }
-                }
-                else if (morphPrefab is ActiveMorph activeMorph)
-                {
-                    var morph = UtilityFunctions.CopyComponent(activeMorph, gameObject);
-                    if (morph)
-                    {
-                        //activeMorphs.Add(morph);
-                        MorphLoadoutChanged?.Invoke(morph);
-                    }
-                }
-            }
-            else
-            {
-                Debug.Log(transform.name + " does not have the required stats to attach " + morphPrefab.name);
-            }
-        }
-        else
-        {
-            Debug.Log(transform.name + " does not have the required morphs to attach " + morphPrefab.name);
-        }
-    }
+   // public void AddMorphToLoadoutAtRuntime(Morph morphPrefab) 
+   // {
+   //     if (!morphPrefab) return;
+   //
+   //     if (morphPrefab.CheckMorphPrerequisites(GetComponent<MorphLoadout>()) == true)
+   //     {
+   //         if (morphPrefab.CheckStatPrerequisites(GetComponent<Stats>()) == true)
+   //         {
+   //
+   //             if (morphPrefab is LimbWeaponMorph limbMorph)
+   //             {
+   //                 limbWeaponMorph = UtilityFunctions.CopyComponent(limbMorph, gameObject);
+   //
+   //                 if (limbWeaponMorph)
+   //                 {
+   //                     MorphLoadoutChanged?.Invoke(limbWeaponMorph);
+   //                 }
+   //             }
+   //             else if (morphPrefab is HeadWeaponMorph headMorph)
+   //             {
+   //                 headWeaponMorph = UtilityFunctions.CopyComponent(headMorph, gameObject);
+   //                 if (headWeaponMorph)
+   //                 {
+   //                     MorphLoadoutChanged?.Invoke(headWeaponMorph);
+   //                 }
+   //             }
+   //             else if (morphPrefab is TailWeaponMorph tailMorph)
+   //             {
+   //                 tailWeaponMorph = UtilityFunctions.CopyComponent(tailMorph, gameObject);
+   //                 if (tailWeaponMorph)
+   //                 {
+   //                     MorphLoadoutChanged?.Invoke(tailWeaponMorph);
+   //                 }
+   //             }
+   //             else if (morphPrefab is PassiveMorph passiveMorph)
+   //             {
+   //                 var morph = UtilityFunctions.CopyComponent(passiveMorph, gameObject);
+   //                 if (morph)
+   //                 {
+   //                     passiveMorphs.Add(morph);
+   //                     MorphLoadoutChanged?.Invoke(morph);
+   //                 }
+   //             }
+   //             else if (morphPrefab is ActiveMorph activeMorph)
+   //             {
+   //                 var morph = UtilityFunctions.CopyComponent(activeMorph, gameObject);
+   //                 if (morph)
+   //                 {
+   //                     //activeMorphs.Add(morph);
+   //                     MorphLoadoutChanged?.Invoke(morph);
+   //                 }
+   //             }
+   //         }
+   //         else
+   //         {
+   //             Debug.Log(transform.name + " does not have the required stats to attach " + morphPrefab.name);
+   //         }
+   //     }
+   //     else
+   //     {
+   //         Debug.Log(transform.name + " does not have the required morphs to attach " + morphPrefab.name);
+   //     }
+   // }
 
     public void AddMorphToLoadout(Morph morphPrefab)
     {

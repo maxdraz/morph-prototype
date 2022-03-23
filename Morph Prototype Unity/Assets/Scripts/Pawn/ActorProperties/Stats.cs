@@ -47,6 +47,7 @@ public class Stats : MonoBehaviour
     private int addedElementalDamage;
     public int totalElementalDamage;
     private int accuracy;
+    public float globalCritChance;
     //defensive stats
     [SerializeField] private int baseFortitude;
     private int addedFortitude;

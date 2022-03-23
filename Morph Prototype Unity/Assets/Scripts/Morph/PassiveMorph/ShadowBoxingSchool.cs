@@ -16,11 +16,7 @@ public class ShadowBoxingSchool : PassiveMorph
     [SerializeField] private float ninjaTrainingCritChanceToStealthMultiplicationFactor;
     [SerializeField] private float ninjaTrainingAgilityToCritChanceMultiplicationFactor;
 
-    static Prerequisite[] BasePrerequisits = new Prerequisite[1]
-    {
-        new Prerequisite("stealth", stealthPrerequisit),
-
-    };
+    //static Prerequisite[] StatPrerequisits;
 
     private void OnEnable()
     {

@@ -17,10 +17,11 @@ public class CriticalStrikes : PassiveMorph
     Timer coupDeGraceTimer;
 
 
-    private void OnEnable()
+
+    private void Start()
     {
         StartCoroutine(AssignDamageHandlerCoroutine());
-        //universal criticalStrikeChance += criticalStrikeChance
+        GetComponent<Stats>().globalCritChance += criticalStrikeChance;
     }
 
     private void OnDisable()

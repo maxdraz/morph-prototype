@@ -6,7 +6,7 @@ public class Morph : MonoBehaviour
 {
     public Morph[] morphPrerequisites;
 
-    public Prerequisite[] statPrerequisits;
+    //public Prerequisite[] statPrerequisits;
 
 
     
@@ -39,30 +39,30 @@ public class Morph : MonoBehaviour
         }
     }
 
-    public bool CheckStatPrerequisites(Stats stats) {
-
-        int statPrerequisitesCount = 0;
-
-        if (statPrerequisits.Length == 0)
-            return true;
-
-        if (statPrerequisits.Length > 0) 
-            {
-            foreach (Prerequisite prerequisite in statPrerequisits)
-            {
-                if (stats.FindStatValue(prerequisite.stat) >= prerequisite.value)
-                {
-                    statPrerequisitesCount++;
-                }
-            }
-        }
-        if (statPrerequisitesCount == statPrerequisits.Length)
-        {
-            return true;
-        }
-        else 
-        {
-            return false;
-        } 
-    }
+   // public bool CheckStatPrerequisites(Stats stats) {
+   //
+   //     int statPrerequisitesCount = 0;
+   //
+   //     if (statPrerequisits.Length == 0)
+   //         return true;
+   //
+   //     if (statPrerequisits.Length > 0) 
+   //         {
+   //         foreach (Prerequisite prerequisite in statPrerequisits)
+   //         {
+   //             if (stats.FindStatValue(prerequisite.stat) >= prerequisite.value)
+   //             {
+   //                 statPrerequisitesCount++;
+   //             }
+   //         }
+   //     }
+   //     if (statPrerequisitesCount == statPrerequisits.Length)
+   //     {
+   //         return true;
+   //     }
+   //     else 
+   //     {
+   //         return false;
+   //     } 
+   // }
 }

@@ -22,7 +22,7 @@ public class StatueStealth : PassiveMorph
     Velocity velo;
     Stealth stealth;
 
-    public Prerequisite[] StatPrerequisits;
+    //public Prerequisite[] StatPrerequisits;
 
     private void OnEnable()
     {

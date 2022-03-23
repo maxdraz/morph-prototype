@@ -14,11 +14,7 @@ public class SizzlingSlime : PassiveMorph
 
     Stats stats;
 
-    static Prerequisite[] BasePrerequisits = new Prerequisite[1]
-    {
-
-        new Prerequisite("chemicalDamage", chemicalDamagePrerequisit),
-    };
+    //static Prerequisite[] StatPrerequisits;
 
     private void OnEnable()
     {

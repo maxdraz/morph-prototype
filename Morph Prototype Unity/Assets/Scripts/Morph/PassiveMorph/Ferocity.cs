@@ -30,7 +30,7 @@ public class Ferocity : PassiveMorph
 
     Stats stats;
 
-    static Prerequisite[] StatPrerequisits;
+    //static Prerequisite[] StatPrerequisits;
 
 
     private void OnEnable()

@@ -11,27 +11,24 @@ public class BattleCry : ActiveMorph
 
     public bool nextHitCrit;
 
-    static Prerequisite[] StatPrerequisits = new Prerequisite[2]
-    {
-        new Prerequisite("meleeDamage", meleeDamagePrerequisit),
-        new Prerequisite("intimidation", intimidationPrerequisit)
-    };
+    //static Prerequisite[] StatPrerequisits;
 
     private void Start()
     {
-        WriteToPrerequisiteArray();
+        //WriteToPrerequisiteArray();
     }
 
-    void WriteToPrerequisiteArray()
-    {
-        statPrerequisits = new Prerequisite[StatPrerequisits.Length];
+   //void WriteToPrerequisiteArray()
+   //{
+   //    statPrerequisits = new Prerequisite[StatPrerequisits.Length];
+   //
+   //    for (int i = 0; i <= StatPrerequisits.Length - 1; i++)
+   //    {
+   //        statPrerequisits[i] = StatPrerequisits[i];
+   //        Debug.Log(GetType().Name + " has a prerequisite " + statPrerequisits[i].stat + " of " + statPrerequisits[i].value);
+   //    }
+   //}
 
-        for (int i = 0; i <= StatPrerequisits.Length - 1; i++)
-        {
-            statPrerequisits[i] = StatPrerequisits[i];
-            Debug.Log(GetType().Name + " has a prerequisite " + statPrerequisits[i].stat + " of " + statPrerequisits[i].value);
-        }
-    }
     public override bool ActivateIfConditionsMet()
     {
         if (base.ActivateIfConditionsMet())

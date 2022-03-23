@@ -34,9 +34,7 @@ public class Fortitude : MonoBehaviour
         string effect = data.StatusEffect;
         float duration = data.Duration;
         
-        lastFortitudeValue = currentFortitude;
         currentFortitude -= data.FortitudeDamage;
-        
 
         if (currentFortitude <= 0)
         {

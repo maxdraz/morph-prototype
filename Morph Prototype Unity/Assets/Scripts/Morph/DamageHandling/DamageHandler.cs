@@ -228,7 +228,7 @@ public class DamageHandler : MonoBehaviour
             IceDamage = HandleIceDamage(ref damageType),
             LightningDamage = HandleLightningDamage(ref damageType),
             StaminaDrained = HandlerStaminaDrain(ref damageType),
-            FortitudeDamage = HandleFortitudeDamage(ref damageType),
+            //FortitudeDamage = HandleFortitudeDamage(ref damageType),
             KnockbackForce = HandleKnockback(ref damageType),
             KnockupForce = HandleKnockup(ref damageType),
             PullForce = HandlePullTowards(ref damageType)
@@ -299,14 +299,13 @@ public class DamageHandler : MonoBehaviour
         }
         return 0f;
     }
-    private float HandleFortitudeDamage(ref IDamageType damageType)
-    {
-        if (damageType is IFortitudeDamage fortitudeDamage) 
-        {
-            return fortitudeDamage.FortitudeDamage;
-        }
-        return 0f;
-    }
+    //private void HandleFortitudeDamage(ref IDamageType damageType)
+    //{
+     //   if (damageType is IFortitudeDamage fortitudeDamage) 
+     //   {
+     //        return DamageTakenSummary.fort;
+     //   }
+    //}
     
     private float HandleLifestealDamage(ref IDamageType damageType)
     {

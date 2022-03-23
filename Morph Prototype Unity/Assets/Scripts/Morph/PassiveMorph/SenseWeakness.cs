@@ -20,7 +20,7 @@ public class SenseWeakness : PassiveMorph
 
     Health health;
 
-    public Prerequisite[] StatPrerequisits;
+    //public Prerequisite[] StatPrerequisits;
 
     private void OnEnable()
     {

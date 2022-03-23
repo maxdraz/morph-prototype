@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1114787138882407052}
   - component: {fileID: 1114787138882407051}
+  - component: {fileID: 8547148539514311871}
   m_Layer: 0
   m_Name: Critical Strikes
   m_TagString: Untagged
@@ -43,21 +44,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca070c3b6534b8a47b9eeb7cc2a9559f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  summary:
-    DamageTaker: {fileID: 0}
-    DamageDealer: {fileID: 0}
-    IsFatalBlow: 0
-    IsCriticalHit: 0
-    isMortalBlow: 0
-    PhysicalDamage: 0
-    LifeStealDamage: 0
-    PoisonDamage: 0
-    AcidDamage: 0
-    FireDamage: 0
-    IceDamage: 0
-    LightningDamage: 0
-    StaminaDrained: 0
-    FortitudeDamage: 0
-    KnockbackForce: 0
   isInvincible: 1
   damageNumberSet: {fileID: 0}
+--- !u!114 &8547148539514311871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1114787138882407049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f846de85c84d61459488cbc9757015a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  morphPrerequisites: []
+  criticalStrikeChance: 50
+  unlockHiddenAttack: 1
+  hiddenAttackCriticalStrikeChance: 20
+  hiddenAttackExtraDamage: 200
+  unlockCoupDeGrace: 1
+  coupDeGraceCooldownPeriod: 5
