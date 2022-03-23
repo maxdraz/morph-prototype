@@ -18,7 +18,6 @@ public static class DamageFormulas
             if (RollCrit(totalCritChance) == true)
             {
                 weaponMorphDamage = weaponMorphDamage * 2.5f;
-                Debug.Log("Critical Hit!!!");
             }
         }
 
@@ -70,12 +69,16 @@ public static class DamageFormulas
 
     static bool RollCrit(float critChance)
     {
+        Debug.Log("Roll for crit with totalcritchance of: " + critChance);
+
         if (Random.Range(0, 100) <= critChance)
         {
+            Debug.Log("Critical Hit!!!");
             return true;
         }
         else 
         {
+            Debug.Log("critical hit roll failed...");
             return false;
         }
     }

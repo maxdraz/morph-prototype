@@ -9,6 +9,7 @@ public class NormalDamageBasedOnEnemyHealthData : OnHitEffectData, IPhysicalDama
     [SerializeField] private bool applyIfBelowPercentage;
     [SerializeField] [Range(0,1)] private float enemyHealthPercentage;
     [SerializeField] private float strikeModifier;
+    [SerializeField] private float weaponCritChance;
     private float physicalDamageDealt;
 
     public NormalDamageBasedOnEnemyHealthData(
@@ -41,6 +42,11 @@ public class NormalDamageBasedOnEnemyHealthData : OnHitEffectData, IPhysicalDama
     {
         get => physicalDamageDealt;
         set => physicalDamageDealt = value;
+    }
+    public float WeaponCritChance
+    {
+        get => weaponCritChance;
+        set => weaponCritChance = value;
     }
 
     public bool ConditionsAreMet(Health damageTakerHealth)

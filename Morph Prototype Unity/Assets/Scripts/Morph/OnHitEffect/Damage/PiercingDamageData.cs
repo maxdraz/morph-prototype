@@ -7,6 +7,7 @@ public class PiercingDamageData : OnHitEffectData, IPiercingDamage
 {
     private float morphDamage;
     [SerializeField] private float strikeModifier;
+    [SerializeField] private float weaponCritChance;
     private float physicalDamageDealt;
     
     public float MorphDamage { 
@@ -25,18 +26,25 @@ public class PiercingDamageData : OnHitEffectData, IPiercingDamage
         set => physicalDamageDealt = value;
     }
 
-    public PiercingDamageData(float morphDamage =0, float strikeModifier=1, float physicalDamageDealt = 0)
+    public float WeaponCritChance
+    {
+        get => weaponCritChance;
+        set => weaponCritChance = value;
+    }
+
+    public PiercingDamageData(float morphDamage =0, float strikeModifier=1, float physicalDamageDealt = 0, float weaponCritChance = 0)
     {
         this.morphDamage = morphDamage;
         this.strikeModifier = strikeModifier;
         this.physicalDamageDealt = physicalDamageDealt;
+        this.weaponCritChance = weaponCritChance;
     }
     
     
     
     public override object Clone()
     {
-        return new PiercingDamageData(morphDamage, strikeModifier, physicalDamageDealt);
+        return new PiercingDamageData(morphDamage, strikeModifier, physicalDamageDealt, weaponCritChance);
     }
 
     

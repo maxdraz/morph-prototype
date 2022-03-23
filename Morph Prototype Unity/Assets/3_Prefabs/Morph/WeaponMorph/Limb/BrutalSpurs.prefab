@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6808bafd40011944b80e5ff00d1fb1f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  morphPrerequisites: []
   baseDamage: 5
   lightAttacks:
   - onHitEffects:
@@ -96,14 +97,17 @@ MonoBehaviour:
       type: {class: PhysicalDamageData, ns: , asm: Assembly-CSharp}
       data:
         strikeModifier: 1
+        weaponCritChance: 10
     00000001:
       type: {class: PhysicalDamageData, ns: , asm: Assembly-CSharp}
       data:
         strikeModifier: 1
+        weaponCritChance: 10
     00000002:
       type: {class: PhysicalDamageData, ns: , asm: Assembly-CSharp}
       data:
         strikeModifier: 2
+        weaponCritChance: 20
     00000003:
       type: {class: LifeStealData, ns: , asm: Assembly-CSharp}
       data:
@@ -113,3 +117,4 @@ MonoBehaviour:
       type: {class: PhysicalDamageData, ns: , asm: Assembly-CSharp}
       data:
         strikeModifier: 3
+        weaponCritChance: 0

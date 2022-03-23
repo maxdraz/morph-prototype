@@ -111,7 +111,7 @@ public class MorphLoadout : MonoBehaviour
    //     {
    //         Debug.Log(transform.name + " does not have the required morphs to attach " + morphPrefab.name);
    //     }
-   // }
+   //}
 
     public void AddMorphToLoadout(Morph morphPrefab)
     {

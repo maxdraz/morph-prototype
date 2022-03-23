@@ -21,7 +21,7 @@ public class PiercingDamageOnHitEffect : OnHitEffect
                 0,
                 0,
                 damageDealer.Stats.globalCritChance,
-                 0, // this is weaponCritChance. Find the crit chance for this strike in the weapons combo (can be 0)
+                piercingDamage.WeaponCritChance, // this is weaponCritChance. Find the crit chance for this strike in the weapons combo (can be 0)
                 0); // this is attackCritChance. Find the crit chance for this attack (can be 0)
 
             damageTaker.ApplyDamage(data, damageDealer);
