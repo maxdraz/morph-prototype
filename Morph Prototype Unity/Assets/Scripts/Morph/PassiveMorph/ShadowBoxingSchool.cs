@@ -9,8 +9,8 @@ public class ShadowBoxingSchool : PassiveMorph
     private DamageHandler damageHandler;
     [SerializeField] private int stealthStatBonus = 50;
     [SerializeField] private bool unlockNinjaTraining = true;
-    [SerializeField] private float shadowBoxingbonusDamageMultiplier = 5;
-    
+    [SerializeField] private float shadowBoxingBonusDamageMultiplier = 5;
+    float shadowBoxingSchoolBonusDamage;
     Stats stats;
 
     [SerializeField] private float ninjaTrainingCritChanceToStealthMultiplicationFactor;
@@ -30,7 +30,7 @@ public class ShadowBoxingSchool : PassiveMorph
             NinjaTraining();
         }
 
-        float shadowBoxingSchoolBonusDamage = Mathf.Sqrt(stats.totalStealth) * shadowBoxingbonusDamageMultiplier;
+        shadowBoxingSchoolBonusDamage = Mathf.Sqrt(stats.totalStealth) * shadowBoxingBonusDamageMultiplier;
         
     }
 
@@ -50,11 +50,22 @@ public class ShadowBoxingSchool : PassiveMorph
         stats.FlatStatChange("stealth", amountToAdd);
     }
 
-    private void OnDamageAboutToBeDealt(ref IDamageType damageType)
+    private void OnDamageHasBeenDealt(in DamageTakenSummary damageTakenSummary)
     {
-        
+         if (damageTakenSummary.isMeleeAttack)
+         {
+             damageTakenSummary.DamageTaker.ApplyDamage(new PhysicalDamageData(shadowBoxingSchoolBonusDamage), damageHandler);
+         }
+    }
+    private void NinjaTraining()
+    {
+        float bonusCritChance = Mathf.Sqrt(stats.totalAgility) * ninjaTrainingAgilityToCritChanceMultiplicationFactor;
+        stats.globalCritChance += bonusCritChance;
+        Debug.Log("NinjaTraining added: " + bonusCritChance + " globalCritChance");
 
-        //add shadowBoxingSchoolBonusDamage to the bonus flat damage value in the physical damage formula
+        int bonusStealth = (int)(Mathf.Sqrt(stats.globalCritChance) * ninjaTrainingCritChanceToStealthMultiplicationFactor);
+        stats.FlatStatChange("stealth", bonusStealth);
+        Debug.Log("NinjaTraining added: " + bonusStealth + " bonusStealth");
 
     }
 
@@ -71,25 +82,18 @@ public class ShadowBoxingSchool : PassiveMorph
         damageHandler = GetComponent<DamageHandler>();
         if (damageHandler)
         {
-            damageHandler.DamageAboutToBeDealt += OnDamageAboutToBeDealt;
+            damageHandler.DamageHasBeenDealt += OnDamageHasBeenDealt;
 
         }
     }
 
-    private void NinjaTraining() 
-    {
-        //float bonusCritChance = Mathf.Sqrt(stats.agility) * ninjaTrainingAgilityToCritChanceMultiplicationFactor;
-        //Send this value out to modify current crit chance
-
-        //float bonusStealth = stats.stealth * (critChance * ninjaTrainingCritChanceToStealthMultiplicationFactor);
-        //Send this value out to modify current stealth value
-    }
+    
 
     private void UnsubscribeFromEvents()
     {
         if (damageHandler)
         {
-            damageHandler.DamageAboutToBeDealt -= OnDamageAboutToBeDealt;
+            damageHandler.DamageHasBeenDealt -= OnDamageHasBeenDealt;
 
         }
 

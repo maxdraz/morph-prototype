@@ -103,13 +103,20 @@ public class SinisterWatcher : PassiveMorph
         GetReferencesAndSubscribeToEvenets();
     }
 
-    private void OnDamageAboutToBeDealt(ref IDamageType damageType)
+    private void OnDamageHasBeenDealt(in DamageTakenSummary damageTakenSummary)
     {
-        //if (stealthAttack && damageTaker == targetOfInterest)
+        if (damageTakenSummary.PhysicalDamage > 0 && damageTakenSummary.isStealthAttack && damageTakenSummary.DamageTaker == targetOfInterest)
         {
-            //physicalDamageToBeDealt *= 1 + sinisterWatcherBonusDamage;
+            damageTakenSummary.PhysicalDamage *= 1 + sinisterWatcherBonusDamage;
         }
 
+        if (unlockUnkownSource)
+        {
+            if (damageTakenSummary.isRangedAttack)
+            { 
+                //Target should have a harder time finding the location of the attacker
+            } 
+        }
     }
 
     private void GetReferencesAndSubscribeToEvenets()
@@ -118,25 +125,17 @@ public class SinisterWatcher : PassiveMorph
 
         damageHandler = GetComponent<DamageHandler>();
 
-        damageHandler.DamageAboutToBeDealt += OnDamageAboutToBeDealt;
+        damageHandler.DamageHasBeenDealt += OnDamageHasBeenDealt;
 
-        if (damageHandler)
-        {
-            if (unlockUnkownSource)
-            {
-            }
-        }
+        
     }
 
     private void UnsubscribeFromEvents()
     {
         if (damageHandler)
         {
-            damageHandler.DamageAboutToBeDealt -= OnDamageAboutToBeDealt;
+            damageHandler.DamageHasBeenDealt -= OnDamageHasBeenDealt;
 
-            if (unlockUnkownSource)
-            {
-            }
         }
 
         damageHandler = null;

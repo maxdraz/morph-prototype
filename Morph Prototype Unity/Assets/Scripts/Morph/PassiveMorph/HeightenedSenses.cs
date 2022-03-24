@@ -94,7 +94,7 @@ public class HeightenedSenses : PassiveMorph
 
     private void OnDamageAboutToBeDealt(in DamageTakenSummary damageTakenSummary)
     {
-        //if (damageTakenSummary.isRangedAttack)
+        if (damageTakenSummary.isRangedAttack)
         {
             float aimedShotsDamage = Mathf.Sqrt(perception.CurrentPerception) * aimedShotsExtraDamageModifier;
             damageTakenSummary.DamageTaker.ApplyDamage(new PhysicalDamageData(aimedShotsDamage), damageHandler);

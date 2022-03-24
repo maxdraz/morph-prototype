@@ -73,15 +73,15 @@ public class StatueStealth : PassiveMorph
         GetReferencesAndSubscribeToEvenets();
     }
 
-    private void OnDamageAboutToBeDealt (ref IDamageType damageType)
+    private void OnDamageHasBeenDealt (in DamageTakenSummary damageTakenSummary)
     {
-        //if (stealthAttack)
+        if (damageTakenSummary.isStealthAttack)
         {
-            //physicalDamageToBeDealt *= 1 + hiddenThreatIncreasedDamage;
+            damageTakenSummary.PhysicalDamage *= 1 + hiddenThreatIncreasedDamage;
         }
-        //else 
+        else 
         {
-            //physicalDamageToBeDeat *= 1 - hiddenThreatReducedDamage;
+            damageTakenSummary.PhysicalDamage *= 1 - hiddenThreatReducedDamage;
         }
     }
 
@@ -94,7 +94,7 @@ public class StatueStealth : PassiveMorph
         {
             if (unlockHiddenThreat) 
             {
-                damageHandler.DamageAboutToBeDealt += OnDamageAboutToBeDealt;
+                damageHandler.DamageHasBeenDealt += OnDamageHasBeenDealt;
             }
         }
     }
@@ -103,7 +103,7 @@ public class StatueStealth : PassiveMorph
     {
         if (damageHandler)
         {
-            damageHandler.DamageAboutToBeTaken -= OnDamageAboutToBeDealt;
+            damageHandler.DamageHasBeenTaken -= OnDamageHasBeenDealt;
 
         }
 

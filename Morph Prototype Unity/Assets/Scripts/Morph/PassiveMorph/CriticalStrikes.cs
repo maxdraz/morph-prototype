@@ -44,14 +44,18 @@ public class CriticalStrikes : PassiveMorph
     }
 
 
-    private void OnDamageAboutToBeDealt(ref IDamageType damageType)
+    private void OnDamageHasBeenDealt(in DamageTakenSummary damageTakenSummary)
     {
         
 
         if (unlockHiddenAttack)
         {
-            //check to see if you are performing a stealth attack, if so add extra damage and crit chance
-
+            if (damageTakenSummary.isStealthAttack)
+            {
+                damageTakenSummary.DamageTaker.ApplyDamage(new PhysicalDamageData(hiddenAttackExtraDamage), damageHandler);
+                
+            }
+            
         }
 
         if (unlockCoupDeGrace && coupDeGraceOnCooldown == false)
@@ -76,7 +80,7 @@ public class CriticalStrikes : PassiveMorph
         damageHandler = GetComponent<DamageHandler>();
         if (damageHandler)
         {
-            damageHandler.DamageAboutToBeDealt += OnDamageAboutToBeDealt;
+            damageHandler.DamageHasBeenDealt += OnDamageHasBeenDealt;
             
             
         }
@@ -86,7 +90,7 @@ public class CriticalStrikes : PassiveMorph
     {
         if (damageHandler)
         {
-            damageHandler.DamageAboutToBeDealt -= OnDamageAboutToBeDealt;
+            damageHandler.DamageHasBeenDealt -= OnDamageHasBeenDealt;
             if (unlockHiddenAttack)
             {
 

@@ -63,7 +63,7 @@ public class Ferocity : PassiveMorph
     private void OnDamageHasBeenDealt(in DamageTakenSummary damageTakenSummary)
     {
         //should check for whether the attack was a melee attack
-        if (damageTakenSummary.PhysicalDamage > 0)
+        if (damageTakenSummary.PhysicalDamage > 0 && damageTakenSummary.isMeleeAttack)
         {
             AddFerocityStack();
             StopCoroutine("DecayFerocityStacks");

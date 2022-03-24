@@ -72,7 +72,7 @@ public class EndlessAggression : PassiveMorph
     void GainStaminaAndEnergy()
     {
         float currentEnergyPercentage = energy.EnergyAsPercentage();
-        float currentStaminaPercentage = stamina.StaminaAsPercentage();
+        float currentStaminaPercentage = stamina.CurrentStaminaAsPercentage;
 
         float energyGainMultiplier = 1 + (1 - currentEnergyPercentage);
         float staminaGainMultiplier = 1 + (1 - currentStaminaPercentage);

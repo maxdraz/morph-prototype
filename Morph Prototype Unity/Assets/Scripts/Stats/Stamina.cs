@@ -12,6 +12,7 @@ public class Stamina : MonoBehaviour
     [SerializeField] private float totalMaxStamina;
     public float currentStamina;
     public float energyAsPercentage;
+    public float CurrentStaminaAsPercentage => currentStamina / totalMaxStamina;
 
     float staminaRegenTimerDuration = 1f;
     public bool staminaRegenOnCooldown;
@@ -79,13 +80,13 @@ public class Stamina : MonoBehaviour
 
     
 
-    public float StaminaAsPercentage()
-    {
-        float staminaAsPercetage = currentStamina / totalMaxStamina;
-
-
-        return staminaAsPercetage;
-    }
+   // public float CurrentStaminaAsPercentage()
+   // {
+   //     float staminaAsPercetage = currentStamina / totalMaxStamina;
+   //
+   //
+   //     return staminaAsPercetage;
+   // }
 
     
 

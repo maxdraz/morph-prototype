@@ -40,19 +40,20 @@ public class SenseWeakness : PassiveMorph
 
     private void OnDamageHasBeenDealt(in DamageTakenSummary damageTakenSummary)
     {
-        //if (damageTakenSummary.isHeavyAttack)
+        if (damageTakenSummary.isHeavyAttack)
         {
             float enemyHealthPercentage = damageTakenSummary.DamageTaker.GetComponent<Health>().CurrentHealthAsPercentage;
+            float enemyStaminaPercentage = damageTakenSummary.DamageTaker.GetComponent<Stamina>().CurrentStaminaAsPercentage;
 
             if (enemyHealthPercentage < 50)
 
             {
-                //gain critchance - bonusCritChance for senseWeaknessDuration
+                AddCritChanceForDuration();
             }
-            else 
-
+            
+            if (enemyStaminaPercentage < 50)
             {
-                //gain agility - bonusAgility for senseWeaknessDuration
+                AddAgilityForDuration();
             }
 
             if (unlockKillerConsumption && damageTakenSummary.isMortalBlow)
@@ -60,6 +61,39 @@ public class SenseWeakness : PassiveMorph
                 health.AddPercentHP(killerConsumptionPercentHeal);
             }
         }
+    }
+
+    private void AddCritChanceForDuration() 
+    {
+        StopCoroutine("AddCritChance");
+        StartCoroutine("AddCritChance"); 
+    }
+
+    private void AddAgilityForDuration()
+    {
+        StopCoroutine("AddAgility");
+        StartCoroutine("AddAgility");
+    }
+    private IEnumerator AddAgilityChance()
+    {
+        GetComponent<Stats>().FlatStatChange("agility", 10);
+
+        yield return new WaitForSeconds(senseWeaknessDuration);
+
+        GetComponent<Stats>().FlatStatChange("agility", -10);
+
+        yield return null;
+    }
+
+    private IEnumerator AddCritChance() 
+    {
+        GetComponent<Stats>().globalCritChance += 10;
+
+        yield return new WaitForSeconds(senseWeaknessDuration);
+
+        GetComponent<Stats>().globalCritChance -= 10;
+
+        yield return null;
     }
 
     private IEnumerator AssignDamageHandlerCoroutine()
