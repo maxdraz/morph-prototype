@@ -13,7 +13,7 @@ public class Health : MonoBehaviour
     public float healingPercentageBonus = 0f;
 
     public float currentHealth;
-    public float CurrentHealthAsPercentage => baseMaxHealth / maxHealth;
+    public float CurrentHealthAsPercentage => currentHealth / maxHealth;
     public event Action Died;
     public event Action<float> HealthChanged;
 
