@@ -245,5 +245,31 @@ public class MorphLoadout : MonoBehaviour
             
         }
     }
+
+    public bool IsMorphEquipped<T>() where T : Morph
+    {
+        if (limbWeaponMorph is T)
+            return true;
+
+        if (headWeaponMorph is T)
+            return true;
+        
+        if (tailWeaponMorph is T)
+            return true;
+
+        foreach (var activeMorph in activeMorphs)
+        {
+            if (activeMorph is T)
+                return true;
+        }
+
+        foreach (var passiveMorph in passiveMorphs)
+        {
+            if (passiveMorph is T)
+                return true;
+        }
+        
+        return false;
+    }
     
 }
