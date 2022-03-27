@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -41,10 +42,10 @@ public class AOE_UPDATE : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (active) 
-        {
-            AOEEffect();
-        }
+        // if (active) 
+        // {
+        //     AOEEffect();
+        // }
     }
 
     void AOEEffect()
@@ -53,6 +54,11 @@ public class AOE_UPDATE : MonoBehaviour
 
         foreach (var hitCollider in hitColliders)
         {
+            if (hitCollider.name.Contains("Bear"))
+            {
+                print("BEAR DETECTED");
+            }
+            
             if (hitCollider.gameObject == damageDealer.gameObject) return;
             // deal damage to enemy
             var otherDamageHandler = hitCollider.gameObject.GetComponentInChildren<DamageHandler>();
@@ -71,4 +77,22 @@ public class AOE_UPDATE : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if(!active) return;
+        
+        if (other.gameObject == damageDealer.gameObject) return;
+        // deal damage to enemy
+        var otherDamageHandler = other.gameObject.GetComponentInChildren<DamageHandler>();
+
+        if (otherDamageHandler)
+        {
+            foreach (var onHitEffectDataContainer in onHitEffects)
+            {
+                onHitEffectDataContainer.OnHitEffect.ApplyOnHitEffect(onHitEffectDataContainer.Data, otherDamageHandler, damageDealer);
+                //print("should be applying damage");
+                // otherDamageHandler.ApplyDamage(onHitEffectDataContainer.Data, damageDealer);
+            }
+        }
+    }
 }

@@ -9727,9 +9727,9 @@ SphereCollider:
   m_GameObject: {fileID: 1641033305696970572}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 4
+  m_Radius: 6
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4065154484487272654
 MonoBehaviour:
@@ -9751,6 +9751,8 @@ MonoBehaviour:
     data:
       id: 1
   damageDealer: {fileID: 0}
+  collider: {fileID: 0}
+  delayPeriod: 0
   duration: 0.2
   references:
     version: 1
@@ -9778,9 +9780,11 @@ MonoBehaviour:
   - onHitEffect: {fileID: 11400000, guid: bc9de6788c7ba604b926ea54a61f3a3a, type: 2}
     data:
       id: 0
+  damageDealer: {fileID: 0}
   duration: 2
   radius: 6
   delayPeriod: 0
+  active: 0
   references:
     version: 1
     00000000:
