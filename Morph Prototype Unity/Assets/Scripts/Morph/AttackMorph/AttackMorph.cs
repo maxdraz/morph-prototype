@@ -2,17 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackMorph : MonoBehaviour
+public class AttackMorph : ActiveMorph
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private int numberOfAttacks;
+    [SerializeField] private float strikeModifiers; 
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
+
 }
