@@ -9,6 +9,8 @@ public class DamageTakenSummary
     public DamageHandler DamageTaker;
     public DamageHandler DamageDealer;
 
+
+    public AttackType AttackType;
     public bool isBiteAttack;
     public bool isHeavyAttack;
     public bool IsFatalBlow;

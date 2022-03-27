@@ -5,6 +5,7 @@ using UnityEngine;
 public class AdrenalineRush : ActiveMorph
 {
     static int fortitudePrerequisit = 35;
+    [SerializeField] private AdrenalineRushPrerequisiteData prerequisiteData;
     [SerializeField] private GameObject adrenalineRushParticles;
     [SerializeField] private float adrenalineBoost;
 
@@ -50,5 +51,17 @@ public class AdrenalineRush : ActiveMorph
         boost.transform.position = transform.position;
         boost.transform.parent = transform;
         GetComponent<Stamina>().AddStamina(adrenalineBoost);
+    }
+
+    public override bool CheckPrerequisites(MorphLoadout loadout)
+    {
+        if (!prerequisiteData)
+        {
+            print(gameObject.name + " no adrenaline prerequisite data assigned!");
+            return false;
+        }
+        var fortitude = loadout.GetComponent<Stats>().totalFortitude;
+
+        return fortitude >= prerequisiteData.minFortitude;
     }
 }

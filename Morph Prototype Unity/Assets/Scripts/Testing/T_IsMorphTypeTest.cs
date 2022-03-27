@@ -10,7 +10,7 @@ public class T_IsMorphTypeTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        print(loadout.IsMorphEquipped<VitriolicGoo>());
+        print(loadout.IsMorphEquipped<BrutalSpurs>());
     }
 
     // Update is called once per frame

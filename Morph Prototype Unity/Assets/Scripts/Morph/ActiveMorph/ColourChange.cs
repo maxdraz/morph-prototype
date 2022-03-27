@@ -43,9 +43,7 @@ public class ColourChange : ActiveMorph
         }
     }
 
-    
-
-   // void WriteToPrerequisiteArray()
+    // void WriteToPrerequisiteArray()
    // {
    //     statPrerequisits = new Prerequisite[StatPrerequisits.Length];
    //

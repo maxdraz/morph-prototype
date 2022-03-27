@@ -4,6 +4,8 @@ using UnityEngine;
 using System;
 using DamageNumbersPro;
 
+public enum AttackType{ Melee,Ranged, AOE}
+
 public class DamageHandler : MonoBehaviour
 {
     private Stats stats;
@@ -223,7 +225,6 @@ public class DamageHandler : MonoBehaviour
 
             PoisonDamage = HandlePoisonDamage(ref damageType),
             AcidDamage = HandleAcidDamage(ref damageType),
-
             FireDamage = HandleFireDamage(ref damageType),
             IceDamage = HandleIceDamage(ref damageType),
             LightningDamage = HandleLightningDamage(ref damageType),
@@ -299,13 +300,14 @@ public class DamageHandler : MonoBehaviour
         }
         return 0f;
     }
-    //private void HandleFortitudeDamage(ref IDamageType damageType)
-    //{
-     //   if (damageType is IFortitudeDamage fortitudeDamage) 
-     //   {
-     //        return DamageTakenSummary.fort;
-     //   }
-    //}
+    
+    private void HandleFortitudeDamage(ref IDamageType damageType)
+    {
+        if (damageType is IFortitudeDamage fortitudeDamage)
+        {
+           // Resists
+        }
+    }
     
     private float HandleLifestealDamage(ref IDamageType damageType)
     {

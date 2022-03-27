@@ -8,9 +8,6 @@ public class Morph : MonoBehaviour
 
     //public Prerequisite[] statPrerequisits;
 
-
-    
-
     public bool CheckMorphPrerequisites(MorphLoadout loadout)
     {
         int morphPrerequisitesCount = 0;
@@ -39,7 +36,12 @@ public class Morph : MonoBehaviour
         }
     }
 
-   // public bool CheckStatPrerequisites(Stats stats) {
+    public virtual bool CheckPrerequisites(MorphLoadout loadout)
+    {
+        return true;
+    }
+
+    // public bool CheckStatPrerequisites(Stats stats) {
    //
    //     int statPrerequisitesCount = 0;
    //
