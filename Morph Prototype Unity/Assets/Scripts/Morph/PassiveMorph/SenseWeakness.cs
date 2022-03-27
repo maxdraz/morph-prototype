@@ -74,7 +74,7 @@ public class SenseWeakness : PassiveMorph
         StopCoroutine("AddAgility");
         StartCoroutine("AddAgility");
     }
-    private IEnumerator AddAgilityChance()
+    private IEnumerator AddAgility()
     {
         GetComponent<Stats>().FlatStatChange("agility", 10);
 
