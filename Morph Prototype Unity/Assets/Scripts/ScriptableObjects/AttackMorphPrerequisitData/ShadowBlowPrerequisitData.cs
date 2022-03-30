@@ -1,9 +1,0 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-[CreateAssetMenu(fileName = "Shadow Blow Prerequisite Data", menuName = "Morph Prerequisite Data/Shadow Blow")]
-public class ShadowBlowPrerequisiteData : ScriptableObject
-{
-    public float min;
-}

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Adrenaline Rush Prerequisite Data", menuName = "Morph Prerequisite Data/Adrenaline Rush")]
+[CreateAssetMenu(fileName = "Adrenaline Rush Prerequisite Data", menuName = "Active Morph Prerequisite Data/Adrenaline Rush")]
 public class AdrenalineRushPrerequisiteData : ScriptableObject
 {
     //Adrenaline Rush prerequisits

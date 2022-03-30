@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Catalyzing Agent Prerequisite Data
   m_EditorClassIdentifier: Assembly-CSharp::CatalyzingAgentPrerequisiteData
-  minChemicalDamage: 30
+  CatalyzingAgentStatPrerequisites: []
+  CatalyzingAgentTypePrerequisites: []
+  CatalyzingAgentMorphPrerequisites: []

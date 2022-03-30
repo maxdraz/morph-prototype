@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Rifting Leap Prerequisite Data", menuName = "Morph Prerequisite Data/Rifting Leap")]
+[CreateAssetMenu(fileName = "Rifting Leap Prerequisite Data", menuName = "Active Morph Prerequisite Data/Rifting Leap")]
 public class RiftingLeapPrerequisiteData : ScriptableObject
 {
     //Rifting Leap Barrage prerequisites

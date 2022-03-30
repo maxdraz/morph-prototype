@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Colour Change Prerequisite Data", menuName = "Morph Prerequisite Data/Colour Change")]
+[CreateAssetMenu(fileName = "Colour Change Prerequisite Data", menuName = "Active Morph Prerequisite Data/Colour Change")]
 public class ColourChangePrerequisiteData : ScriptableObject
 {
     //Colour Change prerequisits

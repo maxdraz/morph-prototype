@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Shadow Blow Prerequisite Data
   m_EditorClassIdentifier: Assembly-CSharp::ShadowBlowPrerequisiteData
-  min: 0
+  ShadowBlowStatPrerequisites:
+  - stat: stealth
+    value: 100
+  - stat: meleeDamage
+    value: 20
+  ShadowBlowTypePrerequisites: []
+  ShadowBlowMorphPrerequisites: []

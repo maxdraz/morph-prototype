@@ -12,5 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Colour Change Prerequisite Data
   m_EditorClassIdentifier: Assembly-CSharp::ColourChangePrerequisiteData
-  minStealth: 30
-  minintelligence: 30
+  ColourChangeStatPrerequisites: []
+  ColourChangeTypePrerequisites: []
+  ColourChangeMorphPrerequisites: []
+  ShimmeringStatPrerequisites: []
+  ShimmeringTypePrerequisites: []
+  ShimmeringMorphPrerequisites: []
+  BioluminescentFlashStatPrerequisites: []
+  BioluminescentFlashTypePrerequisites: []
+  BioluminescentFlashMorphPrerequisites: []

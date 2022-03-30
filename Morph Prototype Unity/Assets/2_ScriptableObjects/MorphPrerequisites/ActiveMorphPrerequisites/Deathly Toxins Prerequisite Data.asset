@@ -12,13 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Deathly Toxins Prerequisite Data
   m_EditorClassIdentifier: Assembly-CSharp::DeathlyToxinsPrerequisiteData
-  DeathlyToxinsStatsPrerequisites:
-  - stat: 
-    value: 0
-  DeathlyToxinsMorphTypePrerequisites: []
+  DeathlyToxinsStatPrerequisites: []
+  DeathlyToxinsTypePrerequisites: []
   DeathlyToxinsMorphPrerequisites: []
-  ChemicalCocktailStatsPrerequisites:
-  - stat: 
-    value: 0
-  ChemicalCocktailMorphTypePrerequisites: []
+  ChemicalCocktailStatPrerequisites: []
+  ChemicalCocktailTypePrerequisites: []
   ChemicalCocktailMorphPrerequisites: []

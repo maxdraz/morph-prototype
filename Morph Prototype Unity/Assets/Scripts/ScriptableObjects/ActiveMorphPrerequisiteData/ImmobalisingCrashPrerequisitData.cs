@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Immobalising Crash Prerequisite Data", menuName = "Morph Prerequisite Data/Immobalising Crash")]
+[CreateAssetMenu(fileName = "Immobalising Crash Prerequisite Data", menuName = "Active Morph Prerequisite Data/Immobalising Crash")]
 public class ImmobalisingCrashPrerequisiteData: ScriptableObject
 {
 

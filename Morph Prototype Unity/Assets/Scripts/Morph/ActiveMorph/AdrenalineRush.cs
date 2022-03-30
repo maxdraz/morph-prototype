@@ -62,6 +62,6 @@ public class AdrenalineRush : ActiveMorph
         }
         var fortitude = loadout.GetComponent<Stats>().totalFortitude;
 
-        return fortitude >= prerequisiteData.AdrenalineRushStatsPrerequisites[0].value;
+        return fortitude >= prerequisiteData.AdrenalineRushStatPrerequisites[0].value;
     }
 }

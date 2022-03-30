@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Monstrous Mania Prerequisite Data
   m_EditorClassIdentifier: Assembly-CSharp::MonstrousManiaPrerequisiteData
-  minMeleeDamage: 30
-  minAgility: 30
+  MonstrousManiaStatPrerequisites: []
+  MonstrousManiaTypePrerequisites: []
+  MonstrousManiaMorphPrerequisites: []

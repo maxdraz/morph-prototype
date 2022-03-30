@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Crater Creature Prerequisite Data
   m_EditorClassIdentifier: Assembly-CSharp::CraterCreaturePrerequisiteData
-  minMeleeDamage: 30
+  CraterCreatureStatPrerequisites: []
+  CraterCreatureTypePrerequisites: []
+  CraterCreatureMorphPrerequisites: []

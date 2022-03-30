@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Rifting Leap Prerequisite Data
   m_EditorClassIdentifier: Assembly-CSharp::RiftingLeapPrerequisiteData
-  minAgility: 30
-  minToughness: 30
+  RiftingLeapStatPrerequisites: []
+  RiftingLeapTypePrerequisites: []
+  RiftingLeapMorphPrerequisites: []

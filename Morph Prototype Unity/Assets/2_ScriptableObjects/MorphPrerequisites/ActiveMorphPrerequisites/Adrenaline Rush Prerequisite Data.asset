@@ -12,11 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5181c2a0d89f3fd499f88a6123245f33, type: 3}
   m_Name: Adrenaline Rush Prerequisite Data
   m_EditorClassIdentifier: 
-  AdrenalineRushStatsPrerequisites:
-  - stat: fortitude
-    value: 30
-  AdrenalineRushMorphTypePrerequisites: []
+  AdrenalineRushStatPrerequisites: []
+  AdrenalineRushTypePrerequisites: []
   AdrenalineRushMorphPrerequisites: []
-  UnnaturalVigorStatsPrerequisites: []
-  UnnaturalVigorMorphTypePrerequisites: []
+  UnnaturalVigorStatPrerequisites: []
+  UnnaturalVigorTypePrerequisites: []
   UnnaturalVigorMorphPrerequisites: []

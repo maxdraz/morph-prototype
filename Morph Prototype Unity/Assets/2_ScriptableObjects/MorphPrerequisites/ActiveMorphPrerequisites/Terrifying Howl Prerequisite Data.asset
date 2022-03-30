@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Terrifying Howl Prerequisite Data
   m_EditorClassIdentifier: Assembly-CSharp::TerrifyingHowlPrerequisiteData
-  minIntimidation: 30
+  TerrifyingHowlStatPrerequisites: []
+  TerrifyingHowlTypePrerequisites: []
+  TerrifyingHowlMorphPrerequisites: []

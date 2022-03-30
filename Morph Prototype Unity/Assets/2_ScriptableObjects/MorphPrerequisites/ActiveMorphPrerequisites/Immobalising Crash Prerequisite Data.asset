@@ -12,10 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Immobalising Crash Prerequisite Data
   m_EditorClassIdentifier: Assembly-CSharp::ImmobalisingCrashPrerequisiteData
-  ImmobalisingCrashStatPrerequisites:
-  - stat: agility
-    value: 0
-  - stat: stealth
-    value: 0
+  ImmobalisingCrashStatPrerequisites: []
   ImmobalisingCrashTypePrerequisites: []
   ImmobalisingCrashMorphPrerequisites: []

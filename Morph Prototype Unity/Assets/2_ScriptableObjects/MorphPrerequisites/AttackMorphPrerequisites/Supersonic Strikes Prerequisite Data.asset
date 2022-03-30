@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Supersonic Strikes Prerequisite Data
   m_EditorClassIdentifier: Assembly-CSharp::SupersonicStrikesPrerequisiteData
-  min: 0
+  SupersonicStrikesStatPrerequisites:
+  - stat: agility
+    value: 20
+  SupersonicStrikesTypePrerequisites: []
+  SupersonicStrikesMorphPrerequisites: []

@@ -12,10 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 455cb8374619db341b4467fda908cfad, type: 3}
   m_Name: Battle Cry Prerequisite Data
   m_EditorClassIdentifier: 
-  BattleCryStatPrerequisites:
-  - stat: meleeDamage
-    value: 0
-  - stat: Intimidation
-    value: 0
+  BattleCryStatPrerequisites: []
   BattleCryTypePrerequisites: []
   BattleCryMorphPrerequisites: []

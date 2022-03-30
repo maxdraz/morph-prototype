@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-    [CreateAssetMenu(fileName = "Acid Eruption Prerequisite Data", menuName = "Morph Prerequisite Data/Acid Eruption")]
+    [CreateAssetMenu(fileName = "Acid Eruption Prerequisite Data", menuName = "Active Morph Prerequisite Data/Acid Eruption")]
     public class AcidEruptionPrerequisiteData: ScriptableObject
     {
     //Acid Eruption prerequisits
