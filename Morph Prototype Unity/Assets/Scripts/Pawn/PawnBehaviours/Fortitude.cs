@@ -8,8 +8,13 @@ public class Fortitude : MonoBehaviour
     float currentFortitude;
     float lastFortitudeValue;
 
+    //Decimal value: < 1, > 0
     public float fortitudeDamagePercentResistance;
+
     public float fortitudeDamageFlatResistance;
+    
+    //Decimal value: < 1, > 0
+    public float statusEffectDurationReduction;
 
     float fortitudeRegenDelay = 2f;
     float fortitudeRegenRate = 1f;
@@ -270,6 +275,7 @@ public class Fortitude : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        maxFortitude = stats.totalFortitude;
 
         if (currentFortitude > maxFortitude) 
         {

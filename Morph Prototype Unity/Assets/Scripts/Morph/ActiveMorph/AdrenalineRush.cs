@@ -53,15 +53,31 @@ public class AdrenalineRush : ActiveMorph
         GetComponent<Stamina>().AddStamina(adrenalineBoost);
     }
 
-    public override bool CheckStatPrerequisite(MorphLoadout loadout, int i)
+    public override bool CheckStatPrerequisites(MorphLoadout loadout, int statPrerequisiteArrayLength)
     {
+        int positiveResults = statPrerequisiteArrayLength;
+
         if (!prerequisiteData)
         {
             Debug.Log(gameObject.name + " no " + GetType().ToString() + " prerequisite data assigned!");
             return false;
         }
 
-        
-        return GetComponent<Stats>().FindStatValue(prerequisiteData.AdrenalineRushStatPrerequisites[i].stat) >= prerequisiteData.AdrenalineRushStatPrerequisites[i].value;
+        for (int i = 0; i <= statPrerequisiteArrayLength; i++) 
+        {
+            if (GetComponent<Stats>().FindStatValue(prerequisiteData.AdrenalineRushStatPrerequisites[i].stat) >= prerequisiteData.AdrenalineRushStatPrerequisites[i].value) 
+            {
+                positiveResults++;
+            }
+        }
+
+        if (positiveResults == statPrerequisiteArrayLength)
+        {
+            return true;
+        }
+        else 
+        {
+            return false;
+        }
     }
 }

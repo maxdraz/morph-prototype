@@ -142,6 +142,10 @@ public class DamageHandler : MonoBehaviour
         damageTakenSummary.FortitudeDamage -= fortitudeDamagePercentReduction;
         damageTakenSummary.FortitudeDamage -= fortitude.fortitudeDamageFlatResistance;
 
+        float statusEffectDurationReduction = damageTakenSummary.Duration *= fortitude.statusEffectDurationReduction;
+        damageTakenSummary.FortitudeDamage -= statusEffectDurationReduction;
+        
+
         fortitude.ApplyFortitudeDamage(damageTakenSummary);
         
         Debug.Log("applying " + damageTakenSummary.FortitudeDamage + " FortitudeDamage" + " to " + transform.name);
