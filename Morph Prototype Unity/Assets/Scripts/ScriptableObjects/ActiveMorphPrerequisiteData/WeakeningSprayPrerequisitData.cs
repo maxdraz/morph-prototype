@@ -5,5 +5,14 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Weakening Spray Prerequisite Data", menuName = "Morph Prerequisite Data/Weakening Spray")]
 public class WeakeningSprayPrerequisiteData: ScriptableObject
 {
-    public float minChemicalDamage = 30;
+    //Weakening Spray Barrage prerequisites
+    public StatPrerequisite[] WeakeningSprayStatPrerequisites;
+    public MorphTypePrerequisite[] WeakeningSprayTypePrerequisites;
+    public Morph[] WeakeningSprayMorphPrerequisites;
+
+
+    //Viscous Blast prerequisites
+    public StatPrerequisite[] ViscousBlastStatPrerequisites;
+    public MorphTypePrerequisite[] ViscousBlastTypePrerequisites;
+    public Morph[] ViscousBlastMorphPrerequisites;
 }

@@ -5,7 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Foul Fungus Prerequisite Data", menuName = "Morph Prerequisite Data/Foul Fungus")]
 public class FoulFungusPrerequisiteData : ScriptableObject
 {
-    public float minChemicalDamage = 30;
+    //Foul Fungus Barrage prerequisites
+    public StatPrerequisite[] FoulFungusStatPrerequisites;
+    public MorphTypePrerequisite[] FoulFungusTypePrerequisites;
+    public Morph[] FoulFungusMorphPrerequisites;
 }
 
 

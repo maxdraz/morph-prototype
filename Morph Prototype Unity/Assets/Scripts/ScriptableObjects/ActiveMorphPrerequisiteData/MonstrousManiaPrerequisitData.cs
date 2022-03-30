@@ -5,8 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Monstrous Mania Prerequisite Data", menuName = "Morph Prerequisite Data/Monstrous Mania")]
 public class MonstrousManiaPrerequisiteData: ScriptableObject
 {
-    public float minMeleeDamage = 30;
-    public float minAgility = 30;
+    //Monstrous Mania prerequisits
+    public StatPrerequisite[] MonstrousManiaStatPrerequisites;
+    public MorphTypePrerequisite[] MonstrousManiaTypePrerequisites;
+    public Morph[] MonstrousManiaMorphPrerequisites;
 }
 
 

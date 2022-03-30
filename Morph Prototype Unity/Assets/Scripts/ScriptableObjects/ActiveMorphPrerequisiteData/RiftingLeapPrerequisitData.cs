@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Rifting Leap Prerequisite Data", menuName = "Morph Prerequisite Data/Rifting Leap")]
 public class RiftingLeapPrerequisiteData : ScriptableObject
 {
-    public float minAgility = 30;
-    public float minToughness = 30;
+    //Rifting Leap Barrage prerequisites
+    public StatPrerequisite[] RiftingLeapStatPrerequisites;
+    public MorphTypePrerequisite[] RiftingLeapTypePrerequisites;
+    public Morph[] RiftingLeapMorphPrerequisites;
 }

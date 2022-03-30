@@ -5,5 +5,13 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Adrenaline Rush Prerequisite Data", menuName = "Morph Prerequisite Data/Adrenaline Rush")]
 public class AdrenalineRushPrerequisiteData : ScriptableObject
 {
-    public float minFortitude = 30;
+    //Adrenaline Rush prerequisits
+    public StatPrerequisite[] AdrenalineRushStatPrerequisites;
+    public MorphTypePrerequisite[] AdrenalineRushTypePrerequisites;
+    public Morph[] AdrenalineRushMorphPrerequisites;
+
+    //Unnatural Vigor prerequisits
+    public StatPrerequisite[] UnnaturalVigorStatPrerequisites;
+    public MorphTypePrerequisite[] UnnaturalVigorTypePrerequisites;
+    public Morph[] UnnaturalVigorMorphPrerequisites;
 }

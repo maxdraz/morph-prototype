@@ -5,8 +5,19 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Colour Change Prerequisite Data", menuName = "Morph Prerequisite Data/Colour Change")]
 public class ColourChangePrerequisiteData : ScriptableObject
 {
-    public float minStealth = 30;
-    public float minintelligence = 30;
+    //Colour Change prerequisits
+    public StatPrerequisite[] ColourChangeStatPrerequisites;
+    public MorphTypePrerequisite[] ColourChangeTypePrerequisites;
+    public Morph[] ColourChangeMorphPrerequisites;
 
+    //Shimmering prerequisits
+    public StatPrerequisite[] ShimmeringStatPrerequisites;
+    public MorphTypePrerequisite[] ShimmeringTypePrerequisites;
+    public Morph[] ShimmeringMorphPrerequisites;
+
+    //Bioluminescent Flash prerequisits
+    public StatPrerequisite[] BioluminescentFlashStatPrerequisites;
+    public MorphTypePrerequisite[] BioluminescentFlashTypePrerequisites;
+    public Morph[] BioluminescentFlashMorphPrerequisites;
 }
 
