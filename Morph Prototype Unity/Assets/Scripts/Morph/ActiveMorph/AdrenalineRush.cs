@@ -53,15 +53,15 @@ public class AdrenalineRush : ActiveMorph
         GetComponent<Stamina>().AddStamina(adrenalineBoost);
     }
 
-    public override bool CheckPrerequisites(MorphLoadout loadout)
+    public override bool CheckStatPrerequisite(MorphLoadout loadout, int i)
     {
         if (!prerequisiteData)
         {
-            print(gameObject.name + " no adrenaline prerequisite data assigned!");
+            Debug.Log(gameObject.name + " no " + GetType().ToString() + " prerequisite data assigned!");
             return false;
         }
-        var fortitude = loadout.GetComponent<Stats>().totalFortitude;
 
-        return fortitude >= prerequisiteData.AdrenalineRushStatPrerequisites[0].value;
+        
+        return GetComponent<Stats>().FindStatValue(prerequisiteData.AdrenalineRushStatPrerequisites[i].stat) >= prerequisiteData.AdrenalineRushStatPrerequisites[i].value;
     }
 }

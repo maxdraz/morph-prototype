@@ -8,6 +8,9 @@ public class Fortitude : MonoBehaviour
     float currentFortitude;
     float lastFortitudeValue;
 
+    public float fortitudeDamagePercentResistance;
+    public float fortitudeDamageFlatResistance;
+
     float fortitudeRegenDelay = 2f;
     float fortitudeRegenRate = 1f;
 

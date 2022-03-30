@@ -36,7 +36,7 @@ public class Morph : MonoBehaviour
         }
     }
 
-    public virtual bool CheckPrerequisites(MorphLoadout loadout)
+    public virtual bool CheckStatPrerequisite(MorphLoadout loadout, int i)
     {
         return true;
     }

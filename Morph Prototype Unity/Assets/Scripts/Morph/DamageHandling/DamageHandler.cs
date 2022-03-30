@@ -138,6 +138,10 @@ public class DamageHandler : MonoBehaviour
         if (!fortitude) return;
         if (damageTakenSummary.FortitudeDamage <= 0) return;
 
+        float fortitudeDamagePercentReduction = damageTakenSummary.FortitudeDamage *= fortitude.fortitudeDamagePercentResistance;
+        damageTakenSummary.FortitudeDamage -= fortitudeDamagePercentReduction;
+        damageTakenSummary.FortitudeDamage -= fortitude.fortitudeDamageFlatResistance;
+
         fortitude.ApplyFortitudeDamage(damageTakenSummary);
         
         Debug.Log("applying " + damageTakenSummary.FortitudeDamage + " FortitudeDamage" + " to " + transform.name);
