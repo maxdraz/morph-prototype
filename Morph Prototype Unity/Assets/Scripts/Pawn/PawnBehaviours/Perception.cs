@@ -45,7 +45,7 @@ public class Perception : MonoBehaviour
         {
 
 
-            if (hitCollider.gameObject.GetComponent<Stealth>() == true)
+            if (hitCollider.gameObject.GetComponent<Stealth>() == true && hitCollider.gameObject != gameObject)
             {
 
                 float enemyStealthValue = hitCollider.gameObject.GetComponent<Stealth>().finalStealthValue;

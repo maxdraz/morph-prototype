@@ -11,7 +11,6 @@ public class Perception_AI : MonoBehaviour
     float globalPerceptionModifier;
     public float perceptionToApply;
 
-    bool detecting;
 
     public bool showGizmo;
 
@@ -33,7 +32,6 @@ public class Perception_AI : MonoBehaviour
             simpleScanningBehaviour = GetComponent<SimpleScanningBehaviour>();
         }
 
-        detecting = true;
         StartCoroutine("PerceptionCheck");
     }
 
@@ -44,6 +42,9 @@ public class Perception_AI : MonoBehaviour
 
     IEnumerator PerceptionCheck()
     {
+        //Debug.Log(transform.name + "percieving...");
+
+
         yield return new WaitForSeconds(.5f);
 
         currentPerception = maxPerception * (1 + perceptionModifier);
@@ -53,9 +54,9 @@ public class Perception_AI : MonoBehaviour
 
         foreach (var hitCollider in hitColliders)
         {
+            Debug.Log(hitCollider.transform.name);
 
-
-            if (hitCollider.gameObject.GetComponent<Stealth>() == true && detecting)
+            if (hitCollider.gameObject.GetComponent<Stealth>() == true && hitCollider.gameObject != gameObject)
             {
 
                 float enemyStealthValue = hitCollider.gameObject.GetComponent<Stealth>().finalStealthValue;
@@ -65,12 +66,12 @@ public class Perception_AI : MonoBehaviour
                     if (visionCone.playerInSight == true)
                     {
                         perceptionToApply = currentPerception / (Mathf.Sqrt(dist) / 2);
-                        //Debug.Log("Percieving with LoS, " + transform.name + " is trying to detect you with " + perceptionToApply + " perception against your " + enemyStealthValue + " stealth");
+                        Debug.Log("Percieving with LoS, " + transform.name + " is trying to detect you with " + perceptionToApply + " perception against your " + enemyStealthValue + " stealth");
                     }
                     else
                     {
                         perceptionToApply = currentPerception / (Mathf.Sqrt(dist));
-                        //Debug.Log("Percieving without LoS, " + transform.name + " is trying to detect you with " + perceptionToApply + " perception against your " + enemyStealthValue + " stealth");
+                        Debug.Log("Percieving without LoS, " + transform.name + " is trying to detect you with " + perceptionToApply + " perception against your " + enemyStealthValue + " stealth");
                     }
                 
 
@@ -78,25 +79,19 @@ public class Perception_AI : MonoBehaviour
                 //Enemy is being detected quickly
                 if (perceptionToApply > enemyStealthValue * 3)
                 {
-                    if (detecting)
-                    {
-                        simpleScanningBehaviour.StartCoroutine("Investigate", hitCollider.gameObject.transform.position);
-                        //hitCollider.gameObject.GetComponent<Stealth>().AddDetection(3f);
-                        //Debug.Log("You are being detected quickly");
-                    }
-
-
+                    
+                    simpleScanningBehaviour.StartCoroutine("Investigate", hitCollider.gameObject.transform.position);
+                    hitCollider.gameObject.GetComponent<Stealth>().AddDetection(3f);
+                    Debug.Log(hitCollider.transform.name + " is being detected quickly");
+                    
                 }
                 else
                 {
                     //Enemy is being detected slowly
                     if (perceptionToApply > enemyStealthValue)
-                    {
-                        if (detecting)
-                        {
-                            //hitCollider.gameObject.GetComponent<Stealth>().AddDetection(1f);
-                            //Debug.Log("You are being detected slowly");
-                        }
+                    {                      
+                        hitCollider.gameObject.GetComponent<Stealth>().AddDetection(1f);
+                        Debug.Log(hitCollider.transform.name + " is being detected slowly");   
                     }
                 }
             }

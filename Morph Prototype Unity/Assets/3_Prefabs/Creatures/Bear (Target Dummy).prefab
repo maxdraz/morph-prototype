@@ -150,6 +150,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &-5957179811884822827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8919471696488907971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a55d7fa530770d844913aeb9f7e4ac0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxPerception: 0
+  perceptionModifier: 0
+  perceptionToApply: 0
+  showGizmo: 0
 --- !u!114 &-2356125314132062905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,6 +185,20 @@ MonoBehaviour:
   showGizmo: 0
   maxFear: 0
   currentFear: 0
+--- !u!114 &561395465400676141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8919471696488907971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ceb71d60c69b3e45b3685edb5a11645, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visionAngle: 30
+  playerInSight: 0
 --- !u!114 &1569399069950734787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,18 +211,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 659936b3db962184288eb74b0a6a3fc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-5957179811884822827
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8919471696488907971}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a55d7fa530770d844913aeb9f7e4ac0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  maxStealth: 0
+  stealthModifierWhileMoving: 0
+  flatStealthModifier: 0
+  percentageStealthModifier: 0
+  finalStealthValue: 0
+  stealthMode: 0
 --- !u!1001 &1672804490867782865
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -297,12 +321,84 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7772981257558734281}
     - target: {fileID: 6890688784229218089, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}
+      propertyPath: baseAgility
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6890688784229218089, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}
+      propertyPath: baseStealth
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 6890688784229218089, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}
+      propertyPath: baseFortitude
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6890688784229218089, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}
+      propertyPath: baseMaxEnergy
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6890688784229218089, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}
       propertyPath: baseMaxHealth
       value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 6890688784229218089, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}
+      propertyPath: baseMoveSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6890688784229218089, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}
       propertyPath: baseToughness
-      value: 80
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6890688784229218089, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}
+      propertyPath: baseMaxStamina
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6890688784229218089, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}
+      propertyPath: basePerception
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 6890688784229218089, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}
+      propertyPath: baseMeleeDamage
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6890688784229218089, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}
+      propertyPath: baseIntelligence
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6890688784229218089, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}
+      propertyPath: baseIntimidation
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 6890688784229218089, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}
+      propertyPath: baseRangedDamage
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6890688784229218089, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}
+      propertyPath: baseIceResistance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6890688784229218089, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}
+      propertyPath: baseAcidResistance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6890688784229218089, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}
+      propertyPath: baseChemicalDamage
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6890688784229218089, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}
+      propertyPath: baseFireResistance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6890688784229218089, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}
+      propertyPath: baseElementalDamage
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6890688784229218089, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}
+      propertyPath: basePoisonResistance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6890688784229218089, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}
+      propertyPath: baseElectricResistance
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7853902346194350098, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}
       propertyPath: m_Name
