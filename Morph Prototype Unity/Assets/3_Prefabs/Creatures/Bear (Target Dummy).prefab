@@ -150,6 +150,49 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &-2356125314132062905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8919471696488907971}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c244b8cbe10f5f44196b6f6c1d5d82ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxIntimidation: 0
+  currentIntimidation: 0
+  defenseModifier: 0
+  attackModifier: 0
+  showGizmo: 0
+  maxFear: 0
+  currentFear: 0
+--- !u!114 &1569399069950734787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8919471696488907971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 659936b3db962184288eb74b0a6a3fc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-5957179811884822827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8919471696488907971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a55d7fa530770d844913aeb9f7e4ac0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1672804490867782865
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -279,6 +322,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}
+--- !u!1 &8919471696488907971 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7853902346194350098, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}
+  m_PrefabInstance: {fileID: 1672804490867782865}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5928755211940747964 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5004015571522776685, guid: 1f433d9dbaa370b40b32780720ada702, type: 3}

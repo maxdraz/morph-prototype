@@ -90,8 +90,8 @@ public class DamageHandler : MonoBehaviour
     {
         health.SubtractHP(damageTakenSummary.TotalDamage);
         // apply fortitude damage
-        ApplyFortitudeDamage(damageTakenSummary.FortitudeDamage);
-            // apply relevant status effects ...
+        ApplyFortitudeDamage(damageTakenSummary.FortitudeDamageData);
+        // apply relevant status effects ...
         stamina.SubtractStamina(damageTakenSummary.StaminaDrained);
             // fortitude check for mortal blow 
         ApplyKnockback(in damageTakenSummary);
@@ -136,7 +136,10 @@ public class DamageHandler : MonoBehaviour
     private void ApplyFortitudeDamage(FortitudeDamageData damageTakenSummary)
     {
         if (!fortitude) return;
+        //Debug.Log("has fortitude script");
+        //Debug.Log("data has: " + damageTakenSummary.FortitudeDamage + " with an effect of " + damageTakenSummary.StatusEffect + " and a duration of " + damageTakenSummary.Duration);
         if (damageTakenSummary.FortitudeDamage <= 0) return;
+        
 
         float fortitudeDamagePercentReduction = damageTakenSummary.FortitudeDamage *= fortitude.fortitudeDamagePercentResistance;
         damageTakenSummary.FortitudeDamage -= fortitudeDamagePercentReduction;
@@ -147,8 +150,9 @@ public class DamageHandler : MonoBehaviour
         
 
         fortitude.ApplyFortitudeDamage(damageTakenSummary);
-        
-        Debug.Log("applying " + damageTakenSummary.FortitudeDamage + " FortitudeDamage" + " to " + transform.name);
+
+        //Debug.Log("applying " + damageTakenSummary.FortitudeDamage + " FortitudeDamage" + " to " + transform.name +
+        //    " with an effect of " + damageTakenSummary.StatusEffect + " and a duration of " + damageTakenSummary.Duration);
 
     }
 

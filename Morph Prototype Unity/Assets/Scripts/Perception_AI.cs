@@ -1,27 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 
-public class Perception : MonoBehaviour
+public class Perception_AI : MonoBehaviour
 {
-
     Vector3 center;
     public float maxPerception;
     public float perceptionModifier;
     private float currentPerception;
-    float globalPerceptionModifier;    
+    float globalPerceptionModifier;
     public float perceptionToApply;
 
     bool detecting;
 
     public bool showGizmo;
 
+    VisionCone visionCone;
+    SimpleScanningBehaviour simpleScanningBehaviour;
 
     public float CurrentPerception => currentPerception;
 
     public void Start()
     {
+
+        if (GetComponent<VisionCone>() == true)
+        {
+            visionCone = GetComponent<VisionCone>();
+        }
+
+        if (GetComponent<SimpleScanningBehaviour>() == true)
+        {
+            simpleScanningBehaviour = GetComponent<SimpleScanningBehaviour>();
+        }
 
         detecting = true;
         StartCoroutine("PerceptionCheck");
@@ -45,26 +55,37 @@ public class Perception : MonoBehaviour
         {
 
 
-            if (hitCollider.gameObject.GetComponent<Stealth>() == true)
+            if (hitCollider.gameObject.GetComponent<Stealth>() == true && detecting)
             {
 
                 float enemyStealthValue = hitCollider.gameObject.GetComponent<Stealth>().finalStealthValue;
                 float dist = Vector3.Distance(transform.position, hitCollider.transform.position);
 
-                    //We want to check to see if the sneaking enemy is within the field of view of the main camera, if so the perceptionToApply is doubled
-                    //if (visionCone.playerInSight == true)
-                    //{
+                
+                    if (visionCone.playerInSight == true)
+                    {
                         perceptionToApply = currentPerception / (Mathf.Sqrt(dist) / 2);
-                    //}
-                    //else
-                    //{
-                    //    perceptionToApply = currentPerception / Mathf.Sqrt(dist);
-                    //}
+                        //Debug.Log("Percieving with LoS, " + transform.name + " is trying to detect you with " + perceptionToApply + " perception against your " + enemyStealthValue + " stealth");
+                    }
+                    else
+                    {
+                        perceptionToApply = currentPerception / (Mathf.Sqrt(dist));
+                        //Debug.Log("Percieving without LoS, " + transform.name + " is trying to detect you with " + perceptionToApply + " perception against your " + enemyStealthValue + " stealth");
+                    }
+                
+
 
                 //Enemy is being detected quickly
                 if (perceptionToApply > enemyStealthValue * 3)
                 {
-                    hitCollider.gameObject.GetComponent<Stealth>().AddDetection(3f);
+                    if (detecting)
+                    {
+                        simpleScanningBehaviour.StartCoroutine("Investigate", hitCollider.gameObject.transform.position);
+                        //hitCollider.gameObject.GetComponent<Stealth>().AddDetection(3f);
+                        //Debug.Log("You are being detected quickly");
+                    }
+
+
                 }
                 else
                 {
@@ -75,7 +96,6 @@ public class Perception : MonoBehaviour
                         {
                             //hitCollider.gameObject.GetComponent<Stealth>().AddDetection(1f);
                             //Debug.Log("You are being detected slowly");
-
                         }
                     }
                 }
@@ -84,15 +104,15 @@ public class Perception : MonoBehaviour
         StartCoroutine("PerceptionCheck");
     }
 
-    
-    
-    
+
+
+
 
     private void OnDrawGizmos()
     {
         if (showGizmo)
         {
-            float radius = currentPerception/globalPerceptionModifier;
+            float radius = currentPerception / globalPerceptionModifier;
             center = this.gameObject.transform.position;
             Gizmos.color = new Color(1, 1, 1, 0.5f);
             Gizmos.DrawSphere(center, radius);
