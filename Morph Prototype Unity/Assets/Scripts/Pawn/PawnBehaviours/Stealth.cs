@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class Stealth : MonoBehaviour
 {
-    //This needs a value assigned to it from the stats script
     public int maxStealth;
     public float stealthModifierWhileMoving;
     public int flatStealthModifier;
@@ -60,6 +59,8 @@ public class Stealth : MonoBehaviour
             if (detectionAmount > 100)
             {
                 Debug.Log("You have been detected");
+                //detected bool mean that your detectionAmount has exceeded 100, which means you have been detected. The player creature will now enter combat with whatever has detected it,
+                //or the creature which has detected the player may choose to run away.
                 detected = true;
 
             }

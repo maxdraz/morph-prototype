@@ -38,8 +38,8 @@ public class Stealth_AI : MonoBehaviour
             if (detectionAmount > 100)
             {
                 Debug.Log(transform.name + " has been detected");
+                //detected bool mean that your detectionAmount has exceeded 100, which means you have been detected. The AI creature should now become visible to the player
                 detected = true;
-
             }
         }
 
