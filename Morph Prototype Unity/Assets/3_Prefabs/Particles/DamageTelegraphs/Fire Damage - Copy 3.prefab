@@ -293,17 +293,17 @@ ParticleSystem:
         - serializedVersion: 3
           time: 0
           value: 0
-          inSlope: 0.936337
-          outSlope: 0.936337
+          inSlope: 1.7317301
+          outSlope: 1.7317301
           tangentMode: 34
           weightedMode: 0
           inWeight: 0
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.49926335
-          value: 0.46747875
-          inSlope: 0.936337
-          outSlope: 0.936337
+          time: 0.3688286
+          value: 0.6387116
+          inSlope: 1.7317301
+          outSlope: 1.7317301
           tangentMode: 34
           weightedMode: 0
           inWeight: 0.33333334
@@ -324,8 +324,8 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 0.16128583
         - serializedVersion: 3
-          time: 0.47693634
-          value: 0.82520294
+          time: 0.3360668
+          value: 0.99643576
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -1354,8 +1354,8 @@ ParticleSystem:
         m_NumAlphaKeys: 2
   UVModule:
     serializedVersion: 2
-    enabled: 0
-    mode: 0
+    enabled: 1
+    mode: 1
     timeMode: 0
     fps: 30
     frameOverTime:
@@ -1473,7 +1473,10 @@ ParticleSystem:
     uvChannelMask: -1
     rowMode: 1
     sprites:
-    - sprite: {fileID: 0}
+    - sprite: {fileID: 3461408769138425665, guid: faf624aa242ba774a817df9700418eab, type: 3}
+    - sprite: {fileID: 9195909861677147625, guid: faf624aa242ba774a817df9700418eab, type: 3}
+    - sprite: {fileID: 6587189267733329428, guid: faf624aa242ba774a817df9700418eab, type: 3}
+    - sprite: {fileID: -7366427011478179054, guid: faf624aa242ba774a817df9700418eab, type: 3}
     flipU: 0
     flipV: 0
   VelocityModule:
@@ -4758,7 +4761,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2333ad3120911894b8cb7e2d33a4e304, type: 2}
+  - {fileID: 2100000, guid: 882b0d0c9ce4c8840a2d86dcfeca0415, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8776,7 +8779,7 @@ ParticleSystem:
         m_RotationOrder: 4
     maxLights: 20
   TrailModule:
-    enabled: 1
+    enabled: 0
     mode: 0
     ratio: 1
     lifetime:
@@ -8840,7 +8843,7 @@ ParticleSystem:
     dieWithParticles: 1
     sizeAffectsWidth: 1
     sizeAffectsLifetime: 0
-    inheritParticleColor: 1
+    inheritParticleColor: 0
     generateLightingData: 0
     splitSubEmitterRibbons: 0
     attachRibbonsToTransform: 0
@@ -9602,7 +9605,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 70322d5cca9cefa4383336c2bdab52ec, type: 2}
-  - {fileID: 2100000, guid: 8e6e6541db82e4642963f499eefd07d3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
