@@ -16,5 +16,7 @@ MonoBehaviour:
   AcidEruptionTypePrerequisites: []
   AcidEruptionMorphPrerequisites: []
   AcidVortexStatPrerequisites: []
-  AcidVortexTypePrerequisites: []
+  AcidVortexTypePrerequisites:
+  - type: 
+    amount: 0
   AcidVortexMorphPrerequisites: []
