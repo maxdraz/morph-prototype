@@ -33,7 +33,7 @@ public class DamageHandler : MonoBehaviour
     public event DebuffAboutToBeTakenPostModifierHandler DebuffAboutToBeTakenPostModifier;
     public delegate void DebuffAboutToBeDealtPostModifierHandler(ref IDamageType damageType, DamageHandler damageTaker);
     public event DebuffAboutToBeDealtPostModifierHandler DebuffAboutToBeDealtPostModifier;
-    
+
     public delegate void DamageAboutToBeTakenHandler(ref IDamageType damageType);
     public event DamageAboutToBeTakenHandler DamageAboutToBeTaken;
     public delegate void DamageHasBeenTakenHandler(in DamageTakenSummary damageSummary);
@@ -54,37 +54,37 @@ public class DamageHandler : MonoBehaviour
         parentRigidbody = GetComponentInParent<Rigidbody>();
         fortitude = GetComponent<Fortitude>();
 
-        if (!stats) Debug.LogWarning(transform.parent.name +" dmg handler couldnt find stats");
-        if(!health) Debug.LogWarning(transform.parent.name +" dmg handler couldnt find health");
+        if (!stats) Debug.LogWarning(transform.parent.name + " dmg handler couldnt find stats");
+        if (!health) Debug.LogWarning(transform.parent.name + " dmg handler couldnt find health");
     }
 
     public void ApplyDamage(IDamageType damageType, DamageHandler damageDealer)
     {
         var damageClone = damageType.Clone() as IDamageType;
-        
+
         // calculate miss
-            // miss chance = 1 - currentPerception/ maxPerception
-                // if aoe miss chance / 2
-            // roll 
-                // if miss 
-                    // OnAttackerMiss()
-                    // return;
-                    
+        // miss chance = 1 - currentPerception/ maxPerception
+        // if aoe miss chance / 2
+        // roll 
+        // if miss 
+        // OnAttackerMiss()
+        // return;
+
         // calculate dodge
-            // roll dodgeChance
-                // if aoe dodgeChance / 2
-                // Dodge()
-        
+        // roll dodgeChance
+        // if aoe dodgeChance / 2
+        // Dodge()
+
         damageDealer.DamageAboutToBeDealt?.Invoke(ref damageClone);
         DamageAboutToBeTaken?.Invoke(ref damageClone);
 
         ResistDamage(ref damageClone, damageDealer, out var damageTakenSummary);
         HandleDamageTaken(in damageTakenSummary);
-        
+
         damageDealer.DamageHasBeenDealt?.Invoke(in damageTakenSummary);
         DamageHasBeenTaken?.Invoke(in damageTakenSummary);
     }
-    
+
 
     private void HandleDamageTaken(in DamageTakenSummary damageTakenSummary)
     {
@@ -93,10 +93,12 @@ public class DamageHandler : MonoBehaviour
         ApplyFortitudeDamage(damageTakenSummary.FortitudeDamageData);
         // apply relevant status effects ...
         stamina.SubtractStamina(damageTakenSummary.StaminaDrained);
-            // fortitude check for mortal blow 
+        // fortitude check for mortal blow 
         ApplyKnockback(in damageTakenSummary);
         ApplyKnockup(in damageTakenSummary);
         ApplyPullTowards(in damageTakenSummary);
+
+        ApplyBleeding(in damageTakenSummary);
 
         VisualizeDamage(in damageTakenSummary);
 
@@ -104,8 +106,8 @@ public class DamageHandler : MonoBehaviour
 
     private void ApplyKnockback(in DamageTakenSummary damageTakenSummary)
     {
-        if(!parentRigidbody) return;   
-        if(damageTakenSummary.KnockbackForce <= 0) return;
+        if (!parentRigidbody) return;
+        if (damageTakenSummary.KnockbackForce <= 0) return;
 
         var forceDirectionNormalized = (transform.position - damageTakenSummary.DamageDealer.transform.position).normalized;
         parentRigidbody.AddForce(forceDirectionNormalized * damageTakenSummary.KnockbackForce, ForceMode.Impulse);
@@ -131,6 +133,47 @@ public class DamageHandler : MonoBehaviour
         parentRigidbody.AddForce(Vector3.up * damageTakenSummary.KnockupForce, ForceMode.Impulse);
         Debug.Log("applying " + damageTakenSummary.KnockupForce + " knockup" + " to " + transform.name);
 
+    }
+
+    private void ApplyBleeding(in DamageTakenSummary damageTakenSummary)
+    {
+        if (damageTakenSummary.BleedValue > 0)
+        {
+            float bleedResistance;
+
+            float bleedValueIn = damageTakenSummary.PhysicalDamage * damageTakenSummary.BleedValue;
+
+            if (GetComponent<Armor>().currentArmor > 0)
+            {
+                bleedResistance = stats.ToughnessModifier + .2f;
+            }
+            else
+            {
+                bleedResistance = stats.ToughnessModifier;
+            }
+
+            float bleedValueOut = bleedValueIn * (1 - bleedResistance);
+            //BleedValueOut will now be turned into stacks of bleeding. By dividing it by a number (based on typical damage values) and converting it to an int to round it off
+        }
+    }
+
+    IEnumerator Bleeding()
+    {
+        yield return new WaitForSeconds(.5f);
+
+        //float bleedingDamageToTake;
+
+        //(number of stacks / 5[rounded up]) * (health.maxHealth / 100[rounded up]) = bleedingDamageToTake;
+
+        //Play BleedingParticles
+        //bleedingStacks--;
+
+        //if (bleedingStacks > 0) 
+        //{
+            //StartCoroutine("Bleeding");
+        //}
+
+        yield return null;
     }
 
     private void ApplyFortitudeDamage(FortitudeDamageData damageTakenSummary)
@@ -240,7 +283,7 @@ public class DamageHandler : MonoBehaviour
             FireDamage = HandleFireDamage(ref damageType),
             IceDamage = HandleIceDamage(ref damageType),
             LightningDamage = HandleLightningDamage(ref damageType),
-            StaminaDrained = HandlerStaminaDrain(ref damageType),
+            StaminaDrained = HandleStaminaDrain(ref damageType),
             //FortitudeDamage = HandleFortitudeDamage(ref damageType),
             KnockbackForce = HandleKnockback(ref damageType),
             KnockupForce = HandleKnockup(ref damageType),
@@ -330,7 +373,7 @@ public class DamageHandler : MonoBehaviour
         return 0f;
     }
 
-    private float HandlerStaminaDrain(ref IDamageType damageType)
+    private float HandleStaminaDrain(ref IDamageType damageType)
     {
         if (damageType is IStaminaDrain staminaDrain)
         {

@@ -46,4 +46,5 @@ public class DamageTakenSummary
     public float KnockbackForce;
     public float KnockupForce;
     public float PullForce;
+    public int BleedValue;
 }
