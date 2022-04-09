@@ -137,8 +137,11 @@ public class DamageHandler : MonoBehaviour
 
     private void ApplyBleeding(in DamageTakenSummary damageTakenSummary)
     {
+        Debug.Log("Going to apply bleeding");
         if (damageTakenSummary.BleedValue > 0)
         {
+            Debug.Log("Bleed value > 0");
+
             float bleedResistance;
 
             float bleedValueIn = damageTakenSummary.PhysicalDamage * damageTakenSummary.BleedValue;
@@ -153,28 +156,16 @@ public class DamageHandler : MonoBehaviour
             }
 
             float bleedValueOut = bleedValueIn * (1 - bleedResistance);
-            //BleedValueOut will now be turned into stacks of bleeding. By dividing it by a number (based on typical damage values) and converting it to an int to round it off
+            float bleedingStacks = Mathf.Floor(bleedValueOut / 50f);
+            int bleedingStacksToAdd = Convert.ToInt32(bleedingStacks);
+
+            Debug.Log("bleedValueIn: " + bleedValueIn + "bleedValueOut: " + bleedValueOut + "bleedingStacks: " + bleedingStacks);
+
+            health.AddBleedingStacks(bleedingStacksToAdd);
         }
     }
 
-    IEnumerator Bleeding()
-    {
-        yield return new WaitForSeconds(.5f);
-
-        //float bleedingDamageToTake;
-
-        //(number of stacks / 5[rounded up]) * (health.maxHealth / 100[rounded up]) = bleedingDamageToTake;
-
-        //Play BleedingParticles
-        //bleedingStacks--;
-
-        //if (bleedingStacks > 0) 
-        //{
-            //StartCoroutine("Bleeding");
-        //}
-
-        yield return null;
-    }
+    
 
     private void ApplyFortitudeDamage(FortitudeDamageData damageTakenSummary)
     {

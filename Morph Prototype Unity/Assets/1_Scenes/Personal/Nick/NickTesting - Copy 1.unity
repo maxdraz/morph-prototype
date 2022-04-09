@@ -180,6 +180,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2641369630252998500, guid: 17294641915b125489525c675901fd49, type: 3}
+      propertyPath: bleedingParticles
+      value: 
+      objectReference: {fileID: 516005857}
+    - target: {fileID: 2641369630252998500, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: healthGainParticles
       value: 
       objectReference: {fileID: 6930605194700628132, guid: 4a3d3e81401ad964482ebb7e3d46aa65, type: 3}
@@ -479,6 +483,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
+      propertyPath: limbWeaponMorph
+      value: 
+      objectReference: {fileID: 4162056114496953622, guid: 981e189a38256264a96e7fe65eb7cb33, type: 3}
     - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: activeMorphs.Array.size
       value: 2
@@ -1936,6 +1944,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e941a7aaa4e97a747a762e11708aa881, type: 3}
+--- !u!1 &516005857 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8478239197445916513, guid: ae83d91b6064e324fb80efad48d731a8, type: 3}
+  m_PrefabInstance: {fileID: 1523838220}
+  m_PrefabAsset: {fileID: 0}
 --- !u!850595691 &599586974
 LightingSettings:
   m_ObjectHideFlags: 0

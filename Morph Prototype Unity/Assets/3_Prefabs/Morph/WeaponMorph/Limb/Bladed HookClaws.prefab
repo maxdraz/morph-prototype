@@ -1,0 +1,141 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2758341750618594366
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2948827112554249346}
+  - component: {fileID: 4162056114496953622}
+  m_Layer: 0
+  m_Name: Bladed HookClaws
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2948827112554249346
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2758341750618594366}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.3383594, y: -2.162489, z: 6.444426}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4162056114496953622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2758341750618594366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ec17451da513ab4ba5768fc3b3aa16f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  morphPrerequisites: []
+  baseDamage: 10
+  lightAttacks:
+  - onHitEffects:
+    - onHitEffect: {fileID: 11400000, guid: 8042360282fd711448456307dcca30a9, type: 2}
+      data:
+        id: 0
+    - onHitEffect: {fileID: 11400000, guid: e0bbfbff7e2f2d141a82aeae0584e8b7, type: 2}
+      data:
+        id: 1
+    requiresUnlock: 0
+    hitboxType: 0
+    duration: 0.2
+    inputWindowBeforeAttackEnd: 0.2
+    inputWindowAfterAttackEnd: 0.2
+    lightAttackFX: {fileID: 11400000, guid: 35f9e4f041d6d1840ac3aa9455beccd9, type: 2}
+  - onHitEffects:
+    - onHitEffect: {fileID: 11400000, guid: 8042360282fd711448456307dcca30a9, type: 2}
+      data:
+        id: 2
+    - onHitEffect: {fileID: 11400000, guid: e0bbfbff7e2f2d141a82aeae0584e8b7, type: 2}
+      data:
+        id: 3
+    requiresUnlock: 0
+    hitboxType: 0
+    duration: 0.2
+    inputWindowBeforeAttackEnd: 0.2
+    inputWindowAfterAttackEnd: 0.2
+    lightAttackFX: {fileID: 11400000, guid: fb8b01664b90e2047a5c1db255b735a2, type: 2}
+  heavyAttacks:
+  - onHitEffects:
+    - onHitEffect: {fileID: 11400000, guid: bc9de6788c7ba604b926ea54a61f3a3a, type: 2}
+      data:
+        id: 4
+    - onHitEffect: {fileID: 11400000, guid: 8042360282fd711448456307dcca30a9, type: 2}
+      data:
+        id: 5
+    requiresUnlock: 0
+    hitboxType: 0
+    duration: 0.5
+    inputWindowBeforeAttackEnd: 0
+    inputWindowAfterAttackEnd: 0
+    chargeUpTime: 0.2
+    heavyAttackFX: {fileID: 11400000, guid: c797868f173af0b47aef73a57f4c6af1, type: 2}
+  - onHitEffects:
+    - onHitEffect: {fileID: 11400000, guid: 07c1d2a94d32627438cb64119be2833b, type: 2}
+      data:
+        id: 6
+    - onHitEffect: {fileID: 11400000, guid: b63270b1420e4da45ad73e386f4b9511, type: 2}
+      data:
+        id: 7
+    requiresUnlock: 0
+    hitboxType: 0
+    duration: 0.2
+    inputWindowBeforeAttackEnd: 0
+    inputWindowAfterAttackEnd: 0
+    chargeUpTime: 0.2
+    heavyAttackFX: {fileID: 11400000, guid: c797868f173af0b47aef73a57f4c6af1, type: 2}
+  references:
+    version: 1
+    00000000:
+      type: {class: PhysicalDamageData, ns: , asm: Assembly-CSharp}
+      data:
+        strikeModifier: 1
+        weaponCritChance: 0
+    00000001:
+      type: {class: BleedingData, ns: , asm: Assembly-CSharp}
+      data:
+        bleedValue: 1
+    00000002:
+      type: {class: PhysicalDamageData, ns: , asm: Assembly-CSharp}
+      data:
+        strikeModifier: 1
+        weaponCritChance: 0
+    00000003:
+      type: {class: BleedingData, ns: , asm: Assembly-CSharp}
+      data:
+        bleedValue: 1
+    00000004:
+      type: {class: PullTowardsData, ns: , asm: Assembly-CSharp}
+      data:
+        pullForce: 100
+    00000005:
+      type: {class: PhysicalDamageData, ns: , asm: Assembly-CSharp}
+      data:
+        strikeModifier: 2
+        weaponCritChance: 0
+    00000006:
+      type: {class: PiercingDamageData, ns: , asm: Assembly-CSharp}
+      data:
+        strikeModifier: 3
+        weaponCritChance: 0
+    00000007:
+      type: {class: KnockupData, ns: , asm: Assembly-CSharp}
+      data:
+        knockupForce: 100

@@ -26,6 +26,10 @@ public class Health : MonoBehaviour
 
     DamageHandler damageHandler;
 
+    int bleedingStacks;
+    bool bleeding;
+    [SerializeField] private GameObject bleedingParticles;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -46,8 +50,10 @@ public class Health : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-
+        if (!bleeding && bleedingStacks > 0) 
+        {
+            StartCoroutine("Bleeding");
+        }
     }
 
     private void SetMaxHP() 
@@ -159,5 +165,32 @@ public class Health : MonoBehaviour
     {
         yield return new WaitForSeconds(t);
         healthBar.gameObject.SetActive(false);
+    }
+
+    public int AddBleedingStacks(int stacksToAdd) 
+    {
+        bleedingStacks += stacksToAdd;
+
+        return bleedingStacks;
+    }
+
+    IEnumerator Bleeding()
+    {
+        bleeding = true;
+        yield return new WaitForSeconds(1f);
+
+        float baseBleedingDamageToTake = .01f;
+
+        float bleedingDamageFromStacks = Mathf.Floor(bleedingStacks / 5) / 100;
+        float totalBleedingDamageToTake = baseBleedingDamageToTake + bleedingDamageFromStacks;
+        float healthToLose = Mathf.Ceil(maxHealth / 100) * totalBleedingDamageToTake;
+        SubtractHP(healthToLose);
+
+        ObjectPooler.Instance.GetOrCreatePooledObject(bleedingParticles);
+        bleedingStacks--;
+
+        bleeding = false;
+
+        yield return null;
     }
 }
