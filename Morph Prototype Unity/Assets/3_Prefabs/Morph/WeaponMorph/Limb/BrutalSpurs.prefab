@@ -117,4 +117,4 @@ MonoBehaviour:
       type: {class: PhysicalDamageData, ns: , asm: Assembly-CSharp}
       data:
         strikeModifier: 3
-        weaponCritChance: 0
+        weaponCritChance: 20

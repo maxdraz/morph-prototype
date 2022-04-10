@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 580dd4d44759bb249912a2cb03ebdac8, type: 3}
-  m_Name: Brutal Spurs Light FX 2
+  m_Script: {fileID: 11500000, guid: c4eee4c856c4e734cae1f3d812587a9c, type: 3}
+  m_Name: Bladed HookClaws_Heavy Attack FX 2
   m_EditorClassIdentifier: 
-  OnStartParticles: {fileID: 1478952173392413093, guid: 9415b2c9b0b1fc047b03ff0860bd3a14, type: 3}
+  OnStartParticles: {fileID: 2958382506425729755, guid: 1fe202cf301965c4c8973ef9761d3db2, type: 3}
   OnUpdateParticles: {fileID: 0}
   OnFinishParticles: {fileID: 0}
-  OnHitParticles: {fileID: 3312002042461435831, guid: b16bbdb7d29e8864795e1219de0c3520, type: 3}
+  OnHitParticles: {fileID: 100000, guid: 6c2d1ce4ee9cfd64697f0306a606d133, type: 3}
+  OnChargeParticles: {fileID: 0}

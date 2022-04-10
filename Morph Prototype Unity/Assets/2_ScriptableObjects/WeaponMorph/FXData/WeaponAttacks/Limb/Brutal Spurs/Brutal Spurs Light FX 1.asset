@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 580dd4d44759bb249912a2cb03ebdac8, type: 3}
-  m_Name: Brutal Spurs Light FX 3
+  m_Name: Brutal Spurs Light FX 1
   m_EditorClassIdentifier: 
-  OnStartParticles: {fileID: 8478523813292877897, guid: 10cfea5cac1a2b84ba826a8a4558aadc, type: 3}
+  OnStartParticles: {fileID: 1478952173392413093, guid: 2ed516fcff4a65a439415a0e61c3e090, type: 3}
   OnUpdateParticles: {fileID: 0}
   OnFinishParticles: {fileID: 0}
-  OnHitParticles: {fileID: 3312002042461435831, guid: 0a91143fc7d30054f95a283f3902ab7d, type: 3}
+  OnHitParticles: {fileID: 100000, guid: ac2da289507dd914f97484bec377541c, type: 3}

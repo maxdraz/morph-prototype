@@ -58,7 +58,7 @@ MonoBehaviour:
     duration: 0.2
     inputWindowBeforeAttackEnd: 0.2
     inputWindowAfterAttackEnd: 0.2
-    lightAttackFX: {fileID: 11400000, guid: 35f9e4f041d6d1840ac3aa9455beccd9, type: 2}
+    lightAttackFX: {fileID: 11400000, guid: efd18808d91f6db4da311e981a293c32, type: 2}
   - onHitEffects:
     - onHitEffect: {fileID: 11400000, guid: 8042360282fd711448456307dcca30a9, type: 2}
       data:
@@ -71,7 +71,7 @@ MonoBehaviour:
     duration: 0.2
     inputWindowBeforeAttackEnd: 0.2
     inputWindowAfterAttackEnd: 0.2
-    lightAttackFX: {fileID: 11400000, guid: fb8b01664b90e2047a5c1db255b735a2, type: 2}
+    lightAttackFX: {fileID: 11400000, guid: c3fb0d4eed8795945b31a779d72c561a, type: 2}
   heavyAttacks:
   - onHitEffects:
     - onHitEffect: {fileID: 11400000, guid: bc9de6788c7ba604b926ea54a61f3a3a, type: 2}
@@ -86,7 +86,7 @@ MonoBehaviour:
     inputWindowBeforeAttackEnd: 0
     inputWindowAfterAttackEnd: 0
     chargeUpTime: 0.2
-    heavyAttackFX: {fileID: 11400000, guid: c797868f173af0b47aef73a57f4c6af1, type: 2}
+    heavyAttackFX: {fileID: 11400000, guid: 5f5c6590671941e489e08adc6621787f, type: 2}
   - onHitEffects:
     - onHitEffect: {fileID: 11400000, guid: 07c1d2a94d32627438cb64119be2833b, type: 2}
       data:
@@ -100,7 +100,7 @@ MonoBehaviour:
     inputWindowBeforeAttackEnd: 0
     inputWindowAfterAttackEnd: 0
     chargeUpTime: 0.2
-    heavyAttackFX: {fileID: 11400000, guid: c797868f173af0b47aef73a57f4c6af1, type: 2}
+    heavyAttackFX: {fileID: 11400000, guid: e4779d6b8bb9f554385cead58d618902, type: 2}
   references:
     version: 1
     00000000:
