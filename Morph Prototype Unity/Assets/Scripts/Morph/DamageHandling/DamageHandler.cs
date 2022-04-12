@@ -278,7 +278,8 @@ public class DamageHandler : MonoBehaviour
             //FortitudeDamage = HandleFortitudeDamage(ref damageType),
             KnockbackForce = HandleKnockback(ref damageType),
             KnockupForce = HandleKnockup(ref damageType),
-            PullForce = HandlePullTowards(ref damageType)
+            PullForce = HandlePullTowards(ref damageType),
+            BleedValue = HandleBleeding(ref damageType)
 
         };
 
@@ -399,6 +400,16 @@ public class DamageHandler : MonoBehaviour
         if (damageType is IPullTowards pullTowards)
         {
             return pullTowards.PullForce;
+        }
+
+        return 0;
+    }
+
+    private int HandleBleeding(ref IDamageType damageType)
+    {
+        if (damageType is IBleeding bleeding)
+        {
+            return bleeding.BleedValue;
         }
 
         return 0;
