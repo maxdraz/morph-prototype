@@ -145,6 +145,7 @@ public class DamageHandler : MonoBehaviour
             float bleedResistance;
 
             float bleedValueIn = damageTakenSummary.PhysicalDamage * damageTakenSummary.BleedValue;
+            print(bleedValueIn);
 
             if (GetComponent<Armor>().currentArmor > 0)
             {

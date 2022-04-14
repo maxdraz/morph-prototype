@@ -83,7 +83,7 @@ MonoBehaviour:
     requiresUnlock: 0
     hitboxType: 0
     duration: 0.5
-    inputWindowBeforeAttackEnd: 0
+    inputWindowBeforeAttackEnd: 0.2
     inputWindowAfterAttackEnd: 0
     chargeUpTime: 0.2
     heavyAttackFX: {fileID: 11400000, guid: 5f5c6590671941e489e08adc6621787f, type: 2}
@@ -97,7 +97,7 @@ MonoBehaviour:
     requiresUnlock: 0
     hitboxType: 0
     duration: 0.2
-    inputWindowBeforeAttackEnd: 0
+    inputWindowBeforeAttackEnd: 0.2
     inputWindowAfterAttackEnd: 0
     chargeUpTime: 0.2
     heavyAttackFX: {fileID: 11400000, guid: e4779d6b8bb9f554385cead58d618902, type: 2}

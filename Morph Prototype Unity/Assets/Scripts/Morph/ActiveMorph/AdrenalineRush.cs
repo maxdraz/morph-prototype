@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -65,10 +66,11 @@ public class AdrenalineRush : ActiveMorph
 
         for (int i = 0; i <= statPrerequisiteArrayLength; i++) 
         {
-            if (GetComponent<Stats>().FindStatValue(prerequisiteData.AdrenalineRushStatPrerequisites[i].stat) >= prerequisiteData.AdrenalineRushStatPrerequisites[i].value) 
-            {
-                positiveResults++;
-            }
+          // if (GetComponent<Stats>().FindStatValue(prerequisiteData.AdrenalineRushStatPrerequisites[i].stat) >= prerequisiteData.AdrenalineRushStatPrerequisites[i].value) 
+         //   {
+           //     positiveResults++;
+                
+           // }
         }
 
         if (positiveResults == statPrerequisiteArrayLength)

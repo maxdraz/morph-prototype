@@ -486,7 +486,7 @@ PrefabInstance:
     - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: limbWeaponMorph
       value: 
-      objectReference: {fileID: 6675012289007957567, guid: dfde551b8c3af0d4ab0d05cfc2c4608e, type: 3}
+      objectReference: {fileID: 4162056114496953622, guid: 981e189a38256264a96e7fe65eb7cb33, type: 3}
     - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: activeMorphs.Array.size
       value: 2
