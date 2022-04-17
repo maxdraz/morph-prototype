@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,16 @@ public class Morph : MonoBehaviour
     public Morph[] morphPrerequisites;
 
     //public Prerequisite[] statPrerequisits;
+
+    protected virtual void Start()
+    {
+        
+    }
+
+    protected virtual void Update()
+    {
+        
+    }
 
     public bool CheckMorphPrerequisites(MorphLoadout loadout)
     {

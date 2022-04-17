@@ -20,18 +20,12 @@ public class WeaponMorph : Morph
     }
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
         AddMorphDamageToPhysicalOnHitEffects();
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    
     //attack handling
     public WeaponAttack GetCurrentAttack(bool isLightAttack)
     {
