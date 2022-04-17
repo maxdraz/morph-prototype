@@ -22,8 +22,10 @@ public class NormalPhysicalDamageOnHitEffect : OnHitEffect
                 0,
                 damageDealer.Stats.globalCritChance,
                 physicalDamage.WeaponCritChance, // this is weaponCritChance. Find the crit chance for this strike in the weapons combo (can be 0)
-                0); // this is attackCritChance. Find the crit chance for this attack (can be 0)
+                0, out var isCrit); // this is attackCritChance. Find the crit chance for this attack (can be 0)
 
+            physicalDamage.IsCrit = isCrit;
+            
             damageTaker.ApplyDamage(data, damageDealer);
         }
     }

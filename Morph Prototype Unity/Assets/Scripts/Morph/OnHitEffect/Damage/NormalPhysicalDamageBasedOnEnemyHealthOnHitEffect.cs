@@ -49,6 +49,8 @@ public class NormalDamageBasedOnEnemyHealthData : OnHitEffectData, IPhysicalDama
         set => weaponCritChance = value;
     }
 
+    public bool IsCrit { get; set; }
+
     public bool ConditionsAreMet(Health damageTakerHealth)
     {
         return (applyIfBelowPercentage && damageTakerHealth.CurrentHealthAsPercentage <= enemyHealthPercentage)

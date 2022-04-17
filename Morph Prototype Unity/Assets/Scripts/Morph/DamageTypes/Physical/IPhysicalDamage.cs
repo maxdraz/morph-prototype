@@ -8,4 +8,5 @@ public interface IPhysicalDamage : IDamageType
     public float StrikeModifier { get; set; }
     public float PhysicalDamageDealt { get; set; }
     public float WeaponCritChance { get; set; }
+    public bool IsCrit { get; set; }
 }

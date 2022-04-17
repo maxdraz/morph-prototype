@@ -32,19 +32,22 @@ public class PiercingDamageData : OnHitEffectData, IPiercingDamage
         set => weaponCritChance = value;
     }
 
-    public PiercingDamageData(float morphDamage =0, float strikeModifier=1, float physicalDamageDealt = 0, float weaponCritChance = 0)
+    public bool IsCrit { get; set; }
+
+    public PiercingDamageData(float morphDamage =0, float strikeModifier=1, float physicalDamageDealt = 0, float weaponCritChance = 0, bool isCrit = false)
     {
         this.morphDamage = morphDamage;
         this.strikeModifier = strikeModifier;
         this.physicalDamageDealt = physicalDamageDealt;
         this.weaponCritChance = weaponCritChance;
+        IsCrit = isCrit;
     }
     
     
     
     public override object Clone()
     {
-        return new PiercingDamageData(morphDamage, strikeModifier, physicalDamageDealt, weaponCritChance);
+        return new PiercingDamageData(morphDamage, strikeModifier, physicalDamageDealt, weaponCritChance, IsCrit);
     }
 
     

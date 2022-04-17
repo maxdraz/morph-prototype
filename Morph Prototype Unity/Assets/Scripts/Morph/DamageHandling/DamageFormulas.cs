@@ -5,9 +5,9 @@ using UnityEngine;
 public static class DamageFormulas
 {
     public static float PhysicalDamage(float weaponMorphDamage, float meleeDamageStatModifier, float strikeModifier,
-        float percentageBonusDamage, float flatBonusDamage, float globalCritChance, float weaponCritChance, float attackCritChance)
+        float percentageBonusDamage, float flatBonusDamage, float globalCritChance, float weaponCritChance, float attackCritChance, out bool isCrit)
     {
-
+        isCrit = false;
         weaponMorphDamage = weaponMorphDamage * (1 + (meleeDamageStatModifier + strikeModifier + percentageBonusDamage) + flatBonusDamage);
 
         float totalCritChance = globalCritChance + weaponCritChance + attackCritChance;
@@ -15,10 +15,12 @@ public static class DamageFormulas
 
         if (totalCritChance > 0)
         {
-            if (RollCrit(totalCritChance) == true)
+            isCrit = RollCrit(totalCritChance);
+            if(isCrit)
             {
                 weaponMorphDamage = weaponMorphDamage * 2.5f;
             }
+            Debug.Log("Crit:" + isCrit);
         }
 
         float damageOut = weaponMorphDamage;

@@ -80,11 +80,11 @@ public class DamageHandler : MonoBehaviour
 
         ResistDamage(ref damageClone, damageDealer, out var damageTakenSummary);
         HandleDamageTaken(in damageTakenSummary);
-
+        
+        print("CRIT CRIT CRIT: " + damageTakenSummary.IsCriticalHit);
         damageDealer.DamageHasBeenDealt?.Invoke(in damageTakenSummary);
         DamageHasBeenTaken?.Invoke(in damageTakenSummary);
     }
-
 
     private void HandleDamageTaken(in DamageTakenSummary damageTakenSummary)
     {
@@ -165,8 +165,6 @@ public class DamageHandler : MonoBehaviour
             health.AddBleedingStacks(bleedingStacksToAdd);
         }
     }
-
-    
 
     private void ApplyFortitudeDamage(FortitudeDamageData damageTakenSummary)
     {
@@ -259,6 +257,8 @@ public class DamageHandler : MonoBehaviour
         damageDealer.DebuffAboutToBeDealtPostModifier?.Invoke(ref damageTypeClone, this);
         DebuffAboutToBeTakenPostModifier?.Invoke(ref damageTypeClone, damageDealer);
     }
+    
+    // Resistances
     private void ResistDamage(ref IDamageType damageType, DamageHandler damageDealer, out DamageTakenSummary damageTakenSummary)
     {
         damageTakenSummary = new DamageTakenSummary
@@ -267,9 +267,9 @@ public class DamageHandler : MonoBehaviour
             DamageTaker = this,
             DamageDealer = damageDealer,
 
-            PhysicalDamage = HandlePhysicalDamage(ref damageType),
+            PhysicalDamage = HandlePhysicalDamage(ref damageType, out bool isCrit),
+            IsCriticalHit = isCrit,
             LifeStealDamage = HandleLifestealDamage(ref damageType),
-
             PoisonDamage = HandlePoisonDamage(ref damageType),
             AcidDamage = HandleAcidDamage(ref damageType),
             FireDamage = HandleFireDamage(ref damageType),
@@ -287,11 +287,13 @@ public class DamageHandler : MonoBehaviour
         damageTakenSummary.IsFatalBlow = health.WillDieFromThisDamage(damageTakenSummary.TotalDamage);
         
     }
-
-    private float HandlePhysicalDamage(ref IDamageType damageType)
+    private float HandlePhysicalDamage(ref IDamageType damageType, out bool isCrit)
     {
+        isCrit = false;
+        
         if (damageType is IPhysicalDamage physicalDamage)
         {
+            isCrit = physicalDamage.IsCrit;
             bool isPiercing = damageType is IPiercingDamage;
             
             bool isImpact = damageType is IImpactDamage;
@@ -305,7 +307,6 @@ public class DamageHandler : MonoBehaviour
                 armor.HasArmor,
                 0);
         }
-
         return 0f;
     }
     private float HandleFireDamage(ref IDamageType damageType)
@@ -348,7 +349,6 @@ public class DamageHandler : MonoBehaviour
         }
         return 0f;
     }
-    
     private void HandleFortitudeDamage(ref IDamageType damageType)
     {
         if (damageType is IFortitudeDamage fortitudeDamage)
@@ -356,7 +356,6 @@ public class DamageHandler : MonoBehaviour
            // Resists
         }
     }
-    
     private float HandleLifestealDamage(ref IDamageType damageType)
     {
         if (damageType is ILifestealDamage lifestealDamage)
@@ -365,7 +364,6 @@ public class DamageHandler : MonoBehaviour
         }
         return 0f;
     }
-
     private float HandleStaminaDrain(ref IDamageType damageType)
     {
         if (damageType is IStaminaDrain staminaDrain)
@@ -375,7 +373,6 @@ public class DamageHandler : MonoBehaviour
 
         return 0;
     }
-
     private float HandleKnockback(ref IDamageType damageType)
     {
         if (damageType is IKnockback knockback)
@@ -385,7 +382,6 @@ public class DamageHandler : MonoBehaviour
 
         return 0;
     }
-
     private float HandleKnockup(ref IDamageType damageType)
     {
         if (damageType is IKnockUp knockup)
@@ -395,7 +391,6 @@ public class DamageHandler : MonoBehaviour
 
         return 0;
     }
-
     private float HandlePullTowards(ref IDamageType damageType)
     {
         if (damageType is IPullTowards pullTowards)
@@ -405,7 +400,6 @@ public class DamageHandler : MonoBehaviour
 
         return 0;
     }
-
     private int HandleBleeding(ref IDamageType damageType)
     {
         if (damageType is IBleeding bleeding)

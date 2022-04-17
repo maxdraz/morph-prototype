@@ -32,16 +32,19 @@ public class PhysicalDamageData : OnHitEffectData, IPhysicalDamage
         set => weaponCritChance = value;
     }
 
-    public PhysicalDamageData(float strikeModifier = 2f, float morphDamage = 0, float physicalDamageDealt = 0, float weaponCritChance = 0)
+    public bool IsCrit { get; set; }
+
+    public PhysicalDamageData(float strikeModifier = 2f, float morphDamage = 0, float physicalDamageDealt = 0, float weaponCritChance = 0, bool isCrit = false)
     {
         this.morphDamage = morphDamage;
         this.strikeModifier = strikeModifier;
         this.physicalDamageDealt = physicalDamageDealt;
         this.weaponCritChance = weaponCritChance;
+        IsCrit = isCrit;
     }
     
     public override object Clone()
     {
-        return new PhysicalDamageData(strikeModifier, morphDamage, physicalDamageDealt, weaponCritChance);
+        return new PhysicalDamageData(strikeModifier, morphDamage, physicalDamageDealt, weaponCritChance, IsCrit);
     }
 }
