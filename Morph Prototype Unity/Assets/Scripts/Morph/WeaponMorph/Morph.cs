@@ -5,9 +5,17 @@ using UnityEngine;
 
 public class Morph : MonoBehaviour
 {
-    public Morph[] morphPrerequisites;
+    public enum MorphType
+    {
+        Melee,
+        Ranged,
+        Fire,
+        Ice,
+        Electric,
+        Poison,
+        Acid
+    }
 
-    //public Prerequisite[] statPrerequisits;
 
     protected virtual void Start()
     {
@@ -19,38 +27,14 @@ public class Morph : MonoBehaviour
         
     }
 
-    public bool CheckMorphPrerequisites(MorphLoadout loadout)
-    {
-        int morphPrerequisitesCount = 0;
+    
 
-        if (morphPrerequisites.Length == 0)
-            return true;
-
-        if (morphPrerequisites.Length > 0)
-        {
-            foreach (Morph morph in morphPrerequisites)
-            {
-                if (loadout.GetPrerequisiteMorphByName(morph.name.ToString()) == true)
-                {
-                    morphPrerequisitesCount++;
-                }
-                
-            }
-        }
-        if (morphPrerequisitesCount == morphPrerequisites.Length)
-        {
-            return true;
-        }
-        else 
-        {
-            return false;
-        }
-    }
-
-    public virtual bool CheckStatPrerequisites(MorphLoadout loadout, int statPrerequisitesToCheck)
+    public virtual bool CheckPrerequisites(MorphLoadout loadout, int statPrerequisitesToCheck, int morphTypePrerequisiteArrayLength, int morphPrerequisites)
     {
         return true;
     }
+
+
 
     // public bool CheckStatPrerequisites(Stats stats) {
    //

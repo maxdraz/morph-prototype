@@ -9,10 +9,10 @@ public class MorphLoadout : MonoBehaviour
     [SerializeField] private LimbWeaponMorph limbWeaponMorph;
     [SerializeField] private HeadWeaponMorph headWeaponMorph;
     [SerializeField] private TailWeaponMorph tailWeaponMorph;
-    
+
     [SerializeField] private ActiveMorph[] activeMorphs;
     [SerializeField] private List<PassiveMorph> passiveMorphs;
-    
+
     [HideInInspector] public LimbWeaponMorph LimbWeaponMorph;
     [HideInInspector] public HeadWeaponMorph HeadWeaponMorph;
     [HideInInspector] public TailWeaponMorph TailWeaponMorph;
@@ -24,98 +24,98 @@ public class MorphLoadout : MonoBehaviour
         AddMorphsAtStart();
 
     }
-    void AddMorphsAtStart() 
+    void AddMorphsAtStart()
     {
-            AddMorphToLoadout(limbWeaponMorph);
-            AddMorphToLoadout(headWeaponMorph);
-            AddMorphToLoadout(tailWeaponMorph);
+        AddMorphToLoadout(limbWeaponMorph);
+        AddMorphToLoadout(headWeaponMorph);
+        AddMorphToLoadout(tailWeaponMorph);
 
-            for (int i = 0; i < activeMorphs.Length; i++)
+        for (int i = 0; i < activeMorphs.Length; i++)
+        {
+            var currentActiveMorph = activeMorphs[i];
+            if (currentActiveMorph)
             {
-                var currentActiveMorph = activeMorphs[i];
-                if (currentActiveMorph)
-                {
-                    activeMorphs[i] = UtilityFunctions.CopyComponent(activeMorphs[i], gameObject);
-                }
-            }
-
-            for (int i = 0; i < passiveMorphs.Count; i++)
-            {
-                var currentPassiveMorph = passiveMorphs[i];
-                if (currentPassiveMorph)
-                    passiveMorphs[i] = UtilityFunctions.CopyComponent(passiveMorphs[i], gameObject);
+                activeMorphs[i] = UtilityFunctions.CopyComponent(activeMorphs[i], gameObject);
             }
         }
 
-    
+        for (int i = 0; i < passiveMorphs.Count; i++)
+        {
+            var currentPassiveMorph = passiveMorphs[i];
+            if (currentPassiveMorph)
+                passiveMorphs[i] = UtilityFunctions.CopyComponent(passiveMorphs[i], gameObject);
+        }
+    }
 
-   // public void AddMorphToLoadoutAtRuntime(Morph morphPrefab) 
-   // {
-   //     if (!morphPrefab) return;
-   //
-   //     if (morphPrefab.CheckMorphPrerequisites(GetComponent<MorphLoadout>()) == true)
-   //     {
-   //         if (morphPrefab.CheckStatPrerequisites(GetComponent<Stats>()) == true)
-   //         {
-   //
-   //             if (morphPrefab is LimbWeaponMorph limbMorph)
-   //             {
-   //                 limbWeaponMorph = UtilityFunctions.CopyComponent(limbMorph, gameObject);
-   //
-   //                 if (limbWeaponMorph)
-   //                 {
-   //                     MorphLoadoutChanged?.Invoke(limbWeaponMorph);
-   //                 }
-   //             }
-   //             else if (morphPrefab is HeadWeaponMorph headMorph)
-   //             {
-   //                 headWeaponMorph = UtilityFunctions.CopyComponent(headMorph, gameObject);
-   //                 if (headWeaponMorph)
-   //                 {
-   //                     MorphLoadoutChanged?.Invoke(headWeaponMorph);
-   //                 }
-   //             }
-   //             else if (morphPrefab is TailWeaponMorph tailMorph)
-   //             {
-   //                 tailWeaponMorph = UtilityFunctions.CopyComponent(tailMorph, gameObject);
-   //                 if (tailWeaponMorph)
-   //                 {
-   //                     MorphLoadoutChanged?.Invoke(tailWeaponMorph);
-   //                 }
-   //             }
-   //             else if (morphPrefab is PassiveMorph passiveMorph)
-   //             {
-   //                 var morph = UtilityFunctions.CopyComponent(passiveMorph, gameObject);
-   //                 if (morph)
-   //                 {
-   //                     passiveMorphs.Add(morph);
-   //                     MorphLoadoutChanged?.Invoke(morph);
-   //                 }
-   //             }
-   //             else if (morphPrefab is ActiveMorph activeMorph)
-   //             {
-   //                 var morph = UtilityFunctions.CopyComponent(activeMorph, gameObject);
-   //                 if (morph)
-   //                 {
-   //                     //activeMorphs.Add(morph);
-   //                     MorphLoadoutChanged?.Invoke(morph);
-   //                 }
-   //             }
-   //         }
-   //         else
-   //         {
-   //             Debug.Log(transform.name + " does not have the required stats to attach " + morphPrefab.name);
-   //         }
-   //     }
-   //     else
-   //     {
-   //         Debug.Log(transform.name + " does not have the required morphs to attach " + morphPrefab.name);
-   //     }
-   //}
+
+
+    // public void AddMorphToLoadoutAtRuntime(Morph morphPrefab) 
+    // {
+    //     if (!morphPrefab) return;
+    //
+    //     if (morphPrefab.CheckMorphPrerequisites(GetComponent<MorphLoadout>()) == true)
+    //     {
+    //         if (morphPrefab.CheckStatPrerequisites(GetComponent<Stats>()) == true)
+    //         {
+    //
+    //             if (morphPrefab is LimbWeaponMorph limbMorph)
+    //             {
+    //                 limbWeaponMorph = UtilityFunctions.CopyComponent(limbMorph, gameObject);
+    //
+    //                 if (limbWeaponMorph)
+    //                 {
+    //                     MorphLoadoutChanged?.Invoke(limbWeaponMorph);
+    //                 }
+    //             }
+    //             else if (morphPrefab is HeadWeaponMorph headMorph)
+    //             {
+    //                 headWeaponMorph = UtilityFunctions.CopyComponent(headMorph, gameObject);
+    //                 if (headWeaponMorph)
+    //                 {
+    //                     MorphLoadoutChanged?.Invoke(headWeaponMorph);
+    //                 }
+    //             }
+    //             else if (morphPrefab is TailWeaponMorph tailMorph)
+    //             {
+    //                 tailWeaponMorph = UtilityFunctions.CopyComponent(tailMorph, gameObject);
+    //                 if (tailWeaponMorph)
+    //                 {
+    //                     MorphLoadoutChanged?.Invoke(tailWeaponMorph);
+    //                 }
+    //             }
+    //             else if (morphPrefab is PassiveMorph passiveMorph)
+    //             {
+    //                 var morph = UtilityFunctions.CopyComponent(passiveMorph, gameObject);
+    //                 if (morph)
+    //                 {
+    //                     passiveMorphs.Add(morph);
+    //                     MorphLoadoutChanged?.Invoke(morph);
+    //                 }
+    //             }
+    //             else if (morphPrefab is ActiveMorph activeMorph)
+    //             {
+    //                 var morph = UtilityFunctions.CopyComponent(activeMorph, gameObject);
+    //                 if (morph)
+    //                 {
+    //                     //activeMorphs.Add(morph);
+    //                     MorphLoadoutChanged?.Invoke(morph);
+    //                 }
+    //             }
+    //         }
+    //         else
+    //         {
+    //             Debug.Log(transform.name + " does not have the required stats to attach " + morphPrefab.name);
+    //         }
+    //     }
+    //     else
+    //     {
+    //         Debug.Log(transform.name + " does not have the required morphs to attach " + morphPrefab.name);
+    //     }
+    //}
 
     public void AddMorphToLoadout(Morph morphPrefab)
     {
-        
+
 
         if (morphPrefab is LimbWeaponMorph limbMorph)
         {
@@ -156,9 +156,9 @@ public class MorphLoadout : MonoBehaviour
     public void RemoveLimbWeaponMorph()
     {
         Destroy(limbWeaponMorph);
-       // limbWeaponMorph = null;
-           
-       // MorphLoadoutChanged?.Invoke(limbWeaponMorph);
+        // limbWeaponMorph = null;
+
+        // MorphLoadoutChanged?.Invoke(limbWeaponMorph);
     }
 
     public ActiveMorph GetActiveMorph(int index)
@@ -168,41 +168,99 @@ public class MorphLoadout : MonoBehaviour
         return activeMorphs[index];
     }
 
+    
+
+    public bool GetMorphsByType(string type, int amount)
+    {
+        //string typeToSearchFor = Enum.GetName(typeof(MorphType), type);
+        //int amountFound = 0;
+        //
+        //foreach (ActiveMorph activeMorph in activeMorphs)
+        //{
+        //    if (activeMorph.prere().Equals(typeToSearchFor))
+        //    {
+        //        amountToFind++;
+        //    }
+        //}
+        //foreach (PassiveMorph passiveMorph in passiveMorphs)
+        //{
+        //    if (passiveMorph.type.Equals(typeToSearchFor))
+        //    {
+        //        amountToFind++;
+        //    }
+        //}
+        //
+        //if (LimbWeaponMorph.type.Equals(typeToSearchFor))
+        //{
+        //    amountToFind++;
+        //}
+        //
+        //
+        //if (tailWeaponMorph.type.Equals(typeToSearchFor))
+        //{
+        //    amountToFind++;
+        //}
+        //
+        //
+        //if (headWeaponMorph.type.Equals(typeToSearchFor))
+        //{
+        //    amountToFind++;
+        //}
+        //
+        //if (amountToFind == amount) 
+        //{
+            return true;
+        //}
+        //else 
+        //{
+        //    return false;
+        //}
+    }
+
     public bool GetPrerequisiteMorphByName(string morphName)
     {
+        bool morphFound = false;
+
         foreach (ActiveMorph activeMorph in activeMorphs)
         {
             if (activeMorph.name.Equals(morphName))
             {
-                return true;
+                morphFound = true;
             }
         }
         foreach (PassiveMorph passiveMorph in passiveMorphs)
         {
             if (passiveMorph.name.Equals(morphName))
             {
-                return true;
+                morphFound = true;
             }
         }
         
         if (LimbWeaponMorph.name.Equals(morphName))
         {
-            return true;
+            morphFound = true;
         }
         
         
         if (tailWeaponMorph.name.Equals(morphName))
         {
-            return true;
+            morphFound = true;
         }
         
         
         if (headWeaponMorph.name.Equals(morphName))
         {
+            morphFound = true;
+        }
+
+        if (morphFound)
+        {
             return true;
         }
-        
-        return false;
+        else
+        { 
+            return false; 
+        }
     }
 
     public void RemoveMorphFromLoadout(Morph morphObj)

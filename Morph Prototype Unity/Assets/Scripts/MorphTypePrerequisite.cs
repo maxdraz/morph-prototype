@@ -3,13 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+public enum MorphType
+{
+  Melee,
+  Ranged,
+  Fire,
+  Ice,
+  Electric,
+  Poison,
+  Acid
+}
+
 
 [Serializable] public struct MorphTypePrerequisite
 {
-    public string type;
+    public MorphType type;
     public int amount;
 
-    public MorphTypePrerequisite(string a, int b)
+    public MorphTypePrerequisite(MorphType a, int b)
     {
         type = a;
         amount = b;
