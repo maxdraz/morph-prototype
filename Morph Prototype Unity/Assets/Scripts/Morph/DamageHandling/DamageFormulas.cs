@@ -71,17 +71,6 @@ public static class DamageFormulas
 
     static bool RollCrit(float critChance)
     {
-        Debug.Log("Roll for crit with totalcritchance of: " + critChance);
-
-        if (Random.Range(0, 100) <= critChance)
-        {
-            Debug.Log("Critical Hit!!!");
-            return true;
-        }
-        else 
-        {
-            Debug.Log("critical hit roll failed...");
-            return false;
-        }
+        return Random.Range(0f, 100f) <= critChance;
     }
 }
