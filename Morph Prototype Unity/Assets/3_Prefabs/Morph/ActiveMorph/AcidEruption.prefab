@@ -107,6 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9af5141a17a9a9f46a30811901844b11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  morphPrerequisites: []
   staminaCost: 10
   energyCost: 15
   testInput: 276
@@ -226,6 +227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf095b187e7775c4e80715105f5ab18d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  morphPrerequisites: []
   staminaCost: 40
   energyCost: 40
   testInput: 275
@@ -237,6 +239,4 @@ MonoBehaviour:
     duration: 15
     currentTime: 0
     loop: 0
-  acidVortexParticle: {fileID: 1641033305696970572, guid: 96d53b4a2d1dba343a2f19b8b1523cee, type: 3}
-  damage: 300
-  explosionDelay: 3.6
+  acidVortexAOE: {fileID: 0}

@@ -5,9 +5,17 @@ using System;
 
 public enum StatType
 {
-    Health,
-    Defence,
-    MeleeDamage
+    MeleeDamage,
+    RangedDamage,
+    ElementalDamage,
+    ChemicalDamage,
+    Fortitude,
+    Toughness,
+    Intimidation,
+    Agility,
+    Stealth,
+    Perception,
+    Intelligence
 }
 
 [Serializable] public struct StatPrerequisite 
