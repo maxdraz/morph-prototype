@@ -8,7 +8,7 @@ public class BattleReady : PassiveMorph
     [SerializeField] private int meleeDamageStatBonus = 5;
     [SerializeField] private int rangedDamageStatBonus = 5;
     [SerializeField] private bool unlockBattleMaster = true;
-    [SerializeField] private float citChance = 5;
+    [SerializeField] private float critChance = 5;
 
 
     Stats stats;
@@ -23,7 +23,7 @@ public class BattleReady : PassiveMorph
 
         if (unlockBattleMaster) 
         {
-            //gain critchance
+            stats.globalCritChance += critChance;
         }
     }
 
@@ -37,7 +37,7 @@ public class BattleReady : PassiveMorph
 
         if (unlockBattleMaster)
         {
-            //lose critchance
+            stats.globalCritChance -= critChance;
         }
     }
 
@@ -49,7 +49,7 @@ public class BattleReady : PassiveMorph
 
     private void ChangeRangedDamageStat(int amountToAdd)
     {
-        stats.FlatStatChange("meleeDamage", amountToAdd);
+        stats.FlatStatChange("rangedDamage", amountToAdd);
     }
 
 

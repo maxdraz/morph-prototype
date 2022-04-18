@@ -26,8 +26,7 @@ public class Endurance : PassiveMorph
 
     private void ChangeMaxStaminaStat(float amountToAdd)
     {
-        stamina.maxStaminaBonus += amountToAdd;
-        BroadcastMessage("SetMaxStamina");
+        BroadcastMessage("SetMaxStamina", amountToAdd);
     }
 
     private void OnDisable()
