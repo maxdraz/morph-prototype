@@ -13,7 +13,7 @@ public class Resilience : PassiveMorph
 
     Stats stats;
 
-    public override void Start() 
+    protected override void Start() 
     {
         stats = GetComponent<Stats>();
         GenerateResistanceBoosts();

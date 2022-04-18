@@ -27,7 +27,7 @@ public class EndlessAggression : PassiveMorph
     [SerializeField] private float explosiveAngerCooldownPeriod;
 
 
-    void Start()
+    protected override void Start()
     {
         stamina = GetComponent<Stamina>();
         energy = GetComponent<Energy>();
