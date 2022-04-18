@@ -27,14 +27,17 @@ public class EndlessAggression : PassiveMorph
     [SerializeField] private float explosiveAngerCooldownPeriod;
 
 
-    void Awake()
+    void Start()
     {
         stamina = GetComponent<Stamina>();
         energy = GetComponent<Energy>();
 
-        StartCoroutine(AssignDamageHandlerCoroutine());
         ChangeMaxStaminaStat(maxStaminaStatBonus);
+    }
 
+    private void OnEnable()
+    {
+        StartCoroutine(SubscribeToEventsCoroutine());
     }
 
     private void OnDisable()
@@ -58,7 +61,6 @@ public class EndlessAggression : PassiveMorph
 
     private void OnDamageHasBeenDealt(in DamageTakenSummary damageTakenSummary)
     {
-
         if (damageTakenSummary.IsCriticalHit)
         {
             GainStaminaAndEnergy();
@@ -128,7 +130,7 @@ public class EndlessAggression : PassiveMorph
         yield return null;
     }
 
-    private IEnumerator AssignDamageHandlerCoroutine()
+    private IEnumerator SubscribeToEventsCoroutine()
     {
         yield return new WaitForEndOfFrame();
         GetReferencesAndSubscribeToEvenets();
@@ -151,7 +153,6 @@ public class EndlessAggression : PassiveMorph
         if (damageHandler)
         {
             damageHandler.DamageHasBeenDealt -= OnDamageHasBeenDealt;
-            
         }
 
         damageHandler = null;
@@ -159,11 +160,11 @@ public class EndlessAggression : PassiveMorph
 
     private void OnDrawGizmos()
     {
-        explosionSpawner.OnDrawGizmos(transform);
+        explosionSpawner?.OnDrawGizmos(transform);
     }
 
     private void OnValidate()
     {
-        explosionSpawner.OnValidate();
+        explosionSpawner?.OnValidate();
     }
 }
