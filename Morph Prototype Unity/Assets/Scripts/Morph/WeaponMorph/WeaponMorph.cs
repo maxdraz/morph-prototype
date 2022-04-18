@@ -20,7 +20,7 @@ public class WeaponMorph : Morph
     }
 
     // Start is called before the first frame update
-    protected override void Start()
+    public override void Start()
     {
         AddMorphDamageToPhysicalOnHitEffects();
 

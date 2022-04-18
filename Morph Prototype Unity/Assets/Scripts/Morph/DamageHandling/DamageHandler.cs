@@ -132,10 +132,10 @@ public class DamageHandler : MonoBehaviour
     }
     private void ApplyBleeding(in DamageTakenSummary damageTakenSummary)
     {
-        Debug.Log("Going to apply bleeding");
+        
         if (damageTakenSummary.BleedValue > 0)
         {
-            Debug.Log("Bleed value > 0");
+            Debug.Log("Going to apply bleeding, with a bleed value of: " + damageTakenSummary.BleedValue);
 
             float bleedResistance;
 

@@ -11,17 +11,22 @@ public class Endurance : PassiveMorph
 
     Stamina stamina;
 
-    private void OnEnable()
+    private void Start()
     {
         stamina = GetComponent<Stamina>();
-
-        StartCoroutine(AssignDamageHandlerCoroutine());
         ChangeMaxStaminaStat(staminaPercentageStatBonus);
 
-        if (unlockMoxie) 
+        if (unlockMoxie)
         {
             stamina.bonusStaminaRegen += staminaPercentageRegenBonus;
         }
+    }
+
+    private void OnEnable()
+    {
+
+        StartCoroutine(AssignDamageHandlerCoroutine());
+        
     }
 
     private void ChangeMaxStaminaStat(float amountToAdd)
@@ -31,10 +36,8 @@ public class Endurance : PassiveMorph
 
     private void OnDisable()
     {
-        stamina = GetComponent<Stamina>();
 
         UnsubscribeFromEvents();
-        ChangeMaxStaminaStat(-staminaPercentageStatBonus);
 
         if (unlockMoxie)
         {

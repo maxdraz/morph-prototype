@@ -17,12 +17,12 @@ public class Morph : MonoBehaviour
     }
 
 
-    protected virtual void Start()
+    public virtual void Start()
     {
         
     }
 
-    protected virtual void Update()
+    public virtual void Update()
     {
         
     }
