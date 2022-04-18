@@ -10,6 +10,7 @@ public class DebuffHandler : MonoBehaviour
    [SerializeField] private PoisonDebuff poisonDebuff;
    [SerializeField] private AcidDebuff acidDebuff;
     [SerializeReference] private List<Debuff> activeDebuffs;
+    [SerializeReference] private List<Debuff> activeFixedUpdateDebuffs;
 
     private float poisonStack;
     private float acidStack;
@@ -24,6 +25,7 @@ public class DebuffHandler : MonoBehaviour
         damageHandler = GetComponent<DamageHandler>();
 
         activeDebuffs = new List<Debuff>();
+        activeFixedUpdateDebuffs = new List<Debuff>();
         poisonDebuff = new PoisonDebuff(new LegacyTimer(1,true));
         acidDebuff = new AcidDebuff(new LegacyTimer(5),new LegacyTimer(1, true));
     }
@@ -46,6 +48,16 @@ public class DebuffHandler : MonoBehaviour
             damageHandler.ApplyDebuff(new PoisonDamageData(2000), damageHandler);
         }
         
+        ProcessDebuffsOnUpdate();
+    }
+
+    private void FixedUpdate()
+    {
+        ProcessDebuffsOnFixedUpdate();
+    }
+
+    private void ProcessDebuffsOnUpdate()
+    {
         if(activeDebuffs.Count <= 0) return;
 
         for (int i = 0; i < activeDebuffs.Count; i++)
@@ -68,7 +80,17 @@ public class DebuffHandler : MonoBehaviour
                 activeDebuffs.RemoveAt(i--);
             }
         }
+    }
 
+    private void ProcessDebuffsOnFixedUpdate()
+    {
+        for (int i = 0; i < activeFixedUpdateDebuffs.Count; i++)
+        {
+            var debuff = activeFixedUpdateDebuffs[i];
+            
+            
+            if(!debuff.ShouldTick()) continue;
+        }
     }
 
     private void OnDebuffAboutToBeTakenPostModifier(ref IDamageType damageType, DamageHandler damageDealer)

@@ -164,8 +164,6 @@ public class ColourChange : ActiveMorph
         }
     }
 
-    
-
     private void GetReferencesAndSubscribeToEvenets()
     {
         if (damageHandler) return;

@@ -117,7 +117,6 @@ public class DamageHandler : MonoBehaviour
     {
         if (!parentRigidbody) return;
         if (damageTakenSummary.PullForce <= 0) return;
-        Debug.LogWarning("PULL FORCE!!! " + damageTakenSummary.PullForce);
         var forceDirectionNormalized = ((transform.position - damageTakenSummary.DamageDealer.transform.position) * -1).normalized;
         parentRigidbody.AddForce(forceDirectionNormalized * damageTakenSummary.PullForce, ForceMode.Impulse);
         Debug.Log("applying " + damageTakenSummary.PullForce + " pullforce" + " to " + transform.name);
