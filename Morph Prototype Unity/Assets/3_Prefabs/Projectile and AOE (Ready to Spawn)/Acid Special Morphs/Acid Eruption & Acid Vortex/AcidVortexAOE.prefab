@@ -4914,9 +4914,9 @@ GameObject:
   - component: {fileID: 4929186290561105299}
   - component: {fileID: 2657889873619494600}
   - component: {fileID: 4525996710735787803}
-  - component: {fileID: 4065154484487272654}
   - component: {fileID: -57251023229303088}
   - component: {fileID: 523282976745897248}
+  - component: {fileID: 3532389489217968139}
   m_Layer: 0
   m_Name: AcidVortexAOE
   m_TagString: Untagged
@@ -4960,14 +4960,14 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
   looping: 1
-  prewarm: 0
+  prewarm: 1
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 3.6
+    scalar: 0
     minScalar: 0
     maxCurve:
       serializedVersion: 2
@@ -9731,39 +9731,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 6
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4065154484487272654
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1641033305696970572}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c91765d03db130943b09733b77054bce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onHitEffects:
-  - onHitEffect: {fileID: 11400000, guid: b6472a054bbbbe54aa1c805c8ea62e20, type: 2}
-    data:
-      id: 0
-  - onHitEffect: {fileID: 11400000, guid: 5646e0d34a12b324696121349b8b67e8, type: 2}
-    data:
-      id: 1
-  damageDealer: {fileID: 0}
-  collider: {fileID: 0}
-  delayPeriod: 0
-  duration: 0.2
-  references:
-    version: 1
-    00000000:
-      type: {class: AcidDamageData, ns: , asm: Assembly-CSharp}
-      data:
-        acidDamage: 200
-    00000001:
-      type: {class: KnockbackData, ns: , asm: Assembly-CSharp}
-      data:
-        knockbackForce: 500
 --- !u!114 &-57251023229303088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9771,7 +9738,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1641033305696970572}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88143e55ec389e24aa4464fa0f22138f, type: 3}
   m_Name: 
@@ -9790,7 +9757,11 @@ MonoBehaviour:
     00000000:
       type: {class: PullTowardsData, ns: , asm: Assembly-CSharp}
       data:
-        pullForce: 300
+        pullTowardsDebuff:
+          duration: 2
+          target: {fileID: 2303381517779054324}
+          pullForce: 10
+          forceMode: 5
 --- !u!114 &523282976745897248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9805,6 +9776,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useParticleSystemLifetime: 0
   duration: 7
+--- !u!114 &3532389489217968139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641033305696970572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a13d3cc4fe493a7418c0be3996146557, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onPull:
+  - onHitEffect: {fileID: 11400000, guid: bc9de6788c7ba604b926ea54a61f3a3a, type: 2}
+    data:
+      id: 0
+  onPush:
+  - onHitEffect: {fileID: 11400000, guid: 5646e0d34a12b324696121349b8b67e8, type: 2}
+    data:
+      id: 1
+  references:
+    version: 1
+    00000000:
+      type: {class: PullTowardsData, ns: , asm: Assembly-CSharp}
+      data:
+        pullTowardsDebuff:
+          duration: 2
+          target: {fileID: 2303381517779054324}
+          pullForce: 40
+          forceMode: 5
+    00000001:
+      type: {class: KnockbackData, ns: , asm: Assembly-CSharp}
+      data:
+        knockbackForce: 100
 --- !u!1 &3500388265911624051
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,8 +9,8 @@ public class DebuffHandler : MonoBehaviour
     private DamageHandler damageHandler;
    [SerializeField] private PoisonDebuff poisonDebuff;
    [SerializeField] private AcidDebuff acidDebuff;
-    [SerializeReference] private List<Debuff> activeDebuffs;
-    [SerializeReference] private List<Debuff> activeFixedUpdateDebuffs;
+    [SerializeReference] private List<Debuff> debuffs;
+    [SerializeReference] private List<PhysicsDebuff> physicsDebuffs;
 
     private float poisonStack;
     private float acidStack;
@@ -24,8 +24,8 @@ public class DebuffHandler : MonoBehaviour
     {
         damageHandler = GetComponent<DamageHandler>();
 
-        activeDebuffs = new List<Debuff>();
-        activeFixedUpdateDebuffs = new List<Debuff>();
+        debuffs = new List<Debuff>();
+        physicsDebuffs = new List<PhysicsDebuff>();
         poisonDebuff = new PoisonDebuff(new LegacyTimer(1,true));
         acidDebuff = new AcidDebuff(new LegacyTimer(5),new LegacyTimer(1, true));
     }
@@ -48,21 +48,26 @@ public class DebuffHandler : MonoBehaviour
             damageHandler.ApplyDebuff(new PoisonDamageData(2000), damageHandler);
         }
         
-        ProcessDebuffsOnUpdate();
+        ProcessDebuffs();
     }
 
     private void FixedUpdate()
     {
-        ProcessDebuffsOnFixedUpdate();
+        ProcessPhysicsDebuffs();
     }
 
-    private void ProcessDebuffsOnUpdate()
+    public void AddPhysicsDebuff(PhysicsDebuff debuff)
     {
-        if(activeDebuffs.Count <= 0) return;
+        physicsDebuffs.Add(debuff);
+    }
 
-        for (int i = 0; i < activeDebuffs.Count; i++)
+    private void ProcessDebuffs()
+    {
+        if(debuffs.Count <= 0) return;
+
+        for (int i = 0; i < debuffs.Count; i++)
         {
-            var debuff = activeDebuffs[i];
+            var debuff = debuffs[i];
             debuff.CountdownTimer(Time.deltaTime);
 
             if (debuff.ShouldTick())
@@ -77,19 +82,20 @@ public class DebuffHandler : MonoBehaviour
 
             if (debuff.IsFinished())
             {
-                activeDebuffs.RemoveAt(i--);
+                debuffs.RemoveAt(i--);
             }
         }
     }
 
-    private void ProcessDebuffsOnFixedUpdate()
+    private void ProcessPhysicsDebuffs()
     {
-        for (int i = 0; i < activeFixedUpdateDebuffs.Count; i++)
+        for (int i = 0; i < physicsDebuffs.Count; i++)
         {
-            var debuff = activeFixedUpdateDebuffs[i];
+            var debuff = physicsDebuffs[i];
+            debuff.OnFixedUpdate(Time.deltaTime);
             
-            
-            if(!debuff.ShouldTick()) continue;
+            if(debuff.CheckIfFinished())
+                physicsDebuffs.RemoveAt(i--);
         }
     }
 
@@ -101,7 +107,7 @@ public class DebuffHandler : MonoBehaviour
             {
                 if (poisonDebuff.IsFinished())
                 {
-                    activeDebuffs.Add(poisonDebuff);
+                    debuffs.Add(poisonDebuff);
                 }
                 poisonDebuff.AddDebuffContributor(damageDealer,poisonDamage.PoisonDamage);
             }
@@ -114,7 +120,7 @@ public class DebuffHandler : MonoBehaviour
                 if (acidDebuff.IsFinished())
                 {
                     acidDebuff.OnStart(acidDamage.AcidDOTDuration);
-                    activeDebuffs.Add(acidDebuff);
+                    debuffs.Add(acidDebuff);
                     
                 }
                 
@@ -131,6 +137,6 @@ public class DebuffHandler : MonoBehaviour
 
     public void StopAllDebuffs()
     {
-        activeDebuffs.Clear();
+        debuffs.Clear();
     }
 }

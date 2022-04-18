@@ -14,6 +14,14 @@ public class OnHitEffectDataContainer : ICloneable
             onHitEffect.OnValidate();
         }
     }
+
+    public static void ApplyOnHitEffects(ref List<OnHitEffectDataContainer> onHitEffects, DamageHandler dmgTaker, DamageHandler dmgDealer)
+    {
+        foreach (var onHitEffect in onHitEffects)
+        {
+            onHitEffect.OnHitEffect.ApplyOnHitEffect(onHitEffect.Data, dmgTaker, dmgDealer);
+        }
+    }
     
     [SerializeField] private OnHitEffect onHitEffect;
     [SerializeReference] private OnHitEffectData data;

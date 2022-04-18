@@ -5,8 +5,8 @@ using UnityEngine;
 public class AcidVortex : ActiveMorph
 {
     static int chemicalDamagePrerequisit = 25;
-    [SerializeField] private GameObject acidVortexAOE;
-
+    [SerializeField] private AcidVortexAOE acidVortexAOEPrefab;
+    private DamageHandler damageHandler;
 
 
     //static Prerequisite[] StatPrerequisits;
@@ -14,6 +14,7 @@ public class AcidVortex : ActiveMorph
     private void Start()
     {
         //WriteToPrerequisiteArray();
+        damageHandler = GetComponent<DamageHandler>();
     }
 
     //void WriteToPrerequisiteArray()
@@ -48,13 +49,19 @@ public class AcidVortex : ActiveMorph
 
     private void SpawnAcidVortex()
     {
-        GameObject acidVortex = ObjectPooler.Instance.GetOrCreatePooledObject(acidVortexAOE);
-        acidVortex.GetComponent<AOE_DELAY>().SetDamageDealer(GetComponent<DamageHandler>());
-        acidVortex.GetComponent<AOE_DELAY>().StartCoroutine("TriggerActivation");
-        acidVortex.GetComponent<AOE_UPDATE>().SetDamageDealer(GetComponent<DamageHandler>());
-        acidVortex.GetComponent<AOE_UPDATE>().StartCoroutine("TriggerActivation");
-        acidVortex.transform.parent = transform;
-        acidVortex.transform.position = transform.position;
+        var acidVortexAOE = ObjectPooler.Instance.GetOrCreatePooledObject(acidVortexAOEPrefab.gameObject).GetComponent<AcidVortexAOE>();
+        acidVortexAOE.Initialize(damageHandler);
+        
+        var AOETransform = acidVortexAOE.transform;
+        AOETransform.SetParent(transform);
+        AOETransform.localPosition = Vector3.zero;
+
+        // acidVortex.GetComponent<AOE_DELAY>().SetDamageDealer(GetComponent<DamageHandler>());
+        // acidVortex.GetComponent<AOE_DELAY>().StartCoroutine("TriggerActivation");
+        // acidVortex.GetComponent<AOE_UPDATE>().SetDamageDealer(GetComponent<DamageHandler>());
+        // acidVortex.GetComponent<AOE_UPDATE>().StartCoroutine("TriggerActivation");
+        // acidVortex.transform.parent = transform;
+        //acidVortex.transform.position = transform.position;
 
     }
 }

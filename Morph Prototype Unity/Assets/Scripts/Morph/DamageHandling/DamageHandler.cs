@@ -12,8 +12,9 @@ public class DamageHandler : MonoBehaviour
     private Health health;
     private Armor armor;
     private Stamina stamina;
-    [SerializeField]private Rigidbody parentRigidbody;
+    public Rigidbody ParentRigidbody { get; private set; }
     private Fortitude fortitude;
+    private DebuffHandler debuffHandler;
     [SerializeField] private bool isInvincible = true;
     [SerializeField] private DamageNumberSet damageNumberSet;
 
@@ -51,8 +52,9 @@ public class DamageHandler : MonoBehaviour
         health = GetComponent<Health>();
         armor = GetComponent<Armor>();
         stamina = GetComponent<Stamina>();
-        parentRigidbody = GetComponentInParent<Rigidbody>();
+        ParentRigidbody = GetComponentInParent<Rigidbody>();
         fortitude = GetComponent<Fortitude>();
+        debuffHandler = GetComponent<DebuffHandler>();
 
         if (!stats) Debug.LogWarning(transform.parent.name + " dmg handler couldnt find stats");
         if (!health) Debug.LogWarning(transform.parent.name + " dmg handler couldnt find health");
@@ -105,28 +107,28 @@ public class DamageHandler : MonoBehaviour
 
     private void ApplyKnockback(in DamageTakenSummary damageTakenSummary)
     {
-        if (!parentRigidbody) return;
+        if (!ParentRigidbody) return;
         if (damageTakenSummary.KnockbackForce <= 0) return;
 
         var forceDirectionNormalized = (transform.position - damageTakenSummary.DamageDealer.transform.position).normalized;
-        parentRigidbody.AddForce(forceDirectionNormalized * damageTakenSummary.KnockbackForce, ForceMode.Impulse);
+        ParentRigidbody.AddForce(forceDirectionNormalized * damageTakenSummary.KnockbackForce, ForceMode.Impulse);
         Debug.Log("applying " + damageTakenSummary.KnockbackForce + " knockback" + " to " + transform.name);
 
     }
     private void ApplyPullTowards(in DamageTakenSummary damageTakenSummary)
     {
-        if (!parentRigidbody) return;
+        if (!ParentRigidbody) return;
         if (damageTakenSummary.PullForce <= 0) return;
         var forceDirectionNormalized = ((transform.position - damageTakenSummary.DamageDealer.transform.position) * -1).normalized;
-        parentRigidbody.AddForce(forceDirectionNormalized * damageTakenSummary.PullForce, ForceMode.Impulse);
+        ParentRigidbody.AddForce(forceDirectionNormalized * damageTakenSummary.PullForce, ForceMode.Impulse);
         Debug.Log("applying " + damageTakenSummary.PullForce + " pullforce" + " to " + transform.name);
     }
     private void ApplyKnockup(in DamageTakenSummary damageTakenSummary)
     {
-        if (!parentRigidbody) return;
+        if (!ParentRigidbody) return;
         if (damageTakenSummary.KnockupForce <= 0) return;
 
-        parentRigidbody.AddForce(Vector3.up * damageTakenSummary.KnockupForce, ForceMode.Impulse);
+        ParentRigidbody.AddForce(Vector3.up * damageTakenSummary.KnockupForce, ForceMode.Impulse);
         Debug.Log("applying " + damageTakenSummary.KnockupForce + " knockup" + " to " + transform.name);
 
     }
@@ -248,6 +250,11 @@ public class DamageHandler : MonoBehaviour
         DebuffAboutToBeTakenPreModifier?.Invoke(ref damageTypeClone, damageDealer);
         damageDealer.DebuffAboutToBeDealtPostModifier?.Invoke(ref damageTypeClone, this);
         DebuffAboutToBeTakenPostModifier?.Invoke(ref damageTypeClone, damageDealer);
+    }
+
+    public void AddPhysicsDebuff(PhysicsDebuff debuff)
+    {
+        debuffHandler.AddPhysicsDebuff(debuff);
     }
     
     // Resistances

@@ -850,42 +850,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!1 &189648339 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8683765337263264566, guid: e941a7aaa4e97a747a762e11708aa881, type: 3}
-  m_PrefabInstance: {fileID: 723568321}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &189648349
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 189648339}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89163961ae7bb774d860b9e7003694ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  velocity: {x: 0, y: 0, z: 0}
---- !u!143 &189648350
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 189648339}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &310926710 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6978833492714482402, guid: cdf7eadb3a05b4640b14e8bf82399938, type: 3}
@@ -2594,6 +2558,10 @@ PrefabInstance:
       propertyPath: acidVortexAOE
       value: 
       objectReference: {fileID: 1641033305696970572, guid: 96d53b4a2d1dba343a2f19b8b1523cee, type: 3}
+    - target: {fileID: 6978833492714482402, guid: cdf7eadb3a05b4640b14e8bf82399938, type: 3}
+      propertyPath: acidVortexAOEPrefab
+      value: 
+      objectReference: {fileID: 3532389489217968139, guid: 96d53b4a2d1dba343a2f19b8b1523cee, type: 3}
     - target: {fileID: 7472304830448532307, guid: cdf7eadb3a05b4640b14e8bf82399938, type: 3}
       propertyPath: m_RootOrder
       value: 1

@@ -4,5 +4,7 @@ using UnityEngine;
 
 public interface IPullTowards : IDamageType
 {
-    public float PullForce { get; set; }
+    public Transform PullTowardsThis { get;}
+    public float PullForce { get; }
+    public ForceMode ForceMode { get;}
 }

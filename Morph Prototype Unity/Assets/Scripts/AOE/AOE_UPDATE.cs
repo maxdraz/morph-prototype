@@ -77,22 +77,35 @@ public class AOE_UPDATE : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if(!active) return;
-        
-        if (other.gameObject == damageDealer.gameObject) return;
-        // deal damage to enemy
-        var otherDamageHandler = other.gameObject.GetComponentInChildren<DamageHandler>();
+    // private void OnTriggerStay(Collider other)
+    // {
+    //     if(!active) return;
+    //     
+    //     if (other.gameObject == damageDealer.gameObject) return;
+    //     // deal damage to enemy
+    //     var otherDamageHandler = other.gameObject.GetComponentInChildren<DamageHandler>();
+    //
+    //     if (otherDamageHandler)
+    //     {
+    //         foreach (var onHitEffectDataContainer in onHitEffects)
+    //         {
+    //             onHitEffectDataContainer.OnHitEffect.ApplyOnHitEffect(onHitEffectDataContainer.Data, otherDamageHandler, damageDealer);
+    //             //print("should be applying damage");
+    //             // otherDamageHandler.ApplyDamage(onHitEffectDataContainer.Data, damageDealer);
+    //         }
+    //     }
+    // }
 
-        if (otherDamageHandler)
-        {
-            foreach (var onHitEffectDataContainer in onHitEffects)
-            {
-                onHitEffectDataContainer.OnHitEffect.ApplyOnHitEffect(onHitEffectDataContainer.Data, otherDamageHandler, damageDealer);
-                //print("should be applying damage");
-                // otherDamageHandler.ApplyDamage(onHitEffectDataContainer.Data, damageDealer);
-            }
-        }
-    }
+    // private void OnTriggerEnter(Collider other)
+    // {
+    //     var dmgTaker = other.GetComponentInChildren<DamageHandler>();
+    //     if(dmgTaker.gameObject == gameObject || !dmgTaker) return;
+    //     
+    //     foreach (var onHitEffectDataContainer in onHitEffects)
+    //     {
+    //         onHitEffectDataContainer.OnHitEffect.ApplyOnHitEffect(onHitEffectDataContainer.Data,dmgTaker, damageDealer);
+    //         //print("should be applying damage");
+    //         // otherDamageHandler.ApplyDamage(onHitEffectDataContainer.Data, damageDealer);
+    //     }
+    // }
 }
