@@ -193,4 +193,12 @@ public class ColourChange : ActiveMorph
 
         damageHandler = null;
     }
+
+    private void OnValidate()
+    {
+        foreach (var onHitEffectDataContainer in onHitEffects)
+        {
+            onHitEffectDataContainer.OnValidate();
+        }
+    }
 }

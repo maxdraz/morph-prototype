@@ -20,7 +20,6 @@ public static class DamageFormulas
             {
                 weaponMorphDamage = weaponMorphDamage * 2.5f;
             }
-            Debug.Log("Crit:" + isCrit);
         }
 
         float damageOut = weaponMorphDamage;

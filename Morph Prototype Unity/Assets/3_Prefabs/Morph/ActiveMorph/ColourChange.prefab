@@ -61,7 +61,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97bdd373f0ec151469355ac53ae7abad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  morphPrerequisites: []
   staminaCost: 0
   energyCost: 20
   testInput: 274
@@ -90,7 +89,11 @@ MonoBehaviour:
   references:
     version: 1
     00000000:
-      type: {class: , ns: , asm: }
+      type: {class: FortitudeDamageData, ns: , asm: Assembly-CSharp}
+      data:
+        fortitudeDamage: 1
+        statusEffect: 
+        duration: 0
 --- !u!114 &1772954696996774671
 MonoBehaviour:
   m_ObjectHideFlags: 0

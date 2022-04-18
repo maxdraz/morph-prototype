@@ -12,7 +12,7 @@ public class DamageHandler : MonoBehaviour
     private Health health;
     private Armor armor;
     private Stamina stamina;
-    private Rigidbody parentRigidbody;
+    [SerializeField]private Rigidbody parentRigidbody;
     private Fortitude fortitude;
     [SerializeField] private bool isInvincible = true;
     [SerializeField] private DamageNumberSet damageNumberSet;
@@ -81,7 +81,6 @@ public class DamageHandler : MonoBehaviour
         ResistDamage(ref damageClone, damageDealer, out var damageTakenSummary);
         HandleDamageTaken(in damageTakenSummary);
         
-        print("CRIT CRIT CRIT: " + damageTakenSummary.IsCriticalHit);
         damageDealer.DamageHasBeenDealt?.Invoke(in damageTakenSummary);
         DamageHasBeenTaken?.Invoke(in damageTakenSummary);
     }
@@ -114,17 +113,15 @@ public class DamageHandler : MonoBehaviour
         Debug.Log("applying " + damageTakenSummary.KnockbackForce + " knockback" + " to " + transform.name);
 
     }
-
     private void ApplyPullTowards(in DamageTakenSummary damageTakenSummary)
     {
         if (!parentRigidbody) return;
         if (damageTakenSummary.PullForce <= 0) return;
-
+        Debug.LogWarning("PULL FORCE!!! " + damageTakenSummary.PullForce);
         var forceDirectionNormalized = ((transform.position - damageTakenSummary.DamageDealer.transform.position) * -1).normalized;
         parentRigidbody.AddForce(forceDirectionNormalized * damageTakenSummary.PullForce, ForceMode.Impulse);
         Debug.Log("applying " + damageTakenSummary.PullForce + " pullforce" + " to " + transform.name);
     }
-
     private void ApplyKnockup(in DamageTakenSummary damageTakenSummary)
     {
         if (!parentRigidbody) return;
@@ -134,7 +131,6 @@ public class DamageHandler : MonoBehaviour
         Debug.Log("applying " + damageTakenSummary.KnockupForce + " knockup" + " to " + transform.name);
 
     }
-
     private void ApplyBleeding(in DamageTakenSummary damageTakenSummary)
     {
         Debug.Log("Going to apply bleeding");
@@ -165,7 +161,6 @@ public class DamageHandler : MonoBehaviour
             health.AddBleedingStacks(bleedingStacksToAdd);
         }
     }
-
     private void ApplyFortitudeDamage(FortitudeDamageData damageTakenSummary)
     {
         if (!fortitude) return;
@@ -188,7 +183,6 @@ public class DamageHandler : MonoBehaviour
         //    " with an effect of " + damageTakenSummary.StatusEffect + " and a duration of " + damageTakenSummary.Duration);
 
     }
-
     private void VisualizeDamage(in DamageTakenSummary damageTakenSummary)
     {
         if (damageTakenSummary.PhysicalDamage > 0)
@@ -248,7 +242,6 @@ public class DamageHandler : MonoBehaviour
         }
         
     }
-
     public void ApplyDebuff(IDamageType damageType, DamageHandler damageDealer)
     {
         var damageTypeClone = damageType.Clone() as IDamageType;

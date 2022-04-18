@@ -82,6 +82,5 @@ public class CharacterRotator : MonoBehaviour
         rotationTimer = durationTimer;
 
         rotationTimer.RestartIfCompleted();
-        print("started rotating");
     }
 }
