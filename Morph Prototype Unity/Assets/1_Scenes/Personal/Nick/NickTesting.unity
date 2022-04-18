@@ -261,7 +261,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3787121545567345810, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: baseAcidResistance
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 3787121545567345810, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: baseChemicalDamage
@@ -269,7 +269,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3787121545567345810, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: baseFireResistance
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 3787121545567345810, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: baseElementalDamage
@@ -277,7 +277,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3787121545567345810, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: basePoisonResistance
-      value: 15
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 3787121545567345810, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: baseElectricResistance
@@ -493,7 +493,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: passiveMorphs.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: activeMorphs.Array.data[0]
@@ -527,6 +527,10 @@ PrefabInstance:
       propertyPath: passiveMorphs.Array.data[3]
       value: 
       objectReference: {fileID: 5227644690965164677, guid: 30efbf50cdd40254185e17f423cd14c3, type: 3}
+    - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
+      propertyPath: passiveMorphs.Array.data[4]
+      value: 
+      objectReference: {fileID: 1423064282517137419, guid: 6bc71d92becf56f49a91234d58afff7d, type: 3}
     - target: {fileID: 8063955872969139073, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: m_RootOrder
       value: 0

@@ -13,42 +13,32 @@ public class Resilience : PassiveMorph
 
     Stats stats;
 
-
-
-    private void OnEnable()
+    protected override void Start() 
     {
         stats = GetComponent<Stats>();
-
+        GenerateResistanceBoosts();
         AddToResistanceStat(resistType1, resistanceBoost1);
 
         if (unlockHardiness)
         {
             AddToResistanceStat(resistType2, resistanceBoost2);
         }
+    }
 
+
+    private void OnEnable()
+    {
         StartCoroutine(AssignDamageHandlerCoroutine());
-
     }
 
     private void OnDisable()
     {
-        stats = GetComponent<Stats>();
-
-
-        AddToResistanceStat(resistType1, -resistanceBoost1);
-
-        if (unlockHardiness)
-        {
-            AddToResistanceStat(resistType2, -resistanceBoost2);
-        }
-
         UnsubscribeFromEvents();
     }
 
 
-    private void Start()
+    void GenerateResistanceBoosts()
     {
-        stats = GetComponent<Stats>();
 
         int boost1 = Random.Range(0, 4);
 
