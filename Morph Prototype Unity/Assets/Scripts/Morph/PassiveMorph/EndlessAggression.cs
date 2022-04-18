@@ -17,8 +17,8 @@ public class EndlessAggression : PassiveMorph
     [SerializeField] private float endlessAggressionEnergyGain;
     [SerializeField] private float endlessAggressionStaminaGain;
 
-    Stamina stamina;
-    Energy energy;
+    public Stamina stamina;
+    public Energy energy;
 
     bool canGainExplosiveAngerStacks = true;
     int currentExplosiveAngerStacks;
@@ -26,9 +26,8 @@ public class EndlessAggression : PassiveMorph
     float explosiveAngerStackDuration = 2;
     [SerializeField] private float explosiveAngerCooldownPeriod;
 
-    //public Prerequisite[] StatPrerequisits;
 
-    private void OnEnable()
+    void Awake()
     {
         stamina = GetComponent<Stamina>();
         energy = GetComponent<Energy>();
@@ -40,9 +39,6 @@ public class EndlessAggression : PassiveMorph
 
     private void OnDisable()
     {
-        stamina = GetComponent<Stamina>();
-        energy = GetComponent<Energy>();
-
         UnsubscribeFromEvents();
         ChangeMaxStaminaStat(-maxStaminaStatBonus);
     }

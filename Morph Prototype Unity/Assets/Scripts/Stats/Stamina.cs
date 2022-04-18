@@ -34,7 +34,6 @@ public class Stamina : MonoBehaviour
         stats = GetComponent<Stats>();
         baseMaxStamina = stats ? stats.MaxStamina : 100;
 
-        Invoke("SetMaxStamina", .5f);
     }
 
     // Update is called once per frame
@@ -56,10 +55,11 @@ public class Stamina : MonoBehaviour
         AddStamina(staminaToAdd);
     }
   
-    public void SetMaxStamina()
+    public void SetMaxStamina(float maxStaminaBonusToAdd)
     {
+        maxStaminaBonus += maxStaminaBonusToAdd;
         totalMaxStamina = baseMaxStamina * (1 + maxStaminaBonus);
-        currentStamina = totalMaxStamina;
+        
 
         T_SetUpStaminabar();
     }
