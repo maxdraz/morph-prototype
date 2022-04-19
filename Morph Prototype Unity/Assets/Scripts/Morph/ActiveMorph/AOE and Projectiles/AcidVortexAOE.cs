@@ -26,7 +26,9 @@ public class AcidVortexAOE : MonoBehaviour
 
     private IEnumerator ExecuteAOECoroutine()
     {
-        yield return null;
+        yield return new WaitForSeconds(3);
+        // suck in 
+       // yield return new WaitForSeconds()
     }
 
     private void OnValidate()
