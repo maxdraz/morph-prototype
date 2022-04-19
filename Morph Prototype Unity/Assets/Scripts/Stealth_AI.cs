@@ -43,16 +43,21 @@ public class Stealth_AI : MonoBehaviour
             }
         }
 
-        float currentSpeed = velo.CurrentVelocity.magnitude;
+        float currentSpeed = 0;
+        if (velo)
+        {
+            currentSpeed = velo.CurrentVelocity.magnitude;
 
-        if (velo.CurrentVelocity.magnitude > 0)
-        {
-            currentStealth = Mathf.RoundToInt((maxStealth + flatStealthModifier) / ((1 + currentSpeed) * (1 + stealthModifierWhileMoving)) * (1 + percentageStealthModifier));
+            if (velo.CurrentVelocity.magnitude > 0)
+            {
+                currentStealth = Mathf.RoundToInt((maxStealth + flatStealthModifier) / ((1 + currentSpeed) * (1 + stealthModifierWhileMoving)) * (1 + percentageStealthModifier));
+            }
+            else
+            {
+                currentStealth = Mathf.RoundToInt((maxStealth + flatStealthModifier) * (1 + percentageStealthModifier));
+            }
         }
-        else
-        {
-            currentStealth = Mathf.RoundToInt((maxStealth + flatStealthModifier) * (1 + percentageStealthModifier));
-        }
+        
 
         if (currentStealth > maxStealth * 2)
         {
