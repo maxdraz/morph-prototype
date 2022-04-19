@@ -69,6 +69,7 @@ MonoBehaviour:
     duration: 20
     currentTime: 0
     loop: 0
+  prerequisiteData: {fileID: 11400000, guid: 879ce3f77d078d54096b1340dfb5e9d3, type: 2}
   verticalForce: 40
   horizontalForce: 40
   physicalDamage: 200

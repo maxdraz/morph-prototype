@@ -58,8 +58,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77fb7368239b50a499f25690eb88fd80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meleeDamageStatBonus: 5
+  prerequisiteData: {fileID: 11400000, guid: 94d1ffb70639e594cbf3c1853b1a30ac, type: 2}
+  stealthStatBonus: 50
   unlockNinjaTraining: 1
-  shadowBoxingbonusDamageMultiplier: 4
+  shadowBoxingBonusDamageMultiplier: 5
   ninjaTrainingCritChanceToStealthMultiplicationFactor: 0.5
   ninjaTrainingAgilityToCritChanceMultiplicationFactor: 0.5

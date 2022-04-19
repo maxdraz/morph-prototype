@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Vigilance : PassiveMorph
 {
+    //[SerializeField] private VigilancePrerequisiteData prerequisiteData;
+
+
     private DamageHandler damageHandler;
     [SerializeField] private int perceptionStatBonus = 100;
     [SerializeField] private int stealthStatBonus = 100;

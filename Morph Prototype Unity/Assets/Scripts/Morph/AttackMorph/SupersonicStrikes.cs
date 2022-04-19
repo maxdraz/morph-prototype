@@ -4,15 +4,6 @@ using UnityEngine;
 
 public class SupersonicStrikes : AttackMorph
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private SupersonicStrikesPrerequisiteData prerequisiteData;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

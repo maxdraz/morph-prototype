@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class FinishingStrike : AttackMorph
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private FinishingStrikePrerequisiteData prerequisiteData;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
+    
 }

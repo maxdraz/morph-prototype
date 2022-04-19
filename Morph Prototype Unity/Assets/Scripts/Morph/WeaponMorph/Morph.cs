@@ -13,7 +13,9 @@ public class Morph : MonoBehaviour
         Ice,
         Electric,
         Poison,
-        Acid
+        Acid,
+        Stealth,
+        Intimidation
     }
 
 

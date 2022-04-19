@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 9588a9ecf9cc8544f89ace986b0d5c3f, type: 3}
   m_Name: Weakening Spray Prerequisite Data
-  m_EditorClassIdentifier: Assembly-CSharp::WeakeningSprayPrerequisiteData
+  m_EditorClassIdentifier: 
   WeakeningSprayStatPrerequisites: []
   WeakeningSprayTypePrerequisites: []
   WeakeningSprayMorphPrerequisites: []

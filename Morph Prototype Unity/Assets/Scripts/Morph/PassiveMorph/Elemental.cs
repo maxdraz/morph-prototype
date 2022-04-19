@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Elemental : PassiveMorph
 {
+    //[SerializeField] private ElementalPrerequisiteData prerequisiteData;
+
+
     private DamageHandler damageHandler;
     [SerializeField] private int elementalDamageStatBonus = 5;
     [SerializeField] private bool unlockForceOfNature = true;

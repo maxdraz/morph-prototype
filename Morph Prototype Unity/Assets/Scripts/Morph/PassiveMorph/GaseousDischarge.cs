@@ -5,6 +5,8 @@ using UnityEngine;
 public class GaseousDischarge : PassiveMorph
 {
     static int chemicalDamagePrerequisit = 25;
+    [SerializeField] private GaseousDischargePrerequisiteData prerequisiteData;
+
 
     private DamageHandler damageHandler;
     [SerializeField] private int chemicalDamageStatBonus = 5;

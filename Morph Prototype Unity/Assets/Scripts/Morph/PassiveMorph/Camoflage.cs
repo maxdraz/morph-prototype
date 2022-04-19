@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Camoflage : PassiveMorph
 {
+    //[SerializeField] private CamoflagePrerequisiteData prerequisiteData;
+
+
     private DamageHandler damageHandler;
     [SerializeField] private int stealthStatBonus = 100;
     [SerializeField] private bool unlockSneaky = true;

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Chemical : PassiveMorph
 {
+    //[SerializeField] private ChemicalPrerequisiteData prerequisiteData;
+
+
     private DamageHandler damageHandler;
     [SerializeField] private int chemicalDamageStatBonus = 5;
     [SerializeField] private bool unlockConcentratedChemicals = true;

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Brawl : PassiveMorph
 {
+    //[SerializeField] private BrawlPrerequisiteData prerequisiteData;
+
+
     private DamageHandler damageHandler;
     [SerializeField] private int meleeDamageStatBonus = 5;
     [SerializeField] private bool unlockRage = true;

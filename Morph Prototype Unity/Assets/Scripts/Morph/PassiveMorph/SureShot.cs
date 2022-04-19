@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class SureShot : PassiveMorph
 {
+    //[SerializeField] private SureShotPrerequisiteData prerequisiteData;
+
+
     private DamageHandler damageHandler;
     [SerializeField] private int rangedDamageStatBonus = 5;
     [SerializeField] private bool unlockExpandedReserves = true;

@@ -9,13 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 9636c16e7256ab04197963fee1005e31, type: 3}
   m_Name: Slash Dash Prerequisite Data
-  m_EditorClassIdentifier: Assembly-CSharp::SlashDashPrerequisiteData
-  SlashDashStatPrerequisites:
-  - stat: agility
-    value: 20
-  - stat: meleeDamage
-    value: 20
+  m_EditorClassIdentifier: 
+  SlashDashStatPrerequisites: []
   SlashDashTypePrerequisites: []
   SlashDashMorphPrerequisites: []

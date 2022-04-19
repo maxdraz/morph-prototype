@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Celerity : PassiveMorph
 {
+    //[SerializeField] private CelerityPrerequisiteData prerequisiteData;
+
+
     private DamageHandler damageHandler;
     [SerializeField] private float moveSpeedStatBonus = .2f;
     [SerializeField] private bool unlockGraceful = true;

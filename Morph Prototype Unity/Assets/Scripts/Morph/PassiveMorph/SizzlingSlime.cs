@@ -5,6 +5,8 @@ using UnityEngine;
 public class SizzlingSlime : PassiveMorph
 {
     static int chemicalDamagePrerequisit = 35;
+    [SerializeField] private SizzlingSlimePrerequisiteData prerequisiteData;
+
 
     private DamageHandler damageHandler;
 

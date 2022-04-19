@@ -118,6 +118,7 @@ MonoBehaviour:
     duration: 0.7
     currentTime: 0
     loop: 0
+  prerequisiteData: {fileID: 11400000, guid: a7e5201e09e5fba429b33ddbb0ff1b35, type: 2}
   deathlyToxinsSpawner:
     projectilePrefab: {fileID: 2661738403284565075, guid: 3206027e0f5643d4b9c8105b5b96bbb9, type: 3}
     spawnPointOffsetLocal: {x: 0, y: 0, z: 0}

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class BattleReady : PassiveMorph
 {
+    //[SerializeField] private BattleReadyPrerequisiteData prerequisiteData;
+
+
     private DamageHandler damageHandler;
     [SerializeField] private int meleeDamageStatBonus = 5;
     [SerializeField] private int rangedDamageStatBonus = 5;

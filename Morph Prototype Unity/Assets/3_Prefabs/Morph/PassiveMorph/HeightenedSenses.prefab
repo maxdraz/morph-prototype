@@ -43,7 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6176a6fc750f5bb4492fbcbd73489ea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prerequisiteData: {fileID: 11400000, guid: 37d0548df562abe4e8118d7a5092208d, type: 2}
   heightenedSensesCountdownDuration: 3
-  unlockSpiritLeech: 1
-  lifeStealFraction: 0.2
-  energyStealFraction: 0.4
+  unlockEverReady: 1
+  everReadyPerceptionModifier: 2.5
+  everReadyStealthModifier: 2.5
+  unlockAimedShots: 1
+  aimedShotsExtraDamageModifier: 0.3

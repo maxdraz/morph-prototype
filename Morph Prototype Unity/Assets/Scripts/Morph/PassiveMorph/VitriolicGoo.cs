@@ -7,6 +7,8 @@ using UnityEngine;
 public class VitriolicGoo : PassiveMorph
 {
     static int chemicalDamagePrerequisit = 50;
+    [SerializeField] private VitriolicGooPrerequisiteData prerequisiteData;
+
 
     private DamageHandler damageHandler;
     [SerializeField] private float staminaDrainFraction;

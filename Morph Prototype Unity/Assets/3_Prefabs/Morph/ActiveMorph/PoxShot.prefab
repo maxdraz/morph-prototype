@@ -185,6 +185,7 @@ MonoBehaviour:
     duration: 1
     currentTime: 0
     loop: 0
+  prerequisiteData: {fileID: 11400000, guid: c0653c78b6fdead4d9dc50f58ffaa55b, type: 2}
   poxShotSpawner:
     projectilePrefab: {fileID: 8109351195646949467, guid: 59e21ff915d046a4dbda14bb2bd3b486, type: 3}
     spawnPointOffsetLocal: {x: 0, y: 0, z: 2}

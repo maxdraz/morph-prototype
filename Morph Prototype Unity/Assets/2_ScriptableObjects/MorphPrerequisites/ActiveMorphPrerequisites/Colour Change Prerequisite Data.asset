@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: e8407d3e714769f409b661a271d1418a, type: 3}
   m_Name: Colour Change Prerequisite Data
-  m_EditorClassIdentifier: Assembly-CSharp::ColourChangePrerequisiteData
+  m_EditorClassIdentifier: 
   ColourChangeStatPrerequisites: []
   ColourChangeTypePrerequisites: []
   ColourChangeMorphPrerequisites: []

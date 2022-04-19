@@ -118,6 +118,7 @@ MonoBehaviour:
     duration: 5
     currentTime: 0
     loop: 0
+  prerequisiteData: {fileID: 11400000, guid: 7944f62152751e441a7131cbf6e03f30, type: 2}
   poisonNeedleBarrageSpawner:
     projectilePrefab: {fileID: 104438247783325880, guid: 814f9f9592b2b5740a207f3c491e3288, type: 3}
     spawnPointOffsetLocal: {x: 0, y: 0, z: 1}

@@ -9,13 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: a356c3b3a47ec764d881661493fd769b, type: 3}
   m_Name: Shadow Blow Prerequisite Data
-  m_EditorClassIdentifier: Assembly-CSharp::ShadowBlowPrerequisiteData
-  ShadowBlowStatPrerequisites:
-  - stat: stealth
-    value: 100
-  - stat: meleeDamage
-    value: 20
+  m_EditorClassIdentifier: 
+  ShadowBlowStatPrerequisites: []
   ShadowBlowTypePrerequisites: []
   ShadowBlowMorphPrerequisites: []

@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 0ee46e0a0fb9cc345b59cb3cc4f32672, type: 3}
   m_Name: Reapers Combination Prerequisite Data
-  m_EditorClassIdentifier: Assembly-CSharp::ReapersCombinationPrerequisiteData
-  ReapersCombinationStatPrerequisites:
-  - stat: meleeDamage
-    value: 40
+  m_EditorClassIdentifier: 
+  ReapersCombinationStatPrerequisites: []
   ReapersCombinationTypePrerequisites: []
   ReapersCombinationMorphPrerequisites: []
