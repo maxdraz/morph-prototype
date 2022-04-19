@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: cff370acbe95b884baf48ddfde59d92f, type: 3}
   m_Name: Immobalising Crash Prerequisite Data
-  m_EditorClassIdentifier: Assembly-CSharp::ImmobalisingCrashPrerequisiteData
+  m_EditorClassIdentifier: 
   ImmobalisingCrashStatPrerequisites: []
   ImmobalisingCrashTypePrerequisites: []
   ImmobalisingCrashMorphPrerequisites: []

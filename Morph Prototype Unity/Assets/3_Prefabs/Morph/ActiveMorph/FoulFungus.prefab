@@ -117,6 +117,7 @@ MonoBehaviour:
     duration: 10
     currentTime: 0
     loop: 0
+  prerequisiteData: {fileID: 11400000, guid: 01d913dc57477734492064f421adffc8, type: 2}
   foulFungusGasCloudSpawner:
     projectilePrefab: {fileID: 6129141712507335030, guid: e327cc9b0611fc54e92b8a4734495e3b, type: 3}
     spawnPointOffsetLocal: {x: 0, y: 0, z: 0}

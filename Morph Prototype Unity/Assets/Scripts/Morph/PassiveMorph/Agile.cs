@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Agile : PassiveMorph
 {
+    //[SerializeField] private AgilePrerequisiteData prerequisiteData;
+
+
     private DamageHandler damageHandler;
     [SerializeField] private int agilityStatBonus = 5;
     [SerializeField] private bool unlockCatLike = true;

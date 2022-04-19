@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Endurance : PassiveMorph
 {
+    //[SerializeField] private EndurancePrerequisiteData prerequisiteData;
+
+
     private DamageHandler damageHandler;
     [SerializeField] private float staminaPercentageStatBonus = .20f;
     [SerializeField] private float staminaPercentageRegenBonus = .40f;

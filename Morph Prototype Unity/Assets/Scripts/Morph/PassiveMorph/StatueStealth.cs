@@ -6,6 +6,8 @@ public class StatueStealth : PassiveMorph
 {
     static int stealthPrerequisit = 200;
     static int intelligencePrerequisit = 30;
+    [SerializeField] private StatueStealthPrerequisiteData prerequisiteData;
+
 
     private DamageHandler damageHandler;
     [SerializeField] private int stealthStatBonus = 5;

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Vampirism : PassiveMorph
 {
+    //[SerializeField] private VampirismPrerequisiteData prerequisiteData;
+
+
     private DamageHandler damageHandler;
     [SerializeField] private bool unlockSpiritLeech = true;
 

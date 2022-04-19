@@ -44,22 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca070c3b6534b8a47b9eeb7cc2a9559f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  summary:
-    DamageTaker: {fileID: 0}
-    DamageDealer: {fileID: 0}
-    IsFatalBlow: 0
-    IsCriticalHit: 0
-    isMortalBlow: 0
-    PhysicalDamage: 0
-    LifeStealDamage: 0
-    PoisonDamage: 0
-    AcidDamage: 0
-    FireDamage: 0
-    IceDamage: 0
-    LightningDamage: 0
-    StaminaDrained: 0
-    FortitudeDamage: 0
-    KnockbackForce: 0
   isInvincible: 1
   damageNumberSet: {fileID: 0}
 --- !u!114 &7126794462437963004
@@ -74,7 +58,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 671a32987ec41bf438ccd8c513e0001b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prerequisiteData: {fileID: 11400000, guid: 6ac45df8217e9834cba36bc763cbbbd2, type: 2}
   meleeDamageStatBonus: 5
   unlockSpiritSpihon: 1
+  stackDuration: 4
+  ferocityAttackSpeedBuffPerStack: 0.03
+  ferocityMeleeAttackDamageBuffPerStack: 0.05
+  spiritSiphonPeriod: 0
+  spiritSiphonRange: 0
   spiritSiphonStaminaStealAmount: 20
   spiritSiphonEnergyStealAmount: 5

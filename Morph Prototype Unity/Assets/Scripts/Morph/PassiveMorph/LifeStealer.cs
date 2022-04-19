@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class LifeStealer : PassiveMorph
 {
+    //[SerializeField] private LifeStealerPrerequisiteData prerequisiteData;
+
+
     private DamageHandler damageHandler;
 
     [SerializeField] private float lifeStealFraction;

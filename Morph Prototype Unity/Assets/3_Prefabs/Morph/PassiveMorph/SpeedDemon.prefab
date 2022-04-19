@@ -58,6 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 365a536c308f23f428811621c30d4cf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prerequisiteData: {fileID: 11400000, guid: 54783fbbda800134c88c469e5d4cb866, type: 2}
   meleeDamageStatBonus: 5
   unlockCruelCapacity: 1
   startingSpeedDemonStackDuration: 4

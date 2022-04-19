@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Rugged : PassiveMorph
 {
+    //[SerializeField] private RuggedPrerequisiteData prerequisiteData;
+
+
     private DamageHandler damageHandler;
     [SerializeField] private int toughnessStatBonus = 5;
 

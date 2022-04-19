@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Resilience : PassiveMorph
 {
+    //[SerializeField] private ResiliencePrerequisiteData prerequisiteData;
+
+
     private DamageHandler damageHandler;
     [SerializeField] private float resistanceBoost1;
     [SerializeField] private float resistanceBoost2;

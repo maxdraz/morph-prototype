@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 9e1ac3cb9f7cd9e4693c7742350924db, type: 3}
   m_Name: Deathly Toxins Prerequisite Data
-  m_EditorClassIdentifier: Assembly-CSharp::DeathlyToxinsPrerequisiteData
+  m_EditorClassIdentifier: 
   DeathlyToxinsStatPrerequisites: []
   DeathlyToxinsTypePrerequisites: []
   DeathlyToxinsMorphPrerequisites: []

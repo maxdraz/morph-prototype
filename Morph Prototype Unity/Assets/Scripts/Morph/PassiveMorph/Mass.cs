@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Mass : PassiveMorph
 {
+    //[SerializeField] private MassPrerequisiteData prerequisiteData;
+
     private DamageHandler damageHandler;
     [SerializeField] private float percentHealthBonus = .20f;
     [SerializeField] private bool unlockRestoration = true;

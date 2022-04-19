@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Ganglia : PassiveMorph
 {
+    //[SerializeField] private GangliaPrerequisiteData prerequisiteData;
+
+
     private DamageHandler damageHandler;
     [SerializeField] private int intelligenceStatBonus = 5;
     [SerializeField] private bool unlockConditioning = true;

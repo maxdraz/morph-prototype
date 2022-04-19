@@ -6,6 +6,8 @@ public class SenseWeakness : PassiveMorph
 {
     static int meleeDamagePrerequisit = 35;
     static int agilityPrerequisit = 25;
+    [SerializeField] private SenseWeaknessPrerequisiteData prerequisiteData;
+
 
 
     private DamageHandler damageHandler;

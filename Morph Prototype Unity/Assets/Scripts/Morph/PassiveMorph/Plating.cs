@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Plating : PassiveMorph
 {
+    //[SerializeField] private PlatingPrerequisiteData prerequisiteData;
+
+
     private DamageHandler damageHandler;
     [SerializeField] private float bonusMaxArmor = 100;
     [SerializeField] private bool unlockCriticalCoverage = true;

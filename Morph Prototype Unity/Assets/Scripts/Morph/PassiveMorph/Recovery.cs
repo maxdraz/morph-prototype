@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Recovery : PassiveMorph
 {
+    //[SerializeField] private RecoveryPrerequisiteData prerequisiteData;
+
+
     private DamageHandler damageHandler;
     [SerializeField] private float staminaRegenBonus = .1f;
     [SerializeField] private float energyRegenBonus = .15f;

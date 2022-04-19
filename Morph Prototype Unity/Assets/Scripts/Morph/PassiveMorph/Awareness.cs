@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Awareness : PassiveMorph
 {
+    //[SerializeField] private AwarenessPrerequisiteData prerequisiteData;
+
+
     private DamageHandler damageHandler;
     [SerializeField] private float perceptionStatBonus = 5;
     [SerializeField] private bool unlockSecondary = true;

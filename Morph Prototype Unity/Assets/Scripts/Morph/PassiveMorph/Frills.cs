@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Frills : PassiveMorph
 {
+    //[SerializeField] private FrillsPrerequisiteData prerequisiteData;
+
     private DamageHandler damageHandler;
     [SerializeField] private int intimidationStatBonus = 5;
     [SerializeField] private bool unlockFearless = true;

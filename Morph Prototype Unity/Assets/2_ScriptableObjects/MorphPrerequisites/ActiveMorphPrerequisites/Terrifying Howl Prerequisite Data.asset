@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: f1377339515ad114f984396c386dee31, type: 3}
   m_Name: Terrifying Howl Prerequisite Data
-  m_EditorClassIdentifier: Assembly-CSharp::TerrifyingHowlPrerequisiteData
+  m_EditorClassIdentifier: 
   TerrifyingHowlStatPrerequisites: []
   TerrifyingHowlTypePrerequisites: []
   TerrifyingHowlMorphPrerequisites: []

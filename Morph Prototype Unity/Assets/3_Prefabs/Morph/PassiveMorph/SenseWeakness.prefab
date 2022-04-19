@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef949fc68066dff4aaf0d4fe92cd2b4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prerequisiteData: {fileID: 11400000, guid: 269ac5e4bca8c84498f9752003cfe33e, type: 2}
   bonusCritChance: 0.2
   bonusAgility: 0.2
   unlockKillerConsumption: 1

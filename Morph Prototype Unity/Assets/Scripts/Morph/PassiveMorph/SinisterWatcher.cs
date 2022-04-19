@@ -6,6 +6,8 @@ public class SinisterWatcher : PassiveMorph
 {
     static int stealthPrerequisit = 250;
     static int perceptionPrerequisit = 200;
+    [SerializeField] private SinisterWatcherPrerequisiteData prerequisiteData;
+
 
     private DamageHandler damageHandler;
     [SerializeField] private int stealthStatBonus = 5;

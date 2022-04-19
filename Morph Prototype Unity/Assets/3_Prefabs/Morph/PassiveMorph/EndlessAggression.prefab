@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01d4e581ad1fae34a99116e331d497b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prerequisiteData: {fileID: 11400000, guid: 32df507f0055c2140bc380a2de5f5b68, type: 2}
   explosionSpawner:
     projectilePrefab: {fileID: 3277945937756017534, guid: cf765991e0ce9b54ab6e14f2111f4d6c, type: 3}
     spawnPointOffsetLocal: {x: 0, y: 0, z: 0}
@@ -53,10 +54,12 @@ MonoBehaviour:
     radius: 0.9
     radialOffset: 21
     projectileDirectionRotation: 0
-  meleeDamageStatBonus: 5
+  maxStaminaStatBonus: 0.15
   unlockExplosiveAnger: 1
   endlessAggressionEnergyGain: 2
   endlessAggressionStaminaGain: 10
+  stamina: {fileID: 0}
+  energy: {fileID: 0}
   explosiveAngerStackLimit: 5
   explosiveAngerCooldownPeriod: 10
 --- !u!114 &376064453238329716

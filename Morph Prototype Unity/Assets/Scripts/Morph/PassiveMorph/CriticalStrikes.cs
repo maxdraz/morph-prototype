@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CriticalStrikes : PassiveMorph
 {
+    //[SerializeField] private CriticalStrikesPrerequisiteData prerequisiteData;
+
     private DamageHandler damageHandler;
 
     [SerializeField] private float criticalStrikeChance;

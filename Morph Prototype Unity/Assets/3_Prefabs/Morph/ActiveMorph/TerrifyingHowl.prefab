@@ -117,6 +117,7 @@ MonoBehaviour:
     duration: 10
     currentTime: 0
     loop: 0
+  prerequisiteData: {fileID: 11400000, guid: 8adae00c5b97d91498873398f33cedea, type: 2}
   terrifyingHowlParticles: {fileID: 3393028801674767775, guid: 8c56d05792b505e4c9ff38efc8958b8d, type: 3}
   fortitudeDamage: 0
   range: 0

@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 93054e9c1ee269949beb6b4f3c1bb99b, type: 3}
   m_Name: Poison Needle Barrage Prerequisite Data
-  m_EditorClassIdentifier: Assembly-CSharp::PoisonNeedleBarragePrerequisiteData
+  m_EditorClassIdentifier: 
   PoisonNeedleBarrageStatPrerequisites: []
   PoisonNeedleBarrageTypePrerequisites: []
   PoisonNeedleBarrageMorphPrerequisites: []

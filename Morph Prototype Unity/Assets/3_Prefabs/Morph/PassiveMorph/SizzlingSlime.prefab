@@ -44,22 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca070c3b6534b8a47b9eeb7cc2a9559f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  summary:
-    DamageTaker: {fileID: 0}
-    DamageDealer: {fileID: 0}
-    IsFatalBlow: 0
-    IsCriticalHit: 0
-    isMortalBlow: 0
-    PhysicalDamage: 0
-    LifeStealDamage: 0
-    PoisonDamage: 0
-    AcidDamage: 0
-    FireDamage: 0
-    IceDamage: 0
-    LightningDamage: 0
-    StaminaDrained: 0
-    FortitudeDamage: 0
-    KnockbackForce: 0
   isInvincible: 1
   damageNumberSet: {fileID: 0}
 --- !u!114 &7247566602518939235
@@ -74,6 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfccba1b5f9c5974483f93e50f065493, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prerequisiteData: {fileID: 11400000, guid: 4575f1dc347075b49a7a0675a6fa67ee, type: 2}
   perceptionDamageFraction: 0.1
   chemicalDamageStatBonus: 5
   unlockBlindingVapour: 1

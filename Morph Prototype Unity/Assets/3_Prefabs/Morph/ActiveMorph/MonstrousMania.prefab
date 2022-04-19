@@ -117,6 +117,7 @@ MonoBehaviour:
     duration: 0
     currentTime: 0
     loop: 0
+  prerequisiteData: {fileID: 11400000, guid: 370e2d8f7b631ca4ba00cd12756e7269, type: 2}
   attackSpeedBoost: 0
   attackSpeedBoostDuration: 0
   lifeStealBoost: 0

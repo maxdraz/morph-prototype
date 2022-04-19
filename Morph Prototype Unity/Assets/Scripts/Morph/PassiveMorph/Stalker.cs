@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Stalker : PassiveMorph
 {
+    //[SerializeField] private StalkerPrerequisiteData prerequisiteData;
+
+
     private DamageHandler damageHandler;
     [SerializeField] private int rangedDamageStatBonus = 5;
     [SerializeField] private int stealthStatBonus = 5;
