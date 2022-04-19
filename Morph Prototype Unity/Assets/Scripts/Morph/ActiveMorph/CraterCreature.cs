@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CraterCreature : ActiveMorph
 {
-    static int meleeDamagePrerequisit = 45;
+    [SerializeField] private CraterCreaturePrerequisiteData prerequisiteData;
 
 
     DamageHandler damageHandler;

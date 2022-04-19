@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class PoxShot : ActiveMorph
 {
-    static int chemicalDamagePrerequisit = 30;
+    [SerializeField] private PoxShotPrerequisiteData prerequisiteData;
+
     [SerializeField] private ConeProjectileSpawner poxShotSpawner;
+
 
     //static Prerequisite[] StatPrerequisits;
 

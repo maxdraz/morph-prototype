@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FoulFungus : ActiveMorph
 {
-    static int chemicalDamagePrerequisit = 30;
+    [SerializeField] private FoulFungusPrerequisiteData prerequisiteData;
 
 
     [SerializeField] private RadialProjectileSpawner foulFungusGasCloudSpawner;

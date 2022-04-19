@@ -106,7 +106,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b428bbdf39b4132418e1a4d5b4b7c06b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  morphPrerequisites: []
   staminaCost: 0
   energyCost: 40
   testInput: 274
@@ -118,6 +117,6 @@ MonoBehaviour:
     duration: 10
     currentTime: 0
     loop: 0
-  prerequisiteData: {fileID: 11400000, guid: 51f10511a673316418ec4aafdb11fbe1, type: 2}
+  prerequisiteData: {fileID: 11400000, guid: 8b5f8c5ad182b2b46943a8638caf76b6, type: 2}
   adrenalineRushParticles: {fileID: 347924305674693644, guid: edb7516f571b9a94d86424b0397e4284, type: 3}
   adrenalineBoost: 100

@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class RiftingLeap : ActiveMorph
 {
-    static int agilityDamagePrerequisite = 20;
-    static int toughnessPrerequisite = 30;
+ 
+    [SerializeField] private RiftingLeapPrerequisiteData prerequisiteData;
+
 
 
     DamageHandler damageHandler;

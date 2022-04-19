@@ -170,51 +170,51 @@ public class MorphLoadout : MonoBehaviour
 
     
 
-    public bool GetMorphsByType(string type, int amount)
+    public bool GetMorphsByType(string typeToSearchFor, int amountToFind)
     {
-        //string typeToSearchFor = Enum.GetName(typeof(MorphType), type);
-        //int amountFound = 0;
-        //
-        //foreach (ActiveMorph activeMorph in activeMorphs)
-        //{
-        //    if (activeMorph.prere().Equals(typeToSearchFor))
-        //    {
-        //        amountToFind++;
-        //    }
-        //}
-        //foreach (PassiveMorph passiveMorph in passiveMorphs)
-        //{
-        //    if (passiveMorph.type.Equals(typeToSearchFor))
-        //    {
-        //        amountToFind++;
-        //    }
-        //}
-        //
-        //if (LimbWeaponMorph.type.Equals(typeToSearchFor))
-        //{
-        //    amountToFind++;
-        //}
-        //
-        //
-        //if (tailWeaponMorph.type.Equals(typeToSearchFor))
-        //{
-        //    amountToFind++;
-        //}
-        //
-        //
-        //if (headWeaponMorph.type.Equals(typeToSearchFor))
-        //{
-        //    amountToFind++;
-        //}
-        //
-        //if (amountToFind == amount) 
-        //{
-            return true;
-        //}
-        //else 
-        //{
-        //    return false;
-        //}
+        int amountFound = 0;
+        
+        foreach (ActiveMorph activeMorph in activeMorphs)
+        {
+            
+            if (Enum.GetName(typeof(MorphType), activeMorph).Equals(typeToSearchFor))
+            {
+                amountFound++;
+            }
+        }
+        foreach (PassiveMorph passiveMorph in passiveMorphs)
+        {
+            if (Enum.GetName(typeof(MorphType), passiveMorphs).Equals(typeToSearchFor))
+            {
+                amountFound++;
+            }
+        }
+        
+        if (Enum.GetName(typeof(MorphType), LimbWeaponMorph).Equals(typeToSearchFor))
+        {
+            amountFound++;
+        }
+        
+        
+        if (Enum.GetName(typeof(MorphType), TailWeaponMorph).Equals(typeToSearchFor))
+        {
+            amountFound++;
+        }
+        
+        
+        if (Enum.GetName(typeof(MorphType), HeadWeaponMorph).Equals(typeToSearchFor))
+        {
+            amountFound++;
+        }
+        
+        if (amountFound == amountToFind) 
+        {
+        return true;
+        }
+        else 
+        {
+            return false;
+        }
     }
 
     public bool GetPrerequisiteMorphByName(string morphName)

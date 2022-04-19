@@ -117,5 +117,6 @@ MonoBehaviour:
     duration: 10
     currentTime: 0
     loop: 0
+  prerequisiteData: {fileID: 11400000, guid: bb55bb85a8eec9f46b00d4dcd7f77b7b, type: 2}
   battleCryAOE: {fileID: 4325605245274640103, guid: 78272f22a236d3e4ebf588b8a82372f0, type: 3}
   nextHitCrit: 0

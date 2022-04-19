@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class ColourChange : ActiveMorph
 {
-    static int stealthPrerequisit = 200;
-    static int intelligencePrerequisit = 50;
+
+    [SerializeField] private ColourChangePrerequisiteData prerequisiteData;
+
 
     private DamageHandler damageHandler;
     public Stats stats;
