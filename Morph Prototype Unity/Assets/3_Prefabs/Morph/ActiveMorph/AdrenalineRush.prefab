@@ -106,6 +106,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b428bbdf39b4132418e1a4d5b4b7c06b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  morphType: 0
+  prerequisites:
+  - {fileID: 11400000, guid: 3ec4d43f8466a3343888344b3bffd4f7, type: 2}
+  - {fileID: 11400000, guid: aac96c4aa750b7348afb711451086b0a, type: 2}
   staminaCost: 0
   energyCost: 40
   testInput: 274

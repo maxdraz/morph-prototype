@@ -6,7 +6,7 @@ using UnityEngine;
 public class AdrenalineRush : ActiveMorph
 {
     static int fortitudePrerequisit = 35;
-    [SerializeField] private AdrenalineRushPrerequisiteData prerequisiteData;
+    [SerializeField] private PrerequisiteData prerequisiteData;
     [SerializeField] private GameObject adrenalineRushParticles;
     [SerializeField] private float adrenalineBoost;
 
@@ -108,13 +108,13 @@ public class AdrenalineRush : ActiveMorph
 
         for (int i = 0; i <= statPrerequisiteArrayLength - 1; i++)
         {
-            string statName = Enum.GetName(typeof(StatPrerequisite), prerequisiteData.AdrenalineRushStatPrerequisites[i]);
-
-             if (GetComponent<Stats>().FindStatValue(statName) >= prerequisiteData.AdrenalineRushStatPrerequisites[i].value) 
-             {
-                 positiveResults++;
-
-             }
+            // string statName = Enum.GetName(typeof(StatPrerequisite), prerequisiteData.AdrenalineRushStatPrerequisites[i]);
+            //
+            //  if (GetComponent<Stats>().FindStatValue(statName) >= prerequisiteData.AdrenalineRushStatPrerequisites[i].value) 
+            //  {
+            //      positiveResults++;
+            //
+            //  }
         }
 
         if (positiveResults == statPrerequisiteArrayLength)
@@ -139,10 +139,10 @@ public class AdrenalineRush : ActiveMorph
 
         for (int i = 0; i <= morphTypePrerequisiteArrayLength - 1; i++)
         {
-             if (loadout.GetMorphsByType(prerequisiteData.AdrenalineRushTypePrerequisites[i].type.ToString(), prerequisiteData.AdrenalineRushTypePrerequisites[i].amount) == true) 
-             {
-                 positiveResults++;
-             }
+             // if (loadout.GetMorphsByType(prerequisiteData.AdrenalineRushTypePrerequisites[i].type.ToString(), prerequisiteData.AdrenalineRushTypePrerequisites[i].amount) == true) 
+             // {
+             //     positiveResults++;
+             // }
         }
 
         if (positiveResults == morphTypePrerequisiteArrayLength)
@@ -167,10 +167,10 @@ public class AdrenalineRush : ActiveMorph
 
         for (int i = 0; i <= morphPrerequisiteArrayLength - 1; i++)
         {
-            if (loadout.GetPrerequisiteMorphByName(prerequisiteData.AdrenalineRushMorphPrerequisites[i].name) == true)
-            {
-                positiveResults++;
-            }
+            // if (loadout.GetPrerequisiteMorphByName(prerequisiteData.AdrenalineRushMorphPrerequisites[i].name) == true)
+            // {
+            //     positiveResults++;
+            // }
         }
 
         if (positiveResults == morphPrerequisiteArrayLength)

@@ -82,7 +82,8 @@ public class DamageHandler : MonoBehaviour
 
         ResistDamage(ref damageClone, damageDealer, out var damageTakenSummary);
         HandleDamageTaken(in damageTakenSummary);
-        
+        if(damageTakenSummary.FortitudeDamageData.FortitudeDamage > 0)
+            print("applied fortitude");
         damageDealer.DamageHasBeenDealt?.Invoke(in damageTakenSummary);
         DamageHasBeenTaken?.Invoke(in damageTakenSummary);
     }

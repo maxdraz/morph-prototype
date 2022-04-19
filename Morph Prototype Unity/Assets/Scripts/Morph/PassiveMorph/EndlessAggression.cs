@@ -65,7 +65,9 @@ public class EndlessAggression : PassiveMorph
     {
         if (damageTakenSummary.IsCriticalHit)
         {
-            GainStaminaAndEnergy();
+            
+            //GainStaminaAndEnergy();
+            ExplosiveAnger();
         }
     }
 

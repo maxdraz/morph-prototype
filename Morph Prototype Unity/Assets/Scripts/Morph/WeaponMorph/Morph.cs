@@ -18,6 +18,9 @@ public class Morph : MonoBehaviour
         Intimidation
     }
 
+    [SerializeField] private MorphType morphType;
+    [SerializeField] private List<PrerequisiteData> prerequisites;
+
 
     protected virtual void Start()
     {
@@ -33,7 +36,15 @@ public class Morph : MonoBehaviour
 
     public virtual bool CheckPrerequisites(MorphLoadout loadout, int statPrerequisitesToCheck, int morphTypePrerequisiteArrayLength, int morphPrerequisites)
     {
-        return true;
+        if (prerequisites == null || prerequisites.Count <= 0) return true;
+
+        bool prerequisitesMet = false;
+        foreach (var prerequisiteData in prerequisites)
+        {
+           // prerequisitesMet = prerequisiteData.Check();
+        }
+        
+        return prerequisitesMet;
     }
 
 
