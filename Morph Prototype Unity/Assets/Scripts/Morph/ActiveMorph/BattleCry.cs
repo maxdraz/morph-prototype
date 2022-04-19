@@ -6,6 +6,8 @@ public class BattleCry : ActiveMorph
 {
     static int meleeDamagePrerequisit = 25;
     static int intimidationPrerequisit = 200;
+    [SerializeField] private BattleCryPrerequisiteData prerequisiteData;
+
 
     [SerializeField] private GameObject battleCryAOE;
 

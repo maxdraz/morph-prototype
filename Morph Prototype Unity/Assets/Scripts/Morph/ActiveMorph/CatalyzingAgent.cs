@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CatalyzingAgent : ActiveMorph
 {
-    static int chemicalDamagePrerequisite = 25;
+    [SerializeField] private CatalyzingAgentPrerequisiteData prerequisiteData;
 
 
     [SerializeField] private ConeProjectileSpawner catalyzingAgentSpawner;

@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class PoisonNeedleBarrage : ActiveMorph
 {
-    static int chemicalDamagePrerequisit = 30;
-    static int rangedDamagePrerequisit = 25;
+
+    [SerializeField] private PoisonNeedleBarragePrerequisiteData prerequisiteData;
+
 
     [SerializeField] private RadialProjectileSpawner poisonNeedleBarrageSpawner;
 

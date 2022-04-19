@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Intercept : ActiveMorph
 {
-    static int agilityPrerequisit = 35;
+     [SerializeField] private InterceptPrerequisiteData prerequisiteData;
 
 
     DamageHandler damageHandler;

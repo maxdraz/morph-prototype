@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ImmobalisingCrash : ActiveMorph
 {
-    static int stealthPrerequisit = 200;
-    static int agilityPrerequisit = 40;
+
+    [SerializeField] private ImmobalisingCrashPrerequisiteData prerequisiteData;
 
 
     DamageHandler damageHandler;

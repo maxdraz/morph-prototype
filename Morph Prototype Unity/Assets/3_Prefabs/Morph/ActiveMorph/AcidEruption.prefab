@@ -107,7 +107,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9af5141a17a9a9f46a30811901844b11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  morphPrerequisites: []
   staminaCost: 10
   energyCost: 15
   testInput: 276
@@ -119,6 +118,7 @@ MonoBehaviour:
     duration: 4
     currentTime: 0
     loop: 0
+  prerequisiteData: {fileID: 11400000, guid: 7d06700b668827948b3c90cf1a02912a, type: 2}
   range: 50
   acidEruption: {fileID: 2416811839361304073, guid: c66793508e63e404d9932e83a57710e8, type: 3}
 --- !u!1 &8878017237320108669
@@ -227,7 +227,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf095b187e7775c4e80715105f5ab18d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  morphPrerequisites: []
   staminaCost: 40
   energyCost: 40
   testInput: 275
@@ -239,4 +238,4 @@ MonoBehaviour:
     duration: 15
     currentTime: 0
     loop: 0
-  acidVortexAOE: {fileID: 0}
+  acidVortexAOEPrefab: {fileID: 0}

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AcidEruption : ActiveMorph
 {
-    static int chemicalDamagePrerequisit = 25;
+    [SerializeField] private AcidEruptionPrerequisiteData prerequisiteData;
     [SerializeField] private int range;
     [SerializeField] private GameObject acidEruption;
 
