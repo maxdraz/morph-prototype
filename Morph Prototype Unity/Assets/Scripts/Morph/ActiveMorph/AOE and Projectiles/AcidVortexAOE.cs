@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class AcidVortexAOE : MonoBehaviour
 {
-    [SerializeField] private List<OnHitEffectDataContainer> onPull;
-    [SerializeField] private List<OnHitEffectDataContainer> onPush;
+    [SerializeField] private List<OnHitEffectDataContainer> onPullEffects;
+    [SerializeField] private List<OnHitEffectDataContainer> onPushEffects;
     private DamageHandler damageDealer;
 
     private void OnEnable()
@@ -31,12 +31,12 @@ public class AcidVortexAOE : MonoBehaviour
 
     private void OnValidate()
     {
-        foreach (var onHitEffectDataContainer in onPull)
+        foreach (var onHitEffectDataContainer in onPullEffects)
         {
             onHitEffectDataContainer.OnValidate();
         }
 
-        foreach (var onHitEffectDataContainer in onPush)
+        foreach (var onHitEffectDataContainer in onPushEffects)
         {
             onHitEffectDataContainer.OnValidate();
         }
@@ -44,10 +44,9 @@ public class AcidVortexAOE : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        print("TRIGGERRERE ENTERERERD");
         var dmgTaker = other.GetComponentInChildren<DamageHandler>();
         if(!dmgTaker || dmgTaker.gameObject == gameObject) return;
-        print("APPLYING ON HIT EFFECTSSSSSSS");
-        OnHitEffectDataContainer.ApplyOnHitEffects(ref onPull, dmgTaker, damageDealer);
+        
+        OnHitEffectDataContainer.ApplyOnHitEffects(ref onPullEffects, dmgTaker, damageDealer);
     }
 }
