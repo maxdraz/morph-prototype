@@ -8,6 +8,15 @@ public class FortitudeDamageData : OnHitEffectData, IFortitudeDamage
     [SerializeField] private float fortitudeDamage;
     [SerializeField] private string statusEffect;
     [SerializeField] private float duration;
+   // public enum statusEffect 
+   // {
+   // Stun, 
+   // Root, 
+   // Silence, 
+   // Blindness, 
+   // Paralysis, 
+   // Crippled
+   // }
 
     public FortitudeDamageData(float fortitudeDamage = 1, string statusEffect = "", float duration = 0)
     {

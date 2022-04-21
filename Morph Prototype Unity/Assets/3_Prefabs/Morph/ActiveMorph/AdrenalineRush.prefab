@@ -109,7 +109,6 @@ MonoBehaviour:
   morphType: 0
   prerequisites:
   - {fileID: 11400000, guid: 3ec4d43f8466a3343888344b3bffd4f7, type: 2}
-  - {fileID: 11400000, guid: aac96c4aa750b7348afb711451086b0a, type: 2}
   staminaCost: 0
   energyCost: 40
   testInput: 274
@@ -121,6 +120,5 @@ MonoBehaviour:
     duration: 10
     currentTime: 0
     loop: 0
-  prerequisiteData: {fileID: 11400000, guid: 8b5f8c5ad182b2b46943a8638caf76b6, type: 2}
   adrenalineRushParticles: {fileID: 347924305674693644, guid: edb7516f571b9a94d86424b0397e4284, type: 3}
   adrenalineBoost: 100

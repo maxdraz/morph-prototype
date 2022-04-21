@@ -106,6 +106,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5f73c99607a59d43a1e5b224ae498ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  morphType: 0
+  prerequisites: []
   staminaCost: 20
   energyCost: 40
   testInput: 274
@@ -233,6 +235,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90b71d813aed326489ef43a86b8fc2e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  morphType: 0
+  prerequisites:
+  - {fileID: 11400000, guid: 5422b6864fa10b4489cf4a009096aab0, type: 2}
+  - {fileID: 11400000, guid: 5b53cc1cd651da04e867cf30676866c7, type: 2}
   staminaCost: 10
   energyCost: 15
   testInput: 273
@@ -244,7 +250,6 @@ MonoBehaviour:
     duration: 2
     currentTime: 0
     loop: 0
-  prerequisiteData: {fileID: 11400000, guid: 37b00dce1b454f448aa9e18dcbbb07ac, type: 2}
   weakeningSpraySpawner:
     projectilePrefab: {fileID: 8740522506693375761, guid: b14dc04d6a83bbb4fa991bfcbbcc1ae1, type: 3}
     spawnPointOffsetLocal: {x: 0, y: 0, z: 1}

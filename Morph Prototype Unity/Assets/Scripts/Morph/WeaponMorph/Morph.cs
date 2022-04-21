@@ -7,6 +7,7 @@ public class Morph : MonoBehaviour
 {
     public enum MorphType
     {
+        None,
         Melee,
         Ranged,
         Fire,

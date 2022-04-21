@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CatalyzingAgent : ActiveMorph
 {
-    [SerializeField] private CatalyzingAgentPrerequisiteData prerequisiteData;
 
 
     [SerializeField] private ConeProjectileSpawner catalyzingAgentSpawner;

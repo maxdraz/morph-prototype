@@ -58,6 +58,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd55f847b4333774d9f85b34cb7f9223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  morphType: 0
+  prerequisites:
+  - {fileID: 11400000, guid: 08b3e5823569bed4bb433ff270436e77, type: 2}
   staminaCost: 30
   energyCost: 20
   testInput: 0
@@ -69,7 +72,6 @@ MonoBehaviour:
     duration: 0
     currentTime: 0
     loop: 0
-  prerequisiteData: {fileID: 11400000, guid: bde7e85384c78cf48903b875e109caba, type: 2}
   verticalForce: 30
   horizontalForce: 60
   physicalDamage: 100

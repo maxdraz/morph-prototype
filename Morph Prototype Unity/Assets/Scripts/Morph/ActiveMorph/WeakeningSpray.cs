@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class WeakeningSpray : ActiveMorph
 {
-    [SerializeField] private WeakeningSprayPrerequisiteData prerequisiteData;
 
 
     [SerializeField] private RadialProjectileSpawner weakeningSpraySpawner;

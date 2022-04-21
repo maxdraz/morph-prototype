@@ -4,6 +4,5 @@ using UnityEngine;
 
 public class SupersonicStrikes : AttackMorph
 {
-    [SerializeField] private SupersonicStrikesPrerequisiteData prerequisiteData;
 
 }

@@ -106,6 +106,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 140f227a532a81a4ba4fa2a866392b09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  morphType: 0
+  prerequisites:
+  - {fileID: 11400000, guid: 8307c85581dfe594fa02d18d41182e91, type: 2}
   staminaCost: 20
   energyCost: 10
   testInput: 276
@@ -117,6 +120,5 @@ MonoBehaviour:
     duration: 10
     currentTime: 0
     loop: 0
-  prerequisiteData: {fileID: 11400000, guid: bb55bb85a8eec9f46b00d4dcd7f77b7b, type: 2}
   battleCryAOE: {fileID: 4325605245274640103, guid: 78272f22a236d3e4ebf588b8a82372f0, type: 3}
   nextHitCrit: 0

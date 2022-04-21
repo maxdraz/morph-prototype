@@ -7,7 +7,6 @@ public class VitriolicVitality : PassiveMorph
     static int chemicalDamagePrerequisit = 30;
     static int toughnessPrerequisit = 30;
     static int fortitudePrerequisit = 30;
-    [SerializeField] private VitriolicVitalityPrerequisiteData prerequisiteData;
 
 
     private DamageHandler damageHandler;

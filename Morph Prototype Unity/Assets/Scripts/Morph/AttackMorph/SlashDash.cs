@@ -4,5 +4,4 @@ using UnityEngine;
 
 public class SlashDash : AttackMorph
 {
-    [SerializeField] private SlashDashPrerequisiteData prerequisiteData;
 }

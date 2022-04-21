@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 87514327667099171}
   - component: {fileID: 87514327667099170}
   - component: {fileID: 87514327667099169}
+  - component: {fileID: 5590246788394083626}
+  - component: {fileID: 1210199579225665962}
+  - component: {fileID: 1310907298254726759}
   m_Layer: 0
   m_Name: CraterCreature
   m_TagString: Untagged
@@ -58,6 +61,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9389792387a721144b055ab9e3083f98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  morphType: 0
+  prerequisites:
+  - {fileID: 11400000, guid: 22dd5c2e1f3be9041aafd168d2d1d986, type: 2}
   staminaCost: 30
   energyCost: 30
   testInput: 0
@@ -69,9 +75,53 @@ MonoBehaviour:
     duration: 20
     currentTime: 0
     loop: 0
-  prerequisiteData: {fileID: 11400000, guid: 879ce3f77d078d54096b1340dfb5e9d3, type: 2}
   verticalForce: 40
   horizontalForce: 40
   physicalDamage: 200
   range: 10
   crater: {fileID: 6041516883384950345, guid: ec9888c202a520847a33ddfdf47a34a4, type: 3}
+--- !u!114 &5590246788394083626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87514327667099168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bc88bd60e4b2024ca95f144dd5d4dc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  limbWeaponMorph: {fileID: 0}
+  headWeaponMorph: {fileID: 0}
+  tailWeaponMorph: {fileID: 0}
+  activeMorphs: []
+  passiveMorphs: []
+  LimbWeaponMorph: {fileID: 0}
+  HeadWeaponMorph: {fileID: 0}
+  TailWeaponMorph: {fileID: 0}
+--- !u!114 &1210199579225665962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87514327667099168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce19a24efc71e42408c5685a183642f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackOrAbilityInProgress: 0
+--- !u!114 &1310907298254726759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87514327667099168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f0002fccc3ddcb40902b7b0ae44cd8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

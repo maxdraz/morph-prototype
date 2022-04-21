@@ -43,7 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d10c90faa5ac88a409dbfab0a672e74d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prerequisiteData: {fileID: 11400000, guid: 388f918af24484845a12e40604b56a8f, type: 2}
+  morphType: 0
+  prerequisites:
+  - {fileID: 11400000, guid: 2cca98d0fd208eb46a80e5bc5bc38b13, type: 2}
+  - {fileID: 11400000, guid: d7d4be58b1ddfeb488594dd032943f0a, type: 2}
   hpDrainFraction: 10
   meleeDamageStatBonus: 5
   unlockBloodGuzzler: 1

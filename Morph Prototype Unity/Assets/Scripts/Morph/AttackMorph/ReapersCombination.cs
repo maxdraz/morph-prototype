@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ReapersCombination : AttackMorph
 {
-    [SerializeField] private ReapersCombinationPrerequisiteData prerequisiteData;
 
     
 }

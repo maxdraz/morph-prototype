@@ -6,7 +6,6 @@ public class DoubleEdged : PassiveMorph
 {
     static int meleeDamagePrerequisit = 45;
     static int agilityPrerequisit = 30;
-    [SerializeField] private DoubleEdgedPrerequisiteData prerequisiteData;
 
 
     private DamageHandler damageHandler;

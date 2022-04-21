@@ -5,7 +5,6 @@ using UnityEngine;
 public class ShadowBoxingSchool : PassiveMorph
 {
     static int stealthPrerequisit = 150;
-    [SerializeField] private ShadowBoxingSchoolPrerequisiteData prerequisiteData;
 
 
     private DamageHandler damageHandler;

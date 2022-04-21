@@ -106,6 +106,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c8335ed4d6f3445913d0c4015d67fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  morphType: 0
+  prerequisites:
+  - {fileID: 11400000, guid: aa57b7c06dcad234f83fc7392ab65d95, type: 2}
   staminaCost: 0
   energyCost: 0
   testInput: 0
@@ -119,4 +122,3 @@ MonoBehaviour:
     loop: 0
   numberOfAttacks: 0
   strikeModifiers: 0
-  prerequisiteData: {fileID: 11400000, guid: f1f31d067d393d24fafec9b2f537f6e8, type: 2}

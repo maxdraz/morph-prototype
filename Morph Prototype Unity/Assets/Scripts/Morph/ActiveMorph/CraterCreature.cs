@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CraterCreature : ActiveMorph
 {
-    [SerializeField] private CraterCreaturePrerequisiteData prerequisiteData;
 
 
     DamageHandler damageHandler;

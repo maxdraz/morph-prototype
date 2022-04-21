@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class TerrifyingHowl : ActiveMorph
 {
-    [SerializeField] private TerrifyingHowlPrerequisiteData prerequisiteData;
 
 
     [SerializeField] private GameObject terrifyingHowlParticles;

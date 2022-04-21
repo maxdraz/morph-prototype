@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class FinishingStrike : AttackMorph
 {
-    [SerializeField] private FinishingStrikePrerequisiteData prerequisiteData;
 
 
     

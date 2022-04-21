@@ -107,6 +107,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 437f23f1a12625349b532b022e5c2437, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  morphType: 0
+  prerequisites:
+  - {fileID: 11400000, guid: 68f864c8c6c925f409f64a1b4456597a, type: 2}
+  - {fileID: 11400000, guid: b7a81422b432b3c47b267a575c71a289, type: 2}
   staminaCost: 10
   energyCost: 5
   testInput: 275
@@ -118,7 +122,6 @@ MonoBehaviour:
     duration: 0.7
     currentTime: 0
     loop: 0
-  prerequisiteData: {fileID: 11400000, guid: a7e5201e09e5fba429b33ddbb0ff1b35, type: 2}
   deathlyToxinsSpawner:
     projectilePrefab: {fileID: 2661738403284565075, guid: 3206027e0f5643d4b9c8105b5b96bbb9, type: 3}
     spawnPointOffsetLocal: {x: 0, y: 0, z: 0}
@@ -234,6 +237,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90596e5423abd064aa6e59f32b725332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  morphType: 0
+  prerequisites: []
   staminaCost: 20
   energyCost: 40
   testInput: 274

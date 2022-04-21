@@ -106,6 +106,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf369aa7bb7b7ea49aeb108a64617a14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  morphType: 0
+  prerequisites: []
   staminaCost: 40
   energyCost: 25
   testInput: 275
@@ -174,6 +176,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 525c1dfcb66a6ff4cb3c0f0672cbf3b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  morphType: 0
+  prerequisites:
+  - {fileID: 11400000, guid: 39181d5e5dfe2c04cb3f786d9ed187a6, type: 2}
+  - {fileID: 11400000, guid: e9f5a22d7617f5146801fa7f656db71c, type: 2}
   staminaCost: 30
   energyCost: 20
   testInput: 273
@@ -185,7 +191,6 @@ MonoBehaviour:
     duration: 1
     currentTime: 0
     loop: 0
-  prerequisiteData: {fileID: 11400000, guid: c0653c78b6fdead4d9dc50f58ffaa55b, type: 2}
   poxShotSpawner:
     projectilePrefab: {fileID: 8109351195646949467, guid: 59e21ff915d046a4dbda14bb2bd3b486, type: 3}
     spawnPointOffsetLocal: {x: 0, y: 0, z: 2}

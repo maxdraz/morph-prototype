@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class AcidEruption : ActiveMorph
 {
-    [SerializeField] private AcidEruptionPrerequisiteData prerequisiteData;
     [SerializeField] private int range;
     [SerializeField] private GameObject acidEruption;
 

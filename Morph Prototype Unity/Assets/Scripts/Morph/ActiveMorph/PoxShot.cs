@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class PoxShot : ActiveMorph
 {
-    [SerializeField] private PoxShotPrerequisiteData prerequisiteData;
 
     [SerializeField] private ConeProjectileSpawner poxShotSpawner;
 

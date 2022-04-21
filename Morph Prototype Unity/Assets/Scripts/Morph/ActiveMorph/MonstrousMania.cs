@@ -5,7 +5,6 @@ using UnityEngine;
 public class MonstrousMania : ActiveMorph
 {
 
-    [SerializeField] private MonstrousManiaPrerequisiteData prerequisiteData;
 
 
     [SerializeField] private float attackSpeedBoost;

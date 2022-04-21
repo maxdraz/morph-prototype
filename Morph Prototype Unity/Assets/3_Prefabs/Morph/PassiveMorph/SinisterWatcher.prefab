@@ -44,7 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db8e51b4fab89cc4a83d1775c97310b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prerequisiteData: {fileID: 11400000, guid: a4bff47824b400e46a7e0efe72b3d636, type: 2}
+  morphType: 7
+  prerequisites:
+  - {fileID: 11400000, guid: c36a82a83043e3c4fa735b5d2d0956dc, type: 2}
+  - {fileID: 11400000, guid: 264b776d13ce7ff4cb61bf2e74c3ee3e, type: 2}
   stealthStatBonus: 5
   targetOfInterest: {fileID: 0}
   sinisterWatcherMaxRange: 0

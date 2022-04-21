@@ -5,7 +5,6 @@ using UnityEngine;
 public class PoisonNeedleBarrage : ActiveMorph
 {
 
-    [SerializeField] private PoisonNeedleBarragePrerequisiteData prerequisiteData;
 
 
     [SerializeField] private RadialProjectileSpawner poisonNeedleBarrageSpawner;

@@ -58,7 +58,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfccba1b5f9c5974483f93e50f065493, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prerequisiteData: {fileID: 11400000, guid: 4575f1dc347075b49a7a0675a6fa67ee, type: 2}
+  morphType: 6
+  prerequisites:
+  - {fileID: 11400000, guid: e1a2b465068382f409c1624de372bea5, type: 2}
+  - {fileID: 11400000, guid: 3dda50a92f83c434c8ea059df63325a5, type: 2}
   perceptionDamageFraction: 0.1
   chemicalDamageStatBonus: 5
   unlockBlindingVapour: 1

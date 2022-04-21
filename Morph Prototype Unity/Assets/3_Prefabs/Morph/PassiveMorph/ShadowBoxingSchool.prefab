@@ -58,7 +58,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77fb7368239b50a499f25690eb88fd80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prerequisiteData: {fileID: 11400000, guid: 94d1ffb70639e594cbf3c1853b1a30ac, type: 2}
+  morphType: 7
+  prerequisites:
+  - {fileID: 11400000, guid: 657beb485cb3c474ea0c8db53fd7dad7, type: 2}
+  - {fileID: 11400000, guid: ed7e2ebb32dc35c4e970e22d6e39178b, type: 2}
   stealthStatBonus: 50
   unlockNinjaTraining: 1
   shadowBoxingBonusDamageMultiplier: 5

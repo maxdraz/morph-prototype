@@ -8,7 +8,6 @@ public class EndlessAggression : PassiveMorph
     static int meleeDamagePrerequisit = 30;
     static int intelligencePrerequisit = 30;
     static int fortitudePrerequisit = 30;
-    [SerializeField] private EndlessAggressionPrerequisiteData prerequisiteData;
 
 
     [SerializeField] private RadialProjectileSpawner explosionSpawner;

@@ -5,7 +5,6 @@ using UnityEngine;
 public class RiftingLeap : ActiveMorph
 {
  
-    [SerializeField] private RiftingLeapPrerequisiteData prerequisiteData;
 
 
 

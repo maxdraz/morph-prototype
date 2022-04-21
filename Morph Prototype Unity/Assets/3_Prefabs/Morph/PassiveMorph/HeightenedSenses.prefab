@@ -43,7 +43,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6176a6fc750f5bb4492fbcbd73489ea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prerequisiteData: {fileID: 11400000, guid: 37d0548df562abe4e8118d7a5092208d, type: 2}
+  morphType: 0
+  prerequisites:
+  - {fileID: 11400000, guid: 217ce3cd886b6bb489257f0b54479f13, type: 2}
+  - {fileID: 11400000, guid: 4eede117b6ffe0d43a1cba4af04554e4, type: 2}
+  - {fileID: 11400000, guid: 12b92d7f5ba538240960ab552613b7bc, type: 2}
   heightenedSensesCountdownDuration: 3
   unlockEverReady: 1
   everReadyPerceptionModifier: 2.5

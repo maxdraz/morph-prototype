@@ -106,6 +106,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49fb91151a5876c46867cc695d87102f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  morphType: 0
+  prerequisites:
+  - {fileID: 11400000, guid: ea1f99e09f851764abb60a4a3a3ee1cd, type: 2}
   staminaCost: 20
   energyCost: 30
   testInput: 275
@@ -117,7 +120,6 @@ MonoBehaviour:
     duration: 10
     currentTime: 0
     loop: 0
-  prerequisiteData: {fileID: 11400000, guid: 01d913dc57477734492064f421adffc8, type: 2}
   foulFungusGasCloudSpawner:
     projectilePrefab: {fileID: 6129141712507335030, guid: e327cc9b0611fc54e92b8a4734495e3b, type: 3}
     spawnPointOffsetLocal: {x: 0, y: 0, z: 0}

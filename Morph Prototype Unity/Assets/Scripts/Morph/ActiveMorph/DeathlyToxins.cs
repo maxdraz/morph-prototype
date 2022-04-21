@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DeathlyToxins : ActiveMorph
 {
-    [SerializeField] private DeathlyToxinsPrerequisiteData prerequisiteData;
 
 
     [SerializeField] private RadialProjectileSpawner deathlyToxinsSpawner;

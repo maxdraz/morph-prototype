@@ -44,9 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15cf6b7a5a46c514da2e7bc22948c8e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  morphType: 1
+  prerequisites: []
   rangedDamageStatBonus: 5
   unlockExpandedReserves: 1
   maxEnergyStatBonus: 0.2
+  energy: {fileID: 0}
 --- !u!114 &7192906543638763264
 MonoBehaviour:
   m_ObjectHideFlags: 0

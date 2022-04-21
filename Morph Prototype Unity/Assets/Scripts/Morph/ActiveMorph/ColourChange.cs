@@ -6,7 +6,6 @@ using UnityEngine;
 public class ColourChange : ActiveMorph
 {
 
-    [SerializeField] private ColourChangePrerequisiteData prerequisiteData;
 
 
     private DamageHandler damageHandler;

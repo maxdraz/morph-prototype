@@ -5,7 +5,6 @@ using UnityEngine;
 public class HeightenedSenses : PassiveMorph
 {
     static int perceptionPrerequisit = 300;
-    [SerializeField] private HeightenedSensesPrerequisiteData prerequisiteData;
 
 
     private DamageHandler damageHandler;

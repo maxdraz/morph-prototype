@@ -5,7 +5,6 @@ using UnityEngine;
 public class VenomGlands : PassiveMorph
 {
     static int chemicalDamagePrerequisit = 30;
-    [SerializeField] private VenomGlandsPrerequisiteData prerequisiteData;
 
 
     private DamageHandler damageHandler;

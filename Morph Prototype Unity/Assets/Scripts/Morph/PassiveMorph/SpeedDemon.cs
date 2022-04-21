@@ -5,7 +5,6 @@ using UnityEngine;
 public class SpeedDemon : PassiveMorph
 {
     static int agilityPrerequisit = 40;
-    [SerializeField] private SpeedDemonPrerequisiteData prerequisiteData;
 
 
     private DamageHandler damageHandler;

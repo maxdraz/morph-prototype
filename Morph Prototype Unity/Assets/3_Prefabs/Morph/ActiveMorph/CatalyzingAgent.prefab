@@ -106,6 +106,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f5e2cbd5644f934f80124e95e3c3b4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  morphType: 0
+  prerequisites:
+  - {fileID: 11400000, guid: be97e982a6dd56a449bf0c471381b878, type: 2}
   staminaCost: 10
   energyCost: 10
   testInput: 276
@@ -117,7 +120,6 @@ MonoBehaviour:
     duration: 0
     currentTime: 0
     loop: 0
-  prerequisiteData: {fileID: 11400000, guid: 301c95ab968a07a459a2df10514a9c32, type: 2}
   catalyzingAgentSpawner:
     projectilePrefab: {fileID: 8938354313772005017, guid: 94d0273399f3d05479ad5b66199555ce, type: 3}
     spawnPointOffsetLocal: {x: 0, y: 0, z: 1}

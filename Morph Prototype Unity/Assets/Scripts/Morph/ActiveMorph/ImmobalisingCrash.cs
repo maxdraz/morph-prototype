@@ -5,7 +5,6 @@ using UnityEngine;
 public class ImmobalisingCrash : ActiveMorph
 {
 
-    [SerializeField] private ImmobalisingCrashPrerequisiteData prerequisiteData;
 
 
     DamageHandler damageHandler;

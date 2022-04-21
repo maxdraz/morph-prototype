@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class FoulFungus : ActiveMorph
 {
-    [SerializeField] private FoulFungusPrerequisiteData prerequisiteData;
 
 
     [SerializeField] private RadialProjectileSpawner foulFungusGasCloudSpawner;
