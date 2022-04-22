@@ -9,11 +9,11 @@ public class PrerequisiteData : ScriptableObject
     public MorphTypePrerequisite[] typePrerequisites;
     public Morph[] morphPrerequisites;
 
-    public bool CheckPrerequisites(MorphLoadout loadout, int statPrerequisiteArrayLength, int morphTypePrerequisiteArrayLength, int morphPrerequisites)
+    public bool CheckPrerequisites(MorphLoadout loadout, Stats stats)
     {
-        if (statPrerequisiteArrayLength > 0)
+        if (statPrerequisites.Length > 0)
         {
-            if (CheckStatPrerequisites(statPrerequisiteArrayLength) == true)
+            if (CheckStatPrerequisites(stats) == true)
             {
                 return true;
             }
@@ -23,10 +23,10 @@ public class PrerequisiteData : ScriptableObject
             }
         }
 
-        if (morphTypePrerequisiteArrayLength > 0)
+        if (typePrerequisites.Length > 0)
         {
 
-            if (CheckTypePrerequisites(morphTypePrerequisiteArrayLength, loadout) == true)
+            if (CheckTypePrerequisites(loadout) == true)
             {
                 return true;
             }
@@ -36,9 +36,9 @@ public class PrerequisiteData : ScriptableObject
             }
         }
 
-        if (morphPrerequisites > 0)
+        if (morphPrerequisites.Length > 0)
         {
-            if (CheckMorphPrerequisites(morphPrerequisites, loadout) == true)
+            if (CheckMorphPrerequisites(loadout) == true)
             {
                 return true;
             }
@@ -51,91 +51,73 @@ public class PrerequisiteData : ScriptableObject
         return true;
     }
 
-    private bool CheckStatPrerequisites(int statPrerequisiteArrayLength)
+    private bool CheckStatPrerequisites(Stats stats)
     {
-        //int positiveResults = statPrerequisiteArrayLength;
-        //
-        //if (!prerequisiteData)
-        //{
-        //    Debug.Log(gameObject.name + " no " + GetType().ToString() + " statPerequisite data assigned!");
-        //    return false;
-        //}
-        //
-        //for (int i = 0; i <= statPrerequisiteArrayLength - 1; i++)
-        //{
-        //    // string statName = Enum.GetName(typeof(StatPrerequisite), prerequisiteData.AdrenalineRushStatPrerequisites[i]);
-        //    //
-        //    //  if (GetComponent<Stats>().FindStatValue(statName) >= prerequisiteData.AdrenalineRushStatPrerequisites[i].value) 
-        //    //  {
-        //    //      positiveResults++;
-        //    //
-        //    //  }
-        //}
-        //
-        //if (positiveResults == statPrerequisiteArrayLength)
-        //{
-        //    return true;
-        //}
-        //else
-        //{
-        return false;
-        //}
+        int positiveResults = 0;
+
+        for (int i = 0; i <= statPrerequisites.Length - 1; i++)
+        {
+            string statName = statPrerequisites[i].FindStatName();
+
+            if (stats.FindStatValue(statName) >= statPrerequisites[i].value)
+            {
+                positiveResults++;
+            }
+            
+        }
+
+        if (positiveResults == statPrerequisites.Length) 
+        {
+            return true;
+        }
+        else 
+        {
+            return false;
+        }
     }
 
-    private bool CheckTypePrerequisites(int morphTypePrerequisiteArrayLength, MorphLoadout loadout)
+    private bool CheckTypePrerequisites(MorphLoadout loadout)
     {
-        //int positiveResults = morphTypePrerequisiteArrayLength;
-        //
-        //if (!prerequisiteData)
-        //{
-        //    Debug.Log(gameObject.name + " no " + GetType().ToString() + " typePrerequisite data assigned!");
-        //    return false;
-        //}
-        //
-        //for (int i = 0; i <= morphTypePrerequisiteArrayLength - 1; i++)
-        //{
-        //     // if (loadout.GetMorphsByType(prerequisiteData.AdrenalineRushTypePrerequisites[i].type.ToString(), prerequisiteData.AdrenalineRushTypePrerequisites[i].amount) == true) 
-        //     // {
-        //     //     positiveResults++;
-        //     // }
-        //}
-        //
-        //if (positiveResults == morphTypePrerequisiteArrayLength)
-        //{
-        //    return true;
-        //}
-        //else
-        //{
+        int positiveResults = 0;
+        
+        for (int i = 0; i <= typePrerequisites.Length - 1; i++)
+        {
+              if (loadout.GetMorphsByType(typePrerequisites[i].type.ToString(), typePrerequisites[i].amount) == true) 
+              {
+                  positiveResults++;
+              }
+        }
+        
+        if (positiveResults == typePrerequisites.Length)
+        {
+            return true;
+        }
+        else
+        {
         return false;
-        //}
+        }
     }
 
-    private bool CheckMorphPrerequisites(int morphPrerequisiteArrayLength, MorphLoadout loadout)
+    private bool CheckMorphPrerequisites(MorphLoadout loadout)
     {
-        //int positiveResults = morphPrerequisiteArrayLength;
-        //
-        //if (!prerequisiteData)
-        //{
-        //    Debug.Log(gameObject.name + " no " + GetType().ToString() + " morphPerequisite data assigned!");
-        //    return false;
-        //}
-        //
-        //for (int i = 0; i <= morphPrerequisiteArrayLength - 1; i++)
-        //{
-        //    // if (loadout.GetPrerequisiteMorphByName(prerequisiteData.AdrenalineRushMorphPrerequisites[i].name) == true)
-        //    // {
-        //    //     positiveResults++;
-        //    // }
-        //}
-        //
-        //if (positiveResults == morphPrerequisiteArrayLength)
-        //{
-        //    return true;
-        //}
-        //else
-        //{
+        int positiveResults = 0;
+        
+        for (int i = 0; i <= morphPrerequisites.Length - 1; i++)
+        {
+             if (loadout.GetPrerequisiteMorphByName(morphPrerequisites[i].name) == true)
+             {
+                 positiveResults++;
+             }
+        }
+        
+        if (positiveResults == morphPrerequisites.Length)
+        {
+            return true;
+        }
+        else
+        {
         return false;
-        //}
+        }
     }
 }
 

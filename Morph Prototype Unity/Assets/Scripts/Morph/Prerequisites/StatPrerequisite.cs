@@ -28,4 +28,11 @@ public enum StatType
             stat = a;
             value = b;
         }
+
+    public string FindStatName() 
+    {
+        string statName = StatType.GetName(typeof(StatType),stat);
+
+        return statName;
+    }
 }
