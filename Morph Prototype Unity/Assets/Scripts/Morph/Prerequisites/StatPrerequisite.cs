@@ -29,10 +29,10 @@ public enum StatType
             value = b;
         }
 
-    public string FindStatName() 
-    {
-        string statName = StatType.GetName(typeof(StatType),stat);
-
-        return statName;
-    }
+    //public string FindStatName() 
+    //{
+    //    string statName = StatType.GetName(typeof(StatType),stat);
+    //
+    //    return statName;
+    //}
 }

@@ -57,9 +57,7 @@ public class PrerequisiteData : ScriptableObject
 
         for (int i = 0; i <= statPrerequisites.Length - 1; i++)
         {
-            string statName = statPrerequisites[i].FindStatName();
-
-            if (stats.FindStatValue(statName) >= statPrerequisites[i].value)
+            if (stats.FindStatValue(statPrerequisites[i].stat.ToString()) >= statPrerequisites[i].value)
             {
                 positiveResults++;
             }
