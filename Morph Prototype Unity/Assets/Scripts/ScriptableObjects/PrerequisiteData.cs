@@ -9,7 +9,7 @@ public class PrerequisiteData : ScriptableObject
     public MorphTypePrerequisite[] typePrerequisites;
     public Morph[] morphPrerequisites;
 
-    public bool CheckPrerequisites(MorphLoadout loadout, Stats stats)
+    public bool CheckPrerequisites(MorphLoadout loadout, Stats stats, Morph morphPrefab)
     {
         if (statPrerequisites.Length > 0)
         {
@@ -61,15 +61,19 @@ public class PrerequisiteData : ScriptableObject
             {
                 positiveResults++;
             }
-            
+            else 
+            {
+                Debug.Log("Player character does not have enough " + statPrerequisites[i].stat.ToString() + " to attach " + name);
+            }
         }
 
         if (positiveResults == statPrerequisites.Length) 
         {
             return true;
         }
-        else 
+        else
         {
+
             return false;
         }
     }
@@ -82,8 +86,12 @@ public class PrerequisiteData : ScriptableObject
         {
               if (loadout.GetMorphsByType(typePrerequisites[i].type.ToString(), typePrerequisites[i].amount) == true) 
               {
-                  positiveResults++;
+                positiveResults++;
               }
+              else 
+            {
+                Debug.Log("Not enough morphs of type: " + typePrerequisites[i].type.ToString() + " attached to player character to attach " + name);
+            }
         }
         
         if (positiveResults == typePrerequisites.Length)
@@ -92,7 +100,7 @@ public class PrerequisiteData : ScriptableObject
         }
         else
         {
-        return false;
+            return false; 
         }
     }
 
@@ -106,6 +114,10 @@ public class PrerequisiteData : ScriptableObject
              {
                  positiveResults++;
              }
+             else 
+                {
+                Debug.Log("Player character does not have " + morphPrerequisites[i].name + "which is needed to attach " + name);
+            }
         }
         
         if (positiveResults == morphPrerequisites.Length)
@@ -114,7 +126,7 @@ public class PrerequisiteData : ScriptableObject
         }
         else
         {
-        return false;
+            return false;
         }
     }
 }

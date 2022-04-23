@@ -35,14 +35,14 @@ public class Morph : MonoBehaviour
 
     
 
-    public virtual bool CheckPrerequisites(MorphLoadout loadout, int statPrerequisitesToCheck, int morphTypePrerequisiteArrayLength, int morphPrerequisites)
+    public virtual bool CheckPrerequisites(MorphLoadout loadout, Stats stats, Morph morphPrefab)
     {
         if (prerequisites == null || prerequisites.Count <= 0) return true;
 
         bool prerequisitesMet = false;
         foreach (var prerequisiteData in prerequisites)
         {
-           // prerequisitesMet = prerequisiteData.Check();
+            prerequisitesMet = prerequisiteData.CheckPrerequisites(loadout, stats, morphPrefab);
         }
         
         return prerequisitesMet;
