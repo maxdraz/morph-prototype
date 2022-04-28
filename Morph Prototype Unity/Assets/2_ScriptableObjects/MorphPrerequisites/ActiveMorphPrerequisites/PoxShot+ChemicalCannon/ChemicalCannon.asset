@@ -12,9 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5181c2a0d89f3fd499f88a6123245f33, type: 3}
   m_Name: ChemicalCannon
   m_EditorClassIdentifier: 
-  statPrerequisites:
-  - stat: 3
-    value: 90
+  statPrerequisites: []
   typePrerequisites:
   - type: 5
     amount: 2

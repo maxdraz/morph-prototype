@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97bdd373f0ec151469355ac53ae7abad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  morphType: 0
+  morphType: 8
   prerequisites:
   - {fileID: 11400000, guid: 6a483f1fd323b1a4496886c02a952af5, type: 2}
   - {fileID: 11400000, guid: 03f943707a6eb1644845c0d6722ddacb, type: 2}
@@ -116,6 +116,7 @@ MonoBehaviour:
   tailWeaponMorph: {fileID: 0}
   activeMorphs: []
   passiveMorphs: []
+  morphTypesAttached: []
   LimbWeaponMorph: {fileID: 0}
   HeadWeaponMorph: {fileID: 0}
   TailWeaponMorph: {fileID: 0}

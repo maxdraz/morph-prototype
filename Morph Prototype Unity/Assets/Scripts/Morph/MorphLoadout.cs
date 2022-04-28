@@ -14,6 +14,8 @@ public class MorphLoadout : MonoBehaviour
     [SerializeField] private List<ActiveMorph> activeMorphs;
     [SerializeField] private List<PassiveMorph> passiveMorphs;
 
+    [SerializeField] private List<string> morphTypesAttached;
+
     [HideInInspector] public LimbWeaponMorph LimbWeaponMorph;
     [HideInInspector] public HeadWeaponMorph HeadWeaponMorph;
     [HideInInspector] public TailWeaponMorph TailWeaponMorph;
@@ -24,6 +26,7 @@ public class MorphLoadout : MonoBehaviour
     {
         AddMorphsAtStart();
 
+        CountAllMorphsByType();
     }
     void AddMorphsAtStart()
     {
@@ -48,9 +51,40 @@ public class MorphLoadout : MonoBehaviour
         }
     }
 
+    private void CountAllMorphsByType() 
+    {
 
+        //foreach (ActiveMorph activeMorph in activeMorphs)
+        //{
+        //    morphTypesAttached.Add(activeMorph.GetEnumType());
+        //}
+        //
+        //foreach (PassiveMorph passiveMorph in passiveMorphs)
+        //{
+        //    morphTypesAttached.Add(passiveMorph.GetEnumType());
+        //}
+        //
+        //morphTypesAttached.Add(limbWeaponMorph.GetEnumType());
+        //morphTypesAttached.Add(tailWeaponMorph.GetEnumType());
+        //morphTypesAttached.Add(headWeaponMorph.GetEnumType());
 
-     public void AddMorphToLoadoutAtRuntime(Morph morphPrefab) 
+        //foreach (PassiveMorph passiveMorph in passiveMorphs)
+        //{
+        //    Debug.Log("Found a morph of type " + (Enum.GetName(typeof(MorphType), passiveMorph) + " attached"));
+        //    morphTypesAttached.Add(Enum.GetName(typeof(MorphType), passiveMorph));
+        //}
+        //
+        //Debug.Log("Found a morph of type " + (Enum.GetName(typeof(MorphType), limbWeaponMorph) + " attached"));
+        //morphTypesAttached.Add(Enum.GetName(typeof(MorphType), LimbWeaponMorph));
+        //
+        //Debug.Log("Found a morph of type " + (Enum.GetName(typeof(MorphType), tailWeaponMorph) + " attached"));
+        //morphTypesAttached.Add(Enum.GetName(typeof(MorphType), tailWeaponMorph));
+        //
+        //Debug.Log("Found a morph of type " + (Enum.GetName(typeof(MorphType), headWeaponMorph) + " attached"));
+        //morphTypesAttached.Add(Enum.GetName(typeof(MorphType), headWeaponMorph)); 
+    }
+
+    public void AddMorphToLoadoutAtRuntime(Morph morphPrefab) 
      {
          if (!morphPrefab) return;
 
@@ -164,15 +198,24 @@ public class MorphLoadout : MonoBehaviour
     public bool GetMorphsByType(string typeToSearchFor, int amountToFind)
     {
         int amountFound = 0;
-        
+
+        //For use with morpthTypesAttached and CountAllMorphsByType()
+        //foreach (string name in morphTypesAttached)
+        //{
+        //    if (name == typeToSearchFor)
+        //    {
+        //        amountFound++;
+        //    }
+        //}
+
         foreach (ActiveMorph activeMorph in activeMorphs)
         {
-            
-            if (Enum.GetName(typeof(MorphType), activeMorph).Equals(typeToSearchFor))
+            if (Enum.GetName(typeof(MorphType), passiveMorphs).Equals(typeToSearchFor))
             {
                 amountFound++;
             }
         }
+
         foreach (PassiveMorph passiveMorph in passiveMorphs)
         {
             if (Enum.GetName(typeof(MorphType), passiveMorphs).Equals(typeToSearchFor))
@@ -198,7 +241,7 @@ public class MorphLoadout : MonoBehaviour
             amountFound++;
         }
         
-        if (amountFound == amountToFind) 
+        if (amountFound >= amountToFind) 
         {
         return true;
         }

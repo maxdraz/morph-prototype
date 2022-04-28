@@ -479,12 +479,20 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
+      propertyPath: headWeaponMorph
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: limbWeaponMorph
       value: 
-      objectReference: {fileID: 6675012289007957567, guid: dfde551b8c3af0d4ab0d05cfc2c4608e, type: 3}
+      objectReference: {fileID: 0}
+    - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
+      propertyPath: tailWeaponMorph
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: activeMorphs.Array.size
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: passiveMorphs.Array.size
@@ -493,11 +501,11 @@ PrefabInstance:
     - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: activeMorphs.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5791016419864937052, guid: 8401fd0acfb92284baca79b8ffef541b, type: 3}
     - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: activeMorphs.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1728466787265561277, guid: 3f8c4fc4d1f8298439826229f57fb2fb, type: 3}
     - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: activeMorphs.Array.data[2]
       value: 
@@ -526,6 +534,10 @@ PrefabInstance:
       propertyPath: passiveMorphs.Array.data[4]
       value: 
       objectReference: {fileID: 1423064282517137419, guid: 6bc71d92becf56f49a91234d58afff7d, type: 3}
+    - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
+      propertyPath: morphTypesAttached.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8063955872969139073, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2194,10 +2206,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2076266154}
     m_Modifications:
-    - target: {fileID: 7572867079448245294, guid: 3df9b4b7fc73a4d4b8c1797d6188abdf, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8475706846899881216, guid: 3df9b4b7fc73a4d4b8c1797d6188abdf, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2245,14 +2253,6 @@ PrefabInstance:
     - target: {fileID: 8475706846899881220, guid: 3df9b4b7fc73a4d4b8c1797d6188abdf, type: 3}
       propertyPath: m_Name
       value: PoxShot
-      objectReference: {fileID: 0}
-    - target: {fileID: 8475706846899881220, guid: 3df9b4b7fc73a4d4b8c1797d6188abdf, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8475706846899881343, guid: 3df9b4b7fc73a4d4b8c1797d6188abdf, type: 3}
-      propertyPath: morphPrerequisites.Array.size
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3df9b4b7fc73a4d4b8c1797d6188abdf, type: 3}
@@ -2625,7 +2625,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2076266153
 MonoBehaviour:
   m_ObjectHideFlags: 0

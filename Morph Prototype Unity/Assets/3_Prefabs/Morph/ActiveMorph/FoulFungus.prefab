@@ -66,6 +66,7 @@ MonoBehaviour:
   tailWeaponMorph: {fileID: 0}
   activeMorphs: []
   passiveMorphs: []
+  morphTypesAttached: []
   LimbWeaponMorph: {fileID: 0}
   HeadWeaponMorph: {fileID: 0}
   TailWeaponMorph: {fileID: 0}
@@ -106,7 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49fb91151a5876c46867cc695d87102f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  morphType: 0
+  morphType: 8
   prerequisites:
   - {fileID: 11400000, guid: ea1f99e09f851764abb60a4a3a3ee1cd, type: 2}
   staminaCost: 20

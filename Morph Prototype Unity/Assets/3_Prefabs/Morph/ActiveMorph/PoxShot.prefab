@@ -106,8 +106,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf369aa7bb7b7ea49aeb108a64617a14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  morphType: 0
-  prerequisites: []
+  morphType: 6
+  prerequisites:
+  - {fileID: 11400000, guid: e9f5a22d7617f5146801fa7f656db71c, type: 2}
   staminaCost: 40
   energyCost: 25
   testInput: 275
@@ -176,10 +177,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 525c1dfcb66a6ff4cb3c0f0672cbf3b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  morphType: 0
+  morphType: 6
   prerequisites:
   - {fileID: 11400000, guid: 39181d5e5dfe2c04cb3f786d9ed187a6, type: 2}
-  - {fileID: 11400000, guid: e9f5a22d7617f5146801fa7f656db71c, type: 2}
   staminaCost: 30
   energyCost: 20
   testInput: 273
