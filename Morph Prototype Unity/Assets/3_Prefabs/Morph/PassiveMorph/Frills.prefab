@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fd7d3b23db2ec447936b2eb909fd3ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  morphType: 9
+  prerequisites: []
   intimidationStatBonus: 5
   unlockFearless: 1
   intimidationDefenseBonus: 0.3

@@ -13,7 +13,5 @@ MonoBehaviour:
   m_Name: ChemicalCannon
   m_EditorClassIdentifier: 
   statPrerequisites: []
-  typePrerequisites:
-  - type: 5
-    amount: 2
+  typePrerequisites: []
   morphPrerequisites: []

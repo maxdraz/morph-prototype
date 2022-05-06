@@ -111,7 +111,6 @@ MonoBehaviour:
   morphType: 6
   prerequisites:
   - {fileID: 11400000, guid: b4db664727a71244f904927ba00f927a, type: 2}
-  - {fileID: 11400000, guid: 765faa7f798148040a662f5950e88fb8, type: 2}
   staminaCost: 20
   energyCost: 25
   testInput: 273
@@ -240,7 +239,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   morphType: 6
-  prerequisites: []
+  prerequisites:
+  - {fileID: 11400000, guid: 765faa7f798148040a662f5950e88fb8, type: 2}
   staminaCost: 20
   energyCost: 30
   testInput: 274

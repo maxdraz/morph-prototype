@@ -50,16 +50,19 @@ public class StatueStealth : PassiveMorph
 
     private void Update()
     {
-        if (velo.CurrentVelocity.magnitude == 0 && moving)
+        if (velo != null) 
         {
-            moving = false;
-            stealth.flatStealthModifier += stealthBonusWhileStill;
-        }
-        if (velo.CurrentVelocity.magnitude > 0 && !moving)
-        {
-            moving = true;
-            stealth.flatStealthModifier -= stealthBonusWhileStill;
-        }
+            if (velo.CurrentVelocity.magnitude == 0 && moving)
+            {
+                moving = false;
+                stealth.flatStealthModifier += stealthBonusWhileStill;
+            }
+            if (velo.CurrentVelocity.magnitude > 0 && !moving)
+            {
+                moving = true;
+                stealth.flatStealthModifier -= stealthBonusWhileStill;
+            }
+        } 
     }
 
     // implement

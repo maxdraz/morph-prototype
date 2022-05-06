@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85ed8af385bc5fb45a648a4182856bba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  morphType: 7
+  morphType: 8
   prerequisites:
   - {fileID: 11400000, guid: b9b164f6b4d0e644e873873eae5496d7, type: 2}
   - {fileID: 11400000, guid: a038f2071aadb4445901025863dde786, type: 2}
