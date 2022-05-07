@@ -8,7 +8,7 @@ public class MorphHolder : MonoBehaviour
     public bool addMorphs;
     public bool getEnums;
 
-    Morph[] morphsInChildren;
+    public Morph[] morphsInChildren;
     public MorphLoadout loadout;
 
     private void Start()
@@ -16,7 +16,7 @@ public class MorphHolder : MonoBehaviour
         morphsInChildren = GetComponentsInChildren<Morph>();
 
         if (addMorphs)
-        Invoke ("AddChildMorphs", 1);
+        Invoke ("AddChildMorphs", 3);
 
         if (getEnums)
         Invoke("GetChildMorphEnums", 1);

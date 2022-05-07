@@ -15,6 +15,21 @@ public class PrerequisiteData : ScriptableObject
         bool typeCheck = false;
         bool morphCheck = false;
 
+        if (loadout == null) 
+        {
+            Debug.Log("No Loadout found when checking prerequisites for " + name);
+        }
+
+        if (stats == null)
+        {
+            Debug.Log("No stats found when checking prerequisites for " + name);
+        }
+
+        if (morphPrefab == null)
+        {
+            Debug.Log("No morphprefab found when checking prerequisites for " + name);
+        }
+
         if (statPrerequisites.Length > 0)
         {
             if (CheckStatPrerequisites(stats) == true)
@@ -76,7 +91,8 @@ public class PrerequisiteData : ScriptableObject
                 }
                 else
                 {
-                    Debug.Log("Player character does not have enough " + statPrerequisites[i].stat.ToString() + " to attach " + name);
+                    Debug.Log(stats.transform.name +  " does not have enough " + statPrerequisites[i].stat.ToString() + " to attach " + name);
+                    Debug.Log(stats.transform.name +  " has " + stats.FindStatValue(statPrerequisites[i].stat.ToString()) + statPrerequisites[i].stat.ToString());
                 }
             }
         }
@@ -106,7 +122,7 @@ public class PrerequisiteData : ScriptableObject
                 }
                 else
                 {
-                    Debug.Log("Not enough morphs of type: " + typePrerequisites[i].type.ToString() + " attached to player character to attach " + name);
+                    Debug.Log(loadout.transform.name +  "does not have enough morphs of type: " + typePrerequisites[i].type.ToString() + " attached to attach " + name);
                 }
             }
         }
@@ -129,13 +145,15 @@ public class PrerequisiteData : ScriptableObject
         {
             for (int i = 0; i <= morphPrerequisites.Length - 1; i++)
             {
+                Debug.Log("Looking for " + morphPrerequisites[i].name);
+
                 if (loadout.GetPrerequisiteMorphByName(morphPrerequisites[i].name) == true)
                 {
                     positiveResults++;
                 }
                 else
                 {
-                    Debug.Log("Player character does not have " + morphPrerequisites[i].name + "which is needed to attach " + name);
+                    Debug.Log(loadout.transform.name + " does not have " + morphPrerequisites[i].name + "which is needed to attach " + name);
                 }
             }
         }   

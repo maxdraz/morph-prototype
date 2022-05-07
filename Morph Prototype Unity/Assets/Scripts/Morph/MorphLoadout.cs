@@ -271,11 +271,13 @@ public class MorphLoadout : MonoBehaviour
     public bool GetPrerequisiteMorphByName(string morphName)
     {
         bool morphFound = false;
+        Debug.Log("Looking for " + morphName);
 
         foreach (ActiveMorph activeMorph in activeMorphs)
         {
             if (activeMorph.name.Equals(morphName))
             {
+                Debug.Log("Loadout found " + activeMorph.name);
                 morphFound = true;
             }
         }
@@ -283,24 +285,28 @@ public class MorphLoadout : MonoBehaviour
         {
             if (passiveMorph.name.Equals(morphName))
             {
+                Debug.Log("Loadout found " + passiveMorph.name);
                 morphFound = true;
             }
         }
         
         if (LimbWeaponMorph.name.Equals(morphName))
         {
+            Debug.Log("Loadout found " + limbWeaponMorph.name);
             morphFound = true;
         }
         
         
         if (tailWeaponMorph.name.Equals(morphName))
         {
+            Debug.Log("Loadout found " + tailWeaponMorph.name);
             morphFound = true;
         }
         
         
         if (headWeaponMorph.name.Equals(morphName))
         {
+            Debug.Log("Loadout found " + headWeaponMorph.name);
             morphFound = true;
         }
 
