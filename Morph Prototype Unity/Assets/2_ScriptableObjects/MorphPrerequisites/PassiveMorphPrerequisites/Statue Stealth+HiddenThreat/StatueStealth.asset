@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: StatueStealth
   m_EditorClassIdentifier: 
   statPrerequisites: []
-  typePrerequisites: []
+  typePrerequisites:
+  - type: 8
+    amount: 1
   morphPrerequisites: []

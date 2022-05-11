@@ -496,7 +496,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: passiveMorphs.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: activeMorphs.Array.data[0]
@@ -517,11 +517,11 @@ PrefabInstance:
     - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: passiveMorphs.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1114787138882407050, guid: e2becf8274e76bd4caafef87b9f0dbf8, type: 3}
     - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: passiveMorphs.Array.data[1]
       value: 
-      objectReference: {fileID: 6975248861554160877, guid: 9f07c580619ce2243bd2043902c40e5b, type: 3}
+      objectReference: {fileID: 4091538753727873624, guid: 5977dd6f98f75814f9ab6af7e051a373, type: 3}
     - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: passiveMorphs.Array.data[2]
       value: 

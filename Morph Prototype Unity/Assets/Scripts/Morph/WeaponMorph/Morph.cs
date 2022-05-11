@@ -50,65 +50,67 @@ public class Morph : MonoBehaviour
     }
 
 
-    public string GetEnumType() 
+    
+
+    public string GetMorphType() 
     {
         if (morphType == MorphType.None) 
         {
-            Debug.Log(GetType().Name + " is of type: None");
+            //Debug.Log(GetType().Name + " is of type: None");
             type = "None";
         }
 
         else if (morphType == MorphType.Poison)
         {
-            Debug.Log(name + " is of type: Poison");
+            //Debug.Log(name + " is of type: Poison");
             type = "Poison";
         }
 
         else if (morphType == MorphType.Fire)
         {
-            Debug.Log(name + " is of type: Fire");
+            //Debug.Log(name + " is of type: Fire");
             type = "Fire";
         }
 
         else if (morphType == MorphType.Ice)
         {
-            Debug.Log(name + " is of type: Ice");
+            //Debug.Log(name + " is of type: Ice");
             type = "Ice";
         }
 
         else if (morphType == MorphType.Acid)
         {
-            Debug.Log(name + " is of type: Acid");
+            //Debug.Log(name + " is of type: Acid");
             type = "Acid";
         }
 
         else if (morphType == MorphType.Electric)
         {
-            Debug.Log(name + " is of type: Electric");
+            //Debug.Log(name + " is of type: Electric");
             type = "Electric";
         }
 
         else if (morphType == MorphType.Melee)
         {
-            Debug.Log(name + " is of type: Melee");
+            //Debug.Log(name + " is of type: Melee");
             type = "Melee";
         }
 
         else if (morphType == MorphType.Ranged)
         {
-            Debug.Log(name + " is of type: Ranged");
+            //Debug.Log(name + " is of type: Ranged");
             type = "Ranged";
         }
 
         else if (morphType == MorphType.Stealth)
         {
-            Debug.Log(name + " is of type: Stealth");
+            //Debug.Log(name + " is of type: Stealth");
             type = "Stealth";
         }
 
         else if (morphType == MorphType.Intimidation)
         {
-            Debug.Log(name + " is of type: Intimidation");
+            //Debug.Log(name + " is of type: Intimidation");
             type = "Intimidation";
         }
 

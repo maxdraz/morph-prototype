@@ -35,7 +35,7 @@ public class MorphHolder : MonoBehaviour
     foreach (Morph morph in morphsInChildren)
         {
             Debug.Log("Getting morphtype for " + morph.name);
-            morph.GetComponent<Morph>().GetEnumType();
+            morph.GetComponent<Morph>().GetMorphType();
         }
     }
 }

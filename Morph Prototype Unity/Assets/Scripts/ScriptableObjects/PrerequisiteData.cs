@@ -93,6 +93,7 @@ public class PrerequisiteData : ScriptableObject
                 {
                     Debug.Log(stats.transform.name +  " does not have enough " + statPrerequisites[i].stat.ToString() + " to attach " + name);
                     Debug.Log(stats.transform.name +  " has " + stats.FindStatValue(statPrerequisites[i].stat.ToString()) + statPrerequisites[i].stat.ToString());
+                    Debug.Log(name + " needs " + statPrerequisites[i].value + " " + statPrerequisites[i].stat.ToString());
                 }
             }
         }
@@ -116,7 +117,7 @@ public class PrerequisiteData : ScriptableObject
         {
             for (int i = 0; i <= typePrerequisites.Length - 1; i++)
             {
-                if (loadout.GetMorphTypeAmount(typePrerequisites[i].type.ToString()) == typePrerequisites[i].amount)
+                if (loadout.GetMorphTypeAmount(typePrerequisites[i].type) == typePrerequisites[i].amount)
                 {
                     positiveResults++;
                 }
@@ -145,7 +146,7 @@ public class PrerequisiteData : ScriptableObject
         {
             for (int i = 0; i <= morphPrerequisites.Length - 1; i++)
             {
-                Debug.Log("Looking for " + morphPrerequisites[i].name);
+                Debug.Log("Prerequisites are looking for " + morphPrerequisites[i].name);
 
                 if (loadout.GetPrerequisiteMorphByName(morphPrerequisites[i].name) == true)
                 {
