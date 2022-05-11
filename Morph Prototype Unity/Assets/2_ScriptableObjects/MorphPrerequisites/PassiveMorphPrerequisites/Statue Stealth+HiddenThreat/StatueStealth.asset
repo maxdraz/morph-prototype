@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5181c2a0d89f3fd499f88a6123245f33, type: 3}
   m_Name: StatueStealth
   m_EditorClassIdentifier: 
-  statPrerequisites:
-  - stat: 8
-    value: 300
+  statPrerequisites: []
   typePrerequisites: []
   morphPrerequisites: []

@@ -19,7 +19,7 @@ public class Morph : MonoBehaviour
         Intimidation
     };
 
-    [SerializeField] private MorphType morphType;
+    public MorphType morphType;
     [SerializeField] private List<PrerequisiteData> prerequisites;
 
     private string type;

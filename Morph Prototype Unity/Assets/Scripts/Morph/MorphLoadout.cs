@@ -67,33 +67,52 @@ public class MorphLoadout : MonoBehaviour
 
         foreach (ActiveMorph activeMorph in activeMorphs)
         {
-            morphTypesAttached.Add(activeMorph.GetEnumType());
+            if (activeMorph.GetEnumType() != "None")
+            {
+                morphTypesAttached.Add(activeMorph.GetEnumType());
+            }
         }
         
         foreach (PassiveMorph passiveMorph in passiveMorphs)
         {
-            morphTypesAttached.Add(passiveMorph.GetEnumType());
+            if (passiveMorph.GetEnumType() != "None")
+            {
+                morphTypesAttached.Add(passiveMorph.GetEnumType());
+            }
         }
 
         if (limbWeaponMorph != null)
         {
-            morphTypesAttached.Add(limbWeaponMorph.GetEnumType());
+            if (limbWeaponMorph.GetEnumType() != "None")
+            {
+                morphTypesAttached.Add(limbWeaponMorph.GetEnumType());
+            }
         }
 
         if (headWeaponMorph != null)
         {
-            morphTypesAttached.Add(tailWeaponMorph.GetEnumType());
+            if (headWeaponMorph.GetEnumType() != "None")
+            {
+                morphTypesAttached.Add(headWeaponMorph.GetEnumType());
+            }
         }
 
         if (tailWeaponMorph != null)
         {
-            morphTypesAttached.Add(headWeaponMorph.GetEnumType());
+            if (tailWeaponMorph.GetEnumType() != "None")
+            {
+                morphTypesAttached.Add(tailWeaponMorph.GetEnumType());
+            }
         } 
     }
 
+    
+
     public void AddMorphToLoadoutAtRuntime(Morph morphPrefab) 
      {
-         if (!morphPrefab) return;
+        if (!morphPrefab) return;
+
+        MorphType morphType;
 
         if (morphPrefab.CheckPrerequisites(GetComponent<MorphLoadout>(), GetComponent<Stats>(), morphPrefab) == true)
         {
@@ -105,7 +124,10 @@ public class MorphLoadout : MonoBehaviour
                 {
                     MorphLoadoutChanged?.Invoke(limbWeaponMorph);
                 }
-                morphTypesAttached.Add(limbMorph.GetEnumType());
+                if (limbWeaponMorph.GetEnumType() != "None") 
+                {
+                    morphTypesAttached.Add(limbMorph.GetEnumType());
+                }
             }
 
             else if (morphPrefab is HeadWeaponMorph headMorph)
@@ -115,7 +137,10 @@ public class MorphLoadout : MonoBehaviour
                 {
                     MorphLoadoutChanged?.Invoke(headWeaponMorph);
                 }
-                morphTypesAttached.Add(headMorph.GetEnumType());
+                if (headWeaponMorph.GetEnumType() != "None")
+                {
+                    morphTypesAttached.Add(headMorph.GetEnumType());
+                }
             }
 
             else if (morphPrefab is TailWeaponMorph tailMorph)
@@ -125,7 +150,10 @@ public class MorphLoadout : MonoBehaviour
                 {
                     MorphLoadoutChanged?.Invoke(tailWeaponMorph);
                 }
-                morphTypesAttached.Add(tailMorph.GetEnumType());
+                if (tailWeaponMorph.GetEnumType() != "None")
+                {
+                    morphTypesAttached.Add(tailMorph.GetEnumType());
+                }
             }
 
             else if (morphPrefab is PassiveMorph passiveMorph)
@@ -136,7 +164,10 @@ public class MorphLoadout : MonoBehaviour
                     passiveMorphs.Add(morph);
                     MorphLoadoutChanged?.Invoke(morph);
                 }
-                morphTypesAttached.Add(passiveMorph.GetEnumType());
+                if (passiveMorph.GetEnumType() != "None")
+                {
+                    morphTypesAttached.Add(passiveMorph.GetEnumType());
+                }
             }
 
             else if (morphPrefab is ActiveMorph activeMorph)
@@ -147,7 +178,10 @@ public class MorphLoadout : MonoBehaviour
                     activeMorphs.Add(morph);
                     MorphLoadoutChanged?.Invoke(morph);
                 }
-                morphTypesAttached.Add(activeMorph.GetEnumType());
+                if (activeMorph.GetEnumType() != "None")
+                {
+                    morphTypesAttached.Add(activeMorph.GetEnumType());
+                }
             }
         }
     }
@@ -209,12 +243,12 @@ public class MorphLoadout : MonoBehaviour
 
     
 
-    public int GetMorphsByType(string typeToSearchFor)
+    public int GetMorphTypeAmount(string typeToSearchFor)
     {
         int amountFound = 0;
 
         //For use with morphTypesAttached and CountAllMorphsByType()
-        //This is the function which shuoold be used to check for morph type amounts when determining: elemental status effect bar gain, or any other extra damage based on types attached
+        //This is the function which should be used to check for morph type amounts when determining: elemental status effect bar gain, or any other extra damage based on types attached
         foreach (string name in morphTypesAttached)
         {
             if (name == typeToSearchFor)
@@ -224,48 +258,6 @@ public class MorphLoadout : MonoBehaviour
         }
 
         return amountFound;
-
-        //foreach (ActiveMorph activeMorph in activeMorphs)
-        //{
-        //    if (Enum.GetName(typeof(MorphType), passiveMorphs).Equals(typeToSearchFor))
-        //    {
-        //        amountFound++;
-        //    }
-        //}
-        //
-        //foreach (PassiveMorph passiveMorph in passiveMorphs)
-        //{
-        //    if (Enum.GetName(typeof(MorphType), passiveMorphs).Equals(typeToSearchFor))
-        //    {
-        //        amountFound++;
-        //    }
-        //}
-        //
-        //if (Enum.GetName(typeof(MorphType), LimbWeaponMorph).Equals(typeToSearchFor))
-        //{
-        //    amountFound++;
-        //}
-        //
-        //
-        //if (Enum.GetName(typeof(MorphType), TailWeaponMorph).Equals(typeToSearchFor))
-        //{
-        //    amountFound++;
-        //}
-        //
-        //
-        //if (Enum.GetName(typeof(MorphType), HeadWeaponMorph).Equals(typeToSearchFor))
-        //{
-        //    amountFound++;
-        //}
-        
-        //if (amountFound >= amountToFind) 
-        //{
-        //return true;
-        //}
-        //else 
-        //{
-        //    return false;
-        //}
     }
 
     public bool GetPrerequisiteMorphByName(string morphName)

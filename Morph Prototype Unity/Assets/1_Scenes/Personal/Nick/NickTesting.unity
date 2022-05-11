@@ -492,7 +492,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: activeMorphs.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: passiveMorphs.Array.size

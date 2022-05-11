@@ -116,7 +116,7 @@ public class PrerequisiteData : ScriptableObject
         {
             for (int i = 0; i <= typePrerequisites.Length - 1; i++)
             {
-                if (loadout.GetMorphsByType(typePrerequisites[i].type.ToString()) == typePrerequisites[i].amount)
+                if (loadout.GetMorphTypeAmount(typePrerequisites[i].type.ToString()) == typePrerequisites[i].amount)
                 {
                     positiveResults++;
                 }
