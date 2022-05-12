@@ -554,63 +554,62 @@ public class Stats : MonoBehaviour
 
     public int FindStatValue(string myStat)
     {
-        //Debug.Log("Called Find " + myStat + " Modifier");
-        int value;
+        int value = 0;
 
-        if (myStat == "meleeDamage")
+        if (myStat == "MeleeDamage")
         {
             value = totalMeleeDamage;
             return value;
         }
 
-        if (myStat == "rangedDamage")
+        if (myStat == "RangedDamage")
         {
             value = totalRangedDamage;
             return value;
         }
 
-        if (myStat == "chemicalDamage")
+        if (myStat == "ChemicalDamage")
         {
             value = totalChemicalDamage;
             return value;
         }
 
-        if (myStat == "elementalDamage")
+        if (myStat == "ElementalDamage")
         {
             value = totalElementalDamage;
             return value;
         }
 
-        if (myStat == "toughness")
+        if (myStat == "Toughness")
         {
             value = totalToughness;
             return value;
         }
 
-        if (myStat == "fortitude")
+        if (myStat == "Fortitude")
         {
             value = totalFortitude;
             return value;
         }
 
-        if (myStat == "intelligence")
+        if (myStat == "Intelligence")
         {
             value = totalIntelligence;
             return value;
         }
 
-        if (myStat == "intimidation")
+        if (myStat == "Intimidation")
         {
             value = totalIntimidation;
             return value;
         }
 
-        if (myStat == "agility")
+        if (myStat == "Agility")
         {
             value = totalAgility;
             return value;
         }
-        return 0;
+        return value;
     }
 
     void FindStatModifier(string myStat, int myStatValue) 

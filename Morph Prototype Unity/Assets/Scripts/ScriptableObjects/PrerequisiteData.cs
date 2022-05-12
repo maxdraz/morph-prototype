@@ -9,6 +9,9 @@ public class PrerequisiteData : ScriptableObject
     public MorphTypePrerequisite[] typePrerequisites;
     public Morph[] morphPrerequisites;
 
+    [SerializeField] private bool isSecondary = false;
+    public Morph primary;
+
     public bool CheckPrerequisites(MorphLoadout loadout, Stats stats, Morph morphPrefab)
     {
         bool statsCheck = false;
@@ -69,10 +72,37 @@ public class PrerequisiteData : ScriptableObject
 
         if (statsCheck == true && typeCheck == true && morphCheck == true) 
         {
-            return true;
+
+            if (!isSecondary) 
+            {
+                Debug.Log("CheckPrerequisites passed for " + name + " and is being added to MorphLoadout");
+                return true;
+            }
+            else 
+            {
+                Debug.Log(name + " is a secondary, going to unlock on parent morph");
+                morphPrefab.UnlockSecondary(name);
+                return false;
+            }
+
         }
         else 
         {
+            Debug.Log("CheckPrerequisites failed for " + name);
+
+            if (!statsCheck) 
+            {
+                Debug.Log("StatsCheck failed for " + name);
+            }
+            if (!typeCheck)
+            {
+                Debug.Log("TypeCheck failed for " + name);
+            }
+            if (!morphCheck)
+            {
+                Debug.Log("MorphCheck failed for " + name);
+            }
+
             return false;
         }
     }
@@ -91,9 +121,9 @@ public class PrerequisiteData : ScriptableObject
                 }
                 else
                 {
-                    Debug.Log(stats.transform.name +  " does not have enough " + statPrerequisites[i].stat.ToString() + " to attach " + name);
-                    Debug.Log(stats.transform.name +  " has " + stats.FindStatValue(statPrerequisites[i].stat.ToString()) + statPrerequisites[i].stat.ToString());
-                    Debug.Log(name + " needs " + statPrerequisites[i].value + " " + statPrerequisites[i].stat.ToString());
+                    Debug.Log(stats.transform.name +  " does not have enough " + statPrerequisites[i].stat.ToString() + " to attach " + name +
+                        ", " + stats.transform.name +  " has " + stats.FindStatValue(statPrerequisites[i].stat.ToString()) + statPrerequisites[i].stat.ToString() + 
+                        ", " + name + " needs " + statPrerequisites[i].value + " " + statPrerequisites[i].stat.ToString());
                 }
             }
         }
@@ -121,19 +151,21 @@ public class PrerequisiteData : ScriptableObject
                 {
                     positiveResults++;
                 }
-                else
-                {
-                    Debug.Log(loadout.transform.name +  "does not have enough morphs of type: " + typePrerequisites[i].type.ToString() + " attached to attach " + name);
-                }
+                //else
+                //{
+                //    Debug.Log(loadout.transform.name +  "does not have enough morphs of type: " + typePrerequisites[i].type.ToString() + " attached to attach " + name);
+                //}
             }
         }
 
         if (positiveResults == typePrerequisites.Length)
         {
+            //Debug.Log("CheckType passed for " + name);
             return true;
         }
         else
         {
+            //Debug.Log("CheckType failed for " + name);
             return false; 
         }
     }
@@ -154,7 +186,7 @@ public class PrerequisiteData : ScriptableObject
                 }
                 else
                 {
-                    Debug.Log(loadout.transform.name + " does not have " + morphPrerequisites[i].name + "which is needed to attach " + name);
+                    Debug.Log(loadout.transform.name + " does not have " + morphPrerequisites[i].name + " which is needed to attach " + name);
                 }
             }
         }   

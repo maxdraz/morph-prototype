@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5181c2a0d89f3fd499f88a6123245f33, type: 3}
   m_Name: HiddenThreat
   m_EditorClassIdentifier: 
-  statPrerequisites: []
+  statPrerequisites:
+  - stat: 1
+    value: 60
   typePrerequisites: []
   morphPrerequisites: []
+  isSecondary: 1
+  primary: {fileID: 6975248861554160877, guid: 9f07c580619ce2243bd2043902c40e5b, type: 3}

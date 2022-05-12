@@ -267,16 +267,18 @@ public class MorphLoadout : MonoBehaviour
     {
         int amountFound = 0;
 
+        Debug.Log("GetMorphTypeAmount (in MorphLoadout) is looking for morphs of type: " + typeToSearchFor);
         //For use with morphTypesAttached and CountAllMorphsByType()
         //This is the function which should be used to check for morph type amounts when determining: elemental status effect bar gain, or any other extra damage based on types attached
-        foreach (MorphType name in morphTypesAttached)
+        foreach (MorphType type in morphTypesAttached)
         {
-            if (name == typeToSearchFor)
+            if (type == typeToSearchFor)
             {
                 amountFound++;
             }
         }
 
+        Debug.Log("GetMorphTypeAmount (in MorphLoadout) found:" + amountFound + " of type: " + typeToSearchFor);
         return amountFound;
     }
 
@@ -301,25 +303,33 @@ public class MorphLoadout : MonoBehaviour
                 morphFound = true;
             }
         }
-        
-        if (LimbWeaponMorph.name.Equals(morphName))
+
+        if (limbWeaponMorph != null) 
         {
-            Debug.Log("Loadout found " + limbWeaponMorph.name);
-            morphFound = true;
+            if (LimbWeaponMorph.name.Equals(morphName))
+            {
+                Debug.Log("Loadout found " + limbWeaponMorph.name);
+                morphFound = true;
+            }
         }
-        
-        
-        if (tailWeaponMorph.name.Equals(morphName))
+
+
+        if (tailWeaponMorph != null)
         {
-            Debug.Log("Loadout found " + tailWeaponMorph.name);
-            morphFound = true;
+            if (tailWeaponMorph.name.Equals(morphName))
+            {
+                Debug.Log("Loadout found " + tailWeaponMorph.name);
+                morphFound = true;
+            }
         }
-        
-        
-        if (headWeaponMorph.name.Equals(morphName))
+
+        if (headWeaponMorph != null)
         {
-            Debug.Log("Loadout found " + headWeaponMorph.name);
-            morphFound = true;
+            if (headWeaponMorph.name.Equals(morphName))
+            {
+                Debug.Log("Loadout found " + headWeaponMorph.name);
+                morphFound = true;
+            }
         }
 
         if (morphFound)

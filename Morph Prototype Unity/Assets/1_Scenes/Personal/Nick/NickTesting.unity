@@ -496,7 +496,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: passiveMorphs.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8025267963601229556, guid: 17294641915b125489525c675901fd49, type: 3}
       propertyPath: activeMorphs.Array.data[0]
@@ -903,6 +903,10 @@ PrefabInstance:
     - target: {fileID: 6549852648848010474, guid: 9f07c580619ce2243bd2043902c40e5b, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6975248861554160877, guid: 9f07c580619ce2243bd2043902c40e5b, type: 3}
+      propertyPath: unlockHiddenThreat
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f07c580619ce2243bd2043902c40e5b, type: 3}
@@ -1903,6 +1907,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SureShot
       objectReference: {fileID: 0}
+    - target: {fileID: 3503180373772077992, guid: 2831f4627a2cd684ab1b3343a22de703, type: 3}
+      propertyPath: unlockExpandedReserves
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8447205876481946437, guid: 2831f4627a2cd684ab1b3343a22de703, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2529,6 +2537,10 @@ PrefabInstance:
     - target: {fileID: 342820641065156430, guid: 768eaeec4bcc31d498669883f0c75b31, type: 3}
       propertyPath: m_Name
       value: SizzlingSlime
+      objectReference: {fileID: 0}
+    - target: {fileID: 7247566602518939235, guid: 768eaeec4bcc31d498669883f0c75b31, type: 3}
+      propertyPath: unlockBlindingVapour
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7629466852106569853, guid: 768eaeec4bcc31d498669883f0c75b31, type: 3}
       propertyPath: m_RootOrder

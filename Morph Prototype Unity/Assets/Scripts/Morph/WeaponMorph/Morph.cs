@@ -21,6 +21,7 @@ public class Morph : MonoBehaviour
 
     public MorphType morphType;
     [SerializeField] private List<PrerequisiteData> prerequisites;
+    Dictionary<string, bool> boolHolder = new Dictionary<string, bool>();
 
     private string type;
 
@@ -35,6 +36,11 @@ public class Morph : MonoBehaviour
     }
 
     
+    public void UnlockSecondary(string name) 
+    {
+        Debug.Log(this.name + " is trying to: " + "unlock" + name);
+        boolHolder["unlock" + name] = true;
+    }
 
     public virtual bool CheckPrerequisites(MorphLoadout loadout, Stats stats, Morph morphPrefab)
     {
