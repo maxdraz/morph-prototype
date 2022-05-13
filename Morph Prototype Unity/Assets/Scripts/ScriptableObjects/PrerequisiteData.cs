@@ -73,18 +73,9 @@ public class PrerequisiteData : ScriptableObject
         if (statsCheck == true && typeCheck == true && morphCheck == true) 
         {
 
-            if (!isSecondary) 
-            {
                 Debug.Log("CheckPrerequisites passed for " + name + " and is being added to MorphLoadout");
                 return true;
-            }
-            else 
-            {
-                Debug.Log(name + " is a secondary, going to unlock on parent morph");
-                morphPrefab.UnlockSecondary(name);
-                return false;
-            }
-
+           
         }
         else 
         {
@@ -106,6 +97,98 @@ public class PrerequisiteData : ScriptableObject
             return false;
         }
     }
+
+    public string CheckSecondaryPrerequisites(MorphLoadout loadout, Stats stats)
+    {
+        if (isSecondary) 
+        {
+            bool statsCheck = false;
+            bool typeCheck = false;
+            bool morphCheck = false;
+
+            if (loadout == null)
+            {
+                Debug.Log("No Loadout found when checking prerequisites for " + name);
+            }
+
+            if (stats == null)
+            {
+                Debug.Log("No stats found when checking prerequisites for " + name);
+            }
+
+            if (statPrerequisites.Length > 0)
+            {
+                if (CheckStatPrerequisites(stats) == true)
+                {
+                    statsCheck = true;
+                }
+            }
+            else
+            {
+                statsCheck = true;
+            }
+
+            if (typePrerequisites.Length > 0)
+            {
+
+                if (CheckTypePrerequisites(loadout) == true)
+                {
+                    typeCheck = true;
+                }
+            }
+            else
+            {
+                typeCheck = true;
+            }
+
+            if (morphPrerequisites.Length > 0)
+            {
+                if (CheckMorphPrerequisites(loadout) == true)
+                {
+                    morphCheck = true;
+                }
+            }
+            else
+            {
+                morphCheck = true;
+            }
+
+            if (statsCheck == true && typeCheck == true && morphCheck == true)
+            {
+
+                Debug.Log(name + " is a secondary, going to unlock on parent morph");
+                return name;
+
+
+
+            }
+            else
+            {
+                Debug.Log("CheckPrerequisites failed for " + name);
+
+                if (!statsCheck)
+                {
+                    Debug.Log("StatsCheck failed for " + name);
+                }
+                if (!typeCheck)
+                {
+                    Debug.Log("TypeCheck failed for " + name);
+                }
+                if (!morphCheck)
+                {
+                    Debug.Log("MorphCheck failed for " + name);
+                }
+
+                return null;
+            }
+        }
+        else 
+        {
+            return null;
+        }
+    }
+
+        
 
     private bool CheckStatPrerequisites(Stats stats)
     {

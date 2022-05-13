@@ -27,7 +27,10 @@ public class Morph : MonoBehaviour
 
     protected virtual void Start()
     {
-        
+        if (prerequisites.Count > 1)
+        {
+            CheckSecondaryPrerequisites(GetComponent<MorphLoadout>(),GetComponent<Stats>());
+        }
     }
 
     protected virtual void Update()
@@ -47,16 +50,36 @@ public class Morph : MonoBehaviour
         if (prerequisites == null || prerequisites.Count <= 0) return true;
 
         bool prerequisitesMet = false;
-        foreach (var prerequisiteData in prerequisites)
-        {
-            prerequisitesMet = prerequisiteData.CheckPrerequisites(loadout, stats, morphPrefab);
-        }
-        
+        //foreach (var prerequisiteData in prerequisites)
+        //{
+        //    prerequisitesMet = prerequisiteData.CheckPrerequisites(loadout, stats, morphPrefab);
+        //}
+
+        prerequisitesMet = prerequisites[0].CheckPrerequisites(loadout, stats, morphPrefab);
+
         return prerequisitesMet;
     }
 
+    public virtual void CheckSecondaryPrerequisites(MorphLoadout loadout, Stats stats)
+    {
+        string secondaryToUnlock;
+        foreach (var prerequisiteData in prerequisites)
+        {
+            secondaryToUnlock = prerequisiteData.CheckSecondaryPrerequisites(loadout, stats);
+            if (secondaryToUnlock == null) 
+            {
+                Debug.Log("CheckSecondaryPrerequisites failed");
+            }
+            else 
+            {
+                Debug.Log("CheckSecondaryPrerequisites succeeded for " + secondaryToUnlock);
+                UnlockSecondary(secondaryToUnlock);
+            }
+        }
+    }
 
-    
+
+
 
     public string GetMorphType() 
     {

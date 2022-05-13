@@ -2542,6 +2542,14 @@ PrefabInstance:
       propertyPath: unlockBlindingVapour
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7247566602518939235, guid: 768eaeec4bcc31d498669883f0c75b31, type: 3}
+      propertyPath: prerequisites.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7247566602518939235, guid: 768eaeec4bcc31d498669883f0c75b31, type: 3}
+      propertyPath: prerequisites.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 3dda50a92f83c434c8ea059df63325a5, type: 2}
     - target: {fileID: 7629466852106569853, guid: 768eaeec4bcc31d498669883f0c75b31, type: 3}
       propertyPath: m_RootOrder
       value: 2

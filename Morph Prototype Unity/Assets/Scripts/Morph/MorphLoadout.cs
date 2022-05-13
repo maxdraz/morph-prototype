@@ -71,6 +71,7 @@ public class MorphLoadout : MonoBehaviour
             var currentPassiveMorph = passiveMorphs[i];
             if (currentPassiveMorph)
                 passiveMorphs[i] = UtilityFunctions.CopyComponent(passiveMorphs[i], gameObject);
+            //Debug.Log("Added " + passiveMorphs[i].GetType().Name);
 
             MorphType morphType = (MorphType)Enum.Parse(typeof(MorphType), passiveMorphs[i].GetMorphType());
             morphTypesAttached.Add(morphType);
@@ -289,26 +290,26 @@ public class MorphLoadout : MonoBehaviour
 
         foreach (ActiveMorph activeMorph in activeMorphs)
         {
-            if (activeMorph.name.Equals(morphName))
+            if (activeMorph.GetType().Name == morphName)
             {
-                Debug.Log("Loadout found " + activeMorph.name);
+                Debug.Log("Loadout found " + activeMorph.GetType().Name);
                 morphFound = true;
             }
         }
         foreach (PassiveMorph passiveMorph in passiveMorphs)
         {
-            if (passiveMorph.name.Equals(morphName))
+            if (passiveMorph.GetType().Name == morphName)
             {
-                Debug.Log("Loadout found " + passiveMorph.name);
+                Debug.Log("Loadout found " + passiveMorph.GetType().Name);
                 morphFound = true;
             }
         }
 
         if (limbWeaponMorph != null) 
         {
-            if (LimbWeaponMorph.name.Equals(morphName))
+            if (LimbWeaponMorph.GetType().Name == morphName)
             {
-                Debug.Log("Loadout found " + limbWeaponMorph.name);
+                Debug.Log("Loadout found " + limbWeaponMorph.GetType().Name);
                 morphFound = true;
             }
         }
@@ -316,18 +317,18 @@ public class MorphLoadout : MonoBehaviour
 
         if (tailWeaponMorph != null)
         {
-            if (tailWeaponMorph.name.Equals(morphName))
+            if (tailWeaponMorph.GetType().Name == morphName)
             {
-                Debug.Log("Loadout found " + tailWeaponMorph.name);
+                Debug.Log("Loadout found " + tailWeaponMorph.GetType().Name);
                 morphFound = true;
             }
         }
 
         if (headWeaponMorph != null)
         {
-            if (headWeaponMorph.name.Equals(morphName))
+            if (headWeaponMorph.GetType().Name == morphName)
             {
-                Debug.Log("Loadout found " + headWeaponMorph.name);
+                Debug.Log("Loadout found " + headWeaponMorph.GetType().Name);
                 morphFound = true;
             }
         }
