@@ -22,15 +22,22 @@ public class Morph : MonoBehaviour
     public MorphType morphType;
     [SerializeField] private List<PrerequisiteData> prerequisites;
     Dictionary<string, bool> boolHolder = new Dictionary<string, bool>();
+    Dictionary<string, Morph> morphNameHolder = new Dictionary<string, Morph>();
+
 
     private string type;
 
+    protected void Awake()
+    {
+        
+    }
+
     protected virtual void Start()
     {
-        if (prerequisites.Count > 1)
-        {
-            CheckSecondaryPrerequisites(GetComponent<MorphLoadout>(),GetComponent<Stats>());
-        }
+        //if (CountPrerequisiteListLength() > 1)
+        //{
+        //    CheckSecondaryPrerequisites(GetComponent<MorphLoadout>(), GetComponent<Stats>());
+        //}
     }
 
     protected virtual void Update()
@@ -38,7 +45,15 @@ public class Morph : MonoBehaviour
         
     }
 
-    
+    int CountPrerequisiteListLength() 
+    {
+        int prerequisiteListLength;
+
+        prerequisiteListLength = prerequisites.Count;
+
+        return prerequisiteListLength;
+    }
+
     public void UnlockSecondary(string name) 
     {
         Debug.Log(this.name + " is trying to: " + "unlock" + name);

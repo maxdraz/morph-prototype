@@ -50,9 +50,11 @@ public class ActiveMorph : Morph
         energy = GetComponent<Energy>();
         movement = GetComponentInParent<Movement>();
         controller = GetComponentInParent<CreatureVirtualController>();
+
+        
     }
 
-    private void Update()
+    protected override void Update()
     {
         castTimer.Update(Time.deltaTime);
         cooldown.Update(Time.deltaTime);
