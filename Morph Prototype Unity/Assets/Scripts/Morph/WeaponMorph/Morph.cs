@@ -22,14 +22,14 @@ public class Morph : MonoBehaviour
     public MorphType morphType;
     [SerializeField] private List<PrerequisiteData> prerequisites;
     Dictionary<string, bool> boolHolder = new Dictionary<string, bool>();
-    Dictionary<string, Morph> morphNameHolder = new Dictionary<string, Morph>();
 
 
-    private string type;
 
     protected void Awake()
     {
-        
+
+        //Debug.Log(GetType().Name + " has " + prerequisites.Count + " prerequisites");
+        //CountPrerequisiteListLength();
     }
 
     protected virtual void Start()
@@ -45,7 +45,7 @@ public class Morph : MonoBehaviour
         
     }
 
-    int CountPrerequisiteListLength() 
+    public int PrerequisiteListLength() 
     {
         int prerequisiteListLength;
 
@@ -54,41 +54,54 @@ public class Morph : MonoBehaviour
         return prerequisiteListLength;
     }
 
-    public void UnlockSecondary(string name) 
+    void UnlockSecondary(string name) 
     {
         Debug.Log(this.name + " is trying to: " + "unlock" + name);
         boolHolder["unlock" + name] = true;
+        //BroadcastMessage("Unlock" + name);
+        
     }
 
     public virtual bool CheckPrerequisites(MorphLoadout loadout, Stats stats, Morph morphPrefab)
     {
         if (prerequisites == null || prerequisites.Count <= 0) return true;
 
-        bool prerequisitesMet = false;
-        //foreach (var prerequisiteData in prerequisites)
-        //{
-        //    prerequisitesMet = prerequisiteData.CheckPrerequisites(loadout, stats, morphPrefab);
-        //}
+        bool primaryPrerequisitesMet = false;
 
-        prerequisitesMet = prerequisites[0].CheckPrerequisites(loadout, stats, morphPrefab);
 
-        return prerequisitesMet;
-    }
+        primaryPrerequisitesMet = prerequisites[0].CheckPrerequisites(loadout, stats, morphPrefab);
 
-    public virtual void CheckSecondaryPrerequisites(MorphLoadout loadout, Stats stats)
-    {
-        string secondaryToUnlock;
-        foreach (var prerequisiteData in prerequisites)
+        if (primaryPrerequisitesMet && PrerequisiteListLength() > 1) 
         {
-            secondaryToUnlock = prerequisiteData.CheckSecondaryPrerequisites(loadout, stats);
-            if (secondaryToUnlock == null) 
+            
+            CheckSecondaryPrerequisites(loadout, stats);
+        }
+
+        return primaryPrerequisitesMet;
+    }
+    
+    void CheckSecondaryPrerequisites(MorphLoadout loadout, Stats stats)
+    {
+        bool[] secondariesToUnlock = new bool[PrerequisiteListLength() -1];
+        Debug.Log(this.name + " has " + secondariesToUnlock.Length + " secondaries");
+
+        for (int i = 1; i <= secondariesToUnlock.Length; i++)
+        {
+            Debug.Log("Going to checkSecondaryPrerequisites for " + prerequisites[i].name);
+            secondariesToUnlock[i - 1] = prerequisites[i].CheckSecondaryPrerequisites(loadout, stats);
+            Debug.Log("SecondaryPrerequisites check for " + prerequisites[i].name + " returned " + secondariesToUnlock[i - 1].ToString());
+        }
+
+        for (int i = 0; i < secondariesToUnlock.Length; i++) 
+        {
+            if (secondariesToUnlock[i] == true)
             {
-                Debug.Log("CheckSecondaryPrerequisites failed");
+                Debug.Log("CheckSecondaryPrerequisites succeeded for " + prerequisites[i + 1]);
+                UnlockSecondary(prerequisites[i + 1].name);
             }
-            else 
+            else
             {
-                Debug.Log("CheckSecondaryPrerequisites succeeded for " + secondaryToUnlock);
-                UnlockSecondary(secondaryToUnlock);
+                Debug.Log("CheckSecondaryPrerequisites failed for " + prerequisites[i + 1]);
             }
         }
     }
@@ -98,7 +111,9 @@ public class Morph : MonoBehaviour
 
     public string GetMorphType() 
     {
-        if (morphType == MorphType.None) 
+        string type = null;
+
+        if (morphType == MorphType.None)
         {
             //Debug.Log(GetType().Name + " is of type: None");
             type = "None";
@@ -158,6 +173,10 @@ public class Morph : MonoBehaviour
             type = "Intimidation";
         }
 
+        else if (type == null) 
+        {
+            type = "None";
+        }
         return type;
     }
 }

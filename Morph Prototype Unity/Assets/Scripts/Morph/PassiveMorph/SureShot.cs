@@ -15,6 +15,9 @@ public class SureShot : PassiveMorph
     [SerializeField] private Energy energy;
     Stats stats;
 
+    
+    
+
     private void OnEnable()
     {
         energy = GetComponent<Energy>();
@@ -40,6 +43,12 @@ public class SureShot : PassiveMorph
         {
             ChangeMaxEnergyStat(-maxEnergyStatBonus);
         }
+    }
+
+    public void UnlockSecondary (string name) 
+    {
+        Debug.Log("Unlocking " + name);
+        
     }
 
     // implement
