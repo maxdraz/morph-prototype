@@ -44,6 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bd3d6fb1caea254c8bfc24b80d8b942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  morphType: 0
+  prerequisites:
+  - {fileID: 11400000, guid: 24836d7d32115c746b25482f02703769, type: 2}
+  - {fileID: 11400000, guid: 4a27a4e1935897c4aa9fbdbb89c8ba04, type: 2}
   meleeDamageStatBonus: 5
   unlockRage: 1
   bonusAttackSpeed: 0.2

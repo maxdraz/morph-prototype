@@ -11,32 +11,36 @@ public class VitriolicGoo : PassiveMorph
 
     private DamageHandler damageHandler;
     [SerializeField] private float staminaDrainFraction;
-    [SerializeField] private int chemicalDamageStatBonus = 5;
     [SerializeField] private bool unlockMolecularAcid = true;
 
     Stats stats;
-
-    //public Prerequisite[] StatPrerequisits;
 
     private void OnEnable()
     {
         stats = GetComponent<Stats>();
 
         StartCoroutine(AssignDamageHandlerCoroutine());
-        ChangeChemicalDamageStat(chemicalDamageStatBonus);
+        AddToStatValue(statToAddTo.ToString(), statBonus);
         
     }
 
     private void OnDisable()
     {
         UnsubscribeFromEvents();
-        ChangeChemicalDamageStat(-chemicalDamageStatBonus);
+        AddToStatValue(statToAddTo.ToString(), -statBonus);
     }
 
     // implement
-    private void ChangeChemicalDamageStat(int amountToAdd)
+    void AddToStatValue(string statName, int value)
     {
-        stats.FlatStatChange("chemicalDamage", amountToAdd);
+        if (stats != null) 
+        {
+            if (statName != null && statBonus != 0)
+            {
+                Debug.Log("Adding to " + statName);
+                stats.FlatStatChange(statName, value);
+            }
+        }
     }
 
     private void OnDamageHasBeenDealt(in DamageTakenSummary damageTakenSummary)

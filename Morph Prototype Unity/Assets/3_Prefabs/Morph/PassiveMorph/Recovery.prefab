@@ -44,6 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b773b9179559f04c9affc99b841f119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  morphType: 0
+  prerequisites:
+  - {fileID: 11400000, guid: 077ea8f9184e0a94893167dbf346a2c5, type: 2}
+  - {fileID: 11400000, guid: a4d06b5c828382c4a861f45f78631792, type: 2}
   staminaRegenBonus: 0.1
   energyRegenBonus: 0.15
   unlockRecuperate: 1
@@ -52,6 +56,8 @@ MonoBehaviour:
     duration: 0
     currentTime: 0
     loop: 0
+  recuperating: 0
+  velocity: {fileID: 0}
 --- !u!114 &5781388212648070896
 MonoBehaviour:
   m_ObjectHideFlags: 0

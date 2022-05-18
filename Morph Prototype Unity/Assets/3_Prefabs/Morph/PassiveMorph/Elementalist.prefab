@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8848275264776827348}
-  - component: {fileID: 4064054765829792523}
   - component: {fileID: 6374220721621497458}
+  - component: {fileID: 9183985757715454652}
   m_Layer: 0
   m_Name: Elementalist
   m_TagString: Untagged
@@ -32,20 +32,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4064054765829792523
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1402478019816864554}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 884263ceaa7d633479472439fbc0bdb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  elementalDamageStatBonus: 5
-  unlockForceOfNature: 1
 --- !u!114 &6374220721621497458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,3 +46,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInvincible: 1
   damageNumberSet: {fileID: 0}
+--- !u!114 &9183985757715454652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1402478019816864554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 884263ceaa7d633479472439fbc0bdb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  morphType: 0
+  prerequisites:
+  - {fileID: 11400000, guid: d4ca790bc6f7acb4e974c9d6556894f0, type: 2}
+  - {fileID: 11400000, guid: 6c206fb0855fc724196c410a9eb9c4fb, type: 2}
+  elementalDamageStatBonus: 5
+  unlockForceOfNature: 1

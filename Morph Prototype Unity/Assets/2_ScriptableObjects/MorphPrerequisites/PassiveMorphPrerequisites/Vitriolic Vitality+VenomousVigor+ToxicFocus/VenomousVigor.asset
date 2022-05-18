@@ -15,3 +15,5 @@ MonoBehaviour:
   statPrerequisites: []
   typePrerequisites: []
   morphPrerequisites: []
+  primary: {fileID: 1577685173701005545, guid: cb9a714abcaa8134b8af28a4e30b727c, type: 3}
+  isSecondary: 1

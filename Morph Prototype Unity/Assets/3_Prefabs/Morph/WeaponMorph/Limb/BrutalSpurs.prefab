@@ -44,7 +44,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   morphType: 0
-  prerequisites: []
+  prerequisites:
+  - {fileID: 11400000, guid: e3111240e1c68504583f2fa32ac08505, type: 2}
   baseDamage: 5
   lightAttacks:
   - onHitEffects:

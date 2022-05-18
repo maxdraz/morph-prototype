@@ -44,9 +44,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23f4dd670163a3741809d7c2ab5d12b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  morphType: 0
+  prerequisites:
+  - {fileID: 11400000, guid: 79de74ce70b576f4cb7a4aeddd6cf7a3, type: 2}
+  - {fileID: 11400000, guid: af929533240cd3342bc1e84a6a3bf9a6, type: 2}
   perceptionStatBonus: 100
   stealthStatBonus: 100
   unlockHeatVision: 1
+  perception: {fileID: 0}
 --- !u!114 &4842231703207490065
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -44,10 +44,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf23ae68d720ea4469e9aaab51993dbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  morphType: 0
+  prerequisites:
+  - {fileID: 11400000, guid: e2e97aa74424ee24fa6c068326653bf6, type: 2}
+  - {fileID: 11400000, guid: b5962f612d73e1744ae0d55824ba3af7, type: 2}
   meleeDamageStatBonus: 5
   rangedDamageStatBonus: 5
   unlockBattleMaster: 1
-  citChance: 5
+  critChance: 5
 --- !u!114 &5110767384724020511
 MonoBehaviour:
   m_ObjectHideFlags: 0

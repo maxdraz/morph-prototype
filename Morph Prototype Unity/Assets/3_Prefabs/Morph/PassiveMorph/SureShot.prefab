@@ -48,6 +48,8 @@ MonoBehaviour:
   prerequisites:
   - {fileID: 11400000, guid: bcce9777cb66ab741b62fc81cdc2f78d, type: 2}
   - {fileID: 11400000, guid: e01a75c0fbd7676479dc4a02254b54c5, type: 2}
+  statToAddTo: 1
+  statBonus: 5
   rangedDamageStatBonus: 5
   unlockExpandedReserves: 1
   maxEnergyStatBonus: 0.2

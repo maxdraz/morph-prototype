@@ -14,7 +14,7 @@ public class SureShot : PassiveMorph
 
     [SerializeField] private Energy energy;
     Stats stats;
-
+    
     
     
 
@@ -24,7 +24,8 @@ public class SureShot : PassiveMorph
         stats = GetComponent<Stats>();
 
         StartCoroutine(AssignDamageHandlerCoroutine());
-        ChangeRangedDamageStat(rangedDamageStatBonus);
+        AddToStatValue(statToAddTo.ToString(), statBonus);
+
 
         if (unlockExpandedReserves) 
         {
@@ -38,7 +39,8 @@ public class SureShot : PassiveMorph
         stats = GetComponent<Stats>();
 
         UnsubscribeFromEvents();
-        ChangeRangedDamageStat(-rangedDamageStatBonus);
+        AddToStatValue(statToAddTo.ToString(), -statBonus);
+
         if (unlockExpandedReserves)
         {
             ChangeMaxEnergyStat(-maxEnergyStatBonus);
@@ -47,14 +49,24 @@ public class SureShot : PassiveMorph
 
     public void UnlockSecondary (string name) 
     {
-        Debug.Log("Unlocking " + name);
-        
+        if (name == "ExpandedReserves") 
+        {
+            Debug.Log(GetType().Name + "Unlocking " + name);
+            unlockExpandedReserves = true;
+        }      
     }
 
     // implement
-    private void ChangeRangedDamageStat(int amountToAdd)
+    void AddToStatValue(string statName, int value)
     {
-        stats.FlatStatChange("rangedDamage", amountToAdd);
+        if (stats != null)
+        {
+            if (statName != null && statBonus != 0)
+            {
+                Debug.Log("Adding to " + statName);
+                stats.FlatStatChange(statName, value);
+            }
+        }
     }
 
     private void ChangeMaxEnergyStat(float amountToAdd)

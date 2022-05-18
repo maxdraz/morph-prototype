@@ -48,10 +48,12 @@ MonoBehaviour:
   prerequisites:
   - {fileID: 11400000, guid: b9b164f6b4d0e644e873873eae5496d7, type: 2}
   - {fileID: 11400000, guid: a038f2071aadb4445901025863dde786, type: 2}
+  statToAddTo: 8
+  statBonus: 5
   stealthStatBonus: 5
   stealthPenaltyWhileMoving: 0.5
   stealthBonusWhileStill: 100
-  unlockHiddenThreat: 1
+  unlockHiddenThreat: 0
   hiddenThreatIncreasedDamage: 1
   hiddenThreatReducedDamage: 0.66
 --- !u!114 &6967200210734551784

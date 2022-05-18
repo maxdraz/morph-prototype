@@ -15,25 +15,39 @@ public class SizzlingSlime : PassiveMorph
 
     Stats stats;
 
-    //static Prerequisite[] StatPrerequisits;
-
     private void OnEnable()
     {
         stats = GetComponent<Stats>();
         StartCoroutine(AssignDamageHandlerCoroutine());
-        ChangeChemicalDamageStat(chemicalDamageStatBonus);
+        AddToStatValue(statToAddTo.ToString(), statBonus);
 
     }
 
     private void OnDisable()
     {
         UnsubscribeFromEvents();
-        ChangeChemicalDamageStat(-chemicalDamageStatBonus);
+        AddToStatValue(statToAddTo.ToString(), -statBonus);
     }
 
-    private void ChangeChemicalDamageStat(int amountToAdd)
+    public void UnlockSecondary(string name)
     {
-        stats.FlatStatChange("chemicalDamage", amountToAdd); 
+        if (name == "BlindingVapour")
+        {
+            Debug.Log(GetType().Name + "Unlocking " + name);
+            unlockBlindingVapour = true;
+        }
+    }
+
+    void AddToStatValue(string statName, int value)
+    {
+        if (stats != null)
+        {
+            if (statName != null && statBonus != 0)
+            {
+                Debug.Log("Adding to " + statName);
+                stats.FlatStatChange(statName, value);
+            }
+        }
     }
 
     private void OnDamageHasBeenDealt(in DamageTakenSummary damageTakenSummary)

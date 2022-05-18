@@ -43,7 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ec17451da513ab4ba5768fc3b3aa16f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  morphPrerequisites: []
+  morphType: 0
+  prerequisites:
+  - {fileID: 11400000, guid: 458e8a4e6b4ae404db15c516e53e32f5, type: 2}
   baseDamage: 10
   lightAttacks:
   - onHitEffects:
@@ -124,7 +126,11 @@ MonoBehaviour:
     00000004:
       type: {class: PullTowardsData, ns: , asm: Assembly-CSharp}
       data:
-        pullForce: 100
+        pullTowardsDebuff:
+          duration: 0
+          target: {fileID: 0}
+          pullForce: 100
+          forceMode: 5
     00000005:
       type: {class: PhysicalDamageData, ns: , asm: Assembly-CSharp}
       data:

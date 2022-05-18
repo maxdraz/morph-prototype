@@ -21,9 +21,12 @@ public class Morph : MonoBehaviour
 
     public MorphType morphType;
     [SerializeField] private List<PrerequisiteData> prerequisites;
-    Dictionary<string, bool> boolHolder = new Dictionary<string, bool>();
 
+    //This was to be used with activating secondaries as a precedural name for secondaryunlock bools
+    //public Dictionary<string, bool> boolHolder = new Dictionary<string, bool>();
 
+    public StatType statToAddTo;
+    public int statBonus = 5;
 
     protected void Awake()
     {
@@ -45,7 +48,7 @@ public class Morph : MonoBehaviour
         
     }
 
-    public int PrerequisiteListLength() 
+    int PrerequisiteListCount() 
     {
         int prerequisiteListLength;
 
@@ -54,11 +57,26 @@ public class Morph : MonoBehaviour
         return prerequisiteListLength;
     }
 
+   //int SecondaryListCount() 
+   //{
+   //    int secondaryListLength = 0;
+   //
+   //    foreach (PrerequisiteData prerequisite in prerequisites) 
+   //    {
+   //    if (prerequisite.isSecondary) 
+   //        {
+   //            secondaryListLength++;
+   //        }
+   //    }
+   //
+   //    return secondaryListLength;
+   //}
+
     void UnlockSecondary(string name) 
     {
         Debug.Log(this.name + " is trying to: " + "unlock" + name);
-        boolHolder["unlock" + name] = true;
-        //BroadcastMessage("Unlock" + name);
+        //boolHolder["unlock" + name] = true;
+        BroadcastMessage("UnlockSecondary", name);
         
     }
 
@@ -68,10 +86,16 @@ public class Morph : MonoBehaviour
 
         bool primaryPrerequisitesMet = false;
 
+        if (prerequisites[0].isSecondary == true)
+        {
+            primaryPrerequisitesMet = true;
+        }
+        else 
+        {
+            primaryPrerequisitesMet = prerequisites[0].CheckPrerequisites(loadout, stats, morphPrefab);
+        }
 
-        primaryPrerequisitesMet = prerequisites[0].CheckPrerequisites(loadout, stats, morphPrefab);
-
-        if (primaryPrerequisitesMet && PrerequisiteListLength() > 1) 
+        if (primaryPrerequisitesMet) 
         {
             
             CheckSecondaryPrerequisites(loadout, stats);
@@ -82,26 +106,20 @@ public class Morph : MonoBehaviour
     
     void CheckSecondaryPrerequisites(MorphLoadout loadout, Stats stats)
     {
-        bool[] secondariesToUnlock = new bool[PrerequisiteListLength() -1];
-        Debug.Log(this.name + " has " + secondariesToUnlock.Length + " secondaries");
+        string[] secondariesToUnlock = new string[prerequisites.Count];
 
-        for (int i = 1; i <= secondariesToUnlock.Length; i++)
+        for (int i = 0; i < prerequisites.Count; i++)
         {
-            Debug.Log("Going to checkSecondaryPrerequisites for " + prerequisites[i].name);
-            secondariesToUnlock[i - 1] = prerequisites[i].CheckSecondaryPrerequisites(loadout, stats);
-            Debug.Log("SecondaryPrerequisites check for " + prerequisites[i].name + " returned " + secondariesToUnlock[i - 1].ToString());
+            secondariesToUnlock[i] = prerequisites[i].CheckSecondaryPrerequisites(loadout, stats);
+            Debug.Log("SecondaryPrerequisites check for " + secondariesToUnlock[i] + " returned true");
         }
 
         for (int i = 0; i < secondariesToUnlock.Length; i++) 
         {
-            if (secondariesToUnlock[i] == true)
+            if (secondariesToUnlock[i] != null)
             {
-                Debug.Log("CheckSecondaryPrerequisites succeeded for " + prerequisites[i + 1]);
-                UnlockSecondary(prerequisites[i + 1].name);
-            }
-            else
-            {
-                Debug.Log("CheckSecondaryPrerequisites failed for " + prerequisites[i + 1]);
+                Debug.Log("CheckSecondaryPrerequisites succeeded for " + secondariesToUnlock[i]);
+                UnlockSecondary(secondariesToUnlock[i]);
             }
         }
     }

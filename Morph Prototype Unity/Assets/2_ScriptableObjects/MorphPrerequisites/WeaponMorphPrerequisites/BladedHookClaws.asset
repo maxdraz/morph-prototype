@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5181c2a0d89f3fd499f88a6123245f33, type: 3}
-  m_Name: UnnaturalVigor
+  m_Name: BladedHookClaws
   m_EditorClassIdentifier: 
   statPrerequisites: []
   typePrerequisites: []
   morphPrerequisites: []
-  primary: {fileID: 6082708895000488052, guid: 48597387203be48458165490d92a43f7, type: 3}
-  isSecondary: 1
+  primary: {fileID: 0}
+  isSecondary: 0

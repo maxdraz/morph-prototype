@@ -44,6 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98e3f8673dd534a44b099a3466f3da9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  morphType: 0
+  prerequisites:
+  - {fileID: 11400000, guid: ec7eae5152bd86d46ab33b1e6339de33, type: 2}
+  - {fileID: 11400000, guid: b53a716ead5e10b45a78b48d45c86514, type: 2}
   staminaPercentageStatBonus: 0.2
   staminaPercentageRegenBonus: 0.4
   unlockMoxie: 1

@@ -31,9 +31,12 @@ public class StatueStealth : PassiveMorph
         velo = GetComponent<Velocity>();
         stealth = GetComponent<Stealth>();
         StartCoroutine(AssignDamageHandlerCoroutine());
-        ChangeStealthStat(stealthStatBonus);
+        AddToStatValue(statToAddTo.ToString(), statBonus);
 
-        stealth.stealthModifierWhileMoving += stealthPenaltyWhileMoving; 
+        if (stealth != null) 
+        {
+            stealth.stealthModifierWhileMoving += stealthPenaltyWhileMoving;
+        }
     }
 
    
@@ -42,10 +45,22 @@ public class StatueStealth : PassiveMorph
     {
 
         UnsubscribeFromEvents();
-        ChangeStealthStat(-stealthStatBonus);
+        AddToStatValue(statToAddTo.ToString(), -statBonus);
 
         GetComponent<Stealth>().stealthModifierWhileMoving -= stealthPenaltyWhileMoving;
 
+    }
+
+    void AddToStatValue(string statName, int value)
+    {
+        if (stats != null)
+        {
+            if (statName != null && statBonus != 0)
+            {
+                Debug.Log("Adding to " + statName);
+                stats.FlatStatChange(statName, value);
+            }
+        }
     }
 
     private void Update()
@@ -65,10 +80,22 @@ public class StatueStealth : PassiveMorph
         } 
     }
 
+    public void UnlockSecondary(string name)
+    {
+        if (name == "HiddenThreat")
+        {
+            Debug.Log(GetType().Name + "Unlocking " + name);
+            unlockHiddenThreat = true;
+        }
+    }
+
     // implement
     private void ChangeStealthStat(int amountToAdd)
     {
-        stats.FlatStatChange("stealth", amountToAdd);
+        if (stats != null)
+        {
+            stats.FlatStatChange("stealth", amountToAdd);
+        }
     }
 
     private IEnumerator AssignDamageHandlerCoroutine()

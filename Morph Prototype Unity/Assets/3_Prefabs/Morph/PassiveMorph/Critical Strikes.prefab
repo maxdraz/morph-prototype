@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca070c3b6534b8a47b9eeb7cc2a9559f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentRigidbody: {fileID: 0}
   isInvincible: 1
   damageNumberSet: {fileID: 0}
 --- !u!114 &8547148539514311871
@@ -59,6 +58,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f846de85c84d61459488cbc9757015a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  morphType: 0
+  prerequisites:
+  - {fileID: 11400000, guid: 527cf6e97fba31649be2335d8f11ef7e, type: 2}
+  - {fileID: 11400000, guid: 1b09c9a07eab3c64aa37bb967f24d319, type: 2}
+  - {fileID: 11400000, guid: 2ca2106d7f033d2498ad910369e03333, type: 2}
   criticalStrikeChance: 10
   unlockHiddenAttack: 1
   hiddenAttackCriticalStrikeChance: 20

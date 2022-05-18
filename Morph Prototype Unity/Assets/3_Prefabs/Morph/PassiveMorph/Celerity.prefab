@@ -44,9 +44,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa8a0404e831fb7448cb1b52e92fdbb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  morphType: 0
+  prerequisites:
+  - {fileID: 11400000, guid: a081a8c51dac4644ebe8940541256209, type: 2}
+  - {fileID: 11400000, guid: f2adab8e706afaa438a703e75e627c0c, type: 2}
   moveSpeedStatBonus: 0.2
   unlockGraceful: 1
   mobilityStaminaCostReduction: 0.2
+  movement: {fileID: 0}
+  stamina: {fileID: 0}
 --- !u!114 &4795489639648385401
 MonoBehaviour:
   m_ObjectHideFlags: 0

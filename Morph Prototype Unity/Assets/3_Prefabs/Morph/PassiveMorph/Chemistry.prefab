@@ -44,6 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 237e041df5d24f444b6dc035d5d99b04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  morphType: 0
+  prerequisites:
+  - {fileID: 11400000, guid: 6536bbc916fbb3143bb5968b3aeef440, type: 2}
+  - {fileID: 11400000, guid: 4276675165130714b968f7bf852d74fc, type: 2}
   chemicalDamageStatBonus: 5
   unlockConcentratedChemicals: 1
   bonusToughnessReduction: 0.1

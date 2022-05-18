@@ -43,5 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0943bd75258d79a458ea4d8e69534b14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  morphType: 0
+  prerequisites:
+  - {fileID: 11400000, guid: 856d6737d714aae4b98f17852ac7c453, type: 2}
+  - {fileID: 11400000, guid: 4d8bcd60189a9cf478c4033529e421f9, type: 2}
+  - {fileID: 11400000, guid: 23a10f5c6a4939341a26f023af526364, type: 2}
   lifeStealFraction: 0.15
   fierceHunger: 1

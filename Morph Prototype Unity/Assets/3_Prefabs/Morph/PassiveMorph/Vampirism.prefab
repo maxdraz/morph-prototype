@@ -44,6 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efe137ff475d30c46bb1ef0edb93b400, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  morphType: 0
+  prerequisites:
+  - {fileID: 11400000, guid: f9b8b0be13eff6b49bc44668be07efd0, type: 2}
+  - {fileID: 11400000, guid: afb66443a5e777a4ebb74e927f71a55e, type: 2}
   unlockSpiritLeech: 1
   lifeStealFraction: 0.2
   energyStealFraction: 0.4

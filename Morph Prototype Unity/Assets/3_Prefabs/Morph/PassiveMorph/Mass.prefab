@@ -44,6 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e8fdd7446a184a4a979c5b99b5855ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  morphType: 0
+  prerequisites:
+  - {fileID: 11400000, guid: 46262df7e728c9741ab99f7cc4f3afc4, type: 2}
+  - {fileID: 11400000, guid: 3f80221fca1490d40881cdc5336fbdbc, type: 2}
   percentHealthBonus: 0.2
   unlockRestoration: 1
   percentHealthRegen: 0.02

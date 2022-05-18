@@ -10,12 +10,13 @@ public class PrerequisiteData : ScriptableObject
     public Morph[] morphPrerequisites;
 
     public Morph primary;
-
+    public bool isSecondary;
     public bool CheckPrerequisites(MorphLoadout loadout, Stats stats, Morph morphPrefab)
     {
         bool statsCheck = false;
         bool typeCheck = false;
         bool morphCheck = false;
+
 
         if (loadout == null)
         {
@@ -97,84 +98,92 @@ public class PrerequisiteData : ScriptableObject
         }
     }
 
-    public bool CheckSecondaryPrerequisites(MorphLoadout loadout, Stats stats)
+    public string CheckSecondaryPrerequisites(MorphLoadout loadout, Stats stats)
     {
-
-        bool statsCheck = false;
-        bool typeCheck = false;
-        bool morphCheck = false;
-
-        if (loadout == null)
+        if (isSecondary)
         {
-            Debug.Log("No Loadout found when checking prerequisites for " + name);
-        }
 
-        if (stats == null)
-        {
-            Debug.Log("No stats found when checking prerequisites for " + name);
-        }
+            bool statsCheck = false;
+            bool typeCheck = false;
+            bool morphCheck = false;
 
-        if (statPrerequisites.Length > 0)
-        {
-            if (CheckStatPrerequisites(stats) == true)
+            if (loadout == null)
+            {
+                Debug.Log("No Loadout found when checking prerequisites for " + name);
+            }
+
+            if (stats == null)
+            {
+                Debug.Log("No stats found when checking prerequisites for " + name);
+            }
+
+            if (statPrerequisites.Length > 0)
+            {
+                if (CheckStatPrerequisites(stats) == true)
+                {
+                    statsCheck = true;
+                }
+            }
+            else
             {
                 statsCheck = true;
             }
-        }
-        else
-        {
-            statsCheck = true;
-        }
 
-        if (typePrerequisites.Length > 0)
-        {
+            if (typePrerequisites.Length > 0)
+            {
 
-            if (CheckTypePrerequisites(loadout) == true)
+                if (CheckTypePrerequisites(loadout) == true)
+                {
+                    typeCheck = true;
+                }
+            }
+            else
             {
                 typeCheck = true;
             }
-        }
-        else
-        {
-            typeCheck = true;
-        }
 
-        if (morphPrerequisites.Length > 0)
-        {
-            if (CheckMorphPrerequisites(loadout) == true)
+            if (morphPrerequisites.Length > 0)
+            {
+                if (CheckMorphPrerequisites(loadout) == true)
+                {
+                    morphCheck = true;
+                }
+            }
+            else
             {
                 morphCheck = true;
             }
+
+            if (statsCheck == true && typeCheck == true && morphCheck == true)
+            {
+
+                Debug.Log(name + " is a secondary, going to unlock on parent morph");
+                return name;
+            }
+            else
+            {
+                Debug.Log("CheckPrerequisites failed for " + name);
+
+                if (!statsCheck)
+                {
+                    Debug.Log("StatsCheck failed for " + name);
+                }
+                if (!typeCheck)
+                {
+                    Debug.Log("TypeCheck failed for " + name);
+                }
+                if (!morphCheck)
+                {
+                    Debug.Log("MorphCheck failed for " + name);
+                }
+
+                return null;
+            }
+
         }
         else
         {
-            morphCheck = true;
-        }
-
-        if (statsCheck == true && typeCheck == true && morphCheck == true)
-        {
-
-            Debug.Log(name + " is a secondary, going to unlock on parent morph");
-            return true;
-        }
-        else
-        {
-            Debug.Log("CheckPrerequisites failed for " + name);
-
-            if (!statsCheck)
-            {
-                Debug.Log("StatsCheck failed for " + name);
-            }
-            if (!typeCheck)
-            {
-                Debug.Log("TypeCheck failed for " + name);
-            }
-            if (!morphCheck)
-            {
-                Debug.Log("MorphCheck failed for " + name);
-            }
-
-            return false;
+            return null;
         }
     }
     

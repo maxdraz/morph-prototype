@@ -44,6 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b54998fd1d8f2a4b863fbaf43419af9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  morphType: 0
+  prerequisites:
+  - {fileID: 11400000, guid: 53082768f2489ef43a66f27f8d21cef6, type: 2}
+  - {fileID: 11400000, guid: 457e4622d3ed5fb4abbf5f250b086910, type: 2}
   perceptionStatBonus: 5
   unlockSecondary: 1
 --- !u!114 &1081013706962835130

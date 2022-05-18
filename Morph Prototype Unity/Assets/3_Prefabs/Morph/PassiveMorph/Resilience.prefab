@@ -44,23 +44,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be73dea412204f74e9630e14167e6edb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  morphType: 0
+  prerequisites:
+  - {fileID: 11400000, guid: bbfe9a31370881848b9c5592dc71cecb, type: 2}
+  - {fileID: 11400000, guid: 450f60be8d69fa74288622faed636d41, type: 2}
   resistanceBoost1: 20
   resistanceBoost2: 20
   unlockHardiness: 1
   resistType1: 
   resistType2: 
-  globalResistList:
-  - fire
-  - ice
-  - electric
-  - poison
-  - acid
-  myResistList:
-  - fire
-  - ice
-  - electric
-  - poison
-  - acid
 --- !u!114 &5015957573999694308
 MonoBehaviour:
   m_ObjectHideFlags: 0

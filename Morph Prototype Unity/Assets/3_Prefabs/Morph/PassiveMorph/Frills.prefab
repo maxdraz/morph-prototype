@@ -45,7 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   morphType: 9
-  prerequisites: []
+  prerequisites:
+  - {fileID: 11400000, guid: 5f9d84bdd7f13854ba202c7303e21931, type: 2}
+  - {fileID: 11400000, guid: 7ccbeb18c5dbcbc458859c7ab3fe7729, type: 2}
   intimidationStatBonus: 5
   unlockFearless: 1
   intimidationDefenseBonus: 0.3

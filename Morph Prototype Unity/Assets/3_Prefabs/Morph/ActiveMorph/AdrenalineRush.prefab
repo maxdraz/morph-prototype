@@ -66,7 +66,7 @@ MonoBehaviour:
   tailWeaponMorph: {fileID: 0}
   activeMorphs: []
   passiveMorphs: []
-  morphTypesAttached: []
+  morphTypesAttached: 
   LimbWeaponMorph: {fileID: 0}
   HeadWeaponMorph: {fileID: 0}
   TailWeaponMorph: {fileID: 0}
@@ -110,6 +110,7 @@ MonoBehaviour:
   morphType: 0
   prerequisites:
   - {fileID: 11400000, guid: 8b5f8c5ad182b2b46943a8638caf76b6, type: 2}
+  - {fileID: 11400000, guid: aac96c4aa750b7348afb711451086b0a, type: 2}
   staminaCost: 0
   energyCost: 40
   testInput: 274
