@@ -48,9 +48,11 @@ MonoBehaviour:
   prerequisites:
   - {fileID: 11400000, guid: 077ea8f9184e0a94893167dbf346a2c5, type: 2}
   - {fileID: 11400000, guid: a4d06b5c828382c4a861f45f78631792, type: 2}
+  statToAddTo: 0
+  statBonus: 5
   staminaRegenBonus: 0.1
   energyRegenBonus: 0.15
-  unlockRecuperate: 1
+  unlockRecuperate: 0
   recuperateTimerDuration: 1
   recuperateTimer:
     duration: 0

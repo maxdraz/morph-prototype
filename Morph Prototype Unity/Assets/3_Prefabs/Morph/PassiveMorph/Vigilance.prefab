@@ -48,9 +48,14 @@ MonoBehaviour:
   prerequisites:
   - {fileID: 11400000, guid: 79de74ce70b576f4cb7a4aeddd6cf7a3, type: 2}
   - {fileID: 11400000, guid: af929533240cd3342bc1e84a6a3bf9a6, type: 2}
+  statsToModify:
+  - stat: 9
+    value: 100
+  - stat: 8
+    value: 100
   perceptionStatBonus: 100
   stealthStatBonus: 100
-  unlockHeatVision: 1
+  unlockHeatVision: 0
   perception: {fileID: 0}
 --- !u!114 &4842231703207490065
 MonoBehaviour:

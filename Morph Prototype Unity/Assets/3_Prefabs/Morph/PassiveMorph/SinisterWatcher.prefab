@@ -48,12 +48,15 @@ MonoBehaviour:
   prerequisites:
   - {fileID: 11400000, guid: c36a82a83043e3c4fa735b5d2d0956dc, type: 2}
   - {fileID: 11400000, guid: 264b776d13ce7ff4cb61bf2e74c3ee3e, type: 2}
+  statsToModify:
+  - stat: 8
+    value: 50
   stealthStatBonus: 5
   targetOfInterest: {fileID: 0}
   sinisterWatcherMaxRange: 0
   sinisterWatcherBonusDamage: 0
   sinisterWatcherMaxBonusDamage: 0
-  unlockUnkownSource: 1
+  unlockUnkownSource: 0
 --- !u!114 &7981802315285230218
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ public class Celerity : PassiveMorph
 
     private DamageHandler damageHandler;
     [SerializeField] private float moveSpeedStatBonus = .2f;
-    [SerializeField] private bool unlockGraceful = true;
+    [SerializeField] private bool unlockGraceful;
     [SerializeField] private float mobilityStaminaCostReduction = 5;
 
     [SerializeField] private Movement movement;
@@ -32,6 +32,15 @@ public class Celerity : PassiveMorph
 
         UnsubscribeFromEvents();
         ChangeMoveSpeedStat(-moveSpeedStatBonus);
+    }
+
+    public void UnlockSecondary(string name)
+    {
+        if (name == "Graceful")
+        {
+            Debug.Log(GetType().Name + "Unlocking " + name);
+            unlockGraceful = true;
+        }
     }
 
     // implement

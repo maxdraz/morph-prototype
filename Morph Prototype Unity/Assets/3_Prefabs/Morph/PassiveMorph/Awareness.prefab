@@ -48,8 +48,11 @@ MonoBehaviour:
   prerequisites:
   - {fileID: 11400000, guid: 53082768f2489ef43a66f27f8d21cef6, type: 2}
   - {fileID: 11400000, guid: 457e4622d3ed5fb4abbf5f250b086910, type: 2}
+  statsToModify:
+  - stat: 9
+    value: 50
   perceptionStatBonus: 5
-  unlockSecondary: 1
+  unlockKeenSenses: 0
 --- !u!114 &1081013706962835130
 MonoBehaviour:
   m_ObjectHideFlags: 0

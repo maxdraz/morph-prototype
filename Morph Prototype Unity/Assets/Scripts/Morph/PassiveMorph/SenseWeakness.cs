@@ -15,7 +15,7 @@ public class SenseWeakness : PassiveMorph
     [SerializeField] private float bonusAgility = .2f;
     private float senseWeaknessDuration = 3;
 
-    [SerializeField] private bool unlockKillerConsumption = true;
+    [SerializeField] private bool unlockKillerConsumption;
     [SerializeField] private float killerConsumptionPercentHeal = .2f;
 
 
@@ -37,7 +37,14 @@ public class SenseWeakness : PassiveMorph
         UnsubscribeFromEvents();
     }
 
-
+    public void UnlockSecondary(string name)
+    {
+        if (name == "KillerConsumption")
+        {
+            Debug.Log(GetType().Name + "Unlocking " + name);
+            unlockKillerConsumption = true;
+        }
+    }
 
     private void OnDamageHasBeenDealt(in DamageTakenSummary damageTakenSummary)
     {

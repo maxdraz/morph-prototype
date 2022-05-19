@@ -9,9 +9,8 @@ public class DoubleEdged : PassiveMorph
 
 
     private DamageHandler damageHandler;
-    [SerializeField] private float hpDrainFraction;
-    [SerializeField] private int meleeDamageStatBonus = 5;
-    [SerializeField] private bool unlockBloodGuzzler = true;
+    [SerializeField] private float doubleEdgedHPCost;
+    [SerializeField] private bool unlockBloodGuzzler;
     bool bloodGuzzlerReady;
     Stats stats;
     float damageBoost;
@@ -29,7 +28,7 @@ public class DoubleEdged : PassiveMorph
         stats = GetComponent<Stats>();
 
         StartCoroutine(AssignDamageHandlerCoroutine());
-        ChangeMeleeDamageStat(meleeDamageStatBonus);
+        ModifyStats(true);
 
     }
 
@@ -38,13 +37,40 @@ public class DoubleEdged : PassiveMorph
         stats = GetComponent<Stats>();
 
         UnsubscribeFromEvents();
-        ChangeMeleeDamageStat(-meleeDamageStatBonus);
+        ModifyStats(false);
     }
 
-    // implement
-    private void ChangeMeleeDamageStat(int amountToAdd)
+    public void UnlockSecondary(string name)
     {
-        stats.FlatStatChange("meleeDamage", amountToAdd);
+        if (name == "BloodGuzzler")
+        {
+            Debug.Log(GetType().Name + "Unlocking " + name);
+            unlockBloodGuzzler = true;
+        }
+    }
+
+    // If the bool AddToStat is set to positive it will add to the stats, if negative it will remove from the stats
+    void ModifyStats(bool AddToStat)
+    {
+        if (stats != null)
+        {
+            if (statsToModify.Length > 0)
+            {
+                for (int i = 0; i <= statsToModify.Length - 1; i++)
+                {
+                    if (AddToStat)
+                    {
+                        Debug.Log(GetType().Name + " is adding" + statsToModify[i].value + " to " + statsToModify[i].stat);
+                        stats.FlatStatChange(statsToModify[i].stat.ToString(), statsToModify[i].value);
+                    }
+                    else
+                    {
+                        Debug.Log(GetType().Name + " is removing" + statsToModify[i].value + " from " + statsToModify[i].stat);
+                        stats.FlatStatChange(statsToModify[i].stat.ToString(), -statsToModify[i].value);
+                    }
+                }
+            }
+        }
     }
 
     private void OnDamageHasBeenDealt(in DamageTakenSummary damageTakenSummary)
@@ -75,7 +101,7 @@ public class DoubleEdged : PassiveMorph
 
     private void ReduceHPToBoostDamage() 
     {
-        float hpToReduce = damageHandler.Health.currentHealth * hpDrainFraction;
+        float hpToReduce = damageHandler.Health.currentHealth * doubleEdgedHPCost;
         damageBoost = GetComponent<Stats>().MaxHealth / hpToReduce;
         damageHandler.Health.SubtractHP(hpToReduce);
         damageBoost *= damageBoostFactor;

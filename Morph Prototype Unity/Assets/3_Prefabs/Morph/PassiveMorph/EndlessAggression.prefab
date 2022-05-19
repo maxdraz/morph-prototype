@@ -48,6 +48,8 @@ MonoBehaviour:
   prerequisites:
   - {fileID: 11400000, guid: 2b8ec08f5cd962f47ae8a52be31bb4e4, type: 2}
   - {fileID: 11400000, guid: 824079a9f4ab6f44eaaf4182faeec9b9, type: 2}
+  statToAddTo: 0
+  statBonus: 5
   explosionSpawner:
     projectilePrefab: {fileID: 3277945937756017534, guid: cf765991e0ce9b54ab6e14f2111f4d6c, type: 3}
     spawnPointOffsetLocal: {x: 0, y: 0, z: 0}
@@ -58,7 +60,7 @@ MonoBehaviour:
     radialOffset: 21
     projectileDirectionRotation: 0
   maxStaminaStatBonus: 0.15
-  unlockExplosiveAnger: 1
+  unlockExplosiveAnger: 0
   endlessAggressionEnergyGain: 2
   endlessAggressionStaminaGain: 10
   stamina: {fileID: 0}

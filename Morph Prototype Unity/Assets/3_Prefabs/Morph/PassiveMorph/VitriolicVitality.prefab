@@ -63,8 +63,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dafd4a29002bd1a4a8e715b9e6d54eac, type: 2}
   - {fileID: 11400000, guid: ca2738a4ac0b68d4ab95ea0410466ede, type: 2}
   - {fileID: 11400000, guid: 77deaa9edf4b44144bf5e9f6308290ef, type: 2}
-  statToAddTo: 3
-  statBonus: 5
+  statsToModify:
+  - stat: 3
+    value: 5
   chemicalDamageStatBonus: 5
   healingPercentageBonus: 0
   bonusHealingTimerDuration: 0

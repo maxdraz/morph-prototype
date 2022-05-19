@@ -62,6 +62,8 @@ MonoBehaviour:
   prerequisites:
   - {fileID: 11400000, guid: e1a2b465068382f409c1624de372bea5, type: 2}
   - {fileID: 11400000, guid: 3dda50a92f83c434c8ea059df63325a5, type: 2}
+  statToAddTo: 0
+  statBonus: 5
   perceptionDamageFraction: 0.1
   chemicalDamageStatBonus: 5
-  unlockBlindingVapour: 1
+  unlockBlindingVapour: 0

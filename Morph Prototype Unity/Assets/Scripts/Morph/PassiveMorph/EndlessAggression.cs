@@ -47,6 +47,15 @@ public class EndlessAggression : PassiveMorph
         ChangeMaxStaminaStat(-maxStaminaStatBonus);
     }
 
+    public void UnlockSecondary(string name)
+    {
+        if (name == "ExplosiveAnger")
+        {
+            Debug.Log(GetType().Name + "Unlocking " + name);
+            unlockExplosiveAnger = true;
+        }
+    }
+
     private void ChangeMaxStaminaStat(float maxStaminaBonus)
     {
         stamina.maxStaminaBonus += maxStaminaBonus;

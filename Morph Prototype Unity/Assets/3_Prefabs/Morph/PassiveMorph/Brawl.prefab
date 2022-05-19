@@ -48,8 +48,11 @@ MonoBehaviour:
   prerequisites:
   - {fileID: 11400000, guid: 24836d7d32115c746b25482f02703769, type: 2}
   - {fileID: 11400000, guid: 4a27a4e1935897c4aa9fbdbb89c8ba04, type: 2}
+  statsToModify:
+  - stat: 0
+    value: 10
   meleeDamageStatBonus: 5
-  unlockRage: 1
+  unlockRage: 0
   bonusAttackSpeed: 0.2
 --- !u!114 &8986805679102061138
 MonoBehaviour:

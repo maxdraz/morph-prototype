@@ -266,7 +266,7 @@ public class Stats : MonoBehaviour
     public void FlatStatChange(string statName, int buffAmount)
     {
         //  Debug.Log("Buffing " + statName + " from " + statToBuff + " by " + buffAmount + " for " + duration + " seconds");
-        if (statName == "meleeDamage")
+        if (statName == "MeleeDamage")
         {
 
             totalMeleeDamage += buffAmount;
@@ -274,14 +274,14 @@ public class Stats : MonoBehaviour
 
             FindStatModifier(statName, totalMeleeDamage);
         }
-        if (statName == "rangedDamage")
+        if (statName == "RangedDamage")
         {
             totalRangedDamage += buffAmount;
             addedRangedDamage += buffAmount;
 
             FindStatModifier(statName, totalRangedDamage);
         }
-        if (statName == "chemicalDamage")
+        if (statName == "ChemicalDamage")
         {
 
             totalChemicalDamage += buffAmount;
@@ -289,7 +289,7 @@ public class Stats : MonoBehaviour
 
             FindStatModifier(statName, totalChemicalDamage);
         }
-        if (statName == "elementalDamage")
+        if (statName == "ElementalDamage")
         {
 
             totalElementalDamage += buffAmount;
@@ -297,7 +297,7 @@ public class Stats : MonoBehaviour
 
             FindStatModifier(statName, totalElementalDamage);
         }
-        if (statName == "intelligence")
+        if (statName == "Intelligence")
         {
 
             totalIntelligence += buffAmount;
@@ -305,7 +305,7 @@ public class Stats : MonoBehaviour
 
             FindStatModifier(statName, totalIntelligence);
         }
-        if (statName == "agility")
+        if (statName == "Agility")
         {
 
             totalAgility += buffAmount;
@@ -313,7 +313,7 @@ public class Stats : MonoBehaviour
 
             FindStatModifier(statName, totalAgility);
         }
-        if (statName == "toughness")
+        if (statName == "Toughness")
         {
 
             totalToughness += buffAmount;
@@ -321,7 +321,7 @@ public class Stats : MonoBehaviour
 
             FindStatModifier(statName, totalToughness);
         }
-        if (statName == "fortitude")
+        if (statName == "Fortitude")
         {
 
             totalFortitude += buffAmount;
@@ -330,25 +330,22 @@ public class Stats : MonoBehaviour
             FindStatModifier(statName, totalFortitude);
         }
 
-        if (statName == "stealth")
+        if (statName == "Stealth")
         {
-
             totalStealth += buffAmount;
             addedStealth += buffAmount;
 
         }
 
-        if (statName == "intimidation")
+        if (statName == "Intimidation")
         {
-
             totalIntimidation += buffAmount;
             addedIntimidation += buffAmount;
 
         }
 
-        if (statName == "perception")
+        if (statName == "Perception")
         {
-
             totalPerception += buffAmount;
             addedPerception += buffAmount;
 

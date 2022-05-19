@@ -8,7 +8,6 @@ public class Elementalist : PassiveMorph
 
 
     private DamageHandler damageHandler;
-    [SerializeField] private int elementalDamageStatBonus = 5;
     [SerializeField] private bool unlockForceOfNature = true;
 
     Stats stats;
@@ -18,7 +17,7 @@ public class Elementalist : PassiveMorph
         stats = GetComponent<Stats>();
 
         StartCoroutine(AssignDamageHandlerCoroutine());
-        ChangeElementalDamageStat(elementalDamageStatBonus);
+        ModifyStats(true);
     }
 
     private void OnDisable()
@@ -26,13 +25,40 @@ public class Elementalist : PassiveMorph
         stats = GetComponent<Stats>();
 
         UnsubscribeFromEvents();
-        ChangeElementalDamageStat(-elementalDamageStatBonus);
+        ModifyStats(false);
     }
 
     // implement
-    private void ChangeElementalDamageStat(int amountToAdd)
+    void ModifyStats(bool AddToStat)
     {
-        stats.FlatStatChange("elementalDamage", amountToAdd);
+        if (stats != null)
+        {
+            if (statsToModify.Length > 0)
+            {
+                for (int i = 0; i <= statsToModify.Length - 1; i++)
+                {
+                    if (AddToStat)
+                    {
+                        Debug.Log(GetType().Name + " is adding" + statsToModify[i].value + " to " + statsToModify[i].stat);
+                        stats.FlatStatChange(statsToModify[i].stat.ToString(), statsToModify[i].value);
+                    }
+                    else
+                    {
+                        Debug.Log(GetType().Name + " is removing" + statsToModify[i].value + " from " + statsToModify[i].stat);
+                        stats.FlatStatChange(statsToModify[i].stat.ToString(), -statsToModify[i].value);
+                    }
+                }
+            }
+        }
+    }
+
+    public void UnlockSecondary(string name)
+    {
+        if (name == "ForceOfNature")
+        {
+            Debug.Log(GetType().Name + "Unlocking " + name);
+            unlockForceOfNature = true;
+        }
     }
 
     private void OnDamageHasBeenDealt(in DamageTakenSummary damageTakenSummary)

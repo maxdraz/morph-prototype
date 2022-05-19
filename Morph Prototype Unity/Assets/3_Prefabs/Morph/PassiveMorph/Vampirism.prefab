@@ -48,7 +48,9 @@ MonoBehaviour:
   prerequisites:
   - {fileID: 11400000, guid: f9b8b0be13eff6b49bc44668be07efd0, type: 2}
   - {fileID: 11400000, guid: afb66443a5e777a4ebb74e927f71a55e, type: 2}
-  unlockSpiritLeech: 1
+  statToAddTo: 0
+  statBonus: 5
+  unlockSpiritLeech: 0
   lifeStealFraction: 0.2
   energyStealFraction: 0.4
 --- !u!114 &6756624135943898144

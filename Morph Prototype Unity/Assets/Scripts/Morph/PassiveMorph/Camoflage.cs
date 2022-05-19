@@ -8,9 +8,8 @@ public class Camoflage : PassiveMorph
 
 
     private DamageHandler damageHandler;
-    [SerializeField] private int stealthStatBonus = 100;
-    [SerializeField] private bool unlockSneaky = true;
-    public float stealthBonusWhileMoving = .2f;
+    [SerializeField] private bool unlockSneaky;
+    public float sneakyStealthBonusWhileMoving = .2f;
     Stats stats;
     Stealth stealth;
 
@@ -19,11 +18,11 @@ public class Camoflage : PassiveMorph
         stats = GetComponent<Stats>();
         stealth = GetComponent<Stealth>();
         StartCoroutine(AssignDamageHandlerCoroutine());
-        ChangeStealthStat(stealthStatBonus);
+        ModifyStats(true);
 
         if (unlockSneaky) 
         {
-            Sneaky(stealthBonusWhileMoving);
+            Sneaky(sneakyStealthBonusWhileMoving);
         }
     }
 
@@ -33,18 +32,45 @@ public class Camoflage : PassiveMorph
         stealth = GetComponent<Stealth>();
 
         UnsubscribeFromEvents();
-        ChangeStealthStat(-stealthStatBonus);
+        ModifyStats(false);
 
         if (unlockSneaky)
         {
-            Sneaky(-stealthBonusWhileMoving);
+            Sneaky(-sneakyStealthBonusWhileMoving);
         }
     }
 
-    // implement
-    private void ChangeStealthStat(int amountToAdd)
+    public void UnlockSecondary(string name)
     {
-        stats.FlatStatChange("stealth", amountToAdd);
+        if (name == "Sneaky")
+        {
+            Debug.Log(GetType().Name + "Unlocking " + name);
+            unlockSneaky = true;
+        }
+    }
+
+    // If the bool AddToStat is set to positive it will add to the stats, if negative it will remove from the stats
+    void ModifyStats(bool AddToStat)
+    {
+        if (stats != null)
+        {
+            if (statsToModify.Length > 0)
+            {
+                for (int i = 0; i <= statsToModify.Length - 1; i++)
+                {
+                    if (AddToStat)
+                    {
+                        Debug.Log(GetType().Name + " is adding" + statsToModify[i].value + " to " + statsToModify[i].stat);
+                        stats.FlatStatChange(statsToModify[i].stat.ToString(), statsToModify[i].value);
+                    }
+                    else
+                    {
+                        Debug.Log(GetType().Name + " is removing" + statsToModify[i].value + " from " + statsToModify[i].stat);
+                        stats.FlatStatChange(statsToModify[i].stat.ToString(), -statsToModify[i].value);
+                    }
+                }
+            }
+        }
     }
 
     private void Sneaky(float amountToAdd)

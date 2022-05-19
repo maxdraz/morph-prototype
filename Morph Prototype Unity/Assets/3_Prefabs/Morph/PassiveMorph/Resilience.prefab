@@ -48,9 +48,11 @@ MonoBehaviour:
   prerequisites:
   - {fileID: 11400000, guid: bbfe9a31370881848b9c5592dc71cecb, type: 2}
   - {fileID: 11400000, guid: 450f60be8d69fa74288622faed636d41, type: 2}
+  statToAddTo: 0
+  statBonus: 5
   resistanceBoost1: 20
   resistanceBoost2: 20
-  unlockHardiness: 1
+  unlockHardiness: 0
   resistType1: 
   resistType2: 
 --- !u!114 &5015957573999694308

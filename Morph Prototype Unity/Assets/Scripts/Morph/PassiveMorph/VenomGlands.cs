@@ -39,7 +39,32 @@ public class VenomGlands : PassiveMorph
         UnsubscribeFromEvents();
     }
 
+    public void UnlockSecondary(string name)
+    {
+        if (name == "Acrid")
+        {
+            Debug.Log(GetType().Name + "Unlocking " + name);
+            unlockAcrid = true;
+        }
 
+        if (name == "Anaesthetic")
+        {
+            Debug.Log(GetType().Name + "Unlocking " + name);
+            unlockAnaesthetic = true;
+        }
+
+        if (name == "Atrophy")
+        {
+            Debug.Log(GetType().Name + "Unlocking " + name);
+            unlockAtrophy = true;
+        }
+
+        if (name == "Haze")
+        {
+            Debug.Log(GetType().Name + "Unlocking " + name);
+            unlockHaze = true;
+        }
+    }
 
     private void OnDamageHasBeenDealt(in DamageTakenSummary damageTakenSummary)
     {

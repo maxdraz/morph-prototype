@@ -62,8 +62,10 @@ MonoBehaviour:
   prerequisites:
   - {fileID: 11400000, guid: 2d491562ee013a24d8eb03e8d6830fa6, type: 2}
   - {fileID: 11400000, guid: 1f719a56021aea247a51b9346c5a2d5d, type: 2}
-  meleeDamageStatBonus: 5
-  unlockSpiritSpihon: 1
+  statsToModify:
+  - stat: 0
+    value: 5
+  unlockSpiritSpihon: 0
   stackDuration: 4
   ferocityAttackSpeedBuffPerStack: 0.03
   ferocityMeleeAttackDamageBuffPerStack: 0.05

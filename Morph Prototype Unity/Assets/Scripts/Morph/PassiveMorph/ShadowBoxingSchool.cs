@@ -8,8 +8,7 @@ public class ShadowBoxingSchool : PassiveMorph
 
 
     private DamageHandler damageHandler;
-    [SerializeField] private int stealthStatBonus = 50;
-    [SerializeField] private bool unlockNinjaTraining = true;
+    [SerializeField] private bool unlockNinjaTraining;
     [SerializeField] private float shadowBoxingBonusDamageMultiplier = 5;
     float shadowBoxingSchoolBonusDamage;
     Stats stats;
@@ -22,7 +21,7 @@ public class ShadowBoxingSchool : PassiveMorph
     private void OnEnable()
     {
         stats = GetComponent<Stats>();
-        ChangeStealthStat(stealthStatBonus);
+        ModifyStats(true);
 
         StartCoroutine(AssignDamageHandlerCoroutine());
 
@@ -40,15 +39,42 @@ public class ShadowBoxingSchool : PassiveMorph
         stats = GetComponent<Stats>();
 
         UnsubscribeFromEvents();
-        ChangeStealthStat(-stealthStatBonus);
+        ModifyStats(false);
 
         
     }
 
-    // implement
-    private void ChangeStealthStat(int amountToAdd)
+    public void UnlockSecondary(string name)
     {
-        stats.FlatStatChange("stealth", amountToAdd);
+        if (name == "NinjaTraining")
+        {
+            Debug.Log(GetType().Name + "Unlocking " + name);
+            unlockNinjaTraining = true;
+        }
+    }
+
+    // If the bool AddToStat is set to positive it will add to the stats, if negative it will remove from the stats
+    void ModifyStats(bool AddToStat)
+    {
+        if (stats != null)
+        {
+            if (statsToModify.Length > 0)
+            {
+                for (int i = 0; i <= statsToModify.Length - 1; i++)
+                {
+                    if (AddToStat)
+                    {
+                        Debug.Log(GetType().Name + " is adding" + statsToModify[i].value + " to " + statsToModify[i].stat);
+                        stats.FlatStatChange(statsToModify[i].stat.ToString(), statsToModify[i].value);
+                    }
+                    else
+                    {
+                        Debug.Log(GetType().Name + " is removing" + statsToModify[i].value + " from " + statsToModify[i].stat);
+                        stats.FlatStatChange(statsToModify[i].stat.ToString(), -statsToModify[i].value);
+                    }
+                }
+            }
+        }
     }
 
     private void OnDamageHasBeenDealt(in DamageTakenSummary damageTakenSummary)

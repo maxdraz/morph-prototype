@@ -10,16 +10,16 @@ public class VitriolicVitality : PassiveMorph
 
 
     private DamageHandler damageHandler;
-    [SerializeField] private int chemicalDamageStatBonus = 5;
     [SerializeField] private float healingPercentageBonus;
     Timer bonusHealingTimer;
     bool bonusHealingTimerCountingDown;
     [SerializeField] private float bonusHealingTimerDuration;
 
-    [SerializeField] private bool unlockVenomousVigor = true;
+    [SerializeField] private bool unlockVenomousVigor;
     [SerializeField] private int venomousVigorHealingDuration;
 
-    [SerializeField] private bool unlockToxicFocus = true;
+    [SerializeField] private bool unlockToxicFocus;
+    [SerializeField] private float toxicFocusBonusPoisonDamage;
 
 
     Stats stats;
@@ -31,22 +31,54 @@ public class VitriolicVitality : PassiveMorph
         stats = GetComponent<Stats>();
 
         StartCoroutine(AssignDamageHandlerCoroutine());
-        ChangeChemicalDamageStat(chemicalDamageStatBonus);
+        ModifyStats(true);
 
     }
 
     private void OnDisable()
     {
         UnsubscribeFromEvents();
-        ChangeChemicalDamageStat(-chemicalDamageStatBonus);
+        ModifyStats(false);
     }
 
-    // implement
-    private void ChangeChemicalDamageStat(int amountToAdd)
+    public void UnlockSecondary(string name)
     {
-        stats.FlatStatChange("chemicalDamage", amountToAdd);
+        if (name == "VenomousVigor")
+        {
+            Debug.Log(GetType().Name + "Unlocking " + name);
+            unlockVenomousVigor = true;
+        }
+
+        if (name == "ToxicFocus")
+        {
+            Debug.Log(GetType().Name + "Unlocking " + name);
+            unlockToxicFocus = true;
+        }
     }
 
+    // If the bool AddToStat is set to positive it will add to the stats, if negative it will remove from the stats
+    void ModifyStats(bool AddToStat)
+    {
+        if (stats != null)
+        {
+            if (statsToModify.Length > 0)
+            {
+                for (int i = 0; i <= statsToModify.Length - 1; i++)
+                {
+                    if (AddToStat)
+                    {
+                        Debug.Log(GetType().Name + " is adding" + statsToModify[i].value + " to " + statsToModify[i].stat);
+                        stats.FlatStatChange(statsToModify[i].stat.ToString(), statsToModify[i].value);
+                    }
+                    else
+                    {
+                        Debug.Log(GetType().Name + " is removing" + statsToModify[i].value + " from " + statsToModify[i].stat);
+                        stats.FlatStatChange(statsToModify[i].stat.ToString(), -statsToModify[i].value);
+                    }
+                }
+            }
+        }
+    }
 
     // Update is called once per frame
     void Update()

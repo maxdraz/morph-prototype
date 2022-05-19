@@ -48,8 +48,11 @@ MonoBehaviour:
   prerequisites:
   - {fileID: 11400000, guid: a9a0a30fc04dc6f409a66841563da097, type: 2}
   - {fileID: 11400000, guid: a6639b9ed4446904daa3b4fa904dd737, type: 2}
+  statsToModify:
+  - stat: 10
+    value: 5
   intelligenceStatBonus: 5
-  unlockConditioning: 1
+  unlockConditioning: 0
 --- !u!114 &5339370651259217684
 MonoBehaviour:
   m_ObjectHideFlags: 0

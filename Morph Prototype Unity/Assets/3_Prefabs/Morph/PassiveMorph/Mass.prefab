@@ -48,8 +48,10 @@ MonoBehaviour:
   prerequisites:
   - {fileID: 11400000, guid: 46262df7e728c9741ab99f7cc4f3afc4, type: 2}
   - {fileID: 11400000, guid: 3f80221fca1490d40881cdc5336fbdbc, type: 2}
+  statToAddTo: 0
+  statBonus: 5
   percentHealthBonus: 0.2
-  unlockRestoration: 1
+  unlockRestoration: 0
   percentHealthRegen: 0.02
   health: {fileID: 0}
 --- !u!114 &877869292808302197

@@ -8,8 +8,7 @@ public class SpeedDemon : PassiveMorph
 
 
     private DamageHandler damageHandler;
-    [SerializeField] private int meleeDamageStatBonus = 5;
-    [SerializeField] private bool unlockCruelCapacity = true;
+    [SerializeField] private bool unlockCruelCapacity;
 
     int agilityPerStack;
     int bonusAgility;
@@ -28,7 +27,7 @@ public class SpeedDemon : PassiveMorph
         stats = GetComponent<Stats>();
 
         StartCoroutine(AssignDamageHandlerCoroutine());
-        ChangeAgilityStat(meleeDamageStatBonus);
+        ModifyStats(true);
 
     }
 
@@ -37,13 +36,40 @@ public class SpeedDemon : PassiveMorph
         stats = GetComponent<Stats>();
 
         UnsubscribeFromEvents();
-        ChangeAgilityStat(-meleeDamageStatBonus);
+        ModifyStats(false);
     }
 
-    // implement
-    private void ChangeAgilityStat(int amountToAdd)
+    public void UnlockSecondary(string name)
     {
-        stats.FlatStatChange("agility",amountToAdd);
+        if (name == "CruelCapacity")
+        {
+            Debug.Log(GetType().Name + "Unlocking " + name);
+            unlockCruelCapacity = true;
+        }
+    }
+
+    // If the bool AddToStat is set to positive it will add to the stats, if negative it will remove from the stats
+    void ModifyStats(bool AddToStat)
+    {
+        if (stats != null)
+        {
+            if (statsToModify.Length > 0)
+            {
+                for (int i = 0; i <= statsToModify.Length - 1; i++)
+                {
+                    if (AddToStat)
+                    {
+                        Debug.Log(GetType().Name + " is adding" + statsToModify[i].value + " to " + statsToModify[i].stat);
+                        stats.FlatStatChange(statsToModify[i].stat.ToString(), statsToModify[i].value);
+                    }
+                    else
+                    {
+                        Debug.Log(GetType().Name + " is removing" + statsToModify[i].value + " from " + statsToModify[i].stat);
+                        stats.FlatStatChange(statsToModify[i].stat.ToString(), -statsToModify[i].value);
+                    }
+                }
+            }
+        }
     }
 
     private void OnDamageHasBeenDealt(in DamageTakenSummary damageTakenSummary)

@@ -8,9 +8,8 @@ public class Brawl : PassiveMorph
 
 
     private DamageHandler damageHandler;
-    [SerializeField] private int meleeDamageStatBonus = 5;
     [SerializeField] private bool unlockRage = true;
-    [SerializeField] private float bonusAttackSpeed = .06f;
+    [SerializeField] private float rageBonusAttackSpeed = .06f;
 
 
     Stats stats;
@@ -22,7 +21,7 @@ public class Brawl : PassiveMorph
         health = GetComponent<Health>();
 
         StartCoroutine(AssignDamageHandlerCoroutine());
-        ChangeMeleeDamageStat(meleeDamageStatBonus);
+        ModifyStats(true);
         
     }
 
@@ -32,13 +31,40 @@ public class Brawl : PassiveMorph
         health = GetComponent<Health>();
 
         UnsubscribeFromEvents();
-        ChangeMeleeDamageStat(-meleeDamageStatBonus);
+        ModifyStats(false);
     }
 
-    // implement
-    private void ChangeMeleeDamageStat(int amountToAdd)
+    public void UnlockSecondary(string name)
     {
-        stats.FlatStatChange("meleeDamage",amountToAdd);
+        if (name == "Rage")
+        {
+            Debug.Log(GetType().Name + "Unlocking " + name);
+            unlockRage = true;
+        }
+    }
+
+    // If the bool AddToStat is set to positive it will add to the stats, if negative it will remove from the stats
+    void ModifyStats(bool AddToStat)
+    {
+        if (stats != null)
+        {
+            if (statsToModify.Length > 0)
+            {
+                for (int i = 0; i <= statsToModify.Length - 1; i++)
+                {
+                    if (AddToStat)
+                    {
+                        Debug.Log(GetType().Name + " is adding" + statsToModify[i].value + " to " + statsToModify[i].stat);
+                        stats.FlatStatChange(statsToModify[i].stat.ToString(), statsToModify[i].value);
+                    }
+                    else
+                    {
+                        Debug.Log(GetType().Name + " is removing" + statsToModify[i].value + " from " + statsToModify[i].stat);
+                        stats.FlatStatChange(statsToModify[i].stat.ToString(), -statsToModify[i].value);
+                    }
+                }
+            }
+        }
     }
 
     private void Update()

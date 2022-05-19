@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: HiddenThreat
   m_EditorClassIdentifier: 
   statPrerequisites: []
-  typePrerequisites: []
+  typePrerequisites:
+  - type: 8
+    amount: 1
   morphPrerequisites: []
   primary: {fileID: 6975248861554160877, guid: 9f07c580619ce2243bd2043902c40e5b, type: 3}
   isSecondary: 1

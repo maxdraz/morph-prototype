@@ -47,7 +47,9 @@ MonoBehaviour:
   prerequisites:
   - {fileID: 11400000, guid: a03949e0769bdea4f96bff128cf2d864, type: 2}
   - {fileID: 11400000, guid: 6c6f91ad3e6308246b78d41dddd3ef12, type: 2}
+  statToAddTo: 0
+  statBonus: 5
   bonusCritChance: 0.2
   bonusAgility: 0.2
-  unlockKillerConsumption: 1
+  unlockKillerConsumption: 0
   killerConsumptionPercentHeal: 0.2

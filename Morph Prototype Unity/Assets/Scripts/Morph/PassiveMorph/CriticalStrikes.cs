@@ -9,11 +9,11 @@ public class CriticalStrikes : PassiveMorph
     private DamageHandler damageHandler;
 
     [SerializeField] private float criticalStrikeChance;
-    [SerializeField] private bool unlockHiddenAttack = true;
+    [SerializeField] private bool unlockHiddenAttack;
     [SerializeField] private float hiddenAttackCriticalStrikeChance;
     [SerializeField] private float hiddenAttackExtraDamage;
 
-    [SerializeField] private bool unlockCoupDeGrace = true;
+    [SerializeField] private bool unlockCoupDeGrace;
     [SerializeField] private float coupDeGraceCooldownPeriod;
     bool coupDeGraceOnCooldown = false;
     Timer coupDeGraceTimer;
@@ -45,6 +45,20 @@ public class CriticalStrikes : PassiveMorph
         }
     }
 
+    public void UnlockSecondary(string name)
+    {
+        if (name == "HiddenAttack")
+        {
+            Debug.Log(GetType().Name + "Unlocking " + name);
+            unlockHiddenAttack = true;
+        }
+
+        if (name == "CoupDeGrace")
+        {
+            Debug.Log(GetType().Name + "Unlocking " + name);
+            unlockCoupDeGrace = true;
+        }
+    }
 
     private void OnDamageHasBeenDealt(in DamageTakenSummary damageTakenSummary)
     {

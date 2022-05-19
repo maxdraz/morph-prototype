@@ -9,8 +9,7 @@ public class Ferocity : PassiveMorph
 
 
     private DamageHandler damageHandler;
-    [SerializeField] private int meleeDamageStatBonus = 5;
-    [SerializeField] private bool unlockSpiritSpihon = true;
+    [SerializeField] private bool unlockSpiritSpihon;
 
     float damageBoostPerStack;
 
@@ -39,8 +38,7 @@ public class Ferocity : PassiveMorph
         stats = GetComponent<Stats>();
 
         StartCoroutine(AssignDamageHandlerCoroutine());
-        ChangeMeleeDamageStat(meleeDamageStatBonus);
-
+        ModifyStats(true);
         if (unlockSpiritSpihon)
         {
             spiritSiphonTimer = new Timer(spiritSiphonPeriod, true);
@@ -52,13 +50,40 @@ public class Ferocity : PassiveMorph
         stats = GetComponent<Stats>();
 
         UnsubscribeFromEvents();
-        ChangeMeleeDamageStat(-meleeDamageStatBonus);
+        ModifyStats(false);
+    }
+
+    public void UnlockSecondary(string name)
+    {
+        if (name == "SpiritSiphon")
+        {
+            Debug.Log(GetType().Name + "Unlocking " + name);
+            unlockSpiritSpihon = true;
+        }
     }
 
     // implement
-    private void ChangeMeleeDamageStat(int amountToAdd)
+    void ModifyStats(bool AddToStat)
     {
-        stats.FlatStatChange("melee", amountToAdd);
+        if (stats != null)
+        {
+            if (statsToModify.Length > 0)
+            {
+                for (int i = 0; i <= statsToModify.Length - 1; i++)
+                {
+                    if (AddToStat)
+                    {
+                        Debug.Log(GetType().Name + " is adding" + statsToModify[i].value + " to " + statsToModify[i].stat);
+                        stats.FlatStatChange(statsToModify[i].stat.ToString(), statsToModify[i].value);
+                    }
+                    else
+                    {
+                        Debug.Log(GetType().Name + " is removing" + statsToModify[i].value + " from " + statsToModify[i].stat);
+                        stats.FlatStatChange(statsToModify[i].stat.ToString(), -statsToModify[i].value);
+                    }
+                }
+            }
+        }
     }
 
     private void OnDamageHasBeenDealt(in DamageTakenSummary damageTakenSummary)

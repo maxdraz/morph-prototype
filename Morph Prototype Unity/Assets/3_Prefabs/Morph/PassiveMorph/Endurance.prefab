@@ -48,9 +48,11 @@ MonoBehaviour:
   prerequisites:
   - {fileID: 11400000, guid: ec7eae5152bd86d46ab33b1e6339de33, type: 2}
   - {fileID: 11400000, guid: b53a716ead5e10b45a78b48d45c86514, type: 2}
+  statToAddTo: 0
+  statBonus: 5
   staminaPercentageStatBonus: 0.2
   staminaPercentageRegenBonus: 0.4
-  unlockMoxie: 1
+  unlockMoxie: 0
 --- !u!114 &5227644690965164674
 MonoBehaviour:
   m_ObjectHideFlags: 0

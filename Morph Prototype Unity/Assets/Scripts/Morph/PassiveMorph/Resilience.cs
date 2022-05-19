@@ -10,7 +10,7 @@ public class Resilience : PassiveMorph
     private DamageHandler damageHandler;
     [SerializeField] private float resistanceBoost1;
     [SerializeField] private float resistanceBoost2;
-    [SerializeField] private bool unlockHardiness = true;
+    [SerializeField] private bool unlockHardiness;
     [SerializeField] private string resistType1;
     [SerializeField] private string resistType2;
 
@@ -39,6 +39,14 @@ public class Resilience : PassiveMorph
         UnsubscribeFromEvents();
     }
 
+    public void UnlockSecondary(string name)
+    {
+        if (name == "Hardiness")
+        {
+            Debug.Log(GetType().Name + "Unlocking " + name);
+            unlockHardiness = true;
+        }
+    }
 
     void GenerateResistanceBoosts()
     {

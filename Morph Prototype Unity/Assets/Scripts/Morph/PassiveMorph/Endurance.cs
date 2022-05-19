@@ -10,7 +10,7 @@ public class Endurance : PassiveMorph
     private DamageHandler damageHandler;
     [SerializeField] private float staminaPercentageStatBonus = .20f;
     [SerializeField] private float staminaPercentageRegenBonus = .40f;
-    [SerializeField] private bool unlockMoxie = true;
+    [SerializeField] private bool unlockMoxie;
 
     Stamina stamina;
 
@@ -48,6 +48,14 @@ public class Endurance : PassiveMorph
         }
     }
 
+    public void UnlockSecondary(string name)
+    {
+        if (name == "Moxie")
+        {
+            Debug.Log(GetType().Name + "Unlocking " + name);
+            unlockMoxie = true;
+        }
+    }
 
     private IEnumerator AssignDamageHandlerCoroutine()
     {

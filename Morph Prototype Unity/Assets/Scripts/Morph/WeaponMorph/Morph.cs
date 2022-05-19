@@ -25,8 +25,7 @@ public class Morph : MonoBehaviour
     //This was to be used with activating secondaries as a precedural name for secondaryunlock bools
     //public Dictionary<string, bool> boolHolder = new Dictionary<string, bool>();
 
-    public StatType statToAddTo;
-    public int statBonus = 5;
+    public StatValue[] statsToModify;
 
     protected void Awake()
     {
@@ -47,6 +46,8 @@ public class Morph : MonoBehaviour
     {
         
     }
+
+
 
     int PrerequisiteListCount() 
     {

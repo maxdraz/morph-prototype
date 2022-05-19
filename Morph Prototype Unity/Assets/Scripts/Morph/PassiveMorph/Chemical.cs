@@ -8,10 +8,9 @@ public class Chemical : PassiveMorph
 
 
     private DamageHandler damageHandler;
-    [SerializeField] private int chemicalDamageStatBonus = 5;
-    [SerializeField] private bool unlockConcentratedChemicals = true;
-    [SerializeField] private float bonusToughnessReduction = .1f;
-    [SerializeField] private float bonusHealingReduction = .2f;
+    [SerializeField] private bool unlockConcentratedChemicals;
+    [SerializeField] private float concentratedChemicalsBonusToughnessReduction = .1f;
+    [SerializeField] private float concentratedChemicalsBonusHealingReduction = .2f;
 
     Stats stats;
 
@@ -20,7 +19,7 @@ public class Chemical : PassiveMorph
         stats = GetComponent<Stats>();
 
         StartCoroutine(AssignDamageHandlerCoroutine());
-        ChangeChemicalDamageStat(chemicalDamageStatBonus);
+        ModifyStats(true);
     }
 
     private void OnDisable()
@@ -28,16 +27,41 @@ public class Chemical : PassiveMorph
         stats = GetComponent<Stats>();
 
         UnsubscribeFromEvents();
-        ChangeChemicalDamageStat(-chemicalDamageStatBonus);
+        ModifyStats(false);
     }
 
-    // implement
-    private void ChangeChemicalDamageStat(int amountToAdd)
+    // If the bool AddToStat is set to positive it will add to the stats, if negative it will remove from the stats
+    void ModifyStats(bool AddToStat)
     {
-        stats.FlatStatChange("chemicalDamage", amountToAdd);
+        if (stats != null)
+        {
+            if (statsToModify.Length > 0)
+            {
+                for (int i = 0; i <= statsToModify.Length - 1; i++)
+                {
+                    if (AddToStat)
+                    {
+                        Debug.Log(GetType().Name + " is adding" + statsToModify[i].value + " to " + statsToModify[i].stat);
+                        stats.FlatStatChange(statsToModify[i].stat.ToString(), statsToModify[i].value);
+                    }
+                    else
+                    {
+                        Debug.Log(GetType().Name + " is removing" + statsToModify[i].value + " from " + statsToModify[i].stat);
+                        stats.FlatStatChange(statsToModify[i].stat.ToString(), -statsToModify[i].value);
+                    }
+                }
+            }
+        }
     }
 
-
+    public void UnlockSecondary(string name)
+    {
+        if (name == "ConcentratedChemicals")
+        {
+            Debug.Log(GetType().Name + "Unlocking " + name);
+            unlockConcentratedChemicals = true;
+        }
+    }
 
     private IEnumerator AssignDamageHandlerCoroutine()
     {

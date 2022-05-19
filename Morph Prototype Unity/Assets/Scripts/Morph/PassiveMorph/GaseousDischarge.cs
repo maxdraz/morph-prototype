@@ -8,7 +8,6 @@ public class GaseousDischarge : PassiveMorph
 
 
     private DamageHandler damageHandler;
-    [SerializeField] private int chemicalDamageStatBonus = 5;
 
     [SerializeField]private float poisonGasSpawnRate;
     [SerializeField] private float poisonGasLifeTime;
@@ -16,7 +15,7 @@ public class GaseousDischarge : PassiveMorph
     ObjectPooler gasPooler;
     [SerializeField] GameObject gasCloud;
 
-    [SerializeField] private bool unlockToxicOverflow = true;
+    [SerializeField] private bool unlockToxicOverflow;
     [SerializeField] private float toxicOverflowPoisonDamage;
     [SerializeField] private float toxicOverflowKnockBackForce;
 
@@ -27,14 +26,14 @@ public class GaseousDischarge : PassiveMorph
     {
         stats = GetComponent<Stats>();
         StartCoroutine(AssignDamageHandlerCoroutine());
-        ChangeChemicalDamageStat(chemicalDamageStatBonus);
+        ModifyStats(true);
 
     }
 
     private void OnDisable()
     {
         UnsubscribeFromEvents();
-        ChangeChemicalDamageStat(-chemicalDamageStatBonus);
+        ModifyStats(false);
     }
     void Start()
     {
@@ -55,7 +54,14 @@ public class GaseousDischarge : PassiveMorph
         }
     }
 
-    
+    public void UnlockSecondary(string name)
+    {
+        if (name == "ToxicOverflow")
+        {
+            Debug.Log(GetType().Name + "Unlocking " + name);
+            unlockToxicOverflow = true;
+        }
+    }
 
     private void OnDamageTaken(in DamageTakenSummary damageTakenSummary)
     {
@@ -79,12 +85,30 @@ public class GaseousDischarge : PassiveMorph
         poisonGasCloud.GetComponent<PoisonGasCloud>().sourceCreature = this.gameObject;
     }
 
-    
 
-    // implement
-    private void ChangeChemicalDamageStat(int amountToAdd)
+
+    // If the bool AddToStat is set to positive it will add to the stats, if negative it will remove from the stats
+    void ModifyStats(bool AddToStat)
     {
-        stats.FlatStatChange("chemicalDamage", amountToAdd);
+        if (stats != null)
+        {
+            if (statsToModify.Length > 0)
+            {
+                for (int i = 0; i <= statsToModify.Length - 1; i++)
+                {
+                    if (AddToStat)
+                    {
+                        Debug.Log(GetType().Name + " is adding" + statsToModify[i].value + " to " + statsToModify[i].stat);
+                        stats.FlatStatChange(statsToModify[i].stat.ToString(), statsToModify[i].value);
+                    }
+                    else
+                    {
+                        Debug.Log(GetType().Name + " is removing" + statsToModify[i].value + " from " + statsToModify[i].stat);
+                        stats.FlatStatChange(statsToModify[i].stat.ToString(), -statsToModify[i].value);
+                    }
+                }
+            }
+        }
     }
 
     private IEnumerator AssignDamageHandlerCoroutine()

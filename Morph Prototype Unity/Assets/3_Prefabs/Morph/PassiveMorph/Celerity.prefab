@@ -48,8 +48,10 @@ MonoBehaviour:
   prerequisites:
   - {fileID: 11400000, guid: a081a8c51dac4644ebe8940541256209, type: 2}
   - {fileID: 11400000, guid: f2adab8e706afaa438a703e75e627c0c, type: 2}
+  statToAddTo: 0
+  statBonus: 5
   moveSpeedStatBonus: 0.2
-  unlockGraceful: 1
+  unlockGraceful: 0
   mobilityStaminaCostReduction: 0.2
   movement: {fileID: 0}
   stamina: {fileID: 0}

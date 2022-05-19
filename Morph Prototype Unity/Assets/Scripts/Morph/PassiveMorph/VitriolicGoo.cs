@@ -11,7 +11,7 @@ public class VitriolicGoo : PassiveMorph
 
     private DamageHandler damageHandler;
     [SerializeField] private float staminaDrainFraction;
-    [SerializeField] private bool unlockMolecularAcid = true;
+    [SerializeField] private bool unlockMolecularAcid;
 
     Stats stats;
 
@@ -20,25 +20,45 @@ public class VitriolicGoo : PassiveMorph
         stats = GetComponent<Stats>();
 
         StartCoroutine(AssignDamageHandlerCoroutine());
-        AddToStatValue(statToAddTo.ToString(), statBonus);
+        ModifyStats(true);
         
     }
 
     private void OnDisable()
     {
         UnsubscribeFromEvents();
-        AddToStatValue(statToAddTo.ToString(), -statBonus);
+        ModifyStats(false);
     }
 
-    // implement
-    void AddToStatValue(string statName, int value)
+    public void UnlockSecondary(string name)
     {
-        if (stats != null) 
+        if (name == "MolecularAcid")
         {
-            if (statName != null && statBonus != 0)
+            Debug.Log(GetType().Name + "Unlocking " + name);
+            unlockMolecularAcid = true;
+        }
+    }
+
+    // If the bool AddToStat is set to positive it will add to the stats, if negative it will remove from the stats
+    void ModifyStats(bool AddToStat)
+    {
+        if (stats != null)
+        {
+            if (statsToModify.Length > 0)
             {
-                Debug.Log("Adding to " + statName);
-                stats.FlatStatChange(statName, value);
+                for (int i = 0; i <= statsToModify.Length - 1; i++)
+                {
+                    if (AddToStat)
+                    {
+                        Debug.Log(GetType().Name + " is adding" + statsToModify[i].value + " to " + statsToModify[i].stat);
+                        stats.FlatStatChange(statsToModify[i].stat.ToString(), statsToModify[i].value);
+                    }
+                    else
+                    {
+                        Debug.Log(GetType().Name + " is removing" + statsToModify[i].value + " from " + statsToModify[i].stat);
+                        stats.FlatStatChange(statsToModify[i].stat.ToString(), -statsToModify[i].value);
+                    }
+                }
             }
         }
     }

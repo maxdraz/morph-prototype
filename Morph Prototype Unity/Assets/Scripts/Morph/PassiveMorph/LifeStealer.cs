@@ -10,7 +10,9 @@ public class LifeStealer : PassiveMorph
     private DamageHandler damageHandler;
 
     [SerializeField] private float lifeStealFraction;
-    [SerializeField] private bool fierceHunger = true;
+    [SerializeField] private bool unlockFierceHunger;
+
+    [SerializeField] private bool unlockBloodscent;
 
     private void OnEnable()
     {
@@ -23,13 +25,26 @@ public class LifeStealer : PassiveMorph
         UnsubscribeFromEvents();
     }
 
-    
+    public void UnlockSecondary(string name)
+    {
+        if (name == "FierceHunger")
+        {
+            Debug.Log(GetType().Name + "Unlocking " + name);
+            unlockFierceHunger = true;
+        }
+
+        if (name == "Bloodscent")
+        {
+            Debug.Log(GetType().Name + "Unlocking " + name);
+            unlockBloodscent = true;
+        }
+    }
 
     private void OnDamageHasBeenDealt(in DamageTakenSummary damageTakenSummary)
     {
         if (damageTakenSummary.PhysicalDamage > 0)
         {
-            if (damageHandler.Health.CurrentHealthAsPercentage <= .3f && fierceHunger)
+            if (damageHandler.Health.CurrentHealthAsPercentage <= .3f && unlockFierceHunger)
             {
                 damageTakenSummary.DamageTaker.ApplyDamage(new LifeStealData(damageTakenSummary.PhysicalDamage * lifeStealFraction * 2), damageHandler);
             }

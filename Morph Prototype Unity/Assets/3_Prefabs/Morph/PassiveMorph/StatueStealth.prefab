@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3016215185684589233
 Transform:
   m_ObjectHideFlags: 0
@@ -48,8 +48,9 @@ MonoBehaviour:
   prerequisites:
   - {fileID: 11400000, guid: b9b164f6b4d0e644e873873eae5496d7, type: 2}
   - {fileID: 11400000, guid: a038f2071aadb4445901025863dde786, type: 2}
-  statToAddTo: 8
-  statBonus: 5
+  statsToModify:
+  - stat: 8
+    value: 100
   stealthStatBonus: 5
   stealthPenaltyWhileMoving: 0.5
   stealthBonusWhileStill: 100

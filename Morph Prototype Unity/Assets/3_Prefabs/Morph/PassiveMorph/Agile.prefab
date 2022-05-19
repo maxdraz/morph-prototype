@@ -48,8 +48,10 @@ MonoBehaviour:
   prerequisites:
   - {fileID: 11400000, guid: 1bad9d55e2fc4d241a44296c912a9fb7, type: 2}
   - {fileID: 11400000, guid: f7e30198d192c414b9ce5caf8d0bf4c0, type: 2}
-  agilityStatBonus: 5
-  unlockCatLike: 1
+  statsToModify:
+  - stat: 7
+    value: 10
+  unlockCatLike: 0
 --- !u!114 &8761293849663271873
 MonoBehaviour:
   m_ObjectHideFlags: 0

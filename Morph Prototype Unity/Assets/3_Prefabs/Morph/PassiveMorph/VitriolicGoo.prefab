@@ -62,6 +62,7 @@ MonoBehaviour:
   prerequisites:
   - {fileID: 11400000, guid: e74724dbf40797d40b26a1dcdcd0e08b, type: 2}
   - {fileID: 11400000, guid: 68a07fb8dd084e347b7ae2d205910630, type: 2}
+  statToAddTo: 0
+  statBonus: 5
   staminaDrainFraction: 0
-  chemicalDamageStatBonus: 5
-  unlockMolecularAcid: 1
+  unlockMolecularAcid: 0

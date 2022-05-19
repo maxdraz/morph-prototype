@@ -8,9 +8,7 @@ public class Stalker : PassiveMorph
 
 
     private DamageHandler damageHandler;
-    [SerializeField] private int rangedDamageStatBonus = 5;
-    [SerializeField] private int stealthStatBonus = 5;
-    [SerializeField] private bool unlockSniper = true;
+    [SerializeField] private bool unlockSniper;
     [SerializeField] private int sniperBonusPercentDamage = 5;
 
     Stats stats;
@@ -20,8 +18,7 @@ public class Stalker : PassiveMorph
         stats = GetComponent<Stats>();
 
         StartCoroutine(AssignDamageHandlerCoroutine());
-        ChangeRangedDamageStat(rangedDamageStatBonus);
-        ChangeStealthStat(stealthStatBonus);
+        ModifyStats(true);
     }
 
     private void OnDisable()
@@ -29,21 +26,41 @@ public class Stalker : PassiveMorph
         stats = GetComponent<Stats>();
 
         UnsubscribeFromEvents();
-        ChangeRangedDamageStat(-rangedDamageStatBonus);
-        ChangeStealthStat(-stealthStatBonus);
+        ModifyStats(false);
     }
 
-    // implement
-    private void ChangeRangedDamageStat(int amountToAdd)
+    public void UnlockSecondary(string name)
     {
-        stats.FlatStatChange("rangedDamage", amountToAdd);
+        if (name == "Sniper")
+        {
+            Debug.Log(GetType().Name + "Unlocking " + name);
+            unlockSniper = true;
+        }
     }
 
-    private void ChangeStealthStat(int amountToAdd)
+    // If the bool AddToStat is set to positive it will add to the stats, if negative it will remove from the stats
+    void ModifyStats(bool AddToStat)
     {
-        stats.FlatStatChange("stealth", amountToAdd);
+        if (stats != null)
+        {
+            if (statsToModify.Length > 0)
+            {
+                for (int i = 0; i <= statsToModify.Length - 1; i++)
+                {
+                    if (AddToStat)
+                    {
+                        Debug.Log(GetType().Name + " is adding" + statsToModify[i].value + " to " + statsToModify[i].stat);
+                        stats.FlatStatChange(statsToModify[i].stat.ToString(), statsToModify[i].value);
+                    }
+                    else
+                    {
+                        Debug.Log(GetType().Name + " is removing" + statsToModify[i].value + " from " + statsToModify[i].stat);
+                        stats.FlatStatChange(statsToModify[i].stat.ToString(), -statsToModify[i].value);
+                    }
+                }
+            }
+        }
     }
-
 
 
     private IEnumerator AssignDamageHandlerCoroutine()

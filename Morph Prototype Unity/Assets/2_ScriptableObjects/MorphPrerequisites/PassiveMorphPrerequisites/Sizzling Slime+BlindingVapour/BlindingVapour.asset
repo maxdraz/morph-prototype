@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statPrerequisites: []
   typePrerequisites: []
-  morphPrerequisites: []
+  morphPrerequisites:
+  - {fileID: 1114787138882407050, guid: e2becf8274e76bd4caafef87b9f0dbf8, type: 3}
   primary: {fileID: 7247566602518939235, guid: 768eaeec4bcc31d498669883f0c75b31, type: 3}
   isSecondary: 1

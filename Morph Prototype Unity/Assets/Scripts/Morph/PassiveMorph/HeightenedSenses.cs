@@ -11,11 +11,11 @@ public class HeightenedSenses : PassiveMorph
     bool heightenedSensesCountingDown;
     [SerializeField] private float heightenedSensesCountdownDuration = 3;
 
-    [SerializeField] private bool unlockEverReady = true;
+    [SerializeField] private bool unlockEverReady;
     [SerializeField] private float everReadyPerceptionModifier = 2.5f;
     [SerializeField] private float everReadyStealthModifier = 2.5f;
 
-    [SerializeField] private bool unlockAimedShots = true;
+    [SerializeField] private bool unlockAimedShots;
     [SerializeField] private float aimedShotsExtraDamageModifier = .3f;
 
 
@@ -48,6 +48,21 @@ public class HeightenedSenses : PassiveMorph
         UnsubscribeFromEvents();
     }
 
+    public void UnlockSecondary(string name)
+    {
+        if (name == "EverReady")
+        {
+            Debug.Log(GetType().Name + "Unlocking " + name);
+            unlockEverReady = true;
+        }
+
+        if (name == "AimedShots")
+        {
+            Debug.Log(GetType().Name + "Unlocking " + name);
+            unlockAimedShots = true;
+        }
+    }
+
     private void Update()
     {
         if (velo.CurrentVelocity.magnitude == 0)
@@ -67,6 +82,8 @@ public class HeightenedSenses : PassiveMorph
             }
         }
     }
+
+    
 
     IEnumerator HeightenedSensesCountdown()
     {

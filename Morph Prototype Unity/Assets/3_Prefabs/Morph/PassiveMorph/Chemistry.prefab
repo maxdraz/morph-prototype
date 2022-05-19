@@ -48,8 +48,11 @@ MonoBehaviour:
   prerequisites:
   - {fileID: 11400000, guid: 6536bbc916fbb3143bb5968b3aeef440, type: 2}
   - {fileID: 11400000, guid: 4276675165130714b968f7bf852d74fc, type: 2}
+  statsToModify:
+  - stat: 3
+    value: 5
   chemicalDamageStatBonus: 5
-  unlockConcentratedChemicals: 1
+  unlockConcentratedChemicals: 0
   bonusToughnessReduction: 0.1
   bonusHealingReduction: 0.2
 --- !u!114 &1024317071946902693

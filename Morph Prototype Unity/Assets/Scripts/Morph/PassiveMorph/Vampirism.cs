@@ -8,7 +8,7 @@ public class Vampirism : PassiveMorph
 
 
     private DamageHandler damageHandler;
-    [SerializeField] private bool unlockSpiritLeech = true;
+    [SerializeField] private bool unlockSpiritLeech = false;
 
     [SerializeField] private float lifeStealFraction = .2f;
     [SerializeField] private float energyStealFraction = .4f;
@@ -28,7 +28,14 @@ public class Vampirism : PassiveMorph
         UnsubscribeFromEvents();
     }
 
-    
+    public void UnlockSecondary(string name)
+    {
+        if (name == "SpiritLeech")
+        {
+            Debug.Log(GetType().Name + "Unlocking " + name);
+            unlockSpiritLeech = true;
+        }
+    }
 
     private void OnDamageHasBeenDealt(in DamageTakenSummary damageTakenSummary)
     {

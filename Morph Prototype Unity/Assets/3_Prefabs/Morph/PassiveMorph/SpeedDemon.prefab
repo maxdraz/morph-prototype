@@ -62,6 +62,11 @@ MonoBehaviour:
   prerequisites:
   - {fileID: 11400000, guid: ac7ab5c6bb43f0240ae88b98609ac457, type: 2}
   - {fileID: 11400000, guid: 36b14350bfa45684ca2d39363632e6f7, type: 2}
+  statsToModify:
+  - stat: 0
+    value: 5
+  - stat: 7
+    value: 5
   meleeDamageStatBonus: 5
-  unlockCruelCapacity: 1
+  unlockCruelCapacity: 0
   startingSpeedDemonStackDuration: 4

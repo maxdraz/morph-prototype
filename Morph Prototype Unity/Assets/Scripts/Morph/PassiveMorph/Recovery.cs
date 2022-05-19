@@ -10,7 +10,8 @@ public class Recovery : PassiveMorph
     private DamageHandler damageHandler;
     [SerializeField] private float staminaRegenBonus = .1f;
     [SerializeField] private float energyRegenBonus = .15f;
-    [SerializeField] private bool unlockRecuperate = true;
+
+    [SerializeField] private bool unlockRecuperate;
     [SerializeField] private float recuperateTimerDuration = 1;
     [SerializeField] private Timer recuperateTimer;
     public bool recuperating;
@@ -35,6 +36,15 @@ public class Recovery : PassiveMorph
 
         UnsubscribeFromEvents();
         ChangeStaminaEnergyRegenStat(-staminaRegenBonus, -energyRegenBonus);
+    }
+
+    public void UnlockSecondary(string name)
+    {
+        if (name == "Recuperate")
+        {
+            Debug.Log(GetType().Name + "Unlocking " + name);
+            unlockRecuperate = true;
+        }
     }
 
     // implement

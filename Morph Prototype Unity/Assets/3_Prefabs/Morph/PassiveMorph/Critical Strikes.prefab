@@ -63,9 +63,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 527cf6e97fba31649be2335d8f11ef7e, type: 2}
   - {fileID: 11400000, guid: 1b09c9a07eab3c64aa37bb967f24d319, type: 2}
   - {fileID: 11400000, guid: 2ca2106d7f033d2498ad910369e03333, type: 2}
+  statToAddTo: 0
+  statBonus: 5
   criticalStrikeChance: 10
-  unlockHiddenAttack: 1
+  unlockHiddenAttack: 0
   hiddenAttackCriticalStrikeChance: 20
   hiddenAttackExtraDamage: 200
-  unlockCoupDeGrace: 1
+  unlockCoupDeGrace: 0
   coupDeGraceCooldownPeriod: 5

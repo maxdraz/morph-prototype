@@ -8,10 +8,8 @@ public class BattleReady : PassiveMorph
 
 
     private DamageHandler damageHandler;
-    [SerializeField] private int meleeDamageStatBonus = 5;
-    [SerializeField] private int rangedDamageStatBonus = 5;
-    [SerializeField] private bool unlockBattleMaster = true;
-    [SerializeField] private float critChance = 5;
+    [SerializeField] private bool unlockBattleMaster;
+    [SerializeField] private float battleMasterBonusCritChance = 5;
 
 
     Stats stats;
@@ -21,12 +19,11 @@ public class BattleReady : PassiveMorph
         stats = GetComponent<Stats>();
 
         StartCoroutine(AssignDamageHandlerCoroutine());
-        ChangeMeleeDamageStat(meleeDamageStatBonus);
-        ChangeRangedDamageStat(rangedDamageStatBonus);
+        ModifyStats(true);
 
         if (unlockBattleMaster) 
         {
-            stats.globalCritChance += critChance;
+            stats.globalCritChance += battleMasterBonusCritChance;
         }
     }
 
@@ -35,19 +32,45 @@ public class BattleReady : PassiveMorph
         stats = GetComponent<Stats>();
 
         UnsubscribeFromEvents();
-        ChangeMeleeDamageStat(-meleeDamageStatBonus);
-        ChangeRangedDamageStat(-rangedDamageStatBonus);
+        ModifyStats(false);
 
         if (unlockBattleMaster)
         {
-            stats.globalCritChance -= critChance;
+            stats.globalCritChance -= battleMasterBonusCritChance;
         }
     }
 
-    // implement
-    private void ChangeMeleeDamageStat(int amountToAdd)
+    public void UnlockSecondary(string name)
     {
-        stats.FlatStatChange("meleeDamage", amountToAdd);
+        if (name == "BattleMaster")
+        {
+            Debug.Log(GetType().Name + "Unlocking " + name);
+            unlockBattleMaster = true;
+        }
+    }
+
+    // If the bool AddToStat is set to positive it will add to the stats, if negative it will remove from the stats
+    void ModifyStats(bool AddToStat)
+    {
+        if (stats != null)
+        {
+            if (statsToModify.Length > 0)
+            {
+                for (int i = 0; i <= statsToModify.Length - 1; i++)
+                {
+                    if (AddToStat)
+                    {
+                        Debug.Log(GetType().Name + " is adding" + statsToModify[i].value + " to " + statsToModify[i].stat);
+                        stats.FlatStatChange(statsToModify[i].stat.ToString(), statsToModify[i].value);
+                    }
+                    else
+                    {
+                        Debug.Log(GetType().Name + " is removing" + statsToModify[i].value + " from " + statsToModify[i].stat);
+                        stats.FlatStatChange(statsToModify[i].stat.ToString(), -statsToModify[i].value);
+                    }
+                }
+            }
+        }
     }
 
     private void ChangeRangedDamageStat(int amountToAdd)

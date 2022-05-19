@@ -48,8 +48,10 @@ MonoBehaviour:
   prerequisites:
   - {fileID: 11400000, guid: ccc1d71e23725634bb2a3d57a6271574, type: 2}
   - {fileID: 11400000, guid: 8a47531f1ecd63945958def9d14704d2, type: 2}
+  statToAddTo: 0
+  statBonus: 5
   bonusMaxArmor: 0
-  unlockCriticalCoverage: 1
+  unlockCriticalCoverage: 0
   critChanceResist: 0
   bleedingResist: 0
 --- !u!114 &7620202385042812390

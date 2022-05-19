@@ -3,27 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public enum StatType
-{
-    MeleeDamage,
-    RangedDamage,
-    ElementalDamage,
-    ChemicalDamage,
-    Fortitude,
-    Toughness,
-    Intimidation,
-    Agility,
-    Stealth,
-    Perception,
-    Intelligence
-}
 
-[Serializable] public struct StatPrerequisite 
+
+[Serializable] public struct StatValue 
 {
         public StatType stat;
         public int value;
 
-        public StatPrerequisite(StatType a, int b)
+        public StatValue(StatType a, int b)
         {
             stat = a;
             value = b;

@@ -9,7 +9,7 @@ public class Plating : PassiveMorph
 
     private DamageHandler damageHandler;
     [SerializeField] private float bonusMaxArmor = 100;
-    [SerializeField] private bool unlockCriticalCoverage = true;
+    [SerializeField] private bool unlockCriticalCoverage;
 
     [SerializeField] private float critChanceResist = .1f;
     [SerializeField] private float bleedingResist = .2f;
@@ -35,6 +35,15 @@ public class Plating : PassiveMorph
         ChangArmorStat(-bonusMaxArmor);
     }
 
+    public void UnlockSecondary(string name)
+    {
+        if (name == "CriticalCoverage")
+        {
+            Debug.Log(GetType().Name + "Unlocking " + name);
+            unlockCriticalCoverage = true;
+        }
+    }
+
     private void ChangArmorStat(float amountToAdd)
     {
         //Debug.Log("Plating adding: " + amountToAdd + " to armor stat");
@@ -43,8 +52,10 @@ public class Plating : PassiveMorph
 
     private void OnDamageAboutToBeTaken(in DamageTakenSummary damageTakenSummary) 
     {
-        //damageTakenSummary.critChance -= critChanceResist;
-        //damageTakenSummary.bleedingValue -= bleedingResist;
+        
+            //damageTakenSummary.critChance -= critChanceResist;
+            //damageTakenSummary.bleedingValue -= bleedingResist;
+        
     }
 
     private IEnumerator AssignDamageHandlerCoroutine()
@@ -61,7 +72,10 @@ public class Plating : PassiveMorph
         if (damageHandler)
         {
 
-            //damageHandler.DamageAboutToBeTaken += OnDamageAboutToBeTaken;
+            if(unlockCriticalCoverage)
+            {
+                //damageHandler.DamageAboutToBeTaken += OnDamageAboutToBeTaken;
+            }
         }
     }
 
@@ -69,8 +83,10 @@ public class Plating : PassiveMorph
     {
         if (damageHandler)
         {
-
-            //damageHandler.DamageAboutToBeTaken -= OnDamageAboutToBeTaken;
+            if (unlockCriticalCoverage)
+            {
+                //damageHandler.DamageAboutToBeTaken -= OnDamageAboutToBeTaken;
+            }
         }
 
         damageHandler = null;
