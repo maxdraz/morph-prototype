@@ -39,6 +39,8 @@ public class Stamina : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        FindCurrentStaminaAsPercentage();
+
         if (currentStamina < totalMaxStamina)
         {
             if (!staminaRegenOnCooldown)
@@ -80,13 +82,13 @@ public class Stamina : MonoBehaviour
 
     
 
-   // public float CurrentStaminaAsPercentage()
-   // {
-   //     float staminaAsPercetage = currentStamina / totalMaxStamina;
-   //
-   //
-   //     return staminaAsPercetage;
-   // }
+    public float FindCurrentStaminaAsPercentage()
+    {
+        float staminaAsPercetage = currentStamina / totalMaxStamina;
+   
+   
+        return staminaAsPercetage;
+    }
 
     
 

@@ -17,6 +17,13 @@ public class CustomGravity : MonoBehaviour
         rb.useGravity = false;
     }
 
+    public float ChangeGravity(float newGravityScale) 
+    {
+        gravityScale = newGravityScale;
+
+        return gravityScale;
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
