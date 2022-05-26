@@ -9,7 +9,9 @@ public class CustomGravity : MonoBehaviour
 
     [SerializeField] private float gravityScale = 1f;
     private float gravity = Physics.gravity.y;
-    
+
+    public float Gravity => gravityScale;
+
     // Start is called before the first frame update
     void Awake()
     {

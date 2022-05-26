@@ -10,12 +10,11 @@ public class ButterflyControlsTEST : MonoBehaviour
     Animator anim;
 
     [SerializeField] private float glideGravity;
-    [SerializeField] private bool gliding;
-    float glideDelay = .3f;
-    public Timer glideTimer = new Timer();
+    bool gliding;
+    float startingGravity;
 
     [SerializeField] private float flightStaminaCost;
-    [SerializeField] private float upwardThrust;
+    [SerializeField] private float baseUpwardThrust;
     [SerializeField] private float maxUpwardThrust;
     [SerializeField] private bool flapCooldown;
     [SerializeField] private float flapCooldownTime;
@@ -23,6 +22,12 @@ public class ButterflyControlsTEST : MonoBehaviour
     [SerializeField] private float staminaRegenRate;
     [SerializeField] private bool staminaRegenCoolDown;
     bool grounded;
+
+    [SerializeField] private float yawforce;
+    [SerializeField] private float verticalDiveForce;
+    [SerializeField] private float forwardDiveForce;
+    [SerializeField] private float reverseForce;
+
 
     Vector3 localVel = new Vector3();
     float verticalVelocity;
@@ -35,9 +40,8 @@ public class ButterflyControlsTEST : MonoBehaviour
         gravity = GetComponent<CustomGravity>();
         anim = GetComponent<Animator>();
 
+        startingGravity = gravity.Gravity;
         //Debug.Log("");
-
-        glideTimer = new Timer(glideDelay);
 
         gliding = false;
         flapCooldown = true;
@@ -46,60 +50,37 @@ public class ButterflyControlsTEST : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float yaw = Input.GetAxis("Horizontal");
+        float pitch = Input.GetAxis("Vertical");
+
         if (Input.GetButtonDown("Jump") && flapCooldown)
         {
             //Debug.Log("Space Bar Pressed");
             Flap();
+            StartCoroutine("Glide");
         }
 
-        if (Input.GetButton("Jump") && !flapCooldown)
+        if (pitch < 0)
         {
-            //Debug.Log("Space Bar Pressed");
-            gliding = true;
+            rb.AddForce(-transform.up * verticalDiveForce, ForceMode.Force);
+            rb.AddForce(transform.forward * forwardDiveForce, ForceMode.Force);
         }
-
-        if (Input.GetButton("Jump") == false)
+        if (pitch > 0)
         {
-            //Debug.Log("Space Bar Released");
-            gliding = false;
+            rb.AddForce(-transform.forward * reverseForce, ForceMode.Force);
         }
 
-        if (Input.GetAxis("Vertical") < 0)
-        {
+        
+        rb.AddTorque(transform.up * yawforce * yaw, ForceMode.Force);
+        
 
-        }
-        else
-        {
+        
 
-        }
-
-        if (Input.GetAxis("Horizontal") < 0)
-        {
-
-        }
-        else
-        {
-
-        }
-
-        if (gliding)
-        {
-            //Debug.Log("Holding space");
-
-            glideTimer.Update(Time.deltaTime);
-
-            if (glideTimer.JustCompleted) 
-            {
-                Debug.Log("Starting to glide");
-                gravity.ChangeGravity(glideGravity);
-            }
-        }
         if (gliding && Input.GetButton("Jump") == false)
         {
-            //Debug.Log("Stopped gliding");
+            Debug.Log("Stopped gliding");
+            gravity.ChangeGravity(startingGravity);
             gliding = false;
-            gravity.ChangeGravity(1);
-            glideTimer = new Timer(glideDelay);
         }
 
         verticalVelocity = rb.velocity.y;
@@ -107,25 +88,29 @@ public class ButterflyControlsTEST : MonoBehaviour
 
     }
 
-   //void Glide(bool gliding) 
-   //{
-   //    if (gliding)
-   //    {
-   //        gravity.ChangeGravity(glideGravity);
-   //    }
-   //    else
-   //    {
-   //        gravity.ChangeGravity(1);
-   //    }
-   //}
+    IEnumerator Glide() 
+    {
+        Debug.Log("Started gliding");
+
+        yield return new WaitForSeconds(.2f);
+
+        Debug.Log("Gravity changed");
+
+        gliding = true;
+        gravity.ChangeGravity(startingGravity * glideGravity);
+
+        yield return null;
+        
+    }
 
     void Flap()
     {
         float upwardThrustBoost;
+        float upwardThrust = baseUpwardThrust;
 
         stamina.SubtractStamina(flightStaminaCost);
 
-        Debug.Log("velocity.y = " + localVel.y);
+        //Debug.Log("velocity.y = " + localVel.y);
 
         if (localVel.y < 0)
         {
@@ -152,7 +137,7 @@ public class ButterflyControlsTEST : MonoBehaviour
 
         flapCooldown = false;
 
-        Debug.Log("upwardThrust" + " = " + upwardThrust);
+        //Debug.Log("upwardThrust" + " = " + upwardThrust);
         anim.SetTrigger("Flap");
         StartCoroutine("FlapCooldown");
     }
