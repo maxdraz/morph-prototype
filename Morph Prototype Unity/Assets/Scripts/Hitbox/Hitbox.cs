@@ -7,7 +7,7 @@ public abstract class Hitbox : MonoBehaviour
 {
     protected Collider col;
 
-    public Action<DamageHandler> Hit;
+    public event Action<DamageHandler> Hit;
 
     private void OnTriggerEnter(Collider other)
     {

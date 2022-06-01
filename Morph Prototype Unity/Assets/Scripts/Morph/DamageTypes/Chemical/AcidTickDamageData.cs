@@ -25,4 +25,5 @@ public class AcidTickDamageData : IAcidTickDamage
     public float AcidPercentageBonusDamage { get; set; }
 
     public float AcidDOTModifier { get; set; }
+    public AttackType AttackType { get; set; }
 }

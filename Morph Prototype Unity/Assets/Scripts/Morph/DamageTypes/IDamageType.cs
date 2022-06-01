@@ -5,5 +5,5 @@ using UnityEngine;
 
 public interface IDamageType : ICloneable
 {
-    
+    public AttackType AttackType { get; set; }
 }

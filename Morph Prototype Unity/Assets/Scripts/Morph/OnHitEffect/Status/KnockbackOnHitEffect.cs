@@ -6,14 +6,20 @@ using UnityEngine;
 public class KnockbackData : OnHitEffectData, IKnockback
 {
     [SerializeField] private float knockbackForce;
-    public KnockbackData(float knockbackForce = 100)
+    [SerializeField] private AttackType attackType;
+    public AttackType AttackType { get => attackType;
+        set => attackType = value;
+    }
+    
+    public KnockbackData(float knockbackForce = 100, AttackType attackType = AttackType.Melee)
     {
         this.knockbackForce = knockbackForce;
+        this.attackType = attackType;
     }
     
     public override object Clone()
     {
-        return new KnockbackData(knockbackForce);
+        return new KnockbackData(knockbackForce,attackType);
     }
 
     public float KnockbackForce
@@ -21,6 +27,8 @@ public class KnockbackData : OnHitEffectData, IKnockback
         get => knockbackForce;
         set=> knockbackForce = value;
     }
+
+   
 }
 
 [CreateAssetMenu(fileName = "Knockback", menuName = "On Hit Effects/Knockback")]

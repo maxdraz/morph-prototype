@@ -4,8 +4,6 @@ using UnityEngine;
 using System;
 using DamageNumbersPro;
 
-public enum AttackType{ Melee,Ranged, AOE}
-
 public class DamageHandler : MonoBehaviour
 {
     private Stats stats;
@@ -266,6 +264,7 @@ public class DamageHandler : MonoBehaviour
             DamageType = damageType,
             DamageTaker = this,
             DamageDealer = damageDealer,
+            AttackType = damageType.AttackType,
 
             PhysicalDamage = HandlePhysicalDamage(ref damageType, out bool isCrit),
             IsCriticalHit = isCrit,

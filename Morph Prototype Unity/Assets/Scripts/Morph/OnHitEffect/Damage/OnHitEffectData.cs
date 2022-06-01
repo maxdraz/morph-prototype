@@ -7,4 +7,6 @@ public abstract class OnHitEffectData : IDamageType
 {
     public abstract object Clone();
 
+
+    public AttackType AttackType { get; set; }
 }

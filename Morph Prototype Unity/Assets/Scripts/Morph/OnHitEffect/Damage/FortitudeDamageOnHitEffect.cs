@@ -8,6 +8,10 @@ public class FortitudeDamageData : OnHitEffectData, IFortitudeDamage
     [SerializeField] private float fortitudeDamage;
     [SerializeField] private string statusEffect;
     [SerializeField] private float duration;
+    [SerializeField] private AttackType attackType;
+    public AttackType AttackType { get => attackType;
+        set => attackType = value;
+    }
    // public enum statusEffect 
    // {
    // Stun, 
@@ -18,11 +22,12 @@ public class FortitudeDamageData : OnHitEffectData, IFortitudeDamage
    // Crippled
    // }
 
-    public FortitudeDamageData(float fortitudeDamage = 1, string statusEffect = "", float duration = 0)
+    public FortitudeDamageData(float fortitudeDamage = 1, string statusEffect = "", float duration = 0, AttackType attackType = AttackType.Melee)
     {
         this.fortitudeDamage = fortitudeDamage;
         this.statusEffect = statusEffect;
         this.duration = duration;
+        this.attackType = attackType;
     }
 
     public float FortitudeDamage
@@ -45,7 +50,7 @@ public class FortitudeDamageData : OnHitEffectData, IFortitudeDamage
 
     public override object Clone()
     {
-        return new FortitudeDamageData(fortitudeDamage, statusEffect, duration);
+        return new FortitudeDamageData(fortitudeDamage, statusEffect, duration, attackType);
     }
 }
 

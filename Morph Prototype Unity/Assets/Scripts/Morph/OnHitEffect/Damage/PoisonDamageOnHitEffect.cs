@@ -6,15 +6,20 @@ using UnityEngine;
 public class PoisonDamageData : OnHitEffectData, IPoisonDamage
 {
     [SerializeField] private float poisonDamage;
+    [SerializeField] private AttackType attackType;
+    public AttackType AttackType { get => attackType;
+        set => attackType = value;
+    }
 
-    public PoisonDamageData(float poisonDamage = 1)
+    public PoisonDamageData(float poisonDamage = 1, AttackType attackType = AttackType.Melee)
     {
         this.poisonDamage = poisonDamage;
+        this.attackType = attackType;
     }
     
     public override object Clone()
     {
-        return new PoisonDamageData(poisonDamage);
+        return new PoisonDamageData(poisonDamage, attackType);
     }
 
     public float PoisonDamage

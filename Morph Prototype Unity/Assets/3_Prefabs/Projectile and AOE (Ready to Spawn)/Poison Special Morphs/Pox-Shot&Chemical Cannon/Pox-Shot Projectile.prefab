@@ -5002,6 +5002,7 @@ MonoBehaviour:
       type: {class: KnockbackData, ns: , asm: Assembly-CSharp}
       data:
         knockbackForce: 100
+        attackType: 0
     00000001:
       type: {class: PoisonDamageData, ns: , asm: Assembly-CSharp}
       data:
