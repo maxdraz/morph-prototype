@@ -5,11 +5,8 @@ using UnityEngine;
 
 public class ColourChange : ActiveMorph
 {
-
-
-
     private DamageHandler damageHandler;
-    public Stats stats;
+    [SerializeField] private Stats stats;
     float range;
     public Stealth stealth;
     [SerializeField] private int stealthStatBonus = 5;
@@ -29,8 +26,10 @@ public class ColourChange : ActiveMorph
 
     //static Prerequisite[] StatPrerequisits;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
+        
         stats = GetComponent<Stats>();
         stealth = GetComponent<Stealth>();
         //WriteToPrerequisiteArray();
@@ -41,6 +40,8 @@ public class ColourChange : ActiveMorph
             shimmering.transform.position = transform.position;
             shimmering.transform.parent = transform;
         }
+        
+        ChangeStealthStat(stealthStatBonus);
     }
 
     // void WriteToPrerequisiteArray()
@@ -55,15 +56,13 @@ public class ColourChange : ActiveMorph
    // }
     private void OnEnable()
     {
-        
         StartCoroutine(AssignDamageHandlerCoroutine());
-        ChangeStealthStat(stealthStatBonus);
-
-        
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
+        
         if (cooldown.JustCompleted && unlockShimmering) 
         {
             shimmering.Play();
@@ -194,6 +193,8 @@ public class ColourChange : ActiveMorph
 
     private void OnValidate()
     {
+        if (onHitEffects == null || onHitEffects.Count <= 0) return;
+        
         foreach (var onHitEffectDataContainer in onHitEffects)
         {
             onHitEffectDataContainer.OnValidate();

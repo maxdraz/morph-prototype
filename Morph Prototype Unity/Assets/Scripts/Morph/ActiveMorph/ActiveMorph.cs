@@ -44,18 +44,20 @@ public class ActiveMorph : Morph
         }
     }
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+        
         stamina = GetComponent<Stamina>();
         energy = GetComponent<Energy>();
         movement = GetComponentInParent<Movement>();
         controller = GetComponentInParent<CreatureVirtualController>();
-
-        
     }
 
     protected override void Update()
     {
+        base.Update();
+        
         castTimer.Update(Time.deltaTime);
         cooldown.Update(Time.deltaTime);
 

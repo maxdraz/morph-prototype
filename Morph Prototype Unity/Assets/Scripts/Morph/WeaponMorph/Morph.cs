@@ -27,11 +27,13 @@ public class Morph : MonoBehaviour
 
     public StatValue[] statsToModify;
 
-    protected void Awake()
+    protected virtual void Awake()
     {
+    }
 
-        //Debug.Log(GetType().Name + " has " + prerequisites.Count + " prerequisites");
-        //CountPrerequisiteListLength();
+    protected virtual void Update()
+    {
+        
     }
 
     protected virtual void Start()
@@ -41,13 +43,6 @@ public class Morph : MonoBehaviour
         //    CheckSecondaryPrerequisites(GetComponent<MorphLoadout>(), GetComponent<Stats>());
         //}
     }
-
-    protected virtual void Update()
-    {
-        
-    }
-
-
 
     int PrerequisiteListCount() 
     {

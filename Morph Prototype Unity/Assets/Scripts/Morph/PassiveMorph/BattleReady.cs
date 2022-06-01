@@ -14,8 +14,10 @@ public class BattleReady : PassiveMorph
 
     Stats stats;
 
-    private void OnEnable()
+    protected override void Start()
     {
+        base.Start();
+        
         stats = GetComponent<Stats>();
 
         StartCoroutine(AssignDamageHandlerCoroutine());
