@@ -46,6 +46,7 @@ MonoBehaviour:
   morphType: 0
   prerequisites:
   - {fileID: 11400000, guid: e3111240e1c68504583f2fa32ac08505, type: 2}
+  statsToModify: []
   baseDamage: 5
   lightAttacks:
   - onHitEffects:
@@ -100,16 +101,19 @@ MonoBehaviour:
       data:
         strikeModifier: 1
         weaponCritChance: 10
+        attackType: 0
     00000001:
       type: {class: PhysicalDamageData, ns: , asm: Assembly-CSharp}
       data:
         strikeModifier: 1
         weaponCritChance: 10
+        attackType: 0
     00000002:
       type: {class: PhysicalDamageData, ns: , asm: Assembly-CSharp}
       data:
         strikeModifier: 2
         weaponCritChance: 20
+        attackType: 0
     00000003:
       type: {class: LifeStealData, ns: , asm: Assembly-CSharp}
       data:
@@ -120,3 +124,4 @@ MonoBehaviour:
       data:
         strikeModifier: 3
         weaponCritChance: 20
+        attackType: 0
