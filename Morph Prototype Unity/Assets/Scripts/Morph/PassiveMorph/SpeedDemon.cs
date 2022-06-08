@@ -75,7 +75,7 @@ public class SpeedDemon : PassiveMorph
     private void OnDamageHasBeenDealt(in DamageTakenSummary damageTakenSummary)
     {
 
-        if (damageTakenSummary.IsCriticalHit)
+        if (damageTakenSummary.IsCriticalHit && damageTakenSummary.isMeleeAttack)
         {
             AddSpeedDemonStack();
         }
@@ -121,7 +121,7 @@ public class SpeedDemon : PassiveMorph
 
     void CruelCapacity() 
     {
-        //Need to reduce all cooldowns and reduce all energy costs, when modified agility is above a certain threshold
+        //Need to reduce all cooldowns and reduce all energy costs, when totalAttackSpeed  is above a certain threshold
     }
 
     private IEnumerator AssignDamageHandlerCoroutine()
