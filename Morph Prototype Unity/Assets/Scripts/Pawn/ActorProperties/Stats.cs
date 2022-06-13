@@ -7,6 +7,11 @@ using Random = UnityEngine.Random;
 
 public class Stats : MonoBehaviour
 {
+    // stat name definitions
+    public static readonly string cooldownReductionMultiplier = "cooldownReductionMultiplier";
+    public static readonly string attackSpeed = "attackSpeed";
+    //
+    
     [SerializeField] private bool displayDebug;
     [SerializeField] private bool randomStats;
     private Rect debugWindowRect;
@@ -131,6 +136,9 @@ public class Stats : MonoBehaviour
     public int intelligence => baseIntelligence;
     public int perception => basePerception;
 
+    private Dictionary<string, float> statDatabase;
+    public event Action<string,float> StatHasBeenModified;
+
     private void Reset()
     {
         debugWindowRect = new Rect(34, 18, 165, 374);
@@ -173,6 +181,47 @@ public class Stats : MonoBehaviour
         debugWindowRect = GUI.Window(0, debugWindowRect, DrawStatsWindow, gameObject.name + " stats");
         
    }
+
+    private void InitializeStatDatabase()
+    {
+        statDatabase = new Dictionary<string, float>()
+        {
+            {cooldownReductionMultiplier, 1f},
+            {attackSpeed, 3f}
+        };
+    }
+
+    public float GetStat(string key)
+    {
+        if (statDatabase.TryGetValue(key, out var temp))
+            return temp;
+        
+        Debug.LogError("Stat " + key + " wasn't found, returned positive infinity");
+        return float.PositiveInfinity;
+    }
+    
+    public bool TryGetStat(string key, out float temp)
+    {
+        return statDatabase.TryGetValue(key, out temp);
+    }
+
+    public void TrySetStat(string key, float value)
+    {
+        if (statDatabase.TryGetValue(key, out var temp))
+        {
+            statDatabase[key] = value;
+            StatHasBeenModified?.Invoke(key,value);
+            return;
+        }
+        
+        Debug.LogError("Stat " + key + " wasn't found and didn't get set");
+    }
+    
+    public void SetStat(string key, float value)
+    {
+        statDatabase[key] = value;
+        StatHasBeenModified?.Invoke(key,value);
+    }
  
 
     

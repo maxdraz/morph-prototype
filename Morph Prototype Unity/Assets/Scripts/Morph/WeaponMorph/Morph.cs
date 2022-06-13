@@ -38,10 +38,6 @@ public class Morph : MonoBehaviour
 
     protected virtual void Start()
     {
-        //if (CountPrerequisiteListLength() > 1)
-        //{
-        //    CheckSecondaryPrerequisites(GetComponent<MorphLoadout>(), GetComponent<Stats>());
-        //}
     }
 
     int PrerequisiteListCount() 
@@ -53,27 +49,11 @@ public class Morph : MonoBehaviour
         return prerequisiteListLength;
     }
 
-   //int SecondaryListCount() 
-   //{
-   //    int secondaryListLength = 0;
-   //
-   //    foreach (PrerequisiteData prerequisite in prerequisites) 
-   //    {
-   //    if (prerequisite.isSecondary) 
-   //        {
-   //            secondaryListLength++;
-   //        }
-   //    }
-   //
-   //    return secondaryListLength;
-   //}
 
-    void UnlockSecondary(string name) 
+    private void UnlockSecondary(string name) 
     {
         Debug.Log(this.name + " is trying to: " + "unlock" + name);
-        //boolHolder["unlock" + name] = true;
         BroadcastMessage("UnlockSecondary", name);
-        
     }
 
     public virtual bool CheckPrerequisites(MorphLoadout loadout, Stats stats, Morph morphPrefab)
@@ -100,7 +80,7 @@ public class Morph : MonoBehaviour
         return primaryPrerequisitesMet;
     }
     
-    void CheckSecondaryPrerequisites(MorphLoadout loadout, Stats stats)
+    private void CheckSecondaryPrerequisites(MorphLoadout loadout, Stats stats)
     {
         string[] secondariesToUnlock = new string[prerequisites.Count];
 
@@ -119,9 +99,6 @@ public class Morph : MonoBehaviour
             }
         }
     }
-
-
-
 
     public string GetMorphType() 
     {

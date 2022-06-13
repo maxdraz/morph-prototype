@@ -16,7 +16,9 @@ public class SpeedDemon : PassiveMorph
     [SerializeField] private float startingSpeedDemonStackDuration;
     float speedDemonStackDuration;
 
-    int cruelCapacityAgilityThreshold;
+    int cruelCapacityAttackSpeedThreshold;
+    [SerializeField] private float cruelCapacityCooldownReduction = 0.2f;
+    private bool cruelCapacityActivated;
 
     Stats stats;
 
@@ -25,6 +27,8 @@ public class SpeedDemon : PassiveMorph
     private void OnEnable()
     {
         stats = GetComponent<Stats>();
+        
+        
 
         StartCoroutine(AssignDamageHandlerCoroutine());
         ModifyStats(true);
@@ -51,25 +55,25 @@ public class SpeedDemon : PassiveMorph
     // If the bool AddToStat is set to positive it will add to the stats, if negative it will remove from the stats
     void ModifyStats(bool AddToStat)
     {
-        if (stats != null)
+        if (!stats || statsToModify.Length <= 0) return;
+        
+        for (int i = 0; i <= statsToModify.Length - 1; i++)
         {
-            if (statsToModify.Length > 0)
+            if (AddToStat)
             {
-                for (int i = 0; i <= statsToModify.Length - 1; i++)
-                {
-                    if (AddToStat)
-                    {
-                        Debug.Log(GetType().Name + " is adding" + statsToModify[i].value + " to " + statsToModify[i].stat);
-                        stats.FlatStatChange(statsToModify[i].stat.ToString(), statsToModify[i].value);
-                    }
-                    else
-                    {
-                        Debug.Log(GetType().Name + " is removing" + statsToModify[i].value + " from " + statsToModify[i].stat);
-                        stats.FlatStatChange(statsToModify[i].stat.ToString(), -statsToModify[i].value);
-                    }
-                }
+                Debug.Log(GetType().Name + " is adding" + statsToModify[i].value + " to " + statsToModify[i].stat);
+                stats.FlatStatChange(statsToModify[i].stat.ToString(), statsToModify[i].value);
+            }
+            else
+            {
+                Debug.Log(GetType().Name + " is removing" + statsToModify[i].value + " from " + statsToModify[i].stat);
+                stats.FlatStatChange(statsToModify[i].stat.ToString(), -statsToModify[i].value);
             }
         }
+        
+        
+        if(!unlockCruelCapacity) return;
+        TryActivateCruelCapacity(Stats.attackSpeed, stats.GetStat(Stats.attackSpeed));
     }
 
     private void OnDamageHasBeenDealt(in DamageTakenSummary damageTakenSummary)
@@ -119,18 +123,43 @@ public class SpeedDemon : PassiveMorph
         yield return null;
     }
 
-    void CruelCapacity() 
+    private void ApplyCruelCapacity(bool applyOrReverse)
+    {
+        if(stats.TryGetStat(Stats.cooldownReductionMultiplier, out var val))
+        {
+            var sign = applyOrReverse ? -1 : 1;
+            stats.SetStat(Stats.cooldownReductionMultiplier, val + (sign * cruelCapacityCooldownReduction));
+            cruelCapacityActivated = applyOrReverse;
+        }
+    }
+    
+    private void TryActivateCruelCapacity(string statKey, float value) 
     {
         //Need to reduce all cooldowns and reduce all energy costs, when totalAttackSpeed  is above a certain threshold
+
+        if (!unlockCruelCapacity || statKey != Stats.attackSpeed) return;
+
+        if (value < cruelCapacityAttackSpeedThreshold && cruelCapacityActivated)
+        {
+            //remove buff
+            ApplyCruelCapacity(false);
+            return;
+        }
+
+        if (value >= cruelCapacityAttackSpeedThreshold && !cruelCapacityActivated)
+        {
+            //add buff
+            ApplyCruelCapacity(true);
+        }
     }
 
     private IEnumerator AssignDamageHandlerCoroutine()
     {
         yield return new WaitForEndOfFrame();
-        GetReferencesAndSubscribeToEvenets();
+        GetReferencesAndSubscribeToEvents();
     }
 
-    private void GetReferencesAndSubscribeToEvenets()
+    private void GetReferencesAndSubscribeToEvents()
     {
         if (damageHandler) return;
 
@@ -138,11 +167,9 @@ public class SpeedDemon : PassiveMorph
         if (damageHandler)
         {
             damageHandler.DamageHasBeenDealt += OnDamageHasBeenDealt;
-            if (unlockCruelCapacity)
-            {
-                //need to subscribe to something which can hold the buffs
-            }
         }
+
+        if (stats) stats.StatHasBeenModified += TryActivateCruelCapacity;
     }
 
     private void UnsubscribeFromEvents()
@@ -150,13 +177,10 @@ public class SpeedDemon : PassiveMorph
         if (damageHandler)
         {
             damageHandler.DamageHasBeenDealt -= OnDamageHasBeenDealt;
-            if (unlockCruelCapacity)
-            {
-                //need to subscribe to something which can hold the buffs
-            }
-
         }
 
         damageHandler = null;
+        
+        if (stats) stats.StatHasBeenModified -= TryActivateCruelCapacity;
     }
 }
