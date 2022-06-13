@@ -4,36 +4,24 @@ using UnityEngine;
 
 public class BattleReady : PassiveMorph
 {
-    //[SerializeField] private BattleReadyPrerequisiteData prerequisiteData;
-
-
-    private DamageHandler damageHandler;
     [SerializeField] private bool unlockBattleMaster;
     [SerializeField] private float battleMasterBonusCritChance = 5;
 
-
-    Stats stats;
-
-    protected override void Start()
+    protected override void OnEquip()
     {
-        base.Start();
+        base.OnEquip();
         
-        stats = GetComponent<Stats>();
-
-        StartCoroutine(AssignDamageHandlerCoroutine());
         ModifyStats(true);
-
         if (unlockBattleMaster) 
         {
             stats.globalCritChance += battleMasterBonusCritChance;
         }
     }
 
-    private void OnDisable()
+    protected override void OnUnequip()
     {
-        stats = GetComponent<Stats>();
-
-        UnsubscribeFromEvents();
+        base.OnUnequip();
+        
         ModifyStats(false);
 
         if (unlockBattleMaster)
@@ -78,35 +66,5 @@ public class BattleReady : PassiveMorph
     private void ChangeRangedDamageStat(int amountToAdd)
     {
         stats.FlatStatChange("rangedDamage", amountToAdd);
-    }
-
-
-    private IEnumerator AssignDamageHandlerCoroutine()
-    {
-        yield return new WaitForEndOfFrame();
-        GetReferencesAndSubscribeToEvenets();
-    }
-
-    private void GetReferencesAndSubscribeToEvenets()
-    {
-        if (damageHandler) return;
-
-        damageHandler = GetComponent<DamageHandler>();
-        if (damageHandler)
-        {
-            
-
-        }
-    }
-
-    private void UnsubscribeFromEvents()
-    {
-        if (damageHandler)
-        {
-            
-
-        }
-
-        damageHandler = null;
     }
 }

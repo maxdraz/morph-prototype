@@ -44,9 +44,9 @@ public class ActiveMorph : Morph
         }
     }
 
-    protected override void Awake()
+    protected override void GetComponentReferences()
     {
-        base.Awake();
+        base.GetComponentReferences();
         
         stamina = GetComponent<Stamina>();
         energy = GetComponent<Energy>();

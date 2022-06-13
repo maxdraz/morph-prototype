@@ -19,6 +19,9 @@ public class Morph : MonoBehaviour
         Intimidation
     };
 
+    protected DamageHandler damageHandler;
+    protected Stats stats;
+
     public MorphType morphType;
     [SerializeField] private List<PrerequisiteData> prerequisites;
 
@@ -26,29 +29,25 @@ public class Morph : MonoBehaviour
     //public Dictionary<string, bool> boolHolder = new Dictionary<string, bool>();
 
     public StatValue[] statsToModify;
+    protected bool initializationComplete;
 
-    protected virtual void Awake()
+    protected void OnEnable()
     {
+        if(!initializationComplete) return;
+        UnsubscribeEvents();
+        SubscribeEvents();
+        OnEquip();
+    }
+    
+    protected void OnDisable()
+    {
+        OnUnequip();
+        UnsubscribeEvents();
     }
 
     protected virtual void Update()
     {
-        
     }
-
-    protected virtual void Start()
-    {
-    }
-
-    int PrerequisiteListCount() 
-    {
-        int prerequisiteListLength;
-
-        prerequisiteListLength = prerequisites.Count;
-
-        return prerequisiteListLength;
-    }
-
 
     private void UnlockSecondary(string name) 
     {
@@ -100,74 +99,45 @@ public class Morph : MonoBehaviour
         }
     }
 
-    public string GetMorphType() 
+    public string GetMorphType()
     {
-        string type = null;
+        return morphType.ToString();
+    }
 
-        if (morphType == MorphType.None)
-        {
-            //Debug.Log(GetType().Name + " is of type: None");
-            type = "None";
-        }
+    public void Initialize()
+    {
+        damageHandler = GetComponent<DamageHandler>();
+        stats = GetComponent<Stats>();
+        
+        GetComponentReferences();
+        SubscribeEvents();
+        OnEquip();
 
-        else if (morphType == MorphType.Poison)
-        {
-            //Debug.Log(name + " is of type: Poison");
-            type = "Poison";
-        }
+        initializationComplete = true;
+    }
 
-        else if (morphType == MorphType.Fire)
-        {
-            //Debug.Log(name + " is of type: Fire");
-            type = "Fire";
-        }
+    protected virtual void GetComponentReferences()
+    {
+        // get all necessary components
+    }
 
-        else if (morphType == MorphType.Ice)
-        {
-            //Debug.Log(name + " is of type: Ice");
-            type = "Ice";
-        }
+    protected virtual void SubscribeEvents()
+    {
+        
+    }
+    
+    protected virtual void UnsubscribeEvents()
+    {
+        
+    }
 
-        else if (morphType == MorphType.Acid)
-        {
-            //Debug.Log(name + " is of type: Acid");
-            type = "Acid";
-        }
-
-        else if (morphType == MorphType.Electric)
-        {
-            //Debug.Log(name + " is of type: Electric");
-            type = "Electric";
-        }
-
-        else if (morphType == MorphType.Melee)
-        {
-            //Debug.Log(name + " is of type: Melee");
-            type = "Melee";
-        }
-
-        else if (morphType == MorphType.Ranged)
-        {
-            //Debug.Log(name + " is of type: Ranged");
-            type = "Ranged";
-        }
-
-        else if (morphType == MorphType.Stealth)
-        {
-            //Debug.Log(name + " is of type: Stealth");
-            type = "Stealth";
-        }
-
-        else if (morphType == MorphType.Intimidation)
-        {
-            //Debug.Log(name + " is of type: Intimidation");
-            type = "Intimidation";
-        }
-
-        else if (type == null) 
-        {
-            type = "None";
-        }
-        return type;
+    protected virtual void OnEquip()
+    {
+        // apply effects that happen immediately
+    }
+    
+    protected virtual void OnUnequip()
+    {
+        // reverse effects
     }
 }

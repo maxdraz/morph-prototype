@@ -25,10 +25,10 @@ public class MorphLoadout : MonoBehaviour
     private void Start()
     {
         AddMorphsAtStart();
-
         CountAllMorphsByType();
     }
-    void AddMorphsAtStart()
+   
+    private void AddMorphsAtStart()
     {
         if (limbWeaponMorph != null)
         {
@@ -69,7 +69,7 @@ public class MorphLoadout : MonoBehaviour
             var currentActiveMorph = activeMorphs[i];
             if (currentActiveMorph)
             {
-                activeMorphs[i] = UtilityFunctions.CopyComponent(activeMorphs[i], gameObject);
+                activeMorphs[i] = gameObject.CopyComponent(activeMorphs[i]);
 
                 if (activeMorphs[i].GetMorphType() != "None")
                 {
@@ -83,7 +83,7 @@ public class MorphLoadout : MonoBehaviour
         {
             var currentPassiveMorph = passiveMorphs[i];
             if (currentPassiveMorph)
-                passiveMorphs[i] = UtilityFunctions.CopyComponent(passiveMorphs[i], gameObject);
+                passiveMorphs[i] = gameObject.CopyComponent(passiveMorphs[i]);
             //Debug.Log("Added " + passiveMorphs[i].GetType().Name);
 
             if (passiveMorphs[i].GetMorphType() != "None")
@@ -138,19 +138,15 @@ public class MorphLoadout : MonoBehaviour
         } 
     }
 
-    
-
     public void AddMorphToLoadoutAtRuntime(Morph morphPrefab) 
      {
         if (!morphPrefab) return;
-
-        
 
         if (morphPrefab.CheckPrerequisites(GetComponent<MorphLoadout>(), GetComponent<Stats>(), morphPrefab) == true)
         {
             if (morphPrefab is LimbWeaponMorph limbMorph)
             {
-                limbWeaponMorph = UtilityFunctions.CopyComponent(limbMorph, gameObject);
+                limbWeaponMorph = gameObject.CopyComponent(limbMorph);
 
                 if (limbWeaponMorph)
                 {
@@ -165,7 +161,7 @@ public class MorphLoadout : MonoBehaviour
 
             else if (morphPrefab is HeadWeaponMorph headMorph)
             {
-                headWeaponMorph = UtilityFunctions.CopyComponent(headMorph, gameObject);
+                headWeaponMorph = gameObject.CopyComponent(headMorph);
                 if (headWeaponMorph)
                 {
                     MorphLoadoutChanged?.Invoke(headWeaponMorph);
@@ -179,7 +175,7 @@ public class MorphLoadout : MonoBehaviour
 
             else if (morphPrefab is TailWeaponMorph tailMorph)
             {
-                tailWeaponMorph = UtilityFunctions.CopyComponent(tailMorph, gameObject);
+                tailWeaponMorph = gameObject.CopyComponent(tailMorph);
                 if (tailWeaponMorph)
                 {
                     MorphLoadoutChanged?.Invoke(tailWeaponMorph);
@@ -193,7 +189,7 @@ public class MorphLoadout : MonoBehaviour
 
             else if (morphPrefab is PassiveMorph passiveMorph)
             {
-                var morph = UtilityFunctions.CopyComponent(passiveMorph, gameObject);
+                var morph = gameObject.CopyComponent(passiveMorph);
                 if (morph)
                 {
                     passiveMorphs.Add(morph);
@@ -208,7 +204,7 @@ public class MorphLoadout : MonoBehaviour
 
             else if (morphPrefab is ActiveMorph activeMorph)
             {
-                var morph = UtilityFunctions.CopyComponent(activeMorph, gameObject);
+                var morph = gameObject.CopyComponent(activeMorph);
                 if (morph)
                 {
                     activeMorphs.Add(morph);
@@ -225,42 +221,37 @@ public class MorphLoadout : MonoBehaviour
 
     public void AddMorphToLoadout(Morph morphPrefab)
     {
+        if(!morphPrefab) return;
 
-
-        if (morphPrefab is LimbWeaponMorph limbMorph)
+        var morphGO = gameObject.CopyComponent(morphPrefab);
+        
+        switch (morphGO)
         {
-            limbWeaponMorph = UtilityFunctions.CopyComponent(limbMorph, gameObject);
-
-            if (limbWeaponMorph)
-            {
+            case LimbWeaponMorph limbMorph:
+                limbWeaponMorph = limbMorph;
                 MorphLoadoutChanged?.Invoke(limbWeaponMorph);
-            }
-        }
-        else if (morphPrefab is HeadWeaponMorph headMorph)
-        {
-            headWeaponMorph = UtilityFunctions.CopyComponent(headMorph, gameObject);
-            if (headWeaponMorph)
+                break;
+            case HeadWeaponMorph headMorph:
             {
+                headWeaponMorph = headMorph;
                 MorphLoadoutChanged?.Invoke(headWeaponMorph);
+                break;
             }
-        }
-        else if (morphPrefab is TailWeaponMorph tailMorph)
-        {
-            tailWeaponMorph = UtilityFunctions.CopyComponent(tailMorph, gameObject);
-            if (tailWeaponMorph)
+            case TailWeaponMorph tailMorph:
             {
+                tailWeaponMorph = tailMorph;
                 MorphLoadoutChanged?.Invoke(tailWeaponMorph);
+                break;
             }
-        }
-        else if (morphPrefab is PassiveMorph passiveMorph)
-        {
-            var morph = UtilityFunctions.CopyComponent(passiveMorph, gameObject);
-            if (morph)
+            case PassiveMorph passiveMorph:
             {
-                passiveMorphs.Add(morph);
-                MorphLoadoutChanged?.Invoke(morph);
+                passiveMorphs.Add(passiveMorph);
+                MorphLoadoutChanged?.Invoke(passiveMorph);
+                break;
             }
         }
+        
+        morphGO.Initialize();
     }
 
     public void RemoveLimbWeaponMorph()

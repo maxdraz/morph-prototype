@@ -15,7 +15,7 @@ public static class UtilityFunctions
         return Vector3.ProjectOnPlane(trans.forward, planeNormal).normalized;
     }
     
-    public static T CopyComponent<T>(T original, GameObject destination) where T : Component
+    public static T CopyComponent<T>(this GameObject destination, T original) where T : Component
     {
         System.Type type = original.GetType();
         Component copy = destination.AddComponent(type);

@@ -5,45 +5,44 @@ using UnityEngine;
 
 public class EndlessAggression : PassiveMorph
 {
-    static int meleeDamagePrerequisit = 30;
-    static int intelligencePrerequisit = 30;
-    static int fortitudePrerequisit = 30;
+    private static int meleeDamagePrerequisit = 30;
+    private static int intelligencePrerequisit = 30;
+    private static int fortitudePrerequisit = 30;
 
 
     [SerializeField] private RadialProjectileSpawner explosionSpawner;
-    private DamageHandler damageHandler;
     [SerializeField] private float maxStaminaStatBonus = .15f;
     [SerializeField] private bool unlockExplosiveAnger = true;
 
     [SerializeField] private float endlessAggressionEnergyGain;
     [SerializeField] private float endlessAggressionStaminaGain;
 
-    public Stamina stamina;
-    public Energy energy;
+    private Stamina stamina;
+    private Energy energy;
 
-    bool canGainExplosiveAngerStacks = true;
-    int currentExplosiveAngerStacks;
+    private bool canGainExplosiveAngerStacks = true;
+    private int currentExplosiveAngerStacks;
     [SerializeField] private int explosiveAngerStackLimit;
-    float explosiveAngerStackDuration = 2;
+    private float explosiveAngerStackDuration = 2;
     [SerializeField] private float explosiveAngerCooldownPeriod;
 
-
-    protected override void Start()
+    protected override void GetComponentReferences()
     {
-        stamina = GetComponent<Stamina>();
+        base.GetComponentReferences();
+        
         energy = GetComponent<Energy>();
+        stamina = GetComponent<Stamina>();
+    }
 
+    protected override void OnEquip()
+    {
+        base.OnEquip();
+        
         ChangeMaxStaminaStat(maxStaminaStatBonus);
     }
 
-    private void OnEnable()
+    protected override void OnUnequip()
     {
-        StartCoroutine(SubscribeToEventsCoroutine());
-    }
-
-    private void OnDisable()
-    {
-        UnsubscribeFromEvents();
         ChangeMaxStaminaStat(-maxStaminaStatBonus);
     }
 
@@ -61,25 +60,16 @@ public class EndlessAggression : PassiveMorph
         stamina.maxStaminaBonus += maxStaminaBonus;
     }
 
-    //private void Update()
-    //{
-        //if (Input.GetKeyDown("p")) 
-        //{
-         //   explosionSpawner.Spawn(transform);
-        //}
-    //}
-
     private void OnDamageHasBeenDealt(in DamageTakenSummary damageTakenSummary)
     {
         if (damageTakenSummary.IsCriticalHit)
         {
-            
             //GainStaminaAndEnergy();
             ExplosiveAnger();
         }
     }
 
-    void GainStaminaAndEnergy()
+    private void GainStaminaAndEnergy()
     {
         float currentEnergyPercentage = energy.EnergyAsPercentage();
         float currentStaminaPercentage = stamina.CurrentStaminaAsPercentage;
@@ -118,7 +108,7 @@ public class EndlessAggression : PassiveMorph
         }
     }
 
-    IEnumerator ExplosiveAngerCooldown() 
+    private IEnumerator ExplosiveAngerCooldown() 
     {
         yield return new WaitForSeconds(explosiveAngerCooldownPeriod);
 
@@ -128,7 +118,7 @@ public class EndlessAggression : PassiveMorph
         yield return null;
     }
 
-    IEnumerator DecayExplosiveAngerStacks() 
+    private IEnumerator DecayExplosiveAngerStacks() 
     {
         yield return new WaitForSeconds(explosiveAngerStackDuration);
 
@@ -142,32 +132,20 @@ public class EndlessAggression : PassiveMorph
         yield return null;
     }
 
-    private IEnumerator SubscribeToEventsCoroutine()
+    protected override void SubscribeEvents()
     {
-        yield return new WaitForEndOfFrame();
-        GetReferencesAndSubscribeToEvenets();
-    }
-
-    private void GetReferencesAndSubscribeToEvenets()
-    {
-        if (damageHandler) return;
-
-        damageHandler = GetComponent<DamageHandler>();
+        base.SubscribeEvents();
+        
         if (damageHandler)
-        {
             damageHandler.DamageHasBeenDealt += OnDamageHasBeenDealt;
-
-        }
     }
 
-    private void UnsubscribeFromEvents()
+    protected override void UnsubscribeEvents()
     {
+        base.UnsubscribeEvents();
+        
         if (damageHandler)
-        {
             damageHandler.DamageHasBeenDealt -= OnDamageHasBeenDealt;
-        }
-
-        damageHandler = null;
     }
 
     private void OnDrawGizmos()

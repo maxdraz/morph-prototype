@@ -19,28 +19,26 @@ public class WeaponMorph : Morph
         set => lightAttacks = value;
     }
 
-    // Start is called before the first frame update
-    protected override void Start()
+    protected override void OnEquip()
     {
+        base.OnEquip();
+        
         AddMorphDamageToPhysicalOnHitEffects();
-
     }
 
     //attack handling
     public WeaponAttack GetCurrentAttack(bool isLightAttack)
     {
         if (isLightAttack)
-        {
-          //  if (currentLightAttack >= lightAttacks.Count) return null;
-          if (lightAttacks != null && lightAttacks.Count > 0)
-            return lightAttacks[currentLightAttack];
+        { 
+            if (lightAttacks != null && lightAttacks.Count > 0)
+                return lightAttacks[currentLightAttack];
         }
         
-       // if (currentHeavyAttack >= heavyAttacks.Count) return null;
-       if (heavyAttacks != null && heavyAttacks.Count > 0) 
-        return heavyAttacks[currentHeavyAttack];
+        if (heavyAttacks != null && heavyAttacks.Count > 0) 
+            return heavyAttacks[currentHeavyAttack];
 
-       return null;
+        return null;
     }
 
     public void AdvanceCombo(bool isLight)
@@ -61,10 +59,10 @@ public class WeaponMorph : Morph
         currentHeavyAttack = 0;
     }
     // on hit effects handling
-    protected void AddMorphDamageToPhysicalOnHitEffects()
+    private void AddMorphDamageToPhysicalOnHitEffects()
     {
-        var onhiteffects = GetAllOnHitEffectsOfType<IPhysicalDamage>();
-        foreach (var onHitEffect in onhiteffects)
+        var onHitEffects = GetAllOnHitEffectsOfType<IPhysicalDamage>();
+        foreach (var onHitEffect in onHitEffects)
         {
             if (onHitEffect.Data is IPhysicalDamage physicalDamage)
             {

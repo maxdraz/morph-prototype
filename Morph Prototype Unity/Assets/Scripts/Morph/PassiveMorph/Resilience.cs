@@ -4,39 +4,22 @@ using UnityEngine;
 
 public class Resilience : PassiveMorph
 {
-    //[SerializeField] private ResiliencePrerequisiteData prerequisiteData;
-
-
-    private DamageHandler damageHandler;
     [SerializeField] private float resistanceBoost1;
     [SerializeField] private float resistanceBoost2;
     [SerializeField] private bool unlockHardiness;
     [SerializeField] private string resistType1;
     [SerializeField] private string resistType2;
 
-    Stats stats;
-
-    protected override void Start() 
+    protected override void OnEquip()
     {
-        stats = GetComponent<Stats>();
+        base.OnEquip();
+        
         GenerateResistanceBoosts();
         AddToResistanceStat(resistType1, resistanceBoost1);
-
+        
         if (unlockHardiness)
-        {
             AddToResistanceStat(resistType2, resistanceBoost2);
-        }
-    }
-
-
-    private void OnEnable()
-    {
-        StartCoroutine(AssignDamageHandlerCoroutine());
-    }
-
-    private void OnDisable()
-    {
-        UnsubscribeFromEvents();
+        
     }
 
     public void UnlockSecondary(string name)
@@ -48,7 +31,7 @@ public class Resilience : PassiveMorph
         }
     }
 
-    void GenerateResistanceBoosts()
+    private void GenerateResistanceBoosts()
     {
 
         int boost1 = Random.Range(0, 4);
@@ -281,35 +264,5 @@ public class Resilience : PassiveMorph
             Debug.Log("adding to " + resist + " resist");
             stats.FlatResistStatChange("acid", boost);
         }
-    }
-
-
-    private IEnumerator AssignDamageHandlerCoroutine()
-    {
-        yield return new WaitForEndOfFrame();
-        GetReferencesAndSubscribeToEvenets();
-    }
-
-    private void GetReferencesAndSubscribeToEvenets()
-    {
-        if (damageHandler) return;
-
-        damageHandler = GetComponent<DamageHandler>();
-        if (damageHandler)
-        {
-            
-
-        }
-    }
-
-    private void UnsubscribeFromEvents()
-    {
-        if (damageHandler)
-        {
-            
-
-        }
-
-        damageHandler = null;
     }
 }

@@ -5,13 +5,8 @@ using UnityEngine;
 
 public class ColourChange : ActiveMorph
 {
-    private DamageHandler damageHandler;
-    [SerializeField] private Stats stats;
-    float range;
-    public Stealth stealth;
+    
     [SerializeField] private int stealthStatBonus = 5;
-
-
     [SerializeField] private int colourChangeStealthBonus;
     [SerializeField] private float colourChangeDuration;
 
@@ -23,17 +18,21 @@ public class ColourChange : ActiveMorph
     [SerializeField] private bool unlockBioLuminescentFlash = true;
     [SerializeField] private GameObject bioluminescentFlash;
     [SerializeField] private List<OnHitEffectDataContainer> onHitEffects;
-
-    //static Prerequisite[] StatPrerequisits;
-
-    protected override void Start()
+    
+    private float range;
+    private Stealth stealth;
+    
+    protected override void GetComponentReferences()
     {
-        base.Start();
+        base.GetComponentReferences();
         
-        stats = GetComponent<Stats>();
         stealth = GetComponent<Stealth>();
-        //WriteToPrerequisiteArray();
+    }
 
+    protected override void OnEquip()
+    {
+        base.OnEquip();
+        
         if (unlockShimmering)
         {
             shimmering = ObjectPooler.Instance.GetOrCreatePooledObject(shimmeringParticles).GetComponent<ParticleSystem>();
@@ -44,19 +43,11 @@ public class ColourChange : ActiveMorph
         ChangeStealthStat(stealthStatBonus);
     }
 
-    // void WriteToPrerequisiteArray()
-   // {
-   //     statPrerequisits = new Prerequisite[StatPrerequisits.Length];
-   //
-   //     for (int i = 0; i <= StatPrerequisits.Length - 1; i++)
-   //     {
-   //         statPrerequisits[i] = StatPrerequisits[i];
-   //         Debug.Log(GetType().Name + " has a prerequisite " + statPrerequisits[i].stat + " of " + statPrerequisits[i].value);
-   //     }
-   // }
-    private void OnEnable()
+    protected override void OnUnequip()
     {
-        StartCoroutine(AssignDamageHandlerCoroutine());
+        base.OnUnequip();
+        
+        ChangeStealthStat(-stealthStatBonus);
     }
 
     protected override void Update()
@@ -76,21 +67,9 @@ public class ColourChange : ActiveMorph
         }
     }
 
-    private void OnDisable()
-    {
-        UnsubscribeFromEvents();
-        ChangeStealthStat(-stealthStatBonus);
-    }
-
     private void ChangeStealthStat(int amountToAdd)
     {
         stats.FlatStatChange("stealth", amountToAdd);
-    }
-
-    private IEnumerator AssignDamageHandlerCoroutine()
-    {
-        yield return new WaitForEndOfFrame();
-        GetReferencesAndSubscribeToEvenets();
     }
 
     private void OnDamageAboutToBeTaken(ref IDamageType damageType)
@@ -163,32 +142,24 @@ public class ColourChange : ActiveMorph
         }
     }
 
-    private void GetReferencesAndSubscribeToEvenets()
+    protected override void SubscribeEvents()
     {
-        if (damageHandler) return;
+        base.SubscribeEvents();
 
-        damageHandler = GetComponent<DamageHandler>();
-        if (damageHandler)
-        {
-            if (unlockShimmering) 
-            {
-                damageHandler.DamageAboutToBeTaken += OnDamageAboutToBeTaken;
-            }
-        }
+        if (!damageHandler) return;
+        if (unlockShimmering)
+            damageHandler.DamageAboutToBeTaken += OnDamageAboutToBeTaken;
+        
     }
 
-    private void UnsubscribeFromEvents()
+    protected override void UnsubscribeEvents()
     {
-        if (damageHandler)
-        {
+        base.UnsubscribeEvents();
 
-            if (unlockShimmering)
-            {
-                damageHandler.DamageAboutToBeTaken -= OnDamageAboutToBeTaken;
-            }
-        }
-
-        damageHandler = null;
+        if (!damageHandler) return;
+        if (unlockShimmering)
+            damageHandler.DamageAboutToBeTaken -= OnDamageAboutToBeTaken;
+        
     }
 
     private void OnValidate()
