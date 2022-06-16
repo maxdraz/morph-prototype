@@ -4,27 +4,19 @@ using UnityEngine;
 
 public class Elementalist : PassiveMorph
 {
-    //[SerializeField] private ElementalPrerequisiteData prerequisiteData;
-
-
-    private DamageHandler damageHandler;
     [SerializeField] private bool unlockForceOfNature = true;
 
-    Stats stats;
-
-    private void OnEnable()
+    protected override void OnEquip()
     {
-        stats = GetComponent<Stats>();
-
-        StartCoroutine(AssignDamageHandlerCoroutine());
+        base.OnEquip();
+        
         ModifyStats(true);
     }
 
-    private void OnDisable()
+    protected override void OnUnequip()
     {
-        stats = GetComponent<Stats>();
-
-        UnsubscribeFromEvents();
+        base.OnUnequip();
+        
         ModifyStats(false);
     }
 
@@ -83,17 +75,10 @@ public class Elementalist : PassiveMorph
         }
     }
 
-        private IEnumerator AssignDamageHandlerCoroutine()
+    protected override void SubscribeEvents()
     {
-        yield return new WaitForEndOfFrame();
-        GetReferencesAndSubscribeToEvenets();
-    }
-
-    private void GetReferencesAndSubscribeToEvenets()
-    {
-        if (damageHandler) return;
-
-        damageHandler = GetComponent<DamageHandler>();
+        base.SubscribeEvents();
+        
         if (damageHandler)
         {
             if (unlockForceOfNature) 
@@ -103,17 +88,16 @@ public class Elementalist : PassiveMorph
         }
     }
 
-    private void UnsubscribeFromEvents()
+    protected override void UnsubscribeEvents()
     {
+        base.UnsubscribeEvents();
+        
         if (damageHandler)
         {
-
             if (unlockForceOfNature)
             {
                 damageHandler.DamageHasBeenDealt -= OnDamageHasBeenDealt;
             }
         }
-
-        damageHandler = null;
     }
 }

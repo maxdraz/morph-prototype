@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class Agile : PassiveMorph
 {
-    //[SerializeField] private AgilePrerequisiteData prerequisiteData;
-
-
     private DamageHandler damageHandler;
     [SerializeField] private bool unlockCatLike = true;
+    private Jump jump;
 
-    Stats stats;
-    Jump jump;
-
-    private void OnEnable()
+    protected override void GetComponentReferences()
     {
-        stats = GetComponent<Stats>();
+        base.GetComponentReferences();
+        
         jump = GetComponentInParent<Jump>();
+    }
 
-        StartCoroutine(AssignDamageHandlerCoroutine());
+    protected override void OnEquip()
+    {
+        base.OnEquip();
+        
         ModifyStats(true);
 
         if (unlockCatLike)
@@ -27,11 +27,10 @@ public class Agile : PassiveMorph
         }
     }
 
-    private void OnDisable()
+    protected override void OnUnequip()
     {
-        stats = GetComponent<Stats>();
-
-        UnsubscribeFromEvents();
+        base.OnUnequip();
+        
         ModifyStats(false);
 
         if (unlockCatLike) 
@@ -50,7 +49,7 @@ public class Agile : PassiveMorph
     }
 
     // If the bool AddToStat is set to positive it will add to the stats, if negative it will remove from the stats
-    void ModifyStats(bool AddToStat)
+    private void ModifyStats(bool AddToStat)
     {
         if (stats != null)
         {
@@ -76,34 +75,5 @@ public class Agile : PassiveMorph
     private void CatLike(int jumps) 
     {
         jump.AddJumps(jumps);
-    }
-
-    private IEnumerator AssignDamageHandlerCoroutine()
-    {
-        yield return new WaitForEndOfFrame();
-        GetReferencesAndSubscribeToEvenets();
-    }
-
-    private void GetReferencesAndSubscribeToEvenets()
-    {
-        if (damageHandler) return;
-
-        damageHandler = GetComponent<DamageHandler>();
-        if (damageHandler)
-        {
-            
-
-        }
-    }
-
-    private void UnsubscribeFromEvents()
-    {
-        if (damageHandler)
-        {
-            
-
-        }
-
-        damageHandler = null;
     }
 }

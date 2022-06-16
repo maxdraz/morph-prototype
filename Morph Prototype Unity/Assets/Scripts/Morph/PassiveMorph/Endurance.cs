@@ -4,19 +4,23 @@ using UnityEngine;
 
 public class Endurance : PassiveMorph
 {
-    //[SerializeField] private EndurancePrerequisiteData prerequisiteData;
-
-
-    private DamageHandler damageHandler;
     [SerializeField] private float staminaPercentageStatBonus = .20f;
     [SerializeField] private float staminaPercentageRegenBonus = .40f;
     [SerializeField] private bool unlockMoxie;
 
-    Stamina stamina;
+    private Stamina stamina;
 
-    private void Start()
+    protected override void GetComponentReferences()
     {
+        base.GetComponentReferences();
+        
         stamina = GetComponent<Stamina>();
+    }
+
+    protected override void OnEquip()
+    {
+        base.OnEquip();
+        
         ChangeMaxStaminaStat(staminaPercentageStatBonus);
 
         if (unlockMoxie)
@@ -24,30 +28,22 @@ public class Endurance : PassiveMorph
             stamina.bonusStaminaRegen += staminaPercentageRegenBonus;
         }
     }
-
-    private void OnEnable()
+    
+    protected override void OnUnequip()
     {
-
-        StartCoroutine(AssignDamageHandlerCoroutine());
+        base.OnUnequip();
         
-    }
-
-    private void ChangeMaxStaminaStat(float amountToAdd)
-    {
-        BroadcastMessage("SetMaxStamina", amountToAdd);
-    }
-
-    private void OnDisable()
-    {
-
-        UnsubscribeFromEvents();
-
         if (unlockMoxie)
         {
             stamina.bonusStaminaRegen -= staminaPercentageRegenBonus;
         }
     }
 
+    private void ChangeMaxStaminaStat(float amountToAdd)
+    {
+        BroadcastMessage("SetMaxStamina", amountToAdd);
+    }
+    
     public void UnlockSecondary(string name)
     {
         if (name == "Moxie")
@@ -55,34 +51,5 @@ public class Endurance : PassiveMorph
             Debug.Log(GetType().Name + "Unlocking " + name);
             unlockMoxie = true;
         }
-    }
-
-    private IEnumerator AssignDamageHandlerCoroutine()
-    {
-        yield return new WaitForEndOfFrame();
-        GetReferencesAndSubscribeToEvenets();
-    }
-
-    private void GetReferencesAndSubscribeToEvenets()
-    {
-        if (damageHandler) return;
-
-        damageHandler = GetComponent<DamageHandler>();
-        if (damageHandler)
-        {
-            
-
-        }
-    }
-
-    private void UnsubscribeFromEvents()
-    {
-        if (damageHandler)
-        {
-            
-
-        }
-
-        damageHandler = null;
     }
 }

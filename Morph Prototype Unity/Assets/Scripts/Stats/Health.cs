@@ -108,19 +108,21 @@ public class Health : MonoBehaviour
         AddHP(healthToHeal);
     }
 
-    public IEnumerator HealOverTime(float amount, int duration) 
+    public void HealOverTime(float amount, int duration)
     {
-        float amountToHealPerSecond = amount / duration;
-        int secondsRemaining = duration;
-        yield return new WaitForSeconds(1);
-        secondsRemaining--;
-        AddHP(amountToHealPerSecond);
+        StartCoroutine(HealOverTimeCoroutine(amount, duration));
+    }
 
-        if (secondsRemaining > 0) 
+    private IEnumerator HealOverTimeCoroutine(float amount, float duration)
+    {
+        var amountToHealPerSecond = amount / duration;
+        while (duration > 0)
         {
-            StartCoroutine(HealOverTime (amount-amountToHealPerSecond, secondsRemaining));
+            yield return new WaitForSeconds(1);
+            duration -= 1;
+            
+            AddHP(amountToHealPerSecond);
         }
-        yield return null;
     }
 
     private void OnHealthChanged()

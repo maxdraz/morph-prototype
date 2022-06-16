@@ -4,33 +4,29 @@ using UnityEngine;
 
 public class Brawl : PassiveMorph
 {
-    //[SerializeField] private BrawlPrerequisiteData prerequisiteData;
-
-
-    private DamageHandler damageHandler;
     [SerializeField] private bool unlockRage = true;
     [SerializeField] private float rageBonusAttackSpeed = .06f;
 
+    private Health health;
 
-    Stats stats;
-    Health health;
-
-    private void OnEnable()
+    protected override void GetComponentReferences()
     {
-        stats = GetComponent<Stats>();
-        health = GetComponent<Health>();
-
-        StartCoroutine(AssignDamageHandlerCoroutine());
-        ModifyStats(true);
+        base.GetComponentReferences();
         
+        health = GetComponent<Health>();
     }
 
-    private void OnDisable()
+    protected override void OnEquip()
     {
-        stats = GetComponent<Stats>();
-        health = GetComponent<Health>();
+        base.OnEquip();
+        
+        ModifyStats(true);
+    }
 
-        UnsubscribeFromEvents();
+    protected override void OnUnequip()
+    {
+        base.OnUnequip();
+        
         ModifyStats(false);
     }
 
@@ -86,34 +82,5 @@ public class Brawl : PassiveMorph
                 //add bonusAttackSpeed to attackhandler
             }
         }
-    }
-
-    private IEnumerator AssignDamageHandlerCoroutine()
-    {
-        yield return new WaitForEndOfFrame();
-        GetReferencesAndSubscribeToEvenets();
-    }
-
-    private void GetReferencesAndSubscribeToEvenets()
-    {
-        if (damageHandler) return;
-
-        damageHandler = GetComponent<DamageHandler>();
-        if (damageHandler)
-        {
-            
-
-        }
-    }
-
-    private void UnsubscribeFromEvents()
-    {
-        if (damageHandler)
-        {
-            
-
-        }
-
-        damageHandler = null;
     }
 }

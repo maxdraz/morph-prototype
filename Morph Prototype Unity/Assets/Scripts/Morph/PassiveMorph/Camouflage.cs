@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Camoflage : PassiveMorph
+public class Camouflage : PassiveMorph
 {
     //[SerializeField] private CamoflagePrerequisiteData prerequisiteData;
 
@@ -10,14 +10,20 @@ public class Camoflage : PassiveMorph
     private DamageHandler damageHandler;
     [SerializeField] private bool unlockSneaky;
     public float sneakyStealthBonusWhileMoving = .2f;
-    Stats stats;
-    Stealth stealth;
+    
+    private Stealth stealth;
 
-    private void OnEnable()
+    protected override void GetComponentReferences()
     {
-        stats = GetComponent<Stats>();
+        base.GetComponentReferences();
+        
         stealth = GetComponent<Stealth>();
-        StartCoroutine(AssignDamageHandlerCoroutine());
+    }
+
+    protected override void OnEquip()
+    {
+        base.OnUnequip();
+
         ModifyStats(true);
 
         if (unlockSneaky) 
@@ -26,12 +32,10 @@ public class Camoflage : PassiveMorph
         }
     }
 
-    private void OnDisable()
+    protected override void OnUnequip()
     {
-        stats = GetComponent<Stats>();
-        stealth = GetComponent<Stealth>();
-
-        UnsubscribeFromEvents();
+        base.OnUnequip();
+        
         ModifyStats(false);
 
         if (unlockSneaky)
@@ -76,34 +80,5 @@ public class Camoflage : PassiveMorph
     private void Sneaky(float amountToAdd)
     {
         stealth.stealthModifierWhileMoving += amountToAdd;
-    }
-
-    private IEnumerator AssignDamageHandlerCoroutine()
-    {
-        yield return new WaitForEndOfFrame();
-        GetReferencesAndSubscribeToEvenets();
-    }
-
-    private void GetReferencesAndSubscribeToEvenets()
-    {
-        if (damageHandler) return;
-
-        damageHandler = GetComponent<DamageHandler>();
-        if (damageHandler)
-        {
-            
-
-        }
-    }
-
-    private void UnsubscribeFromEvents()
-    {
-        if (damageHandler)
-        {
-            
-
-        }
-
-        damageHandler = null;
     }
 }

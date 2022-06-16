@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class Celerity : PassiveMorph
 {
-    //[SerializeField] private CelerityPrerequisiteData prerequisiteData;
-
-
-    private DamageHandler damageHandler;
     [SerializeField] private float moveSpeedStatBonus = .2f;
     [SerializeField] private bool unlockGraceful;
     [SerializeField] private float mobilityStaminaCostReduction = 5;
@@ -15,22 +11,25 @@ public class Celerity : PassiveMorph
     [SerializeField] private Movement movement;
     [SerializeField] private Stamina stamina;
 
-    private void OnEnable()
+    protected override void GetComponentReferences()
     {
+        base.GetComponentReferences();
+        
         stamina = GetComponent<Stamina>();
         movement = GetComponentInParent<Movement>();
-
-        StartCoroutine(AssignDamageHandlerCoroutine());
-        ChangeMoveSpeedStat(moveSpeedStatBonus);
-        
     }
 
-    private void OnDisable()
+    protected override void OnEquip()
     {
-        stamina = GetComponent<Stamina>();
-        movement = GetComponentInParent<Movement>();
+        base.OnEquip();
+        
+        ChangeMoveSpeedStat(moveSpeedStatBonus);
+    }
 
-        UnsubscribeFromEvents();
+    protected override void OnUnequip()
+    {
+        base.OnUnequip();
+        
         ChangeMoveSpeedStat(-moveSpeedStatBonus);
     }
 
@@ -59,34 +58,5 @@ public class Celerity : PassiveMorph
             //    stamina.RefundStamina(stamina cost of mobility tech used, mobilityStaminaCostReduction);
             //}
         }
-    }
-
-    private IEnumerator AssignDamageHandlerCoroutine()
-    {
-        yield return new WaitForEndOfFrame();
-        GetReferencesAndSubscribeToEvenets();
-    }
-
-    private void GetReferencesAndSubscribeToEvenets()
-    {
-        if (damageHandler) return;
-
-        damageHandler = GetComponent<DamageHandler>();
-        if (damageHandler)
-        {
-            
-
-        }
-    }
-
-    private void UnsubscribeFromEvents()
-    {
-        if (damageHandler)
-        {
-            
-
-        }
-
-        damageHandler = null;
     }
 }

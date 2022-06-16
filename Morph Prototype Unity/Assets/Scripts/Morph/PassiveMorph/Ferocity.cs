@@ -7,49 +7,41 @@ public class Ferocity : PassiveMorph
     static int meleeDamagePrerequisit = 35;
     static int agilityPrerequisit = 25;
 
+    [SerializeField] private bool unlockSpiritSiphon;
 
-    private DamageHandler damageHandler;
-    [SerializeField] private bool unlockSpiritSpihon;
+    private float damageBoostPerStack;
 
-    float damageBoostPerStack;
-
-    int currentFerocityStackAmount;
-    int maxFerocityStacks = 5;
+    private int currentFerocityStackAmount;
+    private int maxFerocityStacks = 5;
     [SerializeField] private float stackDuration = 4;
 
     [SerializeField] private float ferocityAttackSpeedBuffPerStack = .03f;
     [SerializeField] private float ferocityMeleeAttackDamageBuffPerStack = .05f;
-    float totalFerocityAttackSpeedBuff;
-    float totalFerocityMeleeAttackDamageBuff;
+    private float totalFerocityAttackSpeedBuff;
+    private float totalFerocityMeleeAttackDamageBuff;
 
     [SerializeField] private float spiritSiphonPeriod;
     [SerializeField] private float spiritSiphonRange;
-    Timer spiritSiphonTimer;
+    private Timer spiritSiphonTimer;
     [SerializeField] private float spiritSiphonStaminaStealAmount;
     [SerializeField] private float spiritSiphonEnergyStealAmount;
 
-    Stats stats;
-
-    //static Prerequisite[] StatPrerequisits;
-
-
-    private void OnEnable()
+    protected override void OnEquip()
     {
-        stats = GetComponent<Stats>();
-
-        StartCoroutine(AssignDamageHandlerCoroutine());
+        base.OnEquip();
+        
         ModifyStats(true);
-        if (unlockSpiritSpihon)
+        
+        if (unlockSpiritSiphon)
         {
             spiritSiphonTimer = new Timer(spiritSiphonPeriod, true);
         }
     }
 
-    private void OnDisable()
+    protected override void OnUnequip()
     {
-        stats = GetComponent<Stats>();
-
-        UnsubscribeFromEvents();
+        base.OnUnequip();
+        
         ModifyStats(false);
     }
 
@@ -58,12 +50,12 @@ public class Ferocity : PassiveMorph
         if (name == "SpiritSiphon")
         {
             Debug.Log(GetType().Name + "Unlocking " + name);
-            unlockSpiritSpihon = true;
+            unlockSpiritSiphon = true;
         }
     }
 
     // implement
-    void ModifyStats(bool AddToStat)
+    private void ModifyStats(bool AddToStat)
     {
         if (stats != null)
         {
@@ -120,16 +112,15 @@ public class Ferocity : PassiveMorph
 
     }
 
-    IEnumerator DecayFerocityStacks() 
+    private IEnumerator DecayFerocityStacks() 
     {
         yield return new WaitForSeconds(stackDuration);
         currentFerocityStackAmount = 0;
-        yield return null;
     }
 
     private void Update()
     {
-        if (unlockSpiritSpihon) 
+        if (unlockSpiritSiphon) 
         {
             spiritSiphonTimer.Update(Time.deltaTime);
 
@@ -163,33 +154,23 @@ public class Ferocity : PassiveMorph
         }
     }
 
-    private IEnumerator AssignDamageHandlerCoroutine()
+    protected override void SubscribeEvents()
     {
-        yield return new WaitForEndOfFrame();
-        GetReferencesAndSubscribeToEvenets();
-    }
-
-    private void GetReferencesAndSubscribeToEvenets()
-    {
-        if (damageHandler) return;
-
-        damageHandler = GetComponent<DamageHandler>();
+        base.SubscribeEvents();
+        
         if (damageHandler)
         {
             damageHandler.DamageHasBeenDealt += OnDamageHasBeenDealt;
-            
         }
     }
-
-    private void UnsubscribeFromEvents()
+    
+    protected override void UnsubscribeEvents()
     {
+        base.UnsubscribeEvents();
+        
         if (damageHandler)
         {
             damageHandler.DamageHasBeenDealt -= OnDamageHasBeenDealt;
-            
-
         }
-
-        damageHandler = null;
     }
 }

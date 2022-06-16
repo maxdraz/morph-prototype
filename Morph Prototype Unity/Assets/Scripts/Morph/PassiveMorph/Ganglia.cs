@@ -4,28 +4,20 @@ using UnityEngine;
 
 public class Ganglia : PassiveMorph
 {
-    //[SerializeField] private GangliaPrerequisiteData prerequisiteData;
-
-
-    private DamageHandler damageHandler;
     [SerializeField] private bool unlockConditioning;
     [SerializeField] private float conditioningEnergyCostReduction;
 
-    Stats stats;
-
-    private void OnEnable()
+    protected override void OnEquip()
     {
-        stats = GetComponent<Stats>();
-
-        StartCoroutine(AssignDamageHandlerCoroutine());
+        base.OnEquip();
+        
         ModifyStats(true);
     }
-
-    private void OnDisable()
+    
+    protected override void OnUnequip()
     {
-        stats = GetComponent<Stats>();
-
-        UnsubscribeFromEvents();
+        base.OnUnequip();
+        
         ModifyStats(false);
     }
 
@@ -61,36 +53,5 @@ public class Ganglia : PassiveMorph
                 }
             }
         }
-    }
-
-
-
-    private IEnumerator AssignDamageHandlerCoroutine()
-    {
-        yield return new WaitForEndOfFrame();
-        GetReferencesAndSubscribeToEvenets();
-    }
-
-    private void GetReferencesAndSubscribeToEvenets()
-    {
-        if (damageHandler) return;
-
-        damageHandler = GetComponent<DamageHandler>();
-        if (damageHandler)
-        {
-            
-
-        }
-    }
-
-    private void UnsubscribeFromEvents()
-    {
-        if (damageHandler)
-        {
-            
-
-        }
-
-        damageHandler = null;
     }
 }

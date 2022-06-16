@@ -4,19 +4,13 @@ using UnityEngine;
 
 public class Frills : PassiveMorph
 {
-    //[SerializeField] private FrillsPrerequisiteData prerequisiteData;
-
-    private DamageHandler damageHandler;
     [SerializeField] private bool unlockFearless;
     [SerializeField] private float fearlessIntimidationDefenseBonus = .3f;
-
-    Stats stats;
-
-    private void OnEnable()
+    
+    protected override void OnEquip()
     {
-        stats = GetComponent<Stats>();
-
-        StartCoroutine(AssignDamageHandlerCoroutine());
+        base.OnEquip();
+        
         ModifyStats(true);
 
         if (unlockFearless)
@@ -25,11 +19,10 @@ public class Frills : PassiveMorph
         }
     }
 
-    private void OnDisable()
+    protected override void OnUnequip()
     {
-        stats = GetComponent<Stats>();
-
-        UnsubscribeFromEvents();
+        base.OnUnequip();
+        
         ModifyStats(false);
 
         if (unlockFearless) 
@@ -48,7 +41,7 @@ public class Frills : PassiveMorph
     }
 
     // If the bool AddToStat is set to positive it will add to the stats, if negative it will remove from the stats
-    void ModifyStats(bool AddToStat)
+    private void ModifyStats(bool AddToStat)
     {
         if (stats != null)
         {
@@ -74,34 +67,5 @@ public class Frills : PassiveMorph
     private void Fearless(float amount) 
     {
         GetComponent<Intimidation>().defenseModifier += amount;
-    }
-
-    private IEnumerator AssignDamageHandlerCoroutine()
-    {
-        yield return new WaitForEndOfFrame();
-        GetReferencesAndSubscribeToEvenets();
-    }
-
-    private void GetReferencesAndSubscribeToEvenets()
-    {
-        if (damageHandler) return;
-
-        damageHandler = GetComponent<DamageHandler>();
-        if (damageHandler)
-        {
-            
-
-        }
-    }
-
-    private void UnsubscribeFromEvents()
-    {
-        if (damageHandler)
-        {
-            
-
-        }
-
-        damageHandler = null;
     }
 }

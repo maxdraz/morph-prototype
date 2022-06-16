@@ -4,27 +4,19 @@ using UnityEngine;
 
 public class Awareness : PassiveMorph
 {
-    //[SerializeField] private AwarenessPrerequisiteData prerequisiteData;
-
-
-    private DamageHandler damageHandler;
     [SerializeField] private bool unlockKeenSenses = true;
 
-    Stats stats;
-
-    private void OnEnable()
+    protected override void OnEquip()
     {
-        stats = GetComponent<Stats>();
-
-        StartCoroutine(AssignDamageHandlerCoroutine());
+        base.OnEquip();
+        
         ModifyStats(true);
     }
 
-    private void OnDisable()
+    protected override void OnUnequip()
     {
-        stats = GetComponent<Stats>();
-
-        UnsubscribeFromEvents();
+        base.OnUnequip();
+        
         ModifyStats(false);
     }
 
@@ -59,34 +51,5 @@ public class Awareness : PassiveMorph
             Debug.Log(GetType().Name + "Unlocking " + name);
             unlockKeenSenses = true;
         }
-    }
-
-    private IEnumerator AssignDamageHandlerCoroutine()
-    {
-        yield return new WaitForEndOfFrame();
-        GetReferencesAndSubscribeToEvenets();
-    }
-
-    private void GetReferencesAndSubscribeToEvenets()
-    {
-        if (damageHandler) return;
-
-        damageHandler = GetComponent<DamageHandler>();
-        if (damageHandler)
-        {
-            
-
-        }
-    }
-
-    private void UnsubscribeFromEvents()
-    {
-        if (damageHandler)
-        {
-            
-
-        }
-
-        damageHandler = null;
     }
 }

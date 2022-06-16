@@ -4,39 +4,28 @@ using UnityEngine;
 
 public class DoubleEdged : PassiveMorph
 {
-    static int meleeDamagePrerequisit = 45;
-    static int agilityPrerequisit = 30;
+    static int meleeDamagePrerequisite = 45;
+    static int agilityPrerequisite = 30;
 
-
-    private DamageHandler damageHandler;
     [SerializeField] private float doubleEdgedHPCost;
     [SerializeField] private bool unlockBloodGuzzler;
-    bool bloodGuzzlerReady;
-    Stats stats;
-    float damageBoost;
-    float damageBoostFactor = 2;
+    private bool bloodGuzzlerReady;
+    private float damageBoost;
+    private float damageBoostFactor = 2;
 
-    //public Prerequisite[] StatPrerequisits;
-
-    private void Start()
+    protected override void OnEquip()
     {
+        base.OnEquip();
+        
         bloodGuzzlerReady = true;
-    }
-
-    private void OnEnable()
-    {
-        stats = GetComponent<Stats>();
-
-        StartCoroutine(AssignDamageHandlerCoroutine());
         ModifyStats(true);
-
     }
 
-    private void OnDisable()
+    protected override void OnUnequip()
     {
-        stats = GetComponent<Stats>();
-
-        UnsubscribeFromEvents();
+        base.OnUnequip();
+        
+        bloodGuzzlerReady = false;
         ModifyStats(false);
     }
 
@@ -92,48 +81,37 @@ public class DoubleEdged : PassiveMorph
         }
     }
 
-    IEnumerator BloodGuzzlerCooldown() 
+    private IEnumerator BloodGuzzlerCooldown() 
     {
         yield return new WaitForSeconds(20);
         bloodGuzzlerReady = true;
-        yield return null;
     }
 
     private void ReduceHPToBoostDamage() 
     {
         float hpToReduce = damageHandler.Health.currentHealth * doubleEdgedHPCost;
-        damageBoost = GetComponent<Stats>().MaxHealth / hpToReduce;
+        damageBoost = stats.MaxHealth / hpToReduce;
         damageHandler.Health.SubtractHP(hpToReduce);
         damageBoost *= damageBoostFactor;
     }
 
-    private IEnumerator AssignDamageHandlerCoroutine()
+    protected override void SubscribeEvents()
     {
-        yield return new WaitForEndOfFrame();
-        GetReferencesAndSubscribeToEvenets();
-    }
-
-    private void GetReferencesAndSubscribeToEvenets()
-    {
-        if (damageHandler) return;
-
-        damageHandler = GetComponent<DamageHandler>();
+        base.SubscribeEvents();
+        
         if (damageHandler)
         {
             damageHandler.DamageHasBeenDealt += OnDamageHasBeenDealt;
-            
         }
     }
 
-    private void UnsubscribeFromEvents()
+    protected override void UnsubscribeEvents()
     {
+        base.UnsubscribeEvents();
+        
         if (damageHandler)
         {
             damageHandler.DamageHasBeenDealt -= OnDamageHasBeenDealt;
-            
-
         }
-
-        damageHandler = null;
     }
 }

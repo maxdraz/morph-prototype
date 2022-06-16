@@ -44,6 +44,7 @@ public class Morph : MonoBehaviour
     {
         OnUnequip();
         UnsubscribeEvents();
+        StopAllCoroutines();
     }
 
     protected virtual void Update()

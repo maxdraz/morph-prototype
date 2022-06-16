@@ -43,6 +43,8 @@ public class EndlessAggression : PassiveMorph
 
     protected override void OnUnequip()
     {
+        base.OnUnequip();
+        
         ChangeMaxStaminaStat(-maxStaminaStatBonus);
     }
 

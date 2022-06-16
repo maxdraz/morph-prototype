@@ -4,29 +4,21 @@ using UnityEngine;
 
 public class Chemical : PassiveMorph
 {
-    //[SerializeField] private ChemicalPrerequisiteData prerequisiteData;
-
-
-    private DamageHandler damageHandler;
     [SerializeField] private bool unlockConcentratedChemicals;
     [SerializeField] private float concentratedChemicalsBonusToughnessReduction = .1f;
     [SerializeField] private float concentratedChemicalsBonusHealingReduction = .2f;
-
-    Stats stats;
-
-    private void OnEnable()
+    
+    protected override void OnEquip()
     {
-        stats = GetComponent<Stats>();
-
-        StartCoroutine(AssignDamageHandlerCoroutine());
+        base.OnEquip();
+        
         ModifyStats(true);
     }
 
-    private void OnDisable()
+    protected override void OnUnequip()
     {
-        stats = GetComponent<Stats>();
-
-        UnsubscribeFromEvents();
+        base.OnUnequip();
+        
         ModifyStats(false);
     }
 
@@ -62,12 +54,7 @@ public class Chemical : PassiveMorph
             unlockConcentratedChemicals = true;
         }
     }
-
-    private IEnumerator AssignDamageHandlerCoroutine()
-    {
-        yield return new WaitForEndOfFrame();
-        GetReferencesAndSubscribeToEvenets();
-    }
+    
 
     private void IncreaseAcidDebuff(ref IAcidDamage acidDamage) 
     {
@@ -100,13 +87,11 @@ public class Chemical : PassiveMorph
             }
         }
     }
-        
 
-private void GetReferencesAndSubscribeToEvenets()
+    protected override void SubscribeEvents()
     {
-        if (damageHandler) return;
-
-        damageHandler = GetComponent<DamageHandler>();
+        base.SubscribeEvents();
+        
         if (damageHandler)
         {
             if (unlockConcentratedChemicals) 
@@ -117,8 +102,10 @@ private void GetReferencesAndSubscribeToEvenets()
         }
     }
 
-    private void UnsubscribeFromEvents()
+    protected override void UnsubscribeEvents()
     {
+        base.UnsubscribeEvents();
+        
         if (damageHandler)
         {
             if (unlockConcentratedChemicals)
@@ -127,7 +114,5 @@ private void GetReferencesAndSubscribeToEvenets()
                 damageHandler.DebuffAboutToBeDealtPreModifier -= OnPoisonDebuffDealt;
             }
         }
-
-        damageHandler = null;
     }
 }

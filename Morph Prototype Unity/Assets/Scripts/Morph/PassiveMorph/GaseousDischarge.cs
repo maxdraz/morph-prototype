@@ -6,39 +6,30 @@ public class GaseousDischarge : PassiveMorph
 {
     static int chemicalDamagePrerequisit = 25;
 
-
-    private DamageHandler damageHandler;
-
     [SerializeField]private float poisonGasSpawnRate;
     [SerializeField] private float poisonGasLifeTime;
     [SerializeField] Timer poisonGasSpawnCountdown;
-    ObjectPooler gasPooler;
-    [SerializeField] GameObject gasCloud;
+    private ObjectPooler gasPooler;
+    [SerializeField] private GameObject gasCloud;
 
     [SerializeField] private bool unlockToxicOverflow;
     [SerializeField] private float toxicOverflowPoisonDamage;
     [SerializeField] private float toxicOverflowKnockBackForce;
 
-    Stats stats;
-    //static Prerequisite[] StatPrerequisits;
-
-    private void OnEnable()
+    protected override void OnEquip()
     {
-        stats = GetComponent<Stats>();
-        StartCoroutine(AssignDamageHandlerCoroutine());
-        ModifyStats(true);
-
-    }
-
-    private void OnDisable()
-    {
-        UnsubscribeFromEvents();
-        ModifyStats(false);
-    }
-    void Start()
-    {
-        poisonGasSpawnCountdown = new Timer(poisonGasSpawnRate, true);
+        base.OnEquip();
         
+        ModifyStats(true);
+        
+        poisonGasSpawnCountdown = new Timer(poisonGasSpawnRate, true);
+    }
+
+    protected override void OnUnequip()
+    {
+        base.OnUnequip();
+        
+        ModifyStats(false);
     }
 
     // Update is called once per frame
@@ -111,17 +102,10 @@ public class GaseousDischarge : PassiveMorph
         }
     }
 
-    private IEnumerator AssignDamageHandlerCoroutine()
+    protected override void SubscribeEvents()
     {
-        yield return new WaitForEndOfFrame();
-        GetReferencesAndSubscribeToEvenets();
-    }
-
-    private void GetReferencesAndSubscribeToEvenets()
-    {
-        if (damageHandler) return;
-
-        damageHandler = GetComponent<DamageHandler>();
+        base.SubscribeEvents();
+        
         if (damageHandler)
         {
             if (unlockToxicOverflow)
@@ -131,17 +115,16 @@ public class GaseousDischarge : PassiveMorph
         }
     }
 
-    private void UnsubscribeFromEvents()
+    protected override void UnsubscribeEvents()
     {
+        base.UnsubscribeEvents();
+        
         if (damageHandler)
         {
             if (unlockToxicOverflow)
             {
                 damageHandler.DamageHasBeenTaken -= OnDamageTaken;
             }
-
         }
-
-        damageHandler = null;
     }
 }

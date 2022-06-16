@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class CriticalStrikes : PassiveMorph
 {
-    //[SerializeField] private CriticalStrikesPrerequisiteData prerequisiteData;
-
-    private DamageHandler damageHandler;
-
     [SerializeField] private float criticalStrikeChance;
     [SerializeField] private bool unlockHiddenAttack;
     [SerializeField] private float hiddenAttackCriticalStrikeChance;
@@ -15,20 +11,21 @@ public class CriticalStrikes : PassiveMorph
 
     [SerializeField] private bool unlockCoupDeGrace;
     [SerializeField] private float coupDeGraceCooldownPeriod;
-    bool coupDeGraceOnCooldown = false;
-    Timer coupDeGraceTimer;
-
-
-
-    private void Start()
+    private bool coupDeGraceOnCooldown = false;
+    private Timer coupDeGraceTimer;
+    
+    protected override void OnEquip()
     {
-        StartCoroutine(AssignDamageHandlerCoroutine());
-        GetComponent<Stats>().globalCritChance += criticalStrikeChance;
+        base.OnEquip();
+        
+        stats.globalCritChance += criticalStrikeChance;
     }
 
-    private void OnDisable()
+    protected override void OnUnequip()
     {
-        UnsubscribeFromEvents();
+        base.OnUnequip();
+        
+        stats.globalCritChance -= criticalStrikeChance;
     }
 
 
@@ -83,27 +80,20 @@ public class CriticalStrikes : PassiveMorph
         }
     }
 
-    private IEnumerator AssignDamageHandlerCoroutine()
+    protected override void SubscribeEvents()
     {
-        yield return new WaitForEndOfFrame();
-        GetReferencesAndSubscribeToEvenets();
-    }
-
-    private void GetReferencesAndSubscribeToEvenets()
-    {
-        if (damageHandler) return;
-
-        damageHandler = GetComponent<DamageHandler>();
+        base.SubscribeEvents();
+        
         if (damageHandler)
         {
             damageHandler.DamageHasBeenDealt += OnDamageHasBeenDealt;
-            
-            
         }
     }
 
-    private void UnsubscribeFromEvents()
+    protected override void UnsubscribeEvents()
     {
+        base.UnsubscribeEvents();
+        
         if (damageHandler)
         {
             damageHandler.DamageHasBeenDealt -= OnDamageHasBeenDealt;
@@ -111,9 +101,6 @@ public class CriticalStrikes : PassiveMorph
             {
 
             }
-
         }
-
-        damageHandler = null;
     }
 }
