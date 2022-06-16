@@ -12,34 +12,32 @@ public class SureShot : PassiveMorph
     [SerializeField] private float maxEnergyStatBonus = .2f;
 
     [SerializeField] private Energy energy;
-    Stats stats;
     
-    
-    
-
-    private void OnEnable()
+    protected override void GetComponentReferences()
     {
+        base.GetComponentReferences();
+        
         energy = GetComponent<Energy>();
-        stats = GetComponent<Stats>();
+    }
 
-        StartCoroutine(AssignDamageHandlerCoroutine());
+    protected override void OnEquip()
+    {
+        base.OnEquip();
+        
         ModifyStats(true);
-
-
-        if (unlockExpandedReserves) 
+        
+        if (unlockExpandedReserves) //TODO needs to be implemented
         {
             ChangeMaxEnergyStat(maxEnergyStatBonus);
         }
     }
 
-    private void OnDisable()
+    protected override void OnUnequip()
     {
-        energy = GetComponent<Energy>();
-        stats = GetComponent<Stats>();
-
-        UnsubscribeFromEvents();
+        base.OnUnequip();
+        
         ModifyStats(false);
-
+        
         if (unlockExpandedReserves)
         {
             ChangeMaxEnergyStat(-maxEnergyStatBonus);
@@ -85,32 +83,34 @@ public class SureShot : PassiveMorph
         energy.SetMaxEnergy();
     }
 
-    private IEnumerator AssignDamageHandlerCoroutine()
+    protected override void SubscribeEvents()
     {
-        yield return new WaitForEndOfFrame();
-        GetReferencesAndSubscribeToEvenets();
-    }
+        base.SubscribeEvents();
 
-    private void GetReferencesAndSubscribeToEvenets()
-    {
-        if (damageHandler) return;
-
-        damageHandler = GetComponent<DamageHandler>();
-        if (damageHandler)
+        if (morphLoadout)
         {
-            
+            morphLoadout.MorphLoadoutChanged += CheckExpandedReservesPrerequisites;
+        }
+    }
+    
+    protected override void UnsubscribeEvents()
+    {
+        base.SubscribeEvents();
 
+        if (morphLoadout)
+        {
+            morphLoadout.MorphLoadoutChanged -= CheckExpandedReservesPrerequisites;
         }
     }
 
-    private void UnsubscribeFromEvents()
+    private void CheckExpandedReservesPrerequisites(Morph morphAdded)
     {
-        if (damageHandler)
-        {
-            
-
-        }
-
-        damageHandler = null;
+        if(unlockExpandedReserves) return;
+        
+        CheckSecondaryPrerequisites(morphLoadout, stats);
+        
+        // if prerequistie check returns true
+            // modify stats
+            // unlockExpandedReserves = true
     }
 }

@@ -229,29 +229,26 @@ public class MorphLoadout : MonoBehaviour
         {
             case LimbWeaponMorph limbMorph:
                 limbWeaponMorph = limbMorph;
-                MorphLoadoutChanged?.Invoke(limbWeaponMorph);
                 break;
             case HeadWeaponMorph headMorph:
             {
                 headWeaponMorph = headMorph;
-                MorphLoadoutChanged?.Invoke(headWeaponMorph);
                 break;
             }
             case TailWeaponMorph tailMorph:
             {
                 tailWeaponMorph = tailMorph;
-                MorphLoadoutChanged?.Invoke(tailWeaponMorph);
                 break;
             }
             case PassiveMorph passiveMorph:
             {
                 passiveMorphs.Add(passiveMorph);
-                MorphLoadoutChanged?.Invoke(passiveMorph);
                 break;
             }
         }
         
         morphGO.Initialize();
+        MorphLoadoutChanged?.Invoke(morphGO);
     }
 
     public void RemoveLimbWeaponMorph()
@@ -268,8 +265,6 @@ public class MorphLoadout : MonoBehaviour
 
         return activeMorphs[index];
     }
-
-    
 
     public int GetMorphTypeAmount(MorphType typeToSearchFor)
     {

@@ -5,28 +5,10 @@ using UnityEngine;
 public class Vampirism : PassiveMorph
 {
     //[SerializeField] private VampirismPrerequisiteData prerequisiteData;
-
-
-    private DamageHandler damageHandler;
     [SerializeField] private bool unlockSpiritLeech = false;
 
     [SerializeField] private float lifeStealFraction = .2f;
     [SerializeField] private float energyStealFraction = .4f;
-    Stats stats;
-
-    private void OnEnable()
-    {
-        stats = GetComponent<Stats>();
-
-        StartCoroutine(AssignDamageHandlerCoroutine());
-    }
-
-    private void OnDisable()
-    {
-        stats = GetComponent<Stats>();
-
-        UnsubscribeFromEvents();
-    }
 
     public void UnlockSecondary(string name)
     {
@@ -50,33 +32,24 @@ public class Vampirism : PassiveMorph
         }
     }
 
-            private IEnumerator AssignDamageHandlerCoroutine()
-    {
-        yield return new WaitForEndOfFrame();
-        GetReferencesAndSubscribeToEvenets();
-    }
+    
 
-    private void GetReferencesAndSubscribeToEvenets()
+    protected override void SubscribeEvents()
     {
-        if (damageHandler) return;
-
-        damageHandler = GetComponent<DamageHandler>();
+        base.SubscribeEvents();
+       
         if (damageHandler)
         {
-
             damageHandler.DamageHasBeenDealt += OnDamageHasBeenDealt;
         }
     }
 
-    private void UnsubscribeFromEvents()
+
+    protected override void UnsubscribeEvents()
     {
         if (damageHandler)
         {
-
             damageHandler.DamageHasBeenDealt -= OnDamageHasBeenDealt;
-
         }
-
-        damageHandler = null;
     }
 }

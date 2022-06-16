@@ -21,6 +21,7 @@ public class Morph : MonoBehaviour
 
     protected DamageHandler damageHandler;
     protected Stats stats;
+    protected MorphLoadout morphLoadout;
 
     public MorphType morphType;
     [SerializeField] private List<PrerequisiteData> prerequisites;
@@ -79,7 +80,7 @@ public class Morph : MonoBehaviour
         return primaryPrerequisitesMet;
     }
     
-    private void CheckSecondaryPrerequisites(MorphLoadout loadout, Stats stats)
+    protected void CheckSecondaryPrerequisites(MorphLoadout loadout, Stats stats) // TODO make it return bool, don't unlock anything here
     {
         string[] secondariesToUnlock = new string[prerequisites.Count];
 
@@ -108,7 +109,9 @@ public class Morph : MonoBehaviour
     {
         damageHandler = GetComponent<DamageHandler>();
         stats = GetComponent<Stats>();
+        morphLoadout = GetComponent<MorphLoadout>();
         
+
         GetComponentReferences();
         SubscribeEvents();
         OnEquip();
@@ -118,7 +121,7 @@ public class Morph : MonoBehaviour
 
     protected virtual void GetComponentReferences()
     {
-        // get all necessary components
+        
     }
 
     protected virtual void SubscribeEvents()
@@ -131,13 +134,13 @@ public class Morph : MonoBehaviour
         
     }
 
-    protected virtual void OnEquip()
+    protected virtual void OnEquip()    // apply starting effects here
     {
-        // apply effects that happen immediately
+        
     }
     
-    protected virtual void OnUnequip()
+    protected virtual void OnUnequip()  // reverse effects
     {
-        // reverse effects
+        
     }
 }
