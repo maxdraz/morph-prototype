@@ -4,35 +4,33 @@ using UnityEngine;
 
 public class Plating : PassiveMorph
 {
-    //[SerializeField] private PlatingPrerequisiteData prerequisiteData;
-
-
-    private DamageHandler damageHandler;
     [SerializeField] private float bonusMaxArmor = 100;
     [SerializeField] private bool unlockCriticalCoverage;
 
     [SerializeField] private float critChanceResist = .1f;
     [SerializeField] private float bleedingResist = .2f;
+    
+    private Armor armor;
 
-    Stats stats;
-    Armor armor;
-
-    private void OnEnable()
+    protected override void GetComponentReferences()
     {
-        stats = GetComponent<Stats>();
+        base.GetComponentReferences();
+        
         armor = GetComponent<Armor>();
-
-        StartCoroutine(AssignDamageHandlerCoroutine());
-        ChangArmorStat(bonusMaxArmor);
     }
 
-    private void OnDisable()
+    protected override void OnEquip()
     {
-        stats = GetComponent<Stats>();
-        armor = GetComponent<Armor>();
+        base.OnEquip();
+        
+        ChangeArmorStat(bonusMaxArmor);
+    }
 
-        UnsubscribeFromEvents();
-        ChangArmorStat(-bonusMaxArmor);
+    protected override void OnUnequip()
+    {
+        base.OnUnequip();
+        
+        ChangeArmorStat(-bonusMaxArmor);
     }
 
     public void UnlockSecondary(string name)
@@ -44,7 +42,7 @@ public class Plating : PassiveMorph
         }
     }
 
-    private void ChangArmorStat(float amountToAdd)
+    private void ChangeArmorStat(float amountToAdd)
     {
         //Debug.Log("Plating adding: " + amountToAdd + " to armor stat");
         armor.bonusFlatMaxArmor += amountToAdd;
@@ -56,39 +54,5 @@ public class Plating : PassiveMorph
             //damageTakenSummary.critChance -= critChanceResist;
             //damageTakenSummary.bleedingValue -= bleedingResist;
         
-    }
-
-    private IEnumerator AssignDamageHandlerCoroutine()
-    {
-        yield return new WaitForEndOfFrame();
-        GetReferencesAndSubscribeToEvenets();
-    }
-
-    private void GetReferencesAndSubscribeToEvenets()
-    {
-        if (damageHandler) return;
-
-        damageHandler = GetComponent<DamageHandler>();
-        if (damageHandler)
-        {
-
-            if(unlockCriticalCoverage)
-            {
-                //damageHandler.DamageAboutToBeTaken += OnDamageAboutToBeTaken;
-            }
-        }
-    }
-
-    private void UnsubscribeFromEvents()
-    {
-        if (damageHandler)
-        {
-            if (unlockCriticalCoverage)
-            {
-                //damageHandler.DamageAboutToBeTaken -= OnDamageAboutToBeTaken;
-            }
-        }
-
-        damageHandler = null;
     }
 }

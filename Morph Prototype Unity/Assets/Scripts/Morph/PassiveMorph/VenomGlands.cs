@@ -25,20 +25,6 @@ public class VenomGlands : PassiveMorph
 
     [SerializeField] private float venomDuration = 4;
 
-    //public Prerequisite[] StatPrerequisits;
-
-    private void OnEnable()
-    {
-
-        StartCoroutine(AssignDamageHandlerCoroutine());
-    }
-
-    private void OnDisable()
-    {
-
-        UnsubscribeFromEvents();
-    }
-
     public void UnlockSecondary(string name)
     {
         if (name == "Acrid")
@@ -98,33 +84,23 @@ public class VenomGlands : PassiveMorph
         }
     }
 
-    private IEnumerator AssignDamageHandlerCoroutine()
+    protected override void SubscribeEvents()
     {
-        yield return new WaitForEndOfFrame();
-        GetReferencesAndSubscribeToEvenets();
-    }
-
-    private void GetReferencesAndSubscribeToEvenets()
-    {
-        if (damageHandler) return;
-
-        damageHandler = GetComponent<DamageHandler>();
+        base.SubscribeEvents();
+        
         if (damageHandler)
         {
-
             damageHandler.DamageHasBeenDealt += OnDamageHasBeenDealt;
         }
     }
-
-    private void UnsubscribeFromEvents()
+    
+    protected override void UnsubscribeEvents()
     {
+        base.UnsubscribeEvents();
+        
         if (damageHandler)
         {
-
             damageHandler.DamageHasBeenDealt -= OnDamageHasBeenDealt;
-
         }
-
-        damageHandler = null;
     }
 }

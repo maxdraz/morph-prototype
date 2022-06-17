@@ -6,9 +6,7 @@ public class HeightenedSenses : PassiveMorph
 {
     static int perceptionPrerequisit = 300;
 
-
-    private DamageHandler damageHandler;
-    bool heightenedSensesCountingDown;
+    private bool heightenedSensesCountingDown;
     [SerializeField] private float heightenedSensesCountdownDuration = 3;
 
     [SerializeField] private bool unlockEverReady;
@@ -18,34 +16,35 @@ public class HeightenedSenses : PassiveMorph
     [SerializeField] private bool unlockAimedShots;
     [SerializeField] private float aimedShotsExtraDamageModifier = .3f;
 
+    private Velocity velo;
+    private Perception perception;
 
-    Stats stats;
-    Velocity velo;
-    Perception perception;
-
-    //static Prerequisite[] StatPrerequisits;
-
-    private void OnEnable()
+    protected override void GetComponentReferences()
     {
-        stats = GetComponent<Stats>();
+        base.GetComponentReferences();
+        
         velo = GetComponentInParent<Velocity>();
         perception = GetComponent<Perception>();
+    }
 
-        StartCoroutine(AssignDamageHandlerCoroutine());
-
+    protected override void OnEquip()
+    {
+        base.OnEquip();
+        
         if (unlockEverReady) 
         {
-            EverReady();
+            ApplyEverReady();
         }
     }
 
-    private void OnDisable()
+    protected override void OnUnequip()
     {
-        stats = GetComponent<Stats>();
-        velo = GetComponentInParent<Velocity>();
-        perception = GetComponent<Perception>();
-
-        UnsubscribeFromEvents();
+        base.OnUnequip();
+        
+        if (unlockEverReady) 
+        {
+            ApplyEverReady(false);
+        }
     }
 
     public void UnlockSecondary(string name)
@@ -83,8 +82,6 @@ public class HeightenedSenses : PassiveMorph
         }
     }
 
-    
-
     IEnumerator HeightenedSensesCountdown()
     {
         yield return new WaitForSeconds(heightenedSensesCountdownDuration);
@@ -100,14 +97,15 @@ public class HeightenedSenses : PassiveMorph
         perception.perceptionModifier += amount;
     }
 
-    private void EverReady()
+    private void ApplyEverReady(bool shouldApply = true)
     {
+        var sign = shouldApply ? 1 : -1;
         int stealthToAdd = (int)(stats.intelligence * everReadyStealthModifier);
         int perceptionToAdd = (int) (stats.intelligence * everReadyPerceptionModifier);
 
 
-        stats.FlatStatChange("perception", perceptionToAdd);
-        stats.FlatStatChange("stealth", stealthToAdd);
+        stats.FlatStatChange("perception", sign * perceptionToAdd);
+        stats.FlatStatChange("stealth", sign * stealthToAdd);
     }
 
     private void OnDamageAboutToBeDealt(in DamageTakenSummary damageTakenSummary)
@@ -119,39 +117,29 @@ public class HeightenedSenses : PassiveMorph
         }
     }
 
-    private IEnumerator AssignDamageHandlerCoroutine()
+    protected override void SubscribeEvents()
     {
-        yield return new WaitForEndOfFrame();
-        GetReferencesAndSubscribeToEvenets();
-    }
-
-    private void GetReferencesAndSubscribeToEvenets()
-    {
-        if (damageHandler) return;
-
-        damageHandler = GetComponent<DamageHandler>();
+        base.SubscribeEvents();
+        
         if (damageHandler)
         {
             if (unlockAimedShots) 
             {
                 damageHandler.DamageHasBeenDealt += OnDamageAboutToBeDealt;
-
             }
         }
     }
 
-    private void UnsubscribeFromEvents()
+    protected override void UnsubscribeEvents()
     {
+        base.UnsubscribeEvents();
+        
         if (damageHandler)
         {
-
             if (unlockAimedShots)
             {
                 damageHandler.DamageHasBeenDealt -= OnDamageAboutToBeDealt;
-
             }
         }
-
-        damageHandler = null;
     }
 }

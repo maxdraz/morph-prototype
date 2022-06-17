@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Mass : PassiveMorph
 {
-    //[SerializeField] private MassPrerequisiteData prerequisiteData;
-
-    private DamageHandler damageHandler;
     [SerializeField] private float percentHealthBonus = .20f;
     [SerializeField] private bool unlockRestoration;
 
@@ -14,11 +11,17 @@ public class Mass : PassiveMorph
 
     [SerializeField] private Health health;
 
-    private void OnEnable()
+    protected override void GetComponentReferences()
     {
+        base.GetComponentReferences();
+        
         health = GetComponent<Health>();
+    }
 
-        StartCoroutine(AssignDamageHandlerCoroutine());
+    protected override void OnEquip()
+    {
+        base.OnEquip();
+        
         ChangeMaxHealthStat(percentHealthBonus);
         if (unlockRestoration) 
         {
@@ -26,11 +29,10 @@ public class Mass : PassiveMorph
         }
     }
 
-    private void OnDisable()
+    protected override void OnUnequip()
     {
-        health = GetComponent<Health>();
-
-        UnsubscribeFromEvents();
+        base.OnUnequip();
+        
         ChangeMaxHealthStat(-percentHealthBonus);
         if (unlockRestoration)
         {
@@ -62,36 +64,5 @@ public class Mass : PassiveMorph
     private void ChangeMaxHealthStat(float amountToAdd)
     {
         health.maxHealthBonus += amountToAdd;
-    }
-
-
-
-    private IEnumerator AssignDamageHandlerCoroutine()
-    {
-        yield return new WaitForEndOfFrame();
-        GetReferencesAndSubscribeToEvenets();
-    }
-
-    private void GetReferencesAndSubscribeToEvenets()
-    {
-        if (damageHandler) return;
-
-        damageHandler = GetComponent<DamageHandler>();
-        if (damageHandler)
-        {
-            
-
-        }
-    }
-
-    private void UnsubscribeFromEvents()
-    {
-        if (damageHandler)
-        {
-            
-
-        }
-
-        damageHandler = null;
     }
 }

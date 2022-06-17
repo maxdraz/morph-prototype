@@ -4,31 +4,27 @@ using UnityEngine;
 
 public class Vigilance : PassiveMorph
 {
-    //[SerializeField] private VigilancePrerequisiteData prerequisiteData;
-
-
-    private DamageHandler damageHandler;
     [SerializeField] private bool unlockHeatVision;
-
-    Stats stats;
     public Perception perception;
 
-    private void OnEnable()
+    protected override void GetComponentReferences()
     {
-        perception = GetComponent<Perception>();
-        stats = GetComponent<Stats>();
-
-        StartCoroutine(AssignDamageHandlerCoroutine());
-        ModifyStats(true);
+        base.GetComponentReferences();
         
+        perception = GetComponent<Perception>();
     }
 
-    private void OnDisable()
+    protected override void OnEquip()
     {
-        stats = GetComponent<Stats>();
-        perception = GetComponent<Perception>();
+        base.OnEquip();
+        
+        ModifyStats(true);
+    }
 
-        UnsubscribeFromEvents();
+    protected override void OnUnequip()
+    {
+        base.OnUnequip();
+        
         ModifyStats(false);
     }
 
@@ -65,26 +61,6 @@ public class Vigilance : PassiveMorph
         }
     }
 
-
-
-    private IEnumerator AssignDamageHandlerCoroutine()
-    {
-        yield return new WaitForEndOfFrame();
-        GetReferencesAndSubscribeToEvenets();
-    }
-
-    private void GetReferencesAndSubscribeToEvenets()
-    {
-        if (damageHandler) return;
-
-        damageHandler = GetComponent<DamageHandler>();
-        if (damageHandler)
-        {
-            
-
-        }
-    }
-
     private void FixedUpdate()
     {
         if (unlockHeatVision) 
@@ -96,16 +72,5 @@ public class Vigilance : PassiveMorph
                 //they are auto detected by perception script
             }
         } 
-    }
-
-    private void UnsubscribeFromEvents()
-    {
-        if (damageHandler)
-        {
-            
-
-        }
-
-        damageHandler = null;
     }
 }

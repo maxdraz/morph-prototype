@@ -4,12 +4,8 @@ using UnityEngine;
 
 public class SenseWeakness : PassiveMorph
 {
-    static int meleeDamagePrerequisit = 35;
-    static int agilityPrerequisit = 25;
-
-
-
-    private DamageHandler damageHandler;
+    static int meleeDamagePrerequisite = 35;
+    static int agilityPrerequisite = 25;
 
     [SerializeField] private float bonusCritChance = .2f;
     [SerializeField] private float bonusAgility = .2f;
@@ -17,24 +13,13 @@ public class SenseWeakness : PassiveMorph
 
     [SerializeField] private bool unlockKillerConsumption;
     [SerializeField] private float killerConsumptionPercentHeal = .2f;
-
-
-    Health health;
-
-    //public Prerequisite[] StatPrerequisits;
-
-    private void OnEnable()
+    private Health health;
+    
+    protected override void GetComponentReferences()
     {
+        base.GetComponentReferences();
+        
         health = GetComponent<Health>();
-
-        StartCoroutine(AssignDamageHandlerCoroutine());
-    }
-
-    private void OnDisable()
-    {
-        health = GetComponent<Health>();
-
-        UnsubscribeFromEvents();
     }
 
     public void UnlockSecondary(string name)
@@ -104,33 +89,23 @@ public class SenseWeakness : PassiveMorph
         yield return null;
     }
 
-    private IEnumerator AssignDamageHandlerCoroutine()
+    protected override void SubscribeEvents()
     {
-        yield return new WaitForEndOfFrame();
-        GetReferencesAndSubscribeToEvenets();
-    }
-
-    private void GetReferencesAndSubscribeToEvenets()
-    {
-        if (damageHandler) return;
-
-        damageHandler = GetComponent<DamageHandler>();
+        base.SubscribeEvents();
+        
         if (damageHandler)
         {
-
             damageHandler.DamageHasBeenDealt += OnDamageHasBeenDealt;
         }
     }
 
-    private void UnsubscribeFromEvents()
+    protected override void UnsubscribeEvents()
     {
+        base.UnsubscribeEvents();
+        
         if (damageHandler)
         {
-
             damageHandler.DamageHasBeenDealt -= OnDamageHasBeenDealt;
-
         }
-
-        damageHandler = null;
     }
 }

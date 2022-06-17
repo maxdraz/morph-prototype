@@ -4,30 +4,24 @@ using UnityEngine;
 
 public class Rugged : PassiveMorph
 {
-    //[SerializeField] private RuggedPrerequisiteData prerequisiteData;
-
-
-    private DamageHandler damageHandler;
     [SerializeField] private int toughnessStatBonus = 5;
 
     [SerializeField] private bool unlockUnbreakable = true;
     [SerializeField] private float flatPhysicalDamageReduction;
 
-    Stats stats;
-
-    private void OnEnable()
+    private Stats stats;
+    
+    protected override void OnEquip()
     {
-        stats = GetComponent<Stats>();
-
-        StartCoroutine(AssignDamageHandlerCoroutine());
+        base.OnEquip();
+        
         ChangeToughnessStat(toughnessStatBonus);
     }
 
-    private void OnDisable()
+    protected override void OnUnequip()
     {
-        stats = GetComponent<Stats>();
-
-        UnsubscribeFromEvents();
+        base.OnUnequip();
+        
         ChangeToughnessStat(-toughnessStatBonus);
     }
 
@@ -43,34 +37,5 @@ public class Rugged : PassiveMorph
         {
             damageTakenSummary.PhysicalDamage -= flatPhysicalDamageReduction;
         }
-    }
-
-    private IEnumerator AssignDamageHandlerCoroutine()
-    {
-        yield return new WaitForEndOfFrame();
-        GetReferencesAndSubscribeToEvenets();
-    }
-
-    private void GetReferencesAndSubscribeToEvenets()
-    {
-        if (damageHandler) return;
-
-        damageHandler = GetComponent<DamageHandler>();
-        if (damageHandler)
-        {
-            //damageHandler.DamageAboutToBeTaken += OnDamageAboutToBeTaken;
-
-        }
-    }
-
-    private void UnsubscribeFromEvents()
-    {
-        if (damageHandler)
-        {
-            //damageHandler.DamageAboutToBeTaken -= OnDamageAboutToBeTaken;
-
-        }
-
-        damageHandler = null;
     }
 }

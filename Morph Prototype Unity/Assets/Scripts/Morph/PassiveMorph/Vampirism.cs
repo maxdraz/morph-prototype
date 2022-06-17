@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Vampirism : PassiveMorph
 {
-    //[SerializeField] private VampirismPrerequisiteData prerequisiteData;
     [SerializeField] private bool unlockSpiritLeech = false;
 
     [SerializeField] private float lifeStealFraction = .2f;

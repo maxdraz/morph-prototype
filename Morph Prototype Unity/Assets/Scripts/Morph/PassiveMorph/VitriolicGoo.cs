@@ -6,27 +6,22 @@ using UnityEngine;
 
 public class VitriolicGoo : PassiveMorph
 {
-    static int chemicalDamagePrerequisit = 50;
+    static int chemicalDamagePrerequisite = 50;
 
-
-    private DamageHandler damageHandler;
     [SerializeField] private float staminaDrainFraction;
     [SerializeField] private bool unlockMolecularAcid;
 
-    Stats stats;
-
-    private void OnEnable()
+    protected override void OnEquip()
     {
-        stats = GetComponent<Stats>();
-
-        StartCoroutine(AssignDamageHandlerCoroutine());
-        ModifyStats(true);
+        base.OnEquip();
         
+        ModifyStats(true);
     }
-
-    private void OnDisable()
+    
+    protected override void OnUnequip()
     {
-        UnsubscribeFromEvents();
+        base.OnUnequip();
+        
         ModifyStats(false);
     }
 
@@ -90,18 +85,11 @@ public class VitriolicGoo : PassiveMorph
     {
         acidDamage.AcidDOTDuration = 3;
     }
-
-    private IEnumerator AssignDamageHandlerCoroutine()
+    
+    protected override void SubscribeEvents()
     {
-        yield return new WaitForEndOfFrame();
-        GetReferencesAndSubscribeToEvenets();
-    }
-
-    private void GetReferencesAndSubscribeToEvenets()
-    {
-        if(damageHandler) return;
+        base.SubscribeEvents();
         
-        damageHandler = GetComponent<DamageHandler>();
         if (damageHandler)
         {
             damageHandler.DamageHasBeenDealt += OnDamageHasBeenDealt;
@@ -112,8 +100,10 @@ public class VitriolicGoo : PassiveMorph
         }
     }
 
-    private void UnsubscribeFromEvents()
+    protected override void UnsubscribeEvents()
     {
+        base.UnsubscribeEvents();
+        
         if (damageHandler)
         {
             damageHandler.DamageHasBeenDealt -= OnDamageHasBeenDealt;
@@ -121,9 +111,6 @@ public class VitriolicGoo : PassiveMorph
             {
                 damageHandler.DebuffAboutToBeDealtPreModifier -= OnAcidDebuffDealt;
             }
-           
         }
-
-        damageHandler = null;
     }
 }

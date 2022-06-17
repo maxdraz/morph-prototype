@@ -7,38 +7,24 @@ public class SinisterWatcher : PassiveMorph
     static int stealthPrerequisit = 250;
     static int perceptionPrerequisit = 200;
 
-
-    private DamageHandler damageHandler;
     public DamageHandler targetOfInterest;
     [SerializeField] private float sinisterWatcherMaxRange;
     [SerializeField] private float sinisterWatcherBonusDamage;
     [SerializeField] private float sinisterWatcherMaxBonusDamage;
-
-
     [SerializeField] private bool unlockUnkownSource;
 
-    Stats stats;
-
-    //static Prerequisite[] StatPrerequisits;
-
-    // Start is called before the first frame update
-    private void OnEnable()
+    protected override void OnEquip()
     {
-        stats = GetComponent<Stats>();
-
-        StartCoroutine(AssignDamageHandlerCoroutine());
+        base.OnEquip();
+        
         ModifyStats(true);
     }
 
-
-
-    private void OnDisable()
+    protected override void OnUnequip()
     {
-
-        UnsubscribeFromEvents();
+        base.OnUnequip();
+        
         ModifyStats(false);
-
-
     }
 
     public void UnlockSecondary(string name)
@@ -125,12 +111,6 @@ public class SinisterWatcher : PassiveMorph
         }
     }
 
-    private IEnumerator AssignDamageHandlerCoroutine()
-    {
-        yield return new WaitForEndOfFrame();
-        GetReferencesAndSubscribeToEvenets();
-    }
-
     private void OnDamageHasBeenDealt(in DamageTakenSummary damageTakenSummary)
     {
         if (damageTakenSummary.PhysicalDamage > 0 && damageTakenSummary.isStealthAttack && damageTakenSummary.DamageTaker == targetOfInterest)
@@ -147,25 +127,24 @@ public class SinisterWatcher : PassiveMorph
         }
     }
 
-    private void GetReferencesAndSubscribeToEvenets()
+    protected override void SubscribeEvents()
     {
-        if (damageHandler) return;
+        base.SubscribeEvents();
 
-        damageHandler = GetComponent<DamageHandler>();
-
-        damageHandler.DamageHasBeenDealt += OnDamageHasBeenDealt;
-
-        
+        if (damageHandler)
+        {
+            damageHandler.DamageHasBeenDealt += OnDamageHasBeenDealt;
+        }
     }
 
-    private void UnsubscribeFromEvents()
+    protected override void UnsubscribeEvents()
     {
+        base.UnsubscribeEvents();
+        
         if (damageHandler)
         {
             damageHandler.DamageHasBeenDealt -= OnDamageHasBeenDealt;
-
         }
 
-        damageHandler = null;
     }
 }

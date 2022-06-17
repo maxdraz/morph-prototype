@@ -6,26 +6,21 @@ public class SizzlingSlime : PassiveMorph
 {
     static int chemicalDamagePrerequisit = 35;
 
-
-    private DamageHandler damageHandler;
-
     [SerializeField] private float perceptionDamageFraction;
     [SerializeField] private int chemicalDamageStatBonus = 5;
     [SerializeField] private bool unlockBlindingVapour;
 
-    Stats stats;
-
-    private void OnEnable()
+    protected override void OnEquip()
     {
-        stats = GetComponent<Stats>();
-        StartCoroutine(AssignDamageHandlerCoroutine());
+        base.OnEquip();
+        
         ModifyStats(true);
-
     }
-
-    private void OnDisable()
+    
+    protected override void OnUnequip()
     {
-        UnsubscribeFromEvents();
+        base.OnUnequip();
+        
         ModifyStats(false);
     }
 
@@ -77,18 +72,11 @@ public class SizzlingSlime : PassiveMorph
             acidTickDamage.AcidDamage *= 2;
         }
     }
-    
-    private IEnumerator AssignDamageHandlerCoroutine()
-    {
-        yield return new WaitForEndOfFrame();
-        GetReferencesAndSubscribeToEvenets();
-    }
 
-    private void GetReferencesAndSubscribeToEvenets()
+    protected override void SubscribeEvents()
     {
-        if (damageHandler) return;
-
-        damageHandler = GetComponent<DamageHandler>();
+        base.SubscribeEvents();
+        
         if (damageHandler)
         {
             damageHandler.DamageAboutToBeDealt += OnAcidDamageAboutToBeDealt;
@@ -98,9 +86,11 @@ public class SizzlingSlime : PassiveMorph
             }
         }
     }
-
-    private void UnsubscribeFromEvents()
+    
+    protected override void UnsubscribeEvents()
     {
+        base.UnsubscribeEvents();
+        
         if (damageHandler)
         {
             damageHandler.DamageAboutToBeDealt -= OnAcidDamageAboutToBeDealt;
@@ -108,9 +98,6 @@ public class SizzlingSlime : PassiveMorph
             {
                 damageHandler.DamageHasBeenDealt -= OnDamageHasBeenDealt;
             }
-
         }
-
-        damageHandler = null;
     }
 }

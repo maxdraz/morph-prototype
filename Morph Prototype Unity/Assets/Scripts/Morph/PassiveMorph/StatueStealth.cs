@@ -7,47 +7,41 @@ public class StatueStealth : PassiveMorph
     static int stealthPrerequisit = 200;
     static int intelligencePrerequisit = 30;
 
-
-    private DamageHandler damageHandler;
     [SerializeField] private float stealthPenaltyWhileMoving;
     [SerializeField] private int stealthBonusWhileStill;
-    bool moving;
+    private bool moving;
 
     [SerializeField] private bool unlockHiddenThreat = true;
     [SerializeField] private float hiddenThreatIncreasedDamage;
     [SerializeField] private float hiddenThreatReducedDamage;
 
-
-    Stats stats;
-    Velocity velo;
-    Stealth stealth;
-
-    //public Prerequisite[] StatPrerequisits;
-
-    private void OnEnable()
+    private Velocity velo;
+    private Stealth stealth;
+    
+    protected override void GetComponentReferences()
     {
-        stats = GetComponent<Stats>();
+        base.GetComponentReferences();
+        
         velo = GetComponent<Velocity>();
         stealth = GetComponent<Stealth>();
-        StartCoroutine(AssignDamageHandlerCoroutine());
-        ModifyStats(true);
-
-        if (stealth != null) 
-        {
-            stealth.stealthModifierWhileMoving += stealthPenaltyWhileMoving;
-        }
     }
 
-   
-
-    private void OnDisable()
+    protected override void OnEquip()
     {
+        base.OnEquip();
+        
+        ModifyStats(true);
 
-        UnsubscribeFromEvents();
+        if (stealth) stealth.stealthModifierWhileMoving += stealthPenaltyWhileMoving;
+    }
+
+    protected override void OnUnequip()
+    {
+        base.OnUnequip();
+        
         ModifyStats(false);
 
-        GetComponent<Stealth>().stealthModifierWhileMoving -= stealthPenaltyWhileMoving;
-
+        if(stealth) stealth.stealthModifierWhileMoving -= stealthPenaltyWhileMoving;
     }
 
     // If the bool AddToStat is set to positive it will add to the stats, if negative it will remove from the stats
@@ -109,12 +103,6 @@ public class StatueStealth : PassiveMorph
         }
     }
 
-    private IEnumerator AssignDamageHandlerCoroutine()
-    {
-        yield return new WaitForEndOfFrame();
-        GetReferencesAndSubscribeToEvenets();
-    }
-
     private void OnDamageHasBeenDealt (in DamageTakenSummary damageTakenSummary)
     {
         if (damageTakenSummary.isStealthAttack)
@@ -127,11 +115,10 @@ public class StatueStealth : PassiveMorph
         }
     }
 
-    private void GetReferencesAndSubscribeToEvenets()
+    protected override void SubscribeEvents()
     {
-        if (damageHandler) return;
-
-        damageHandler = GetComponent<DamageHandler>();
+        base.SubscribeEvents();
+        
         if (damageHandler)
         {
             if (unlockHiddenThreat) 
@@ -141,14 +128,13 @@ public class StatueStealth : PassiveMorph
         }
     }
 
-    private void UnsubscribeFromEvents()
+    protected override void UnsubscribeEvents()
     {
+        base.UnsubscribeEvents();
+        
         if (damageHandler)
         {
             damageHandler.DamageHasBeenTaken -= OnDamageHasBeenDealt;
-
         }
-
-        damageHandler = null;
     }
 }

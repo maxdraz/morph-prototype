@@ -8,8 +8,6 @@ public class VitriolicVitality : PassiveMorph
     static int toughnessPrerequisit = 30;
     static int fortitudePrerequisit = 30;
 
-
-    private DamageHandler damageHandler;
     [SerializeField] private float healingPercentageBonus;
     Timer bonusHealingTimer;
     bool bonusHealingTimerCountingDown;
@@ -20,24 +18,18 @@ public class VitriolicVitality : PassiveMorph
 
     [SerializeField] private bool unlockToxicFocus;
     [SerializeField] private float toxicFocusBonusPoisonDamage;
-
-
-    Stats stats;
-
-    //public Prerequisite[] StatPrerequisits;
-
-    private void OnEnable()
+    
+    protected override void OnEquip()
     {
-        stats = GetComponent<Stats>();
-
-        StartCoroutine(AssignDamageHandlerCoroutine());
+        base.OnEquip();
+        
         ModifyStats(true);
-
     }
-
-    private void OnDisable()
+    
+    protected override void OnUnequip()
     {
-        UnsubscribeFromEvents();
+        base.OnUnequip();
+        
         ModifyStats(false);
     }
 
@@ -127,18 +119,10 @@ public class VitriolicVitality : PassiveMorph
         }
     }
 
-    private IEnumerator AssignDamageHandlerCoroutine()
+    protected override void SubscribeEvents()
     {
-        yield return new WaitForEndOfFrame();
-        GetReferencesAndSubscribeToEvenets();
-    }
-
-    private void GetReferencesAndSubscribeToEvenets()
-    {
-        if (damageHandler) return;
-
-        damageHandler = GetComponent<DamageHandler>();
-
+        base.SubscribeEvents();
+        
         if (damageHandler)
         {
             damageHandler.DamageHasBeenDealt += OnDamageHasBeenDealt;
@@ -150,8 +134,10 @@ public class VitriolicVitality : PassiveMorph
         }
     }
 
-    private void UnsubscribeFromEvents()
+    protected override void UnsubscribeEvents()
     {
+        base.UnsubscribeEvents();
+        
         if (damageHandler)
         {
             damageHandler.DamageHasBeenDealt -= OnDamageHasBeenDealt;
@@ -161,7 +147,5 @@ public class VitriolicVitality : PassiveMorph
                 damageHandler.DamageAboutToBeDealt -= OnDamageAboutToBeDealt;
             }
         }
-
-        damageHandler = null;
     }
 }

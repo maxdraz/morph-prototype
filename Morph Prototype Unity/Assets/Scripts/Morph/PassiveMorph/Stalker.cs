@@ -4,28 +4,20 @@ using UnityEngine;
 
 public class Stalker : PassiveMorph
 {
-    //[SerializeField] private StalkerPrerequisiteData prerequisiteData;
-
-
-    private DamageHandler damageHandler;
     [SerializeField] private bool unlockSniper;
     [SerializeField] private int sniperBonusPercentDamage = 5;
 
-    Stats stats;
-
-    private void OnEnable()
+    protected override void OnEquip()
     {
-        stats = GetComponent<Stats>();
-
-        StartCoroutine(AssignDamageHandlerCoroutine());
+        base.OnEquip();
+        
         ModifyStats(true);
-    }
-
-    private void OnDisable()
+    } 
+    
+    protected override void OnUnequip()
     {
-        stats = GetComponent<Stats>();
-
-        UnsubscribeFromEvents();
+        base.OnUnequip();
+        
         ModifyStats(false);
     }
 
@@ -62,13 +54,6 @@ public class Stalker : PassiveMorph
         }
     }
 
-
-    private IEnumerator AssignDamageHandlerCoroutine()
-    {
-        yield return new WaitForEndOfFrame();
-        GetReferencesAndSubscribeToEvenets();
-    }
-
     private void OnDamageHasBeenDealt(in DamageTakenSummary damageTakenSummary)
     {
         //if (damageTakenSummary.isRangedAttack && damageTakenSummary.isStealthAttack)
@@ -77,26 +62,23 @@ public class Stalker : PassiveMorph
         //}
     }
 
-    private void GetReferencesAndSubscribeToEvenets()
+    protected override void SubscribeEvents()
     {
-        if (damageHandler) return;
-
-        damageHandler = GetComponent<DamageHandler>();
+        base.SubscribeEvents();
+        
         if (damageHandler)
         {
             damageHandler.DamageHasBeenDealt += OnDamageHasBeenDealt;
-
         }
     }
 
-    private void UnsubscribeFromEvents()
+    protected override void UnsubscribeEvents()
     {
+        base.UnsubscribeEvents();
+        
         if (damageHandler)
         {
-            
-
+            damageHandler.DamageHasBeenDealt -= OnDamageHasBeenDealt;
         }
-
-        damageHandler = null;
     }
 }

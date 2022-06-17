@@ -4,26 +4,10 @@ using UnityEngine;
 
 public class LifeStealer : PassiveMorph
 {
-    //[SerializeField] private LifeStealerPrerequisiteData prerequisiteData;
-
-
-    private DamageHandler damageHandler;
-
     [SerializeField] private float lifeStealFraction;
     [SerializeField] private bool unlockFierceHunger;
 
     [SerializeField] private bool unlockBloodscent;
-
-    private void OnEnable()
-    {
-        StartCoroutine(AssignDamageHandlerCoroutine());
-
-    }
-
-    private void OnDisable()
-    {
-        UnsubscribeFromEvents();
-    }
 
     public void UnlockSecondary(string name)
     {
@@ -55,32 +39,23 @@ public class LifeStealer : PassiveMorph
         }
     }
 
-    
-    
-    private IEnumerator AssignDamageHandlerCoroutine()
+    protected override void SubscribeEvents()
     {
-        yield return new WaitForEndOfFrame();
-        GetReferencesAndSubscribeToEvenets();
-    }
-
-    private void GetReferencesAndSubscribeToEvenets()
-    {
-        if (damageHandler) return;
-
-        damageHandler = GetComponent<DamageHandler>();
+        base.SubscribeEvents();
+        
         if (damageHandler)
         {
             damageHandler.DamageHasBeenDealt += OnDamageHasBeenDealt;
         }
     }
 
-    private void UnsubscribeFromEvents()
+    protected override void UnsubscribeEvents()
     {
+        base.UnsubscribeEvents();
+        
         if (damageHandler)
         {
             damageHandler.DamageHasBeenDealt -= OnDamageHasBeenDealt;
         }
-
-        damageHandler = null;
     }
 }

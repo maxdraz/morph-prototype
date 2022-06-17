@@ -6,8 +6,6 @@ public class SpeedDemon : PassiveMorph
 {
     static int agilityPrerequisit = 40;
 
-
-    private DamageHandler damageHandler;
     [SerializeField] private bool unlockCruelCapacity;
 
     int agilityPerStack;
@@ -20,26 +18,17 @@ public class SpeedDemon : PassiveMorph
     [SerializeField] private float cruelCapacityCooldownReduction = 0.2f;
     private bool cruelCapacityActivated;
 
-    Stats stats;
-
-    //public Prerequisite[] StatPrerequisits;
-
-    private void OnEnable()
+    protected override void OnEquip()
     {
-        stats = GetComponent<Stats>();
-        
-        
+        base.OnEquip();
 
-        StartCoroutine(AssignDamageHandlerCoroutine());
         ModifyStats(true);
-
     }
 
-    private void OnDisable()
+    protected override void OnUnequip()
     {
-        stats = GetComponent<Stats>();
-
-        UnsubscribeFromEvents();
+        base.OnUnequip();
+        
         ModifyStats(false);
     }
 
@@ -153,17 +142,10 @@ public class SpeedDemon : PassiveMorph
         }
     }
 
-    private IEnumerator AssignDamageHandlerCoroutine()
+    protected override void SubscribeEvents()
     {
-        yield return new WaitForEndOfFrame();
-        GetReferencesAndSubscribeToEvents();
-    }
+        base.SubscribeEvents();
 
-    private void GetReferencesAndSubscribeToEvents()
-    {
-        if (damageHandler) return;
-
-        damageHandler = GetComponent<DamageHandler>();
         if (damageHandler)
         {
             damageHandler.DamageHasBeenDealt += OnDamageHasBeenDealt;
@@ -172,14 +154,14 @@ public class SpeedDemon : PassiveMorph
         if (stats) stats.StatHasBeenModified += TryActivateCruelCapacity;
     }
 
-    private void UnsubscribeFromEvents()
+    protected override void UnsubscribeEvents()
     {
+        base.UnsubscribeEvents();
+        
         if (damageHandler)
         {
             damageHandler.DamageHasBeenDealt -= OnDamageHasBeenDealt;
         }
-
-        damageHandler = null;
         
         if (stats) stats.StatHasBeenModified -= TryActivateCruelCapacity;
     }
