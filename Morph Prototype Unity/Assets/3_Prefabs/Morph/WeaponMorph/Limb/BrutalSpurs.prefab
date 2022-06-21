@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6808bafd40011944b80e5ff00d1fb1f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  morphType: 1
+  morphTypes: 01000000
   prerequisites:
   - {fileID: 11400000, guid: e3111240e1c68504583f2fa32ac08505, type: 2}
   statsToModify: []

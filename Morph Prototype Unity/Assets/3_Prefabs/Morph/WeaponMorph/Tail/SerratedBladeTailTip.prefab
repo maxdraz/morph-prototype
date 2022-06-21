@@ -43,9 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 265ef9524ef27ed4a85d7c4c13d98dbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  morphType: 0
+  morphTypes: 01000000
   prerequisites:
   - {fileID: 11400000, guid: 9d12f934c6fd7e945ac5966eedf73909, type: 2}
+  statsToModify: []
   baseDamage: 10
   lightAttacks:
   - onHitEffects:
@@ -82,3 +83,4 @@ MonoBehaviour:
         fortitudeDamage: 1
         statusEffect: Stun
         duration: 1
+        attackType: 0

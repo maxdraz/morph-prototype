@@ -43,9 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a3fd0439f8633459c59ada9c266165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  morphType: 0
+  morphTypes: 01000000
   prerequisites:
   - {fileID: 11400000, guid: f2a8953a060133e439d7bf55d9aa92ec, type: 2}
+  statsToModify: []
   baseDamage: 10
   lightAttacks:
   - onHitEffects: []
