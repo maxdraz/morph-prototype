@@ -58,14 +58,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdb5d559b7f4d4c41a57519a42079a79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  morphType: 6
+  morphTypes: 06000000
   prerequisites:
   - {fileID: 11400000, guid: a96f9cba2fd5d7e4fb8e2b323c9e6fed, type: 2}
   - {fileID: 11400000, guid: d3975c54fd6d95f409084aba29a94414, type: 2}
   statsToModify:
   - stat: 3
     value: 5
-  chemicalDamageStatBonus: 5
   poisonGasSpawnRate: 0.1
   poisonGasLifeTime: 4
   poisonGasSpawnCountdown:

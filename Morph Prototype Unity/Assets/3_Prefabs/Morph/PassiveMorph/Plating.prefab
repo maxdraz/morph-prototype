@@ -44,12 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f0d4bbaaa6e22843bd1569e9f46ab6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  morphType: 0
+  morphTypes: 00000000
   prerequisites:
   - {fileID: 11400000, guid: ccc1d71e23725634bb2a3d57a6271574, type: 2}
   - {fileID: 11400000, guid: 8a47531f1ecd63945958def9d14704d2, type: 2}
-  statToAddTo: 0
-  statBonus: 5
+  statsToModify: []
   bonusMaxArmor: 0
   unlockCriticalCoverage: 0
   critChanceResist: 0

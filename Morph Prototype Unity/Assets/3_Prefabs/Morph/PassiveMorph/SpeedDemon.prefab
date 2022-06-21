@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 365a536c308f23f428811621c30d4cf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  morphType: 0
+  morphTypes: 00000000
   prerequisites:
   - {fileID: 11400000, guid: ac7ab5c6bb43f0240ae88b98609ac457, type: 2}
   - {fileID: 11400000, guid: 36b14350bfa45684ca2d39363632e6f7, type: 2}
@@ -67,6 +67,6 @@ MonoBehaviour:
     value: 5
   - stat: 7
     value: 5
-  meleeDamageStatBonus: 5
   unlockCruelCapacity: 0
   startingSpeedDemonStackDuration: 4
+  cruelCapacityCooldownReduction: 0.2

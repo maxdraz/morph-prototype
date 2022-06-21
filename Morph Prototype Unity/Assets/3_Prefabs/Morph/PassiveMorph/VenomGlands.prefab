@@ -43,12 +43,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d113bb436058e544b2d7e56de82752c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  morphType: 5
+  morphTypes: 06000000
   prerequisites:
   - {fileID: 11400000, guid: 9142ce78427d071429db663fb0865f60, type: 2}
   - {fileID: 11400000, guid: 220b37773e84cca4da916ccf699fd069, type: 2}
   - {fileID: 11400000, guid: c87559cdde8bf1940aacef67e3881797, type: 2}
   - {fileID: 11400000, guid: f3b420a0dca596348b61f14ca225dc1f, type: 2}
+  statsToModify: []
   bonusPoisonDamage: 200
   unlockAtrophy: 0
   atrophyAttackSpeedReduction: 0.2

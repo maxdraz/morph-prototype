@@ -100,7 +100,7 @@ public class MorphLoadout : MonoBehaviour
 
             if (passiveMorphs[i].GetMorphType(0) != "None")
             {
-                for (int t = 0; t <= limbWeaponMorph.morphTypes.Length - 1; t++)
+                for (int t = 0; t <= currentPassiveMorph.morphTypes.Length - 1; t++)
                 {
                     MorphType morphType = (MorphType)Enum.Parse(typeof(MorphType), passiveMorphs[i].GetMorphType(t));
                     morphTypesAttached.Add(morphType);

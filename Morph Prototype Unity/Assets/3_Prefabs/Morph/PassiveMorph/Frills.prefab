@@ -44,16 +44,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fd7d3b23db2ec447936b2eb909fd3ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  morphType: 9
+  morphTypes: 09000000
   prerequisites:
   - {fileID: 11400000, guid: 5f9d84bdd7f13854ba202c7303e21931, type: 2}
   - {fileID: 11400000, guid: 7ccbeb18c5dbcbc458859c7ab3fe7729, type: 2}
   statsToModify:
   - stat: 6
     value: 50
-  intimidationStatBonus: 5
   unlockFearless: 0
-  intimidationDefenseBonus: 0.3
+  fearlessIntimidationDefenseBonus: 0.3
 --- !u!114 &7306186301633963887
 MonoBehaviour:
   m_ObjectHideFlags: 0

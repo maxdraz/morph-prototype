@@ -58,12 +58,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfccba1b5f9c5974483f93e50f065493, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  morphType: 7
+  morphTypes: 07000000
   prerequisites:
   - {fileID: 11400000, guid: e1a2b465068382f409c1624de372bea5, type: 2}
   - {fileID: 11400000, guid: 3dda50a92f83c434c8ea059df63325a5, type: 2}
-  statToAddTo: 0
-  statBonus: 5
+  statsToModify: []
   perceptionDamageFraction: 0.1
   chemicalDamageStatBonus: 5
   unlockBlindingVapour: 0

@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d076b690149c54c4b91975caf3f600db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  morphType: 6
+  morphTypes: 06000000
   prerequisites:
   - {fileID: 11400000, guid: dafd4a29002bd1a4a8e715b9e6d54eac, type: 2}
   - {fileID: 11400000, guid: ca2738a4ac0b68d4ab95ea0410466ede, type: 2}
@@ -66,9 +66,9 @@ MonoBehaviour:
   statsToModify:
   - stat: 3
     value: 5
-  chemicalDamageStatBonus: 5
   healingPercentageBonus: 0
   bonusHealingTimerDuration: 0
   unlockVenomousVigor: 0
   venomousVigorHealingDuration: 0
   unlockToxicFocus: 0
+  toxicFocusBonusPoisonDamage: 0

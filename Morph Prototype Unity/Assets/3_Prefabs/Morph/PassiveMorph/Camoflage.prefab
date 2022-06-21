@@ -44,16 +44,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1880c65fc394f4428ccc72cef3852d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  morphType: 8
+  morphTypes: 08000000
   prerequisites:
   - {fileID: 11400000, guid: bcb381f231e049148a5466aa387379a3, type: 2}
   - {fileID: 11400000, guid: 425d1973faff05d40827d63fc2b51d7a, type: 2}
   statsToModify:
   - stat: 8
     value: 100
-  stealthStatBonus: 100
   unlockSneaky: 0
-  stealthBonusWhileMoving: 0.2
+  sneakyStealthBonusWhileMoving: 0.2
 --- !u!114 &9027648779746136505
 MonoBehaviour:
   m_ObjectHideFlags: 0

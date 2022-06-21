@@ -58,13 +58,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f846de85c84d61459488cbc9757015a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  morphType: 0
+  morphTypes: 00000000
   prerequisites:
   - {fileID: 11400000, guid: 527cf6e97fba31649be2335d8f11ef7e, type: 2}
   - {fileID: 11400000, guid: 1b09c9a07eab3c64aa37bb967f24d319, type: 2}
   - {fileID: 11400000, guid: 2ca2106d7f033d2498ad910369e03333, type: 2}
-  statToAddTo: 0
-  statBonus: 5
+  statsToModify: []
   criticalStrikeChance: 10
   unlockHiddenAttack: 0
   hiddenAttackCriticalStrikeChance: 20
