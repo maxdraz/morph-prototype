@@ -35,10 +35,13 @@ public class MorphLoadout : MonoBehaviour
 
             AddMorphToLoadout(limbWeaponMorph);
 
-            if (limbWeaponMorph.GetMorphType() != "None")
+            if (limbWeaponMorph.GetMorphType(0) != "None")
             {
-                MorphType morphType = (MorphType)Enum.Parse(typeof(MorphType), limbWeaponMorph.GetMorphType());
-                morphTypesAttached.Add(morphType);
+                for (int i = 0; i <= limbWeaponMorph.morphTypes.Length-1; i++) 
+                {
+                    MorphType morphType = (MorphType)Enum.Parse(typeof(MorphType), limbWeaponMorph.GetMorphType(i));
+                    morphTypesAttached.Add(morphType);
+                }
             }
         }
 
@@ -46,10 +49,13 @@ public class MorphLoadout : MonoBehaviour
         {
             AddMorphToLoadout(headWeaponMorph);
 
-            if (headWeaponMorph.GetMorphType() != "None")
+            if (headWeaponMorph.GetMorphType(0) != "None")
             {
-                MorphType morphType = (MorphType)Enum.Parse(typeof(MorphType), headWeaponMorph.GetMorphType());
-                morphTypesAttached.Add(morphType);
+                for (int i = 0; i <= headWeaponMorph.morphTypes.Length - 1; i++)
+                {
+                    MorphType morphType = (MorphType)Enum.Parse(typeof(MorphType), headWeaponMorph.GetMorphType(i));
+                    morphTypesAttached.Add(morphType);
+                }
             }
         }
 
@@ -57,10 +63,13 @@ public class MorphLoadout : MonoBehaviour
         {
             AddMorphToLoadout(tailWeaponMorph);
 
-            if (tailWeaponMorph.GetMorphType() != "None")
+            if (tailWeaponMorph.GetMorphType(0) != "None")
             {
-                MorphType morphType = (MorphType)Enum.Parse(typeof(MorphType), tailWeaponMorph.GetMorphType());
-                morphTypesAttached.Add(morphType);
+                for (int i = 0; i <= tailWeaponMorph.morphTypes.Length - 1; i++)
+                {
+                    MorphType morphType = (MorphType)Enum.Parse(typeof(MorphType), tailWeaponMorph.GetMorphType(i));
+                    morphTypesAttached.Add(morphType);
+                }
             }
         }
 
@@ -71,10 +80,13 @@ public class MorphLoadout : MonoBehaviour
             {
                 activeMorphs[i] = gameObject.CopyComponent(activeMorphs[i]);
 
-                if (activeMorphs[i].GetMorphType() != "None")
+                if (activeMorphs[i].GetMorphType(0) != "None")
                 {
-                    MorphType morphType = (MorphType)Enum.Parse(typeof(MorphType), activeMorphs[i].GetMorphType());
-                    morphTypesAttached.Add(morphType);
+                    for (int t = 0; t <= currentActiveMorph.morphTypes.Length - 1; t++)
+                    {
+                        MorphType morphType = (MorphType)Enum.Parse(typeof(MorphType), activeMorphs[i].GetMorphType(t));
+                        morphTypesAttached.Add(morphType);
+                    }
                 }
             }
         }
@@ -86,10 +98,13 @@ public class MorphLoadout : MonoBehaviour
                 passiveMorphs[i] = gameObject.CopyComponent(passiveMorphs[i]);
             //Debug.Log("Added " + passiveMorphs[i].GetType().Name);
 
-            if (passiveMorphs[i].GetMorphType() != "None")
+            if (passiveMorphs[i].GetMorphType(0) != "None")
             {
-                MorphType morphType = (MorphType)Enum.Parse(typeof(MorphType), passiveMorphs[i].GetMorphType());
-                morphTypesAttached.Add(morphType);
+                for (int t = 0; t <= limbWeaponMorph.morphTypes.Length - 1; t++)
+                {
+                    MorphType morphType = (MorphType)Enum.Parse(typeof(MorphType), passiveMorphs[i].GetMorphType(t));
+                    morphTypesAttached.Add(morphType);
+                }
             }
         }
     }
@@ -99,7 +114,7 @@ public class MorphLoadout : MonoBehaviour
 
         foreach (ActiveMorph activeMorph in activeMorphs)
         {
-            if (activeMorph.GetMorphType() != "None")
+            if (activeMorph.GetMorphType(0) != "None")
             {
                 //morphTypesAttached.Add(activeMorph.GetEnumType());
             }
@@ -107,7 +122,7 @@ public class MorphLoadout : MonoBehaviour
         
         foreach (PassiveMorph passiveMorph in passiveMorphs)
         {
-            if (passiveMorph.GetMorphType() != "None")
+            if (passiveMorph.GetMorphType(0) != "None")
             {
                 //morphTypesAttached.Add(passiveMorph.GetEnumType());
             }
@@ -115,7 +130,7 @@ public class MorphLoadout : MonoBehaviour
 
         if (limbWeaponMorph != null)
         {
-            if (limbWeaponMorph.GetMorphType() != "None")
+            if (limbWeaponMorph.GetMorphType(0) != "None")
             {
                 //morphTypesAttached.Add(limbWeaponMorph.GetEnumType());
             }
@@ -123,7 +138,7 @@ public class MorphLoadout : MonoBehaviour
 
         if (headWeaponMorph != null)
         {
-            if (headWeaponMorph.GetMorphType() != "None")
+            if (headWeaponMorph.GetMorphType(0) != "None")
             {
                 //morphTypesAttached.Add(headWeaponMorph.GetEnumType());
             }
@@ -131,7 +146,7 @@ public class MorphLoadout : MonoBehaviour
 
         if (tailWeaponMorph != null)
         {
-            if (tailWeaponMorph.GetMorphType() != "None")
+            if (tailWeaponMorph.GetMorphType(0) != "None")
             {
                 //morphTypesAttached.Add(tailWeaponMorph.GetEnumType());
             }
@@ -152,10 +167,13 @@ public class MorphLoadout : MonoBehaviour
                 {
                     MorphLoadoutChanged?.Invoke(limbWeaponMorph);
                 }
-                if (limbWeaponMorph.GetMorphType() != "None") 
+                if (limbWeaponMorph.GetMorphType(0) != "None") 
                 {
-                    MorphType morphType = (MorphType)Enum.Parse(typeof(MorphType), limbWeaponMorph.GetMorphType());
-                    morphTypesAttached.Add(morphType);
+                    for (int i = 0; i <= limbWeaponMorph.morphTypes.Length - 1; i++)
+                    {
+                        MorphType morphType = (MorphType)Enum.Parse(typeof(MorphType), limbWeaponMorph.GetMorphType(i));
+                        morphTypesAttached.Add(morphType);
+                    }
                 }
             }
 
@@ -166,10 +184,13 @@ public class MorphLoadout : MonoBehaviour
                 {
                     MorphLoadoutChanged?.Invoke(headWeaponMorph);
                 }
-                if (headWeaponMorph.GetMorphType() != "None")
+                if (headWeaponMorph.GetMorphType(0) != "None")
                 {
-                    MorphType morphType = (MorphType)Enum.Parse(typeof(MorphType), headWeaponMorph.GetMorphType());
-                    morphTypesAttached.Add(morphType);
+                    for (int i = 0; i <= headWeaponMorph.morphTypes.Length - 1; i++)
+                    {
+                        MorphType morphType = (MorphType)Enum.Parse(typeof(MorphType), headWeaponMorph.GetMorphType(i));
+                        morphTypesAttached.Add(morphType);
+                    }
                 }
             }
 
@@ -180,10 +201,13 @@ public class MorphLoadout : MonoBehaviour
                 {
                     MorphLoadoutChanged?.Invoke(tailWeaponMorph);
                 }
-                if (tailWeaponMorph.GetMorphType() != "None")
+                if (tailWeaponMorph.GetMorphType(0) != "None")
                 {
-                    MorphType morphType = (MorphType)Enum.Parse(typeof(MorphType), tailWeaponMorph.GetMorphType());
-                    morphTypesAttached.Add(morphType);
+                    for (int i = 0; i <= tailWeaponMorph.morphTypes.Length - 1; i++)
+                    {
+                        MorphType morphType = (MorphType)Enum.Parse(typeof(MorphType), tailWeaponMorph.GetMorphType(i));
+                        morphTypesAttached.Add(morphType);
+                    }
                 }
             }
 
@@ -195,10 +219,13 @@ public class MorphLoadout : MonoBehaviour
                     passiveMorphs.Add(morph);
                     MorphLoadoutChanged?.Invoke(morph);
                 }
-                if (passiveMorph.GetMorphType() != "None")
+                if (passiveMorph.GetMorphType(0) != "None")
                 {
-                    MorphType morphType = (MorphType)Enum.Parse(typeof(MorphType), passiveMorph.GetMorphType());
-                    morphTypesAttached.Add(morphType);
+                    for (int i = 0; i <= limbWeaponMorph.morphTypes.Length - 1; i++)
+                    {
+                        MorphType morphType = (MorphType)Enum.Parse(typeof(MorphType), passiveMorph.GetMorphType(i));
+                        morphTypesAttached.Add(morphType);
+                    }
                 }
             }
 
@@ -210,10 +237,13 @@ public class MorphLoadout : MonoBehaviour
                     activeMorphs.Add(morph);
                     MorphLoadoutChanged?.Invoke(morph);
                 }
-                if (activeMorph.GetMorphType() != "None")
+                if (activeMorph.GetMorphType(0) != "None")
                 {
-                    MorphType morphType = (MorphType)Enum.Parse(typeof(MorphType), activeMorph.GetMorphType());
-                    morphTypesAttached.Add(morphType);
+                    for (int i = 0; i <= limbWeaponMorph.morphTypes.Length - 1; i++)
+                    {
+                        MorphType morphType = (MorphType)Enum.Parse(typeof(MorphType), activeMorph.GetMorphType(i));
+                        morphTypesAttached.Add(morphType);
+                    }
                 }
             }
         }

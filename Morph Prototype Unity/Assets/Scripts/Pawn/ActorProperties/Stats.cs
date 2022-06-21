@@ -403,7 +403,7 @@ public class Stats : MonoBehaviour
 
     
 
-    public void PercentStatChange(string statName, int buffAmount)
+    public void PercentStatChange(string statName, int percentageChange)
     {
         float changeInValue;
 
@@ -411,7 +411,7 @@ public class Stats : MonoBehaviour
         {
 
             float valueToChange = baseMeleeDamage;
-            changeInValue = valueToChange * buffAmount;
+            changeInValue = valueToChange * percentageChange;
             valueToChange += changeInValue;
             totalMeleeDamage = (int)valueToChange;
             addedMeleeDamage += (int)changeInValue; ;
@@ -421,7 +421,7 @@ public class Stats : MonoBehaviour
         if (statName == "rangedDamage")
         {
             float valueToChange = baseRangedDamage;
-            changeInValue = valueToChange * buffAmount;
+            changeInValue = valueToChange * percentageChange;
             valueToChange += changeInValue;
             totalRangedDamage = (int)valueToChange;
             addedRangedDamage += (int)changeInValue;
@@ -431,7 +431,7 @@ public class Stats : MonoBehaviour
         if (statName == "chemicalDamage")
         {
             float valueToChange = baseChemicalDamage;
-            changeInValue = valueToChange * buffAmount;
+            changeInValue = valueToChange * percentageChange;
             valueToChange += changeInValue;
             totalChemicalDamage = (int)valueToChange;
             addedChemicalDamage += (int)changeInValue;
@@ -441,7 +441,7 @@ public class Stats : MonoBehaviour
         if (statName == "elementalDamage")
         {
             float valueToChange = baseElementalDamage;
-            changeInValue = valueToChange * buffAmount;
+            changeInValue = valueToChange * percentageChange;
             valueToChange += changeInValue;
             totalElementalDamage = (int)valueToChange;
             addedElementalDamage += (int)changeInValue;
@@ -451,7 +451,7 @@ public class Stats : MonoBehaviour
         if (statName == "intelligence")
         {
             float valueToChange = baseIntelligence;
-            changeInValue = valueToChange * buffAmount;
+            changeInValue = valueToChange * percentageChange;
             valueToChange += changeInValue;
             totalIntelligence = (int)valueToChange;
             addedIntelligence += (int)changeInValue;
@@ -461,7 +461,7 @@ public class Stats : MonoBehaviour
         if (statName == "agility")
         {
             float valueToChange = baseAgility;
-            changeInValue = valueToChange * buffAmount;
+            changeInValue = valueToChange * percentageChange;
             valueToChange += changeInValue;
             totalAgility = (int)valueToChange;
             addedAgility += (int)changeInValue;
@@ -471,7 +471,7 @@ public class Stats : MonoBehaviour
         if (statName == "toughness")
         {
             float valueToChange = baseToughness;
-            changeInValue = valueToChange * buffAmount;
+            changeInValue = valueToChange * percentageChange;
             valueToChange += changeInValue;
             totalToughness = (int)valueToChange;
             addedToughness += (int)changeInValue;
@@ -481,12 +481,39 @@ public class Stats : MonoBehaviour
         if (statName == "fortitude")
         {
             float valueToChange = baseFortitude;
-            changeInValue = valueToChange * buffAmount;
+            changeInValue = valueToChange * percentageChange;
             valueToChange += changeInValue;
             totalFortitude = (int)valueToChange;
             addedFortitude += (int)changeInValue;
 
             FindStatModifier(statName, totalFortitude);
+        }
+        if (statName == "stealth")
+        {
+            float valueToChange = baseStealth;
+            changeInValue = valueToChange * percentageChange;
+            valueToChange += changeInValue;
+            totalStealth = (int)valueToChange;
+            addedStealth += (int)changeInValue;
+
+        }
+        if (statName == "perception")
+        {
+            float valueToChange = basePerception;
+            changeInValue = valueToChange * percentageChange;
+            valueToChange += changeInValue;
+            totalPerception = (int)valueToChange;
+            addedPerception += (int)changeInValue;
+
+        }
+        if (statName == "intimidation")
+        {
+            float valueToChange = baseIntimidation;
+            changeInValue = valueToChange * percentageChange;
+            valueToChange += changeInValue;
+            totalIntimidation = (int)valueToChange;
+            addedIntimidation += (int)changeInValue;
+
         }
     }
 

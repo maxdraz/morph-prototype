@@ -30,12 +30,12 @@ public class MorphHolder : MonoBehaviour
         }
     }
 
-    void GetChildMorphEnums() 
-    {
-    foreach (Morph morph in morphsInChildren)
-        {
-            Debug.Log("Getting morphtype for " + morph.name);
-            morph.GetComponent<Morph>().GetMorphType();
-        }
-    }
+    //void GetChildMorphEnums() 
+    //{
+    //foreach (Morph morph in morphsInChildren)
+    //    {
+    //        Debug.Log("Getting morphtype for " + morph.name);
+    //        morph.GetComponent<Morph>().GetMorphType();
+    //    }
+    //}
 }

@@ -23,7 +23,7 @@ public class Morph : MonoBehaviour
     protected Stats stats;
     protected MorphLoadout morphLoadout;
 
-    public MorphType morphType;
+    public MorphType[] morphTypes;
     [SerializeField] private List<PrerequisiteData> prerequisites;
 
     //This was to be used with activating secondaries as a precedural name for secondaryunlock bools
@@ -124,9 +124,9 @@ public class Morph : MonoBehaviour
 
     }
 
-    public string GetMorphType()
+    public string GetMorphType(int T)
     {
-        return morphType.ToString();
+        return morphTypes[T].ToString();
     }
 
     public void Initialize()
