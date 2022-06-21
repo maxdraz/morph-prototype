@@ -7,7 +7,7 @@ public class SureShot : PassiveMorph
     //[SerializeField] private SureShotPrerequisiteData prerequisiteData;
 
 
-    private DamageHandler damageHandler;
+    //private DamageHandler damageHandler;
     [SerializeField] private bool unlockExpandedReserves = true;
     [SerializeField] private float maxEnergyStatBonus = .2f;
 

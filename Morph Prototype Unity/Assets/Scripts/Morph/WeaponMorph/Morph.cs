@@ -51,11 +51,11 @@ public class Morph : MonoBehaviour
     {
     }
 
-    private void UnlockSecondary(string name) 
-    {
-        Debug.Log(this.name + " is trying to: " + "unlock" + name);
-        BroadcastMessage("UnlockSecondary", name);
-    }
+    //private void UnlockSecondary(string name) 
+    //{
+    //    Debug.Log(this.name + " is trying to: " + "unlock" + name);
+    //    BroadcastMessage("UnlockSecondary", name);
+    //}
 
     public virtual bool CheckPrerequisites(MorphLoadout loadout, Stats stats, Morph morphPrefab)
     {
@@ -81,24 +81,47 @@ public class Morph : MonoBehaviour
         return primaryPrerequisitesMet;
     }
     
-    protected void CheckSecondaryPrerequisites(MorphLoadout loadout, Stats stats) // TODO make it return bool, don't unlock anything here
+    protected bool CheckSecondaryPrerequisites(MorphLoadout loadout, Stats stats) // TODO make it return bool, don't unlock anything here
     {
         string[] secondariesToUnlock = new string[prerequisites.Count];
+        bool unlockSecondary = false;
 
         for (int i = 0; i < prerequisites.Count; i++)
         {
-            secondariesToUnlock[i] = prerequisites[i].CheckSecondaryPrerequisites(loadout, stats);
-            Debug.Log("SecondaryPrerequisites check for " + secondariesToUnlock[i] + " returned true");
+            if (prerequisites[i].CheckSecondaryPrerequisites(loadout, stats) == true) 
+            {
+                Debug.Log("SecondaryPrerequisites check for " + prerequisites[i] + " returned true");
+                secondariesToUnlock[i] = prerequisites[i].name; // this name can be used to find the prerequisite that passed its check
+                unlockSecondary = true;
+            }
+
+            else
+            {
+                Debug.Log("SecondaryPrerequisites check for " + prerequisites[i] + " returned false");
+                unlockSecondary = false;
+            }
+
+            
         }
 
-        for (int i = 0; i < secondariesToUnlock.Length; i++) 
+        //for (int i = 0; i < secondariesToUnlock.Length; i++) 
+        //{
+        //    if (secondariesToUnlock[i] != null)
+        //    {
+        //        Debug.Log("CheckSecondaryPrerequisites succeeded for " + secondariesToUnlock[i]);
+        //        UnlockSecondary(secondariesToUnlock[i]);
+        //    }
+        //}
+
+        if (unlockSecondary)
         {
-            if (secondariesToUnlock[i] != null)
-            {
-                Debug.Log("CheckSecondaryPrerequisites succeeded for " + secondariesToUnlock[i]);
-                UnlockSecondary(secondariesToUnlock[i]);
-            }
+            return true;
         }
+        else
+        {
+            return false;
+        }
+
     }
 
     public string GetMorphType()

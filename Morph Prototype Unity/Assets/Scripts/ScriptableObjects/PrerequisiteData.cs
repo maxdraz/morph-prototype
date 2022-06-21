@@ -98,7 +98,7 @@ public class PrerequisiteData : ScriptableObject
         }
     }
 
-    public string CheckSecondaryPrerequisites(MorphLoadout loadout, Stats stats)
+    public bool CheckSecondaryPrerequisites(MorphLoadout loadout, Stats stats)
     {
         if (isSecondary)
         {
@@ -158,7 +158,7 @@ public class PrerequisiteData : ScriptableObject
             {
 
                 Debug.Log(name + " is a secondary, going to unlock on parent morph");
-                return name;
+                return true;
             }
             else
             {
@@ -177,13 +177,13 @@ public class PrerequisiteData : ScriptableObject
                     Debug.Log("MorphCheck failed for " + name);
                 }
 
-                return null;
+                return false;
             }
 
         }
         else
         {
-            return null;
+            return false;
         }
     }
     

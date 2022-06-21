@@ -68,7 +68,7 @@ public class StatueStealth : PassiveMorph
         }
     }
 
-    private void Update()
+    protected override void Update()
     {
         if (velo != null) 
         {
