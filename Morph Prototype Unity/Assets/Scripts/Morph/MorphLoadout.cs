@@ -25,7 +25,7 @@ public class MorphLoadout : MonoBehaviour
     private void Start()
     {
         AddMorphsAtStart();
-        CountAllMorphsByType();
+        //CountAllMorphsByType();
     }
    
     private void AddMorphsAtStart()
@@ -109,49 +109,70 @@ public class MorphLoadout : MonoBehaviour
         }
     }
 
-    private void CountAllMorphsByType() 
-    {
 
-        foreach (ActiveMorph activeMorph in activeMorphs)
-        {
-            if (activeMorph.GetMorphType(0) != "None")
-            {
-                //morphTypesAttached.Add(activeMorph.GetEnumType());
-            }
-        }
-        
-        foreach (PassiveMorph passiveMorph in passiveMorphs)
-        {
-            if (passiveMorph.GetMorphType(0) != "None")
-            {
-                //morphTypesAttached.Add(passiveMorph.GetEnumType());
-            }
-        }
-
-        if (limbWeaponMorph != null)
-        {
-            if (limbWeaponMorph.GetMorphType(0) != "None")
-            {
-                //morphTypesAttached.Add(limbWeaponMorph.GetEnumType());
-            }
-        }
-
-        if (headWeaponMorph != null)
-        {
-            if (headWeaponMorph.GetMorphType(0) != "None")
-            {
-                //morphTypesAttached.Add(headWeaponMorph.GetEnumType());
-            }
-        }
-
-        if (tailWeaponMorph != null)
-        {
-            if (tailWeaponMorph.GetMorphType(0) != "None")
-            {
-                //morphTypesAttached.Add(tailWeaponMorph.GetEnumType());
-            }
-        } 
-    }
+    //private void CountAllMorphsByType() 
+    //{
+    //
+    //    foreach (ActiveMorph activeMorph in activeMorphs)
+    //    {
+    //        if (activeMorph.GetMorphType(0) != "None")
+    //        {
+    //            for (int i = 0; i <= activeMorph.morphTypes.Length - 1; i++)
+    //            {
+    //                MorphType morphType = (MorphType)Enum.Parse(typeof(MorphType), activeMorph.GetMorphType(i));
+    //                morphTypesAttached.Add(morphType);
+    //            }
+    //        }
+    //    }
+    //    
+    //    foreach (PassiveMorph passiveMorph in passiveMorphs)
+    //    {
+    //        if (passiveMorph.GetMorphType(0) != "None")
+    //        {
+    //            for (int i = 0; i <= passiveMorph.morphTypes.Length - 1; i++)
+    //            {
+    //                MorphType morphType = (MorphType)Enum.Parse(typeof(MorphType), passiveMorph.GetMorphType(i));
+    //                morphTypesAttached.Add(morphType);
+    //            }
+    //        }
+    //    }
+    //
+    //    if (limbWeaponMorph != null)
+    //    {
+    //        if (limbWeaponMorph.GetMorphType(0) != "None")
+    //        {
+    //            for (int i = 0; i <= limbWeaponMorph.morphTypes.Length - 1; i++)
+    //            {
+    //                MorphType morphType = (MorphType)Enum.Parse(typeof(MorphType), limbWeaponMorph.GetMorphType(i));
+    //                morphTypesAttached.Add(morphType);
+    //            }
+    //        }
+    //    }
+    //
+    //    if (headWeaponMorph != null)
+    //    {
+    //        if (headWeaponMorph.GetMorphType(0) != "None")
+    //        {
+    //            for (int i = 0; i <= headWeaponMorph.morphTypes.Length - 1; i++)
+    //            {
+    //                MorphType morphType = (MorphType)Enum.Parse(typeof(MorphType), headWeaponMorph.GetMorphType(i));
+    //                morphTypesAttached.Add(morphType);
+    //            }
+    //        }
+    //    }
+    //
+    //    if (tailWeaponMorph != null)
+    //    {
+    //        if (tailWeaponMorph.GetMorphType(0) != "None")
+    //        {
+    //            for (int i = 0; i <= tailWeaponMorph.morphTypes.Length - 1; i++)
+    //            {
+    //                MorphType morphType = (MorphType)Enum.Parse(typeof(MorphType), tailWeaponMorph.GetMorphType(i));
+    //                morphTypesAttached.Add(morphType);
+    //            }
+    //        }
+    //    } 
+    //}
 
     public void AddMorphToLoadoutAtRuntime(Morph morphPrefab) 
      {
