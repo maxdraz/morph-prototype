@@ -100,8 +100,8 @@ public class HeightenedSenses : PassiveMorph
     private void ApplyEverReady(bool shouldApply = true)
     {
         var sign = shouldApply ? 1 : -1;
-        int stealthToAdd = (int)(stats.intelligence * everReadyStealthModifier);
-        int perceptionToAdd = (int) (stats.intelligence * everReadyPerceptionModifier);
+        int stealthToAdd = (int)(stats.Intelligence * everReadyStealthModifier);
+        int perceptionToAdd = (int) (stats.Intelligence * everReadyPerceptionModifier);
 
 
         stats.FlatStatChange("perception", sign * perceptionToAdd);

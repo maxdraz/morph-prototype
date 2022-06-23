@@ -104,13 +104,13 @@ public class Stats : MonoBehaviour
 
     [SerializeField] private float toughnessModifier;
 
-    [SerializeField] private float maxEnergyModifier;
-    [SerializeField] private float cooldownModifier;
+    [SerializeField] private float intelligenceMaxEnergyModifier;
+    [SerializeField] private float intelligenceCooldownModifier;
 
-    [SerializeField] private float attackSpeedModifier;
-    [SerializeField] private float moveSpeedModifier;
+    [SerializeField] private float agilityAttackSpeedModifier;
+    [SerializeField] private float agilityMoveSpeedModifier;
 
-    [SerializeField] private float maxStaminaModifier;
+    [SerializeField] private float fortitudeMaxStaminaModifier;
 
     StatModifiers statModifiers;
 
@@ -123,6 +123,7 @@ public class Stats : MonoBehaviour
     //public interface
     public float MaxHealth => baseMaxHealth;
     public float MaxStamina => baseMaxStamina;
+    public float FortitudeMaxStaminaModifier => fortitudeMaxStaminaModifier;
     public float MaxEnergy => baseMaxEnergy;
     public float MaxArmour => baseMaxArmour;
     public float ElementalDamageModifier => elementalDamageModifier;
@@ -132,9 +133,15 @@ public class Stats : MonoBehaviour
     public float PoisonResistance => basePoisonResistance;
     public float ToughnessModifier => toughnessModifier;
     public float BaseMoveSpeed => baseMoveSpeed;
+    public float AgilityMoveSpeedModifier => agilityMoveSpeedModifier;
     public float BaseAttackSpeed => baseAttackSpeed;
-    public int intelligence => baseIntelligence;
-    public int perception => basePerception;
+    public float AgilityAttackSpeedModifier => agilityAttackSpeedModifier;
+    public int Intelligence => baseIntelligence;
+    public float IntelligenceMaxEnergyModifier => intelligenceMaxEnergyModifier;
+    public float IntelligenceCooldownModifier => intelligenceCooldownModifier;
+    public int Perception => basePerception;
+    public int Intimidation => baseIntimidation;
+    public int Stealth => baseStealth;
 
     private Dictionary<string, float> statDatabase;
     public event Action<string,float> StatHasBeenModified;
@@ -764,8 +771,8 @@ public class Stats : MonoBehaviour
                 if (statModifiers.fortitudeMaxStaminaModifiers[i].x <= myStatValue && myStatValue - statModifiers.fortitudeMaxStaminaModifiers[i].x <= 4 && myStatValue - statModifiers.fortitudeMaxStaminaModifiers[i].x >= 0)
                 {
 
-                    maxStaminaModifier = statModifiers.fortitudeMaxStaminaModifiers[i].y;
-                    stamina.maxStaminaBonus += maxStaminaModifier;
+                    fortitudeMaxStaminaModifier = statModifiers.fortitudeMaxStaminaModifiers[i].y;
+                    stamina.maxStaminaBonus += fortitudeMaxStaminaModifier;
                 }
             }
         }
@@ -778,7 +785,7 @@ public class Stats : MonoBehaviour
                 if (statModifiers.intelligenceCooldownReductionModifiers[i].x <= myStatValue)
                 {
 
-                    cooldownModifier = statModifiers.intelligenceCooldownReductionModifiers[i].y;
+                    intelligenceCooldownModifier = statModifiers.intelligenceCooldownReductionModifiers[i].y;
                     
                 }
             }
@@ -787,8 +794,8 @@ public class Stats : MonoBehaviour
                 if (statModifiers.intelligenceMaxEnergyModifiers[i].x <= myStatValue && myStatValue - statModifiers.intelligenceMaxEnergyModifiers[i].x <= 4 && myStatValue - statModifiers.intelligenceMaxEnergyModifiers[i].x >= 0)
                 {
 
-                    maxEnergyModifier = statModifiers.intelligenceMaxEnergyModifiers[i].y;
-                    energy.bonusMaxEnergy += maxEnergyModifier;
+                    intelligenceMaxEnergyModifier = statModifiers.intelligenceMaxEnergyModifiers[i].y;
+                    energy.bonusMaxEnergy += intelligenceMaxEnergyModifier;
 
                 }
             }
@@ -802,7 +809,7 @@ public class Stats : MonoBehaviour
                 if (statModifiers.agilityAttackSpeedModifiers[i].x <= myStatValue)
                 {
 
-                    attackSpeedModifier = statModifiers.agilityAttackSpeedModifiers[i].y;
+                    agilityAttackSpeedModifier = statModifiers.agilityAttackSpeedModifiers[i].y;
                     
                 }
             }

@@ -745,6 +745,8 @@ GameObject:
   - component: {fileID: 1874683786}
   - component: {fileID: 1874683793}
   - component: {fileID: 1874683794}
+  - component: {fileID: 1874683795}
+  - component: {fileID: 1874683796}
   m_Layer: 0
   m_Name: ButterFly
   m_TagString: Untagged
@@ -780,13 +782,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc6faeff814f70a48a2507debb58fbba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseMaxStamina: 100
+  baseMaxStamina: 500
   maxStaminaBonus: 0
   bonusStaminaRegen: 0
   totalMaxStamina: 0
   currentStamina: 0
   energyAsPercentage: 0
   staminaRegenOnCooldown: 0
+  grounded: 0
   staminaGainParticles: {fileID: 6930605194700628132, guid: bfaa755efbc237d4d9b713a91739394b, type: 3}
   staminaBar: {fileID: 773589438}
 --- !u!114 &1874683788
@@ -802,13 +805,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   glideGravity: 0.5
-  flightStaminaCost: 50
+  flightStaminaCost: 20
   baseUpwardThrust: 16
   maxUpwardThrust: 22
   flapCooldown: 0
   flapCooldownTime: 0.2
-  staminaRegenRate: 2
-  staminaRegenCoolDown: 0
+  grounded: 0
   yawforce: 1
   verticalDiveForce: 5
   forwardDiveForce: 10
@@ -924,6 +926,83 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1874683795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1874683785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39170150ccf22c44b1ab453669814f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayDebug: 0
+  randomStats: 0
+  baseMaxHealth: 0
+  baseMaxEnergy: 0
+  baseMaxStamina: 300
+  baseMaxArmour: 0
+  baseMeleeDamage: 0
+  totalMeleeDamage: 0
+  baseRangedDamage: 0
+  totalRangedDamage: 0
+  baseChemicalDamage: 0
+  totalChemicalDamage: 0
+  baseElementalDamage: 0
+  totalElementalDamage: 0
+  globalCritChance: 0
+  baseFortitude: 0
+  totalFortitude: 0
+  baseToughness: 0
+  totalToughness: 0
+  baseIntimidation: 0
+  totalIntimidation: 0
+  baseAgility: 0
+  totalAgility: 0
+  baseStealth: 0
+  totalStealth: 0
+  basePerception: 0
+  totalPerception: 0
+  baseIntelligence: 0
+  totalIntelligence: 0
+  baseMoveSpeed: 0
+  baseAttackSpeed: 0
+  baseFireResistance: 0
+  totalFireResistance: 0
+  baseIceResistance: 0
+  totalIceResistance: 0
+  baseElectricResistance: 0
+  totalElectricResistance: 0
+  basePoisonResistance: 0
+  totalPoisonResistance: 0
+  baseAcidResistance: 0
+  totalAcidResistance: 0
+  totalPhysicalResistance: 0
+  meleeDamageModifier: 0
+  rangedDamageModifier: 0
+  chemicalDamageModifier: 0
+  elementalDamageModifier: 0
+  toughnessModifier: 0
+  intelligenceMaxEnergyModifier: 0
+  intelligenceCooldownModifier: 0
+  agilityAttackSpeedModifier: 0
+  agilityMoveSpeedModifier: 0
+  fortitudeMaxStaminaModifier: 0
+--- !u!114 &1874683796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1874683785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db88c4ac5da1a7a418ca86eba5df3011, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grounded: 0
 --- !u!1001 &1940249491
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -16,6 +16,7 @@ public class Stamina : MonoBehaviour
 
     float staminaRegenTimerDuration = 1f;
     public bool staminaRegenOnCooldown;
+    public bool grounded; 
     float staminaRegen = 5;
     float globalStaminaRegenFactor = 50;
 
@@ -33,6 +34,9 @@ public class Stamina : MonoBehaviour
         staminaRegenOnCooldown = false;
         stats = GetComponent<Stats>();
         baseMaxStamina = stats ? stats.MaxStamina : 100;
+        totalMaxStamina = baseMaxStamina * (1 + stats.FortitudeMaxStaminaModifier);
+
+        currentStamina = totalMaxStamina;
 
     }
 
@@ -43,7 +47,7 @@ public class Stamina : MonoBehaviour
 
         if (currentStamina < totalMaxStamina)
         {
-            if (!staminaRegenOnCooldown)
+            if (!staminaRegenOnCooldown && grounded)
             {
                 StaminaRegen();
             }
@@ -97,24 +101,24 @@ public class Stamina : MonoBehaviour
         currentStamina = Mathf.Max(0, currentStamina - amount);
         T_UpdateStaminaBar();
 
-        if (staminaRegenOnCooldown)
-        {
-            StopCoroutine("RegenTimer");
-            StartCoroutine("RegenTimer");
-        }
-        else
-        {
-            StartCoroutine("RegenTimer");
-        }
+        
+        StopCoroutine("RegenTimer");
+        if (grounded) 
+        StartCoroutine("RegenTimer");
+        
     }
 
     IEnumerator RegenTimer()
     {
+        Debug.Log("StaminaRegenTimer has started");
+
         staminaRegenOnCooldown = true;
 
         yield return new WaitForSeconds(staminaRegenTimerDuration);
 
         staminaRegenOnCooldown = false;
+
+        Debug.Log("StaminaRegenTimer has finished");
 
     }
 
@@ -137,5 +141,23 @@ public class Stamina : MonoBehaviour
     {
         yield return new WaitForSeconds(t);
         staminaBar.GetComponent<Image>().color = new Color(255, 255, 0, 0);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.transform.tag == "Ground")
+        {
+            grounded = true;
+            StartCoroutine("RegenTimer");
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.transform.tag == "Ground")
+        {
+            grounded = false;
+            StopCoroutine("RegenTimer");
+        }
     }
 }

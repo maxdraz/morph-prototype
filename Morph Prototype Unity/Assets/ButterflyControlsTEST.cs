@@ -19,9 +19,7 @@ public class ButterflyControlsTEST : MonoBehaviour
     [SerializeField] private bool flapCooldown;
     [SerializeField] private float flapCooldownTime;
 
-    [SerializeField] private float staminaRegenRate;
-    [SerializeField] private bool staminaRegenCoolDown;
-    bool grounded;
+    public bool grounded;
 
     [SerializeField] private float yawforce;
     [SerializeField] private float verticalDiveForce;
@@ -90,11 +88,11 @@ public class ButterflyControlsTEST : MonoBehaviour
 
     IEnumerator Glide() 
     {
-        Debug.Log("Started gliding");
+        //Debug.Log("Started gliding");
 
         yield return new WaitForSeconds(.2f);
 
-        Debug.Log("Gravity changed");
+        //Debug.Log("Gravity changed");
 
         gliding = true;
         gravity.ChangeGravity(startingGravity * glideGravity);
@@ -105,41 +103,43 @@ public class ButterflyControlsTEST : MonoBehaviour
 
     void Flap()
     {
-        float upwardThrustBoost;
-        float upwardThrust = baseUpwardThrust;
+        if (stamina.currentStamina >= flightStaminaCost) {
+            float upwardThrustBoost;
+            float upwardThrust = baseUpwardThrust;
 
-        stamina.SubtractStamina(flightStaminaCost);
+            stamina.SubtractStamina(flightStaminaCost);
 
-        //Debug.Log("velocity.y = " + localVel.y);
+            //Debug.Log("velocity.y = " + localVel.y);
 
-        if (localVel.y < 0)
-        {
-            upwardThrustBoost = localVel.y * localVel.y / 10;
-        }
-        else
-        {
+            if (localVel.y < 0)
+            {
+                upwardThrustBoost = localVel.y * localVel.y / 10;
+            }
+            else
+            {
+                upwardThrustBoost = 0;
+            }
+
+
+            upwardThrust += upwardThrustBoost;
+
+            if (upwardThrust > maxUpwardThrust)
+            {
+                upwardThrust = maxUpwardThrust;
+            }
+
+
+
+            rb.AddForce(0, upwardThrust, 0, ForceMode.Impulse);
+
             upwardThrustBoost = 0;
+
+            flapCooldown = false;
+
+            //Debug.Log("upwardThrust" + " = " + upwardThrust);
+            anim.SetTrigger("Flap");
+            StartCoroutine("FlapCooldown");
         }
-        
-
-        upwardThrust += upwardThrustBoost;
-
-        if (upwardThrust > maxUpwardThrust) 
-        {
-            upwardThrust = maxUpwardThrust;
-        }
-
-            
-        
-        rb.AddForce(0, upwardThrust, 0, ForceMode.Impulse);
-
-        upwardThrustBoost = 0;
-
-        flapCooldown = false;
-
-        //Debug.Log("upwardThrust" + " = " + upwardThrust);
-        anim.SetTrigger("Flap");
-        StartCoroutine("FlapCooldown");
     }
 
     IEnumerator FlapCooldown() 
@@ -151,39 +151,20 @@ public class ButterflyControlsTEST : MonoBehaviour
         yield return null;
     }
 
-    void RegenStamina() 
-    {
-        if (grounded && staminaRegenCoolDown) 
-        {
-            stamina.AddStamina(staminaRegenRate);
-        }
-    }
-
-    IEnumerator RegenCooldown() 
-    {
-        yield return new WaitForSeconds(staminaRegenRate);
-
-        staminaRegenCoolDown = true;
-
-        yield return null;
-    }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.transform.tag == "Ground")
         {
+            grounded = true;
             StartCoroutine("RegenCooldown");
         }
     }
 
-    private void OnCollisionStay(Collision collision)
+    private void OnCollisionExit(Collision collision)
     {
         if (collision.collider.transform.tag == "Ground")
-        {
-            grounded = true;
-        }
-        else
-        {
+        { 
             grounded = false;
             StopCoroutine("RegenStamina");
         }
