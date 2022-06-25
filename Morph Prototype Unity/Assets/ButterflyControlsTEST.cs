@@ -68,30 +68,35 @@ public class ButterflyControlsTEST : MonoBehaviour
             rb.AddForce(-transform.forward * reverseForce, ForceMode.Force);
         }
 
-        
-        rb.AddTorque(transform.up * yawforce * yaw, ForceMode.Force);
-        
 
-        
+        rb.AddTorque(transform.up * yawforce * yaw, ForceMode.Force);
+
+
+
 
         if (gliding && Input.GetButton("Jump") == false)
         {
             Debug.Log("Stopped gliding");
             gravity.ChangeGravity(startingGravity);
             gliding = false;
+            anim.SetBool("Gliding", false);
         }
 
         verticalVelocity = rb.velocity.y;
         localVel = transform.InverseTransformDirection(rb.velocity);
 
+        if (Input.GetButton("Jump") == false)
+        {
+            StopCoroutine("Glide");
+        }
     }
 
     IEnumerator Glide() 
     {
         //Debug.Log("Started gliding");
-
+        
         yield return new WaitForSeconds(.2f);
-
+        anim.SetBool("Gliding", true);
         //Debug.Log("Gravity changed");
 
         gliding = true;
@@ -152,21 +157,5 @@ public class ButterflyControlsTEST : MonoBehaviour
     }
 
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.collider.transform.tag == "Ground")
-        {
-            grounded = true;
-            StartCoroutine("RegenCooldown");
-        }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.collider.transform.tag == "Ground")
-        { 
-            grounded = false;
-            StopCoroutine("RegenStamina");
-        }
-    }
+    
 }

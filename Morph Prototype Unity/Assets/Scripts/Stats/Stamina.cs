@@ -108,7 +108,7 @@ public class Stamina : MonoBehaviour
         
     }
 
-    IEnumerator RegenTimer()
+    public IEnumerator RegenTimer()
     {
         Debug.Log("StaminaRegenTimer has started");
 
