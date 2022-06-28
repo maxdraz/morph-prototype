@@ -7,28 +7,9 @@ public class BattleCry : ActiveMorph
     static int meleeDamagePrerequisit = 25;
     static int intimidationPrerequisit = 200;
 
-
     [SerializeField] private GameObject battleCryAOE;
 
     public bool nextHitCrit;
-
-    //static Prerequisite[] StatPrerequisits;
-
-    private void Start()
-    {
-        //WriteToPrerequisiteArray();
-    }
-
-   //void WriteToPrerequisiteArray()
-   //{
-   //    statPrerequisits = new Prerequisite[StatPrerequisits.Length];
-   //
-   //    for (int i = 0; i <= StatPrerequisits.Length - 1; i++)
-   //    {
-   //        statPrerequisits[i] = StatPrerequisits[i];
-   //        Debug.Log(GetType().Name + " has a prerequisite " + statPrerequisits[i].stat + " of " + statPrerequisits[i].value);
-   //    }
-   //}
 
     public override bool ActivateIfConditionsMet()
     {
@@ -64,19 +45,13 @@ public class BattleCry : ActiveMorph
         yield return null;
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
+        
         if (Input.GetKeyDown(testInput))
         {
             SpawnBattleCry();
         }
-    }
-
-    private void OnValidate()
-    {
-    }
-
-    private void OnDrawGizmos()
-    {
     }
 }

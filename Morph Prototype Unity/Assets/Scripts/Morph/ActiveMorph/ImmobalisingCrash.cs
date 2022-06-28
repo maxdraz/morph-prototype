@@ -4,54 +4,29 @@ using UnityEngine;
 
 public class ImmobalisingCrash : ActiveMorph
 {
-
-
-
-    DamageHandler damageHandler;
     [SerializeField] private float verticalForce;
     [SerializeField] private float horizontalForce;
-    Rigidbody rb;
-    bool goingToImpact;
-
-
+    private Rigidbody rb;
+    private bool goingToImpact;
+    
     [SerializeField] private float physicalDamage;
     [SerializeField] private float fortitudeDamage;
     [SerializeField] private float rootDuration;
     [SerializeField] private float range;
+    
 
-    //static Prerequisite[] StatPrerequisits;
-
-    private void Start()
+    protected override void GetComponentReferences()
     {
-        //WriteToPrerequisiteArray();
-    }
-
-    //void WriteToPrerequisiteArray()
-    //{
-    //    statPrerequisits = new Prerequisite[StatPrerequisits.Length];
-    //
-    //    for (int i = 0; i <= StatPrerequisits.Length - 1; i++)
-    //    {
-    //        statPrerequisits[i] = StatPrerequisits[i];
-    //        Debug.Log(GetType().Name + " has a prerequisite " + statPrerequisits[i].stat + " of " + statPrerequisits[i].value);
-    //    }
-    //}
-
-    private void OnEnable()
-    {
-        StartCoroutine(AssignDamageHandlerCoroutine());
+        base.GetComponentReferences();
+        
         rb = GetComponentInParent<Rigidbody>();
-        goingToImpact = false;
     }
 
-
-
-    private void OnDisable()
+    protected override void OnEquip()
     {
-
-        UnsubscribeFromEvents();
-
-
+        base.OnEquip();
+        
+        goingToImpact = false;
     }
 
     private void Leap()
@@ -89,32 +64,5 @@ public class ImmobalisingCrash : ActiveMorph
                 Impact();
             }
         }
-    }
-
-    private IEnumerator AssignDamageHandlerCoroutine()
-    {
-        yield return new WaitForEndOfFrame();
-        GetReferencesAndSubscribeToEvenets();
-    }
-
-    private void GetReferencesAndSubscribeToEvenets()
-    {
-        if (damageHandler) return;
-
-        damageHandler = GetComponent<DamageHandler>();
-        if (damageHandler)
-        {
-
-        }
-    }
-
-    private void UnsubscribeFromEvents()
-    {
-        if (damageHandler)
-        {
-
-        }
-
-        damageHandler = null;
     }
 }

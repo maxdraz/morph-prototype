@@ -4,30 +4,9 @@ using UnityEngine;
 
 public class CatalyzingAgent : ActiveMorph
 {
-
-
     [SerializeField] private ConeProjectileSpawner catalyzingAgentSpawner;
-    [SerializeField]
-    private float chemicalDamageStatMultiplier = .5f;
-    float damageToDeal;
-
-    //static Prerequisite[] StatPrerequisits;
-
-    private void Start()
-    {
-        //WriteToPrerequisiteArray();
-    }
-
-    //void WriteToPrerequisiteArray()
-    //{
-    //    statPrerequisits = new Prerequisite[StatPrerequisits.Length];
-    //
-    //    for (int i = 0; i <= StatPrerequisits.Length - 1; i++)
-    //    {
-    //        statPrerequisits[i] = StatPrerequisits[i];
-    //        Debug.Log(GetType().Name + " has a prerequisite " + statPrerequisits[i].stat + " of " + statPrerequisits[i].value);
-    //    }
-    //}
+    [SerializeField] private float chemicalDamageStatMultiplier = .5f;
+    private float damageToDeal;
 
     public override bool ActivateIfConditionsMet()
     {
@@ -52,8 +31,10 @@ public class CatalyzingAgent : ActiveMorph
             }
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
+        
         if (Input.GetKeyDown(testInput))
         {
             SpawnCatalyzingAgent();

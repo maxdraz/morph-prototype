@@ -4,56 +4,33 @@ using UnityEngine;
 
 public class CraterCreature : ActiveMorph
 {
-
-
-    DamageHandler damageHandler;
     [SerializeField] private float verticalForce;
     [SerializeField] private float horizontalForce;
     Rigidbody rb;
     bool goingToImpact;
-
-
+    
     [SerializeField] private float physicalDamage;
     [SerializeField] private float range;
     public GameObject crater;
 
-    //static Prerequisite[] StatPrerequisits;
-
-    private void Start()
+    protected override void GetComponentReferences()
     {
-        //WriteToPrerequisiteArray();
+        base.GetComponentReferences();
+        
+        rb = GetComponentInParent<Rigidbody>();
     }
 
-    //void WriteToPrerequisiteArray()
-    //{
-    //    statPrerequisits = new Prerequisite[StatPrerequisits.Length];
-    //
-    //    for (int i = 0; i <= StatPrerequisits.Length - 1; i++)
-    //    {
-    //        statPrerequisits[i] = StatPrerequisits[i];
-    //        Debug.Log(GetType().Name + " has a prerequisite " + statPrerequisits[i].stat + " of " + statPrerequisits[i].value);
-    //    }
-    //}
-
-    private void OnEnable()
+    protected override void OnEquip()
     {
-        StartCoroutine(AssignDamageHandlerCoroutine());
-        rb = GetComponentInParent<Rigidbody>();
+        base.OnEquip();
+        
         goingToImpact = false;
     }
 
-
-
-    private void OnDisable()
+    protected override void Update()
     {
-
-        UnsubscribeFromEvents();
-
-
-    }
-
-    private void Update()
-    {
+        base.Update();
+        
         if (Input.GetKeyDown(testInput))
         {
             Leap();
@@ -96,33 +73,4 @@ public class CraterCreature : ActiveMorph
             }
         }
     }
-
-    private IEnumerator AssignDamageHandlerCoroutine()
-    {
-        yield return new WaitForEndOfFrame();
-        GetReferencesAndSubscribeToEvenets();
-    }
-
-    private void GetReferencesAndSubscribeToEvenets()
-    {
-        if (damageHandler) return;
-
-        damageHandler = GetComponent<DamageHandler>();
-        if (damageHandler)
-        {
-
-        }
-    }
-
-    private void UnsubscribeFromEvents()
-    {
-        if (damageHandler)
-        {
-
-        }
-
-        damageHandler = null;
-    }
-
-
 }

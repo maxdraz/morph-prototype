@@ -8,25 +8,6 @@ public class ChemicalCannon : ActiveMorph
 
     [SerializeField] private RadialProjectileSpawner chemicalCannonSpawner;
 
-
-    //static Prerequisite[] StatPrerequisits;
-
-    private void Start()
-    {
-        //WriteToPrerequisiteArray();
-    }
-
-    //void WriteToPrerequisiteArray()
-    //{
-    //    statPrerequisits = new Prerequisite[StatPrerequisits.Length];
-    //
-    //    for (int i = 0; i <= StatPrerequisits.Length - 1; i++)
-    //    {
-    //        statPrerequisits[i] = StatPrerequisits[i];
-    //        Debug.Log(GetType().Name + " has a prerequisite " + statPrerequisits[i].stat + " of " + statPrerequisits[i].value);
-    //    }
-    //}
-
     public override bool ActivateIfConditionsMet()
     {
         if (base.ActivateIfConditionsMet())
@@ -39,8 +20,10 @@ public class ChemicalCannon : ActiveMorph
 
 
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
+        
         if (Input.GetKeyDown(testInput))
         {
             SpawnChemicalCannon();

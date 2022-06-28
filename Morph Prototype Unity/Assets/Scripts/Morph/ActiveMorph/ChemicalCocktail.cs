@@ -8,30 +8,13 @@ public class ChemicalCocktail : ActiveMorph
     [SerializeField] private GameObject chemicalCocktailParticle;
     [SerializeField] private float explosionDelay;
     [SerializeField] private float poisonStackModifier;
-    DamageHandler damageHandler;
 
     [SerializeField] private RadialProjectileSpawner viscousBlastSpawner;
-
-    //public Prerequisite[] StatPrerequisits;
-
-
-
+    
     private void Start()
     {
         damageHandler = GetComponent<DamageHandler>();
-        //WriteToPrerequisiteArray();
     }
-
-   //void WriteToPrerequisiteArray()
-   //{
-   //    statPrerequisits = new Prerequisite[StatPrerequisits.Length];
-   //
-   //    for (int i = 0; i <= StatPrerequisits.Length - 1; i++)
-   //    {
-   //        statPrerequisits[i] = StatPrerequisits[i];
-   //        Debug.Log(GetType().Name + " has a prerequisite " + statPrerequisits[i].stat + " of " + statPrerequisits[i].value);
-   //    }
-   //}
 
     public override bool ActivateIfConditionsMet()
     {
@@ -43,8 +26,10 @@ public class ChemicalCocktail : ActiveMorph
         return false;
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
+        
         if (Input.GetKeyDown(testInput))
         {
             SpawnChemicalCocktail();

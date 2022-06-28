@@ -4,59 +4,28 @@ using UnityEngine;
 
 public class RiftingLeap : ActiveMorph
 {
- 
-
-
-
-    DamageHandler damageHandler;
     [SerializeField] private float verticalForce;
     [SerializeField] private float horizontalForce;
-    Rigidbody rb;
-    bool goingToImpact;
-    Vector3 landingParticlesOffset = new Vector3(0, -1, 0);
+    private Rigidbody rb;
+    private bool goingToImpact;
+    private Vector3 landingParticlesOffset = new Vector3(0, -1, 0);
     [SerializeField] private GameObject impactParticles;
-
 
     [SerializeField] private float physicalDamage;
     [SerializeField] private float knockUpForce;
     [SerializeField] private float range;
 
-    //static Prerequisite[] StatPrerequisits;
-
-    private void Start()
+    protected override void OnEquip()
     {
-        //WriteToPrerequisiteArray();
-    }
-
-    //void WriteToPrerequisiteArray()
-    //{
-    //    statPrerequisits = new Prerequisite[StatPrerequisits.Length];
-    //
-    //    for (int i = 0; i <= StatPrerequisits.Length - 1; i++)
-    //    {
-    //        statPrerequisits[i] = StatPrerequisits[i];
-    //        Debug.Log(GetType().Name + " has a prerequisite " + statPrerequisits[i].stat + " of " + statPrerequisits[i].value);
-    //    }
-    //}
-
-    private void OnEnable()
-    {
-        StartCoroutine(AssignDamageHandlerCoroutine());
+        base.OnEquip();
+        
         goingToImpact = false;
     }
 
-
-
-    private void OnDisable()
+    protected override void Update()
     {
-
-        UnsubscribeFromEvents();
-
-
-    }
-
-    private void Update()
-    {
+        base.Update();
+        
         if (Input.GetKeyDown(testInput))
         {
             Leap();
@@ -107,32 +76,5 @@ public class RiftingLeap : ActiveMorph
                 Impact();
             }
         }
-    }
-
-    private IEnumerator AssignDamageHandlerCoroutine()
-    {
-        yield return new WaitForEndOfFrame();
-        GetReferencesAndSubscribeToEvenets();
-    }
-
-    private void GetReferencesAndSubscribeToEvenets()
-    {
-        if (damageHandler) return;
-
-        damageHandler = GetComponent<DamageHandler>();
-        if (damageHandler)
-        {
-            
-        }
-    }
-
-    private void UnsubscribeFromEvents()
-    {
-        if (damageHandler)
-        {
-
-        }
-
-        damageHandler = null;
     }
 }

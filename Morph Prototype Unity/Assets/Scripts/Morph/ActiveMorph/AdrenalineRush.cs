@@ -5,27 +5,17 @@ using UnityEngine;
 
 public class AdrenalineRush : ActiveMorph
 {
-    static int fortitudePrerequisit = 35;
+    static int fortitudePrerequisite = 35;
     [SerializeField] private GameObject adrenalineRushParticles;
     [SerializeField] private float adrenalineBoost;
+    private Stamina stamina;
 
-    //static Prerequisite[] StatPrerequisits;
-
-    private void Start()
+    protected override void GetComponentReferences()
     {
-        //WriteToPrerequisiteArray();
-    }
+        base.GetComponentReferences();
 
-    //void WriteToPrerequisiteArray()
-    //{
-    //    statPrerequisits = new Prerequisite[StatPrerequisits.Length];
-    //
-    //    for (int i = 0; i <= StatPrerequisits.Length - 1; i++)
-    //    {
-    //        statPrerequisits[i] = StatPrerequisits[i];
-    //        Debug.Log(GetType().Name + " has a prerequisite " + statPrerequisits[i].stat + " of " + statPrerequisits[i].value);
-    //    }
-    //}
+        stamina = GetComponent<Stamina>();
+    }
 
     public override bool ActivateIfConditionsMet()
     {
@@ -37,8 +27,10 @@ public class AdrenalineRush : ActiveMorph
         return false;
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
+        
         if (Input.GetKeyDown(testInput))
         {
             AdrenalineBoost();
@@ -50,6 +42,6 @@ public class AdrenalineRush : ActiveMorph
         GameObject boost = ObjectPooler.Instance.GetOrCreatePooledObject(adrenalineRushParticles);
         boost.transform.position = transform.position;
         boost.transform.parent = transform;
-        GetComponent<Stamina>().AddStamina(adrenalineBoost);
+        stamina.AddStamina(adrenalineBoost);
     }
 }

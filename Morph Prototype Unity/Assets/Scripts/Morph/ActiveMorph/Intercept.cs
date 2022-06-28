@@ -4,50 +4,32 @@ using UnityEngine;
 
 public class Intercept : ActiveMorph
 {
-
-
-    DamageHandler damageHandler;
     [SerializeField] private float verticalForce;
     [SerializeField] private float horizontalForce;
-    Rigidbody rb;
-    bool goingToImpact;
+    private Rigidbody rb;
+    private bool goingToImpact;
     [SerializeField] private float staminaGain;
-    bool gainedStamina;
+    private bool gainedStamina;
     [SerializeField] private float range;
 
-    //static Prerequisite[] StatPrerequisits;
-
-    private void Start()
+    protected override void GetComponentReferences()
     {
-        //WriteToPrerequisiteArray();
+        base.GetComponentReferences();
+        
+        rb = GetComponentInParent<Rigidbody>();
     }
 
-    //void WriteToPrerequisiteArray()
-    //{
-    //    statPrerequisits = new Prerequisite[StatPrerequisits.Length];
-    //
-    //    for (int i = 0; i <= StatPrerequisits.Length - 1; i++)
-    //    {
-    //        statPrerequisits[i] = StatPrerequisits[i];
-    //        Debug.Log(GetType().Name + " has a prerequisite " + statPrerequisits[i].stat + " of " + statPrerequisits[i].value);
-    //    }
-    //}
-
-    private void OnEnable()
+    protected override void OnEquip()
     {
-        StartCoroutine(AssignDamageHandlerCoroutine());
+        base.OnEquip();
+        
         goingToImpact = false;
     }
 
-
-
-    private void OnDisable()
+    protected override void Update()
     {
-        UnsubscribeFromEvents();
-    }
-
-    private void Update()
-    {
+        base.Update();
+        
         if (cooldown.JustCompleted) 
         {
             gainedStamina = false;
@@ -61,11 +43,7 @@ public class Intercept : ActiveMorph
 
     private void Leap()
     {
-        if (rb == null)
-        {
-            rb = GetComponentInParent<Rigidbody>();
-        }
-
+        if(!rb) return;
         rb.AddForce(0, 1 * verticalForce, 0, ForceMode.Impulse);
 
         rb.AddForce(0, 0, 1 * horizontalForce, ForceMode.Impulse);
@@ -100,32 +78,5 @@ public class Intercept : ActiveMorph
                 Impact();
             }
         }
-    }
-
-    private IEnumerator AssignDamageHandlerCoroutine()
-    {
-        yield return new WaitForEndOfFrame();
-        GetReferencesAndSubscribeToEvenets();
-    }
-
-    private void GetReferencesAndSubscribeToEvenets()
-    {
-        if (damageHandler) return;
-
-        damageHandler = GetComponent<DamageHandler>();
-        if (damageHandler)
-        {
-
-        }
-    }
-
-    private void UnsubscribeFromEvents()
-    {
-        if (damageHandler)
-        {
-
-        }
-
-        damageHandler = null;
     }
 }

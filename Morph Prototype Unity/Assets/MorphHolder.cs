@@ -16,10 +16,10 @@ public class MorphHolder : MonoBehaviour
         morphsInChildren = GetComponentsInChildren<Morph>();
 
         if (addMorphs)
-        Invoke ("AddChildMorphs", 3);
+            Invoke ("AddChildMorphs", 3);
 
         if (getEnums)
-        Invoke("GetChildMorphEnums", 1);
+            Invoke("GetChildMorphEnums", 1);
     }
     void AddChildMorphs()
     {
