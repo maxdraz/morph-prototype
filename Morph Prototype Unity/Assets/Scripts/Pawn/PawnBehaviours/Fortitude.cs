@@ -39,7 +39,7 @@ public class Fortitude : MonoBehaviour
     public float ApplyFortitudeDamage(FortitudeDamageData data)
     {
         float fortDamage = data.FortitudeDamage;
-        string effect = data.StatusEffect;
+        var effect = data.StatusEffectType;
         float duration = data.Duration;
         
         currentFortitude -= data.FortitudeDamage;
@@ -48,29 +48,29 @@ public class Fortitude : MonoBehaviour
         {
 
 
-            if (data.StatusEffect == "Stun")
+            if (effect == StatusEffect.Stun)
             {
                 secondaryStat = 0f;
                 //instead the dc is (fortDamage - (lastFortitudeValue * 3))
             }
 
-            if (data.StatusEffect == "Paralysis")
+            if (effect == StatusEffect.Paralysis)
             {
                 secondaryStat = stats.totalAgility;
             }
 
-            if (data.StatusEffect == "Root")
+            if (effect == StatusEffect.Root)
             {
                 secondaryStat = 0f;
                 //instead the dc is (fortDamage - (lastFortitudeValue * 3))
             }
 
-            if (data.StatusEffect == "Silence")
+            if (effect == StatusEffect.Silence)
             {
                 secondaryStat = stats.totalIntelligence;
             }
 
-            if (data.StatusEffect == "Crippled")
+            if (effect == StatusEffect.Crippled)
             {
                 secondaryStat = stats.totalToughness;
             }
@@ -106,51 +106,51 @@ public class Fortitude : MonoBehaviour
         fortitudeRegenRate = 1f;
     }
 
-    public void ImmediateCC(float DC, string effect, float duration)
-    {
-        if (effect == "stun")
-        {
-            secondaryStat = 0f;
-            //instead the chanceToSuccumb is (DC - (maxFortitude * 1.5))
-        }
+    // public void ImmediateCC(float DC, string effect, float duration)
+    // {
+    //     if (effect == "stun")
+    //     {
+    //         secondaryStat = 0f;
+    //         //instead the chanceToSuccumb is (DC - (maxFortitude * 1.5))
+    //     }
+    //
+    //     if (effect == "paralysis")
+    //     {
+    //         //float secondaryStat = agility
+    //     }
+    //
+    //     if (effect == "root")
+    //     {
+    //         secondaryStat = 0f;
+    //         //instead the chanceToSuccumb is (DC - (maxFortitude * 1.5))
+    //     }
+    //
+    //     if (effect == "silence")
+    //     {
+    //         secondaryStat = stats.totalIntelligence;
+    //     }
+    //
+    //     if (effect == "crippled")
+    //     {
+    //         secondaryStat = stats.totalToughness;
+    //     }
+    //
+    //     if (secondaryStat == 0)
+    //     {
+    //         chanceTobeEffected = (DC - (maxFortitude * 1.5f));
+    //     }
+    //     else
+    //     {
+    //         chanceTobeEffected = (DC - (maxFortitude + secondaryStat));
+    //     }
+    //
+    //     if (chanceTobeEffected > 0)
+    //     {
+    //         StatusCheck(chanceTobeEffected, effect, duration);
+    //     }
+    // }
 
-        if (effect == "paralysis")
-        {
-            //float secondaryStat = agility
-        }
-
-        if (effect == "root")
-        {
-            secondaryStat = 0f;
-            //instead the chanceToSuccumb is (DC - (maxFortitude * 1.5))
-        }
-
-        if (effect == "silence")
-        {
-            secondaryStat = stats.totalIntelligence;
-        }
-
-        if (effect == "crippled")
-        {
-            secondaryStat = stats.totalToughness;
-        }
-
-        if (secondaryStat == 0)
-        {
-            chanceTobeEffected = (DC - (maxFortitude * 1.5f));
-        }
-        else
-        {
-            chanceTobeEffected = (DC - (maxFortitude + secondaryStat));
-        }
-
-        if (chanceTobeEffected > 0)
-        {
-            StatusCheck(chanceTobeEffected, effect, duration);
-        }
-    }
-
-    void StatusCheck(float chance, string statusToApply, float duration)
+    void StatusCheck(float chance, StatusEffect statusToApply, float duration)
     {
         float randomNumber = (Random.value) * 100;
 
@@ -161,7 +161,7 @@ public class Fortitude : MonoBehaviour
 
         if (statusApplied)
         {
-            StatusEffect(statusToApply, duration);
+            ApplyStatusEffect(statusToApply, duration);
             Debug.Log(statusToApply + " had " + chance + " chance to happen, and succeeded with " + randomNumber);
         }
 
@@ -173,30 +173,30 @@ public class Fortitude : MonoBehaviour
         statusApplied = false;
     }
 
-    void StatusEffect(string statusToApply, float duration)
+    void ApplyStatusEffect(StatusEffect statusToApply, float duration)
     {
 
-        if (statusToApply == "stun")
+        if (statusToApply == StatusEffect.Stun)
         {
             StartCoroutine("Stun", duration); 
         }
 
-        if (statusToApply == "paralysis")
+        if (statusToApply == StatusEffect.Paralysis)
         {
             Paralysis(duration);
         }
 
-        if (statusToApply == "root")
+        if (statusToApply == StatusEffect.Root)
         {
             Root(duration);
         }
 
-        if (statusToApply == "silence")
+        if (statusToApply == StatusEffect.Silence)
         {
             Silence(duration);
         }
 
-        if (statusToApply == "crippled")
+        if (statusToApply == StatusEffect.Crippled)
         {
             Crippled(duration);
         }

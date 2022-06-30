@@ -2,44 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum StatusEffect 
+{
+    Stun, 
+    Root, 
+    Silence, 
+    Blindness, 
+    Paralysis, 
+    Crippled
+}
+
 [System.Serializable]
 public class FortitudeDamageData : OnHitEffectData, IFortitudeDamage
 {
     [SerializeField] private float fortitudeDamage;
-    [SerializeField] private string statusEffect;
     [SerializeField] private float duration;
     [SerializeField] private AttackType attackType;
     public AttackType AttackType { get => attackType;
         set => attackType = value;
     }
-   // public enum statusEffect 
-   // {
-   // Stun, 
-   // Root, 
-   // Silence, 
-   // Blindness, 
-   // Paralysis, 
-   // Crippled
-   // }
+   
 
-    public FortitudeDamageData(float fortitudeDamage = 1, string statusEffect = "", float duration = 0, AttackType attackType = AttackType.Melee)
+   private StatusEffect statusEffect;
+   public StatusEffect StatusEffectType => statusEffect;
+
+    public FortitudeDamageData(float fortitudeDamage = 1, StatusEffect statusEffect = StatusEffect.Stun, float duration = 0, AttackType attackType = AttackType.Melee)
     {
         this.fortitudeDamage = fortitudeDamage;
-        this.statusEffect = statusEffect;
         this.duration = duration;
         this.attackType = attackType;
+        this.statusEffect = statusEffect;
     }
 
     public float FortitudeDamage
     {
         get => fortitudeDamage;
         set => fortitudeDamage = value;
-    }
-
-    public string StatusEffect 
-    {
-        get => statusEffect;
-        set => statusEffect = value;
     }
 
     public float Duration
