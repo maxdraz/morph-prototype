@@ -16,6 +16,7 @@ public class Stamina : MonoBehaviour
 
     float staminaRegenTimerDuration = 1f;
     public bool staminaRegenOnCooldown;
+    bool staminaRegenerating;
     public bool grounded;
     Vector3 groundCheckOffset = new Vector3(0, -.5f, 0);
     float staminaRegen = 5;
@@ -33,6 +34,7 @@ public class Stamina : MonoBehaviour
     void Start()
     { 
         staminaRegenOnCooldown = false;
+        staminaRegenerating = false;
         stats = GetComponent<Stats>();
         baseMaxStamina = stats ? stats.MaxStamina : 100;
         totalMaxStamina = baseMaxStamina * (1 + stats.FortitudeMaxStaminaModifier);
@@ -48,7 +50,7 @@ public class Stamina : MonoBehaviour
 
         if (currentStamina < totalMaxStamina)
         {
-            if (!staminaRegenOnCooldown && grounded)
+            if (staminaRegenerating && grounded)
             {
                 StaminaRegen();
             }
@@ -73,6 +75,14 @@ public class Stamina : MonoBehaviour
                 grounded = true;
             }
         }
+
+       //if (grounded && !staminaRegenOnCooldown) 
+       //{
+       //    if (currentStamina < totalMaxStamina)
+       //    {
+       //        StartCoroutine("RegenTimer");
+       //    }
+       //}
     }
 
     void StaminaRegen() 
@@ -122,22 +132,23 @@ public class Stamina : MonoBehaviour
         currentStamina = Mathf.Max(0, currentStamina - amount);
         T_UpdateStaminaBar();
 
-        
+        staminaRegenerating = false;
+        staminaRegenOnCooldown = false;
         StopCoroutine("RegenTimer");
-        if (grounded) 
-        StartCoroutine("RegenTimer");
+        //if (grounded) 
+        //StartCoroutine("RegenTimer");
         
     }
 
     public IEnumerator RegenTimer()
     {
         Debug.Log("StaminaRegenTimer has started");
-
         staminaRegenOnCooldown = true;
 
         yield return new WaitForSeconds(staminaRegenTimerDuration);
 
         staminaRegenOnCooldown = false;
+        staminaRegenerating = true;
 
         Debug.Log("StaminaRegenTimer has finished");
 
@@ -172,13 +183,13 @@ public class Stamina : MonoBehaviour
             StartCoroutine("RegenTimer");
         }
     }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.transform.tag == "Ground")
-        {
-            grounded = false;
-            StopCoroutine("RegenTimer");
-        }
-    }
+    //
+    //private void OnCollisionExit(Collision collision)
+    //{
+    //    if (collision.gameObject.transform.tag == "Ground")
+    //    {
+    //        grounded = false;
+    //        StopCoroutine("RegenTimer");
+    //    }
+    //}
 }

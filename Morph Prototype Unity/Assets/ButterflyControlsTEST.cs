@@ -29,6 +29,9 @@ public class ButterflyControlsTEST : MonoBehaviour
     Vector3 localVel = new Vector3();
     float verticalVelocity;
 
+    float yaw;
+    float pitch;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,8 +50,8 @@ public class ButterflyControlsTEST : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float yaw = Input.GetAxis("Horizontal");
-        float pitch = Input.GetAxis("Vertical");
+        yaw = Input.GetAxis("Horizontal");
+        pitch = Input.GetAxis("Vertical");
 
         if (Input.GetButtonDown("Jump") && flapCooldown)
         {
@@ -56,34 +59,6 @@ public class ButterflyControlsTEST : MonoBehaviour
             Flap();
             StartCoroutine("Glide");
         }
-
-        if (stamina.grounded == true) 
-        {
-            if (pitch < 0)
-            {
-                rb.AddForce(transform.forward * crawlForce, ForceMode.Force);
-            }
-            if (pitch > 0)
-            {
-                rb.AddForce(-transform.forward * crawlForce, ForceMode.Force);
-            }
-        }
-
-        if (pitch < 0)
-        {
-            rb.AddForce(-transform.up * verticalDiveForce, ForceMode.Force);
-            rb.AddForce(transform.forward * forwardDiveForce, ForceMode.Force);
-        }
-        if (pitch > 0)
-        {
-            rb.AddForce(-transform.forward * reverseForce, ForceMode.Force);
-        }
-
-
-        rb.AddTorque(transform.up * yawforce * yaw, ForceMode.Force);
-
-
-
 
         if (gliding && Input.GetButton("Jump") == false)
         {
@@ -100,6 +75,41 @@ public class ButterflyControlsTEST : MonoBehaviour
         {
             StopCoroutine("Glide");
         }
+    }
+
+    private void FixedUpdate()
+    {
+        if (stamina.grounded == true)
+        {
+            if (pitch > 0)
+            {
+                rb.AddForce(transform.forward * crawlForce, ForceMode.Force);
+            }
+            if (pitch < 0)
+            {
+                rb.AddForce(-transform.forward * crawlForce, ForceMode.Force);
+            }
+        }
+
+        else
+        {
+            if (pitch > 0)
+            {
+                rb.AddForce(-transform.up * verticalDiveForce, ForceMode.Force);
+                rb.AddForce(transform.forward * forwardDiveForce, ForceMode.Force);
+            }
+            if (pitch < 0)
+            {
+                rb.AddForce(-transform.forward * reverseForce, ForceMode.Force);
+            }
+        }
+
+        rb.AddTorque(transform.up * yawforce * yaw, ForceMode.Force);
+    }
+
+    void Crawl(float crawlForce) 
+    {
+        rb.AddForce(transform.forward * crawlForce, ForceMode.Force);
     }
 
     IEnumerator Glide() 
@@ -129,7 +139,7 @@ public class ButterflyControlsTEST : MonoBehaviour
 
             if (localVel.y != 0)
             {
-                upwardThrustBoost = localVel.y * localVel.y / 10;
+                upwardThrustBoost = localVel.y * localVel.y / 2;
             }
             else
             {
