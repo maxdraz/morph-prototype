@@ -16,7 +16,8 @@ public class Stamina : MonoBehaviour
 
     float staminaRegenTimerDuration = 1f;
     public bool staminaRegenOnCooldown;
-    public bool grounded; 
+    public bool grounded;
+    Vector3 groundCheckOffset = new Vector3(0, -.5f, 0);
     float staminaRegen = 5;
     float globalStaminaRegenFactor = 50;
 
@@ -50,6 +51,26 @@ public class Stamina : MonoBehaviour
             if (!staminaRegenOnCooldown && grounded)
             {
                 StaminaRegen();
+            }
+        }
+
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position + groundCheckOffset, .2f);
+
+        foreach (var hitCollider in hitColliders)
+        {
+            if (hitCollider.transform == gameObject.transform)
+            {
+                if (hitColliders.Length == 1)
+                {
+                    grounded = false;
+                }
+
+                return;
+            }
+
+            if (hitCollider.tag == "Ground")
+            {
+                grounded = true;
             }
         }
     }

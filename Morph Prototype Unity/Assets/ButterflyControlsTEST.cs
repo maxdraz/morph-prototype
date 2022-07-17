@@ -19,13 +19,12 @@ public class ButterflyControlsTEST : MonoBehaviour
     [SerializeField] private bool flapCooldown;
     [SerializeField] private float flapCooldownTime;
 
-    public bool grounded;
 
     [SerializeField] private float yawforce;
     [SerializeField] private float verticalDiveForce;
     [SerializeField] private float forwardDiveForce;
     [SerializeField] private float reverseForce;
-
+    [SerializeField] private float crawlForce;
 
     Vector3 localVel = new Vector3();
     float verticalVelocity;
@@ -56,6 +55,18 @@ public class ButterflyControlsTEST : MonoBehaviour
             //Debug.Log("Space Bar Pressed");
             Flap();
             StartCoroutine("Glide");
+        }
+
+        if (stamina.grounded == true) 
+        {
+            if (pitch < 0)
+            {
+                rb.AddForce(transform.forward * crawlForce, ForceMode.Force);
+            }
+            if (pitch > 0)
+            {
+                rb.AddForce(-transform.forward * crawlForce, ForceMode.Force);
+            }
         }
 
         if (pitch < 0)
@@ -116,7 +127,7 @@ public class ButterflyControlsTEST : MonoBehaviour
 
             //Debug.Log("velocity.y = " + localVel.y);
 
-            if (localVel.y < 0)
+            if (localVel.y != 0)
             {
                 upwardThrustBoost = localVel.y * localVel.y / 10;
             }
